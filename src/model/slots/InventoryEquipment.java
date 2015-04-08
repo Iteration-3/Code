@@ -68,7 +68,6 @@ public class InventoryEquipment {
 
 	/***************************** EQUIPMENT ********************************/
 	public void equip(Equipable item) {
-//		this.equipment.equip(item);
 		//TODO
 	}
 	

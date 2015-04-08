@@ -69,35 +69,35 @@ public class EquipmentManager {
 
 	/************************* EQUIP **************************/
 
-	public void equip(Projectile item) {
-		this.projectileSlot.equip(item);
+	public boolean equip(Projectile item) {
+		return this.projectileSlot.equip(item);
 	}
 
-	public void equip(Gloves item) {
-		this.glovesSlot.equip(item);
+	public boolean equip(Gloves item) {
+		return this.glovesSlot.equip(item);
 	}
 
-	public void equip(Boots item) {
-		this.bootsSlot.equip(item);
+	public boolean equip(Boots item) {
+		return this.bootsSlot.equip(item);
 	}
 
-	public void equip(Shield item) {
-		this.shieldSlot.equip(item);
+	public boolean equip(Shield item) {
+		return this.shieldSlot.equip(item);
 	}
 
-	public void equip(Weapon item) { // TODO special case for all types
-		this.weaponSlot.equip(item);
+	public boolean equip(Weapon item) { // TODO special case for all types
+		return this.weaponSlot.equip(item);
 	}
 
-	public void equip(Leggings item) {
-		this.leggingsSlot.equip(item);
+	public boolean equip(Leggings item) {
+		return this.leggingsSlot.equip(item);
 	}
 
-	public void equip(ChestPiece item) {
-		this.chestPieceSlot.equip(item);
+	public boolean equip(ChestPiece item) {
+		return this.chestPieceSlot.equip(item);
 	}
 
-	public void equip(Helmet item) {
-		this.helmetSlot.equip(item);
+	public boolean equip(Helmet item) {
+		return this.helmetSlot.equip(item);
 	}
 }
