@@ -57,10 +57,10 @@ public class Inventory {
 	
 	/********************DIMENSIONS**************************/
 	public int getRows(){
-		return this.ROW;
+		return Inventory.ROW;
 	}
 	public int getCols(){
-		return this.COL;
+		return Inventory.COL;
 	}
 	/********************INSERTS****************************/
 	public boolean insert(TakeableItem item){
