@@ -4,7 +4,7 @@ import model.slots.EquipmentManager;
 
 public class Helmet extends Equipable{
 
-	boolean equip(EquipmentManager equipment) {
+	public boolean equip(EquipmentManager equipment) {
 		return equipment.equip(this);
 	}
 }

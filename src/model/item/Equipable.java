@@ -2,7 +2,7 @@ package model.item;
 
 import model.slots.EquipmentManager;
 
-public abstract class Equipable {
+public abstract class Equipable extends TakeableItem {
 
-	abstract boolean equip(EquipmentManager equipment);
+	public abstract boolean equip(EquipmentManager equipment);
 }

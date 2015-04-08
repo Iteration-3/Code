@@ -68,7 +68,12 @@ public class InventoryEquipment {
 
 	/***************************** EQUIPMENT ********************************/
 	public void equip(Equipable item) {
-		//TODO
+		if (item.equip (this.equipment)) {
+			return;
+		}
+		else{
+			this.inventory.insert(item);
+		}
 	}
 	
 	public Projectile unequipProjectile(){
