@@ -1,5 +1,24 @@
 package model.item;
 
-public class Projectile extends Equipable{
+import model.entity.Entity;
+import model.slots.EquipmentManager;
+
+public class Projectile extends EquipableItem{
+
+	public boolean equip(EquipmentManager equipment) {
+		return equipment.equip(this);
+	}
+
+	@Override
+	public void use(Entity entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

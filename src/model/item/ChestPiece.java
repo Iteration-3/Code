@@ -1,5 +1,24 @@
 package model.item;
 
-public class ChestPiece extends Equipable{ 
+import model.entity.Entity;
+import model.slots.EquipmentManager;
+
+public class ChestPiece extends EquipableItem {
+
+	public boolean equip(EquipmentManager equipment) {
+		return equipment.equip(this);
+	}
+
+	@Override
+	public void use(Entity entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	} 
 
 }
