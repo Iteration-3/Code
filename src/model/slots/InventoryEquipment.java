@@ -1,16 +1,8 @@
 package model.slots;
 
 import utilities.Point;
-import model.item.Boots;
-import model.item.ChestPiece;
 import model.item.Equipable;
-import model.item.Gloves;
-import model.item.Helmet;
-import model.item.Leggings;
-import model.item.Projectile;
-import model.item.Shield;
 import model.item.TakeableItem;
-import model.item.Weapon;
 
 public class InventoryEquipment {
 	private EquipmentManager equipment;
@@ -75,36 +67,52 @@ public class InventoryEquipment {
 			this.inventory.insert(item);
 		}
 	}
-	
-	public Projectile unequipProjectile(){
-		return this.equipment.unequipProjectile();
+
+	public void unequipProjectile(){
+		if (this.inventory.hasEmptySlot()){
+			this.equipment.unequipProjectile();
+		}
 	}
 	
-	public Gloves unequipGloves(){
-		return this.equipment.unequipGloves();
+	public void unequipGloves(){
+		if (this.inventory.hasEmptySlot()){
+			this.equipment.unequipProjectile();
+		}
 	}
 	
-	public Boots unequipBoots(){
-		return this.equipment.unequipBoots();
+	public void unequipBoots(){
+		if (this.inventory.hasEmptySlot()){
+			this.equipment.unequipBoots();
+		}
 	}
 	
-	public Shield unequipShield(){
-		return this.equipment.unequipShield();
+	public void unequipShield(){
+		if (this.inventory.hasEmptySlot()){
+			this.equipment.unequipShield();
+		}
 	}
 	
-	public Weapon unequipWeapon(){
-		return this.equipment.unequipWeapon();
+	public void unequipWeapon(){
+		if (this.inventory.hasEmptySlot()){
+			this.equipment.unequipWeapon();
+		}
 	}
 	
-	public Leggings unequipLeggings(){
-		return this.equipment.unequipLeggings();
+	public void unequipLeggings(){
+		if (this.inventory.hasEmptySlot()){
+			this.equipment.unequipLeggings();
+		}
 	}
 	
-	public ChestPiece unequipChestPiece(){
-		return this.equipment.unequipChestPiece();
+	public void unequipChestPiece(){
+		if (this.inventory.hasEmptySlot()){
+			this.equipment.unequipChestPiece();
+		}
 	}
 	
-	public Helmet unequipHelmet(){
-		return this.equipment.unequipHelmet();
+	public void unequipHelmet(){
+		if (this.inventory.hasEmptySlot()){
+			this.equipment.unequipHelmet();
+		}
 	}
 }
