@@ -55,6 +55,13 @@ public class Inventory {
 		throw new Exception("You dont have that Item in the Inventory");
 	}
 	
+	/********************DIMENSIONS**************************/
+	public int getRows(){
+		return this.ROW;
+	}
+	public int getCols(){
+		return this.COL;
+	}
 	/********************INSERTS****************************/
 	public boolean insert(TakeableItem item){
 		return this.findAndEquip(item);
@@ -90,6 +97,17 @@ public class Inventory {
 	public boolean slotHasItem(TakeableItem item,int x,int y){
 		return this.slots[x][y].hasItem(item);
 	}
+	
+	public boolean hasEmptySlot(){
+		for (int i = 0 ; i < ROW ; i++){
+			for (int j = 0; j < COL; j++){
+				if (! this.slotHas(i,j)){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
 	/*************REMOVE********************************************/
 	public TakeableItem remove(TakeableItem item) throws Exception{
@@ -102,5 +120,23 @@ public class Inventory {
 	
 	public TakeableItem remove(Point point){
 		return this.remove(point.getX(),point.getY());
+	}
+	/**********************GETTERS*************************************/
+	public TakeableItem[][] getItems(){
+		TakeableItem[][] items = new TakeableItem[ROW][COL];
+		for (int i = 0 ; i < ROW ; i++){
+			for (int j = 0; j < COL; j++){
+				items[i][j] = this.get(i,j);
+			}
+		}
+		return items;
+	}
+	
+	public TakeableItem get(int x, int y){
+		return this.slots[x][y].get();
+	}
+
+	public TakeableItem get(Point point){
+		return this.get(point.getX(),point.getY());
 	}
 }
