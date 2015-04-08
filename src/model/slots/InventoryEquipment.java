@@ -1,7 +1,7 @@
 package model.slots;
 
 import utilities.Point;
-import model.item.Equipable;
+import model.item.EquipableItem;
 import model.item.TakeableItem;
 
 public class InventoryEquipment {
@@ -59,7 +59,7 @@ public class InventoryEquipment {
 	}
 
 	/***************************** EQUIPMENT ********************************/
-	public void equip(Equipable item) {
+	public void equip(EquipableItem item) {
 		if (item.equip (this.equipment)) {
 			return;
 		}

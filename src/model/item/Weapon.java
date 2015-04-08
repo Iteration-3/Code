@@ -1,5 +1,5 @@
 package model.item;
 
-public abstract class Weapon extends Equipable{
+public abstract class Weapon extends EquipableItem{
 
 }

@@ -1,6 +1,7 @@
 package model.entity;
 
 import model.item.Item;
+import model.item.TakeableItem;
 
 public abstract class Entity {
 	private String name_= null;
@@ -9,8 +10,8 @@ public abstract class Entity {
 	
 	public abstract boolean isFlying();
 	public abstract void move(Direction d);
-	public abstract void addItem(TakableItem takeable);
-	public abstract void removeItem(TakableItem takable);
+	public abstract void addItem(TakeableItem takeable);
+	public abstract void removeItem(TakeableItem takable);
 	public abstract void equipItem(Item item);
 	public abstract void unequipItem(Item item);
 	public abstract void attack();

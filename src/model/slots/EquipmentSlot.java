@@ -1,8 +1,8 @@
 package model.slots;
 
-import model.item.Equipable;
+import model.item.EquipableItem;
 
-public class EquipmentSlot <K extends Equipable>{
+public class EquipmentSlot <K extends EquipableItem>{
 	K item;
 	
 	public EquipmentSlot(){}
