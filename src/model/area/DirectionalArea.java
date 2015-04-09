@@ -2,27 +2,27 @@ package model.area;
 
 import java.util.List;
 
-import utilities.Angle;
+import utilities.AreaAngle;
 
 public abstract class DirectionalArea extends Area {
 
-    private Angle direction;
+    private AreaAngle direction;
 
-    public DirectionalArea(int radius, Location startLocation, Angle angle) {
+    public DirectionalArea(int radius, Location startLocation, AreaAngle angle) {
         super(radius, startLocation);
         this.direction = angle;
     }
 
     public DirectionalArea() {
         super();
-        this.direction = Angle.UP;
+        this.direction = AreaAngle.UP;
     }
 
-    public Angle getDirection() {
+    public AreaAngle getDirection() {
         return direction;
     }
 
-    public void setDirection(Angle direction) {
+    public void setDirection(AreaAngle direction) {
         this.direction = direction;
     }
 
@@ -31,6 +31,11 @@ public abstract class DirectionalArea extends Area {
 
     @Override
     public abstract List<Location> getCoveredLocations();
+    
+    protected boolean isWithinRadius(Location loc) {
+        return Math.pow(super.getStartLocation().getX() - loc.getX(), 2)
+                + Math.pow(super.getStartLocation().getY() - loc.getY(), 2) < Math.pow(super.getRadius(), 2);
+    }
 
     /**
      * Uncomment when structure map comes in.

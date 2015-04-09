@@ -16,11 +16,11 @@ public class InventorySlot {
 		return this.item;
 	}
 	
-	public void insert(TakeableItem item){
+	public void addItem(TakeableItem item){
 		this.item = item;
 	}
 	
-	public TakeableItem remove(){
+	public TakeableItem removeItem(){
 		TakeableItem temp = this.item;
 		this.item = null;
 		return temp;

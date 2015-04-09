@@ -1,6 +1,6 @@
 package statistics;
 
-public class EntityStatistics extends Statistics {
+public class EntityStatistics extends Statistics{
 	private int livesLeft;
 	private int experience;
 	private int movement;

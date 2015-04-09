@@ -1,0 +1,28 @@
+package utilities;
+
+public enum AreaAngle {
+    UP_RIGHT(0),
+    UP(60),
+    UP_LEFT(120),
+    DOWN_LEFT(180),
+    DOWN(240),
+    DOWN_RIGHT(300);
+
+    private AreaAngle(int theta) {
+        this.theta = theta;
+    }
+
+    private int theta;
+
+    public int getAngle() {
+        return this.theta;
+    }
+
+    public double sin() {
+        return Math.sin(theta);
+    }
+
+    public double cos() {
+        return Math.cos(theta);
+    }
+}
