@@ -5,7 +5,7 @@ import view.ItemView;
 
 public abstract class Item {
 	
-	private ItemView itemView;
+	protected ItemView itemView;
 	
 	public abstract void touch(Entity entity);
 	public abstract void use(Entity entity);
