@@ -11,7 +11,7 @@ import utilities.LocationConversion;
 
 public class ConicalAreaTest {
 
-    private ConicalArea area = new ConicalArea(1, new Location(952, 825), AreaAngle.UP);
+    private ConicalArea area = new ConicalArea(2, new Location(952, 825), AreaAngle.UP);
 
     @Before
     public void setUp() {

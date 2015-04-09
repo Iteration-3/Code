@@ -19,10 +19,10 @@ public enum AreaAngle {
     }
 
     public double sin() {
-        return Math.sin(theta);
+        return Math.sin(Math.toRadians(theta));
     }
 
     public double cos() {
-        return Math.cos(theta);
+        return Math.cos(Math.toRadians(theta));
     }
 }

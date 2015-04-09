@@ -39,7 +39,7 @@ public abstract class Area {
     protected boolean isWithinRadius(Location loc) {
         double radiusMultiplier = LocationConversion.getRadius();
         return Math.pow(getStartLocation().getX() - loc.getX(), 2)
-                + Math.pow(getStartLocation().getY() - loc.getY(), 2) <= Math.pow(getRadius() * radiusMultiplier, 2);
+                + Math.pow(getStartLocation().getY() - loc.getY(), 2) <= Math.pow(getRadius() * radiusMultiplier/2.0, 2);
     }
 
     public abstract List<Location> getCoveredLocations();
