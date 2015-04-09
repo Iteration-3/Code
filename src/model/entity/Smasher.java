@@ -6,5 +6,4 @@ import model.item.TakeableItem;
 public class Smasher extends Avatar {
 
 
-
 }

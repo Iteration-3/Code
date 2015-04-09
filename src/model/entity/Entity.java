@@ -1,6 +1,6 @@
 package model.entity;
 
-import View.view.EntityView;
+import view.EntityView;
 import statistics.EntityStatistics;
 import utilities.Angle;
 import model.item.Item;

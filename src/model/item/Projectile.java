@@ -20,10 +20,4 @@ public class Projectile extends EquipableItem{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public void use(Entity entity) {
-		// TODO Auto-generated method stub
-		
-	}
 }

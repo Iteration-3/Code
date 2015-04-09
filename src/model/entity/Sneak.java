@@ -5,6 +5,4 @@ import model.item.TakeableItem;
 
 public class Sneak extends Avatar {
 
-	
-
 }
