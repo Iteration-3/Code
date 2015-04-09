@@ -1,48 +1,12 @@
 package model.entity;
 
-import utilities.Angle;
 import utilities.structuredmap.StructuredMap;
-import model.item.Item;
-import model.item.TakeableItem;
 
 public class NPC extends Entity {
 
-	@Override
-	public boolean isFlying() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void move(Angle d) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addItem(TakeableItem takeable) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeItem(TakeableItem takable) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void equipItem(Item item) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void unequipItem(Item item) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	//Needs behavior shit!
+	//Behavior shit will be overridden by subclasses
+	
 	@Override
 	public void attack() {
 		// TODO Auto-generated method stub
@@ -66,6 +30,8 @@ public class NPC extends Entity {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 
 
