@@ -1,10 +1,9 @@
 package utilities.structuredmap;
 
+import java.util.Set;
+
 public class StructuredMap {
 	  public StructuredMap() {
-	  }
-
-	  public void put(String key, Object value) {
 	  }
 
 	  public void put(String key, Boolean value) {
