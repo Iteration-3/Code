@@ -5,7 +5,7 @@ import model.slots.SmasherWeaponSlot;
 import model.slots.SneekWeaponSlot;
 import model.slots.SummonerWeaponSlot;
 
-public abstract class Weapon extends Equipable{
+public abstract class Weapon extends EquipableItem{
 
 	public boolean equip(EquipmentManager equipment){
 		return equipment.equip(this);

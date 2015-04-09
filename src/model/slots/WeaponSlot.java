@@ -1,6 +1,6 @@
 package model.slots;
 
-import model.item.Equipable;
+import model.item.EquipableItem;
 import model.item.Weapon;
 
 public abstract class WeaponSlot <K extends Weapon> {
@@ -24,7 +24,7 @@ public abstract class WeaponSlot <K extends Weapon> {
 		return this.slot.unequip();
 	}
 	
-	public boolean has(Equipable item){
+	public boolean has(EquipableItem item){
 		return this.slot.has(item);
 	}
 	

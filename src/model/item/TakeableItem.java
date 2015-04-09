@@ -1,5 +1,12 @@
 package model.item;
 
-public abstract class TakeableItem {
+import model.entity.Entity;
 
+public abstract class TakeableItem extends Item {
+
+	@Override
+	public void touch(Entity entity) {
+		entity.addItem(this);
+	}
+	
 }

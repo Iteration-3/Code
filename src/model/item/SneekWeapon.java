@@ -8,5 +8,10 @@ public class SneekWeapon extends Weapon {
 		return slot.equip(this);
 	}
 
+	@Override
+	public String getInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

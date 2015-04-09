@@ -1,8 +1,8 @@
 package model.slots;
 
-import model.item.Equipable;
+import model.item.EquipableItem;
 
-public class EquipmentSlot <K extends Equipable>{
+public class EquipmentSlot <K extends EquipableItem>{
 	K item;
 	
 	public EquipmentSlot(){}
@@ -32,7 +32,7 @@ public class EquipmentSlot <K extends Equipable>{
 		return temp;
 	}
 	
-	public boolean has(Equipable item){
+	public boolean has(EquipableItem item){
 		return this.item == item;
 	}	
 

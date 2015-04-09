@@ -8,4 +8,10 @@ public class SmasherWeapon extends Weapon {
 		return slot.equipWeapon(this);
 	}
 
+	@Override
+	public String getInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
