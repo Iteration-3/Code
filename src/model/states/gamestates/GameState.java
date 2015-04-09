@@ -1,10 +1,22 @@
 package model.states.gamestates;
 
+import view.Layout;
+import controller.Controller;
+import model.Model;
 import model.states.State;
 
-public class GameState extends State {
+public abstract class GameState extends State {
+	private Model model;
+	
+	public GameState(Model model) {
+		this.model = model;
+	}
+	
 	@Override
-	public void onEnter() {}
+	public void onEnter() {
+		getModel().setLayout(getLayout());
+		getLayout().setController(getController());
+	}
 	
 	@Override
 	public void onPause() {}
@@ -14,4 +26,12 @@ public class GameState extends State {
 	
 	@Override
 	public void onExit() {}
+	
+	public Model getModel() {
+		return model;
+	}
+	
+	protected abstract Controller getController();
+	
+	protected abstract Layout getLayout();
 }

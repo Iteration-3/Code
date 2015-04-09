@@ -1,13 +1,15 @@
 import java.awt.EventQueue;
 
 import model.Model;
+import model.states.gamestates.GameplayState;
 
 public class RunGame {
   public static void main(String[] args) {
     EventQueue.invokeLater(new Runnable() {
       @Override
       public void run() {
-        Game game = new Game();
+        Model gameModel = new Model();
+        gameModel.pushState(new GameplayState(gameModel));
       }
     });
   }
