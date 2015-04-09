@@ -2,6 +2,8 @@ package model;
 
 import javax.swing.KeyStroke;
 
+import utilities.structuredmap.StructuredMap;
+
 public class KeyPreferences {
 	public KeyStroke getUpKey(){
 		return null;

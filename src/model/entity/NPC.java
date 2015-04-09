@@ -1,6 +1,7 @@
 package model.entity;
 
 import utilities.Angle;
+import utilities.structuredmap.StructuredMap;
 import model.item.Item;
 import model.item.TakeableItem;
 
@@ -56,12 +57,6 @@ public class NPC extends Entity {
 
 	@Override
 	public void load(StructuredMap map) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void move(Angle d) {
 		// TODO Auto-generated method stub
 		
 	}

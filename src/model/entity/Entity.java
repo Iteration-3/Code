@@ -3,6 +3,7 @@ package model.entity;
 import view.EntityView;
 import statistics.EntityStatistics;
 import utilities.Angle;
+import utilities.structuredmap.StructuredMap;
 import model.item.Item;
 import model.item.TakeableItem;
 
