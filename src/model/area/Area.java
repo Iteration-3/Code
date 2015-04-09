@@ -24,7 +24,7 @@ public abstract class Area {
         this.startLocation = startLocation;
     }
 
-    public int getRange() {
+    public int getRadius() {
         return range;
     }
 
