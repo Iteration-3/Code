@@ -2,7 +2,7 @@ package model.item;
 
 import model.slots.EquipmentManager;
 import model.slots.SmasherWeaponSlot;
-import model.slots.SneekWeaponSlot;
+import model.slots.SneakWeaponSlot;
 import model.slots.SummonerWeaponSlot;
 
 public abstract class Weapon extends EquipableItem{
@@ -11,13 +11,22 @@ public abstract class Weapon extends EquipableItem{
 		return equipment.equip(this);
 	}
 	
-	public boolean equip(SneekWeaponSlot slot){
+	public boolean equip(SneakWeaponSlot slot){
 		return false;
 	}
 	public boolean equip(SummonerWeaponSlot slot){
 		return false;
 	}
 	public boolean equip(SmasherWeaponSlot slot){
+		return false;
+	}
+	public boolean canEquip(SneakWeaponSlot slot){
+		return false;
+	}
+	public boolean canEquip(SummonerWeaponSlot slot){
+		return false;
+	}
+	public boolean canEquip(SmasherWeaponSlot slot){
 		return false;
 	}
 }

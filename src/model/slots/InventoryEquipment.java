@@ -1,15 +1,29 @@
 package model.slots;
 
 import utilities.Point;
+import model.entity.Smasher;
+import model.entity.Sneak;
+import model.entity.Summoner;
 import model.item.EquipableItem;
 import model.item.TakeableItem;
+import model.item.Weapon;
 
 public class InventoryEquipment {
 	private EquipmentManager equipment;
 	private Inventory inventory;
 
-	public InventoryEquipment() { // TODO   Avatar Specific
-		this.equipment = new EquipmentManager();
+	public InventoryEquipment(Summoner avatar) {
+		this.equipment = new EquipmentManager(avatar);
+		this.inventory = new Inventory();
+	}
+
+	public InventoryEquipment(Sneak avatar) {
+		this.equipment = new EquipmentManager(avatar);
+		this.inventory = new Inventory();
+	}
+
+	public InventoryEquipment(Smasher avatar) {
+		this.equipment = new EquipmentManager(avatar);
 		this.inventory = new Inventory();
 	}
 
@@ -123,5 +137,9 @@ public class InventoryEquipment {
 		if (this.inventory.hasEmptySlot()){
 			this.equipment.unequipHelmet();
 		}
+	}
+	
+	public boolean canEquipWeapon(Weapon weapon){
+		return this.equipment.canEquip(weapon);
 	}
 }

@@ -11,4 +11,8 @@ public class SummonerWeaponSlot extends WeaponSlot<SummonerWeapon>{
 		return weapon.equip(this);
 	}
 
+	public boolean canEquip(Weapon weapon) {
+		return weapon.canEquip(this);
+	}
+
 }
