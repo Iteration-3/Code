@@ -1,5 +1,8 @@
 package model.slots;
 
+import model.entity.Smasher;
+import model.entity.Sneak;
+import model.entity.Summoner;
 import model.item.Boots;
 import model.item.ChestPiece;
 import model.item.Gloves;
@@ -13,21 +16,31 @@ public class EquipmentManager {
 	private EquipmentSlot<Helmet> helmetSlot;
 	private EquipmentSlot<ChestPiece> chestPieceSlot;
 	private EquipmentSlot<Leggings> leggingsSlot;
-	private EquipmentSlot<Weapon> weaponSlot;
+	private WeaponSlot<?> weaponSlot;
 	private EquipmentSlot<Shield> shieldSlot;
 	private EquipmentSlot<Boots> bootsSlot;
 	private EquipmentSlot<Gloves> glovesSlot;
 	private EquipmentSlot<Projectile> projectileSlot;
 
-	public EquipmentManager() { // TODO (AvatarTypes)
-		this.setSlots(); // TODO (WeaponType)
+	public EquipmentManager(Smasher avatar) {
+		this.weaponSlot = new SmasherWeaponSlot();
+		this.setSlots();
+	}
+	
+	public EquipmentManager(Summoner avatar){
+		this.weaponSlot = new SummonerWeaponSlot();
+		this.setSlots();
+	}
+
+	public EquipmentManager(Sneak avatar){
+		this.weaponSlot = new SneakWeaponSlot();
+		this.setSlots();
 	}
 
 	private void setSlots() { // TODO (Weapon)
 		this.helmetSlot = new EquipmentSlot<Helmet>();
 		this.chestPieceSlot = new EquipmentSlot<ChestPiece>();
 		this.leggingsSlot = new EquipmentSlot<Leggings>();
-		this.weaponSlot = new EquipmentSlot<Weapon>();
 		this.shieldSlot = new EquipmentSlot<Shield>();
 		this.bootsSlot = new EquipmentSlot<Boots>();
 		this.glovesSlot = new EquipmentSlot<Gloves>();
@@ -99,5 +112,10 @@ public class EquipmentManager {
 
 	public boolean equip(Helmet item) {
 		return this.helmetSlot.equip(item);
+	}
+	
+	
+	public boolean canEquip(Weapon weapon){
+		return this.weaponSlot.canEquip(weapon);
 	}
 }

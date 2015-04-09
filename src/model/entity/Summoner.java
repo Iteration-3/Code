@@ -2,11 +2,8 @@ package model.entity;
 
 import utilities.structuredmap.StructuredMap;
 
-public class NPC extends Entity {
+public class Summoner extends Avatar {
 
-	//Needs behavior shit!
-	//Behavior shit will be overridden by subclasses
-	
 	@Override
 	public void attack() {
 		// TODO Auto-generated method stub
@@ -30,9 +27,24 @@ public class NPC extends Entity {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
-
+	/**
+	 * UNIMPLEMENTED
+	 */
+	public void bane(){
+		
+	}
+	/**
+	 * UNIMPLEMENTED
+	 */
+	public void boon(){
+		
+	}
+	/**
+	 * UNIMPLEMENTED
+	 */
+	public void enchantment(){
+		
+	}
+	
+	
 }

@@ -1,8 +1,22 @@
 package model.entity;
 
-import model.item.Item;
-import model.item.TakeableItem;
 
 public abstract class Avatar extends Entity {
+	@Override 
+	public boolean isFlying(){
+		return false;
+	}
+	//Ovverrides stats and name? Says in UML, but that's weird
+	//Also overrides move, according to uml? Meh, if we need it, we'll do it, not before IMO
+	
+	//SkillManager
+	//Abilities
+	//ControlerManager
+	
+	//Also apparently ovverrides add/removeItem, and equip/unequipItem, but that also seems 
+	//like an uneeded ovverride, so won't do until needed.
+	
+	//getListeners will be needed
+	
 
 }

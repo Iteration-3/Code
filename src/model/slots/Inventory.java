@@ -40,7 +40,7 @@ public class Inventory {
 
 	// this is private because it forces a insert,  can cause RTE
 	private void insertItem(int i,int j,TakeableItem item){
-		this.slots[i][j].insert(item);
+		this.slots[i][j].addItem(item);
 	}
 	
 	//takeItem will take the item from the contianer,  this will remove the item from the SLots
@@ -48,7 +48,7 @@ public class Inventory {
 		for (int i = 0 ; i < ROW ; i++){
 			for (int j = 0; j < COL; j++){
 				if (this.slotHasItem(item, i, j)){
-					return this.remove(i,j);
+					return this.removeItem(i,j);
 				}
 			}
 		}
@@ -63,11 +63,11 @@ public class Inventory {
 		return Inventory.COL;
 	}
 	/********************INSERTS****************************/
-	public boolean insert(TakeableItem item){
+	public boolean addItem(TakeableItem item){
 		return this.findAndEquip(item);
 	}
 	
-	public boolean insert( int x, int y, TakeableItem item){
+	public boolean addItem( int x, int y, TakeableItem item){
 		if (this.slotHas(x,y)){
 			return false;
 		}
@@ -77,8 +77,8 @@ public class Inventory {
 		}
 	}
 	
-	public boolean insert(Point point,TakeableItem item){
-		return this.insert(point.getX(),point.getY(),item);
+	public boolean addItem(Point point,TakeableItem item){
+		return this.addItem(point.getX(),point.getY(),item);
 	}
 	
 	/********************HAS*********************************/
@@ -110,16 +110,16 @@ public class Inventory {
 	}
 
 	/*************REMOVE********************************************/
-	public TakeableItem remove(TakeableItem item) throws Exception{
+	public TakeableItem removeItem(TakeableItem item) throws Exception{
 		return this.takeItem(item);
 	}
 	
-	public TakeableItem remove(int x, int y){
-		return this.slots[x][y].remove();
+	public TakeableItem removeItem(int x, int y){
+		return this.slots[x][y].removeItem();
 	}
 	
-	public TakeableItem remove(Point point){
-		return this.remove(point.getX(),point.getY());
+	public TakeableItem removeItem(Point point){
+		return this.removeItem(point.getX(),point.getY());
 	}
 	/**********************GETTERS*************************************/
 	public TakeableItem[][] getItems(){

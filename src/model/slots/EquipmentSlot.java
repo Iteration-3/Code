@@ -32,7 +32,7 @@ public class EquipmentSlot <K extends EquipableItem>{
 		return temp;
 	}
 	
-	public boolean has(K item){
+	public boolean has(EquipableItem item){
 		return this.item == item;
 	}	
 

@@ -2,11 +2,8 @@ package model.entity;
 
 import utilities.structuredmap.StructuredMap;
 
-public class NPC extends Entity {
+public class Sneak extends Avatar {
 
-	//Needs behavior shit!
-	//Behavior shit will be overridden by subclasses
-	
 	@Override
 	public void attack() {
 		// TODO Auto-generated method stub
@@ -30,9 +27,7 @@ public class NPC extends Entity {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
+	//Wasn't sneak going to have creap, and pickpocket? Not in uml anymore, we should discuss
 
 
 }
