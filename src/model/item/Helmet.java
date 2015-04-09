@@ -1,10 +1,23 @@
 package model.item;
 
+import model.entity.Entity;
 import model.slots.EquipmentManager;
 
-public class Helmet extends Equipable{
+public class Helmet extends EquipableItem{
 
-	boolean equip(EquipmentManager equipment) {
+	public boolean equip(EquipmentManager equipment) {
 		return equipment.equip(this);
+	}
+
+	@Override
+	public void use(Entity entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getInfo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
