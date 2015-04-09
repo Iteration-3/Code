@@ -1,5 +1,7 @@
 package model.entity;
 
+import statistics.EntityStatistics;
+import utilities.Angle;
 import model.item.Item;
 import model.item.TakeableItem;
 
@@ -9,7 +11,7 @@ public abstract class Entity {
 	private EntityView view_ = null;
 	
 	public abstract boolean isFlying();
-	public abstract void move(Direction d);
+	public abstract void move(Angle d);
 	public abstract void addItem(TakeableItem takeable);
 	public abstract void removeItem(TakeableItem takable);
 	public abstract void equipItem(Item item);
