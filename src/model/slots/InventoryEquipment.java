@@ -8,26 +8,26 @@ public class InventoryEquipment {
 	private EquipmentManager equipment;
 	private Inventory inventory;
 
-	public InventoryEquipment() { // TODO
+	public InventoryEquipment() { // TODO   Avatar Specific
 		this.equipment = new EquipmentManager();
 		this.inventory = new Inventory();
 	}
 
 	/************ INVENTORY ********************/
-	public boolean insert(TakeableItem item) {
-		return this.inventory.insert(item);
+	public boolean addItem(TakeableItem item) {
+		return this.inventory.addItem(item);
 	}
 
-	public TakeableItem remove(TakeableItem item) throws Exception {
-		return this.inventory.remove(item);
+	public TakeableItem removeItem(TakeableItem item) throws Exception {
+		return this.inventory.removeItem(item);
 	}
 
-	public TakeableItem remove(int x, int y) {
-		return this.inventory.remove(x, y);
+	public TakeableItem removeItem(int x, int y) {
+		return this.inventory.removeItem(x, y);
 	}
 
-	public TakeableItem remove(Point point) {
-		return this.inventory.remove(point);
+	public TakeableItem removeItem(Point point) {
+		return this.inventory.removeItem(point);
 	}
 
 	public TakeableItem[][] getInventoryItems() {
@@ -57,14 +57,23 @@ public class InventoryEquipment {
 	public boolean inventoryHasItem(TakeableItem item, Point point) {
 		return this.inventory.slotHasItem(item, point);
 	}
+	
+	public boolean inventoryHasItem(TakeableItem item){
+		return this.inventoryHasItem(item);
+	}
 
 	/***************************** EQUIPMENT ********************************/
+	private boolean tryToEquip(EquipableItem item){
+		return item.equip (this.equipment);
+	}
+	
+	
 	public void equip(EquipableItem item) {
-		if (item.equip (this.equipment)) {
+		if (this.tryToEquip(item)) {
 			return;
 		}
 		else{
-			this.inventory.insert(item);
+			this.inventory.addItem(item);
 		}
 	}
 
