@@ -1,9 +1,12 @@
 package model.trigger;
 
+import java.util.Collection;
+
 import model.area.Area;
 import model.area.Location;
 import model.area.RadialArea;
 import model.entity.Entity;
+import model.entity.NPC;
 import model.event.Event;
 
 public abstract class Trigger {
@@ -37,6 +40,8 @@ public abstract class Trigger {
     }
 
     public abstract void handle(Entity entity);
+
+    public abstract void handle(Collection<NPC> npcs);
 
     public void moveLocation(Location location) {
         this.area.setStartLocation(location);
