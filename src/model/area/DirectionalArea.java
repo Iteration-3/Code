@@ -31,11 +31,6 @@ public abstract class DirectionalArea extends Area {
 
     @Override
     public abstract List<Location> getCoveredLocations();
-    
-    protected boolean isWithinRadius(Location loc) {
-        return Math.pow(super.getStartLocation().getX() - loc.getX(), 2)
-                + Math.pow(super.getStartLocation().getY() - loc.getY(), 2) < Math.pow(super.getRadius(), 2);
-    }
 
     /**
      * Uncomment when structure map comes in.

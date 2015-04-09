@@ -1,4 +1,4 @@
-package modelTest.areaTest;
+package model.area;
 
 import static org.junit.Assert.*;
 import model.area.Location;

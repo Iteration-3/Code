@@ -20,8 +20,8 @@ public class LinearArea extends DirectionalArea {
     @Override
     public boolean isInRange(Location location) {
         Location centerLoc = LocationConversion.convertLocationToCenterOfHexagon(location);
-        int angle = (int) Math.round(Math.toDegrees(Math.atan2(centerLoc.getY(), centerLoc.getX())));
-        System.out.println(angle);
+        int angle = (int) Math.round(Math.toDegrees(Math.atan2((-1 * centerLoc.getY()), centerLoc.getX())));
+
         return angle == (super.getDirection().getAngle() + ANGLE_OFFSET_TO_CENTER) && super.isWithinRadius(centerLoc);
     }
 

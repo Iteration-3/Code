@@ -4,9 +4,9 @@ public enum AreaAngle {
     UP_RIGHT(0),
     UP(60),
     UP_LEFT(120),
-    DOWN_LEFT(180),
-    DOWN(240),
-    DOWN_RIGHT(300);
+    DOWN_LEFT(-180),
+    DOWN(-120),
+    DOWN_RIGHT(-60);
 
     private AreaAngle(int theta) {
         this.theta = theta;

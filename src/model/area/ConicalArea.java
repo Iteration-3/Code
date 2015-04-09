@@ -21,14 +21,14 @@ public class ConicalArea extends DirectionalArea {
     @Override
     public boolean isInRange(Location location) {
         Location centerLoc = LocationConversion.convertLocationToCenterOfHexagon(location);
-        System.out.println(centerLoc.getX() + " " + centerLoc.getY());
-        double angle = Math.toDegrees(Math.atan2(centerLoc.getY(), centerLoc.getX()));
-
+        
         Location testLocation = new Location((centerLoc.getX() - super.getStartLocation().getX()),
-                (centerLoc.getY() - super.getStartLocation().getY()));
-
+                ((-1 * centerLoc.getY()) + super.getStartLocation().getY()));
+ 
+        double angle = Math.toDegrees(Math.atan2((testLocation.getY()), testLocation.getX()));
+         
         return angle >= super.getDirection().getAngle()
-                && angle <= super.getDirection().getAngle() + CONE_WIDTH_IN_DEGREES && isWithinRadius(testLocation);
+                && angle <= (super.getDirection().getAngle() + CONE_WIDTH_IN_DEGREES) && isWithinRadius(centerLoc);
     }
 
     @Override

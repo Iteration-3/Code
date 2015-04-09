@@ -2,6 +2,8 @@ package model.area;
 
 import java.util.List;
 
+import utilities.LocationConversion;
+
 public abstract class Area {
     private int range;
     private Location startLocation;
@@ -33,6 +35,12 @@ public abstract class Area {
     }
 
     public abstract boolean isInRange(Location location);
+
+    protected boolean isWithinRadius(Location loc) {
+        double radiusMultiplier = LocationConversion.getRadius();
+        return Math.pow(getStartLocation().getX() - loc.getX(), 2)
+                + Math.pow(getStartLocation().getY() - loc.getY(), 2) <= Math.pow(getRadius() * radiusMultiplier, 2);
+    }
 
     public abstract List<Location> getCoveredLocations();
     /**

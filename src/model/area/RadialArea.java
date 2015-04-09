@@ -17,13 +17,11 @@ public class RadialArea extends Area {
     @Override
     public boolean isInRange(Location location) {
         Location centerLoc = LocationConversion.convertLocationToCenterOfHexagon(location);
-        return Math.pow(super.getStartLocation().getX() - centerLoc.getX(), 2)
-                + Math.pow(super.getStartLocation().getY() - centerLoc.getY(), 2) < Math.pow(super.getRadius(), 2);
+        return isWithinRadius(centerLoc);
     }
 
     @Override
     public List<Location> getCoveredLocations() {
-        
 
         return null;
     }
