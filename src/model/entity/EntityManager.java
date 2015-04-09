@@ -5,18 +5,18 @@ import java.util.ArrayList;
 public class EntityManager {
 	private ArrayList<NPC> partyNPCList_ = null;
 	//Entities "allied" with player, vs those that aren't
-	private Arraylist<NPC> nonPartyNPCList_ = null;
+	private ArrayList<NPC> nonPartyNPCList_ = null;
 	private Avatar avatar_ = null;
 	
 	/**
 	 * Keep all entities updated
 	 */
 	public void update(){
-		for(NPC : partyNPCList_){
-			NPC.update();
+		for(NPC n : partyNPCList_){
+			n.update();
 		}
-		for(NPC : nonPartyNPCList_){
-			NPC.update();
+		for(NPC n : nonPartyNPCList_){
+			n.update();
 		}
 		avatar_.update();
 	}

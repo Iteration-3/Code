@@ -20,6 +20,7 @@ public abstract class Entity {
 	public abstract void attack();
 	public abstract StructuredMap save();
 	public abstract void load(StructuredMap map);
+	public abstract void update();
 	
 	protected EntityStatistics getDerivedStats(){
 		return stats_;
