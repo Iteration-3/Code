@@ -1,5 +1,5 @@
 package model.item;
 
-public class Projectile extends Equipable{
+public class Projectile extends Equipable {
 
 }
