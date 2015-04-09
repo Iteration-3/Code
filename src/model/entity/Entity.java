@@ -20,7 +20,7 @@ public abstract class Entity {
 	public abstract StructuredMap save();
 	public abstract void load(StructuredMap map);
 	
-	protected EntityStatitistics getDerivedStats(){
+	protected EntityStatistics getDerivedStats(){
 		return stats_;
 	};
 	protected EntityView getEntityView(){
