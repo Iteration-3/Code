@@ -2,6 +2,8 @@ package model.area;
 
 import java.util.List;
 
+import utilities.Angle;
+
 public class LinearArea extends DirectionalArea {
 
     public LinearArea(int radius, Location location, Angle angle) {

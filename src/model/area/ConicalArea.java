@@ -2,6 +2,8 @@ package model.area;
 
 import java.util.List;
 
+import utilities.Angle;
+
 public class ConicalArea extends DirectionalArea {
 
     public ConicalArea() {

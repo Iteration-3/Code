@@ -2,6 +2,8 @@ package model.area;
 
 import java.util.List;
 
+import utilities.Angle;
+
 public abstract class DirectionalArea extends Area {
 
     private Angle direction;

@@ -1,7 +1,7 @@
 package model.trigger;
 
 import model.area.Area;
-import model.area.Location;
+import model.entity.Entity;
 import model.event.Event;
 
 public class PermanentTrigger extends Trigger {
@@ -10,19 +10,12 @@ public class PermanentTrigger extends Trigger {
         super();
     }
 
-    public PermanentTrigger(Area area, Event event) {
+    public PermanentTrigger(Area area, Event event, long duration) {
         super(area, event);
     }
 
     @Override
-    public void moveLocation(Location location) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public boolean hasExpired() {
-        // TODO Auto-generated method stub
         return false;
     }
 

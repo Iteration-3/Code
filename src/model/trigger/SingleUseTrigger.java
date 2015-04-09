@@ -1,11 +1,10 @@
 package model.trigger;
 
 import model.area.Area;
-import model.area.Location;
+import model.entity.Entity;
 import model.event.Event;
 
 public class SingleUseTrigger extends Trigger {
-    
 
     public SingleUseTrigger() {
         super();
@@ -16,21 +15,15 @@ public class SingleUseTrigger extends Trigger {
     }
 
     @Override
-    public void moveLocation(Location location) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public boolean hasExpired() {
-        //TODO verify If I actually return true;
+        // TODO verify If I actually return true;
         return true;
     }
 
     @Override
     public void handle(Entity entity) {
         // TODO Auto-generated method stub
-        
+
     }
 
 }

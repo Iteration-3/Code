@@ -1,4 +1,4 @@
-package model.area;
+package utilities;
 
 public enum Angle {
 

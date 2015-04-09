@@ -1,6 +1,5 @@
 package model.area;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RadialArea extends Area {
@@ -15,13 +14,12 @@ public class RadialArea extends Area {
 
     @Override
     public boolean isInRange(Location location) {
-
         return false;
     }
 
     @Override
     public List<Location> getCoveredLocations() {
-        List<Location> locations = new ArrayList<>();
+        
 
         return null;
     }
