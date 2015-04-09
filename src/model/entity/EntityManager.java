@@ -2,59 +2,48 @@ package model.entity;
 
 import java.util.ArrayList;
 
+import model.area.Location;
+
 public class EntityManager {
-	private ArrayList<NPC> partyNPCList_ = null;
-	//Entities "allied" with player, vs those that aren't
-	private ArrayList<NPC> nonPartyNPCList_ = null;
-	private Avatar avatar_ = null;
+	private static ArrayList<NPC> partyNpcs;
+	private static ArrayList<NPC> nonPartyNpcs;
+	private static Avatar avatar;
 	
-	/**
-	 * Keep all entities updated
-	 */
-	public void update(){
-		for(NPC n : partyNPCList_){
-			n.update();
-		}
-		for(NPC n : nonPartyNPCList_){
-			n.update();
-		}
-		avatar_.update();
+	public static void update() {
+		// TODO(jraviles)
+	}
+	
+	public Entity getEntityAtLocation(Location location) {
+		// TODO(jraviles)
+		return null;
+	}
+	
+	public static void addPartyNpc(NPC npc) {
+		EntityManager.partyNpcs.add(npc);
 	}
 
-	/**
-	 * Adds an NPC to the party list
-	 * @param npc
-	 */
-	public void addPartyNPC(NPC npc){
-		partyNPCList_.add(npc);
+	public static ArrayList<NPC> getPartyNpcs() {
+		return partyNpcs;
 	}
-	/**
-	 * Adds an NPC to the nonparty list
-	 * @param npc
-	 */
-	public void addNonPartyNPC(NPC npc){
-		nonPartyNPCList_.add(npc);
+
+	public static void setPartyNpcs(ArrayList<NPC> partyNpcs) {
+		EntityManager.partyNpcs = partyNpcs;
 	}
-	/**
-	 * NOT YET IMPLEMENETED
-	 * @param loc
-	 * @return
-	 */
-	public Entity getEntityAtlocation(Location loc){
-		return null;
+
+	public static ArrayList<NPC> getNonPartyNpcs() {
+		return nonPartyNpcs;
 	}
-	/**
-	 * NOT YET IMPLEMENTED
-	 * @param map
-	 */
-	public void load(StructuredMap map){
-		
+
+	public static void setNonPartyNpcs(ArrayList<NPC> nonPartyNpcs) {
+		EntityManager.nonPartyNpcs = nonPartyNpcs;
 	}
-	/**
-	 * NOT YET IMPLEMENTED
-	 * @return
-	 */
-	public StructuredMap save(){
-		return null;
+
+	public static Avatar getAvatar() {
+		return avatar;
 	}
+
+	public static void setAvatar(Avatar avatar) {
+		EntityManager.avatar = avatar;
+	}
+
 }
