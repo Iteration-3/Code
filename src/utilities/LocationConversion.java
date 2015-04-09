@@ -19,12 +19,30 @@ public class LocationConversion {
         setRadius();
     }
     
-    public static void setRadius() {
+    public static double getHeight() {
+        return hexagonHeight;
+    }
+    
+    public static double getWidth() {
+        return hexagonWidth;
+    }
+    
+    private static void setRadius() {
         radius = Math.ceil(Math.sqrt(Math.pow(hexagonWidth,2) + Math.pow(hexagonHeight,2)));
     }
     
     public static double getRadius() {
         return radius;
+    }
+    
+    public static void setHeight(double height) {
+        hexagonHeight = height;
+        setRadius();
+    }
+    
+    public static void setWidth(double width) {
+        hexagonWidth = width;
+        setRadius();
     }
 
     /**

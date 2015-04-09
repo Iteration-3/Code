@@ -3,7 +3,6 @@ package model.area;
 import java.util.List;
 
 import utilities.AreaAngle;
-import utilities.LocationConversion;
 
 public class ConicalArea extends DirectionalArea {
 
@@ -20,15 +19,13 @@ public class ConicalArea extends DirectionalArea {
 
     @Override
     public boolean isInRange(Location location) {
-        Location centerLoc = LocationConversion.convertLocationToCenterOfHexagon(location);
-        
-        Location testLocation = new Location((centerLoc.getX() - super.getStartLocation().getX()),
-                ((-1 * centerLoc.getY()) + super.getStartLocation().getY()));
- 
+        Location testLocation = super.createComparisonLocation(location);
+
         double angle = Math.toDegrees(Math.atan2((testLocation.getY()), testLocation.getX()));
-         
+
         return angle >= super.getDirection().getAngle()
-                && angle <= (super.getDirection().getAngle() + CONE_WIDTH_IN_DEGREES) && isWithinRadius(centerLoc);
+                && angle <= (super.getDirection().getAngle() + CONE_WIDTH_IN_DEGREES)
+                && isWithinRadius(centerLocation(location));
     }
 
     @Override
