@@ -13,7 +13,7 @@ public class EquipmentManager {
 	private EquipmentSlot<Helmet> helmetSlot;
 	private EquipmentSlot<ChestPiece> chestPieceSlot;
 	private EquipmentSlot<Leggings> leggingsSlot;
-	private EquipmentSlot<Weapon> weaponSlot;
+	private WeaponSlot<?> weaponSlot = new SneekWeaponSlot();
 	private EquipmentSlot<Shield> shieldSlot;
 	private EquipmentSlot<Boots> bootsSlot;
 	private EquipmentSlot<Gloves> glovesSlot;
@@ -27,7 +27,7 @@ public class EquipmentManager {
 		this.helmetSlot = new EquipmentSlot<Helmet>();
 		this.chestPieceSlot = new EquipmentSlot<ChestPiece>();
 		this.leggingsSlot = new EquipmentSlot<Leggings>();
-		this.weaponSlot = new EquipmentSlot<Weapon>();
+		this.weaponSlot = new SneekWeaponSlot();		//TODO   <<<<<<<<  special case Avatar TYPE
 		this.shieldSlot = new EquipmentSlot<Shield>();
 		this.bootsSlot = new EquipmentSlot<Boots>();
 		this.glovesSlot = new EquipmentSlot<Gloves>();

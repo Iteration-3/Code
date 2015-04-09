@@ -1,11 +1,12 @@
 package model.item;
 
-import model.slots.EquipmentManager;
+import model.slots.SneekWeaponSlot;
 
 public class SneekWeapon extends Weapon {
 
-	public boolean equip(EquipmentManager equipment) {
-		return false;
+	public boolean equip(SneekWeaponSlot slot){
+		return slot.equip(this);
 	}
+
 
 }
