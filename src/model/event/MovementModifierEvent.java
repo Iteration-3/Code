@@ -10,7 +10,7 @@ public class MovementModifierEvent extends Event {
 		this.movement = movement;
 	}
 
-	public MovementModifierEvent(Entity target, double duration, int movement) {
+	public MovementModifierEvent(int movement, Entity target, double duration) {
 		super(target, duration);
 		this.movement = movement;
 	}
@@ -24,7 +24,7 @@ public class MovementModifierEvent extends Event {
 
 	@Override
 	public Event clone() {
-		MovementModifierEvent clone = new MovementModifierEvent(getTarget(), getDuration(), movement);
+		MovementModifierEvent clone = new MovementModifierEvent(movement, getTarget(), getDuration());
 		return clone;
 	}
 

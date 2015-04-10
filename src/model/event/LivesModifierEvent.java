@@ -10,7 +10,7 @@ public class LivesModifierEvent extends Event {
 		this.lives = lives;
 	}
 
-	public LivesModifierEvent(Entity target, double duration, int lives) {
+	public LivesModifierEvent(int lives, Entity target, double duration) {
 		super(target, duration);
 		this.lives = lives;
 	}
@@ -24,7 +24,7 @@ public class LivesModifierEvent extends Event {
 
 	@Override
 	public Event clone() {
-		LivesModifierEvent clone = new LivesModifierEvent(getTarget(), getDuration(), lives);
+		LivesModifierEvent clone = new LivesModifierEvent(lives, getTarget(), getDuration());
 		return clone;
 	}
 

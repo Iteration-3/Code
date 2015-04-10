@@ -29,7 +29,7 @@ public abstract class Event implements Cloneable{
 		System.out.println("onExpired() called, NOT IMPLEMENTED");
 	}
 
-	public boolean hasExpired() {
+	public final boolean hasExpired() {
 		final double CURRENT_TIME = System.currentTimeMillis() / 1000.0;
 		final double DELTA_TIME = CURRENT_TIME - CREATION_TIME;
 		return (duration < DELTA_TIME);
