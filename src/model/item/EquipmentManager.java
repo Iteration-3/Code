@@ -4,7 +4,7 @@ package model.item;
  * @author mbregg
  *
  */
-public class EquipmentManager {
+class EquipmentManager {
     public void equipHelmet(Helmet helmet){
     	
     }
