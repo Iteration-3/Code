@@ -22,23 +22,25 @@ public class EquipmentManager {
 	private EquipmentSlot<Boots> bootsSlot;
 	private EquipmentSlot<Gloves> glovesSlot;
 	private EquipmentSlot<Projectile> projectileSlot;
+	private TwoHandedWeaponSlot THWSlot;
 
 	public EquipmentManager(Smasher avatar) {
 		this.weaponSlot = new SmasherWeaponSlot();
 		this.setSlots();
+		this.THWSlot = new TwoHandedWeaponSlot(this.weaponSlot, this.shieldSlot);
 	}
-	
-	public EquipmentManager(Summoner avatar){
+
+	public EquipmentManager(Summoner avatar) {
 		this.weaponSlot = new SummonerWeaponSlot();
 		this.setSlots();
 	}
 
-	public EquipmentManager(Sneak avatar){
+	public EquipmentManager(Sneak avatar) {
 		this.weaponSlot = new SneakWeaponSlot();
 		this.setSlots();
 	}
-	
-	public EquipmentManager(NPC npc){
+
+	public EquipmentManager(NPC npc) {
 		this.weaponSlot = new NPCWeaponSlot();
 		this.setSlots();
 	}
@@ -51,6 +53,10 @@ public class EquipmentManager {
 		this.bootsSlot = new EquipmentSlot<Boots>();
 		this.glovesSlot = new EquipmentSlot<Gloves>();
 		this.projectileSlot = new EquipmentSlot<Projectile>();
+	}
+
+	protected boolean hasTHW() {
+		return this.THWSlot != null;
 	}
 
 	/************************* UNEQUIP ************************************/
@@ -101,13 +107,18 @@ public class EquipmentManager {
 	}
 
 	public boolean equip(Shield item) {
-		return this.shieldSlot.equip(item);
+		if (this.hasTHW()) {
+			return this.THWSlot.equip(item);
+		}
+		else{
+			return this.shieldSlot.equip(item);
+		}
 	}
 
-	public boolean equip(Weapon item) { // TODO special case for all types
+	public boolean equip(Weapon item) {
 		return this.weaponSlot.equip(item);
 	}
-
+	
 	public boolean equip(Leggings item) {
 		return this.leggingsSlot.equip(item);
 	}
@@ -119,9 +130,8 @@ public class EquipmentManager {
 	public boolean equip(Helmet item) {
 		return this.helmetSlot.equip(item);
 	}
-	
-	
-	public boolean canEquip(Weapon weapon){
+
+	public boolean canEquip(Weapon weapon) {
 		return this.weaponSlot.canEquip(weapon);
 	}
 }

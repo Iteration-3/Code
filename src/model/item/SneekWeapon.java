@@ -10,7 +10,7 @@ public class SneekWeapon extends Weapon {
 	}
 
 	public boolean equip(SneakWeaponSlot slot){
-		return slot.equip(this);
+		return slot.equipWeapon(this);
 	}
 	
 	public boolean canEquip(SneakWeaponSlot slot){

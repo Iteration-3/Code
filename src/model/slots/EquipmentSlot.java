@@ -5,6 +5,7 @@ import model.statistics.Statistics;
 
 public class EquipmentSlot <K extends EquipableItem>{
 	K item;
+	TwoHandedWeaponSlot parent;
 	
 	public EquipmentSlot(){}
 	
@@ -42,5 +43,9 @@ public class EquipmentSlot <K extends EquipableItem>{
 	public boolean has(EquipableItem item){
 		return this.item == item;
 	}	
+	
+	public void setParentSlot(TwoHandedWeaponSlot slot){
+		this.parent = slot;
+	}
 
 }

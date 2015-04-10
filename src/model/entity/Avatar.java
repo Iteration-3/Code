@@ -4,6 +4,8 @@ import view.EntityView;
 
 
 public abstract class Avatar extends Entity {
+	
+	public Avatar(){}
 
 	public Avatar(String name, EntityView view){
 		super(name,view);
