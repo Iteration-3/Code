@@ -1,8 +1,7 @@
 package model.area;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import utilities.LocationConversion;
 
 public class RadialArea extends Area {
 
@@ -16,14 +15,18 @@ public class RadialArea extends Area {
 
     @Override
     public boolean isInRange(Location location) {
-        Location centerLoc = LocationConversion.convertLocationToCenterOfHexagon(location);
-        return isWithinRadius(centerLoc);
+        return isWithinRadius(location);
     }
 
     @Override
     public List<Location> getCoveredLocations() {
-
-        return null;
+        List<Location> returnList = new ArrayList<>();
+        returnList.add(super.getStartLocation());
+        int i = 0;
+        while (i != returnList.size()) {
+            returnList.addAll(checkSurrounding(returnList.get(i), returnList));
+            ++i;
+        }
+        return returnList;
     }
-
 }
