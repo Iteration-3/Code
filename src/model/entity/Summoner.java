@@ -1,5 +1,6 @@
 package model.entity;
 
+import model.item.ItemManager;
 import utilities.structuredmap.StructuredMap;
 
 public class Summoner extends Avatar {
@@ -11,7 +12,7 @@ public class Summoner extends Avatar {
 	}
 
 	@Override
-	public StructuredMap save() {
+	public StructuredMap getStructuredMap() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -44,6 +45,12 @@ public class Summoner extends Avatar {
 	 */
 	public void enchantment(){
 		
+	}
+
+	@Override
+	protected ItemManager getItemManager() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

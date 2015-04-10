@@ -1,5 +1,6 @@
 package model.entity;
 
+import model.item.ItemManager;
 import utilities.structuredmap.StructuredMap;
 
 public class NPC extends Entity {
@@ -14,7 +15,7 @@ public class NPC extends Entity {
 	}
 
 	@Override
-	public StructuredMap save() {
+	public StructuredMap getStructuredMap() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -29,6 +30,12 @@ public class NPC extends Entity {
 	public void update() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	protected ItemManager getItemManager() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

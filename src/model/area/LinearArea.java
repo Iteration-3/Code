@@ -3,6 +3,7 @@ package model.area;
 import java.util.List;
 
 import utilities.AreaAngle;
+import utilities.structuredmap.StructuredMap;
 
 public class LinearArea extends DirectionalArea {
 
@@ -25,12 +26,24 @@ public class LinearArea extends DirectionalArea {
         Location testLocation = super.createComparisonLocation(location);
         int angle = (int) (Math.round(Math.toDegrees(Math.atan2((testLocation.getY()), testLocation.getX()))));
 
-        return angle == (super.getDirection().getAngle() + ANGLE_OFFSET)
-                && super.isWithinRadius(location);
+        return angle == (super.getDirection().getAngle() + ANGLE_OFFSET) && super.isWithinRadius(location);
     }
 
     @Override
     public List<Location> getCoveredLocations() {
         return super.locationsInALine(super.getDirection().getAngle(), super.getRadius(), super.getStartLocation());
     }
+
+    @Override
+    public StructuredMap getStructuredMap() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void load(StructuredMap map) {
+        // TODO Auto-generated method stub
+
+    }
+
 }

@@ -115,9 +115,6 @@ public class ConicalAreaTest {
         area.setDirection(AreaAngle.DOWN);
         area.setRange(5);
         List<Location> locations = area.getCoveredLocations();
-        for (Location loc : locations) {
-            System.out.println(loc.getX() + " " + loc.getY());
-        }
         assertEquals(13, locations.size());
     }
 

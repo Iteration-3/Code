@@ -1,5 +1,6 @@
 package model.entity;
 
+import model.item.ItemManager;
 import utilities.structuredmap.StructuredMap;
 
 public class Sneak extends Avatar {
@@ -11,7 +12,7 @@ public class Sneak extends Avatar {
 	}
 
 	@Override
-	public StructuredMap save() {
+	public StructuredMap getStructuredMap() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -28,6 +29,12 @@ public class Sneak extends Avatar {
 		
 	}
 	//Wasn't sneak going to have creap, and pickpocket? Not in uml anymore, we should discuss
+
+	@Override
+	protected ItemManager getItemManager() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }

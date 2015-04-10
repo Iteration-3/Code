@@ -1,52 +1,70 @@
 package model.entity;
-
-import model.item.Item;
+import model.area.Location;
+import model.item.EquipableItem;
+import model.item.ItemManager;
 import model.item.TakeableItem;
 import statistics.EntityStatistics;
 import utilities.Angle;
+import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 
-public abstract class Entity {
-	private String name_= null;
-	private EntityStatistics stats_ = null;
-	private EntityView view_ = null;
+public abstract class Entity implements SavableLoadable {
+	public Entity(String name, EntityView view){
+		name = name;
+		view = view;
+	}
+	public Entity(){
+	
+	}
+	
+	private String name= null;
+	private EntityStatistics stats = new EntityStatistics();
+	private EntityView view = null;
+	private Location location = new Location();
 
 	/**
-	 * UNIMPLEMENTED, but done the same across entites subclasses
+	 * Abstract methods
+	 */
+	public abstract void attack();
+	public abstract StructuredMap getStructuredMap();
+	public abstract void load(StructuredMap map);
+	public abstract void update();
+	//All entities have an ItemManager, but subclasses need specific ones, so it can't be 
+	//Contained in the super class, subclasses provide a way to get it via this. 
+	protected abstract ItemManager getItemManager();
+	
+	/**
+	 * Concrete methods begin here
+	 * 
+	 */
+	
+	/**
 	 * @param takeable
 	 */
 	public void addItem(TakeableItem takeable){
-		
+			this.getItemManager().addItem(takeable);
 	}
 	/**
-	 * UNIMPLEMENTED, but done the same across entites subclasses
 	 * @param takable
 	 */
-	public void removeItem(TakeableItem takable){
-		
+	public void removeItem(TakeableItem takeable){
+		this.getItemManager().removeItem(takeable);
 	}
 	/**
-	 * UNIMPLEMENTED, but done the same across entites subclasses
 	 * @param item
 	 */
-	public void equipItem(Item item){
-		
+	public void equipItem(EquipableItem item){
+		this.getItemManager().unequip(item);
 	}
 	/**
-	 * UNIMPLEMENTED, but done the same across entites subclasses
 	 * @param item
 	 */
-	public void unequipItem(Item item){
-		
+	public void unequipItem(EquipableItem item){
+		this.getItemManager().equip(item);
 	}
-	public abstract void attack();
-	public abstract StructuredMap save();
-	public abstract void load(StructuredMap map);
-	public abstract void update();
-	
 	protected EntityStatistics getDerivedStats(){
-		return stats_;
+		return stats;
 	};
 	/**
 	 * NOT YET IMPLEMENTED
@@ -65,13 +83,19 @@ public abstract class Entity {
 		return false;
 	}
 	protected EntityView getEntityView(){
-		return view_;
+		return view;
 	}
 	
 	public String getName(){
-		return name_;
+		return name;
 	}
 	
+	public Location getLocation() {
+		return location;
+	}
 	
+	public void setLocation(Location location) {
+		this.location = location;
+	}
 
 }

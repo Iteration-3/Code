@@ -2,9 +2,10 @@ package model;
 
 import javax.swing.KeyStroke;
 
+import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 
-public class KeyPreferences {
+public class KeyPreferences implements SavableLoadable{
 	public KeyStroke getUpKey(){
 		return null;
 	}
@@ -57,7 +58,7 @@ public class KeyPreferences {
 		return null;
 	}
 	
-	public StructuredMap save(){
+	public StructuredMap getStructuredMap(){
 		return null;
 	}
 	public void load(StructuredMap map){

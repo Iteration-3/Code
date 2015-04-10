@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utilities.AreaAngle;
+import utilities.structuredmap.StructuredMap;
 
 public class ConicalArea extends DirectionalArea {
 
@@ -22,10 +23,7 @@ public class ConicalArea extends DirectionalArea {
     public boolean isInRange(Location location) {
         Location testLocation = super.createComparisonLocation(location);
         double angle = Math.toDegrees(Math.atan2((testLocation.getY()), testLocation.getX()));
-        System.out.println("Angle: " + angle + " Loc: " + testLocation.getX() + " " + testLocation.getY());
-        System.out.println(angle >= super.getDirection().getAngle());
-        System.out.println(angle <= (super.getDirection().getAngle() + CONE_WIDTH_IN_DEGREES));
-        System.out.println(isWithinRadius(location));
+
         return angle >= super.getDirection().getAngle()
                 && angle <= (super.getDirection().getAngle() + CONE_WIDTH_IN_DEGREES) && isWithinRadius(location);
     }
@@ -40,6 +38,18 @@ public class ConicalArea extends DirectionalArea {
             ++i;
         }
         return returnList;
+    }
+
+    @Override
+    public StructuredMap getStructuredMap() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void load(StructuredMap map) {
+        // TODO Auto-generated method stub
+
     }
 
 }
