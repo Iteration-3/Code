@@ -14,7 +14,7 @@ public class NPC extends Entity {
 	}
 
 	@Override
-	public StructuredMap save() {
+	public StructuredMap getStructuredMap() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -4,10 +4,11 @@ import model.item.Item;
 import model.item.TakeableItem;
 import statistics.EntityStatistics;
 import utilities.Angle;
+import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 
-public abstract class Entity {
+public abstract class Entity implements SavableLoadable {
 	private String name_= null;
 	private EntityStatistics stats_ = null;
 	private EntityView view_ = null;
@@ -41,7 +42,7 @@ public abstract class Entity {
 		
 	}
 	public abstract void attack();
-	public abstract StructuredMap save();
+	public abstract StructuredMap getStructuredMap();
 	public abstract void load(StructuredMap map);
 	public abstract void update();
 	

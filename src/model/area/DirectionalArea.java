@@ -4,6 +4,8 @@ import java.util.List;
 
 import utilities.AreaAngle;
 import utilities.LocationConversion;
+import utilities.structuredmap.SavableLoadable;
+import utilities.structuredmap.StructuredMap;
 
 public abstract class DirectionalArea extends Area {
 
@@ -46,10 +48,9 @@ public abstract class DirectionalArea extends Area {
         return LocationConversion.convertLocationToCenterOfHexagon(location);
     }
 
-    /**
-     * Uncomment when structure map comes in.
-     * 
-     * @Override public abstract StructuredMap save();
-     * @Override public abstract Area load(StructuredMap map);
-     */
+
+    @Override 
+    public abstract StructuredMap getStructuredMap();
+    @Override 
+    public abstract void load(StructuredMap map);
 }

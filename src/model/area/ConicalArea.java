@@ -3,6 +3,7 @@ package model.area;
 import java.util.List;
 
 import utilities.AreaAngle;
+import utilities.structuredmap.StructuredMap;
 
 public class ConicalArea extends DirectionalArea {
 
@@ -33,5 +34,17 @@ public class ConicalArea extends DirectionalArea {
         // TODO Auto-generated method stub
         return null;
     }
+
+	@Override
+	public StructuredMap getStructuredMap() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void load(StructuredMap map) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
