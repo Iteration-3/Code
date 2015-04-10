@@ -22,7 +22,7 @@ public class ConicalArea extends DirectionalArea {
     @Override
     public boolean isInRange(Location location) {
         Location testLocation = super.createComparisonLocation(location);
-        double angle = Math.toDegrees(Math.atan2((testLocation.getY()), testLocation.getX()));
+        double angle = Math.round(Math.toDegrees(Math.atan2((testLocation.getY()), testLocation.getX())));
 
         return angle >= super.getDirection().getAngle()
                 && angle <= (super.getDirection().getAngle() + CONE_WIDTH_IN_DEGREES) && isWithinRadius(location);
