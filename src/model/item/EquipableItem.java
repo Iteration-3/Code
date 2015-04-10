@@ -14,7 +14,7 @@ public abstract class EquipableItem extends TakeableItem {
 	public abstract boolean equip(EquipmentManager equipment);
 	
 	public void use(Entity entity) {
-		entity.equipItem(this);
+		entity.equip(this);
 	}
 	
 	public void merge(Statistics stats){
