@@ -5,7 +5,7 @@ import model.entity.Entity;
 public abstract class Event {
 	private double duration;
 	
-	public Event(double duration) {
+	protected Event(double duration) {
 		this.duration = duration;
 	}
 	
@@ -18,4 +18,8 @@ public abstract class Event {
 	public abstract void perform();
 	
 	public abstract void setTarget(Entity target);
+	
+	public double getDuration() {
+		return duration;
+	}
 }
