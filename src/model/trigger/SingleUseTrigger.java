@@ -3,11 +3,13 @@ package model.trigger;
 import java.util.Collection;
 
 import model.area.Area;
+import model.area.Location;
 import model.entity.Entity;
 import model.entity.NPC;
 import model.event.Event;
 
 public class SingleUseTrigger extends Trigger {
+	private boolean triggered = false;
 
     public SingleUseTrigger() {
         super();
@@ -19,20 +21,25 @@ public class SingleUseTrigger extends Trigger {
 
     @Override
     public boolean hasExpired() {
-        // TODO verify If I actually return true;
-        return true;
+    	return triggered;
     }
 
     @Override
     public void handle(Entity entity) {
-        // TODO Auto-generated method stub
-
+    	Location entityLocation = entity.getLocation();
+    	if (this.getArea().isInRange(entityLocation)) {
+    		Event event = this.getEvent().clone();
+    		event.setTarget(entity);
+    		EventManager.addEvent(event);
+    		triggered = true;
+    	}
     }
 
 	@Override
 	public void handle(Collection<NPC> npcs) {
-		// TODO Auto-generated method stub
-		
+		for (NPC npc : npcs) {
+			handle(npc);
+		}
 	}
 
 }
