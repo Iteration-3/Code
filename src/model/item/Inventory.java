@@ -22,6 +22,7 @@ class Inventory implements SavableLoadable{
 	public List<TakeableItem> getItems(){
 		return inventory_;
 	}
+	
 	/**
 	 * Unimplemented
 	 */

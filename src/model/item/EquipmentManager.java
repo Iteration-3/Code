@@ -1,10 +1,9 @@
 package model.item;
 /**
  * NOTHING IN HERE IS IMPLEMENTED
- * @author mbregg
- *
  */
 class EquipmentManager {
+	//I made everything in here return void, as per the uml.
     public void equipHelmet(Helmet helmet){
     	
     }
