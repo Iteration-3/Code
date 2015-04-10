@@ -3,7 +3,7 @@ package model.event;
 import model.entity.Entity;
 import statistics.EntityStatistics;
 
-public class StatisticModifierEvent extends UnsourcedEvent {
+public class StatisticModifierEvent extends Event {
 	private EntityStatistics modifier;
 
 	public StatisticModifierEvent(EntityStatistics modifier, Entity target, double duration) {
