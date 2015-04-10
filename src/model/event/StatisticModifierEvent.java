@@ -23,7 +23,8 @@ public class StatisticModifierEvent extends UnsourcedEvent {
 	}
 
 	@Override
-	public void hasExpired() {
+	public boolean hasExpired() {
+		return false;
 		// TODO Auto-generated method stub
 
 	}

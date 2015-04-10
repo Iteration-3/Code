@@ -25,7 +25,8 @@ public class SourcedEvent extends Event {
 	}
 
 	@Override
-	public void hasExpired() {
+	public boolean hasExpired() {
+		return false;
 		// TODO Auto-generated method stub
 
 	}

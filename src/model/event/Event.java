@@ -13,7 +13,7 @@ public abstract class Event {
 
 	public abstract void onExpired(); // Called by the event manager
 
-	public abstract void hasExpired();
+	public abstract boolean hasExpired();
 	
 	public abstract void perform();
 	
