@@ -30,6 +30,13 @@ public class Statistics implements Cloneable {
 		statistics.hardiness += this.hardiness;
 	}
 	
+	public void mergeInto(Statistics statistics) {
+		this.strength += statistics.strength;
+		this.agility += statistics.agility;
+		this.intellect += statistics.intellect;
+		this.hardiness += statistics.hardiness;
+	}
+	
 	public Statistics clone() {
 		Statistics cloned = new Statistics();
 		cloned.strength = this.strength;

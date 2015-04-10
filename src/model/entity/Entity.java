@@ -4,6 +4,7 @@ import model.item.EquipableItem;
 import model.item.ItemManager;
 import model.item.TakeableItem;
 import statistics.EntityStatistics;
+import statistics.Statistics;
 import utilities.Angle;
 import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
@@ -96,6 +97,27 @@ public abstract class Entity implements SavableLoadable {
 	
 	public void setLocation(Location location) {
 		this.location = location;
+	}
+	
+	public void modifyStats(Statistics otherStats) {
+		stats.mergeInto(otherStats);
+	}
+
+	public void addExperience(int experience) {
+		stats.addExperience(experience);
+	}
+	
+	public void addHealth(int health) {
+		stats.addHealth(health);
+	}
+	public void addMovement(int movement) {
+		stats.addMovement(movement);
+	}
+	public void addLives(int lives) {
+		stats.addLives(lives);
+	}
+	public void addMana(int mana) {
+		stats.addMana(mana);
 	}
 
 }
