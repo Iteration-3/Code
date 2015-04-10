@@ -28,4 +28,10 @@ public class StatisticModifierEvent extends Event {
 		}
 	}
 
+	@Override
+	public Event clone() {
+		StatisticModifierEvent clone = new StatisticModifierEvent(modifier, getTarget(), getDuration());
+		return clone;
+	}
+
 }

@@ -2,7 +2,7 @@ package model.event;
 
 import model.entity.Entity;
 
-public class SourcedEvent extends Event {
+public abstract class SourcedEvent extends Event {
 	private Entity source;
 	
 	public SourcedEvent(Entity source, Entity target, double duration) {

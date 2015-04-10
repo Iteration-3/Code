@@ -3,7 +3,7 @@ package model.event;
 import model.entity.Entity;
 
 public class HealthModifierEvent extends Event {
-	int health;
+	private int health;
 
 	public HealthModifierEvent(double duration, int health) {
 		super(duration);
@@ -25,6 +25,12 @@ public class HealthModifierEvent extends Event {
 		if (hasTarget()) {
 			getTarget().addHealth(health);
 		}
+	}
+
+	@Override
+	public Event clone() {
+		HealthModifierEvent clone = new HealthModifierEvent(getTarget(), getDuration(), health);
+		return clone;
 	}
 
 }

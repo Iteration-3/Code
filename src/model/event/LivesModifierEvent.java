@@ -3,8 +3,7 @@ package model.event;
 import model.entity.Entity;
 
 public class LivesModifierEvent extends Event {
-
-	int lives;
+	private int lives;
 
 	public LivesModifierEvent(double duration, int lives) {
 		super(duration);
@@ -26,6 +25,12 @@ public class LivesModifierEvent extends Event {
 		if (hasTarget()) {
 			getTarget().addLives(lives);
 		}
+	}
+
+	@Override
+	public Event clone() {
+		LivesModifierEvent clone = new LivesModifierEvent(getTarget(), getDuration(), lives);
+		return clone;
 	}
 
 }

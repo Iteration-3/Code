@@ -1,4 +1,4 @@
-package model.tile;
+package model.map.tile;
 
 import model.entity.Entity;
 import utilities.structuredmap.SavableLoadable;

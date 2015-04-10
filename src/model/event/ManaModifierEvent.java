@@ -3,7 +3,7 @@ package model.event;
 import model.entity.Entity;
 
 public class ManaModifierEvent extends Event {
-	int mana;
+	private int mana;
 
 	public ManaModifierEvent(double duration, int mana) {
 		super(duration);
@@ -25,6 +25,12 @@ public class ManaModifierEvent extends Event {
 		if (hasTarget()) {
 			getTarget().addMana(mana);
 		}
+	}
+
+	@Override
+	public Event clone() {
+		ManaModifierEvent clone = new ManaModifierEvent(getTarget(), getDuration(), mana);
+		return clone;
 	}
 
 }
