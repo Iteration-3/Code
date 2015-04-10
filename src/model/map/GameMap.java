@@ -21,6 +21,13 @@ public class GameMap implements SavableLoadable{
 	public void load(StructuredMap map) {
 		// TODO Auto-generated method stub	
 	}
+	/**
+	 * If the tile is passable, returns if it can be passed by the given entity, else
+	 * returns false.
+	 * @param e
+	 * @param loc
+	 * @return
+	 */
 	public boolean isPassable(Entity e, Location loc){
 		Tile t = tiles.get(loc);
 		if(t==null){
@@ -28,6 +35,11 @@ public class GameMap implements SavableLoadable{
 		}
 		return t.isPassable(e);
 	}
+	/**
+	 * Touches the tile, IF it exists.
+	 * @param e
+	 * @param loc
+	 */
 	public void touch(Entity e, Location loc){
 		Tile t = tiles.get(loc);
 		if(t == null){
