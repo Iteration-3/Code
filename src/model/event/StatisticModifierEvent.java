@@ -1,7 +1,7 @@
 package model.event;
 
 import model.entity.Entity;
-import statistics.Statistics;
+import model.statistics.Statistics;
 
 public class StatisticModifierEvent extends Event {
 	private Statistics modifier;

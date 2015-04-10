@@ -1,10 +1,10 @@
 package model.item;
 
-import statistics.Statistics;
 import model.slots.EquipmentManager;
 import model.slots.SmasherWeaponSlot;
 import model.slots.SneakWeaponSlot;
 import model.slots.SummonerWeaponSlot;
+import model.statistics.Statistics;
 
 public abstract class Weapon extends EquipableItem{
 
