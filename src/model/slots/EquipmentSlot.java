@@ -1,5 +1,6 @@
 package model.slots;
 
+import statistics.Statistics;
 import model.item.EquipableItem;
 
 public class EquipmentSlot <K extends EquipableItem>{
@@ -30,6 +31,12 @@ public class EquipmentSlot <K extends EquipableItem>{
 		K temp = this.item;
 		this.item = null;
 		return temp;
+	}
+	
+	public void merge(Statistics stats){
+		if (this.has()){
+			this.item.merge(stats);
+		}
 	}
 	
 	public boolean has(EquipableItem item){
