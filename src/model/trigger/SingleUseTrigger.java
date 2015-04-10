@@ -7,6 +7,7 @@ import model.area.Location;
 import model.entity.Entity;
 import model.entity.NPC;
 import model.event.Event;
+import model.event.EventManager;
 
 public class SingleUseTrigger extends Trigger {
 	private boolean triggered = false;
