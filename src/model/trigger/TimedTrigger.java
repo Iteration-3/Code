@@ -7,6 +7,7 @@ import model.area.Location;
 import model.entity.Entity;
 import model.entity.NPC;
 import model.event.Event;
+import model.event.EventManager;
 
 public class TimedTrigger extends Trigger {
     private long duration = 0;
