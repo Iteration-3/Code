@@ -104,4 +104,25 @@ public class EntityStatistics extends Statistics{
 	public int getMaximumMana() {
 		return getIntellect() * 100;
 	}
+
+	public void addExperience(int experience) {
+		this.experience += experience;
+	}
+
+	public void addHealth(int health) {
+		this.currentHealth += health;
+	}
+
+	public void addMovement(int movement) {
+		this.movement += movement;
+	}
+
+	public void addLives(int lives) {
+		this.livesLeft += lives;
+	}
+
+	public void addMana(int mana) {
+		this.currentMana += mana;
+	}
+	
 }

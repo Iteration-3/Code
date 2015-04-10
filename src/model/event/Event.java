@@ -10,7 +10,7 @@ public abstract class Event implements Cloneable{
 		this.duration = duration;
 	}
 	
-	protected Event(Entity target, double duration) {
+	public Event(Entity target, double duration) {
 		this.target = target;
 		this.duration = duration;
 	}
@@ -39,6 +39,10 @@ public abstract class Event implements Cloneable{
 	
 	public double getDuration() {
 		return duration;
+	}
+	
+	protected boolean hasTarget() {
+		return target != null;
 	}
 	/**
 	 * UNIMPLEMENTED
