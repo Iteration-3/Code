@@ -3,49 +3,96 @@ package model.item;
  * NOTHING IN HERE IS IMPLEMENTED
  */
 class EquipmentManager {
-	//I made everything in here return void, as per the uml.
-    public void equipHelmet(Helmet helmet){
-    	
-    }
-    public void equipChestPiece(ChestPiece chestpiece){
-    	
-    }
-    public void equipLeggings(Leggings legging){
-    	
-    }
-    public void equipBoots(Boots boots){
-    	
-    }
-    public void equipGloves(Gloves gloves){
-    	
-    }
-    public void equipShield(Shield sheild){
-    	
-    }
-    public void equipWeapon(Weapon weapon){
-    	
-    }
-    public void unequipHelmet(EquipableItem item){
-    	
-    }
-    public void unequipChestPiece(EquipableItem item){
-    	
-    }
-    public void unequipLeggings(EquipableItem item){
-    	
-    }
-    public void unequipBoots(EquipableItem item){
-    	
-    }
-    public void unequipGloves(EquipableItem item){
-    	
-    }
-    public void unequipShield(EquipableItem item){
-    	
-    }
-    public void unequipWeapon(EquipableItem item){
-    	
+	private Helmet helmet;
+	private ChestPiece chestPiece;
+	private Leggings leggings;
+	private Boots boots;
+	private Gloves gloves;
+	private Shield shield;
+	private Weapon weapon;
+	
+    public Helmet equipHelmet(Helmet helmet){
+    	Helmet conflict = unequipHelmet();
+    	this.helmet = helmet;
+    	return conflict;
     }
 
+    public ChestPiece equipChestPiece(ChestPiece chestpiece){
+    	ChestPiece conflict = unequipChestPiece();
+    	this.chestPiece = chestpiece;
+    	return conflict;
+    }
+
+    public Leggings equipLeggings(Leggings leggings){
+    	Leggings conflict = unequipLeggings();
+    	this.leggings = leggings;
+    	return conflict;
+    }
+
+    public Boots equipBoots(Boots boots){
+    	Boots conflict = unequipBoots();
+    	this.boots = boots;
+    	return conflict;
+    }
+
+    public Gloves equipGloves(Gloves gloves){
+    	Gloves conflict = unequipGloves();
+    	this.gloves = gloves;
+    	return conflict;
+    }
+
+    public Shield equipShield(Shield shield){
+    	Shield conflict = unequipShield();
+    	this.shield = shield;
+    	return conflict;
+    }
+
+    public Weapon equipWeapon(Weapon weapon){
+    	Weapon conflict = unequipWeapon();
+    	this.weapon = weapon;
+    	return conflict;
+    }
+
+    public Helmet unequipHelmet() {
+    	Helmet helmet = this.helmet;
+    	this.helmet = null;
+    	return helmet;
+    }
+
+    public ChestPiece unequipChestPiece() {
+    	ChestPiece chestPiece = this.chestPiece;
+    	this.chestPiece = null;
+    	return chestPiece;
+    }
+
+    public Leggings unequipLeggings() {
+    	Leggings leggings = this.leggings;
+    	this.leggings = null;
+    	return leggings;
+    }
+
+    public Boots unequipBoots() {
+    	Boots boots = this.boots;
+    	this.boots = null;
+    	return boots;
+    }
+    
+    public Gloves unequipGloves() {
+    	Gloves gloves = this.gloves;
+    	this.gloves = null;
+    	return gloves;
+    }
+    
+    public Shield unequipShield() {
+    	Shield shield = this.shield;
+    	this.shield = null;
+    	return shield;
+    }
+    
+    public Weapon unequipWeapon() {
+    	Weapon weapon = this.weapon;
+    	this.weapon = null;
+    	return weapon;
+    }
 
 }
