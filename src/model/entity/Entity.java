@@ -1,7 +1,6 @@
 package model.entity;
-import model.item.EquipableItem;
 import model.area.Location;
-import model.item.Item;
+import model.item.EquipableItem;
 import model.item.ItemManager;
 import model.item.TakeableItem;
 import statistics.EntityStatistics;
@@ -14,6 +13,9 @@ public abstract class Entity implements SavableLoadable {
 	public Entity(String name, EntityView view){
 		name_ = name;
 		view_ = view;
+	}
+	public Entity(){
+	
 	}
 	
 	private String name_= null;
