@@ -27,7 +27,11 @@ public class EntityManager {
 			e.update();
 		}
 	}
-	
+	/**
+	 * Returns null in the event an entity isn't found at given location
+	 * @param location
+	 * @return
+	 */
 	public static Entity getEntityAtLocation(Location location) {
 		for(Entity e : getAllEntities()){
 			if(location.equals(e.getLocation())){
