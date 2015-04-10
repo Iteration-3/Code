@@ -4,20 +4,38 @@ import model.entity.Entity;
 
 public abstract class Event implements Cloneable{
 	private double duration;
+	private Entity target;
 	
 	protected Event(double duration) {
 		this.duration = duration;
 	}
 	
-	public abstract void onBegin(); // Called by the event manager
+	protected Event(Entity target, double duration) {
+		this.target = target;
+		this.duration = duration;
+	}
+	
+	// Called by the event manager
+	public void onBegin() {
+		System.out.println("onBegin() called, NOT IMPLEMENTED");
+	}
 
-	public abstract void onExpired(); // Called by the event manager
+	// Called by the event manager
+	public void onExpired() {
+		System.out.println("onExpired() called, NOT IMPLEMENTED");
+	}
 
 	public abstract boolean hasExpired();
 	
 	public abstract void perform();
 	
-	public abstract void setTarget(Entity target);
+	public void setTarget(Entity target) {
+		this.target = target;
+	}
+	
+	protected Entity getTarget() {
+		return target;
+	}
 	
 	public double getDuration() {
 		return duration;

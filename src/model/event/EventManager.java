@@ -10,17 +10,18 @@ public class EventManager {
 			event.perform();
 			if (event.hasExpired()) {
 				removeEvent(event);
+				event.onExpired();
 			}
 		}
 	}
 	
 	public static void addEvent(Event event) {
+		event.onBegin();
 		EventManager.eventList.add(event);
 	}
 	
 	protected static boolean removeEvent(Event event) {
-		boolean result = eventList.contains(event);
-		eventList.remove(event);
+		boolean result = eventList.remove(event);
 		return result;
 	}
 
