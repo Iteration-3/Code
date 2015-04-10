@@ -19,5 +19,5 @@ public abstract class EquipableItem extends TakeableItem {
 	
 	public void merge(Statistics stats){
 		stats.merge(this.stats);
-	};
+	}
 }

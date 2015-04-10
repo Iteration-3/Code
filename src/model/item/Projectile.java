@@ -1,9 +1,14 @@
 package model.item;
 
+import statistics.Statistics;
 import model.entity.Entity;
 import model.slots.EquipmentManager;
 
 public class Projectile extends EquipableItem{
+
+	public Projectile(Statistics stats) {
+		super(stats);
+	}
 
 	public boolean equip(EquipmentManager equipment) {
 		return equipment.equip(this);
