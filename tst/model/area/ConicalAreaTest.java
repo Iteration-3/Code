@@ -60,6 +60,13 @@ public class ConicalAreaTest {
         Location loc = new Location(822, 900);
         assertTrue(area.isInRange(loc));
     }
+    
+    @Test
+    public void testInsideAreaUpLongRange() {
+        area.setDirection(AreaAngle.UP);
+        area.setRange(3);
+        assertTrue(area.isInRange(new Location(1082,600)));
+    }
 
     @Test
     public void testInsideAreaDownRightTrue() {

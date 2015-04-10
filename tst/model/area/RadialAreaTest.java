@@ -23,7 +23,7 @@ public class RadialAreaTest {
         List<Location> locations = area.getCoveredLocations();
         assertEquals(7, locations.size());
     }
-
+    
     @Test
     public void testTilesContainedRadius3() {
         area.setRange(3);
@@ -44,5 +44,6 @@ public class RadialAreaTest {
         List<Location> locations = area.getCoveredLocations();
         assertEquals(61, locations.size());
     }
+    
 
 }

@@ -3,6 +3,7 @@ package model.area;
 import java.util.ArrayList;
 import java.util.List;
 
+import utilities.AreaAngle;
 import utilities.LocationConversion;
 import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
@@ -59,44 +60,16 @@ public abstract class Area implements SavableLoadable {
     protected List<Location> checkSurrounding(Location location, List<Location> returnList) {
         List<Location> testLocations = new ArrayList<>();
         double height = LocationConversion.getHeight();
-        double width = LocationConversion.getWidth();
+        
+        for(AreaAngle angle : AreaAngle.values()) {
+            double xOffset = Math.round(height * Math.cos(Math.toRadians(angle.getAngle() + 30)));
+            double yOffset = Math.round(height * Math.sin(Math.toRadians(angle.getAngle() + 30)));
+            Location testLocation = new Location(location.getX() + xOffset, location.getY() - yOffset);
 
-        // Up right
-        Location testLocation1 = new Location(location.getX() + width * .75, location.getY() - height / 2.0);
-        if (canAdd(testLocation1, returnList)) {
-            returnList.add(testLocation1);
+            if(canAdd(testLocation, returnList)) {
+                returnList.add(testLocation);
+            }
         }
-
-        // Up
-        Location testLocation2 = new Location(location.getX(), location.getY() - height);
-        if (canAdd(testLocation2, returnList)) {
-            returnList.add(testLocation2);
-        }
-
-        // Up left
-        Location testLocation3 = new Location(location.getX() - width * .75, location.getY() - height / 2.0);
-        if (canAdd(testLocation3, returnList)) {
-            returnList.add(testLocation3);
-        }
-
-        // Down right
-        Location testLocation4 = new Location(location.getX() + width * .75, location.getY() + height / 2.0);
-        if (canAdd(testLocation4, returnList)) {
-            returnList.add(testLocation4);
-        }
-
-        // Down
-        Location testLocation5 = new Location(location.getX(), location.getY() + height);
-        if (canAdd(testLocation5, returnList)) {
-            returnList.add(testLocation5);
-        }
-
-        // Down left
-        Location testLocation6 = new Location(location.getX() - width * .75, location.getY() + height / 2.0);
-        if (canAdd(testLocation6, returnList)) {
-            returnList.add(testLocation6);
-        }
-
         return testLocations;
 
     }

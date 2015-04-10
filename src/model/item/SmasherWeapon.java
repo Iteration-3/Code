@@ -1,8 +1,13 @@
 package model.item;
 
+import statistics.Statistics;
 import model.slots.SmasherWeaponSlot;
 
 public class SmasherWeapon extends Weapon {
+
+	public SmasherWeapon(Statistics stats) {
+		super(stats);
+	}
 
 	public boolean equip(SmasherWeaponSlot slot){
 		return slot.equipWeapon(this);
