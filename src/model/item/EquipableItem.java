@@ -1,8 +1,8 @@
 package model.item;
 
-import statistics.Statistics;
 import model.entity.Entity;
 import model.slots.EquipmentManager;
+import model.statistics.Statistics;
 
 public abstract class EquipableItem extends TakeableItem {
 	private Statistics stats;
@@ -14,7 +14,7 @@ public abstract class EquipableItem extends TakeableItem {
 	public abstract boolean equip(EquipmentManager equipment);
 	
 	public void use(Entity entity) {
-		entity.equipItem(this);
+		entity.equip(this);
 	}
 	
 	public void merge(Statistics stats){

@@ -1,4 +1,4 @@
-package statistics;
+package model.statistics;
 
 public class EntityStatistics extends Statistics{
 	private int livesLeft;

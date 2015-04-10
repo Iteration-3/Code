@@ -1,4 +1,4 @@
-package statistics;
+package model.statistics;
 
 public class Statistics implements Cloneable {
 	private int strength;

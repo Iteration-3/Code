@@ -1,4 +1,4 @@
-package projectile;
+package model.projecilte;
 
 import java.util.ArrayList;
 

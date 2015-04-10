@@ -1,8 +1,8 @@
 package model.item;
 
-import statistics.Statistics;
 import model.entity.Entity;
 import model.slots.EquipmentManager;
+import model.statistics.Statistics;
 
 public class Gloves extends EquipableItem{
 
