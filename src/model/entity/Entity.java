@@ -1,30 +1,46 @@
 package model.entity;
 
 import model.item.Item;
+import model.item.ItemManager;
 import model.item.TakeableItem;
 import statistics.EntityStatistics;
 import utilities.Angle;
+import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 
-public abstract class Entity {
+public abstract class Entity implements SavableLoadable {
 	private String name_= null;
 	private EntityStatistics stats_ = null;
 	private EntityView view_ = null;
+	/**
+	 * Abstract methods
+	 */
+	public abstract void attack();
+	public abstract StructuredMap getStructuredMap();
+	public abstract void load(StructuredMap map);
+	public abstract void update();
+	//All entities have an ItemManager, but subclasses need specific ones, so it can't be 
+	//Contained in the super class, subclasses provide a way to get it via this. 
+	protected abstract ItemManager getItemManager();
+	
+/**
+* Concrete methods begin here
+* 
+*/
+	
 
 	/**
-	 * UNIMPLEMENTED, but done the same across entites subclasses
 	 * @param takeable
 	 */
 	public void addItem(TakeableItem takeable){
-		
+			this.getItemManager().addItem(takeable);
 	}
 	/**
-	 * UNIMPLEMENTED, but done the same across entites subclasses
 	 * @param takable
 	 */
-	public void removeItem(TakeableItem takable){
-		
+	public void removeItem(TakeableItem takeable){
+		this.getItemManager().removeItem(takeable);
 	}
 	/**
 	 * UNIMPLEMENTED, but done the same across entites subclasses
@@ -40,11 +56,6 @@ public abstract class Entity {
 	public void unequipItem(Item item){
 		
 	}
-	public abstract void attack();
-	public abstract StructuredMap save();
-	public abstract void load(StructuredMap map);
-	public abstract void update();
-	
 	protected EntityStatistics getDerivedStats(){
 		return stats_;
 	};

@@ -3,8 +3,10 @@ package model.area;
 import java.util.List;
 
 import utilities.LocationConversion;
+import utilities.structuredmap.SavableLoadable;
+import utilities.structuredmap.StructuredMap;
 
-public abstract class Area {
+public abstract class Area implements SavableLoadable {
     private int range;
     private Location startLocation;
 
@@ -43,8 +45,6 @@ public abstract class Area {
     }
 
     public abstract List<Location> getCoveredLocations();
-    /**
-     * Uncomment when we get structured map public abstract StructuredMap
-     * save(); public abstract Area load(StructuredMap map);
-     */
+    public abstract StructuredMap getStructuredMap();
+    public abstract void load(StructuredMap map);
 }

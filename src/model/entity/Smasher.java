@@ -11,7 +11,7 @@ public class Smasher extends Avatar {
 	}
 
 	@Override
-	public StructuredMap save() {
+	public StructuredMap getStructuredMap() {
 		// TODO Auto-generated method stub
 		return null;
 	}
