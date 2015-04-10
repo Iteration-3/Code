@@ -1,5 +1,6 @@
 package model.entity;
 
+import model.item.EquipableItem;
 import model.item.Item;
 import model.item.ItemManager;
 import model.item.TakeableItem;
@@ -10,8 +11,13 @@ import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 
 public abstract class Entity implements SavableLoadable {
+	public Entity(String name, EntityView view){
+		name_ = name;
+		view_ = view;
+	}
+	
 	private String name_= null;
-	private EntityStatistics stats_ = null;
+	private EntityStatistics stats_ = new EntityStatistics();
 	private EntityView view_ = null;
 	/**
 	 * Abstract methods
@@ -24,10 +30,10 @@ public abstract class Entity implements SavableLoadable {
 	//Contained in the super class, subclasses provide a way to get it via this. 
 	protected abstract ItemManager getItemManager();
 	
-/**
-* Concrete methods begin here
-* 
-*/
+	/**
+	 * Concrete methods begin here
+	 * 
+	 */
 	
 
 	/**
@@ -43,18 +49,16 @@ public abstract class Entity implements SavableLoadable {
 		this.getItemManager().removeItem(takeable);
 	}
 	/**
-	 * UNIMPLEMENTED, but done the same across entites subclasses
 	 * @param item
 	 */
-	public void equipItem(Item item){
-		
+	public void equipItem(EquipableItem item){
+		this.getItemManager().unequip(item);
 	}
 	/**
-	 * UNIMPLEMENTED, but done the same across entites subclasses
 	 * @param item
 	 */
-	public void unequipItem(Item item){
-		
+	public void unequipItem(EquipableItem item){
+		this.getItemManager().equip(item);
 	}
 	protected EntityStatistics getDerivedStats(){
 		return stats_;
