@@ -1,5 +1,21 @@
 package model.event;
 
-public abstract class Event {
+import model.entity.Entity;
 
+public abstract class Event {
+	private double duration;
+	
+	public Event(double duration) {
+		this.duration = duration;
+	}
+	
+	public abstract void onBegin(); // Called by the event manager
+
+	public abstract void onExpired(); // Called by the event manager
+
+	public abstract void hasExpired();
+	
+	public abstract void perform();
+	
+	public abstract void setTarget(Entity target);
 }
