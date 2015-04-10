@@ -16,11 +16,6 @@ public class LivesModifierEvent extends Event {
 	}
 
 	@Override
-	public boolean hasExpired() {
-		return false;
-	}
-
-	@Override
 	public void perform() {
 		if (hasTarget()) {
 			getTarget().addLives(lives);

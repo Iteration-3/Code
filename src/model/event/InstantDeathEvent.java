@@ -13,11 +13,6 @@ public class InstantDeathEvent extends Event {
 	}
 
 	@Override
-	public boolean hasExpired() {
-		return true;
-	}
-
-	@Override
 	public void perform() {
 		if (hasTarget()) {
 			getTarget().addLives(-1);

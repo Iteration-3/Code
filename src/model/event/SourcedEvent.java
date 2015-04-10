@@ -11,11 +11,6 @@ public abstract class SourcedEvent extends Event {
 	}
 
 	@Override
-	public boolean hasExpired() {
-		return false;
-	}
-
-	@Override
 	public void perform() {
 		// An example would be PickPocket.
 		// Taking one Item from the target's Inventory 
