@@ -14,6 +14,8 @@ public class ItemTile implements SavableLoadable{
 		return items.add(i);
 	}
 	public void touch(Entity e){
+		//Takes an entity, makes it touch all the items on the square, and then removes
+		//those items that get picked up from the map. 
 		for(Item i : items){
 			i.touch(e);
 		}

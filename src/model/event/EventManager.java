@@ -17,7 +17,7 @@ public class EventManager {
 	
 	public static void addEvent(Event event) {
 		event.onBegin();
-		EventManager.eventList.add(event);
+		eventList.add(event);
 	}
 	
 	protected static boolean removeEvent(Event event) {

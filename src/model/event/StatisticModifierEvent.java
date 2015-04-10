@@ -17,11 +17,6 @@ public class StatisticModifierEvent extends Event {
 	}
 
 	@Override
-	public boolean hasExpired() {
-		return true;
-	}
-
-	@Override
 	public void perform() {
 		if (hasTarget()) {
 			getTarget().modifyStats(modifier);

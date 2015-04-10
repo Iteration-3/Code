@@ -10,14 +10,9 @@ public class HealthModifierEvent extends Event {
 		this.health = health;
 	}
 
-	public HealthModifierEvent(Entity target, double duration, int health) {
+	public HealthModifierEvent(int health, Entity target, double duration) {
 		super(target, duration);
 		this.health = health;
-	}
-
-	@Override
-	public boolean hasExpired() {
-		return false;
 	}
 
 	@Override
@@ -29,7 +24,7 @@ public class HealthModifierEvent extends Event {
 
 	@Override
 	public Event clone() {
-		HealthModifierEvent clone = new HealthModifierEvent(getTarget(), getDuration(), health);
+		HealthModifierEvent clone = new HealthModifierEvent(health, getTarget(), getDuration());
 		return clone;
 	}
 

@@ -10,14 +10,9 @@ public class ManaModifierEvent extends Event {
 		this.mana = mana;
 	}
 
-	public ManaModifierEvent(Entity target, double duration, int mana) {
+	public ManaModifierEvent(int mana, Entity target, double duration) {
 		super(target, duration);
 		this.mana = mana;
-	}
-
-	@Override
-	public boolean hasExpired() {
-		return false;
 	}
 
 	@Override
@@ -29,7 +24,7 @@ public class ManaModifierEvent extends Event {
 
 	@Override
 	public Event clone() {
-		ManaModifierEvent clone = new ManaModifierEvent(getTarget(), getDuration(), mana);
+		ManaModifierEvent clone = new ManaModifierEvent(mana, getTarget(), getDuration());
 		return clone;
 	}
 

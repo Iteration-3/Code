@@ -11,11 +11,6 @@ public class ExperienceModifierEvent extends Event {
 	}
 
 	@Override
-	public boolean hasExpired() {
-		return true; 
-	}
-
-	@Override
 	public void perform() {
 		if (hasTarget()) {
 			getTarget().addExperience(experience);
