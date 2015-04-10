@@ -1,6 +1,5 @@
 package model.item;
 
-import model.entity.Entity;
 import model.slots.EquipmentManager;
 import model.statistics.Statistics;
 
@@ -12,11 +11,6 @@ public class Boots extends EquipableItem {
 
 	public boolean equip(EquipmentManager equipment) {
 		return equipment.equip(this);
-	}
-
-	@Override
-	public void use(Entity entity) {
-		entity.equipItem(this);
 	}
 
 	@Override

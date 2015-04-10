@@ -1,5 +1,6 @@
 package model.slots;
 
+import model.entity.NPC;
 import model.entity.Smasher;
 import model.entity.Sneak;
 import model.entity.Summoner;
@@ -34,6 +35,11 @@ public class EquipmentManager {
 
 	public EquipmentManager(Sneak avatar){
 		this.weaponSlot = new SneakWeaponSlot();
+		this.setSlots();
+	}
+	
+	public EquipmentManager(NPC npc){
+		this.weaponSlot = new NPCWeaponSlot();
 		this.setSlots();
 	}
 

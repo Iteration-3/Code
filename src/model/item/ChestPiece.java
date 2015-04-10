@@ -1,6 +1,5 @@
 package model.item;
 
-import model.entity.Entity;
 import model.slots.EquipmentManager;
 import model.statistics.Statistics;
 

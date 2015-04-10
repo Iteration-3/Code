@@ -1,7 +1,14 @@
 package model.entity;
 
+import view.EntityView;
+
 
 public abstract class Avatar extends Entity {
+
+	public Avatar(String name, EntityView view){
+		super(name,view);
+	}
+	
 	@Override 
 	public boolean isFlying(){
 		return false;

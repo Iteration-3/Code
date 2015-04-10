@@ -1,6 +1,7 @@
 package model.slots;
 
 import utilities.Point;
+import model.entity.NPC;
 import model.entity.Smasher;
 import model.entity.Sneak;
 import model.entity.Summoner;
@@ -8,22 +9,27 @@ import model.item.EquipableItem;
 import model.item.TakeableItem;
 import model.item.Weapon;
 
-public class InventoryEquipment {
+public class ItemManager {
 	private EquipmentManager equipment;
 	private Inventory inventory;
 
-	public InventoryEquipment(Summoner avatar) {
+	public ItemManager(Summoner avatar) {
 		this.equipment = new EquipmentManager(avatar);
 		this.inventory = new Inventory();
 	}
 
-	public InventoryEquipment(Sneak avatar) {
+	public ItemManager(Sneak avatar) {
 		this.equipment = new EquipmentManager(avatar);
 		this.inventory = new Inventory();
 	}
 
-	public InventoryEquipment(Smasher avatar) {
+	public ItemManager(Smasher avatar) {
 		this.equipment = new EquipmentManager(avatar);
+		this.inventory = new Inventory();
+	}
+	
+	public ItemManager(NPC npc){
+		this.equipment = new EquipmentManager(npc);
 		this.inventory = new Inventory();
 	}
 

@@ -1,9 +1,18 @@
 package model.entity;
 
-import model.item.ItemManager;
+import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
+import view.EntityView;
 
 public class Smasher extends Avatar {
+
+	public Smasher(String name, EntityView view) {
+		super(name, view);
+	}
+
+	protected ItemManager getItemManager() {
+		return new ItemManager(this);
+	}
 
 	@Override
 	public void attack() {
@@ -30,8 +39,7 @@ public class Smasher extends Avatar {
 	}
 
 	@Override
-	protected ItemManager getItemManager() {
-		// TODO Auto-generated method stub
+	protected model.slots.ItemManager createItemManager() {
 		return null;
 	}
 
