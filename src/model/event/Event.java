@@ -2,7 +2,7 @@ package model.event;
 
 import model.entity.Entity;
 
-public abstract class Event {
+public abstract class Event implements Cloneable{
 	private double duration;
 	
 	protected Event(double duration) {
@@ -21,5 +21,12 @@ public abstract class Event {
 	
 	public double getDuration() {
 		return duration;
+	}
+	/**
+	 * UNIMPLEMENTED
+	 */
+	public Event clone(){
+		return null;
+		
 	}
 }
