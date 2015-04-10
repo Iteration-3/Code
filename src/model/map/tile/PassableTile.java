@@ -1,12 +1,12 @@
-package model.tile;
+package model.map.tile;
 
 import model.entity.Entity;
 import utilities.structuredmap.StructuredMap;
 import view.tileviews.TileView;
 
-public class ImpasssibleTile extends Tile {
+public class PassableTile extends Tile{
 
-	public ImpasssibleTile(TileView v) {
+	public PassableTile(TileView v) {
 		super(v);
 	}
 
@@ -24,7 +24,7 @@ public class ImpasssibleTile extends Tile {
 
 	@Override
 	public boolean isPassable(Entity e) {
-		return false;
+		return true;
 	}
 
 	@Override

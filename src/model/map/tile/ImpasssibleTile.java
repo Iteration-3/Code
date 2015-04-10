@@ -1,12 +1,12 @@
-package model.tile;
+package model.map.tile;
 
 import model.entity.Entity;
 import utilities.structuredmap.StructuredMap;
 import view.tileviews.TileView;
 
-public class AirPassableTile extends Tile{
+public class ImpasssibleTile extends Tile {
 
-	public AirPassableTile(TileView v) {
+	public ImpasssibleTile(TileView v) {
 		super(v);
 	}
 
@@ -24,12 +24,7 @@ public class AirPassableTile extends Tile{
 
 	@Override
 	public boolean isPassable(Entity e) {
-		if(e.isFlying()){
-			return true;
-		}
-		else{
-			return false;
-		}
+		return false;
 	}
 
 	@Override
