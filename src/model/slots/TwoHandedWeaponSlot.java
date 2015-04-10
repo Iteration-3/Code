@@ -16,6 +16,8 @@ public class TwoHandedWeaponSlot {
 	public TwoHandedWeaponSlot(WeaponSlot weaponSlot,EquipmentSlot<Shield> shieldSlot){
 		this.weaponSlot = weaponSlot;
 		this.shieldSlot = shieldSlot;
+		this.weaponSlot.setParentSlot(this);
+		this.shieldSlot.setParentSlot(this);
 	}
 	
 	public boolean has(){
@@ -39,14 +41,33 @@ public class TwoHandedWeaponSlot {
 	}
 	
 	public boolean equip(TwoHandedWeapon weapon){
-		return this.slot.equip(weapon);
+		if (this.childrenHaveItem()){
+			return false;
+		}
+		else{
+			return this.slot.equip(weapon);
+		}
 	}
 	
 	public boolean equip(Shield shield){
-		return this.shieldSlot.equip(shield);
+		if (this.has()){
+			return false;
+		}
+		else{
+			return this.shieldSlot.equip(shield);
+		}
 	}
 	
 	public boolean equip(Weapon weapon){
-		return this.weaponSlot.equip(weapon);
+		if (this.has()){
+			return false;
+		}
+		else{
+			return this.weaponSlot.equip(weapon);
+		}
+	}
+
+	private boolean childrenHaveItem(){
+		return this.weaponSlot.has() || this.shieldSlot.has();
 	}
 }
