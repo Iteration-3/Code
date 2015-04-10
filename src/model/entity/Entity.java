@@ -21,7 +21,7 @@ public abstract class Entity implements SavableLoadable {
 	private String name_= null;
 	private EntityStatistics stats_ = new EntityStatistics();
 	private EntityView view_ = null;
-	private Location location = null;
+	private Location location_ = new Location();
 
 	/**
 	 * Abstract methods
@@ -91,11 +91,11 @@ public abstract class Entity implements SavableLoadable {
 	}
 	
 	public Location getLocation() {
-		return location;
+		return location_;
 	}
 	
 	public void setLocation(Location location) {
-		this.location = location;
+		this.location_ = location;
 	}
 
 }
