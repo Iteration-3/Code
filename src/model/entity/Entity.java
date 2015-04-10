@@ -11,17 +11,17 @@ import view.EntityView;
 
 public abstract class Entity implements SavableLoadable {
 	public Entity(String name, EntityView view){
-		name_ = name;
-		view_ = view;
+		name = name;
+		view = view;
 	}
 	public Entity(){
 	
 	}
 	
-	private String name_= null;
-	private EntityStatistics stats_ = new EntityStatistics();
-	private EntityView view_ = null;
-	private Location location_ = new Location();
+	private String name= null;
+	private EntityStatistics stats = new EntityStatistics();
+	private EntityView view = null;
+	private Location location = new Location();
 
 	/**
 	 * Abstract methods
@@ -64,7 +64,7 @@ public abstract class Entity implements SavableLoadable {
 		this.getItemManager().equip(item);
 	}
 	protected EntityStatistics getDerivedStats(){
-		return stats_;
+		return stats;
 	};
 	/**
 	 * NOT YET IMPLEMENTED
@@ -83,19 +83,19 @@ public abstract class Entity implements SavableLoadable {
 		return false;
 	}
 	protected EntityView getEntityView(){
-		return view_;
+		return view;
 	}
 	
 	public String getName(){
-		return name_;
+		return name;
 	}
 	
 	public Location getLocation() {
-		return location_;
+		return location;
 	}
 	
 	public void setLocation(Location location) {
-		this.location_ = location;
+		this.location = location;
 	}
 
 }

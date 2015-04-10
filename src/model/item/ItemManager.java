@@ -4,7 +4,7 @@ import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 
 public class ItemManager  implements SavableLoadable {
-	private Inventory inventory_ = new Inventory();//All inventories are the same
+	private Inventory inventory = new Inventory();//All inventories are the same
 	//How are we even doing equipmenet manager?
 	/**
 	 * UNIMPLEMENTED
@@ -24,10 +24,10 @@ public class ItemManager  implements SavableLoadable {
 	}
 	
 	public boolean removeItem(TakeableItem item){
-		return inventory_.removeItem(item);
+		return inventory.removeItem(item);
 	}
 	public boolean addItem(TakeableItem item){
-		return inventory_.addItem(item);
+		return inventory.addItem(item);
 	}
 	
 	/**
