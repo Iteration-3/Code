@@ -1,5 +1,7 @@
 package model.area;
 
+import utilities.Angle;
+
 public class Location {
     private double x;
     private double y;
@@ -13,6 +15,21 @@ public class Location {
     public Location(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+    
+    public Location nextLocation(Angle angle) {
+    	int xDisplacement = 0, yDisplacement = 0;
+    	if (angle == Angle.UP_RIGHT || angle == Angle.UP || angle == Angle.UP_LEFT) {
+    		yDisplacement = -1;
+    	} else {
+    		yDisplacement = 1;
+    	}
+    	if (angle == Angle.UP_RIGHT || angle == Angle.DOWN_RIGHT) {
+    		xDisplacement = 1;
+    	} else if (angle == Angle.UP_LEFT || angle == Angle.UP_RIGHT) {
+    		xDisplacement = -1;
+    	}
+    	return new Location(xDisplacement, yDisplacement);
     }
 
     public void setX(double x) {
