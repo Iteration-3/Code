@@ -48,5 +48,4 @@ public abstract class Trigger {
     }
 
     public abstract boolean hasExpired();
-
 }

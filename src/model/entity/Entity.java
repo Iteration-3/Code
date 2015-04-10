@@ -1,5 +1,6 @@
 package model.entity;
 
+import model.area.Location;
 import model.item.Item;
 import model.item.ItemManager;
 import model.item.TakeableItem;
@@ -13,6 +14,8 @@ public abstract class Entity implements SavableLoadable {
 	private String name_= null;
 	private EntityStatistics stats_ = null;
 	private EntityView view_ = null;
+	private Location location = null;
+
 	/**
 	 * Abstract methods
 	 */
@@ -29,7 +32,6 @@ public abstract class Entity implements SavableLoadable {
 * 
 */
 	
-
 	/**
 	 * @param takeable
 	 */
@@ -83,6 +85,12 @@ public abstract class Entity implements SavableLoadable {
 		return name_;
 	}
 	
+	public Location getLocation() {
+		return location;
+	}
 	
+	public void setLocation(Location location) {
+		this.location = location;
+	}
 
 }
