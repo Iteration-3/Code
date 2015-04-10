@@ -1,6 +1,6 @@
 package model.item;
 
-import statistics.Statistics;
+import model.statistics.Statistics;
 
 public class NPCWeapon extends Weapon {
 	

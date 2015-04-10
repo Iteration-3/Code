@@ -1,7 +1,7 @@
 package model.event;
 
 import model.entity.Entity;
-import statistics.Statistics;
+import model.statistics.Statistics;
 
 public class StatisticModifierEvent extends Event {
 	private Statistics modifier;
@@ -14,11 +14,6 @@ public class StatisticModifierEvent extends Event {
 	public StatisticModifierEvent(Statistics modifier, double duration) {
 		super(duration);
 		this.modifier = modifier;
-	}
-
-	@Override
-	public boolean hasExpired() {
-		return true;
 	}
 
 	@Override

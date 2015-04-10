@@ -1,7 +1,7 @@
 package model.item;
 
-import statistics.Statistics;
 import model.slots.SneakWeaponSlot;
+import model.statistics.Statistics;
 
 public class SneekWeapon extends Weapon {
 

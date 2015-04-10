@@ -3,9 +3,9 @@ package model.entity;
 import model.area.Location;
 import model.item.EquipableItem;
 import model.item.TakeableItem;
+import model.statistics.EntityStatistics;
+import model.statistics.Statistics;
 import model.slots.ItemManager;
-import statistics.EntityStatistics;
-import statistics.Statistics;
 import utilities.Angle;
 import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
@@ -165,12 +165,15 @@ public abstract class Entity implements SavableLoadable {
 	public void addHealth(int health) {
 		stats.addHealth(health);
 	}
+
 	public void addMovement(int movement) {
 		stats.addMovement(movement);
 	}
+
 	public void addLives(int lives) {
 		stats.addLives(lives);
 	}
+
 	public void addMana(int mana) {
 		stats.addMana(mana);
 	}

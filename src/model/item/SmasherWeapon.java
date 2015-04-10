@@ -1,7 +1,7 @@
 package model.item;
 
-import statistics.Statistics;
 import model.slots.SmasherWeaponSlot;
+import model.statistics.Statistics;
 
 public class SmasherWeapon extends Weapon {
 

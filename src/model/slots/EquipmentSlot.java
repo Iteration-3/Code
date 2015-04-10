@@ -1,7 +1,7 @@
 package model.slots;
 
-import statistics.Statistics;
 import model.item.EquipableItem;
+import model.statistics.Statistics;
 
 public class EquipmentSlot <K extends EquipableItem>{
 	K item;

@@ -1,7 +1,7 @@
 package model.item;
 
-import statistics.Statistics;
 import model.slots.EquipmentManager;
+import model.statistics.Statistics;
 
 public class ChestPiece extends EquipableItem {
 

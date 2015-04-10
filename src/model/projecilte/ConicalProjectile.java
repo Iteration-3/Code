@@ -1,4 +1,4 @@
-package projectile;
+package model.projecilte;
 
 import utilities.Angle;
 import model.area.Location;

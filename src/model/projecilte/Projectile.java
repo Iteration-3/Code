@@ -1,12 +1,12 @@
-package projectile;
+package model.projecilte;
 
 import model.area.Location;
 import model.area.RadialArea;
 import model.event.StatisticModifierEvent;
+import model.statistics.EntityStatistics;
 import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
-import statistics.EntityStatistics;
 import utilities.Angle;
 
 public class Projectile {
