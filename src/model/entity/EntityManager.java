@@ -1,6 +1,7 @@
 package model.entity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.area.Location;
 
@@ -9,12 +10,30 @@ public class EntityManager {
 	private static ArrayList<NPC> nonPartyNpcs;
 	private static Avatar avatar;
 	
-	public static void update() {
-		// TODO(jraviles)
+	
+	/**
+	 * If we started having something like 10000+ entities, then this should be done eagerly, not lazily
+	 * @return
+	 */
+	private static List<Entity> getAllEntities(){
+			List<Entity> all = new ArrayList<Entity>(getNonPartyNpcs());
+			all.addAll(getPartyNpcs());
+			all.add(getAvatar());
+			return all;
 	}
 	
-	public Entity getEntityAtLocation(Location location) {
-		// TODO(jraviles)
+	public static void update() {
+		for(Entity e : getAllEntities()){
+			e.update();
+		}
+	}
+	
+	public static Entity getEntityAtLocation(Location location) {
+		for(Entity e : getAllEntities()){
+			if(location.equals(e.getLocation())){
+				return e;
+			}
+		}
 		return null;
 	}
 	
