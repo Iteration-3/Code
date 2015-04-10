@@ -1,5 +1,6 @@
 package model.entity;
 
+import model.item.ItemManager;
 import utilities.structuredmap.StructuredMap;
 
 public class Smasher extends Avatar {
@@ -26,6 +27,12 @@ public class Smasher extends Avatar {
 	public void update() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	protected ItemManager getItemManager() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
