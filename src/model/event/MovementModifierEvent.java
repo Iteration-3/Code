@@ -3,7 +3,7 @@ package model.event;
 import model.entity.Entity;
 
 public class MovementModifierEvent extends Event {
-	int movement;
+	private int movement;
 
 	public MovementModifierEvent(double duration, int movement) {
 		super(duration);
@@ -25,6 +25,12 @@ public class MovementModifierEvent extends Event {
 		if (hasTarget()) {
 			getTarget().addMovement(movement);
 		}
+	}
+
+	@Override
+	public Event clone() {
+		MovementModifierEvent clone = new MovementModifierEvent(getTarget(), getDuration(), movement);
+		return clone;
 	}
 
 }

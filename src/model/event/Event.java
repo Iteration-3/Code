@@ -44,11 +44,6 @@ public abstract class Event implements Cloneable{
 	protected boolean hasTarget() {
 		return target != null;
 	}
-	/**
-	 * UNIMPLEMENTED
-	 */
-	public Event clone(){
-		return null;
-		
-	}
+
+	public abstract Event clone();
 }
