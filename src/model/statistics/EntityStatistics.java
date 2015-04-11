@@ -101,6 +101,10 @@ public class EntityStatistics extends Statistics{
 		this.currentMana = currentMana;
 	}
 	
+	public void addCurrentMana(int change) {
+		this.currentMana += change;
+	}
+	
 	public int getMaximumMana() {
 		return getIntellect() * 100;
 	}

@@ -64,7 +64,12 @@ public abstract class Entity implements SavableLoadable {
 	/**
 	 * @param takeable
 	 */
-	protected EntityStatistics getDerivedStats() {
+	
+	public EntityStatistics getBaseStats() {
+		return this.stats;
+	}
+
+	public EntityStatistics getDerivedStats() {
 		EntityStatistics derivedStats = this.stats.clone();
 		itemManager.merge(derivedStats);
 		return derivedStats;

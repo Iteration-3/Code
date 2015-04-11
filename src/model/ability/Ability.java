@@ -14,12 +14,11 @@ public abstract class Ability {
 	public abstract void perform(Avatar avatar);
 	
 	public final boolean hasMana(Avatar avatar) {
-		// TODO(jraviles)
-		return true;
+		return avatar.getBaseStats().getCurrentMana() >= this.getManaCost();
 	}
 	
 	public final void removeMana(Avatar avatar) {
-		// TODO(jraviles)
+		avatar.getBaseStats().addCurrentMana(-1 * manaCost);
 	}
 
 	public int getManaCost() {
@@ -29,4 +28,5 @@ public abstract class Ability {
 	public void setManaCost(int manaCost) {
 		this.manaCost = manaCost;
 	}
+
 }
