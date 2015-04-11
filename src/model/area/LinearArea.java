@@ -26,12 +26,17 @@ public class LinearArea extends DirectionalArea {
         Location testLocation = super.createComparisonLocation(location);
         int angle = (int) (Math.round(Math.toDegrees(Math.atan2((testLocation.getY()), testLocation.getX()))));
 
-        return angle == (super.getDirection().getAngle() + ANGLE_OFFSET) && super.isWithinRadius(location);
+        boolean thisResult = angle == (super.getDirection().getAngle() + ANGLE_OFFSET)
+                && super.isWithinRadius(location);
+        return super.hasCompositeArea() ? thisResult || super.compositeInRange(location) : thisResult;
     }
 
     @Override
     public List<Location> getCoveredLocations() {
-        return super.locationsInALine(super.getDirection().getAngle(), super.getRadius(), super.getStartLocation());
+        List<Location> returnList = super.getCompositeCoveredLocations();
+        returnList.addAll(super.locationsInALine(super.getDirection().getAngle(), super.getRadius(),
+                super.getStartLocation()));
+        return returnList;
     }
 
     @Override
