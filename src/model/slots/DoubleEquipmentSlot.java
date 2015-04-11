@@ -24,7 +24,7 @@ public class DoubleEquipmentSlot <K extends EquipableItem, F extends EquipableIt
 		if (this.childrenHaveItem()) {
 			return false;
 		} else {
-			return this.equip(weapon);
+			return super.equip(weapon);
 		}
 	}
 
