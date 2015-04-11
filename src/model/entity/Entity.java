@@ -102,8 +102,8 @@ public abstract class Entity implements SavableLoadable {
 		this.itemManager.equip(item);
 	}
 
-	public void addItem(TakeableItem item) {
-		this.itemManager.addItem(item);
+	public boolean addItem(TakeableItem item) {
+		return this.itemManager.addItem(item);
 	}
 
 	public void removeItem(int x, int y) {

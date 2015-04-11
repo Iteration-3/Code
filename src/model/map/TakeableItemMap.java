@@ -7,7 +7,8 @@ import java.util.Map;
 import model.area.Location;
 import model.entity.Entity;
 import model.item.Item;
-import model.map.tile.ItemTile;
+import model.item.TakeableItem;
+import model.map.tile.TakeableItemTile;
 import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 /**
@@ -21,8 +22,8 @@ import utilities.structuredmap.StructuredMap;
  * Perhaps they could be pruned when empty, but not atm.
  *
  */
-public class ItemMap implements SavableLoadable {
-	private Map<Location,ItemTile> items = new HashMap<Location, ItemTile>();
+public class TakeableItemMap implements SavableLoadable {
+	private Map<Location,TakeableItemTile> items = new HashMap<Location, TakeableItemTile>();
 	
 	@Override
 	public StructuredMap getStructuredMap() {
@@ -34,9 +35,9 @@ public class ItemMap implements SavableLoadable {
 		// TODO Auto-generated method stub
 		
 	}
-	private ItemTile getItemTileAtLocation(Location loc){
-		ItemTile t = items.get(loc);
-		if(t==null){t = new ItemTile();}
+	private TakeableItemTile getItemTileAtLocation(Location loc){
+		TakeableItemTile t = items.get(loc);
+		if(t==null){t = new TakeableItemTile();}
 		return t;
 	}
 
@@ -47,7 +48,7 @@ public class ItemMap implements SavableLoadable {
 		this.getItemTileAtLocation(loc).touch(e);
 		
 	}
-	public void add(Item i, Location loc){
+	public void add(TakeableItem i, Location loc){
 		this.getItemTileAtLocation(loc).addItem(i);
 	}
 
