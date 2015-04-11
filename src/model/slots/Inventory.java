@@ -1,55 +1,48 @@
 package model.slots;
 
-import utilities.Point;
 import model.item.TakeableItem;
 
 public class Inventory {
 	private static final int ROW = 5;
 	private static final int COL = 5;
-	private InventorySlot[][] slots;
+	private InventorySlot[] slots;
 	
 	public Inventory(){
 		this.setInventory();
 	}
 
 	private void setInventory(){
-		this.slots = new InventorySlot[ROW][COL];
-		for (int i = 0 ; i < ROW ; i++){
-			for (int j = 0; j < COL; j++){
-				this.setSlot(i,j);
-			}
+		this.slots = new InventorySlot[ROW*COL];
+		for (int i = 0 ; i < (ROW* COL); i++){
+			this.setSlot(i);
 		}
 	}
 	
-	private void setSlot(int x,int y){
-		slots[x][y] = new InventorySlot();
+	private void setSlot(int index){
+		slots[index] = new InventorySlot();
 	}
 
 	private boolean findAndEquip(TakeableItem item){
-		for (int i = 0 ; i < ROW ; i++){
-			for (int j = 0; j < COL; j++){
-				boolean slotDoesNotHave = ! this.slotHas(i, j);
-				if (slotDoesNotHave){
-					this.insertItem(i,j,item);
-					return true;
-				}
+		for (int i = 0 ; i < (ROW * COL); i++){
+			boolean slotDoesNotHave = ! this.slotHas(i);
+			if (slotDoesNotHave){
+				this.insertItem(i,item);
+				return true;
 			}
 		}
 		return false;
 	}
 
 	// this is private because it forces a insert,  can cause RTE
-	private void insertItem(int i,int j,TakeableItem item){
-		this.slots[i][j].addItem(item);
+	private void insertItem(int index,TakeableItem item){
+		this.slots[index].addItem(item);
 	}
 	
 	//takeItem will take the item from the contianer,  this will remove the item from the SLots
 	private TakeableItem takeItem(TakeableItem item) throws Exception{
-		for (int i = 0 ; i < ROW ; i++){
-			for (int j = 0; j < COL; j++){
-				if (this.slotHasItem(item, i, j)){
-					return this.removeItem(i,j);
-				}
+		for (int i = 0 ; i < (ROW * COL); i++){
+				if (this.slotHasItem(item, i)){
+					return this.removeItem(i);
 			}
 		}
 		throw new Exception("You dont have that Item in the Inventory");
@@ -67,43 +60,29 @@ public class Inventory {
 		return this.findAndEquip(item);
 	}
 	
-	public boolean addItem( int x, int y, TakeableItem item){
-		if (this.slotHas(x,y)){
+	public boolean addItem( int index, TakeableItem item){
+		if (this.slotHas(index)){
 			return false;
 		}
 		else{
-			this.insertItem(x,y,item);
+			this.insertItem(index,item);
 			return true;
 		}
 	}
 	
-	public boolean addItem(Point point,TakeableItem item){
-		return this.addItem(point.getX(),point.getY(),item);
-	}
-	
 	/********************HAS*********************************/
-	public boolean slotHas(int x, int y){
-		return this.slotHas(new Point(x,y));
+	public boolean slotHas(int index){
+		return this.slots[index].has();
 	}
 
-	public boolean slotHas(Point point){
-		return this.slots[point.getX()][point.getY()].has();
-	}
-	
-	public boolean slotHasItem(TakeableItem item, Point point){
-		return this.slotHasItem(item, point.getX(), point.getY());
-	}
-
-	public boolean slotHasItem(TakeableItem item,int x,int y){
-		return this.slots[x][y].hasItem(item);
+	public boolean slotHasItem(TakeableItem item,int index){
+		return this.slots[index].hasItem(item);
 	}
 	
 	public boolean hasEmptySlot(){
-		for (int i = 0 ; i < ROW ; i++){
-			for (int j = 0; j < COL; j++){
-				if (! this.slotHas(i,j)){
-					return true;
-				}
+		for (int i = 0 ; i < (ROW * COL); i++){
+			if (! this.slotHas(i)){
+				return true;
 			}
 		}
 		return false;
@@ -114,29 +93,20 @@ public class Inventory {
 		return this.takeItem(item);
 	}
 	
-	public TakeableItem removeItem(int x, int y){
-		return this.slots[x][y].removeItem();
+	public TakeableItem removeItem(int index){
+		return this.slots[index].removeItem();
 	}
 	
-	public TakeableItem removeItem(Point point){
-		return this.removeItem(point.getX(),point.getY());
-	}
 	/**********************GETTERS*************************************/
-	public TakeableItem[][] getItems(){
-		TakeableItem[][] items = new TakeableItem[ROW][COL];
-		for (int i = 0 ; i < ROW ; i++){
-			for (int j = 0; j < COL; j++){
-				items[i][j] = this.get(i,j);
-			}
+	public TakeableItem[] getItems(){
+		TakeableItem[] items = new TakeableItem[ROW*COL];
+		for (int i = 0 ; i < (ROW *COL); i++){
+				items[i] = this.get(i);
 		}
 		return items;
 	}
 	
-	public TakeableItem get(int x, int y){
-		return this.slots[x][y].get();
-	}
-
-	public TakeableItem get(Point point){
-		return this.get(point.getX(),point.getY());
+	public TakeableItem get(int index){
+		return this.slots[index].get();
 	}
 }
