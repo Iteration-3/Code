@@ -1,4 +1,4 @@
-package model.projecilte;
+package model.projectile;
 
 import model.area.Location;
 import model.area.RadialArea;
