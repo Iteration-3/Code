@@ -5,6 +5,8 @@ import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 
 public class Smasher extends Avatar {
+	
+	public Smasher(){}
 
 	public Smasher(String name, EntityView view) {
 		super(name, view);

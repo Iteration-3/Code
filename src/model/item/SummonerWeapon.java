@@ -10,7 +10,7 @@ public class SummonerWeapon extends Weapon {
 	}
 
 	public boolean equip(SummonerWeaponSlot slot){
-		return slot.equip(this);
+		return slot.equipWeapon(this);
 	}
 	
 	public boolean canEquip(SummonerWeaponSlot slot){

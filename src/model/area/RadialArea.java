@@ -17,7 +17,8 @@ public class RadialArea extends Area {
 
     @Override
     public boolean isInRange(Location location) {
-        return isWithinRadius(location);
+        return super.hasCompositeArea() ? isWithinRadius(location) || super.compositeInRange(location)
+                : isWithinRadius(location);
     }
 
     @Override
@@ -29,6 +30,7 @@ public class RadialArea extends Area {
             returnList.addAll(checkSurrounding(returnList.get(i), returnList));
             ++i;
         }
+        returnList.addAll(getCompositeCoveredLocations());
         return returnList;
     }
 

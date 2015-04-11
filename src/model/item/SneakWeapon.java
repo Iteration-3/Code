@@ -3,14 +3,14 @@ package model.item;
 import model.slots.SneakWeaponSlot;
 import model.statistics.Statistics;
 
-public class SneekWeapon extends Weapon {
+public class SneakWeapon extends Weapon {
 
-	public SneekWeapon(Statistics stats) {
+	public SneakWeapon(Statistics stats) {
 		super(stats);
 	}
 
 	public boolean equip(SneakWeaponSlot slot){
-		return slot.equip(this);
+		return slot.equipWeapon(this);
 	}
 	
 	public boolean canEquip(SneakWeaponSlot slot){

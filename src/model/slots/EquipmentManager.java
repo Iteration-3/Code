@@ -11,6 +11,7 @@ import model.item.Helmet;
 import model.item.Leggings;
 import model.item.Projectile;
 import model.item.Shield;
+import model.item.TwoHandedWeapon;
 import model.item.Weapon;
 
 public class EquipmentManager {
@@ -22,23 +23,26 @@ public class EquipmentManager {
 	private EquipmentSlot<Boots> bootsSlot;
 	private EquipmentSlot<Gloves> glovesSlot;
 	private EquipmentSlot<Projectile> projectileSlot;
+	private DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot;
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public EquipmentManager(Smasher avatar) {
 		this.weaponSlot = new SmasherWeaponSlot();
 		this.setSlots();
+		this.THWSlot = new DoubleEquipmentSlot(this.weaponSlot, this.shieldSlot);
 	}
-	
-	public EquipmentManager(Summoner avatar){
+
+	public EquipmentManager(Summoner avatar) {
 		this.weaponSlot = new SummonerWeaponSlot();
 		this.setSlots();
 	}
 
-	public EquipmentManager(Sneak avatar){
+	public EquipmentManager(Sneak avatar) {
 		this.weaponSlot = new SneakWeaponSlot();
 		this.setSlots();
 	}
-	
-	public EquipmentManager(NPC npc){
+
+	public EquipmentManager(NPC npc) {
 		this.weaponSlot = new NPCWeaponSlot();
 		this.setSlots();
 	}
@@ -51,6 +55,10 @@ public class EquipmentManager {
 		this.bootsSlot = new EquipmentSlot<Boots>();
 		this.glovesSlot = new EquipmentSlot<Gloves>();
 		this.projectileSlot = new EquipmentSlot<Projectile>();
+	}
+
+	protected boolean hasTHW() {
+		return this.THWSlot != null;
 	}
 
 	/************************* UNEQUIP ************************************/
@@ -85,6 +93,10 @@ public class EquipmentManager {
 	public Helmet unequipHelmet() {
 		return this.helmetSlot.unequip();
 	}
+	
+	public TwoHandedWeapon unequipTHW(){
+		return this.THWSlot.unequip();
+	}
 
 	/************************* EQUIP **************************/
 
@@ -99,15 +111,32 @@ public class EquipmentManager {
 	public boolean equip(Boots item) {
 		return this.bootsSlot.equip(item);
 	}
+	
+	public boolean equip(TwoHandedWeapon item){
+		if (this.hasTHW()){
+			return this.THWSlot.equip(item);
+		}
+		else{
+			return false;
+		}
+	}
 
 	public boolean equip(Shield item) {
-		return this.shieldSlot.equip(item);
+		if (this.hasTHW()) {
+			return this.THWSlot.equipSecondSlot(item);
+		}
+		else{
+			return this.shieldSlot.equip(item);
+		}
 	}
 
-	public boolean equip(Weapon item) { // TODO special case for all types
+	public boolean equip(Weapon item) {
+		if (this.hasTHW()){
+			return this.THWSlot.equipFirstSlot(item);
+		}
 		return this.weaponSlot.equip(item);
 	}
-
+	
 	public boolean equip(Leggings item) {
 		return this.leggingsSlot.equip(item);
 	}
@@ -119,9 +148,8 @@ public class EquipmentManager {
 	public boolean equip(Helmet item) {
 		return this.helmetSlot.equip(item);
 	}
-	
-	
-	public boolean canEquip(Weapon weapon){
+
+	public boolean canEquip(Weapon weapon) {
 		return this.weaponSlot.canEquip(weapon);
 	}
 }

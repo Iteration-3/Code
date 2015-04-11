@@ -23,9 +23,10 @@ public class ConicalArea extends DirectionalArea {
     public boolean isInRange(Location location) {
         Location testLocation = super.createComparisonLocation(location);
         double angle = Math.round(Math.toDegrees(Math.atan2((testLocation.getY()), testLocation.getX())));
-
-        return angle >= super.getDirection().getAngle()
+        boolean thisResult = angle >= super.getDirection().getAngle()
                 && angle <= (super.getDirection().getAngle() + CONE_WIDTH_IN_DEGREES) && isWithinRadius(location);
+
+        return super.hasCompositeArea() ? thisResult || super.compositeInRange(location) : thisResult;
     }
 
     @Override
@@ -37,6 +38,7 @@ public class ConicalArea extends DirectionalArea {
             returnList.addAll(checkSurrounding(returnList.get(i), returnList));
             ++i;
         }
+        returnList.addAll(getCompositeCoveredLocations());
         return returnList;
     }
 
