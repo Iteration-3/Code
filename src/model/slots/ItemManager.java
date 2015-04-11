@@ -8,6 +8,7 @@ import model.entity.Summoner;
 import model.item.EquipableItem;
 import model.item.TakeableItem;
 import model.item.Weapon;
+import model.statistics.Statistics;
 
 public class ItemManager {
 	private EquipmentManager equipment;
@@ -31,6 +32,10 @@ public class ItemManager {
 	public ItemManager(NPC npc){
 		this.equipment = new EquipmentManager(npc);
 		this.inventory = new Inventory();
+	}
+	
+	public void merge(Statistics statistitcs) {
+		this.equipment.merge(statistitcs);
 	}
 
 	/************ INVENTORY ********************/

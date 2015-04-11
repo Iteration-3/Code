@@ -13,6 +13,7 @@ import model.item.Projectile;
 import model.item.Shield;
 import model.item.TwoHandedWeapon;
 import model.item.Weapon;
+import model.statistics.Statistics;
 
 public class EquipmentManager {
 	private EquipmentSlot<Helmet> helmetSlot;
@@ -59,6 +60,20 @@ public class EquipmentManager {
 
 	protected boolean hasTHW() {
 		return this.THWSlot != null;
+	}
+	
+	public void merge(Statistics statistics) {
+		if (hasTHW()) {
+			this.THWSlot.merge(statistics);
+		}
+		helmetSlot.merge(statistics);
+		chestPieceSlot.merge(statistics);
+		leggingsSlot.merge(statistics);
+		weaponSlot.merge(statistics);
+		shieldSlot.merge(statistics);
+		bootsSlot.merge(statistics);
+		glovesSlot.merge(statistics);
+		projectileSlot.merge(statistics);
 	}
 
 	/************************* UNEQUIP ************************************/
