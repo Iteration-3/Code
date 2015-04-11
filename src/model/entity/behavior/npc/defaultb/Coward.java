@@ -6,7 +6,7 @@ import java.util.Queue;
 import model.area.Location;
 import model.entity.Entity;
 
-public class Coward implements DefaultBehaviorState {
+public class Coward implements DefaultableBehaviorState {
 	private Queue<Location> nextMove = new LinkedList<Location>();
 	private Entity chosenOne;
 	

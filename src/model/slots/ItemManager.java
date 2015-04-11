@@ -1,6 +1,5 @@
 package model.slots;
 
-import utilities.Point;
 import model.entity.NPC;
 import model.entity.Smasher;
 import model.entity.Sneak;
@@ -47,42 +46,26 @@ public class ItemManager {
 		return this.inventory.removeItem(item);
 	}
 
-	public TakeableItem removeItem(int x, int y) {
-		return this.inventory.removeItem(x, y);
+	public TakeableItem removeItem(int index) {
+		return this.inventory.removeItem(index);
 	}
 
-	public TakeableItem removeItem(Point point) {
-		return this.inventory.removeItem(point);
-	}
-
-	public TakeableItem[][] getInventoryItems() {
+	public TakeableItem[] getInventoryItems() {
 		return this.inventory.getItems();
 	}
 
-	public TakeableItem getInventoryItem(int x, int y) {
-		return this.inventory.get(x, y);
+	public TakeableItem getInventoryItem(int index) {
+		return this.inventory.get(index);
 	}
 
-	public TakeableItem getInventoryItem(Point point) {
-		return this.inventory.get(point);
+	public boolean inventoryHas(int index) {
+		return this.inventory.slotHas(index);
 	}
 
-	public boolean inventoryHas(int x, int y) {
-		return this.inventory.slotHas(x, y);
+	public boolean inventoryHasItem(TakeableItem item, int index) {
+		return this.inventory.slotHasItem(item,index);
 	}
 
-	public boolean inventoryHas(Point point) {
-		return this.inventory.slotHas(point);
-	}
-
-	public boolean inventoryHasItem(TakeableItem item, int x, int y) {
-		return this.inventory.slotHasItem(item, x, y);
-	}
-
-	public boolean inventoryHasItem(TakeableItem item, Point point) {
-		return this.inventory.slotHasItem(item, point);
-	}
-	
 	public boolean inventoryHasItem(TakeableItem item){
 		return this.inventoryHasItem(item);
 	}
