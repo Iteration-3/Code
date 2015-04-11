@@ -95,10 +95,15 @@ public class KeyPreferences implements SavableLoadable{
 	public KeyStroke getAbility(int number) {
 		return this.getAbilities().get(number - 1);
 	}
+	
+	public void setAbility(int number, KeyStroke key){
+		this.getAbilities().set(number-1,key);
+	}
 
 	public List<KeyStroke> getAbilities() {
 		return abilities;
 	}
+	
 
 	public void setAbilities(List<KeyStroke> abilities) {
 		this.abilities = abilities;
