@@ -83,12 +83,14 @@ public class ItemManager {
 	}
 
 	/***************************** EQUIPMENT ********************************/
+	//this is used to equip a item, it can always fail
 	private boolean tryToEquip(EquipableItem item){
 		return item.equip (this.equipment);
 	}
 	
-	
 	public void equip(EquipableItem item) {
+		//the item must unequip all the slots that it needs to equip itself
+		item.unequip(this);
 		if (this.tryToEquip(item)) {
 			return;
 		}
@@ -99,49 +101,57 @@ public class ItemManager {
 
 	public void unequipProjectile(){
 		if (this.inventory.hasEmptySlot()){
-			this.equipment.unequipProjectile();
+			this.inventory.addItem(this.equipment.unequipProjectile());
 		}
 	}
 	
 	public void unequipGloves(){
 		if (this.inventory.hasEmptySlot()){
-			this.equipment.unequipProjectile();
+			this.inventory.addItem(this.equipment.unequipProjectile());
 		}
 	}
 	
 	public void unequipBoots(){
 		if (this.inventory.hasEmptySlot()){
-			this.equipment.unequipBoots();
+			this.inventory.addItem(this.equipment.unequipBoots());
 		}
 	}
 	
 	public void unequipShield(){
 		if (this.inventory.hasEmptySlot()){
-			this.equipment.unequipShield();
+			this.inventory.addItem(this.equipment.unequipShield());
 		}
 	}
 	
 	public void unequipWeapon(){
 		if (this.inventory.hasEmptySlot()){
-			this.equipment.unequipWeapon();
+			this.inventory.addItem(this.equipment.unequipWeapon());
 		}
 	}
 	
 	public void unequipLeggings(){
 		if (this.inventory.hasEmptySlot()){
-			this.equipment.unequipLeggings();
+			this.inventory.addItem(this.equipment.unequipLeggings());
 		}
 	}
 	
 	public void unequipChestPiece(){
 		if (this.inventory.hasEmptySlot()){
-			this.equipment.unequipChestPiece();
+			this.inventory.addItem(this.equipment.unequipChestPiece());
 		}
 	}
 	
 	public void unequipHelmet(){
 		if (this.inventory.hasEmptySlot()){
-			this.equipment.unequipHelmet();
+			this.inventory.addItem(this.equipment.unequipHelmet());
+		}
+	}
+	
+	public void unequipTHW(){
+		this.unequipShield();
+		this.unequipWeapon();
+		if (this.inventory.hasEmptySlot()){
+			this.inventory.addItem(this.equipment.unequipTHW());
 		}
 	}
 	

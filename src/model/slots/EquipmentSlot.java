@@ -4,8 +4,8 @@ import model.item.EquipableItem;
 import model.statistics.Statistics;
 
 public class EquipmentSlot <K extends EquipableItem>{
-	K item;
-	TwoHandedWeaponSlot parent;
+	private K item;
+	private DoubleEquipmentSlot<?,?,?> parent;
 	
 	public EquipmentSlot(){}
 	
@@ -67,7 +67,7 @@ public class EquipmentSlot <K extends EquipableItem>{
 		}
 	}
 	
-	public void setParentSlot(TwoHandedWeaponSlot slot){
+	public void setParentSlot(DoubleEquipmentSlot<?,?,?> slot){
 		this.parent = slot;
 	}
 

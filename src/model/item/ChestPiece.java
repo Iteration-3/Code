@@ -1,6 +1,7 @@
 package model.item;
 
 import model.slots.EquipmentManager;
+import model.slots.ItemManager;
 import model.statistics.Statistics;
 
 public class ChestPiece extends EquipableItem {
@@ -11,6 +12,10 @@ public class ChestPiece extends EquipableItem {
 
 	public boolean equip(EquipmentManager equipment) {
 		return equipment.equip(this);
+	}
+	
+	public void unequip(ItemManager im) {
+		im.unequipChestPiece();
 	}
 
 	@Override
