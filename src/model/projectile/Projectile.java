@@ -9,7 +9,7 @@ import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
 
-public class Projectile {
+public class Projectile implements Cloneable {
 	private Angle direction;
 	private Location location;
 	private double speed;
@@ -23,7 +23,6 @@ public class Projectile {
 		this.timeout = 1;
 		this.trigger = new SingleUseTrigger(new RadialArea(1, this.location),
 				new StatisticModifierEvent(new EntityStatistics(), 5));
-		TriggerManager.addNeutralTrigger(trigger);
 	}
 
 	public Projectile(Angle direction, Location location, double speed,
@@ -33,7 +32,6 @@ public class Projectile {
 		this.speed = speed;
 		this.timeout = timeout;
 		this.trigger = trigger;
-		TriggerManager.addNeutralTrigger(trigger);
 	}
 
 	public void advance() {
@@ -43,7 +41,23 @@ public class Projectile {
 			timeOutProjectile();
 		}
 	}
-
+	
+	public void placeOnMap() {
+		this.getTrigger().moveLocation(this.getLocation());
+		TriggerManager.addNeutralTrigger(trigger);
+		ProjectileManager.addProjectile(this);
+	}
+	
+	public Projectile clone() {
+		Projectile clone = new Projectile();
+		clone.setDirection(this.getDirection());
+		clone.setLocation(this.getLocation());
+		clone.setSpeed(this.getSpeed());
+		clone.setTimeout(this.getTimeout());
+		clone.setTrigger(this.getTrigger());
+		return clone;
+	}
+	
 	public boolean hasExpired() {
 		return trigger.hasExpired(); // TODO(jraviles) expire on collision
 	}

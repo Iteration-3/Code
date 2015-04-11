@@ -27,6 +27,7 @@ public abstract class Entity implements SavableLoadable {
 	private EntityStatistics stats = new EntityStatistics();
 	private EntityView view = null;
 	private Location location = new Location();
+	private Angle direction = Angle.UP;
 
 	/**
 	 * Constructor Helpers
@@ -152,6 +153,14 @@ public abstract class Entity implements SavableLoadable {
 	
 	public void setLocation(Location location) {
 		this.location = location;
+	}
+	
+	public Angle getDirection() {
+		return this.direction;
+	}
+	
+	public void setDirection(Angle angle) {
+		this.direction = angle;
 	}
 	
 	public void modifyStats(Statistics otherStats) {

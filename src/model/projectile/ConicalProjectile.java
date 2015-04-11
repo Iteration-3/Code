@@ -42,5 +42,15 @@ public class ConicalProjectile extends Projectile {
 	public boolean hasExpired() {
 		return getTrigger().hasExpired(); // TODO(jraviles) figure out collisions
 	}
+	
+	public ConicalProjectile clone() {
+		ConicalProjectile clone = new ConicalProjectile();
+		clone.setDirection(this.getDirection());
+		clone.setLocation(this.getLocation());
+		clone.setSpeed(this.getSpeed());
+		clone.setTimeout(this.getTimeout());
+		clone.setTrigger(this.getTrigger());
+		return clone;
+	}
 
 }

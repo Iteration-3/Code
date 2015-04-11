@@ -8,7 +8,7 @@ import javax.swing.Action;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-import model.Ability;
+import model.ability.Ability;
 
 public class Listener {
 	private KeyStroke key;
@@ -28,8 +28,7 @@ public class Listener {
 				//The ActionEvent can be ignored, as it contains the key event, BUT
 				//This event is only being triggered for this key anyway.
 				//MAYBE later on add something to properly handle on release and on press?
-				ability.perform();
-				
+				// ability.perform();
 			}
 		});
 	}

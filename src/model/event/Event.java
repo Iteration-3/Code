@@ -35,6 +35,10 @@ public abstract class Event implements Cloneable{
 		return (duration < DELTA_TIME);
 	}
 	
+	public final void placeOnEventManager() {
+		EventManager.addEvent(this);
+	}
+	
 	public abstract void perform();
 	
 	public void setTarget(Entity target) {
