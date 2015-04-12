@@ -1,4 +1,4 @@
-package view.tiles;
+package view.map;
 
 import java.awt.Graphics;
 

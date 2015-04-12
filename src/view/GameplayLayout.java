@@ -5,8 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 
 import model.area.Location;
-import view.tiles.BasicTileView;
-import view.tiles.TileView;
+import view.map.BasicTileView;
+import view.map.TileView;
 
 @SuppressWarnings("serial")
 public class GameplayLayout extends Layout {

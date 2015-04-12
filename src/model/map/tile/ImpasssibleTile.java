@@ -2,7 +2,7 @@ package model.map.tile;
 
 import model.entity.Entity;
 import utilities.structuredmap.StructuredMap;
-import view.tiles.TileView;
+import view.map.TileView;
 
 public class ImpasssibleTile extends Tile {
 
