@@ -9,7 +9,8 @@ import model.area.Location;
 public class BasicTileView extends TileView {
 	private Hexagon backgroundHexagon;
 	private Hexagon foregroundHexagon;
-	private static final float BORDER_PERCENTAGE = 0.12f; // 15% border edge
+	private static final float BORDER_PERCENTAGE = 0.15f; // 15% border edge
+	private static final float OVERDRAW = 1.05f; // To eliminate little blank spaces between tiles
 	
 	public BasicTileView(Color fillColor, Color outlineColor) {
 		backgroundHexagon = new Hexagon(outlineColor);
@@ -18,8 +19,8 @@ public class BasicTileView extends TileView {
 	
 	@Override
 	public void render(Graphics graphics, Location location, float diameter) {
-		backgroundHexagon.render(graphics, location, diameter);
-		foregroundHexagon.render(graphics, location, diameter * (1 - BORDER_PERCENTAGE));
+		backgroundHexagon.render(graphics, location, diameter * OVERDRAW);
+		foregroundHexagon.render(graphics, location, diameter * (1 - BORDER_PERCENTAGE) * OVERDRAW);
 	}
 	
 }

@@ -12,8 +12,8 @@ import model.area.Location;
 public class Hexagon {
 	private Polygon hexagon;
 	private Color color;
-	private static final int PRECISION_MULTIPLIER = 10_000; // used to simulate floating-point for scaling
-															// hexagons since all coordinates must be ints
+	private static final int PRECISION_MULTIPLIER = 1_000_000; // used to simulate floating-point for scaling
+															   // hexagons since all coordinates must be ints
 
 	public Hexagon(Color color) {
 		this.color = color;
