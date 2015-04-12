@@ -2,7 +2,7 @@ package model.map.tile;
 
 import model.entity.Entity;
 import utilities.structuredmap.StructuredMap;
-import view.tileviews.TileView;
+import view.tiles.TileView;
 
 public class PassableTile extends Tile{
 
