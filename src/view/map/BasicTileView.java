@@ -9,7 +9,7 @@ import model.area.Location;
 public class BasicTileView extends TileView {
 	private Hexagon backgroundHexagon;
 	private Hexagon foregroundHexagon;
-	private static final float BORDER_PERCENTAGE = 0.15f; // 15% border edge
+	private static final float BORDER_PERCENTAGE = 0.12f; // 15% border edge
 	
 	public BasicTileView(Color fillColor, Color outlineColor) {
 		backgroundHexagon = new Hexagon(outlineColor);

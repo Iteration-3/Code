@@ -6,14 +6,14 @@ import java.awt.Graphics;
 
 import model.area.Location;
 import view.map.BasicTileView;
-import view.map.TileView;
+import view.map.GameMapView;
 
 @SuppressWarnings("serial")
 public class GameplayLayout extends Layout {
-	TileView test;
+	GameMapView test;
 	
 	public GameplayLayout() {
-		test = new BasicTileView(new Color(0, 200, 200), Color.WHITE);
+		test = new GameMapView();
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(1024, 768));
 	}
@@ -21,6 +21,6 @@ public class GameplayLayout extends Layout {
 	@Override
 	public void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
-		test.render(graphics, new Location(32, 28), 64);
+		test.render(graphics);
 	}
 }
