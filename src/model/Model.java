@@ -17,6 +17,7 @@ public class Model extends StateMachine<GameState> {
 	public void setLayout(Layout layout) {
 		view.add(layout);
 		view.pack();
+		view.setLocationRelativeTo(null);
 	}
 	
 	public Avatar getAvatar() {
