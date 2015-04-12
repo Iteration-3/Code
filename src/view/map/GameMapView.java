@@ -12,10 +12,9 @@ public class GameMapView {
 	 
 	private static final float TILE_DIMENSION_RATIO = (float) (Math.sqrt(3) / 2);
 	
-	// These valuesshould come from elsewhere. Just here now for testing purposes.
-	private static final int SCREEN_WIDTH = 1024;
-	private static final int SCREEN_HEIGHT = 768;
-	private static final float ASPECT_RATIO = (float) SCREEN_WIDTH / SCREEN_HEIGHT;
+	// These values should come from elsewhere. Just here now for testing purposes.
+	private int screenWidth;
+	private int screenHeight;
 	
 	public GameMapView() {
 		tileViews = new TileView[100][100]; //exact sizing just for testing purposes
@@ -23,7 +22,10 @@ public class GameMapView {
 		initDummyTileViews();
 	}
 	
-	public void render(Graphics graphics) {
+	public void render(Graphics graphics, int width, int height) {
+		this.screenWidth = width;
+		this.screenHeight = height;
+		
 		for(int x = 0; x < numberOfHorizontalTiles(); ++x) {
 			for(int y = 0; y < numberOfVerticalTiles(); ++y) {
 				int renderX = (int) (x * tileWidth() * 0.75);
@@ -34,18 +36,22 @@ public class GameMapView {
 	}
 	
 	private float tileHeight() {
-		return (float) SCREEN_HEIGHT / NUM_TILES_Y;
+		return (float) screenHeight / NUM_TILES_Y;
 	}
 	
 	private float tileWidth() {
 		return tileHeight() / TILE_DIMENSION_RATIO;
 	}
 	
+	private float aspectRation() {
+		return (float) screenWidth / screenHeight;
+	}
+	
 	private int numberOfHorizontalTiles() {
 	 	// +2 => +1 so we guarantee the screen is covered otherwise
 		// the integer arithmetic might cause us to show blank space
 	 	// +1 more because we start halfway through a tile at the moment
-		return (int) (ASPECT_RATIO * NUM_TILES_Y / TILE_DIMENSION_RATIO + 2);
+		return (int) (aspectRation() * NUM_TILES_Y / TILE_DIMENSION_RATIO + 2);
 	}
 	
 	private int numberOfVerticalTiles() {

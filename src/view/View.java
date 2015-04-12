@@ -14,7 +14,7 @@ public class View extends JFrame {
 	
 	private void setupFrame() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setResizable(false);
+		//setResizable(false);
 		setVisible(true);
 	}
 }
