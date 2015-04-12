@@ -61,3 +61,7 @@ bin/
 *.jar
 *.war
 *.ear
+
+# Metadata & Related Eclipse Garbage
+.metadata/
+RemoteSystemsTempFiles/
