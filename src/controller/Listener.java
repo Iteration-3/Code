@@ -8,6 +8,7 @@ import javax.swing.Action;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import view.Layout;
 import model.ability.Ability;
 
 public class Listener {
@@ -18,11 +19,12 @@ public class Listener {
 		key = keystroke;
 		ability = abil;
 	}
-	public void addAsBinding(JPanel panel){
+	
+	@SuppressWarnings("serial")
+	public void addAsBinding(Layout panel){
 		
 		panel.getInputMap().put(key,this);
-		panel.getActionMap().put(this,new AbstractAction() {
-			
+		panel.getActionMap().put(this, new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//The ActionEvent can be ignored, as it contains the key event, BUT
