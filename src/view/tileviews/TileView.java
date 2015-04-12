@@ -12,7 +12,7 @@ public class TileView {
 		hexagon = new Hexagon();
 	}
 	
-	public void render(Graphics graphics, Location location) {
-		hexagon.render(graphics, location);
+	public void render(Graphics graphics, Location location, float radius) {
+		hexagon.render(graphics, location, radius);
 	}
 }
