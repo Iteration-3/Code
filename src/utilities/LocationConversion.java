@@ -1,6 +1,6 @@
 package utilities;
 
-import model.area.Location;
+import model.area.RealCoordinate;
 
 public class LocationConversion {
     private static double hexagonWidth;
@@ -8,8 +8,8 @@ public class LocationConversion {
     private static double radius;
 
     public static void changeHexagonDimensionsByWidth(double width) {
-        hexagonWidth = Math.round(width);
-        hexagonHeight = Math.round(width * Math.sqrt(3) / 2.0);
+        hexagonWidth = (width);
+        hexagonHeight =            width * Math.sqrt(3) / 2.0;
         setRadius();
     }
 
@@ -58,14 +58,15 @@ public class LocationConversion {
      * @param location
      * @return
      */
-    public static Location convertLocationToCenterOfHexagon(Location location) {
+    public static RealCoordinate convertLocationToCenterOfHexagon(RealCoordinate location) {
+        double q = location.getX() * (2.0/3.0) / (hexagonWidth / 2.0);
+        double r = (-location.getX() / 3.0 + Math.sqrt(3.0)/ 3.0 * location.getY()) / (hexagonWidth / 2.0);
 
-        double r = ((-1 * location.getX() / 3.0) + (Math.sqrt(3) / 3.0 * location.getY())) / (hexagonWidth);
-        double q = location.getX() * (2.0 / 3.0) / (hexagonWidth);
+        Hex hex = convertCubeToOddQ(cubeRound(new Cube(q, (-q - r), r)));
+        
+        System.out.println("Hex " + hex.getX() + " " + hex.getY());
 
-        Hex hex = cubeToHex(cubeRound(new Cube(q, -q - r, r)));
-
-        return new Location(hex.getX(), hex.getY());
+        return new RealCoordinate(hex.getX(), hex.getY());
     }
 
     private static Hex cubeToHex(Cube cubeRound) {
@@ -93,8 +94,17 @@ public class LocationConversion {
             return y;
         }
     }
-
+    
+    private static Hex convertCubeToOddQ(Cube cube) {
+        double q = cube.getX();
+        double r = cube.getZ() + (cube.getX() - ((int)cube.getX() & 1)) / 2;
+        return new Hex(q,r);
+    }
+    
     private static Cube cubeRound(Cube hexToCube) {
+        
+        System.out.println("Cube: " + hexToCube.getX() + " "  + hexToCube.getY() + " " + hexToCube.getZ());
+        
         double rx = Math.round(hexToCube.getX());
         double ry = Math.round(hexToCube.getY());
         double rz = Math.round(hexToCube.getZ());
@@ -104,11 +114,11 @@ public class LocationConversion {
         double zDif = Math.abs(rz - hexToCube.getZ());
 
         if (xDif > yDif && xDif > zDif) {
-            rx = -ry - rz;
+            rx = (-ry - rz);
         } else if (yDif > zDif) {
-            ry = -rx - rz;
+            ry = (-rx - rz);
         } else {
-            rz = -rx - ry;
+            rz = (-rx - ry);
         }
 
         return new Cube(rx, ry, rz);

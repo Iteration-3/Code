@@ -3,31 +3,31 @@ package model.area;
 import java.util.ArrayList;
 import java.util.List;
 
-import utilities.AreaAngle;
+import utilities.Angle;
 import utilities.LocationConversion;
 import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 
 public abstract class Area implements SavableLoadable {
     private int range;
-    private Location startLocation;
+    private RealCoordinate startLocation;
     private Area compositeArea;
 
-    public Area(int radius, Location startLocation) {
+    public Area(int radius, RealCoordinate startLocation) {
         this.range = radius;
         this.startLocation = startLocation;
     }
 
     public Area() {
         this.range = 1;
-        this.startLocation = new Location();
+        this.startLocation = new RealCoordinate();
     }
 
-    public Location getStartLocation() {
+    public RealCoordinate getStartLocation() {
         return startLocation;
     }
 
-    public void setStartLocation(Location startLocation) {
+    public void setStartLocation(RealCoordinate startLocation) {
         this.startLocation = startLocation;
     }
 
@@ -51,15 +51,15 @@ public abstract class Area implements SavableLoadable {
         return this.compositeArea != null;
     }
     
-    protected List<Location> getCompositeCoveredLocations() {
-        List<Location> emptyList = new ArrayList<>();
+    protected List<RealCoordinate> getCompositeCoveredLocations() {
+        List<RealCoordinate> emptyList = new ArrayList<>();
         
         return hasCompositeArea() ? compositeArea.getCoveredLocations() : emptyList;
     }
     
-    public abstract boolean isInRange(Location location);
+    public abstract boolean isInRange(RealCoordinate location);
 
-    protected boolean isWithinRadius(Location loc) {
+    protected boolean isWithinRadius(RealCoordinate loc) {
         double radiusMultiplier = LocationConversion.getRadius();
 
         return Math.pow(getStartLocation().getX() - loc.getX(), 2)
@@ -67,14 +67,14 @@ public abstract class Area implements SavableLoadable {
                 ((getRadius() - 1) * radiusMultiplier), 2);
     }
 
-    protected List<Location> checkSurrounding(Location location, List<Location> returnList) {
-        List<Location> testLocations = new ArrayList<>();
+    protected List<RealCoordinate> checkSurrounding(RealCoordinate location, List<RealCoordinate> returnList) {
+        List<RealCoordinate> testLocations = new ArrayList<>();
         double height = LocationConversion.getHeight();
 
-        for (AreaAngle angle : AreaAngle.values()) {
+        for (Angle angle : Angle.values()) {
             double xOffset = Math.round(height * Math.cos(Math.toRadians(angle.getAngle() + 30)));
             double yOffset = Math.round(height * Math.sin(Math.toRadians(angle.getAngle() + 30)));
-            Location testLocation = new Location(location.getX() + xOffset, location.getY() - yOffset);
+            RealCoordinate testLocation = new RealCoordinate(location.getX() + xOffset, location.getY() - yOffset);
 
             if (canAdd(testLocation, returnList)) {
                 returnList.add(testLocation);
@@ -84,15 +84,15 @@ public abstract class Area implements SavableLoadable {
 
     }
     
-    protected boolean compositeInRange(Location location) {
+    protected boolean compositeInRange(RealCoordinate location) {
         return this.compositeArea.isInRange(location);
     }
     
-    private boolean canAdd(Location location, List<Location> locations) {
+    private boolean canAdd(RealCoordinate location, List<RealCoordinate> locations) {
         return !locations.contains(location) && isInRange(location);
     }
 
-    public abstract List<Location> getCoveredLocations();
+    public abstract List<RealCoordinate> getCoveredLocations();
 
     public abstract StructuredMap getStructuredMap();
 

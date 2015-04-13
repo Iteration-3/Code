@@ -11,19 +11,19 @@ public class RadialArea extends Area {
         super();
     }
 
-    public RadialArea(int radius, Location startLocation) {
+    public RadialArea(int radius, RealCoordinate startLocation) {
         super(radius, startLocation);
     }
 
     @Override
-    public boolean isInRange(Location location) {
+    public boolean isInRange(RealCoordinate location) {
         return super.hasCompositeArea() ? isWithinRadius(location) || super.compositeInRange(location)
                 : isWithinRadius(location);
     }
 
     @Override
-    public List<Location> getCoveredLocations() {
-        List<Location> returnList = new ArrayList<>();
+    public List<RealCoordinate> getCoveredLocations() {
+        List<RealCoordinate> returnList = new ArrayList<>();
         returnList.add(super.getStartLocation());
         int i = 0;
         while (i != returnList.size()) {

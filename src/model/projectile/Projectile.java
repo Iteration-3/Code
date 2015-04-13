@@ -1,6 +1,6 @@
 package model.projectile;
 
-import model.area.Location;
+import model.area.RealCoordinate;
 import model.area.RadialArea;
 import model.event.StatisticModifierEvent;
 import model.statistics.EntityStatistics;
@@ -11,21 +11,21 @@ import utilities.Angle;
 
 public class Projectile implements Cloneable {
 	private Angle direction;
-	private Location location;
+	private RealCoordinate location;
 	private double speed;
 	private long timeout;
 	private Trigger trigger;
 
 	public Projectile() {
 		this.direction = Angle.UP;
-		this.location = new Location();
+		this.location = new RealCoordinate();
 		this.speed = 1;
 		this.timeout = 1;
 		this.trigger = new SingleUseTrigger(new RadialArea(1, this.location),
 				new StatisticModifierEvent(new EntityStatistics(), 5));
 	}
 
-	public Projectile(Angle direction, Location location, double speed,
+	public Projectile(Angle direction, RealCoordinate location, double speed,
 			long timeout, Trigger trigger) {
 		this.direction = direction;
 		this.location = location;
@@ -78,11 +78,11 @@ public class Projectile implements Cloneable {
 		this.direction = direction;
 	}
 
-	public Location getLocation() {
+	public RealCoordinate getLocation() {
 		return location;
 	}
 
-	public void setLocation(Location location) {
+	public void setLocation(RealCoordinate location) {
 		this.location = location;
 	}
 

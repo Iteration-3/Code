@@ -7,7 +7,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.Polygon;
 import java.awt.Color;
 
-import model.area.Location;
+import model.area.RealCoordinate;
 
 public class Hexagon {
 	private Polygon hexagon;
@@ -21,7 +21,7 @@ public class Hexagon {
 		computePath();
 	}
 	
-	public void render(Graphics graphics, Location location, float diameter) {
+	public void render(Graphics graphics, RealCoordinate location, float diameter) {
 		Graphics2D graphics2D = (Graphics2D) graphics;
 		// save the old transform
 		AffineTransform savedTransform = graphics2D.getTransform();

@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import view.tiles.components.Hexagon;
-import model.area.Location;
+import model.area.RealCoordinate;
 
 public class BasicTileView extends TileView {
 	private Hexagon backgroundHexagon;
@@ -18,7 +18,7 @@ public class BasicTileView extends TileView {
 	}
 	
 	@Override
-	public void render(Graphics graphics, Location location, float diameter) {
+	public void render(Graphics graphics, RealCoordinate location, float diameter) {
 		backgroundHexagon.render(graphics, location, diameter * OVERDRAW);
 		foregroundHexagon.render(graphics, location, diameter * (1 - BORDER_PERCENTAGE) * OVERDRAW);
 	}

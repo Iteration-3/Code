@@ -3,7 +3,7 @@ package view.map;
 import java.awt.Graphics;
 import java.awt.Color;
 
-import model.area.Location;
+import model.area.RealCoordinate;
 
 public class GameMapView {
 	private TileView[][] tileViews;
@@ -30,7 +30,7 @@ public class GameMapView {
 			for(int y = 0; y < numberOfVerticalTiles(); ++y) {
 				int renderX = (int) (x * tileWidth() * 0.75);
 				int renderY = (int) (y * tileHeight() + (x % 2) * tileHeight() / 2);
-				tileViews[x][y].render(graphics, new Location(renderX, renderY), tileWidth());
+				tileViews[x][y].render(graphics, new RealCoordinate(renderX, renderY), tileWidth());
 			}
 		}
 	}

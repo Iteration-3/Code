@@ -2,22 +2,22 @@ package model.area;
 
 import utilities.Angle;
 
-public class Location {
+public class RealCoordinate {
     private double x;
     private double y;
 
     // defaults constructor to 0
-    public Location() {
+    public RealCoordinate() {
         this.x = 0;
         this.y = 0;
     }
 
-    public Location(double x, double y) {
+    public RealCoordinate(double x, double y) {
         this.x = x;
         this.y = y;
     }
     
-    public Location nextLocation(Angle angle) {
+    public RealCoordinate nextLocation(Angle angle) {
     	int xDisplacement = 0, yDisplacement = 0;
     	if (angle == Angle.UP_RIGHT || angle == Angle.UP || angle == Angle.UP_LEFT) {
     		yDisplacement = -1;
@@ -29,7 +29,11 @@ public class Location {
     	} else if (angle == Angle.UP_LEFT || angle == Angle.UP_RIGHT) {
     		xDisplacement = -1;
     	}
-    	return new Location(xDisplacement, yDisplacement);
+    	return new RealCoordinate(xDisplacement, yDisplacement);
+    }
+    
+    public static TileCoordinate convertToTileCoordinate(RealCoordinate coord) {
+        return null;
     }
 
     public void setX(double x) {
@@ -73,7 +77,7 @@ public class Location {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Location other = (Location) obj;
+        RealCoordinate other = (RealCoordinate) obj;
         if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.x))
             return false;
         if (Double.doubleToLongBits(y) != Double.doubleToLongBits(other.y))

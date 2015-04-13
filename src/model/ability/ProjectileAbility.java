@@ -1,7 +1,7 @@
 package model.ability;
 
 import utilities.Angle;
-import model.area.Location;
+import model.area.RealCoordinate;
 import model.entity.Avatar;
 import model.projectile.Projectile;
 
@@ -23,9 +23,9 @@ public abstract class ProjectileAbility extends Ability {
 			removeMana(avatar);
 
 			Projectile projectile = this.getProjectile().clone();
-			Location avatarLocation = avatar.getLocation();
+			RealCoordinate avatarLocation = avatar.getLocation();
 			Angle projectileDirection = avatar.getDirection();
-			Location projectileLocation = avatarLocation.nextLocation(projectileDirection);
+			RealCoordinate projectileLocation = avatarLocation.nextLocation(projectileDirection);
 
 			projectile.setDirection(projectileDirection);
 			projectile.setLocation(projectileLocation);

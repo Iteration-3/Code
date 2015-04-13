@@ -3,7 +3,7 @@ package model.trigger;
 import java.util.Collection;
 
 import model.area.Area;
-import model.area.Location;
+import model.area.RealCoordinate;
 import model.area.RadialArea;
 import model.entity.Entity;
 import model.entity.NPC;
@@ -43,7 +43,7 @@ public abstract class Trigger {
 
     public abstract void handle(Collection<NPC> npcs);
 
-    public void moveLocation(Location location) {
+    public void moveLocation(RealCoordinate location) {
         this.area.setStartLocation(location);
     }
 

@@ -1,7 +1,7 @@
 package model.area;
 
 import static org.junit.Assert.*;
-import model.area.Location;
+import model.area.RealCoordinate;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,14 +12,39 @@ public class LocationConversionTest {
 
     @Before
     public void setUp() throws Exception {
-        LocationConversion.changeHexagonDimensionsByWidth(173);
+        LocationConversion.changeHexagonDimensionsByWidth(50);
+    }
+    /*
+    @Test
+    public void testCenterToCenter() {
+        Location testLocation = new Location(25,25);
+        assertEquals(0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
+        assertEquals(0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
+    }
+    */
+    @Test
+    public void testCenterToCenter2() {
+        RealCoordinate testLocation = new RealCoordinate(1.5, Math.sqrt(3)/2.0);
+        LocationConversion.changeHexagonDimensionsByWidth(1);
+        
+        assertEquals(2, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
+        assertEquals(1, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
     }
     
     @Test
-    public void testCenterToCenter() {
-        Location testLocation = new Location(216,75);
-        assertEquals(87.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
-        assertEquals(75.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
+    public void testCenterToCenter3() {
+        RealCoordinate testLocation = new RealCoordinate(2.25, Math.sqrt(3)/4.0);
+        LocationConversion.changeHexagonDimensionsByWidth(1);
+        
+        assertEquals(3, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
+        assertEquals(0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
+    }
+    /*
+    @Test
+    public void testCenterToCenter3() {
+        Location testLocation = new Location(25, 125);
+        assertEquals(0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
+        assertEquals(2, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
     }
     /*
     

@@ -3,7 +3,7 @@ package model.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.area.Location;
+import model.area.RealCoordinate;
 
 public class EntityManager {
 	private static ArrayList<NPC> partyNpcs;
@@ -32,7 +32,7 @@ public class EntityManager {
 	 * @param location
 	 * @return
 	 */
-	public static Entity getEntityAtLocation(Location location) {
+	public static Entity getEntityAtLocation(RealCoordinate location) {
 		for(Entity e : getAllEntities()){
 			if(location.equals(e.getLocation())){
 				return e;
