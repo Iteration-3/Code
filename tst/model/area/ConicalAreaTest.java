@@ -6,72 +6,67 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import utilities.Angle;
-import utilities.LocationConversion;
 
 public class ConicalAreaTest {
 
-    private ConicalArea area = new ConicalArea(2, new RealCoordinate(952, 825), Angle.UP);
-
-    @Before
-    public void setUp() {
-        LocationConversion.changeHexagonDimensionsByWidth(173);
-    }
+    private ConicalArea area = new ConicalArea(2, TileCoordinate.convertToRealCoordinate(new TileCoordinate(10, 10)),
+            Angle.UP);
 
     @Test
     public void testInsideAreaUpTrue() {
-        RealCoordinate loc = new RealCoordinate(952, 675);
+        RealCoordinate loc = TileCoordinate.convertToRealCoordinate(new TileCoordinate(10, 9));
         assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaUpFalse() {
-        RealCoordinate loc = new RealCoordinate(952, 525);
+        RealCoordinate loc = TileCoordinate.convertToRealCoordinate(new TileCoordinate(10, 11));
         assertFalse(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaDownTrue() {
         area.setDirection(Angle.DOWN);
-        RealCoordinate loc = new RealCoordinate(952, 975);
+        RealCoordinate loc = TileCoordinate.convertToRealCoordinate(new TileCoordinate(10, 11));
         assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaUpRightTrue() {
         area.setDirection(Angle.UP_RIGHT);
-        RealCoordinate loc = new RealCoordinate(1081, 750);
+        RealCoordinate loc = TileCoordinate.convertToRealCoordinate(new TileCoordinate(11, 9));
         assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaUpLeftTrue() {
         area.setDirection(Angle.UP_LEFT);
-        RealCoordinate loc = new RealCoordinate(822, 750);
+        RealCoordinate loc = TileCoordinate.convertToRealCoordinate(new TileCoordinate(9, 9));
         assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaDownLeftTrue() {
         area.setDirection(Angle.DOWN_LEFT);
-        RealCoordinate loc = new RealCoordinate(822, 900);
+        RealCoordinate loc = TileCoordinate.convertToRealCoordinate(new TileCoordinate(9, 10));
         assertTrue(area.isInRange(loc));
     }
-    
+
     @Test
     public void testInsideAreaUpLongRange() {
         area.setDirection(Angle.UP);
         area.setRange(3);
-        assertTrue(area.isInRange(new RealCoordinate(1082,600)));
+        RealCoordinate loc = TileCoordinate.convertToRealCoordinate(new TileCoordinate(10, 8));
+        assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaDownRightTrue() {
         area.setDirection(Angle.DOWN_RIGHT);
-        RealCoordinate loc = new RealCoordinate(1081, 900);
+        RealCoordinate loc = TileCoordinate.convertToRealCoordinate(new TileCoordinate(11, 10));
         assertTrue(area.isInRange(loc));
     }
 
@@ -79,17 +74,7 @@ public class ConicalAreaTest {
     public void testInsideAreaDown() {
         area.setDirection(Angle.DOWN);
         area.setRange(5);
-        RealCoordinate loc = new RealCoordinate(952, 1425);
-        assertTrue(area.isInRange(loc));
-    }
-
-    @Test
-    public void testInsideAreaDownNewDimension() {
-        LocationConversion.changeHexagonDimensionsByWidth(150);
-        area.setStartLocation(new RealCoordinate(750, 650));
-        area.setDirection(Angle.DOWN);
-        area.setRange(5);
-        RealCoordinate loc = new RealCoordinate(750, 1170);
+        RealCoordinate loc = TileCoordinate.convertToRealCoordinate(new TileCoordinate(10, 11));
         assertTrue(area.isInRange(loc));
     }
 

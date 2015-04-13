@@ -3,11 +3,10 @@ package model.entity;
 import model.area.RealCoordinate;
 import model.item.EquipableItem;
 import model.item.TakeableItem;
+import model.slots.ItemManager;
 import model.statistics.EntityStatistics;
 import model.statistics.Statistics;
-import model.slots.ItemManager;
 import utilities.Angle;
-import utilities.LocationConversion;
 import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
@@ -95,12 +94,13 @@ public abstract class Entity implements SavableLoadable {
         
 
         // right now can always move
-        double width = LocationConversion.getHeight(); // radius
+        
         double angleOffset = 30;
+        //width is 1 unit so radius is root(3) / 2
         double newXLocation = this.location.getX()
-                + (width * Math.cos(Math.toRadians(direction.getAngle() + angleOffset)));
+                + (Math.sqrt(3)/2 * Math.cos(Math.toRadians(direction.getAngle() + angleOffset)));
         double newYLocation = this.location.getY()
-                - (width * Math.sin(Math.toRadians(direction.getAngle() + angleOffset)));
+                - (Math.sqrt(3)/2 * Math.sin(Math.toRadians(direction.getAngle() + angleOffset)));
         this.location = new RealCoordinate(newXLocation, newYLocation);
     }
 
