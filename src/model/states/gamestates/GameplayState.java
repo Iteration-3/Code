@@ -9,6 +9,7 @@ import controller.GameplayController;
 import utilities.Point;
 import view.GameplayLayout;
 import view.map.BasicTileView;
+import view.map.TileView;
 
 public class GameplayState extends GameState {
 	private GameplayController controller;
@@ -27,8 +28,11 @@ public class GameplayState extends GameState {
 	public void addTilesTest(){
 		for(int x = 0; x < 100; ++x) {
 			for(int y = 0; y < 100; ++y) {//Hardcoded for as long as the area is
-				gameMap.equals(new PassableTile(new BasicTileView(new Color(0, 200, 200), Color.WHITE),
-						layout.getGameMapView(),new Point(x,y)));
+				TileView view = new BasicTileView(new Color(0, 200, 200), Color.WHITE);
+				Point p = new Point(x,y);
+				view.registerWithGameMapView(layout.getGameMapView(),p);
+				gameMap.add(new PassableTile(view,p));
+						
 			}
 		}
 	}

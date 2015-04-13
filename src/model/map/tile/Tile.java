@@ -11,9 +11,8 @@ public abstract class Tile implements SavableLoadable {
 	private TileView view;
 	Point location;
 	
-	public Tile(TileView v, GameMapView gv, Point loc){
+	public Tile(TileView v, Point loc){
 		view = v;
-		view.registerWithGameMapView(gv,loc);
 		location = loc;
 	}
 	

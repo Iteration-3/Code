@@ -13,8 +13,10 @@ public class PassableTile extends Tile{
 
 
 
-	public PassableTile(TileView v, GameMapView gv, Point loc) {
-		super(v, gv, loc);
+	
+
+	public PassableTile(TileView v, Point loc) {
+		super(v, loc);
 		// TODO Auto-generated constructor stub
 	}
 

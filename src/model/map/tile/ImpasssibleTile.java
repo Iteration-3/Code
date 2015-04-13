@@ -13,8 +13,10 @@ public class ImpasssibleTile extends Tile {
 
 
 
-	public ImpasssibleTile(TileView v, GameMapView gv, Point loc) {
-		super(v, gv, loc);
+	
+
+	public ImpasssibleTile(TileView v, Point loc) {
+		super(v, loc);
 		// TODO Auto-generated constructor stub
 	}
 
