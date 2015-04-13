@@ -6,6 +6,7 @@ import java.util.Map;
 import model.area.Location;
 import model.entity.Entity;
 import model.map.tile.Tile;
+import utilities.Point;
 import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 
@@ -24,9 +25,10 @@ public class GameMap implements SavableLoadable{
 	/**
 	 * Overwrites if tile already there.
 	 * @param t
+	 * @param p 
 	 */
-	public void add(Tile t){
-		tiles.put(new Location(t.getLocation().getX(),t.getLocation().getY()),t);
+	public void add(Tile t, Location p){
+		tiles.put(p,t);
 	}
 	/**
 	 * If the tile is passable, returns if it can be passed by the given entity, else

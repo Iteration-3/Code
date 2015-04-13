@@ -78,9 +78,11 @@ public class GameMapView {
 		}
 	}
 
-	public void addTileView(TileView tileView, Point loc) {
+	public void addTileView(TileView tileView, Location p) {
 		//Are we using location or point?
-		tileViews[loc.getX()][loc.getY()]=tileView;	
+		//I assume this array is a temp thing and will just cast for now, but this needs to change eventually.
+		//To be consistent, I'm going to use location + cast.
+		tileViews[(int) p.getX()][(int) p.getY()]=tileView;	
 	}
 	public void addEntityView(EntityView entityView, Location loc){
 		entityViews.put(loc,entityView);

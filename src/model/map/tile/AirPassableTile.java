@@ -13,8 +13,10 @@ public class AirPassableTile extends Tile{
 
 
 
-	public AirPassableTile(TileView v, Point loc) {
-		super(v, loc);
+	
+
+	public AirPassableTile(TileView v) {
+		super(v);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -9,17 +9,12 @@ import view.map.TileView;
 
 public abstract class Tile implements SavableLoadable {
 	private TileView view;
-	Point location;
 	
-	public Tile(TileView v, Point loc){
+	public Tile(TileView v){
 		view = v;
-		location = loc;
 	}
 	
 	public abstract boolean isPassable(Entity e);
 	public abstract void touch(Entity e);
-	public Point getLocation(){
-		return location;
-	}
 
 }
