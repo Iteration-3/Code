@@ -2,14 +2,20 @@ package view.map;
 
 import java.awt.Graphics;
 import java.awt.Color;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import utilities.Point;
 import model.area.Location;
+import view.EntityView;
 
 public class GameMapView {
 	private TileView[][] tileViews;
 	private static final int NUM_TILES_Y = 18;  // Defines how many tiles we display in the vertical dimension
 												// Also implicitly defines how many we can see horizontally
+	private Map<Location,EntityView> entityViews;
 	 
 	private static final float TILE_DIMENSION_RATIO = (float) (Math.sqrt(3) / 2);
 	
@@ -19,8 +25,8 @@ public class GameMapView {
 	
 	public GameMapView() {
 		tileViews = new TileView[100][100]; //exact sizing just for testing purposes
-		
-		//initDummyTileViews();
+		entityViews = new HashMap<Location,EntityView>();
+
 	}
 	
 	public void render(Graphics graphics, int width, int height) {
@@ -35,6 +41,9 @@ public class GameMapView {
 					tileViews[x][y].render(graphics, new Location(renderX, renderY), tileWidth());
 				}
 			}
+		}
+		for( Entry<Location, EntityView> i : entityViews.entrySet()){
+			i.getValue().render(graphics, i.getKey(), tileWidth());
 		}
 	}
 	
@@ -71,7 +80,9 @@ public class GameMapView {
 
 	public void addTileView(TileView tileView, Point loc) {
 		//Are we using location or point?
-		tileViews[loc.getX()][loc.getY()]=tileView;
-		
+		tileViews[loc.getX()][loc.getY()]=tileView;	
+	}
+	public void addEntityView(EntityView entityView, Location loc){
+		entityViews.put(loc,entityView);
 	}
 }

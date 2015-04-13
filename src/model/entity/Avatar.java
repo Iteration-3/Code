@@ -1,5 +1,6 @@
 package model.entity;
 
+import model.area.Location;
 import view.EntityView;
 
 
@@ -7,8 +8,8 @@ public abstract class Avatar extends Entity {
 	
 	public Avatar(){}
 
-	public Avatar(String name, EntityView view){
-		super(name,view);
+	public Avatar(String name, EntityView view,Location loc){
+		super(name,view,loc);
 	}
 	
 	@Override 

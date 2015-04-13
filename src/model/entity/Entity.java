@@ -12,9 +12,10 @@ import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 
 public abstract class Entity implements SavableLoadable {
-	public Entity(String name, EntityView view) {
+	public Entity(String name, EntityView view, Location loc) {
 		this.name = name;
 		this.view = view;
+		location = loc;
 		this.setNecessities();
 	}
 

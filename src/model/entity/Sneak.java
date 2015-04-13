@@ -1,13 +1,14 @@
 package model.entity;
 
+import model.area.Location;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 
 public class Sneak extends Avatar {
 
-	public Sneak(String name, EntityView view) {
-		super(name, view);
+	public Sneak(String name, EntityView view,Location loc) {
+		super(name, view,loc);
 	}
 
 	protected ItemManager createItemManager() {
