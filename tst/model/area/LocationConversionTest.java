@@ -1,109 +1,45 @@
 package model.area;
 
-import static org.junit.Assert.*;
-import model.area.RealCoordinate;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
 import org.junit.Test;
-
-import utilities.LocationConversion;
 
 public class LocationConversionTest {
 
-    @Before
-    public void setUp() throws Exception {
-        LocationConversion.changeHexagonDimensionsByWidth(50);
-    }
-    /*
     @Test
-    public void testCenterToCenter() {
-        Location testLocation = new Location(25,25);
-        assertEquals(0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
-        assertEquals(0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
-    }
-    */
-    @Test
-    public void testCenterToCenter2() {
-        RealCoordinate testLocation = new RealCoordinate(1.5, Math.sqrt(3)/2.0);
-        LocationConversion.changeHexagonDimensionsByWidth(1);
-        
-        assertEquals(2, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
-        assertEquals(1, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
-    }
-    
-    @Test
-    public void testCenterToCenter3() {
-        RealCoordinate testLocation = new RealCoordinate(2.25, Math.sqrt(3)/4.0);
-        LocationConversion.changeHexagonDimensionsByWidth(1);
-        
-        assertEquals(3, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
-        assertEquals(0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
-    }
-    /*
-    @Test
-    public void testCenterToCenter3() {
-        Location testLocation = new Location(25, 125);
-        assertEquals(0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
-        assertEquals(2, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
-    }
-    /*
-    
-    @Test
-    public void testCenterToCenter2() {
-        Location testLocation = new Location(346,75);
-        assertEquals(346.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
-        assertEquals(75.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
-    }
-    
-    @Test
-    public void testCenterToCenter3() {
-        Location testLocation = new Location(865,75);
-        assertEquals(865.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
-        assertEquals(75.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
-    }
-    
-    */
-    /*
-    @Test
-    public void testLeftBoundsToCenter() {
-        Location testLocation = new Location(865,825);
-        assertEquals(952.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
-        assertEquals(825.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
-    }
-    
-    @Test
-    public void testRightBoundsToCenter() {
-        Location testLocation = new Location(1037,825);
-        assertEquals(952.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
-        assertEquals(825.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
-    }
-    
-    @Test
-    public void testUpperBoundsToCenter() {
-        Location testLocation = new Location(952,750);
-        assertEquals(952.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
-        assertEquals(825.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
+    public void testRealToTileEven() {
+        RealCoordinate testLocation = new RealCoordinate(1.5, Math.sqrt(3) / 2.0);
+        TileCoordinate coord = RealCoordinate.convertToTileCoordinate(testLocation);
+
+        assertEquals(2, coord.getX());
+        assertEquals(1, coord.getY());
     }
 
     @Test
-    public void testLowerBoundsToCenter() {
-        Location testLocation = new Location(952,899);
-        assertEquals(952.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
-        assertEquals(825.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
+    public void testRealToTileOdd() {
+        RealCoordinate testLocation = new RealCoordinate(2.25, Math.sqrt(3) / 4.0);
+        TileCoordinate coord = RealCoordinate.convertToTileCoordinate(testLocation);
+
+        assertEquals(3, coord.getX());
+        assertEquals(0, coord.getY());
     }
     
     @Test
-    public void testRandomPointToCenter() {
-        Location testLocation = new Location(1000,775);
-        assertEquals(952.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
-        assertEquals(825.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
+    public void testTileToReal1() {
+        TileCoordinate testLocation = new TileCoordinate(3, 0);
+        RealCoordinate coord = TileCoordinate.convertToRealCoordinate(testLocation);
+
+        assertEquals(2.25, coord.getX(), 0.1);
+        assertEquals(Math.sqrt(3) / 4.0, coord.getY(), 0.1);
     }
     
     @Test
-    public void testRandomPointOuside() {
-        Location testLocation = new Location(1038,900);
-        assertNotEquals(952.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getX(), .001);
-        assertNotEquals(825.0, LocationConversion.convertLocationToCenterOfHexagon(testLocation).getY(), .001);
+    public void testTileToReal2() {
+        TileCoordinate testLocation = new TileCoordinate(2, 1);
+        RealCoordinate coord = TileCoordinate.convertToRealCoordinate(testLocation);
+
+        assertEquals(1.5, coord.getX(), 0.1);
+        assertEquals(Math.sqrt(3) / 2, coord.getY(), 0.1);
     }
-    */
+    
 }
