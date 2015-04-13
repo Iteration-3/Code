@@ -1,13 +1,21 @@
 package model.map.tile;
 
+import model.area.Location;
 import model.entity.Entity;
+import utilities.Point;
 import utilities.structuredmap.StructuredMap;
+import view.map.GameMapView;
 import view.map.TileView;
 
 public class PassableTile extends Tile{
 
-	public PassableTile(TileView v) {
-		super(v);
+
+
+
+
+	public PassableTile(TileView v, GameMapView gv, Point loc) {
+		super(v, gv, loc);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

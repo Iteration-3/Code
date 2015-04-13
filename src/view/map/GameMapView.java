@@ -3,6 +3,7 @@ package view.map;
 import java.awt.Graphics;
 import java.awt.Color;
 
+import utilities.Point;
 import model.area.Location;
 
 public class GameMapView {
@@ -19,7 +20,7 @@ public class GameMapView {
 	public GameMapView() {
 		tileViews = new TileView[100][100]; //exact sizing just for testing purposes
 		
-		initDummyTileViews();
+		//initDummyTileViews();
 	}
 	
 	public void render(Graphics graphics, int width, int height) {
@@ -30,7 +31,9 @@ public class GameMapView {
 			for(int y = 0; y < numberOfVerticalTiles(); ++y) {
 				int renderX = (int) (x * tileWidth() * 0.75);
 				int renderY = (int) (y * tileHeight() + (x % 2) * tileHeight() / 2);
-				tileViews[x][y].render(graphics, new Location(renderX, renderY), tileWidth());
+				if(tileViews[x][y]!=null){
+					tileViews[x][y].render(graphics, new Location(renderX, renderY), tileWidth());
+				}
 			}
 		}
 	}
@@ -64,5 +67,11 @@ public class GameMapView {
 				tileViews[x][y] = new BasicTileView(new Color(0, 200, 200), Color.WHITE);
 			}
 		}
+	}
+
+	public void addTileView(TileView tileView, Point loc) {
+		//Are we using location or point?
+		tileViews[loc.getX()][loc.getY()]=tileView;
+		
 	}
 }

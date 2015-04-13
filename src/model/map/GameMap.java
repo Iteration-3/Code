@@ -22,6 +22,13 @@ public class GameMap implements SavableLoadable{
 		// TODO Auto-generated method stub	
 	}
 	/**
+	 * Overwrites if tile already there.
+	 * @param t
+	 */
+	public void add(Tile t){
+		tiles.put(new Location(t.getLocation().getX(),t.getLocation().getY()),t);
+	}
+	/**
 	 * If the tile is passable, returns if it can be passed by the given entity, else
 	 * returns false.
 	 * @param e
