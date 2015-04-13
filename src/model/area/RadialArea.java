@@ -24,7 +24,7 @@ public class RadialArea extends Area {
     @Override
     public List<RealCoordinate> getCoveredLocations() {
         List<RealCoordinate> returnList = new ArrayList<>();
-        returnList.add(super.getStartLocation());
+        returnList.add(super.convertToCenter(super.getStartLocation()));
         int i = 0;
         while (i != returnList.size()) {
             returnList.addAll(checkSurrounding(returnList.get(i), returnList));

@@ -1,21 +1,26 @@
 package model.area;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
-
-import utilities.LocationConversion;
 
 public class RadialAreaTest {
 
-    private RadialArea area = new RadialArea(2, new RealCoordinate(952, 825));
+    private RadialArea area = new RadialArea(2, TileCoordinate.convertToRealCoordinate(new TileCoordinate(4, 3)));
 
-    @Before
-    public void setUp() {
-        LocationConversion.changeHexagonDimensionsByWidth(173);
+    @Test
+    public void testIsNotInRange() {
+        RealCoordinate location = TileCoordinate.convertToRealCoordinate(new TileCoordinate(0, 3));
+        area.setRange(4);
+        assertFalse(area.isInRange(location));
+    }
+
+    @Test
+    public void testIsInRange() {
+        RealCoordinate location = TileCoordinate.convertToRealCoordinate(new TileCoordinate(3, 2));
+        assertTrue(area.isInRange(location));
     }
 
     @Test
@@ -23,7 +28,7 @@ public class RadialAreaTest {
         List<RealCoordinate> locations = area.getCoveredLocations();
         assertEquals(7, locations.size());
     }
-    
+
     @Test
     public void testTilesContainedRadius3() {
         area.setRange(3);
@@ -35,6 +40,10 @@ public class RadialAreaTest {
     public void testTilesContainedRadius4() {
         area.setRange(4);
         List<RealCoordinate> locations = area.getCoveredLocations();
+        for (RealCoordinate loc : locations) {
+            TileCoordinate loc2 = RealCoordinate.convertToTileCoordinate(loc);
+            System.out.println(loc2.getX() + " " + loc2.getY());
+        }
         assertEquals(37, locations.size());
     }
 
@@ -44,6 +53,5 @@ public class RadialAreaTest {
         List<RealCoordinate> locations = area.getCoveredLocations();
         assertEquals(61, locations.size());
     }
-    
 
 }
