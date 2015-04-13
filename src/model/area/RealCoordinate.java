@@ -16,24 +16,29 @@ public class RealCoordinate {
         this.x = x;
         this.y = y;
     }
-    
+
     public RealCoordinate nextLocation(Angle angle) {
-    	int xDisplacement = 0, yDisplacement = 0;
-    	if (angle == Angle.UP_RIGHT || angle == Angle.UP || angle == Angle.UP_LEFT) {
-    		yDisplacement = -1;
-    	} else {
-    		yDisplacement = 1;
-    	}
-    	if (angle == Angle.UP_RIGHT || angle == Angle.DOWN_RIGHT) {
-    		xDisplacement = 1;
-    	} else if (angle == Angle.UP_LEFT || angle == Angle.UP_RIGHT) {
-    		xDisplacement = -1;
-    	}
-    	return new RealCoordinate(xDisplacement, yDisplacement);
+        int xDisplacement = 0, yDisplacement = 0;
+        if (angle == Angle.UP_RIGHT || angle == Angle.UP || angle == Angle.UP_LEFT) {
+            yDisplacement = -1;
+        } else {
+            yDisplacement = 1;
+        }
+        if (angle == Angle.UP_RIGHT || angle == Angle.DOWN_RIGHT) {
+            xDisplacement = 1;
+        } else if (angle == Angle.UP_LEFT || angle == Angle.UP_RIGHT) {
+            xDisplacement = -1;
+        }
+        return new RealCoordinate(xDisplacement, yDisplacement);
     }
-    
+
     public static TileCoordinate convertToTileCoordinate(RealCoordinate coord) {
-        return null;
+        double q = coord.getX() * (2.0 / 3.0) / (1.0 / 2.0);
+        double r = (-coord.getX() / 3.0 + Math.sqrt(3.0) / 3.0 * coord.getY()) / (1.0 / 2.0);
+
+        Hex hex = convertCubeToOddQ(cubeRound(new Cube(q, (-q - r), r)));
+
+        return new TileCoordinate((int) hex.getX(), (int) hex.getY());
     }
 
     public void setX(double x) {
@@ -85,5 +90,72 @@ public class RealCoordinate {
         return true;
     }
 
-    
+    private static Hex convertCubeToOddQ(Cube cube) {
+        double q = cube.getX();
+        double r = cube.getZ() + (cube.getX() - ((int) cube.getX() & 1)) / 2;
+        return new Hex(q, r);
+    }
+
+    private static Cube cubeRound(Cube hexToCube) {
+        double rx = Math.round(hexToCube.getX());
+        double ry = Math.round(hexToCube.getY());
+        double rz = Math.round(hexToCube.getZ());
+
+        double xDif = Math.abs(rx - hexToCube.getX());
+        double yDif = Math.abs(ry - hexToCube.getY());
+        double zDif = Math.abs(rz - hexToCube.getZ());
+
+        if (xDif > yDif && xDif > zDif) {
+            rx = (-ry - rz);
+        } else if (yDif > zDif) {
+            ry = (-rx - rz);
+        } else {
+            rz = (-rx - ry);
+        }
+
+        return new Cube(rx, ry, rz);
+    }
+
+    private static class Cube {
+        private double x;
+        private double y;
+        private double z;
+
+        public Cube(double x, double y, double z) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        public double getX() {
+            return x;
+        }
+
+        public double getY() {
+            return y;
+        }
+
+        public double getZ() {
+            return z;
+        }
+    }
+
+    private static class Hex {
+        private double x;
+        private double y;
+
+        public Hex(double x, double y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public double getX() {
+            return x;
+        }
+
+        public double getY() {
+            return y;
+        }
+    }
+
 }
