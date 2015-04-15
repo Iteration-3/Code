@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
 public class View extends JFrame implements ActionListener {
+	
 	private static final int FPS = 30;
 	private static final int REDRAW_INTERVAL = 1000 / FPS;
 	

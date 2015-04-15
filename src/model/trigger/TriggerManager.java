@@ -11,16 +11,16 @@ public final class TriggerManager {
 	
 	public static void update() {
 		for (Trigger t : partyTriggers) {
-			t.handle(EntityManager.getPartyNpcs());
+			t.handle(EntityManager.getSingleton().getPartyNpcs());
 		}
 		for (Trigger t : nonPartyTriggers) {
-			t.handle(EntityManager.getNonPartyNpcs());
-			t.handle(EntityManager.getAvatar());
+			t.handle(EntityManager.getSingleton().getNonPartyNpcs());
+			t.handle(EntityManager.getSingleton().getAvatar());
 		}
 		for (Trigger t : neutralTriggers) {
-			t.handle(EntityManager.getPartyNpcs());
-			t.handle(EntityManager.getNonPartyNpcs());
-			t.handle(EntityManager.getAvatar());
+			t.handle(EntityManager.getSingleton().getPartyNpcs());
+			t.handle(EntityManager.getSingleton().getNonPartyNpcs());
+			t.handle(EntityManager.getSingleton().getAvatar());
 		}
 		removeExpiredTriggers();
 	}
