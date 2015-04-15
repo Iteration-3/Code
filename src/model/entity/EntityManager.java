@@ -1,39 +1,85 @@
 package model.entity;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import model.area.RealCoordinate;
 
-public class EntityManager {
-	private static ArrayList<NPC> partyNpcs;
-	private static ArrayList<NPC> nonPartyNpcs;
-	private static Avatar avatar;
+public class EntityManager implements Iterable<Entity> {
 	
+	private static EntityManager _entityManager;	
+	private ArrayList<NPC> partyNpcs;
+	private ArrayList<NPC> nonPartyNpcs;
+	private Avatar avatar;
 	
-	/**
-	 * If we started having something like 10000+ entities, then this should be done eagerly, not lazily
-	 * @return
-	 */
-	private static List<Entity> getAllEntities(){
-			List<Entity> all = new ArrayList<Entity>(getNonPartyNpcs());
-			all.addAll(getPartyNpcs());
-			all.add(getAvatar());
-			return all;
+	private EntityManager() {
 	}
 	
-	public static void update() {
-		for(Entity e : getAllEntities()){
+	private class EntityIterator implements Iterator<Entity> {
+		
+		private int index = 0;
+		private int size;
+		
+		private EntityIterator() {
+			size = partyNpcs.size()+nonPartyNpcs.size()+1;
+		}
+		
+		public boolean hasNext() {
+			int curSize = partyNpcs.size()+nonPartyNpcs.size()+1;
+			
+			if (curSize != size) 
+				throw new ConcurrentModificationException("EntityManager modified during iterating");
+			
+			return index < size;
+		}
+		
+		public Entity next() {
+			int curSize = partyNpcs.size()+nonPartyNpcs.size()+1;
+			
+			if (curSize != size) 
+				throw new ConcurrentModificationException("EntityManager modified during iterating");
+			if (!hasNext())
+				throw new NoSuchElementException("no entity left");
+			
+			if (index == size - 1) {
+				index++;
+				return avatar;
+			}
+			if (index < partyNpcs.size()) {
+				index++;
+				return partyNpcs.get(index-1);
+			}
+			if (index >= partyNpcs.size()) {
+				index++;
+				return nonPartyNpcs.get(index-1-partyNpcs.size());
+			}
+			throw new ConcurrentModificationException("EntityManager modified during iterating");
+		}
+	
+		public void remove() {
+			throw new UnsupportedOperationException("remove is not supported in EntityIterator");
+		}
+	}
+	
+	public static EntityManager getSingleton() {
+		return _entityManager;
+	}
+	
+	public void update() {
+		for(Entity e : this){
 			e.update();
 		}
 	}
+	
 	/**
 	 * Returns null in the event an entity isn't found at given location
 	 * @param location
 	 * @return
 	 */
-	public static Entity getEntityAtLocation(RealCoordinate location) {
-		for(Entity e : getAllEntities()){
+	public Entity getEntityAtLocation(RealCoordinate location) {
+		for(Entity e : this){
 			if(location.equals(e.getLocation())){
 				return e;
 			}
@@ -41,32 +87,36 @@ public class EntityManager {
 		return null;
 	}
 	
-	public static void addPartyNpc(NPC npc) {
-		EntityManager.partyNpcs.add(npc);
+	public void addPartyNpc(NPC npc) {
+		partyNpcs.add(npc);
 	}
 
-	public static ArrayList<NPC> getPartyNpcs() {
+	public ArrayList<NPC> getPartyNpcs() {
 		return partyNpcs;
 	}
 
-	public static void setPartyNpcs(ArrayList<NPC> partyNpcs) {
-		EntityManager.partyNpcs = partyNpcs;
+	public void setPartyNpcs(ArrayList<NPC> partyNpcs) {
+		this.partyNpcs = partyNpcs;
 	}
 
-	public static ArrayList<NPC> getNonPartyNpcs() {
+	public ArrayList<NPC> getNonPartyNpcs() {
 		return nonPartyNpcs;
 	}
 
-	public static void setNonPartyNpcs(ArrayList<NPC> nonPartyNpcs) {
-		EntityManager.nonPartyNpcs = nonPartyNpcs;
+	public void setNonPartyNpcs(ArrayList<NPC> nonPartyNpcs) {
+		this.nonPartyNpcs = nonPartyNpcs;
 	}
 
-	public static Avatar getAvatar() {
+	public Avatar getAvatar() {
 		return avatar;
 	}
 
-	public static void setAvatar(Avatar avatar) {
-		EntityManager.avatar = avatar;
+	public void setAvatar(Avatar avatar) {
+		this.avatar = avatar;
 	}
 
+	@Override
+	public Iterator<Entity> iterator() {
+		return new EntityIterator();
+	}
 }
