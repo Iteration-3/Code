@@ -2,14 +2,13 @@ package view.map;
 
 import java.awt.Graphics;
 
+import model.area.RealCoordinate;
 import utilities.Point;
-import model.area.Location;
 
 public abstract class TileView {
-	public abstract void render(Graphics graphics, Location location, float diameter);
+	public abstract void render(Graphics graphics, RealCoordinate location, float diameter);
 
-	public void registerWithGameMapView(GameMapView gv, Location p) {
+	public void registerWithGameMapView(GameMapView gv, RealCoordinate p) {
 		gv.addTileView(this,p);
-		
 	}
 }

@@ -1,20 +1,10 @@
 package model.map.tile;
 
-import model.area.Location;
 import model.entity.Entity;
-import utilities.Point;
 import utilities.structuredmap.StructuredMap;
-import view.map.GameMapView;
 import view.map.TileView;
 
 public class AirPassableTile extends Tile{
-
-	
-
-
-
-	
-
 	public AirPassableTile(TileView v) {
 		super(v);
 		// TODO Auto-generated constructor stub
@@ -46,5 +36,4 @@ public class AirPassableTile extends Tile{
 	public void touch(Entity e) {
 		return;
 	}
-
 }

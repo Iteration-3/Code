@@ -3,7 +3,7 @@ package model.area;
 import java.util.ArrayList;
 import java.util.List;
 
-import utilities.AreaAngle;
+import utilities.Angle;
 import utilities.structuredmap.StructuredMap;
 
 public class ConicalArea extends DirectionalArea {
@@ -15,13 +15,13 @@ public class ConicalArea extends DirectionalArea {
         super();
     }
 
-    public ConicalArea(int radius, Location startLocation, AreaAngle angle) {
+    public ConicalArea(int radius, RealCoordinate startLocation, Angle angle) {
         super(radius, startLocation, angle);
     }
 
     @Override
-    public boolean isInRange(Location location) {
-        Location testLocation = super.createComparisonLocation(location);
+    public boolean isInRange(RealCoordinate location) {
+        RealCoordinate testLocation = super.createComparisonLocation(location);
         double angle = Math.round(Math.toDegrees(Math.atan2((testLocation.getY()), testLocation.getX())));
         boolean thisResult = angle >= super.getDirection().getAngle()
                 && angle <= (super.getDirection().getAngle() + CONE_WIDTH_IN_DEGREES) && isWithinRadius(location);
@@ -30,8 +30,8 @@ public class ConicalArea extends DirectionalArea {
     }
 
     @Override
-    public List<Location> getCoveredLocations() {
-        List<Location> returnList = new ArrayList<>();
+    public List<RealCoordinate> getCoveredLocations() {
+        List<RealCoordinate> returnList = new ArrayList<>();
         returnList.add(super.getStartLocation());
         int i = 0;
         while (i != returnList.size()) {

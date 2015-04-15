@@ -1,6 +1,6 @@
 package model.entity;
 
-import model.area.Location;
+import model.area.RealCoordinate;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
@@ -9,7 +9,7 @@ public class Smasher extends Avatar {
 	
 	public Smasher(){}
 
-	public Smasher(String name, EntityView view,Location loc) {
+	public Smasher(String name, EntityView view, RealCoordinate loc) {
 		super(name, view,loc);
 	}
 
@@ -45,8 +45,5 @@ public class Smasher extends Avatar {
 	protected model.slots.ItemManager createItemManager() {
 		return null;
 	}
-
-
-
 
 }

@@ -1,10 +1,7 @@
 package model.map.tile;
 
-import model.area.Location;
 import model.entity.Entity;
-import utilities.Point;
 import utilities.structuredmap.SavableLoadable;
-import view.map.GameMapView;
 import view.map.TileView;
 
 public abstract class Tile implements SavableLoadable {

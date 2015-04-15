@@ -3,7 +3,7 @@ package model.map;
 import java.util.HashMap;
 import java.util.Map;
 
-import model.area.Location;
+import model.area.RealCoordinate;
 import model.entity.Entity;
 import model.map.tile.Tile;
 import utilities.Point;
@@ -11,7 +11,7 @@ import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 
 public class GameMap implements SavableLoadable{
-	private Map<Location,Tile> tiles = new HashMap<Location, Tile>();
+	private Map<RealCoordinate,Tile> tiles = new HashMap<RealCoordinate, Tile>();
 	@Override
 	public StructuredMap getStructuredMap() {
 		// TODO Auto-generated method stub
@@ -27,7 +27,7 @@ public class GameMap implements SavableLoadable{
 	 * @param t
 	 * @param p 
 	 */
-	public void add(Tile t, Location p){
+	public void add(Tile t, RealCoordinate p){
 		tiles.put(p,t);
 	}
 	/**
@@ -37,7 +37,7 @@ public class GameMap implements SavableLoadable{
 	 * @param loc
 	 * @return
 	 */
-	public boolean isPassable(Entity e, Location loc){
+	public boolean isPassable(Entity e, RealCoordinate loc){
 		Tile t = tiles.get(loc);
 		if(t==null){
 			return false;
@@ -49,7 +49,7 @@ public class GameMap implements SavableLoadable{
 	 * @param e
 	 * @param loc
 	 */
-	public void touch(Entity e, Location loc){
+	public void touch(Entity e, RealCoordinate loc){
 		Tile t = tiles.get(loc);
 		if(t == null){
 			return;

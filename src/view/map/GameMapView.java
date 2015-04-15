@@ -2,20 +2,17 @@ package view.map;
 
 import java.awt.Graphics;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
 
-import utilities.Point;
-import model.area.Location;
 import view.EntityView;
+import model.area.RealCoordinate;
 
 public class GameMapView {
 	private TileView[][] tileViews;
 	private static final int NUM_TILES_Y = 18;  // Defines how many tiles we display in the vertical dimension
 												// Also implicitly defines how many we can see horizontally
-	private Map<Location,EntityView> entityViews;
+	private Collection<EntityView> entityViews;
 	 
 	private static final float TILE_DIMENSION_RATIO = (float) (Math.sqrt(3) / 2);
 	
@@ -25,8 +22,7 @@ public class GameMapView {
 	
 	public GameMapView() {
 		tileViews = new TileView[100][100]; //exact sizing just for testing purposes
-		entityViews = new HashMap<Location,EntityView>();
-
+		entityViews = new ArrayList<EntityView>();
 	}
 	
 	public void render(Graphics graphics, int width, int height) {
@@ -38,12 +34,12 @@ public class GameMapView {
 				int renderX = (int) (x * tileWidth() * 0.75);
 				int renderY = (int) (y * tileHeight() + (x % 2) * tileHeight() / 2);
 				if(tileViews[x][y]!=null){
-					tileViews[x][y].render(graphics, new Location(renderX, renderY), tileWidth());
+					tileViews[x][y].render(graphics, new RealCoordinate(renderX, renderY), tileWidth());
 				}
 			}
 		}
-		for( Entry<Location, EntityView> i : entityViews.entrySet()){
-			i.getValue().render(graphics, i.getKey(), tileWidth());
+		for(EntityView i : entityViews) {
+			i.render(graphics, tileWidth());
 		}
 	}
 	
@@ -78,13 +74,14 @@ public class GameMapView {
 		}
 	}
 
-	public void addTileView(TileView tileView, Location p) {
+	public void addTileView(TileView tileView, RealCoordinate p) {
 		//Are we using location or point?
 		//I assume this array is a temp thing and will just cast for now, but this needs to change eventually.
 		//To be consistent, I'm going to use location + cast.
-		tileViews[(int) p.getX()][(int) p.getY()]=tileView;	
+		tileViews[(int) p.getX()][(int) p.getY()] = tileView;	
 	}
-	public void addEntityView(EntityView entityView, Location loc){
-		entityViews.put(loc,entityView);
+
+	public void addEntityView(EntityView entityView) {
+		entityViews.add(entityView);
 	}
 }

@@ -1,22 +1,10 @@
 package model.map.tile;
 
-import model.area.Location;
 import model.entity.Entity;
-import utilities.Point;
 import utilities.structuredmap.StructuredMap;
-import view.map.GameMapView;
 import view.map.TileView;
 
 public class ImpasssibleTile extends Tile {
-
-
-
-
-
-	
-
-	
-
 	public ImpasssibleTile(TileView v) {
 		super(v);
 		// TODO Auto-generated constructor stub

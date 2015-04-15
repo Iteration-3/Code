@@ -9,12 +9,12 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import utilities.AreaAngle;
+import utilities.Angle;
 import utilities.LocationConversion;
 
 public class ConicalAreaTest {
 
-    private ConicalArea area = new ConicalArea(2, new Location(952, 825), AreaAngle.UP);
+    private ConicalArea area = new ConicalArea(2, new RealCoordinate(952, 825), Angle.UP);
 
     @Before
     public void setUp() {
@@ -23,105 +23,105 @@ public class ConicalAreaTest {
 
     @Test
     public void testInsideAreaUpTrue() {
-        Location loc = new Location(952, 675);
+        RealCoordinate loc = new RealCoordinate(952, 675);
         assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaUpFalse() {
-        Location loc = new Location(952, 525);
+        RealCoordinate loc = new RealCoordinate(952, 525);
         assertFalse(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaDownTrue() {
-        area.setDirection(AreaAngle.DOWN);
-        Location loc = new Location(952, 975);
+        area.setDirection(Angle.DOWN);
+        RealCoordinate loc = new RealCoordinate(952, 975);
         assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaUpRightTrue() {
-        area.setDirection(AreaAngle.UP_RIGHT);
-        Location loc = new Location(1081, 750);
+        area.setDirection(Angle.UP_RIGHT);
+        RealCoordinate loc = new RealCoordinate(1081, 750);
         assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaUpLeftTrue() {
-        area.setDirection(AreaAngle.UP_LEFT);
-        Location loc = new Location(822, 750);
+        area.setDirection(Angle.UP_LEFT);
+        RealCoordinate loc = new RealCoordinate(822, 750);
         assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaDownLeftTrue() {
-        area.setDirection(AreaAngle.DOWN_LEFT);
-        Location loc = new Location(822, 900);
+        area.setDirection(Angle.DOWN_LEFT);
+        RealCoordinate loc = new RealCoordinate(822, 900);
         assertTrue(area.isInRange(loc));
     }
     
     @Test
     public void testInsideAreaUpLongRange() {
-        area.setDirection(AreaAngle.UP);
+        area.setDirection(Angle.UP);
         area.setRange(3);
-        assertTrue(area.isInRange(new Location(1082,600)));
+        assertTrue(area.isInRange(new RealCoordinate(1082,600)));
     }
 
     @Test
     public void testInsideAreaDownRightTrue() {
-        area.setDirection(AreaAngle.DOWN_RIGHT);
-        Location loc = new Location(1081, 900);
+        area.setDirection(Angle.DOWN_RIGHT);
+        RealCoordinate loc = new RealCoordinate(1081, 900);
         assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaDown() {
-        area.setDirection(AreaAngle.DOWN);
+        area.setDirection(Angle.DOWN);
         area.setRange(5);
-        Location loc = new Location(952, 1425);
+        RealCoordinate loc = new RealCoordinate(952, 1425);
         assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaDownNewDimension() {
         LocationConversion.changeHexagonDimensionsByWidth(150);
-        area.setStartLocation(new Location(750, 650));
-        area.setDirection(AreaAngle.DOWN);
+        area.setStartLocation(new RealCoordinate(750, 650));
+        area.setDirection(Angle.DOWN);
         area.setRange(5);
-        Location loc = new Location(750, 1170);
+        RealCoordinate loc = new RealCoordinate(750, 1170);
         assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testGetLocationsRadius2() {
-        area.setDirection(AreaAngle.UP);
+        area.setDirection(Angle.UP);
         area.setRange(2);
-        List<Location> locations = area.getCoveredLocations();
+        List<RealCoordinate> locations = area.getCoveredLocations();
         assertEquals(2, locations.size());
     }
 
     @Test
     public void testGetLocationsRadius3() {
-        area.setDirection(AreaAngle.UP);
+        area.setDirection(Angle.UP);
         area.setRange(3);
-        List<Location> locations = area.getCoveredLocations();
+        List<RealCoordinate> locations = area.getCoveredLocations();
         assertEquals(5, locations.size());
     }
 
     @Test
     public void testGetLocationsRadius4() {
-        area.setDirection(AreaAngle.UP);
+        area.setDirection(Angle.UP);
         area.setRange(4);
-        List<Location> locations = area.getCoveredLocations();
+        List<RealCoordinate> locations = area.getCoveredLocations();
         assertEquals(8, locations.size());
     }
 
     @Test
     public void testGetLocationsRadius5() {
-        area.setDirection(AreaAngle.DOWN);
+        area.setDirection(Angle.DOWN);
         area.setRange(5);
-        List<Location> locations = area.getCoveredLocations();
+        List<RealCoordinate> locations = area.getCoveredLocations();
         assertEquals(13, locations.size());
     }
 
