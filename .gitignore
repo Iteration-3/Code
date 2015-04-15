@@ -65,3 +65,6 @@ bin/
 # Metadata & Related Eclipse Garbage
 .metadata/
 RemoteSystemsTempFiles/
+/src/GPATH
+/src/GRTAGS
+/src/GTAGS
