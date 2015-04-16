@@ -18,19 +18,11 @@ public class RealCoordinate {
     }
 
     public RealCoordinate nextLocation(Angle angle) {
-        int xDisplacement = 0, yDisplacement = 0;
-        if (angle == Angle.UP_RIGHT || angle == Angle.UP || angle == Angle.UP_LEFT) {
-            yDisplacement = -1;
-        } else {
-            yDisplacement = 1;
-        }
-        if (angle == Angle.UP_RIGHT || angle == Angle.DOWN_RIGHT) {
-            xDisplacement = 1;
-        } else if (angle == Angle.UP_LEFT || angle == Angle.UP_RIGHT) {
-            xDisplacement = -1;
-        }
-
-        return new RealCoordinate(this.getX() + xDisplacement, this.getY() + yDisplacement);
+        int OFFSET = 30;
+        double xDisplacement = Math.cos(Math.toRadians(angle.getAngle() + OFFSET));
+        double yDisplacement = Math.sin(Math.toRadians(angle.getAngle() + OFFSET));
+        
+        return new RealCoordinate(this.getX() + xDisplacement, this.getY() - yDisplacement);
     }
 
     public static TileCoordinate convertToTileCoordinate(RealCoordinate coord) {

@@ -4,25 +4,33 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
-import view.map.GameMapView;
+import view.map.GameEntityView;
+import view.map.GameTerrainView;
 
 @SuppressWarnings("serial")
 public class GameplayLayout extends Layout {
-	GameMapView test;
+	GameTerrainView gameTerrainView;
+	GameEntityView gameEntityView;
 	
 	public GameplayLayout() {
-		test = new GameMapView();
+		gameTerrainView = new GameTerrainView();
+		gameEntityView = new GameEntityView();
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(1024, 768));
 	}
 	
-	public GameMapView getGameMapView(){
-		return test;
+	public GameTerrainView getGameTerrainView(){
+		return gameTerrainView;
 	}
 	
 	@Override
 	public void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
-		test.render(graphics, this.getWidth(), this.getHeight());
+		gameTerrainView.render(graphics, this.getWidth(), this.getHeight());
+		gameEntityView.render(graphics, this.getWidth(), this.getHeight());
+	}
+
+	public GameEntityView getGameEntityView() {
+		return gameEntityView;
 	}
 }

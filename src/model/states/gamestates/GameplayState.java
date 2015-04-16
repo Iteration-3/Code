@@ -13,7 +13,7 @@ import model.area.RealCoordinate;
 import model.entity.Avatar;
 import model.entity.EntityManager;
 import model.entity.Smasher;
-import model.map.GameMap;
+import model.map.GameTerrain;
 import model.map.tile.PassableTile;
 import view.EntityView;
 import view.GameplayLayout;
@@ -25,14 +25,14 @@ import controller.Listener;
 public class GameplayState extends GameState {
 	private GameplayController controller;
 	private GameplayLayout layout;
-	private GameMap gameMap;
+	private GameTerrain gameMap;
 	
 	public GameplayState(Model model) {
 		super(model);
 		
 		layout = new GameplayLayout();
 		controller = new GameplayController();
-		gameMap = new GameMap();
+		gameMap = new GameTerrain();
 		this.addTilesTest();
 		this.addEntityTest();
 	}
@@ -47,7 +47,7 @@ public class GameplayState extends GameState {
 			controller.addEntityListener(listener);
 		}
 		EntityManager.getSingleton().setAvatar(avatar);
-		eView.registerWithGameMapView(layout.getGameMapView(), loc);
+		eView.registerWithGameMapView(layout.getGameEntityView(), loc);
 	}
 
 	public void addTilesTest(){
@@ -55,7 +55,7 @@ public class GameplayState extends GameState {
 			for(int y = 0; y < 100; ++y) {//Hardcoded for as long as the area is
 				TileView view = new BasicTileView(new Color(0, 200, 200), Color.WHITE);
 				RealCoordinate p = new RealCoordinate(x,y);
-				view.registerWithGameMapView(layout.getGameMapView(),p);
+				view.registerWithGameMapView(layout.getGameTerrainView(),p);
 				gameMap.add(new PassableTile(view),p);
 						
 			}

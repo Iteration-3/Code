@@ -28,8 +28,7 @@ public class View extends JFrame implements ActionListener {
 	}
 
 	private void setupFrame() {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		//setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 	
