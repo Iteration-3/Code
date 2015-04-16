@@ -3,11 +3,10 @@ package model.map.tile;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import model.entity.Entity;
+import model.item.TakeableItem;
 import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
-import model.entity.Entity;
-import model.item.Item;
-import model.item.TakeableItem;
 
 public class TakeableItemTile implements SavableLoadable{
 	private Collection<TakeableItem> items = new ArrayList<TakeableItem>();

@@ -1,11 +1,8 @@
 package view.map;
 
-import java.awt.Graphics;
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.awt.Graphics;
 
-import view.EntityView;
 import model.area.RealCoordinate;
 
 public class GameTerrainView implements GameView{
