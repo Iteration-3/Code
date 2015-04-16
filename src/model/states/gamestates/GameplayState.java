@@ -1,6 +1,7 @@
 package model.states.gamestates;
 
 import java.awt.Color;
+import java.util.Collection;
 
 import model.Model;
 import model.area.RealCoordinate;
@@ -10,6 +11,7 @@ import model.entity.Smasher;
 import model.map.GameMap;
 import model.map.tile.PassableTile;
 import controller.GameplayController;
+import controller.Listener;
 import view.EntityView;
 import view.GameplayLayout;
 import view.map.BasicTileView;
@@ -34,6 +36,10 @@ public class GameplayState extends GameState {
 		RealCoordinate loc = new RealCoordinate(50,50);
 		EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange, loc);
 		Avatar avatar = new Smasher("Smasher", eView, loc);
+		Collection<Listener> listeners = avatar.getListeners();
+		for (Listener listener : listeners) {
+			listener.addAsBinding(getLayout());
+		}
 		EntityManager.getSingleton().setAvatar(avatar);
 		eView.registerWithGameMapView(layout.getGameMapView(), loc);
 	}

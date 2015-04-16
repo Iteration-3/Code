@@ -1,23 +1,21 @@
 package controller;
 
+import gameactions.GameAction;
+
 import java.awt.event.ActionEvent;
-import java.beans.PropertyChangeListener;
 
 import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import view.Layout;
-import model.ability.Ability;
 
 public class Listener {
 	private KeyStroke key;
-	private Ability ability;
+	private GameAction gameAction;
 	
-	public Listener(KeyStroke keystroke, Ability abil){
+	public Listener(KeyStroke keystroke, GameAction gameAction){
 		key = keystroke;
-		ability = abil;
+		this.gameAction = gameAction;
 	}
 	
 	@SuppressWarnings("serial")
@@ -30,7 +28,7 @@ public class Listener {
 				//The ActionEvent can be ignored, as it contains the key event, BUT
 				//This event is only being triggered for this key anyway.
 				//MAYBE later on add something to properly handle on release and on press?
-				// ability.perform();
+				gameAction.perform();
 			}
 		});
 	}

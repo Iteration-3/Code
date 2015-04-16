@@ -5,7 +5,7 @@ import model.entity.Entity;
 
 public class GameActionMovementDown extends GameActionMovement {
 
-	GameActionMovementDown(Entity entity) {
+	public GameActionMovementDown(Entity entity) {
 		super(entity);
 		// TODO Auto-generated constructor stub
 	}
