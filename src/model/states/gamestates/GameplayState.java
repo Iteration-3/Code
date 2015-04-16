@@ -10,12 +10,12 @@ import model.entity.EntityManager;
 import model.entity.Smasher;
 import model.map.GameTerrain;
 import model.map.tile.PassableTile;
-import controller.GameplayController;
-import controller.Listener;
 import view.EntityView;
 import view.GameplayLayout;
 import view.map.BasicTileView;
 import view.map.TileView;
+import controller.GameplayController;
+import controller.Listener;
 
 public class GameplayState extends GameState {
 	private GameplayController controller;
@@ -39,6 +39,7 @@ public class GameplayState extends GameState {
 		Collection<Listener> listeners = avatar.getListeners();
 		for (Listener listener : listeners) {
 			listener.addAsBinding(getLayout());
+			controller.addEntityListener(listener);
 		}
 		EntityManager.getSingleton().setAvatar(avatar);
 		eView.registerWithGameMapView(layout.getGameEntityView(), loc);
@@ -65,5 +66,7 @@ public class GameplayState extends GameState {
 	public GameplayLayout getLayout() {
 		return layout;
 	}
+
+
 
 }
