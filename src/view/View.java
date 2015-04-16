@@ -25,10 +25,6 @@ public class View extends JFrame implements ActionListener {
 		setLayout(new BorderLayout());
 		
 		initRedrawTimer();
-		
-		/* Let's test the Listener */
-		Listener listener = new Listener(KeyStroke.getKeyStroke('1'), null);
-		//listener.addAsBinding();
 	}
 
 	private void setupFrame() {
