@@ -9,7 +9,7 @@ import model.area.RealCoordinate;
 
 public class EntityManager implements Iterable<Entity> {
 	
-	private static EntityManager _entityManager;	
+	private static EntityManager _entityManager = new EntityManager();	
 	private ArrayList<NPC> partyNpcs;
 	private ArrayList<NPC> nonPartyNpcs;
 	private Avatar avatar;

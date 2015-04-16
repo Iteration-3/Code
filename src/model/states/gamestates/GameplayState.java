@@ -34,7 +34,7 @@ public class GameplayState extends GameState {
 		RealCoordinate loc = new RealCoordinate(50,50);
 		EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange, loc);
 		Avatar avatar = new Smasher("Smasher", eView, loc);
-		EntityManager.setAvatar(avatar);
+		EntityManager.getSingleton().setAvatar(avatar);
 		eView.registerWithGameMapView(layout.getGameMapView(), loc);
 	}
 
