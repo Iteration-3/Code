@@ -1,7 +1,7 @@
 package model.item;
 
 import model.entity.Entity;
-import view.ItemView;
+import view.item.ItemView;
 
 public abstract class Item {
 	

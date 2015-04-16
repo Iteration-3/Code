@@ -17,7 +17,6 @@ import model.slots.SneakWeaponSlot;
 import model.slots.SummonerWeaponSlot;
 import model.statistics.Statistics;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class EquipmentSlotTest {

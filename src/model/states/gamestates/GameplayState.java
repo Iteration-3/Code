@@ -8,10 +8,15 @@ import model.area.RealCoordinate;
 import model.entity.Avatar;
 import model.entity.EntityManager;
 import model.entity.Smasher;
+import model.item.ConsumableItem;
+import model.item.TakeableItem;
 import model.map.GameTerrain;
+import model.map.TakeableItemMap;
 import model.map.tile.PassableTile;
 import view.EntityView;
 import view.GameplayLayout;
+import view.item.BasicItemView;
+import view.item.ItemView;
 import view.map.BasicTileView;
 import view.map.TileView;
 import controller.GameplayController;
@@ -21,6 +26,7 @@ public class GameplayState extends GameState {
 	private GameplayController controller;
 	private GameplayLayout layout;
 	private GameTerrain gameMap;
+	private TakeableItemMap itemMap;
 	
 	public GameplayState(Model model) {
 		super(model);
@@ -28,6 +34,7 @@ public class GameplayState extends GameState {
 		layout = new GameplayLayout();
 		controller = new GameplayController();
 		gameMap = new GameTerrain();
+		itemMap = new TakeableItemMap();
 		this.addTilesTest();
 		this.addEntityTest();
 	}
@@ -52,9 +59,12 @@ public class GameplayState extends GameState {
 				RealCoordinate p = new RealCoordinate(x,y);
 				view.registerWithGameMapView(layout.getGameTerrainView(),p);
 				gameMap.add(new PassableTile(view),p);
-						
 			}
 		}
+		ItemView view = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
+		RealCoordinate p = new RealCoordinate(5,5);
+		view.registerWithGameItemView(layout.getGameItemView(), p);
+		itemMap.add(new ConsumableItem(null), p);
 	}
 
 	@Override
