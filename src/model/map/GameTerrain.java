@@ -10,7 +10,7 @@ import utilities.Point;
 import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 
-public class GameMap implements SavableLoadable{
+public class GameTerrain implements SavableLoadable{
 	
 	private Map<RealCoordinate,Tile> tiles = new HashMap<RealCoordinate, Tile>();
 	

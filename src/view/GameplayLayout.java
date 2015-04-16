@@ -4,19 +4,19 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
-import view.map.GameMapView;
+import view.map.GameTerrainView;
 
 @SuppressWarnings("serial")
 public class GameplayLayout extends Layout {
-	GameMapView test;
+	GameTerrainView test;
 	
 	public GameplayLayout() {
-		test = new GameMapView();
+		test = new GameTerrainView();
 		setBackground(Color.BLACK);
 		setPreferredSize(new Dimension(1024, 768));
 	}
 	
-	public GameMapView getGameMapView(){
+	public GameTerrainView getGameMapView(){
 		return test;
 	}
 	

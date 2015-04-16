@@ -8,7 +8,7 @@ import java.util.Collection;
 import view.EntityView;
 import model.area.RealCoordinate;
 
-public class GameMapView {
+public class GameTerrainView {
 	private TileView[][] tileViews;
 	private static final int NUM_TILES_Y = 18;  // Defines how many tiles we display in the vertical dimension
 												// Also implicitly defines how many we can see horizontally
@@ -20,7 +20,7 @@ public class GameMapView {
 	private int screenWidth;
 	private int screenHeight;
 	
-	public GameMapView() {
+	public GameTerrainView() {
 		tileViews = new TileView[100][100]; //exact sizing just for testing purposes
 		entityViews = new ArrayList<EntityView>();
 	}

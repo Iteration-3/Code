@@ -8,7 +8,7 @@ import model.area.RealCoordinate;
 import model.entity.Avatar;
 import model.entity.EntityManager;
 import model.entity.Smasher;
-import model.map.GameMap;
+import model.map.GameTerrain;
 import model.map.tile.PassableTile;
 import controller.GameplayController;
 import controller.Listener;
@@ -20,14 +20,14 @@ import view.map.TileView;
 public class GameplayState extends GameState {
 	private GameplayController controller;
 	private GameplayLayout layout;
-	private GameMap gameMap;
+	private GameTerrain gameMap;
 	
 	public GameplayState(Model model) {
 		super(model);
 		
 		layout = new GameplayLayout();
 		controller = new GameplayController();
-		gameMap = new GameMap();
+		gameMap = new GameTerrain();
 		this.addTilesTest();
 		this.addEntityTest();
 	}
