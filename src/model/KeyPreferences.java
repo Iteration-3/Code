@@ -109,13 +109,14 @@ public class KeyPreferences implements SavableLoadable {
     }
 
     public static KeyPreferences getInstance() {
-        if(preferences == null) {
-            preferences = new KeyPreferences();// TODO Auto-generated method stub
+        if (preferences == null) {
+            preferences = new KeyPreferences();// TODO Auto-generated method
+                                               // stub
         }
         return preferences;
     }
-    
+
     public KeyPreferences clone() {
-        return (KeyPreferences) clone();
+        return new KeyPreferences(upKey, upRightKey, downRightKey, downKey, downLeftKey, upLeftKey);
     }
 }
