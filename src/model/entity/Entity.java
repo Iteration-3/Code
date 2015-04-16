@@ -71,7 +71,7 @@ public abstract class Entity implements SavableLoadable {
         EntityStatistics derivedStats = this.stats.clone();
         itemManager.merge(derivedStats);
         return derivedStats;
-    };
+    }
 
     /**
      * NOT YET IMPLEMENTED Takes in the angle to move in, always moves one

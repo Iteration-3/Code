@@ -30,8 +30,8 @@ public class Listener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				down = true;
-				System.out.println("I've been pressed down=" + down);
-				gameAction.perform();
+				// System.out.println("I've been pressed down=" + down);
+				// gameAction.perform();
 			}
 			
 		});
@@ -41,7 +41,7 @@ public class Listener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				down = false;
-				System.out.println("I've been released.  down=" + down);
+				// System.out.println("I've been released.  down=" + down);
 			}
 			
 		});
@@ -54,6 +54,16 @@ public class Listener {
 		panel.getInputMap().put(KeyStroke.getKeyStroke("released " + Character.toString(Character.toUpperCase(key.getKeyChar()))), keyUpState);
 		panel.getActionMap().put(keyUpState, keyUpState.getAction());
 		
+	}
+	
+	public boolean isPressed() {
+		return down;
+	}
+
+	public void activate() {
+		if (isPressed()) {
+			gameAction.perform();
+		}
 	}
 	
 }
