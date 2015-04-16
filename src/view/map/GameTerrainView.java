@@ -8,11 +8,10 @@ import java.util.Collection;
 import view.EntityView;
 import model.area.RealCoordinate;
 
-public class GameTerrainView {
+public class GameTerrainView implements GameView{
 	private TileView[][] tileViews;
 	private static final int NUM_TILES_Y = 18;  // Defines how many tiles we display in the vertical dimension
 												// Also implicitly defines how many we can see horizontally
-	private Collection<EntityView> entityViews;
 	 
 	private static final float TILE_DIMENSION_RATIO = (float) (Math.sqrt(3) / 2);
 	
@@ -22,7 +21,6 @@ public class GameTerrainView {
 	
 	public GameTerrainView() {
 		tileViews = new TileView[100][100]; //exact sizing just for testing purposes
-		entityViews = new ArrayList<EntityView>();
 	}
 	
 	public void render(Graphics graphics, int width, int height) {
@@ -33,13 +31,10 @@ public class GameTerrainView {
 			for(int y = 0; y < numberOfVerticalTiles(); ++y) {
 				int renderX = (int) (x * tileWidth() * 0.75);
 				int renderY = (int) (y * tileHeight() + (x % 2) * tileHeight() / 2);
-				if(tileViews[x][y]!=null){
+				if(x < tileViews.length && y < tileViews[0].length && tileViews[x][y]!=null){
 					tileViews[x][y].render(graphics, new RealCoordinate(renderX, renderY), tileWidth());
 				}
 			}
-		}
-		for(EntityView i : entityViews) {
-			i.render(graphics, tileWidth());
 		}
 	}
 	
@@ -81,7 +76,4 @@ public class GameTerrainView {
 		tileViews[(int) p.getX()][(int) p.getY()] = tileView;	
 	}
 
-	public void addEntityView(EntityView entityView) {
-		entityViews.add(entityView);
-	}
 }

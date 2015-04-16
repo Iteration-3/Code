@@ -6,7 +6,6 @@ import java.util.Map;
 import model.area.RealCoordinate;
 import model.entity.Entity;
 import model.map.tile.Tile;
-import utilities.Point;
 import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 

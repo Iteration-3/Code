@@ -10,12 +10,12 @@ import model.entity.EntityManager;
 import model.entity.Smasher;
 import model.map.GameTerrain;
 import model.map.tile.PassableTile;
-import controller.GameplayController;
-import controller.Listener;
 import view.EntityView;
 import view.GameplayLayout;
 import view.map.BasicTileView;
 import view.map.TileView;
+import controller.GameplayController;
+import controller.Listener;
 
 public class GameplayState extends GameState {
 	private GameplayController controller;
@@ -39,9 +39,10 @@ public class GameplayState extends GameState {
 		Collection<Listener> listeners = avatar.getListeners();
 		for (Listener listener : listeners) {
 			listener.addAsBinding(getLayout());
+			controller.addEntityListener(listener);
 		}
 		EntityManager.getSingleton().setAvatar(avatar);
-		eView.registerWithGameMapView(layout.getGameMapView(), loc);
+		eView.registerWithGameMapView(layout.getGameEntityView(), loc);
 	}
 
 	public void addTilesTest(){
@@ -49,7 +50,7 @@ public class GameplayState extends GameState {
 			for(int y = 0; y < 100; ++y) {//Hardcoded for as long as the area is
 				TileView view = new BasicTileView(new Color(0, 200, 200), Color.WHITE);
 				RealCoordinate p = new RealCoordinate(x,y);
-				view.registerWithGameMapView(layout.getGameMapView(),p);
+				view.registerWithGameMapView(layout.getGameTerrainView(),p);
 				gameMap.add(new PassableTile(view),p);
 						
 			}
@@ -65,5 +66,7 @@ public class GameplayState extends GameState {
 	public GameplayLayout getLayout() {
 		return layout;
 	}
+
+
 
 }
