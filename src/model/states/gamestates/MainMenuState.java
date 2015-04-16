@@ -1,14 +1,13 @@
 package model.states.gamestates;
 
-import controller.Controller;
-import controller.GameplayController;
-import controller.MainMenuController;
 import menuactions.ExitGame;
+import menuactions.LoadGame;
 import menuactions.NewGame;
 import model.Model;
-import model.states.State;
 import view.Layout;
 import view.MainMenuLayout;
+import controller.Controller;
+import controller.MainMenuController;
 
 public class MainMenuState extends GameState {
     
@@ -17,7 +16,7 @@ public class MainMenuState extends GameState {
 
     public MainMenuState(Model model) {
         super(model);
-        this.layout = new MainMenuLayout(new NewGame(model), new ExitGame());
+        this.layout = new MainMenuLayout(new NewGame(model), new LoadGame(), new ExitGame());
         this.controller = new MainMenuController();
     }
 
