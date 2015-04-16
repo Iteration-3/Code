@@ -43,10 +43,6 @@ public abstract class Entity implements SavableLoadable {
 
     }
 
-    /**
-     * Constructor Helpers
-     */
-
     private void setNecessities() {
         this.itemManager = this.createItemManager();
         // other things go here
@@ -54,9 +50,6 @@ public abstract class Entity implements SavableLoadable {
 
     protected abstract ItemManager createItemManager();
 
-    /**
-     * Abstract methods
-     */
     public abstract void attack();
 
     public abstract StructuredMap getStructuredMap();
@@ -69,15 +62,6 @@ public abstract class Entity implements SavableLoadable {
     // it can't be
     // Contained in the super class, subclasses provide a way to get it via
     // this.
-
-    /**
-     * Concrete methods begin here
-     * 
-     */
-
-    /**
-     * @param takeable
-     */
 
     public EntityStatistics getBaseStats() {
         return this.stats;

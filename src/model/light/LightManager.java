@@ -1,44 +1,45 @@
 package model.light;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class LightManager {
-	private static ArrayList<LightSource> lightSources;
-	private static LightMap lightMap;
 	
-	public static void update() {
+	private static LightManager _lightManager = new LightManager();
+	private ArrayList<LightSource> lightSources;
+	private LightMap lightMap;
+	
+	private LightManager() { }
+	
+	public static LightManager getLightManager() {
+		return _lightManager;
+	}
+	 
+	public void update() {
 		lightMap.dimLights();
 		for (LightSource lightSource : lightSources) {
 			lightMap.illuminate(lightSource);
 		}
 	}
 	
-	public static void addLightSource(LightSource lightSource) {
-		getLightSources().add(lightSource);
+	public void addLightSource(LightSource lightSource) {
+		lightSources.add(lightSource);
 	}
 	
-	public static boolean removeLightSource(LightSource lightSource) {
-		boolean contains = lightSources.contains(lightSource);
-		if (contains) {
-			lightSources.remove(lightSource);
-		}
-		return contains;
+	public boolean removeLightSource(LightSource lightSource) {
+		return lightSources.remove(lightSource);
 	}
 
-	public static ArrayList<LightSource> getLightSources() {
-		return lightSources;
+	public Collection<LightSource> getLightSources() {
+		return Collections.unmodifiableCollection(lightSources);
 	}
 
-	public static void setLightSources(ArrayList<LightSource> lightSources) {
-		LightManager.lightSources = lightSources;
+	public LightMap getLightMap() {
+		return lightMap;
 	}
 
-	public static LightMap getLightMap() {
-		return LightManager.lightMap;
+	public void setLightMap(LightMap lightMap) {
+		this.lightMap = lightMap;
 	}
-
-	public static void setLightMap(LightMap lightMap) {
-		LightManager.lightMap = lightMap;
-	}
-
 }

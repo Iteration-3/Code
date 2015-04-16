@@ -8,10 +8,10 @@ public abstract class SkillManager implements SavableLoadable {
 	private int bindWoundSkill = 1;
 	private int observeSkill = 1;
 	private int barterSkill = 1;
+	
 	public int getBarterSkill(){
 		return barterSkill;
 	}
-	
 	
 	public int getObserveSkill(){
 		return observeSkill;

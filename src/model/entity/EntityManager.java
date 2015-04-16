@@ -1,6 +1,8 @@
 package model.entity;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -91,20 +93,12 @@ public class EntityManager implements Iterable<Entity> {
 		partyNpcs.add(npc);
 	}
 
-	public ArrayList<NPC> getPartyNpcs() {
-		return partyNpcs;
+	public Collection<NPC> getPartyNpcs() {
+		return Collections.unmodifiableCollection(partyNpcs);
 	}
 
-	public void setPartyNpcs(ArrayList<NPC> partyNpcs) {
-		this.partyNpcs = partyNpcs;
-	}
-
-	public ArrayList<NPC> getNonPartyNpcs() {
-		return nonPartyNpcs;
-	}
-
-	public void setNonPartyNpcs(ArrayList<NPC> nonPartyNpcs) {
-		this.nonPartyNpcs = nonPartyNpcs;
+	public Collection<NPC> getNonPartyNpcs() {
+		return Collections.unmodifiableCollection(nonPartyNpcs);
 	}
 
 	public Avatar getAvatar() {

@@ -1,15 +1,25 @@
 package model.trigger;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import model.entity.EntityManager;
 
 public final class TriggerManager {
-	private static ArrayList<Trigger> partyTriggers = new ArrayList<Trigger>();
-	private static ArrayList<Trigger> nonPartyTriggers = new ArrayList<Trigger>();
-	private static ArrayList<Trigger> neutralTriggers = new ArrayList<Trigger>();
 	
-	public static void update() {
+	private static TriggerManager _triggerManager = new TriggerManager();
+	private ArrayList<Trigger> partyTriggers = new ArrayList<Trigger>();
+	private ArrayList<Trigger> nonPartyTriggers = new ArrayList<Trigger>();
+	private ArrayList<Trigger> neutralTriggers = new ArrayList<Trigger>();
+	
+	private TriggerManager() { }
+	
+	public static TriggerManager getSingleton() {
+		return _triggerManager;
+	}
+	
+	public void update() {
 		for (Trigger t : partyTriggers) {
 			t.handle(EntityManager.getSingleton().getPartyNpcs());
 		}
@@ -25,7 +35,7 @@ public final class TriggerManager {
 		removeExpiredTriggers();
 	}
 	
-	private static void removeExpiredTriggers() {
+	private void removeExpiredTriggers() {
 		for (Trigger t : partyTriggers) {
 			if (t.hasExpired()) {
 				partyTriggers.remove(t);
@@ -43,39 +53,27 @@ public final class TriggerManager {
 		}
 	}
 	
-	public static void addPartyTrigger(Trigger trigger) {
+	public void addPartyTrigger(Trigger trigger) {
 		partyTriggers.add(trigger);
 	}
 
-	public static ArrayList<Trigger> getPartyTriggers() {
-		return partyTriggers;
-	}
-
-	public static void setPartyTriggers(ArrayList<Trigger> partyTriggers) {
-		TriggerManager.partyTriggers = partyTriggers;
+	public Collection<Trigger> getPartyTriggers() {
+		return Collections.unmodifiableCollection(partyTriggers);
 	}
 	
-	public static void addNonPartyTrigger(Trigger trigger) {
+	public void addNonPartyTrigger(Trigger trigger) {
 		nonPartyTriggers.add(trigger);
 	}
 
-	public static ArrayList<Trigger> getNonPartyTriggers() {
-		return nonPartyTriggers;
-	}
-
-	public static void setNonPartyTriggers(ArrayList<Trigger> nonPartyTriggers) {
-		TriggerManager.nonPartyTriggers = nonPartyTriggers;
+	public Collection<Trigger> getNonPartyTriggers() {
+		return Collections.unmodifiableCollection(nonPartyTriggers);
 	}
 	
-	public static void addNeutralTrigger(Trigger trigger) {
+	public void addNeutralTrigger(Trigger trigger) {
 		neutralTriggers.add(trigger);
 	}
 
-	public static ArrayList<Trigger> getNeutralTriggers() {
-		return neutralTriggers;
-	}
-
-	public static void setNeutralTriggers(ArrayList<Trigger> neutralTriggers) {
-		TriggerManager.neutralTriggers = neutralTriggers;
+	public Collection<Trigger> getNeutralTriggers() {
+		return Collections.unmodifiableCollection(neutralTriggers);
 	}
 }
