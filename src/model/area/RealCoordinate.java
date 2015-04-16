@@ -29,7 +29,8 @@ public class RealCoordinate {
         } else if (angle == Angle.UP_LEFT || angle == Angle.UP_RIGHT) {
             xDisplacement = -1;
         }
-        return new RealCoordinate(xDisplacement, yDisplacement);
+
+        return new RealCoordinate(this.getX() + xDisplacement, this.getY() + yDisplacement);
     }
 
     public static TileCoordinate convertToTileCoordinate(RealCoordinate coord) {
