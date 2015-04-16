@@ -80,21 +80,21 @@ public abstract class Entity implements SavableLoadable {
      * @param d
      */
     public void move(Angle angle) {
-    	RealCoordinate nextLocation = this.getLocation().nextLocation(angle);
-    	this.setLocation(nextLocation);
-    	this.setDirection(angle);
+        RealCoordinate nextLocation = this.getLocation().nextLocation(angle);
+        this.setLocation(nextLocation);
+        this.setDirection(angle);
     }
-    
+
     public Collection<Listener> getListeners() {
-    	Collection<Listener> listeners = new ArrayList<Listener>();
-    	// TODO(jraviles) get these from the key preferences
-    	listeners.add(new Listener(KeyStroke.getKeyStroke('1'), new GameActionMovementDownLeft(this)));
-    	listeners.add(new Listener(KeyStroke.getKeyStroke('2'), new GameActionMovementDown(this)));
-    	listeners.add(new Listener(KeyStroke.getKeyStroke('3'), new GameActionMovementDownRight(this)));
-    	listeners.add(new Listener(KeyStroke.getKeyStroke('7'), new GameActionMovementUpLeft(this)));
-    	listeners.add(new Listener(KeyStroke.getKeyStroke('8'), new GameActionMovementUp(this)));
-    	listeners.add(new Listener(KeyStroke.getKeyStroke('9'), new GameActionMovementUpRight(this)));
-    	return listeners;
+        Collection<Listener> listeners = new ArrayList<Listener>();
+        // TODO(jraviles) get these from the key preferences
+        listeners.add(new Listener(KeyStroke.getKeyStroke('1'), new GameActionMovementDownLeft(this)));
+        listeners.add(new Listener(KeyStroke.getKeyStroke('2'), new GameActionMovementDown(this)));
+        listeners.add(new Listener(KeyStroke.getKeyStroke('3'), new GameActionMovementDownRight(this)));
+        listeners.add(new Listener(KeyStroke.getKeyStroke('7'), new GameActionMovementUpLeft(this)));
+        listeners.add(new Listener(KeyStroke.getKeyStroke('8'), new GameActionMovementUp(this)));
+        listeners.add(new Listener(KeyStroke.getKeyStroke('9'), new GameActionMovementUpRight(this)));
+        return listeners;
     }
 
     /**

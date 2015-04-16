@@ -19,6 +19,10 @@ public class Model extends StateMachine<GameState> {
 		view.setLocationRelativeTo(null);
 	}
 	
+	public void removeLayout(Layout layout) {
+	    view.remove(layout);
+	}
+	
 	public Avatar getAvatar() {
 		// TODO link in when we have stuff for the model class
 		return null;

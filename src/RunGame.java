@@ -1,7 +1,7 @@
 import java.awt.EventQueue;
 
 import model.Model;
-import model.states.gamestates.GameplayState;
+import model.states.gamestates.MainMenuState;
 
 public class RunGame {
   public static void main(String[] args) {
@@ -9,7 +9,7 @@ public class RunGame {
       @Override
       public void run() {
         Model gameModel = new Model();
-        gameModel.pushState(new GameplayState(gameModel));
+        gameModel.pushState(new MainMenuState(gameModel));
       }
     });
   }
