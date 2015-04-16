@@ -8,12 +8,17 @@ import javax.swing.Action;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import com.sun.glass.events.KeyEvent;
+
 import view.Layout;
 import model.ability.Ability;
 
 public class Listener {
 	private KeyStroke key;
 	private Ability ability;
+	private boolean down = false;
+	private KeyState keyDownState;
+	private KeyState keyUpState; 
 	
 	public Listener(KeyStroke keystroke, Ability abil){
 		key = keystroke;
@@ -22,17 +27,37 @@ public class Listener {
 	
 	@SuppressWarnings("serial")
 	public void addAsBinding(Layout panel){
-		
-		panel.getInputMap().put(key,this);
-		panel.getActionMap().put(this, new AbstractAction() {
+
+		// Anonymous Classes...
+		keyDownState = new KeyState(new AbstractAction() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//The ActionEvent can be ignored, as it contains the key event, BUT
-				//This event is only being triggered for this key anyway.
-				//MAYBE later on add something to properly handle on release and on press?
-				// ability.perform();
+				down = true;
+				System.out.println("I've been pressed down=" + down);
+				// TODO: gameAction.perform();
 			}
+			
 		});
+		
+		keyUpState = new KeyState(new AbstractAction() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				down = false;
+				System.out.println("I've been released.  down=" + down);
+			}
+			
+		});
+
+		// Register KeyDown Event
+		panel.getInputMap().put(KeyStroke.getKeyStroke("typed " + Character.toString(key.getKeyChar())), keyDownState);
+		panel.getActionMap().put(keyDownState, keyDownState.getAction());
+
+		// Register KeyReleased Event
+		panel.getInputMap().put(KeyStroke.getKeyStroke("released " + Character.toString(Character.toUpperCase(key.getKeyChar()))), keyUpState);
+		panel.getActionMap().put(keyUpState, keyUpState.getAction());
+		
 	}
 	
 }

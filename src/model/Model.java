@@ -1,11 +1,10 @@
 package model;
 
-import view.Layout;
-import view.View;
-import controller.Controller;
 import model.entity.Avatar;
 import model.states.StateMachine;
 import model.states.gamestates.GameState;
+import view.Layout;
+import view.View;
 
 public class Model extends StateMachine<GameState> {
 	private View view;
