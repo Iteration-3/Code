@@ -1,12 +1,10 @@
 package model.map;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 import model.area.RealCoordinate;
 import model.entity.Entity;
-import model.item.Item;
 import model.item.TakeableItem;
 import model.map.tile.TakeableItemTile;
 import utilities.structuredmap.SavableLoadable;
