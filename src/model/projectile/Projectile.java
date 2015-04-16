@@ -44,7 +44,7 @@ public class Projectile implements Cloneable {
 	
 	public void placeOnMap() {
 		this.getTrigger().moveLocation(this.getLocation());
-		TriggerManager.addNeutralTrigger(trigger);
+		TriggerManager.getSingleton().addNeutralTrigger(trigger);
 		ProjectileManager.addProjectile(this);
 	}
 	

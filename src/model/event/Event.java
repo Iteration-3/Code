@@ -36,7 +36,7 @@ public abstract class Event implements Cloneable{
 	}
 	
 	public final void placeOnEventManager() {
-		EventManager.addEvent(this);
+		EventManager.getSingleton().addEvent(this);
 	}
 	
 	public abstract void perform();

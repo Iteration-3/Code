@@ -31,7 +31,7 @@ public class SingleUseTrigger extends Trigger {
     	if (this.getArea().isInRange(entityLocation)) {
     		Event event = this.getEvent().clone();
     		event.setTarget(entity);
-    		EventManager.addEvent(event);
+    		EventManager.getSingleton().addEvent(event);
     		triggered = true;
     	}
     }

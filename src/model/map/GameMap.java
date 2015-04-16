@@ -11,7 +11,9 @@ import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 
 public class GameMap implements SavableLoadable{
+	
 	private Map<RealCoordinate,Tile> tiles = new HashMap<RealCoordinate, Tile>();
+	
 	@Override
 	public StructuredMap getStructuredMap() {
 		// TODO Auto-generated method stub
@@ -22,6 +24,7 @@ public class GameMap implements SavableLoadable{
 	public void load(StructuredMap map) {
 		// TODO Auto-generated method stub	
 	}
+	
 	/**
 	 * Overwrites if tile already there.
 	 * @param t

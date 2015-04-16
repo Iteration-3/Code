@@ -25,11 +25,11 @@ public class ConsumableItem extends TakeableItem {
 
 	@Override
 	public void use(Entity entity) {
-		EventManager.addEvent(new StatisticModifierEvent(stats, entity, duration));
-		EventManager.addEvent(new LivesModifierEvent(stats.getLivesLeft(), entity, duration));
-		EventManager.addEvent(new HealthModifierEvent(stats.getCurrentHealth(), entity, duration));
-		EventManager.addEvent(new MovementModifierEvent(stats.getMovement(), entity, duration));
-		EventManager.addEvent(new ManaModifierEvent(stats.getCurrentMana(), entity, duration));
+		EventManager.getSingleton().addEvent(new StatisticModifierEvent(stats, entity, duration));
+		EventManager.getSingleton().addEvent(new LivesModifierEvent(stats.getLivesLeft(), entity, duration));
+		EventManager.getSingleton().addEvent(new HealthModifierEvent(stats.getCurrentHealth(), entity, duration));
+		EventManager.getSingleton().addEvent(new MovementModifierEvent(stats.getMovement(), entity, duration));
+		EventManager.getSingleton().addEvent(new ManaModifierEvent(stats.getCurrentMana(), entity, duration));
 	}
 
 	@Override

@@ -1,13 +1,12 @@
 package utilities;
 
 public class Point {
+	
 	private int x;
 	private int y;
 	
-	//defaults constructor to 0
 	public Point(){
-		this.x = 0;
-		this.y = 0;
+		this(0, 0);
 	}
 	public Point(int x,int y){
 		this.x = x;
@@ -34,6 +33,7 @@ public class Point {
 	public int getY(){
 		return this.y;
 	}
+	
 	public boolean equals(Point point){
 		if (point.getX() == this.x && point.getY() == this.y){
 			return true;

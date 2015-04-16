@@ -3,9 +3,17 @@ package model.event;
 import java.util.ArrayList;
 
 public class EventManager {
-	private static ArrayList<Event> eventList = new ArrayList<Event>();
 	
-	public static void update() {
+	private static EventManager _eventManager = new EventManager();
+	private ArrayList<Event> eventList = new ArrayList<Event>();
+	
+	private EventManager() { }
+	
+	public static EventManager getSingleton() {
+		return _eventManager;
+	}
+	
+	public void update() {
 		for (Event event : eventList) {
 			event.perform();
 			if (event.hasExpired()) {
@@ -15,14 +23,13 @@ public class EventManager {
 		}
 	}
 	
-	public static void addEvent(Event event) {
+	public void addEvent(Event event) {
 		event.onBegin();
 		eventList.add(event);
 	}
 	
-	protected static boolean removeEvent(Event event) {
-		boolean result = eventList.remove(event);
-		return result;
+	public boolean removeEvent(Event event) {
+		return eventList.remove(event);
 	}
 
 }
