@@ -11,6 +11,7 @@ import model.ItemEntityAssociation;
 import model.area.RealCoordinate;
 import model.entity.Avatar;
 import model.entity.EntityManager;
+import model.entity.GameEntityAssocation;
 import model.entity.Smasher;
 import model.item.TakeableItem;
 import model.map.GameTerrain;
@@ -61,19 +62,16 @@ public class GameplayState extends GameState {
                 new GameActionStatePush(getContext(), new SkillsMenuState()));
         skillsListener.addAsBinding(getLayout());
 
-        
-        Collection<Listener> listeners = avatar.getListeners();
+        Collection<Listener> listeners = new GameEntityAssocation(avatar, gameMap).getListeners();
         for (Listener listener : listeners) {
             listener.addAsBinding(getLayout());
             controller.addEntityListener(listener);
         }
-
         
         EntityManager.getSingleton().setAvatar(avatar);
         eView.registerWithGameMapView(layout.getGameEntityView(), loc);
         
         this.itemEntityAssociation = new ItemEntityAssociation(avatar); 
-
         ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
         RealCoordinate takeableItemViewPosition = new RealCoordinate(5, 5);
         takeableItemView.registerWithGameItemView(layout.getGameItemView(), takeableItemViewPosition);

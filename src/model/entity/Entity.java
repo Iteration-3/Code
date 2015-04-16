@@ -75,22 +75,19 @@ public abstract class Entity implements SavableLoadable {
      * 
      * @param d
      */
-    public void move(Angle angle) {
-        RealCoordinate nextLocation = this.getLocation().nextLocation(angle);
-        this.setLocation(nextLocation);
-        this.setDirection(angle);
+
+    public void move(RealCoordinate loc, Angle angle) {
+    	this.setLocation(loc);
+    	this.setDirection(angle);
+
+    }
+    public RealCoordinate getSpotToMoveTo(Angle angle){
+    	return this.getLocation().nextLocation(angle);
     }
 
     public Collection<Listener> getListeners() {
-        Collection<Listener> listeners = new ArrayList<Listener>();
-        // TODO(jraviles) get these from the key preferences
-        listeners.add(new PollingListener(KeyStroke.getKeyStroke('1'), new GameActionMovement(this, Angle.DOWN_LEFT)));
-        listeners.add(new PollingListener(KeyStroke.getKeyStroke('2'), new GameActionMovement(this, Angle.DOWN)));
-        listeners.add(new PollingListener(KeyStroke.getKeyStroke('3'), new GameActionMovement(this, Angle.DOWN_RIGHT)));
-        listeners.add(new PollingListener(KeyStroke.getKeyStroke('7'), new GameActionMovement(this, Angle.UP_LEFT)));
-        listeners.add(new PollingListener(KeyStroke.getKeyStroke('8'), new GameActionMovement(this, Angle.UP)));
-        listeners.add(new PollingListener(KeyStroke.getKeyStroke('9'), new GameActionMovement(this, Angle.UP_RIGHT)));
-        return listeners;
+    	Collection<Listener> listeners = new ArrayList<Listener>();
+    	return listeners;
     }
 
     /**

@@ -40,9 +40,10 @@ public class GameTerrain implements SavableLoadable{
 	 * @return
 	 */
 	public boolean isPassable(Entity e, RealCoordinate loc){
+		//TODO(mbregg) Make null tiles return true once coords are unfucked
 		Tile t = tiles.get(loc);
 		if(t==null){
-			return false;
+			return true;
 		}
 		return t.isPassable(e);
 	}
