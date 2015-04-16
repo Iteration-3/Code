@@ -4,10 +4,10 @@ import model.entity.Entity;
 import utilities.structuredmap.StructuredMap;
 import view.map.TileView;
 
-public class PassableTile extends Tile{
-	public PassableTile(TileView v) {
+public class ImpassableTile extends Tile {
+
+	public ImpassableTile(TileView v) {
 		super(v);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -24,7 +24,7 @@ public class PassableTile extends Tile{
 
 	@Override
 	public boolean isPassable(Entity e) {
-		return true;
+		return false;
 	}
 
 	@Override

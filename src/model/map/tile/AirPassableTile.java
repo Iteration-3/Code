@@ -5,9 +5,9 @@ import utilities.structuredmap.StructuredMap;
 import view.map.TileView;
 
 public class AirPassableTile extends Tile{
-
 	public AirPassableTile(TileView v) {
 		super(v);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -36,5 +36,4 @@ public class AirPassableTile extends Tile{
 	public void touch(Entity e) {
 		return;
 	}
-
 }

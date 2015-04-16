@@ -16,6 +16,10 @@ public class GameplayLayout extends Layout {
 		setPreferredSize(new Dimension(1024, 768));
 	}
 	
+	public GameMapView getGameMapView(){
+		return test;
+	}
+	
 	@Override
 	public void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);

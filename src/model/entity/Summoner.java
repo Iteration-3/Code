@@ -1,5 +1,6 @@
 package model.entity;
 
+import model.area.RealCoordinate;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
@@ -7,8 +8,8 @@ import view.EntityView;
 public class Summoner extends Avatar {
 	protected ItemManager itemManger = new ItemManager(this);
 	
-	public Summoner(String name, EntityView view) {
-		super(name, view);
+	public Summoner(String name, EntityView view, RealCoordinate loc) {
+		super(name, view, loc);
 	}
 
 	protected ItemManager createItemManager() {

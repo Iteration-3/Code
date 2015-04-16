@@ -1,14 +1,14 @@
 package model.entity;
 
+import model.area.RealCoordinate;
 import view.EntityView;
-
 
 public abstract class Avatar extends Entity {
 	
 	public Avatar(){}
 
-	public Avatar(String name, EntityView view){
-		super(name,view);
+	public Avatar(String name, EntityView view, RealCoordinate loc){
+		super(name, view, loc);
 	}
 	
 	@Override 
@@ -26,6 +26,4 @@ public abstract class Avatar extends Entity {
 	//like an uneeded ovverride, so won't do until needed.
 	
 	//getListeners will be needed
-	
-
 }

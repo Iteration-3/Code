@@ -1,28 +1,26 @@
 package controller;
 
+import gameactions.GameAction;
+
 import java.awt.event.ActionEvent;
-import java.beans.PropertyChangeListener;
 
 import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import com.sun.glass.events.KeyEvent;
 
 import view.Layout;
-import model.ability.Ability;
 
 public class Listener {
 	private KeyStroke key;
-	private Ability ability;
+	private GameAction gameAction;
 	private boolean down = false;
 	private KeyState keyDownState;
 	private KeyState keyUpState; 
 	
-	public Listener(KeyStroke keystroke, Ability abil){
+	public Listener(KeyStroke keystroke, GameAction gameAction){
 		key = keystroke;
-		ability = abil;
+		this.gameAction = gameAction;
 	}
 	
 	@SuppressWarnings("serial")
@@ -35,7 +33,7 @@ public class Listener {
 			public void actionPerformed(ActionEvent e) {
 				down = true;
 				System.out.println("I've been pressed down=" + down);
-				// TODO: gameAction.perform();
+				gameAction.perform();
 			}
 			
 		});

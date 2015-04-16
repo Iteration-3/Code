@@ -6,11 +6,14 @@ import java.util.Map;
 import model.area.RealCoordinate;
 import model.entity.Entity;
 import model.map.tile.Tile;
+import utilities.Point;
 import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 
 public class GameMap implements SavableLoadable{
+	
 	private Map<RealCoordinate,Tile> tiles = new HashMap<RealCoordinate, Tile>();
+	
 	@Override
 	public StructuredMap getStructuredMap() {
 		// TODO Auto-generated method stub
@@ -20,6 +23,15 @@ public class GameMap implements SavableLoadable{
 	@Override
 	public void load(StructuredMap map) {
 		// TODO Auto-generated method stub	
+	}
+	
+	/**
+	 * Overwrites if tile already there.
+	 * @param t
+	 * @param p 
+	 */
+	public void add(Tile t, RealCoordinate p){
+		tiles.put(p,t);
 	}
 	/**
 	 * If the tile is passable, returns if it can be passed by the given entity, else

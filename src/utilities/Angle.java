@@ -27,18 +27,12 @@ public enum Angle {
     }
 
     public Angle getLeft() {
-        Angle[] values = Angle.values(); // Note this is an expensive operation,
-                                         // we might want to cache this if it
-                                         // slows the game enough.
-        if (this.ordinal() > 0) {
-            return values[this.ordinal() - 1];
-        } else {
-            return values[values.length - 1];
-        }
+        Angle[] values = Angle.values();
+        return values[(ordinal() - 1 + values.length) % values.length];
     }
 
     public Angle getRight() {
         Angle[] values = Angle.values();
-        return values[(this.ordinal() + 1) % values.length];
+        return Angle.values()[(ordinal() + 1) % values.length];
     }
 }

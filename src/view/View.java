@@ -15,6 +15,7 @@ import controller.Listener;
 
 @SuppressWarnings("serial")
 public class View extends JFrame implements ActionListener {
+	
 	private static final int FPS = 30;
 	private static final int REDRAW_INTERVAL = 1000 / FPS;
 	

@@ -1,13 +1,14 @@
 package model.entity;
 
+import model.area.RealCoordinate;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 
 public class Sneak extends Avatar {
 
-	public Sneak(String name, EntityView view) {
-		super(name, view);
+	public Sneak(String name, EntityView view, RealCoordinate loc) {
+		super(name, view,loc);
 	}
 
 	protected ItemManager createItemManager() {
@@ -38,6 +39,5 @@ public class Sneak extends Avatar {
 		
 	}
 	//Wasn't sneak going to have creap, and pickpocket? Not in uml anymore, we should discuss
-
 
 }

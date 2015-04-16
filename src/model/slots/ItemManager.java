@@ -10,6 +10,7 @@ import model.item.Weapon;
 import model.statistics.Statistics;
 
 public class ItemManager {
+	
 	private EquipmentManager equipment;
 	private Inventory inventory;
 
@@ -37,7 +38,6 @@ public class ItemManager {
 		this.equipment.merge(statistitcs);
 	}
 
-	/************ INVENTORY ********************/
 	public boolean addItem(TakeableItem item) {
 		return this.inventory.addItem(item);
 	}
@@ -70,7 +70,6 @@ public class ItemManager {
 		return this.inventoryHasItem(item);
 	}
 
-	/***************************** EQUIPMENT ********************************/
 	//this is used to equip a item, it can always fail
 	private boolean tryToEquip(EquipableItem item){
 		return item.equip (this.equipment);
