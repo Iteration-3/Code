@@ -67,7 +67,7 @@ public class ItemManager {
 	}
 
 	public boolean inventoryHasItem(TakeableItem item){
-		return this.inventoryHasItem(item);
+		return this.inventory.hasItem(item);
 	}
 
 	//this is used to equip a item, it can always fail

@@ -87,6 +87,15 @@ public class Inventory {
 		}
 		return false;
 	}
+	
+	//tells you whether there is a item in the Slots
+	public boolean hasItem(TakeableItem item){
+		for (InventorySlot in : slots){
+			if(in.hasItem(item))
+				return true;
+		}
+		return false;
+	}
 
 	/*************REMOVE********************************************/
 	public TakeableItem removeItem(TakeableItem item) throws Exception{
