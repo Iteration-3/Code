@@ -49,13 +49,12 @@ public class Listener {
 
         // Register KeyDown Event
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
-                KeyStroke.getKeyStroke("pressed " + Character.toString(Character.toUpperCase(key.getKeyChar()))),
-                keyDownState);
+                key, keyDownState);
         panel.getActionMap().put(keyDownState, keyDownState.getAction());
 
         // Register KeyReleased Event
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
-                KeyStroke.getKeyStroke("released " + Character.toString(Character.toUpperCase(key.getKeyChar()))),
+                KeyStroke.getKeyStroke("released " + getKey().toString().replaceAll("(pressed|typed) ", "")),
                 keyUpState);
         panel.getActionMap().put(keyUpState, keyUpState.getAction());
 

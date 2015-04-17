@@ -28,7 +28,7 @@ public class FireOnceListener extends Listener {
         });
         
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
-                KeyStroke.getKeyStroke("released " + Character.toString(Character.toUpperCase(getKey().getKeyChar()))),
+                KeyStroke.getKeyStroke("released " + getKey().toString().replaceAll("(pressed|typed) ", "")),  // This definitely isn't good...
                 keyUpState);
         panel.getActionMap().put(keyUpState, keyUpState.getAction());
     }

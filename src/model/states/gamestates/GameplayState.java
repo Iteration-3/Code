@@ -3,6 +3,7 @@ package model.states.gamestates;
 import gameactions.GameActionStateSwitchPause;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.util.Collection;
 
 import javax.swing.KeyStroke;
@@ -48,7 +49,7 @@ public class GameplayState extends GameState {
         EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange, loc);
         Avatar avatar = new Smasher("Smasher", eView, loc);
         
-        Listener escapeListener = new FireOnceListener(KeyStroke.getKeyStroke('6'),
+        Listener escapeListener = new FireOnceListener(KeyStroke.getKeyStroke("ESCAPE"),
                 new GameActionStateSwitchPause(getModel()));
         escapeListener.addAsBinding(getLayout());
         controller.addEntityListener(escapeListener);
