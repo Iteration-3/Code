@@ -104,7 +104,7 @@ public class GameplayState extends GameState {
                 getContext(), new PauseMenuState()));
         escapeListener.addAsBinding(getLayout());
         Listener inventoryListener = new SingleUseListener(preferences.getInventoryKey(), new GameActionStatePush(
-                getContext(), new InventoryMenuState()));
+                getContext(), new InventoryMenuState(avatar)));
         inventoryListener.addAsBinding(getLayout());
 
         Listener skillsListener = new SingleUseListener(preferences.getSkillsKey(), new GameActionStatePush(

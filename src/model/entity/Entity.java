@@ -13,6 +13,7 @@ import utilities.Angle;
 import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
+import view.InventoryView;
 import controller.listener.Listener;
 
 public abstract class Entity implements SavableLoadable {
@@ -190,4 +191,13 @@ public abstract class Entity implements SavableLoadable {
     public void addMana(int mana) {
         stats.addMana(mana);
     }
+    
+    
+    //DELETE ME AFTER FIXING    FOR TESTING PURPOSES
+    
+    public InventoryView getInventoryView(){
+    	return this.itemManager.getInventoryView();
+    }
+    
+    
 }
