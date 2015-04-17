@@ -7,8 +7,12 @@ import view.map.TileView;
 public abstract class Tile implements SavableLoadable {
 	private TileView view;
 	
-	public Tile(TileView v){
-		view = v;
+	public Tile(TileView view){
+		view = view;
+	}
+	
+	public TileView getView() {
+		return view;
 	}
 	
 	public abstract boolean isPassable(Entity e);
