@@ -8,6 +8,7 @@ import java.util.Collection;
 import javax.swing.KeyStroke;
 
 import model.ItemEntityAssociation;
+import model.KeyPreferences;
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import model.entity.Avatar;
@@ -44,38 +45,42 @@ public class GameplayState extends GameState {
 
     @Override
     public void onEnter() {
-    	super.onEnter();
+        super.onEnter();
         addTilesTest();
         addEntityTest();
     }
-    
+
     public void addEntityTest() {
         TileCoordinate loc = new TileCoordinate(3, 3);
-        EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange, TileCoordinate.convertToRealCoordinate(loc));
+        EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange,
+                TileCoordinate.convertToRealCoordinate(loc));
         Avatar avatar = new Smasher("Smasher", eView, loc);
-        
-        Listener escapeListener = new SingleUseListener(KeyStroke.getKeyStroke("ESCAPE"),
-                new GameActionStatePush(getContext(), new PauseMenuState()));
+
+        KeyPreferences preferences = new KeyPreferences();
+        super.setPrefrences(preferences);
+
+        Listener escapeListener = new SingleUseListener(preferences.getPauseKey(), new GameActionStatePush(
+                getContext(), new PauseMenuState()));
         escapeListener.addAsBinding(getLayout());
-        
-        Listener inventoryListener = new SingleUseListener(KeyStroke.getKeyStroke("I"),
-                new GameActionStatePush(getContext(), new InventoryMenuState()));
+
+        Listener inventoryListener = new SingleUseListener(preferences.getInventoryKey(), new GameActionStatePush(
+                getContext(), new InventoryMenuState()));
         inventoryListener.addAsBinding(getLayout());
-        
-        Listener skillsListener = new SingleUseListener(KeyStroke.getKeyStroke("S"),
-                new GameActionStatePush(getContext(), new SkillsMenuState()));
+
+        Listener skillsListener = new SingleUseListener(preferences.getSkillsKey(), new GameActionStatePush(
+                getContext(), new SkillsMenuState()));
         skillsListener.addAsBinding(getLayout());
 
-        Collection<Listener> listeners = new GameEntityAssocation(avatar, gameMap).getListeners();
+        Collection<Listener> listeners = new GameEntityAssocation(avatar, gameMap).getListeners(preferences);
         for (Listener listener : listeners) {
             listener.addAsBinding(getLayout());
             controller.addEntityListener(listener);
         }
-        
+
         EntityManager.getSingleton().setAvatar(avatar);
         eView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(loc));
-        
-        this.itemEntityAssociation = new ItemEntityAssociation(avatar); 
+
+        this.itemEntityAssociation = new ItemEntityAssociation(avatar);
         ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
         RealCoordinate takeableItemViewPosition = new RealCoordinate(5, 5);
         takeableItemView.registerWithGameItemView(layout.getGameItemView(), takeableItemViewPosition);
@@ -108,15 +113,15 @@ public class GameplayState extends GameState {
     public GameplayLayout getLayout() {
         return layout;
     }
-    
+
     @Override
     public GameplayController getController() {
-    	return controller;
+        return controller;
     }
-    
+
     @Override
-    public void update(){
-    	//TODO poll here.
+    public void update() {
+        // TODO poll here.
     }
 
 }
