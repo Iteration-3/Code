@@ -3,9 +3,6 @@ package view.layout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
 
 import view.components.MenuButton;
 import controller.CharacterSelectionController;
