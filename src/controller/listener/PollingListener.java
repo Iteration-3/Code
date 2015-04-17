@@ -9,7 +9,7 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import controller.KeyState;
-import view.Layout;
+import view.layout.Layout;
 
 public class PollingListener extends Listener {
 

@@ -4,7 +4,7 @@ import gameactions.GameAction;
 
 import javax.swing.KeyStroke;
 
-import view.Layout;
+import view.layout.Layout;
 
 public abstract class Listener {
     private KeyStroke key;

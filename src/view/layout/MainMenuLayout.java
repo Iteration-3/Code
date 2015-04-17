@@ -1,11 +1,8 @@
-package view;
+package view.layout;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
 
 import controller.MainMenuController;
 import view.components.MenuButton;
@@ -41,26 +38,11 @@ public class MainMenuLayout extends Layout {
         add(exitGameButton);
     }
     
-    public void setController(MainMenuController controller) {
-    	newGameButton.addActionListener(new AbstractAction(){
-    		@Override
-    		public void actionPerformed(ActionEvent e) {
-    			controller.newGame();
-    		}
-    	});
+    public void attachController(MainMenuController controller) {
+    	newGameButton.addActionListener(controller.getNewGameAction());
     	
-    	loadGameButton.addActionListener(new AbstractAction(){
-    		@Override
-    		public void actionPerformed(ActionEvent e) {
-    			controller.loadGame();
-    		}
-    	});
+    	loadGameButton.addActionListener(controller.getLoadGameAction());
     	
-    	exitGameButton.addActionListener(new AbstractAction(){
-    		@Override
-    		public void actionPerformed(ActionEvent e) {
-    			controller.exitGame();
-    		}
-    	});
+    	exitGameButton.addActionListener(controller.getExitAction());
     }   
 }

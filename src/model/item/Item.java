@@ -1,6 +1,7 @@
 package model.item;
 
 import model.entity.Entity;
+import model.map.tile.ItemTile;
 import view.item.ItemView;
 
 public abstract class Item {
@@ -20,5 +21,11 @@ public abstract class Item {
 	public boolean isBlocking() {
 		return false;
 	}
+	
+	// I am brainstorming on whether this is the way to remove the Item
+	// From the ItemTile.
+	// When Items are added to the Inventory, there is nothing notifying 
+	// the tile that the Items have been removed. 
+	public abstract void attemptRemoveFrom(ItemTile itemTile);
 
 }

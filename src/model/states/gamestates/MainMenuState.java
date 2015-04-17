@@ -1,6 +1,6 @@
 package model.states.gamestates;
 
-import view.MainMenuLayout;
+import view.layout.MainMenuLayout;
 import controller.MainMenuController;
 
 public class MainMenuState extends GameState {
@@ -16,12 +16,17 @@ public class MainMenuState extends GameState {
     public void onEnter() {
         super.onEnter();
         controller = new MainMenuController(getContext());
-        layout.setController(controller);        
+        layout.attachController(controller);        
     }
 
     @Override
     protected MainMenuLayout getLayout() {
-        return this.layout;
+        return layout;
+    }
+    
+    @Override
+    protected MainMenuController getController() {
+    	return controller;
     }
 
 }

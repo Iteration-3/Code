@@ -8,7 +8,7 @@ import keyRemapping.KeyMappingUp;
 import keyRemapping.KeyMappingUpLeft;
 import keyRemapping.KeyMappingUpRight;
 import model.KeyPreferences;
-import view.Layout;
+import view.layout.Layout;
 
 public class RebindingController {
     KeyPreferences keyPreferences = KeyPreferences.getInstance().clone();

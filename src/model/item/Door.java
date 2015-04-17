@@ -1,6 +1,7 @@
 package model.item;
 
 import model.entity.Entity;
+import model.map.tile.ItemTile;
 import view.item.ItemView;
 
 public class Door extends Item {
@@ -36,6 +37,15 @@ public class Door extends Item {
 	@Override
 	public boolean isBlocking() {
 		return !open;
+	}
+
+	@Override
+	public void attemptRemoveFrom(ItemTile itemTile) {
+		// TODO Auto-generated method stub
+		// Should this be removed if open? 
+		if (open) {
+			itemTile.remove(this);
+		}
 	}
 
 }

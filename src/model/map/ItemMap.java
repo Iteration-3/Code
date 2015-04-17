@@ -7,7 +7,7 @@ import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import model.entity.Entity;
 import model.item.TakeableItem;
-import model.map.tile.TakeableItemTile;
+import model.map.tile.ItemTile;
 import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 /**
@@ -21,8 +21,8 @@ import utilities.structuredmap.StructuredMap;
  * Perhaps they could be pruned when empty, but not atm.
  *
  */
-public class TakeableItemMap implements SavableLoadable {
-	private Map<TileCoordinate,TakeableItemTile> items = new HashMap<TileCoordinate, TakeableItemTile>();
+public class ItemMap implements SavableLoadable {
+	private Map<TileCoordinate,ItemTile> items = new HashMap<TileCoordinate, ItemTile>();
 	
 	@Override
 	public StructuredMap getStructuredMap() {
@@ -35,24 +35,24 @@ public class TakeableItemMap implements SavableLoadable {
 		
 	}
 
-	private TakeableItemTile getItemTileAtLocation(TileCoordinate loc) {
-		TakeableItemTile t = items.get(loc);
+	private ItemTile getItemTileAtLocation(TileCoordinate loc) {
+		ItemTile t = items.get(loc);
 		if (t == null) {
-			t = new TakeableItemTile();
+			t = new ItemTile();
 		}
 		items.put(loc, t);
 		return t;
 	}
 
 	
-	public void touch(Entity e) {
+	public void touch(Entity e, TileCoordinate tileCoordinate) {
 		//Takes an entity, makes it touch all the items on the square, and then removes
 		//those items that get picked up from the map. 
 		getItemTileAtLocation(e.getLocation()).touch(e);
 		
 	}
 	public void add(TakeableItem i, RealCoordinate loc){
-		System.out.println(RealCoordinate.convertToTileCoordinate(loc));
+		// System.out.println(RealCoordinate.convertToTileCoordinate(loc));
 		getItemTileAtLocation(RealCoordinate.convertToTileCoordinate(loc)).addItem(i);
 	}
 

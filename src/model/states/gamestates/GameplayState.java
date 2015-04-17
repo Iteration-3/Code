@@ -12,14 +12,15 @@ import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.entity.EntityManager;
+import model.entity.GameEntityAssocation;
 import model.entity.Smasher;
 import model.item.TakeableItem;
 import model.map.GameTerrain;
 import model.map.tile.PassableTile;
 import view.EntityView;
-import view.GameplayLayout;
 import view.item.BasicItemView;
 import view.item.ItemView;
+import view.layout.GameplayLayout;
 import view.map.BasicTileView;
 import view.map.TileView;
 import controller.GameplayController;
@@ -53,7 +54,6 @@ public class GameplayState extends GameState {
         Listener escapeListener = new SingleUseListener(KeyStroke.getKeyStroke("ESCAPE"),
                 new GameActionStatePush(getContext(), new PauseMenuState()));
         escapeListener.addAsBinding(getLayout());
-        //controller.addEntityListener(escapeListener);
         
         Listener inventoryListener = new SingleUseListener(KeyStroke.getKeyStroke("I"),
                 new GameActionStatePush(getContext(), new InventoryMenuState()));
@@ -63,23 +63,25 @@ public class GameplayState extends GameState {
                 new GameActionStatePush(getContext(), new SkillsMenuState()));
         skillsListener.addAsBinding(getLayout());
 
-        
-        Collection<Listener> listeners = avatar.getListeners();
+        Collection<Listener> listeners = new GameEntityAssocation(avatar, gameMap).getListeners();
         for (Listener listener : listeners) {
             listener.addAsBinding(getLayout());
             controller.addEntityListener(listener);
         }
-
         
         EntityManager.getSingleton().setAvatar(avatar);
         eView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(loc));
         
         this.itemEntityAssociation = new ItemEntityAssociation(avatar); 
+        ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
+        RealCoordinate takeableItemViewPosition = new RealCoordinate(5, 5);
+        takeableItemView.registerWithGameItemView(layout.getGameItemView(), takeableItemViewPosition);
+        itemEntityAssociation.addItem(new TakeableItem(takeableItemView), takeableItemViewPosition);
 
-        ItemView view = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
-        RealCoordinate p = new RealCoordinate(5, 5);
-        view.registerWithGameItemView(layout.getGameItemView(), p);
-        itemEntityAssociation.addItem(new TakeableItem(view), p);
+        ItemView obstacleItemView = new BasicItemView(Color.GRAY, Color.BLACK);
+        RealCoordinate obstacleItemPosition = new RealCoordinate(9, 7);
+        obstacleItemView.registerWithGameItemView(layout.getGameItemView(), obstacleItemPosition);
+        itemEntityAssociation.addItem(new TakeableItem(obstacleItemView), obstacleItemPosition);
     }
 
     public void addTilesTest() {
@@ -87,8 +89,8 @@ public class GameplayState extends GameState {
             for (int y = 0; y < 100; ++y) {// Hardcoded for as long as the area
                                            // is
                 TileView view = new BasicTileView(new Color(0, 200, 200), Color.WHITE);
-                RealCoordinate p = new RealCoordinate(x, y);
-                view.registerWithGameMapView(layout.getGameTerrainView(), p);
+                TileCoordinate p = new TileCoordinate(x, y);
+                view.registerWithGameMapView(layout.getGameTerrainView(), TileCoordinate.convertToRealCoordinate(p));
                 gameMap.add(new PassableTile(view), p);
             }
         }
@@ -97,6 +99,11 @@ public class GameplayState extends GameState {
     @Override
     public GameplayLayout getLayout() {
         return layout;
+    }
+    
+    @Override
+    public GameplayController getController() {
+    	return controller;
     }
 
 }

@@ -3,8 +3,8 @@ package model;
 import model.entity.Avatar;
 import model.states.StateMachine;
 import model.states.gamestates.GameState;
-import view.Layout;
 import view.View;
+import view.layout.Layout;
 
 public class Model extends StateMachine<GameState> {
 	private View view;
@@ -20,14 +20,18 @@ public class Model extends StateMachine<GameState> {
 		super.pushState(state);
 	}
 	
+	@Override
+	public void switchState(GameState state){
+		state.setContext(this); // same issue as above
+		super.switchState(state);
+	}
+	
 	public void setLayout(Layout layout) {
-		view.add(layout);
-		view.pack();
-		view.setLocationRelativeTo(null);
+		view.addGameLayout(layout);
 	}
 	
 	public void removeLayout(Layout layout) {
-	    view.remove(layout);
+	    view.removeGameLayout(layout);
 	}
 	
 	public Avatar getAvatar() {
