@@ -1,16 +1,19 @@
 package model.event;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class EventManager {
 	
-	private static EventManager _eventManager = new EventManager();
-	private ArrayList<Event> eventList = new ArrayList<Event>();
+	private static EventManager eventManager = new EventManager();
+	private List<Event> eventList = new CopyOnWriteArrayList<Event>();
 	
-	private EventManager() { }
+	private EventManager() { 
+		
+	}
 	
 	public static EventManager getSingleton() {
-		return _eventManager;
+		return eventManager;
 	}
 	
 	public void update() {
