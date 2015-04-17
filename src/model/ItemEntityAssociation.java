@@ -20,7 +20,11 @@ public class ItemEntityAssociation implements ActionListener {
 		startTimer();
 	}
 	
-	public void addItem(Item item, RealCoordinate position) {
+	public ItemMap getItemMap(){
+		return itemMap;
+	}
+	
+	public void addItem(Item item, TileCoordinate position) {
 		itemMap.add(item, position);
 	}
 

@@ -7,31 +7,32 @@ import gameactions.GameActionMovement;
 
 import java.util.Collection;
 
-import javax.swing.KeyStroke;
-
+import model.KeyPreferences;
+import model.map.GameTerrain;
+import model.map.ItemMap;
 import utilities.Angle;
 import controller.listener.Listener;
 import controller.listener.PollingListener;
-import model.KeyPreferences;
-import model.map.GameTerrain;
 
 public class GameEntityAssocation {
 	private Entity entity;
 	private GameTerrain terrain;
-	public GameEntityAssocation(Entity entity, GameTerrain terrain){
+	private ItemMap itemMap;
+	public GameEntityAssocation(Entity entity, GameTerrain terrain, ItemMap itemMap){
 		this.entity = entity;
 		this.terrain = terrain;
+		this.itemMap = itemMap;
 
 	}
 	public Collection<Listener> getListeners(KeyPreferences preferences){
 		Collection<Listener> listeners = entity.getListeners();
 		// TODO(jraviles) get these from the key preferences
-		listeners.add(new PollingListener(preferences.getUpLeftKey(), new GameActionMovement(entity,terrain,Angle.UP_LEFT)));
-		listeners.add(new PollingListener(preferences.getDownKey(), new GameActionMovement(entity,terrain,Angle.DOWN)));
-		listeners.add(new PollingListener(preferences.getDownRightKey(), new GameActionMovement(entity,terrain,Angle.DOWN_RIGHT)));
-		listeners.add(new PollingListener(preferences.getDownLeftKey(), new GameActionMovement(entity,terrain,Angle.DOWN_LEFT)));
-		listeners.add(new PollingListener(preferences.getUpRightKey(), new GameActionMovement(entity,terrain,Angle.UP_RIGHT)));
-		listeners.add(new PollingListener(preferences.getUpKey(), new GameActionMovement(entity,terrain,Angle.UP)));
+		listeners.add(new PollingListener(preferences.getUpLeftKey(), new GameActionMovement(entity,terrain, itemMap, Angle.UP_LEFT)));
+		listeners.add(new PollingListener(preferences.getDownKey(), new GameActionMovement(entity,terrain, itemMap, Angle.DOWN)));
+		listeners.add(new PollingListener(preferences.getDownRightKey(), new GameActionMovement(entity,terrain, itemMap,Angle.DOWN_RIGHT)));
+		listeners.add(new PollingListener(preferences.getDownLeftKey(), new GameActionMovement(entity,terrain, itemMap, Angle.DOWN_LEFT)));
+		listeners.add(new PollingListener(preferences.getUpRightKey(), new GameActionMovement(entity,terrain, itemMap, Angle.UP_RIGHT)));
+		listeners.add(new PollingListener(preferences.getUpKey(), new GameActionMovement(entity,terrain, itemMap, Angle.UP)));
 		return listeners;
 	}
 

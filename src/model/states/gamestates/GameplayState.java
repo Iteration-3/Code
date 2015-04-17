@@ -17,6 +17,7 @@ import model.item.ObstacleItem;
 import model.item.OneShotItem;
 import model.item.TakeableItem;
 import model.map.GameTerrain;
+import model.map.ItemMap;
 import model.map.tile.ImpassableTile;
 import model.map.tile.PassableTile;
 import model.statistics.EntityStatistics;
@@ -69,8 +70,12 @@ public class GameplayState extends GameState {
 		Listener skillsListener = new SingleUseListener(preferences.getSkillsKey(), new GameActionStatePush(
 				getContext(), new SkillsMenuState()));
 		skillsListener.addAsBinding(getLayout());
+		
+		this.itemEntityAssociation = new ItemEntityAssociation(avatar);
 
-		Collection<Listener> listeners = new GameEntityAssocation(avatar, gameMap).getListeners(preferences);
+		Collection<Listener> listeners = 
+				new GameEntityAssocation(avatar, gameMap,
+						itemEntityAssociation.getItemMap()).getListeners(preferences);
 		for (Listener listener : listeners) {
 			listener.addAsBinding(getLayout());
 			controller.addEntityListener(listener);
@@ -79,21 +84,21 @@ public class GameplayState extends GameState {
 		EntityManager.getSingleton().setAvatar(avatar);
 		eView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(loc));
 
-		this.itemEntityAssociation = new ItemEntityAssociation(avatar);
+		
 		ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
 		RealCoordinate takeableItemViewPosition = new RealCoordinate(5, 5);
 		takeableItemView.registerWithGameItemView(layout.getGameItemView(), takeableItemViewPosition);
-		itemEntityAssociation.addItem(new TakeableItem(takeableItemView), takeableItemViewPosition);
+		itemEntityAssociation.addItem(new TakeableItem(takeableItemView), RealCoordinate.convertToTileCoordinate(takeableItemViewPosition));
 
 		ItemView obstacleItemView = new BasicItemView(Color.GRAY, Color.BLACK);
 		RealCoordinate obstacleItemPosition = new RealCoordinate(9, 7);
 		obstacleItemView.registerWithGameItemView(layout.getGameItemView(), obstacleItemPosition);
-		itemEntityAssociation.addItem(new ObstacleItem(obstacleItemView), obstacleItemPosition);
+		itemEntityAssociation.addItem(new ObstacleItem(obstacleItemView), RealCoordinate.convertToTileCoordinate(obstacleItemPosition));
 
 		ItemView oneshotItemView = new BasicItemView(Color.GRAY, Color.BLACK);
 		RealCoordinate oneshotItemPosition = new RealCoordinate(13, 9);
 		oneshotItemView.registerWithGameItemView(layout.getGameItemView(), oneshotItemPosition);
-		itemEntityAssociation.addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), oneshotItemPosition);
+		itemEntityAssociation.addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), RealCoordinate.convertToTileCoordinate(oneshotItemPosition));
 	}
 
 	public void addTilesTest() {
