@@ -12,7 +12,7 @@ public class PauseGame extends StatePush {
 
     @Override
     protected GameState stateToPush() {
-        return new PauseMenuState(getModel());
+        return new PauseMenuState();
     }
 
 }

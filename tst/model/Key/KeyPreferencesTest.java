@@ -23,7 +23,8 @@ public class KeyPreferencesTest {
         frame.setSize(500, 500);
         layout = new Layout();
         controller = new RebindingController();
-        layout.setController(controller);
+        //layout.setController(controller); // TODO: i (Daniel) removed this because i revamped the Layout interface
+        									// which causes this to no longer makes sense...
         frame.add(layout);
     }
 

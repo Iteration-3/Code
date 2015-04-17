@@ -1,37 +1,66 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
+import javax.swing.AbstractAction;
+
+import controller.MainMenuController;
 import view.components.MenuButton;
 
 @SuppressWarnings("serial")
-public class MainMenuLayout extends MenuLayout {
-
+public class MainMenuLayout extends Layout {	
     private MenuButton newGameButton;
     private MenuButton loadGameButton;
     private MenuButton exitGameButton;
 
-    public MainMenuLayout(ActionListener newGame, ActionListener loadGame, ActionListener exitGame) {
-
-        this.newGameButton = new MenuButton("New Game");
-        super.formatButton(newGameButton, Color.CYAN);
-        this.newGameButton.addActionListener(newGame);
-
-        this.loadGameButton = new MenuButton("Load Game");
-        super.formatButton(loadGameButton, Color.GRAY);
-        this.loadGameButton.addActionListener(loadGame);
-
-        this.exitGameButton = new MenuButton("Exit Game");
-        super.formatButton(exitGameButton, Color.CYAN);
-        this.exitGameButton.addActionListener(exitGame);
-
+    public MainMenuLayout() {
+    	setPreferredSize(new Dimension(1024, 768));
         setLayout(new GridLayout(3, 1));
+        
+        initButtons();
+        addButtons();
+    }
+    
+    private void initButtons() {
+        newGameButton = new MenuButton("NEW GAME");
+        newGameButton.setColor(Color.CYAN);
+        
+        loadGameButton = new MenuButton("LOAD GAME");
+        loadGameButton.setColor(Color.GRAY);
 
+        exitGameButton = new MenuButton("EXIT GAME");
+        exitGameButton.setColor(Color.CYAN);
+    }
+    
+    private void addButtons() {
         add(newGameButton);
         add(loadGameButton);
         add(exitGameButton);
     }
-
+    
+    public void setController(MainMenuController controller) {
+    	newGameButton.addActionListener(new AbstractAction(){
+    		@Override
+    		public void actionPerformed(ActionEvent e) {
+    			controller.newGame();
+    		}
+    	});
+    	
+    	loadGameButton.addActionListener(new AbstractAction(){
+    		@Override
+    		public void actionPerformed(ActionEvent e) {
+    			controller.loadGame();
+    		}
+    	});
+    	
+    	exitGameButton.addActionListener(new AbstractAction(){
+    		@Override
+    		public void actionPerformed(ActionEvent e) {
+    			controller.exitGame();
+    		}
+    	});
+    }   
 }

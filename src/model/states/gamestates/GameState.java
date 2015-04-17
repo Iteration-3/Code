@@ -1,44 +1,41 @@
 package model.states.gamestates;
 
 import view.Layout;
-import controller.Controller;
 import model.Model;
 import model.states.State;
+import model.states.StateMachine;
 
 public abstract class GameState extends State {
     private Model model;
 
-    public GameState(Model model) {
-        this.model = model;
-    }
-
     @Override
     public void onEnter() {
-        getModel().setLayout(getLayout());
-        getLayout().setController(getController());
+        getContext().setLayout(getLayout());
     }
 
     @Override
     public void onPause() {
-        getModel().removeLayout(getLayout());
+        getContext().removeLayout(getLayout());
     }
 
     @Override
     public void onResume() {
-        getModel().setLayout(getLayout());
-        getLayout().setController(getController());
+        getContext().setLayout(getLayout());
     }
 
     @Override
     public void onExit() {
-        getModel().removeLayout(getLayout());
+        getContext().removeLayout(getLayout());
     }
 
-    public Model getModel() {
+    @Override
+    public Model getContext() {
         return model;
     }
 
-    protected abstract Controller getController();
-
+    public void setContext(Model model) {
+    	this.model = model;
+    }
+    
     protected abstract Layout getLayout();
 }

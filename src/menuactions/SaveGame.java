@@ -12,7 +12,7 @@ public class SaveGame extends StatePush {
 
     @Override
     protected GameState stateToPush() {
-        return new SaveMenuState(getModel());
+        return new SaveMenuState();
     }
 
 }

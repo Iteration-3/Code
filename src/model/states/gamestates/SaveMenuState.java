@@ -1,26 +1,25 @@
 package model.states.gamestates;
 
-import model.Model;
-import view.Layout;
-import controller.Controller;
+import controller.SaveMenuController;
+import view.SaveMenuLayout;
 
 public class SaveMenuState extends GameState {
-
-    public SaveMenuState(Model model) {
-        super(model);
-        // TODO Auto-generated constructor stub
+	private SaveMenuLayout layout;
+	
+    public SaveMenuState() { 
+    	layout = new SaveMenuLayout();
     }
 
     @Override
-    protected Controller getController() {
-        // TODO Auto-generated method stub
-        return null;
+    public void onEnter() {
+    	super.onEnter();
+    	
+    	SaveMenuController controller = new SaveMenuController(getContext());
+    	layout.attachController(controller);
     }
 
     @Override
-    protected Layout getLayout() {
-        // TODO Auto-generated method stub
-        return null;
+    protected SaveMenuLayout getLayout() {
+        return layout;
     }
-
 }

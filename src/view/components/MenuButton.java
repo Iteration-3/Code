@@ -1,23 +1,21 @@
 package view.components;
 
+import java.awt.Color;
+
 import javax.swing.JButton;
+
+import utilities.FontResources;
 
 @SuppressWarnings("serial")
 public class MenuButton extends JButton {
-    
-    private String description;
-    
-    public MenuButton() {
-        super("Default Button");
+    public MenuButton(String buttonText) {
+        super(buttonText);
+    	setFont(FontResources.getPrimaryFont().deriveFont(30f));
+        setBorderPainted(false);
+        setFocusPainted(false);
     }
     
-    public MenuButton(String description) {
-        super(description);
-        this.description = description;
-    }
-    
-    public String getDescription() {
-        return this.description;
-    }
-
+    public void setColor(Color color) {
+      setBackground(color);
+    }  
 }

@@ -1,26 +1,27 @@
 package model.states.gamestates;
 
-import model.Model;
+import controller.OptionsMenuController;
 import view.Layout;
-import controller.Controller;
+import view.OptionsMenuLayout;
 
 public class OptionsMenuState extends GameState {
-
-    public OptionsMenuState(Model model) {
-        super(model);
-        // TODO Auto-generated constructor stub
+	private OptionsMenuLayout layout;
+	
+    public OptionsMenuState() {
+    	layout = new OptionsMenuLayout();
     }
-
+    
     @Override
-    protected Controller getController() {
-        // TODO Auto-generated method stub
-        return null;
+    public void onEnter() {
+    	super.onEnter();
+    	
+    	OptionsMenuController controller = new OptionsMenuController(getContext());
+    	layout.attachController(controller);
     }
 
     @Override
     protected Layout getLayout() {
-        // TODO Auto-generated method stub
-        return null;
+        return layout;
     }
 
 }

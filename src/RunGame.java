@@ -9,7 +9,7 @@ public class RunGame {
       @Override
       public void run() {
         Model gameModel = new Model();
-        gameModel.pushState(new MainMenuState(gameModel));
+        gameModel.pushState(new MainMenuState());
       }
     });
   }

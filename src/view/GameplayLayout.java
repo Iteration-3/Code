@@ -19,7 +19,7 @@ public class GameplayLayout extends Layout {
 		gameEntityView = new GameEntityView();
 		gameItemView = new GameItemView();
 		setBackground(Color.BLACK);
-		setPreferredSize(new Dimension(1024, 768));
+		setPreferredSize(new Dimension(1024, 768)); //externalize elsewhere
 	}
 	
 	public GameTerrainView getGameTerrainView(){

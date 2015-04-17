@@ -10,11 +10,10 @@ import keyRemapping.KeyMappingUpRight;
 import model.KeyPreferences;
 import view.Layout;
 
-public class RebindingController extends Controller {
+public class RebindingController {
     KeyPreferences keyPreferences = KeyPreferences.getInstance().clone();
     Layout layout;
 
-    @Override
     public void setLayout(Layout layout) {
         this.layout = layout;
     }

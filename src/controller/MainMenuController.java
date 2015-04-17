@@ -1,17 +1,25 @@
 package controller;
 
-import view.Layout;
+import model.Model;
+import model.states.gamestates.GameplayState;
+import model.states.gamestates.LoadMenuState;
 
-public class MainMenuController extends Controller {
-
-    public MainMenuController() {
-        // TODO Auto-generated constructor stub
+public class MainMenuController {
+	private Model model;
+	
+    public MainMenuController(Model model) {
+    	this.model = model;
     }
 
-    @Override
-    public void setLayout(Layout layout) {
-        // TODO Auto-generated method stub
-
+    public void newGame() {
+    	model.pushState(new GameplayState());
     }
-
+ 
+    public void loadGame() {
+    	model.pushState(new LoadMenuState());
+    }
+    
+    public void exitGame() {
+    	System.exit(0);
+    }
 }

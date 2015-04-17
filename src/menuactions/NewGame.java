@@ -12,7 +12,7 @@ public class NewGame extends StatePush {
 
     @Override
     protected GameState stateToPush() {
-        return new GameplayState(getModel());
+        return new GameplayState();
     }
 
 }

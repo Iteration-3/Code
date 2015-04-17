@@ -1,6 +1,6 @@
 package model.states.gamestates;
 
-import gameactions.GameActionStateSwitchPause;
+import gameactions.GameActionStatePush;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -33,24 +33,27 @@ public class GameplayState extends GameState {
     private GameTerrain gameMap;
     private TakeableItemMap itemMap;
 
-    public GameplayState(Model model) {
-        super(model);
-
+    public GameplayState() {
         layout = new GameplayLayout();
         controller = new GameplayController();
         gameMap = new GameTerrain();
         itemMap = new TakeableItemMap();
-        this.addTilesTest();
-        this.addEntityTest();
     }
 
+    @Override
+    public void onEnter() {
+    	super.onEnter();
+        addTilesTest();
+        addEntityTest();
+    }
+    
     public void addEntityTest() {
         RealCoordinate loc = new RealCoordinate(50, 50);
         EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange, loc);
         Avatar avatar = new Smasher("Smasher", eView, loc);
         
         Listener escapeListener = new SingleUseListener(KeyStroke.getKeyStroke("ESCAPE"),
-                new GameActionStateSwitchPause(getModel()));
+                new GameActionStatePush(getContext(), new PauseMenuState()));
         escapeListener.addAsBinding(getLayout());
         //controller.addEntityListener(escapeListener);
         
@@ -79,11 +82,6 @@ public class GameplayState extends GameState {
         RealCoordinate p = new RealCoordinate(5, 5);
         view.registerWithGameItemView(layout.getGameItemView(), p);
         itemMap.add(new ConsumableItem(null), p);
-    }
-
-    @Override
-    public GameplayController getController() {
-        return controller;
     }
 
     @Override

@@ -12,7 +12,7 @@ public class Options extends StatePush {
 
     @Override
     protected GameState stateToPush() {
-      return new OptionsMenuState(getModel()); 
+      return new OptionsMenuState(); 
     }
 
 }

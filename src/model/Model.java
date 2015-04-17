@@ -13,6 +13,13 @@ public class Model extends StateMachine<GameState> {
 		view = new View();
 	}
 	
+	@Override
+	public void pushState(GameState state){
+		state.setContext(this); // must be called before super.pushState() so that the
+								// GameState may safely call getContext() in its onEnter()
+		super.pushState(state);
+	}
+	
 	public void setLayout(Layout layout) {
 		view.add(layout);
 		view.pack();
