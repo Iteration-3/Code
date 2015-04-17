@@ -1,6 +1,5 @@
 package model.states.gamestates;
 
-import view.Layout;
 import view.PauseMenuLayout;
 import controller.PauseMenuController;
 
@@ -20,7 +19,7 @@ public class PauseMenuState extends GameState {
     }
 
     @Override
-    public Layout getLayout() {
+    public PauseMenuLayout getLayout() {
         return layout;
     }
 

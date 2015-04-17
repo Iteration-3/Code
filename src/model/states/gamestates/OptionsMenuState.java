@@ -1,7 +1,6 @@
 package model.states.gamestates;
 
 import controller.OptionsMenuController;
-import view.Layout;
 import view.OptionsMenuLayout;
 
 public class OptionsMenuState extends GameState {
@@ -20,8 +19,7 @@ public class OptionsMenuState extends GameState {
     }
 
     @Override
-    protected Layout getLayout() {
+    protected OptionsMenuLayout getLayout() {
         return layout;
     }
-
 }

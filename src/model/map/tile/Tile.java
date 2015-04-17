@@ -8,7 +8,7 @@ public abstract class Tile implements SavableLoadable {
 	private TileView view;
 	
 	public Tile(TileView view){
-		view = view;
+		this.view = view;
 	}
 	
 	public TileView getView() {

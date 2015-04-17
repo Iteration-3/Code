@@ -1,6 +1,5 @@
 package model.states.gamestates;
 
-import view.Layout;
 import view.MainMenuLayout;
 import controller.MainMenuController;
 
@@ -21,7 +20,7 @@ public class MainMenuState extends GameState {
     }
 
     @Override
-    protected Layout getLayout() {
+    protected MainMenuLayout getLayout() {
         return this.layout;
     }
 

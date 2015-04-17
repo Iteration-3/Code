@@ -54,6 +54,15 @@ public class GameplayState extends GameState {
         escapeListener.addAsBinding(getLayout());
         //controller.addEntityListener(escapeListener);
         
+        Listener inventoryListener = new SingleUseListener(KeyStroke.getKeyStroke("I"),
+                new GameActionStatePush(getContext(), new InventoryMenuState()));
+        inventoryListener.addAsBinding(getLayout());
+        
+        Listener skillsListener = new SingleUseListener(KeyStroke.getKeyStroke("S"),
+                new GameActionStatePush(getContext(), new SkillsMenuState()));
+        skillsListener.addAsBinding(getLayout());
+
+        
         Collection<Listener> listeners = avatar.getListeners();
         for (Listener listener : listeners) {
             listener.addAsBinding(getLayout());
