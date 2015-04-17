@@ -18,6 +18,7 @@ public class KeyBindingsState extends GameState {
     public void onEnter() {
         super.onEnter();
         controller = new KeyBindingsController(getContext());
+        controller.setLayout(layout);
         layout.attachController(controller);
     }
     @Override

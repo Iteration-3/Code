@@ -26,7 +26,6 @@ public abstract class KeyMapping implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent arg0) {
-        System.out.println("Updating " + arg0.getKeyChar());
         updatePreferences(arg0);
         controller.removeKeyMapping(this);
     }

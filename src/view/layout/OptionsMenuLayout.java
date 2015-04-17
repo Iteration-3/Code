@@ -19,7 +19,7 @@ public class OptionsMenuLayout extends Layout {
     }
     
     private void initButtons() {
-        changeUpKeyButton = new MenuButton("REBIND UP KEY");
+        changeUpKeyButton = new MenuButton("REBIND KEYS");
         changeUpKeyButton.setColor(Color.GRAY);
         
         backButton = new MenuButton("GO BACK");
