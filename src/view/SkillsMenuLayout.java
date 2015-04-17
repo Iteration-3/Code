@@ -29,7 +29,7 @@ public class SkillsMenuLayout extends Layout {
         add(backButton);
     }
 
-    public void attachController(SkillsMenuController controller) {   	
+    public void attachController(final SkillsMenuController controller) {   	
     	backButton.addActionListener(new AbstractAction(){
     		@Override
     		public void actionPerformed(ActionEvent e) {

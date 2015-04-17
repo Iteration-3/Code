@@ -52,7 +52,6 @@ public class GameplayState extends GameState {
         Listener escapeListener = new SingleUseListener(KeyStroke.getKeyStroke("ESCAPE"),
                 new GameActionStatePush(getContext(), new PauseMenuState()));
         escapeListener.addAsBinding(getLayout());
-        //controller.addEntityListener(escapeListener);
         
         Listener inventoryListener = new SingleUseListener(KeyStroke.getKeyStroke("I"),
                 new GameActionStatePush(getContext(), new InventoryMenuState()));
@@ -75,10 +74,15 @@ public class GameplayState extends GameState {
         
         this.itemEntityAssociation = new ItemEntityAssociation(avatar); 
 
-        ItemView view = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
-        RealCoordinate p = new RealCoordinate(5, 5);
-        view.registerWithGameItemView(layout.getGameItemView(), p);
-        itemEntityAssociation.addItem(new TakeableItem(view), p);
+        ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
+        RealCoordinate takeableItemViewPosition = new RealCoordinate(5, 5);
+        takeableItemView.registerWithGameItemView(layout.getGameItemView(), takeableItemViewPosition);
+        itemEntityAssociation.addItem(new TakeableItem(takeableItemView), takeableItemViewPosition);
+
+        ItemView obstacleItemView = new BasicItemView(Color.GRAY, Color.BLACK);
+        RealCoordinate obstacleItemPosition = new RealCoordinate(9, 7);
+        obstacleItemView.registerWithGameItemView(layout.getGameItemView(), obstacleItemPosition);
+        itemEntityAssociation.addItem(new TakeableItem(obstacleItemView), obstacleItemPosition);
     }
 
     public void addTilesTest() {

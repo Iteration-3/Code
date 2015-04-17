@@ -29,7 +29,7 @@ public class SaveMenuLayout extends Layout {
         add(backButton);
     }
 
-    public void attachController(SaveMenuController controller) {   	
+    public void attachController(final SaveMenuController controller) {   	
     	backButton.addActionListener(new AbstractAction(){
     		@Override
     		public void actionPerformed(ActionEvent e) {

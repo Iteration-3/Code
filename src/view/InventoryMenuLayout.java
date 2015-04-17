@@ -30,7 +30,7 @@ public class InventoryMenuLayout extends Layout {
         add(backButton);
     }
 
-    public void attachController(InventoryMenuController controller) {   	
+    public void attachController(final InventoryMenuController controller) {   	
     	backButton.addActionListener(new AbstractAction(){
     		@Override
     		public void actionPerformed(ActionEvent e) {

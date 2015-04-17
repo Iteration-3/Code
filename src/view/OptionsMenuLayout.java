@@ -29,7 +29,7 @@ public class OptionsMenuLayout extends Layout {
         add(backButton);
     }
 
-    public void attachController(OptionsMenuController controller) {   	
+    public void attachController(final OptionsMenuController controller) {   	
     	backButton.addActionListener(new AbstractAction(){
     		@Override
     		public void actionPerformed(ActionEvent e) {

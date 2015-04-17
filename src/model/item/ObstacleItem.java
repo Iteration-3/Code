@@ -2,6 +2,7 @@ package model.item;
 
 import view.item.ItemView;
 import model.entity.Entity;
+import model.map.tile.ItemTile;
 
 public class ObstacleItem extends Item {
 
@@ -28,6 +29,13 @@ public class ObstacleItem extends Item {
 	@Override
 	public boolean isBlocking() {
 		return true;
+	}
+
+	@Override
+	public void attemptRemoveFrom(ItemTile itemTile) {
+		// TODO This is bad...
+		// You don't want to have a method that does nothing...
+		System.out.println("Can't remove an Obstacle Item!");
 	}
 
 }

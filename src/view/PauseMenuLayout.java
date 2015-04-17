@@ -51,7 +51,7 @@ public class PauseMenuLayout extends Layout {
         add(mainMenuButton);
     }
 
-    public void attachController(PauseMenuController controller) {
+    public void attachController(final PauseMenuController controller) {
     	resumeButton.addActionListener(new AbstractAction(){
     		@Override
     		public void actionPerformed(ActionEvent e) {

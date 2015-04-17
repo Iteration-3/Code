@@ -41,7 +41,7 @@ public class MainMenuLayout extends Layout {
         add(exitGameButton);
     }
     
-    public void setController(MainMenuController controller) {
+    public void setController(final MainMenuController controller) {
     	newGameButton.addActionListener(new AbstractAction(){
     		@Override
     		public void actionPerformed(ActionEvent e) {

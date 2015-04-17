@@ -4,8 +4,10 @@ import javax.swing.JOptionPane;
 
 import view.item.ItemView;
 import model.entity.Entity;
+import model.map.tile.ItemTile;
 
 public class TakeableItem extends Item {
+	private boolean taken = false;
 
 	public TakeableItem(ItemView itemView) {
 		super(itemView);
@@ -14,6 +16,8 @@ public class TakeableItem extends Item {
 	@Override
 	public void touch(Entity entity) {
 		if (entity.addItem(this)) {
+			taken = true;
+			
 			// Remove the view from the map somehow...
 			itemView.removeFromMap();
 		}
@@ -28,6 +32,13 @@ public class TakeableItem extends Item {
 	public String getInfo() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void attemptRemoveFrom(ItemTile itemTile) {
+		if (taken) {
+			itemTile.remove(this);
+		}
 	}
 	
 }
