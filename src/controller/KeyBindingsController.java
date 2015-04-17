@@ -15,7 +15,7 @@ import view.layout.Layout;
 import controller.listener.ToggleAction;
 
 public class KeyBindingsController extends Controller {
-    private KeyPreferences keyPreferences = KeyPreferences.getInstance().clone();
+    private KeyPreferences keyPreferences; 
     private Layout layout;
     private Model model;
 
@@ -29,9 +29,10 @@ public class KeyBindingsController extends Controller {
     private ToggleAction saveBindings;
 
     @SuppressWarnings("serial")
-    public KeyBindingsController(Model model) {
+    public KeyBindingsController(Model model, KeyPreferences preferences) {
         this.model = model;
-
+        this.keyPreferences = preferences;
+        
         backAction = new ToggleAction() {
             public void action() {
                 model.popState();

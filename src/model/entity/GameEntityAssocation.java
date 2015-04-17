@@ -12,6 +12,7 @@ import javax.swing.KeyStroke;
 import utilities.Angle;
 import controller.listener.Listener;
 import controller.listener.PollingListener;
+import model.KeyPreferences;
 import model.map.GameTerrain;
 
 public class GameEntityAssocation {
@@ -22,15 +23,15 @@ public class GameEntityAssocation {
 		this.terrain = terrain;
 
 	}
-	public Collection<Listener> getListeners(){
+	public Collection<Listener> getListeners(KeyPreferences preferences){
 		Collection<Listener> listeners = entity.getListeners();
 		// TODO(jraviles) get these from the key preferences
-		listeners.add(new PollingListener(KeyStroke.getKeyStroke('7'), new GameActionMovement(entity,terrain,Angle.UP_LEFT)));
-		listeners.add(new PollingListener(KeyStroke.getKeyStroke('2'), new GameActionMovement(entity,terrain,Angle.DOWN)));
-		listeners.add(new PollingListener(KeyStroke.getKeyStroke('3'), new GameActionMovement(entity,terrain,Angle.DOWN_RIGHT)));
-		listeners.add(new PollingListener(KeyStroke.getKeyStroke('1'), new GameActionMovement(entity,terrain,Angle.DOWN_LEFT)));
-		listeners.add(new PollingListener(KeyStroke.getKeyStroke('9'), new GameActionMovement(entity,terrain,Angle.UP_RIGHT)));
-		listeners.add(new PollingListener(KeyStroke.getKeyStroke('8'), new GameActionMovement(entity,terrain,Angle.UP)));
+		listeners.add(new PollingListener(preferences.getUpLeftKey(), new GameActionMovement(entity,terrain,Angle.UP_LEFT)));
+		listeners.add(new PollingListener(preferences.getDownKey(), new GameActionMovement(entity,terrain,Angle.DOWN)));
+		listeners.add(new PollingListener(preferences.getDownRightKey(), new GameActionMovement(entity,terrain,Angle.DOWN_RIGHT)));
+		listeners.add(new PollingListener(preferences.getDownLeftKey(), new GameActionMovement(entity,terrain,Angle.DOWN_LEFT)));
+		listeners.add(new PollingListener(preferences.getUpRightKey(), new GameActionMovement(entity,terrain,Angle.UP_RIGHT)));
+		listeners.add(new PollingListener(preferences.getUpKey(), new GameActionMovement(entity,terrain,Angle.UP)));
 		return listeners;
 	}
 
