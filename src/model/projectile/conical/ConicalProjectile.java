@@ -1,7 +1,9 @@
-package model.projectile;
+package model.projectile.conical;
 
 import utilities.Angle;
 import model.area.TileCoordinate;
+import model.projectile.Projectile;
+import model.projectile.ProjectileManager;
 import model.trigger.TimedTrigger;
 import model.trigger.Trigger;
 
