@@ -17,7 +17,6 @@ import model.item.ObstacleItem;
 import model.item.OneShotItem;
 import model.item.TakeableItem;
 import model.map.GameTerrain;
-import model.map.ItemMap;
 import model.map.tile.ImpassableTile;
 import model.map.tile.PassableTile;
 import model.statistics.EntityStatistics;
@@ -36,6 +35,7 @@ public class GameplayState extends GameState {
     private GameplayLayout layout;
     private GameTerrain gameMap;
     private ItemEntityAssociation itemEntityAssociation;
+    private Avatar avatar;
 
     public GameplayState() {
         layout = new GameplayLayout();
@@ -50,36 +50,27 @@ public class GameplayState extends GameState {
         addEntityTest();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getContext().getPreferences().hasChanged()) {
+            setListeners(getContext().getPreferences());
+            getContext().getPreferences().reset();
+        }
+    }
+
     public void addEntityTest() {
         TileCoordinate loc = new TileCoordinate(3, 3);
         EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange,
                 TileCoordinate.convertToRealCoordinate(loc));
-        Avatar avatar = new Smasher("Smasher", eView, loc);
+        avatar = new Smasher("Smasher", eView, loc);
 
         KeyPreferences preferences = new KeyPreferences();
         getContext().setPreferences(preferences);
 
-        Listener escapeListener = new SingleUseListener(preferences.getPauseKey(), new GameActionStatePush(
-                getContext(), new PauseMenuState()));
-        escapeListener.addAsBinding(getLayout());
-
-        Listener inventoryListener = new SingleUseListener(preferences.getInventoryKey(), new GameActionStatePush(
-                getContext(), new InventoryMenuState()));
-        inventoryListener.addAsBinding(getLayout());
-
-        Listener skillsListener = new SingleUseListener(preferences.getSkillsKey(), new GameActionStatePush(
-                getContext(), new SkillsMenuState()));
-        skillsListener.addAsBinding(getLayout());
-
         this.itemEntityAssociation = new ItemEntityAssociation(avatar);
 
-        Collection<Listener> listeners = new EntityMovementAssocation(avatar, gameMap,
-                itemEntityAssociation.getItemMap()).getListeners(preferences);
-
-        for (Listener listener : listeners) {
-            listener.addAsBinding(getLayout());
-            controller.addEntityListener(listener);
-        }
+        setListeners(preferences);
 
         EntityManager.getSingleton().setAvatar(avatar);
         eView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(loc));
@@ -101,6 +92,32 @@ public class GameplayState extends GameState {
         oneshotItemView.registerWithGameItemView(layout.getGameItemView(), oneshotItemPosition);
         itemEntityAssociation.addItem(new OneShotItem(oneshotItemView, new EntityStatistics()),
                 RealCoordinate.convertToTileCoordinate(oneshotItemPosition));
+    }
+
+    private void setListeners(KeyPreferences preferences) {
+        controller.removeListeners();
+        getLayout().clearBindings();
+        avatar.getListeners();
+        getContext().getPreferences().reset();
+
+        Listener escapeListener = new SingleUseListener(preferences.getPauseKey(), new GameActionStatePush(
+                getContext(), new PauseMenuState()));
+        escapeListener.addAsBinding(getLayout());
+        Listener inventoryListener = new SingleUseListener(preferences.getInventoryKey(), new GameActionStatePush(
+                getContext(), new InventoryMenuState()));
+        inventoryListener.addAsBinding(getLayout());
+
+        Listener skillsListener = new SingleUseListener(preferences.getSkillsKey(), new GameActionStatePush(
+                getContext(), new SkillsMenuState()));
+        skillsListener.addAsBinding(getLayout());
+
+        Collection<Listener> listeners = new EntityMovementAssocation(avatar, gameMap,
+                itemEntityAssociation.getItemMap()).getListeners(preferences);
+
+        for (Listener listener : listeners) {
+            listener.addAsBinding(getLayout());
+            controller.addEntityListener(listener);
+        }
     }
 
     public void addTilesTest() {

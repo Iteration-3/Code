@@ -19,19 +19,21 @@ public class KeyPreferences implements SavableLoadable {
     private KeyStroke skillsKey;
     private KeyStroke pauseKey;
     private List<KeyStroke> abilities;
+    private boolean hasChanged = false;
 
     public KeyPreferences() {
-    	/* Num Pad Key Preferences 
-        this.upKey = KeyStroke.getKeyStroke("NUMPAD8");
-        this.upRightKey = KeyStroke.getKeyStroke("NUMPAD9");
-        this.upLeftKey= KeyStroke.getKeyStroke("NUMPAD7");
-        this.downRightKey = KeyStroke.getKeyStroke("NUMPAD3");
-        this.downKey = KeyStroke.getKeyStroke("NUMPAD2");
-        this.downLeftKey = KeyStroke.getKeyStroke("NUMPAD1");
-        */
+        /*
+         * Num Pad Key Preferences this.upKey =
+         * KeyStroke.getKeyStroke("NUMPAD8"); this.upRightKey =
+         * KeyStroke.getKeyStroke("NUMPAD9"); this.upLeftKey=
+         * KeyStroke.getKeyStroke("NUMPAD7"); this.downRightKey =
+         * KeyStroke.getKeyStroke("NUMPAD3"); this.downKey =
+         * KeyStroke.getKeyStroke("NUMPAD2"); this.downLeftKey =
+         * KeyStroke.getKeyStroke("NUMPAD1");
+         */
         this.upKey = KeyStroke.getKeyStroke("W");
         this.upRightKey = KeyStroke.getKeyStroke("E");
-        this.upLeftKey= KeyStroke.getKeyStroke("Q");
+        this.upLeftKey = KeyStroke.getKeyStroke("Q");
         this.downRightKey = KeyStroke.getKeyStroke("C");
         this.downKey = KeyStroke.getKeyStroke("X");
         this.downLeftKey = KeyStroke.getKeyStroke("Z");
@@ -67,6 +69,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setUpKey(KeyStroke upKey) {
         this.upKey = upKey;
+        updateChanged();
     }
 
     public KeyStroke getUpRightKey() {
@@ -75,6 +78,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setUpRightKey(KeyStroke upRightKey) {
         this.upRightKey = upRightKey;
+        updateChanged();
     }
 
     public KeyStroke getDownRightKey() {
@@ -83,6 +87,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setDownRightKey(KeyStroke downRightKey) {
         this.downRightKey = downRightKey;
+        updateChanged();
     }
 
     public KeyStroke getDownKey() {
@@ -91,6 +96,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setDownKey(KeyStroke downKey) {
         this.downKey = downKey;
+        updateChanged();
     }
 
     public KeyStroke getDownLeftKey() {
@@ -99,6 +105,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setDownLeftKey(KeyStroke downLeftKey) {
         this.downLeftKey = downLeftKey;
+        updateChanged();
     }
 
     public KeyStroke getUpLeftKey() {
@@ -107,6 +114,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setUpLeftKey(KeyStroke upLeftKey) {
         this.upLeftKey = upLeftKey;
+        updateChanged();
     }
 
     public KeyStroke getInventoryKey() {
@@ -115,6 +123,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setInventoryKey(KeyStroke inventoryKey) {
         this.inventoryKey = inventoryKey;
+        updateChanged();
     }
 
     public KeyStroke getSkillsKey() {
@@ -123,6 +132,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setSkillsKey(KeyStroke skillsKey) {
         this.skillsKey = skillsKey;
+        updateChanged();
     }
 
     public KeyStroke getPauseKey() {
@@ -131,6 +141,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setPauseKey(KeyStroke pauseKey) {
         this.pauseKey = pauseKey;
+        updateChanged();
     }
 
     public KeyStroke getAbility(int number) {
@@ -147,6 +158,18 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setAbilities(List<KeyStroke> abilities) {
         this.abilities = abilities;
+    }
+
+    public void updateChanged() {
+        this.hasChanged = true;
+    }
+
+    public boolean hasChanged() {
+        return hasChanged;
+    }
+
+    public void reset() {
+        this.hasChanged = false;
     }
 
 }
