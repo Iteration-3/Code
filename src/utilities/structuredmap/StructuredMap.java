@@ -1,61 +1,163 @@
 package utilities.structuredmap;
 
-import java.util.Set;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StructuredMap {
-	  public StructuredMap() {
-	  }
+	private Map<String, Object> data;
+	
+	public StructuredMap() {
+		data = new HashMap<String, Object>();
+	}
+	
+	public void put(String key, Boolean value) {
+		data.put(key, value);
+	}
 
-	  public void put(String key, Boolean value) {
-	  }
+	public void put(String key, Integer value) {
+		data.put(key, value);
+	}
 
-	  public void put(String key, Integer value) {
-	  }
+	public void put(String key, Double value) {
+		data.put(key, value);
+	}
 
-	  public void put(String key, Double value) {
-	  }
+	public void put(String key, String value) {
+		data.put(key, new QuotedString(value));
+	}
 
-	  public void put(String key, String value) {
-	  }
+	public void put(String key, StructuredMap value) {
+		data.put(key, value);
+	}
 
-	  public void put(String key, StructuredMap value) {
-	  }
+	public void put(String key, int[] values) {
+		data.put(key, new IntArrayContainer(values));
+	}
 
-	  public void put(String key, int[] values) {
-	  }
+	public void put(String key, StructuredMap[] values) {
+		data.put(key, new StructuredMapArrayContainer(values));
+	}
 
-	  public void put(String key, StructuredMap[] values) {
-	  }
+	public Boolean getBoolean(String key) {
+		return (Boolean) data.get(key);
+	}
 
-	  public Boolean getBoolean(String key) {
-		  return null;
-	  }
+	public Double getDouble(String key) {
+		return (Double) data.get(key);
+	}
 
-	  public Double getDouble(String key) {
-		  return null;
-	  }
+	public Integer getInteger(String key) {
+		return (Integer) data.get(key);
+ 	}
 
-	  public Integer getInteger(String key) {
-		  return null;
-	  }
+	public String getString(String key) {
+		QuotedString quoted = (QuotedString) data.get(key); // get the QuotedString object
+		String backingString = quoted.toString(); // get the string literal inside the QuotedString
+		return backingString.substring(1, backingString.length() - 1); // trim off the quotes
+	}
 
-	  public String getString(String key) {
-		  return null;
-	  }
+	public StructuredMap getStructuredMap(String key) {
+		return (StructuredMap) data.get(key);
+	}
 
-	  public StructuredMap getStructuredMap(String key) {
-		  return null;
-	  }
+	public int[] getIntArray(String key) {
+		IntArrayContainer container = (IntArrayContainer) data.get(key);
+		return container.getArray();
+	}
 
-	  public int[] getIntArray(String key) {
-		  return null;
-	  }
-
-	  public StructuredMap[] getStructuredMapArray(String key) {
-		  return null;
-	  }
-
-	  public Set<String> getKeys() {
-		  return null;
-	  }
+	public StructuredMap[] getStructuredMapArray(String key) {
+		StructuredMapArrayContainer container = (StructuredMapArrayContainer) data.get(key);
+		return container.getArray();
+	}
+	
+	@Override
+	public String toString() {
+		return getJson();
+	}
+	
+	// Returns a properly formatted String of Json data
+	public String getJson() {
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append("{\n");
+		
+		for (Map.Entry<String, Object> entry : data.entrySet()) {
+			String valueString = prependTab(entry.getValue().toString());
+			String formattedEntry = String.format("\"%s\":%s", entry.getKey(), valueString);
+			builder.append(formattedEntry);
+		}
+		
+		builder.append("\n}");		
+		
+		return builder.toString();
+	}
+	
+	// Adds a tab before every line of a multi-line String
+	private String prependTab(String str) {
+		String[] lines = str.split("\n");
+		StringBuilder builder = new StringBuilder();
+		
+		for(String line : lines) {
+			builder.append(String.format("\t%s\n", line));
+		}
+		
+		return builder.toString();
+	}
+	
+	////////////////////////////////////////////////////////////////
+	// Helper classes for correct automatic toString() formatting //
+	////////////////////////////////////////////////////////////////
+	
+	// Strings are a special case in for representing in json because, unlike with booleans, doubles, etc
+	// the string is actually wrapped in quotes
+	private static class QuotedString {
+		private String str;
+		
+		public QuotedString(String str) {
+			this.str = str;
+		}
+		
+		@Override
+		public String toString() {
+			return String.format("\"%s\"", str);
+		}
+	}
+	
+	// The toString() method on arrays in java essentially gives us garbage. This wraps an array and overrides
+	// toString() to use a proper array-to-string conversion facility
+	private static class IntArrayContainer {
+		private int[] array;
+		
+		public IntArrayContainer(int[] array) {
+			this.array = array;
+		}
+		
+		public int[] getArray() {
+			return array;
+		}
+		
+		@Override
+		public String toString() {
+			return Arrays.toString(array);
+		}
+	}
+	
+	// Ditto above. Just for StructuredMaps
+	private static class StructuredMapArrayContainer {
+		private StructuredMap[] array;
+		
+		public StructuredMapArrayContainer(StructuredMap[] array) {
+			this.array = array;
+		}
+		
+		public StructuredMap[] getArray() {
+			return array;
+		}
+		
+		@Override
+		public String toString() {
+			return Arrays.toString(array);
+		}
+	}
 }
