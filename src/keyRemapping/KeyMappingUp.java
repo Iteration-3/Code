@@ -5,11 +5,11 @@ import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;
 
 import model.KeyPreferences;
-import controller.RebindingController;
+import controller.KeyBindingsController;
 
 public class KeyMappingUp extends KeyMapping {
 
-    public KeyMappingUp(KeyPreferences preferences, RebindingController rebindingController) {
+    public KeyMappingUp(KeyPreferences preferences, KeyBindingsController rebindingController) {
         super(preferences, rebindingController);
     }
 

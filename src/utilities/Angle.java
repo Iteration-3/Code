@@ -53,4 +53,24 @@ public enum Angle {
     		return oddDeltaY;
     	}
     }
+    
+    @Override
+    public String toString() {
+    	switch(this) {
+		case DOWN:
+			return "DOWN";
+		case DOWN_LEFT:
+			return "DOWN_LEFT";
+		case DOWN_RIGHT:
+			return "DOWN_RIGHT";
+		case UP:
+			return "UP";
+		case UP_LEFT:
+			return "UP_LEFT";
+		case UP_RIGHT:
+			return "UP_RIGHT";
+		default:
+			return "ERROR_NO_DIRECTION";
+    	}
+    }
 }

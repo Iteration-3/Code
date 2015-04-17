@@ -8,7 +8,7 @@ import javax.swing.Timer;
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import model.entity.Entity;
-import model.item.TakeableItem;
+import model.item.Item;
 import model.map.ItemMap;
 
 public class ItemEntityAssociation implements ActionListener {
@@ -20,8 +20,8 @@ public class ItemEntityAssociation implements ActionListener {
 		startTimer();
 	}
 	
-	public void addItem(TakeableItem takeableItem, RealCoordinate position) {
-		itemMap.add(takeableItem, position);
+	public void addItem(Item item, RealCoordinate position) {
+		itemMap.add(item, position);
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class ItemEntityAssociation implements ActionListener {
 		// This can't be good.
 		// It is quite verbose to just get the Tile in front of you.
 		TileCoordinate tilePositionInFrontOfEntity = entity.getLocation().nextLocation(entity.getDirection());
-		System.out.println(tilePositionInFrontOfEntity);
+		// System.out.println(tilePositionInFrontOfEntity);
 		itemMap.touch(entity, tilePositionInFrontOfEntity);
 	}
 

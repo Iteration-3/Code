@@ -10,7 +10,7 @@ import utilities.FontResources;
 public class MenuButton extends JButton {
     public MenuButton(String buttonText) {
         super(buttonText);
-    	setFont(FontResources.getPrimaryFont().deriveFont(30f));
+    	setFont(FontResources.getTitleFont().deriveFont(30f));
         setBorderPainted(false);
         setFocusPainted(false);
     }

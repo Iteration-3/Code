@@ -77,4 +77,13 @@ public class Statistics implements Cloneable {
 	public void setHardiness(int hardiness) {
 		this.hardiness = hardiness;
 	}
+	
+	@Override
+	public String toString() {
+		String contents = "Strength: " + strength + "\n"
+				+ "Agility: " + agility + "\n"
+				+ "Intellect: " + intellect + "\n"
+				+ "Hardiness: " + hardiness + "\n";
+		return contents;
+	}
 }
