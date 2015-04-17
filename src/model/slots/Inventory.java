@@ -1,13 +1,17 @@
 package model.slots;
 
+import view.InventoryView;
+import view.SlotView;
 import model.item.TakeableItem;
 
 public class Inventory {
 	private static final int ROW = 5;
 	private static final int COL = 5;
 	private InventorySlot[] slots;
+	private InventoryView inventoryView;
 	
 	public Inventory(){
+		this.inventoryView = new InventoryView();
 		this.setInventory();
 	}
 
@@ -18,8 +22,15 @@ public class Inventory {
 		}
 	}
 	
+	private void setSlotView(int index){
+		SlotView slotView = new SlotView();
+		this.slots[index].setView(new SlotView());
+		this.inventoryView.register(slotView, index);
+	}
+	
 	private void setSlot(int index){
 		slots[index] = new InventorySlot();
+		this.setSlotView(index);
 	}
 
 	private boolean findAndEquip(TakeableItem item){

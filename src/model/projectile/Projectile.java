@@ -20,17 +20,15 @@ public class Projectile implements Cloneable {
 		this.direction = Angle.UP;
 		this.location = new TileCoordinate();
 		this.speed = 1;
-		this.timeout = 1;
 		this.trigger = new SingleUseTrigger(new RadialArea(1, this.location),
 				new StatisticModifierEvent(new EntityStatistics(), 5));
 	}
 
 	public Projectile(Angle direction, TileCoordinate location, double speed,
-			long timeout, Trigger trigger) {
+			Trigger trigger) {
 		this.direction = direction;
 		this.location = location;
 		this.speed = speed;
-		this.timeout = timeout;
 		this.trigger = trigger;
 	}
 
