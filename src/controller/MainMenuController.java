@@ -1,25 +1,63 @@
 package controller;
 
+import controller.listener.ToggleAction;
 import model.Model;
-import model.states.gamestates.GameplayState;
+import model.states.gamestates.CharacterSelectionState;
 import model.states.gamestates.LoadMenuState;
 
-public class MainMenuController {
+public class MainMenuController extends Controller{
 	private Model model;
+	private ToggleAction newGameAction;
+	private ToggleAction loadGameAction;
+	private ToggleAction exitGameAction;
 	
     public MainMenuController(Model model) {
     	this.model = model;
+    	initActions();
     }
 
-    public void newGame() {
-    	model.pushState(new GameplayState());
-    }
- 
-    public void loadGame() {
-    	model.pushState(new LoadMenuState());
+    @SuppressWarnings("serial")
+	private void initActions() {
+    	newGameAction =
+	    	new ToggleAction() {
+	    		@Override
+	    		public void action() {
+	    		model.pushState(new CharacterSelectionState());
+	    		}
+	    	};
+	    
+	    loadGameAction =
+	    	new ToggleAction() {
+	    		@Override
+	    		public void action() {
+	    		model.pushState(new LoadMenuState());
+	    		}
+    		};
+    		
+    	exitGameAction = 
+			new ToggleAction() {
+	    		@Override
+		    		public void action() {
+		    		System.exit(0);
+	    		}
+	    	};
     }
     
-    public void exitGame() {
-    	System.exit(0);
+	public ToggleAction getNewGameAction() {
+    	return newGameAction;
+   	}
+ 
+	public ToggleAction getLoadGameAction() {
+    	return loadGameAction;
+    }
+    
+	public ToggleAction getExitAction() {
+    	return exitGameAction;
+    }
+    
+    public void toggle() {
+    	newGameAction.toggle();
+    	loadGameAction.toggle();
+    	exitGameAction.toggle();
     }
 }

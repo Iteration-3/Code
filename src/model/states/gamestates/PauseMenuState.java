@@ -1,10 +1,9 @@
 package model.states.gamestates;
 
-import view.PauseMenuLayout;
+import view.layout.PauseMenuLayout;
 import controller.PauseMenuController;
 
 public class PauseMenuState extends GameState {
-
     private PauseMenuLayout layout;
     private PauseMenuController controller;
 
@@ -17,10 +16,14 @@ public class PauseMenuState extends GameState {
     	controller = new PauseMenuController(getContext());
         layout.attachController(controller);
     }
-
+    
     @Override
     public PauseMenuLayout getLayout() {
         return layout;
     }
 
+    @Override
+    protected PauseMenuController getController() {
+    	return controller;
+    }
 }

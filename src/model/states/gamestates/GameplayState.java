@@ -16,9 +16,9 @@ import model.item.TakeableItem;
 import model.map.GameTerrain;
 import model.map.tile.PassableTile;
 import view.EntityView;
-import view.GameplayLayout;
 import view.item.BasicItemView;
 import view.item.ItemView;
+import view.layout.GameplayLayout;
 import view.map.BasicTileView;
 import view.map.TileView;
 import controller.GameplayController;
@@ -100,6 +100,11 @@ public class GameplayState extends GameState {
     @Override
     public GameplayLayout getLayout() {
         return layout;
+    }
+    
+    @Override
+    public GameplayController getController() {
+    	return controller;
     }
 
 }

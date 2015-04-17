@@ -2,7 +2,7 @@ package controller;
 
 import controller.listener.Listener;
 
-public class GameplayController {
+public class GameplayController extends Controller {
 	private EntityController entityController;
 
 	public GameplayController() {
@@ -11,5 +11,9 @@ public class GameplayController {
 	
 	public void addEntityListener(Listener listener) {
 		entityController.addListener(listener);
+	}
+	
+	public void toggle() {
+		
 	}
 }

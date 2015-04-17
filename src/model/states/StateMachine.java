@@ -21,9 +21,11 @@ public class StateMachine<T extends State> {
 	
 	public void switchState(T state) {
 		// only exit the current state if it exists (allows switching from a null state)
-		if(!stateStack.isEmpty())
+		if(!stateStack.isEmpty()) {
 			currentState().onExit();
-		
+			stateStack.pop();
+		}
+			
 		// add the new state and enter it
 		stateStack.push(state);
 		state.onEnter();

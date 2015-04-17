@@ -1,10 +1,11 @@
 package model.states.gamestates;
 
-import view.InventoryMenuLayout;
+import view.layout.InventoryMenuLayout;
 import controller.InventoryMenuController;
 
 public class InventoryMenuState extends GameState {
 	private InventoryMenuLayout layout;
+	private InventoryMenuController controller;
 	
     public InventoryMenuState() {
     	layout = new InventoryMenuLayout();
@@ -14,12 +15,17 @@ public class InventoryMenuState extends GameState {
     public void onEnter() {
     	super.onEnter();
     	
-    	InventoryMenuController controller = new InventoryMenuController(getContext());
+    	controller = new InventoryMenuController(getContext());
     	layout.attachController(controller);
     }
 
     @Override
     protected InventoryMenuLayout getLayout() {
         return layout;
+    }
+    
+    @Override
+    protected InventoryMenuController getController() {
+    	return controller;
     }
 }

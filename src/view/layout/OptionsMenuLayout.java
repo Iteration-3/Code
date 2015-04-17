@@ -1,10 +1,7 @@
-package view;
+package view.layout;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
 
 import controller.OptionsMenuController;
 import view.components.MenuButton;
@@ -29,13 +26,8 @@ public class OptionsMenuLayout extends Layout {
         add(backButton);
     }
 
-    public void attachController(final OptionsMenuController controller) {   	
-    	backButton.addActionListener(new AbstractAction(){
-    		@Override
-    		public void actionPerformed(ActionEvent e) {
-    			controller.back();
-    		}
-    	});
+    public void attachController(OptionsMenuController controller) {   	
+    	backButton.addActionListener(controller.getBackAction());
     }
 }
 

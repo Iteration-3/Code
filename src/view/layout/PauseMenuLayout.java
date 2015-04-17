@@ -1,11 +1,10 @@
-package view;
+package view.layout;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
 
-import javax.swing.AbstractAction;
+import javax.swing.border.EmptyBorder;
 
 import controller.PauseMenuController;
 import view.components.MenuButton;
@@ -21,6 +20,8 @@ public class PauseMenuLayout extends Layout {
     public PauseMenuLayout() {
     	setPreferredSize(new Dimension(1024, 768));
         setLayout(new GridLayout(5, 1));
+        setBorder(new EmptyBorder(100,300,100,300));
+        setOpaque(false);
         
         initButtons();
         addButtons();
@@ -51,41 +52,16 @@ public class PauseMenuLayout extends Layout {
         add(mainMenuButton);
     }
 
-    public void attachController(final PauseMenuController controller) {
-    	resumeButton.addActionListener(new AbstractAction(){
-    		@Override
-    		public void actionPerformed(ActionEvent e) {
-    			controller.resumeGame();
-    		}
-    	});
+    public void attachController(PauseMenuController controller) {
+    	resumeButton.addActionListener(controller.getResumeGameAction());
 
-    	saveButton.addActionListener(new AbstractAction(){
-    		@Override
-    		public void actionPerformed(ActionEvent e) {
-    			controller.saveGame();
-    		}
-    	});
+    	saveButton.addActionListener(controller.getSaveGameAction());
     	
-    	loadButton.addActionListener(new AbstractAction(){
-    		@Override
-    		public void actionPerformed(ActionEvent e) {
-    			controller.loadGame();
-    		}
-    	});
+    	loadButton.addActionListener(controller.getLoadGameAction());
 
-    	optionsButton.addActionListener(new AbstractAction(){
-    		@Override
-    		public void actionPerformed(ActionEvent e) {
-    			controller.optionsMenu();
-    		}
-    	});
+    	optionsButton.addActionListener(controller.getOptionsAction());
     	
-    	mainMenuButton.addActionListener(new AbstractAction(){
-    		@Override
-    		public void actionPerformed(ActionEvent e) {
-    			controller.mainMenu();
-    		}
-    	});
+    	mainMenuButton.addActionListener(controller.getMainMenuAction());
     }
 }
 
