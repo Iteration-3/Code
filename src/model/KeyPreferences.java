@@ -11,19 +11,27 @@ public class KeyPreferences implements SavableLoadable {
     private static KeyPreferences preferences;
     private KeyStroke upKey;
     private KeyStroke upRightKey;
+    private KeyStroke upLeftKey;
     private KeyStroke downRightKey;
     private KeyStroke downKey;
     private KeyStroke downLeftKey;
-    private KeyStroke upLeftKey;
     private List<KeyStroke> abilities;
 
     public KeyPreferences() {
-        this.upKey = KeyStroke.getKeyStroke('8');
-        this.upRightKey = KeyStroke.getKeyStroke('9');
-        this.downRightKey = KeyStroke.getKeyStroke('3');
-        this.downKey = KeyStroke.getKeyStroke('2');
-        this.downLeftKey = KeyStroke.getKeyStroke('1');
-        this.upRightKey = KeyStroke.getKeyStroke('7');
+    	/* Num Pad Key Preferences 
+        this.upKey = KeyStroke.getKeyStroke("NUMPAD8");
+        this.upRightKey = KeyStroke.getKeyStroke("NUMPAD9");
+        this.upLeftKey= KeyStroke.getKeyStroke("NUMPAD7");
+        this.downRightKey = KeyStroke.getKeyStroke("NUMPAD3");
+        this.downKey = KeyStroke.getKeyStroke("NUMPAD2");
+        this.downLeftKey = KeyStroke.getKeyStroke("NUMPAD1");
+        */
+        this.upKey = KeyStroke.getKeyStroke("E");
+        this.upRightKey = KeyStroke.getKeyStroke("W");
+        this.upLeftKey= KeyStroke.getKeyStroke("Q");
+        this.downRightKey = KeyStroke.getKeyStroke("C");
+        this.downKey = KeyStroke.getKeyStroke("X");
+        this.downLeftKey = KeyStroke.getKeyStroke("Z");
     }
 
     public KeyPreferences(KeyStroke upKey, KeyStroke upRightKey, KeyStroke downRightKey, KeyStroke downKey,
