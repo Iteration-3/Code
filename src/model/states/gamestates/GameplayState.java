@@ -5,8 +5,6 @@ import gameactions.GameActionStatePush;
 import java.awt.Color;
 import java.util.Collection;
 
-import javax.swing.KeyStroke;
-
 import model.ItemEntityAssociation;
 import model.KeyPreferences;
 import model.area.RealCoordinate;
@@ -57,7 +55,7 @@ public class GameplayState extends GameState {
         Avatar avatar = new Smasher("Smasher", eView, loc);
 
         KeyPreferences preferences = new KeyPreferences();
-        super.setPrefrences(preferences);
+        getContext().setPreferences(preferences);
 
         Listener escapeListener = new SingleUseListener(preferences.getPauseKey(), new GameActionStatePush(
                 getContext(), new PauseMenuState()));
