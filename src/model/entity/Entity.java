@@ -7,7 +7,7 @@ import java.util.Collection;
 
 import javax.swing.KeyStroke;
 
-import model.area.RealCoordinate;
+import model.area.TileCoordinate;
 import model.item.EquipableItem;
 import model.item.TakeableItem;
 import model.slots.ItemManager;
@@ -25,10 +25,10 @@ public abstract class Entity implements SavableLoadable {
     private String name = null;
     private EntityStatistics stats = new EntityStatistics();
     private EntityView view = null;
-    private RealCoordinate location = new RealCoordinate();
+    private TileCoordinate location = new TileCoordinate();
     private Angle direction = Angle.UP;
 
-    public Entity(String name, EntityView view, RealCoordinate location) {
+    public Entity(String name, EntityView view, TileCoordinate location) {
         this.name = name;
         this.view = view;
         this.location = location;
@@ -76,7 +76,7 @@ public abstract class Entity implements SavableLoadable {
      * @param d
      */
     public void move(Angle angle) {
-        RealCoordinate nextLocation = this.getLocation().nextLocation(angle);
+        TileCoordinate nextLocation = this.getLocation().nextLocation(angle);
         this.setLocation(nextLocation);
         this.setDirection(angle);
     }
@@ -110,7 +110,7 @@ public abstract class Entity implements SavableLoadable {
         return name;
     }
 
-    public RealCoordinate getLocation() {
+    public TileCoordinate getLocation() {
         return location;
     }
 
@@ -167,7 +167,7 @@ public abstract class Entity implements SavableLoadable {
         this.itemManager.unequipGloves();
     }
 
-    public void setLocation(RealCoordinate location) {
+    public void setLocation(TileCoordinate location) {
         this.location = location;
         this.getEntityView().setLocation(location);
     }

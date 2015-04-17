@@ -1,13 +1,13 @@
 package model.entity;
 
-import model.area.RealCoordinate;
+import model.area.TileCoordinate;
 import view.EntityView;
 
 public abstract class Avatar extends Entity {
 	
 	public Avatar(){}
 
-	public Avatar(String name, EntityView view, RealCoordinate loc){
+	public Avatar(String name, EntityView view, TileCoordinate loc){
 		super(name, view, loc);
 	}
 	

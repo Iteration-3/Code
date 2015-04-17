@@ -25,7 +25,6 @@ public class ItemEntityAssociation implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println(RealCoordinate.convertToTileCoordinate(entity.getLocation()));
 		itemMap.touch(entity);
 	}
 

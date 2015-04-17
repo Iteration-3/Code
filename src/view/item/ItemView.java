@@ -11,7 +11,7 @@ public abstract class ItemView {
 
 	public void registerWithGameItemView(GameItemView gv, RealCoordinate p) {
 		onMap = true;
-		gv.addItemView(this,p);
+		gv.addItemView(this, p);
 	}
 
 	public boolean onMap() {

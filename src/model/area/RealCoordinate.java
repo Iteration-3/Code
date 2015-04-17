@@ -1,7 +1,5 @@
 package model.area;
 
-import utilities.Angle;
-
 public class RealCoordinate {
     private double x;
     private double y;
@@ -15,14 +13,6 @@ public class RealCoordinate {
     public RealCoordinate(double x, double y) {
         this.x = x;
         this.y = y;
-    }
-
-    public RealCoordinate nextLocation(Angle angle) {
-        int OFFSET = 30;
-        double xDisplacement = Math.cos(Math.toRadians(angle.getAngle() + OFFSET));
-        double yDisplacement = Math.sin(Math.toRadians(angle.getAngle() + OFFSET));
-        
-        return new RealCoordinate(this.getX() + xDisplacement, this.getY() - yDisplacement);
     }
 
     public static TileCoordinate convertToTileCoordinate(RealCoordinate coord) {

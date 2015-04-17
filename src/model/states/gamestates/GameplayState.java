@@ -9,6 +9,7 @@ import javax.swing.KeyStroke;
 
 import model.ItemEntityAssociation;
 import model.area.RealCoordinate;
+import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.entity.EntityManager;
 import model.entity.Smasher;
@@ -45,8 +46,8 @@ public class GameplayState extends GameState {
     }
     
     public void addEntityTest() {
-        RealCoordinate loc = new RealCoordinate(50, 50);
-        EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange, loc);
+        TileCoordinate loc = new TileCoordinate(50, 50);
+        EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange, TileCoordinate.convertToRealCoordinate(loc));
         Avatar avatar = new Smasher("Smasher", eView, loc);
         
         Listener escapeListener = new SingleUseListener(KeyStroke.getKeyStroke("ESCAPE"),
@@ -71,7 +72,7 @@ public class GameplayState extends GameState {
 
         
         EntityManager.getSingleton().setAvatar(avatar);
-        eView.registerWithGameMapView(layout.getGameEntityView(), loc);
+        eView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(loc));
         
         this.itemEntityAssociation = new ItemEntityAssociation(avatar); 
 

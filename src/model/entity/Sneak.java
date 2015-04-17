@@ -1,13 +1,13 @@
 package model.entity;
 
-import model.area.RealCoordinate;
+import model.area.TileCoordinate;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 
 public class Sneak extends Avatar {
 
-	public Sneak(String name, EntityView view, RealCoordinate loc) {
+	public Sneak(String name, EntityView view, TileCoordinate loc) {
 		super(name, view,loc);
 	}
 

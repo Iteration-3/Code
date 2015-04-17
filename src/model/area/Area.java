@@ -9,27 +9,27 @@ import utilities.structuredmap.StructuredMap;
 
 public abstract class Area implements SavableLoadable {
     private int range;
-    private RealCoordinate startLocation;
+    private TileCoordinate startLocation;
     private Area compositeArea;
 
     public static final double WIDTH = 1.0;
     public static final double HEIGHT = Math.sqrt(3) / 2.0;
 
-    public Area(int radius, RealCoordinate startLocation) {
+    public Area(int radius, TileCoordinate startLocation) {
         this.range = radius;
         this.startLocation = startLocation;
     }
 
     public Area() {
         this.range = 1;
-        this.startLocation = new RealCoordinate();
+        this.startLocation = new TileCoordinate();
     }
 
-    public RealCoordinate getStartLocation() {
+    public TileCoordinate getStartLocation() {
         return startLocation;
     }
 
-    public void setStartLocation(RealCoordinate startLocation) {
+    public void setStartLocation(TileCoordinate startLocation) {
         this.startLocation = startLocation;
     }
 
@@ -53,16 +53,15 @@ public abstract class Area implements SavableLoadable {
         return this.compositeArea != null;
     }
 
-    protected List<RealCoordinate> getCompositeCoveredLocations() {
-        List<RealCoordinate> emptyList = new ArrayList<>();
+    protected List<TileCoordinate> getCompositeCoveredLocations() {
+        List<TileCoordinate> emptyList = new ArrayList<>();
 
         return hasCompositeArea() ? compositeArea.getCoveredLocations() : emptyList;
     }
 
-    public abstract boolean isInRange(RealCoordinate location);
+    public abstract boolean isInRange(TileCoordinate location);
 
-    protected boolean isWithinRadius(RealCoordinate loc) {
-        loc = convertToCenter(loc);
+    protected boolean isWithinRadius(TileCoordinate loc) {
 
         return withinOffset(
                 Math.pow(getStartLocation().getX() - loc.getX(), 2)
@@ -83,19 +82,13 @@ public abstract class Area implements SavableLoadable {
         return Math.abs(double1 - double2) <= offset;
     }
 
-    protected RealCoordinate convertToCenter(RealCoordinate loc) {
-        return TileCoordinate.convertToRealCoordinate(RealCoordinate.convertToTileCoordinate(loc));
-    }
-
-    protected List<RealCoordinate> checkSurrounding(RealCoordinate location, List<RealCoordinate> returnList) {
-        List<RealCoordinate> testLocations = new ArrayList<>();
-        location = convertToCenter(location);
+    protected List<TileCoordinate> checkSurrounding(TileCoordinate location, List<TileCoordinate> returnList) {
+        List<TileCoordinate> testLocations = new ArrayList<>();
         for (Angle angle : Angle.values()) {
-            double xOffset = Math.round(Area.HEIGHT * Math.cos(Math.toRadians(angle.getAngle() + 30)));
-            double yOffset = Math.round(Area.HEIGHT * Math.sin(Math.toRadians(angle.getAngle() + 30)));
+            int xOffset = (int) Math.round(Area.HEIGHT * Math.cos(Math.toRadians(angle.getAngle() + 30)));
+            int yOffset = (int) Math.round(Area.HEIGHT * Math.sin(Math.toRadians(angle.getAngle() + 30)));
 
-            RealCoordinate testLocation = new RealCoordinate(location.getX() + xOffset, location.getY() - yOffset);
-            testLocation = convertToCenter(testLocation);
+            TileCoordinate testLocation = new TileCoordinate(location.getX() + xOffset, location.getY() - yOffset);
 
             if (canAdd(testLocation, returnList)) {
                 returnList.add(testLocation);
@@ -105,15 +98,15 @@ public abstract class Area implements SavableLoadable {
 
     }
 
-    protected boolean compositeInRange(RealCoordinate location) {
+    protected boolean compositeInRange(TileCoordinate location) {
         return this.compositeArea.isInRange(location);
     }
 
-    private boolean canAdd(RealCoordinate location, List<RealCoordinate> locations) {
+    private boolean canAdd(TileCoordinate location, List<TileCoordinate> locations) {
         return !locations.contains(location) && isInRange(location);
     }
 
-    public abstract List<RealCoordinate> getCoveredLocations();
+    public abstract List<TileCoordinate> getCoveredLocations();
 
     public abstract StructuredMap getStructuredMap();
 

@@ -48,7 +48,7 @@ public class TakeableItemMap implements SavableLoadable {
 	public void touch(Entity e) {
 		//Takes an entity, makes it touch all the items on the square, and then removes
 		//those items that get picked up from the map. 
-		getItemTileAtLocation(RealCoordinate.convertToTileCoordinate(e.getLocation())).touch(e);
+		getItemTileAtLocation(e.getLocation()).touch(e);
 		
 	}
 	public void add(TakeableItem i, RealCoordinate loc){
