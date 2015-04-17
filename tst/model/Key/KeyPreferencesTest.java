@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import controller.RebindingController;
-import view.Layout;
+import view.layout.Layout;
 
 public class KeyPreferencesTest {
 

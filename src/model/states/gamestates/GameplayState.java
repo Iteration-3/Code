@@ -16,9 +16,9 @@ import model.item.TakeableItem;
 import model.map.GameTerrain;
 import model.map.tile.PassableTile;
 import view.EntityView;
-import view.GameplayLayout;
 import view.item.BasicItemView;
 import view.item.ItemView;
+import view.layout.GameplayLayout;
 import view.map.BasicTileView;
 import view.map.TileView;
 import controller.GameplayController;
@@ -52,7 +52,6 @@ public class GameplayState extends GameState {
         Listener escapeListener = new SingleUseListener(KeyStroke.getKeyStroke("ESCAPE"),
                 new GameActionStatePush(getContext(), new PauseMenuState()));
         escapeListener.addAsBinding(getLayout());
-        //controller.addEntityListener(escapeListener);
         
         Listener inventoryListener = new SingleUseListener(KeyStroke.getKeyStroke("I"),
                 new GameActionStatePush(getContext(), new InventoryMenuState()));

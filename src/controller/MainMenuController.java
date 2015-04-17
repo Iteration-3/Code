@@ -1,25 +1,25 @@
 package controller;
 
 import model.Model;
-import model.states.gamestates.GameplayState;
+import model.states.gamestates.CharacterSelectionState;
 import model.states.gamestates.LoadMenuState;
 
 public class MainMenuController {
-	private Model model;
-	
+    private Model model;
+
     public MainMenuController(Model model) {
-    	this.model = model;
+        this.model = model;
     }
 
     public void newGame() {
-    	model.pushState(new GameplayState());
+        model.pushState(new CharacterSelectionState());
     }
- 
+
     public void loadGame() {
-    	model.pushState(new LoadMenuState());
+        model.pushState(new LoadMenuState());
     }
-    
+
     public void exitGame() {
-    	System.exit(0);
+        System.exit(0);
     }
 }

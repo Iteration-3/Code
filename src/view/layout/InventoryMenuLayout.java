@@ -1,4 +1,4 @@
-package view;
+package view.layout;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -6,14 +6,15 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import controller.OptionsMenuController;
+
+import controller.InventoryMenuController;
 import view.components.MenuButton;
 
 @SuppressWarnings("serial")
-public class OptionsMenuLayout extends Layout {
+public class InventoryMenuLayout extends Layout {
     private MenuButton backButton;
 
-    public OptionsMenuLayout() {
+    public InventoryMenuLayout() {
     	setPreferredSize(new Dimension(1024, 768));
      
         initButtons();
@@ -29,7 +30,7 @@ public class OptionsMenuLayout extends Layout {
         add(backButton);
     }
 
-    public void attachController(OptionsMenuController controller) {   	
+    public void attachController(InventoryMenuController controller) {   	
     	backButton.addActionListener(new AbstractAction(){
     		@Override
     		public void actionPerformed(ActionEvent e) {
@@ -38,4 +39,3 @@ public class OptionsMenuLayout extends Layout {
     	});
     }
 }
-

@@ -3,8 +3,8 @@ package model;
 import model.entity.Avatar;
 import model.states.StateMachine;
 import model.states.gamestates.GameState;
-import view.Layout;
 import view.View;
+import view.layout.Layout;
 
 public class Model extends StateMachine<GameState> {
 	private View view;

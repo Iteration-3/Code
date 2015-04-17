@@ -1,6 +1,6 @@
 package model.states.gamestates;
 
-import view.InventoryMenuLayout;
+import view.layout.InventoryMenuLayout;
 import controller.InventoryMenuController;
 
 public class InventoryMenuState extends GameState {

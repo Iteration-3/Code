@@ -1,6 +1,6 @@
 package model.states.gamestates;
 
-import view.Layout;
+import view.layout.Layout;
 import model.Model;
 import model.states.State;
 

@@ -31,5 +31,6 @@ public class PauseMenuController {
     public void mainMenu() {
     	model.popState(); // to before this menu
     	model.popState(); // and out of Gameplay
+    	model.popState(); // added an extra for character selection
     }
 }
