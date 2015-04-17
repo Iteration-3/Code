@@ -23,7 +23,7 @@ import utilities.structuredmap.StructuredMap;
  */
 public class ItemMap implements SavableLoadable {
 	private Map<TileCoordinate,ItemTile> items = new HashMap<TileCoordinate, ItemTile>();
-	
+
 	@Override
 	public StructuredMap getStructuredMap() {
 		// TODO Auto-generated method stub
@@ -32,7 +32,7 @@ public class ItemMap implements SavableLoadable {
 	@Override
 	public void load(StructuredMap map) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private ItemTile getItemTileAtLocation(TileCoordinate loc) {
@@ -44,15 +44,20 @@ public class ItemMap implements SavableLoadable {
 		return t;
 	}
 
-	
+
 	public void touch(Entity e, TileCoordinate tileCoordinate) {
 		//Takes an entity, makes it touch all the items on the square, and then removes
 		//those items that get picked up from the map. 
 		getItemTileAtLocation(e.getLocation()).touch(e);
-		
+
 	}
-	public void add(Item item, RealCoordinate loc){
-		getItemTileAtLocation(RealCoordinate.convertToTileCoordinate(loc)).addItem(item);
+	public void add(Item item, TileCoordinate loc){
+		getItemTileAtLocation(loc).addItem(item);
+		System.out.println("Added at" + (loc).toString() + " " + 
+				item.isBlocking());
+	}
+	public boolean isBlocking(TileCoordinate potentialSpot) {
+		return getItemTileAtLocation(potentialSpot).isBlocking();
 	}
 
 }

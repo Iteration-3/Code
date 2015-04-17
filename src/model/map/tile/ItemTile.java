@@ -45,4 +45,11 @@ public class ItemTile implements SavableLoadable {
 		// TODO Auto-generated method stub
 
 	}
+
+	public boolean isBlocking() {
+		for(Item i : items){
+			if(i.isBlocking()){return true;}
+		}
+		return false;
+	}
 }
