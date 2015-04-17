@@ -1,5 +1,6 @@
 package model.states.gamestates;
 
+import model.entity.Avatar;
 import view.layout.InventoryMenuLayout;
 import controller.InventoryMenuController;
 
@@ -7,8 +8,9 @@ public class InventoryMenuState extends GameState {
 	private InventoryMenuLayout layout;
 	private InventoryMenuController controller;
 	
-    public InventoryMenuState() {
-    	layout = new InventoryMenuLayout();
+    public InventoryMenuState(Avatar avatar) {
+    	//TODO  need to change this so that Avatar does not have getInventoryView()
+    	layout = new InventoryMenuLayout(avatar.getInventoryView());
     }
     
     @Override

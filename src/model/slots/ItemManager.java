@@ -1,5 +1,6 @@
 package model.slots;
 
+import view.InventoryView;
 import model.entity.NPC;
 import model.entity.Smasher;
 import model.entity.Sneak;
@@ -144,5 +145,9 @@ public class ItemManager {
 	
 	public boolean canEquipWeapon(Weapon weapon){
 		return this.equipment.canEquip(weapon);
+	}
+	
+	public InventoryView getInventoryView(){
+		return this.inventory.getView();
 	}
 }
