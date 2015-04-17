@@ -21,13 +21,11 @@ public class Model extends StateMachine<GameState> {
 	}
 	
 	public void setLayout(Layout layout) {
-		view.add(layout);
-		view.pack();
-		view.setLocationRelativeTo(null);
+		view.addGameLayout(layout);
 	}
 	
 	public void removeLayout(Layout layout) {
-	    view.remove(layout);
+	    view.removeGameLayout(layout);
 	}
 	
 	public Avatar getAvatar() {

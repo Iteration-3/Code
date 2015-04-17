@@ -5,6 +5,7 @@ import view.SaveMenuLayout;
 
 public class SaveMenuState extends GameState {
 	private SaveMenuLayout layout;
+	private SaveMenuController controller;
 	
     public SaveMenuState() { 
     	layout = new SaveMenuLayout();
@@ -14,12 +15,17 @@ public class SaveMenuState extends GameState {
     public void onEnter() {
     	super.onEnter();
     	
-    	SaveMenuController controller = new SaveMenuController(getContext());
+    	controller = new SaveMenuController(getContext());
     	layout.attachController(controller);
     }
 
     @Override
     protected SaveMenuLayout getLayout() {
         return layout;
+    }
+
+    @Override
+    protected SaveMenuController getController() {
+    	return controller;
     }
 }

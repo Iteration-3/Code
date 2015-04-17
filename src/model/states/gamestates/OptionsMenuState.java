@@ -5,6 +5,7 @@ import view.OptionsMenuLayout;
 
 public class OptionsMenuState extends GameState {
 	private OptionsMenuLayout layout;
+	private OptionsMenuController controller;
 	
     public OptionsMenuState() {
     	layout = new OptionsMenuLayout();
@@ -14,12 +15,17 @@ public class OptionsMenuState extends GameState {
     public void onEnter() {
     	super.onEnter();
     	
-    	OptionsMenuController controller = new OptionsMenuController(getContext());
+    	controller = new OptionsMenuController(getContext());
     	layout.attachController(controller);
     }
 
     @Override
     protected OptionsMenuLayout getLayout() {
         return layout;
+    }
+    
+    @Override
+    protected OptionsMenuController getController() {
+    	return controller;
     }
 }

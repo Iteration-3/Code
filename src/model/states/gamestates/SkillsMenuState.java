@@ -5,6 +5,7 @@ import controller.SkillsMenuController;
 
 public class SkillsMenuState extends GameState {
 	private SkillsMenuLayout layout;
+	private SkillsMenuController controller;
 	
     public SkillsMenuState() {
     	layout = new SkillsMenuLayout();
@@ -14,12 +15,17 @@ public class SkillsMenuState extends GameState {
     public void onEnter() {
     	super.onEnter();
     	
-    	SkillsMenuController controller = new SkillsMenuController(getContext());
+    	controller = new SkillsMenuController(getContext());
     	layout.attachController(controller);
     }
 
     @Override
     protected SkillsMenuLayout getLayout() {
         return layout;
+    }
+    
+    @Override
+    protected SkillsMenuController getController() {
+    	return controller;
     }
 }

@@ -97,5 +97,10 @@ public class GameplayState extends GameState {
     public GameplayLayout getLayout() {
         return layout;
     }
+    
+    @Override
+    public GameplayController getController() {
+    	return controller;
+    }
 
 }

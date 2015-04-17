@@ -5,6 +5,7 @@ import view.LoadMenuLayout;
 
 public class LoadMenuState extends GameState {
 	private LoadMenuLayout layout;
+	private LoadMenuController controller;
 	
 	public LoadMenuState() {
 		layout = new LoadMenuLayout();
@@ -14,7 +15,7 @@ public class LoadMenuState extends GameState {
     public void onEnter() {
     	super.onEnter();
     	
-    	LoadMenuController controller = new LoadMenuController(getContext());
+    	controller = new LoadMenuController(getContext());
     	layout.attachController(controller);
     }
 
@@ -22,4 +23,9 @@ public class LoadMenuState extends GameState {
 	protected LoadMenuLayout getLayout() {
 		return layout;
 	}
+	
+    @Override
+    protected LoadMenuController getController() {
+    	return controller;
+    }
 }

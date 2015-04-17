@@ -2,10 +2,6 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
-
 
 import controller.InventoryMenuController;
 import view.components.MenuButton;
@@ -31,11 +27,6 @@ public class InventoryMenuLayout extends Layout {
     }
 
     public void attachController(InventoryMenuController controller) {   	
-    	backButton.addActionListener(new AbstractAction(){
-    		@Override
-    		public void actionPerformed(ActionEvent e) {
-    			controller.back();
-    		}
-    	});
+    	backButton.addActionListener(controller.getBackAction());
     }
 }

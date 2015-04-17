@@ -2,9 +2,6 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
 
 import view.components.MenuButton;
 import controller.SaveMenuController;
@@ -30,11 +27,6 @@ public class SaveMenuLayout extends Layout {
     }
 
     public void attachController(SaveMenuController controller) {   	
-    	backButton.addActionListener(new AbstractAction(){
-    		@Override
-    		public void actionPerformed(ActionEvent e) {
-    			controller.back();
-    		}
-    	});
+    	backButton.addActionListener(controller.getBackAction());
     }
 }

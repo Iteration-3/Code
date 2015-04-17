@@ -1,5 +1,6 @@
 package model.states.gamestates;
 
+import controller.Controller;
 import view.Layout;
 import model.Model;
 import model.states.State;
@@ -13,13 +14,13 @@ public abstract class GameState extends State {
     }
 
     @Override
-    public void onPause() {
-        getContext().removeLayout(getLayout());
+    public void onPause() { 
+    	getController().toggle();
     }
 
     @Override
     public void onResume() {
-        getContext().setLayout(getLayout());
+    	getController().toggle();
     }
 
     @Override
@@ -36,4 +37,6 @@ public abstract class GameState extends State {
     }
     
     protected abstract Layout getLayout();
+    
+    protected abstract Controller getController();
 }
