@@ -129,4 +129,8 @@ public class Inventory {
 	public TakeableItem get(int index){
 		return this.slots[index].get();
 	}
+	
+	public InventoryView getView(){
+		return this.inventoryView;
+	}
 }

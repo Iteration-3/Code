@@ -69,3 +69,5 @@ RemoteSystemsTempFiles/
 /src/GRTAGS
 /src/GTAGS
 /.classpath
+/bin/
+/bin/
