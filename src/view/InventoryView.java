@@ -9,7 +9,7 @@ public class InventoryView {
 	private final static int SLOT_WIDTH = 50;
 	private final static int COL = 5;
 	private final static int ROW = 5;
-	private final static int ITEM_DIAMETER = 40;
+	private final static float ITEM_DIAMETER = 20;
 	
 	
 	private HashMap<Integer,SlotView> slots;
@@ -20,7 +20,6 @@ public class InventoryView {
 	
 	
 	public void register(SlotView[] slotViews){
-		this.slots = new HashMap<Integer,SlotView>();
 		for (int i= 0; i< slotViews.length ; i ++){
 			this.register(slotViews[i],i);
 		}
@@ -42,7 +41,6 @@ public class InventoryView {
 		for (int i = 0 ; i < slotViews.size(); i++ ){
 			int height= SLOT_HEIGHT * (i/ROW);
 			int width= SLOT_WIDTH * (i%COL);
-			System.out.println(height + "   " + width);
 			slotViews.get(i).render(g,height,width, ITEM_DIAMETER);
 		}
 	}
