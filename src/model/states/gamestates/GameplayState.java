@@ -7,20 +7,28 @@ import java.util.Collection;
 
 import model.ItemEntityAssociation;
 import model.KeyPreferences;
+import model.area.Area;
+import model.area.RadialArea;
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.entity.EntityManager;
 import model.entity.EntityMovementAssocation;
 import model.entity.Smasher;
+import model.event.HealthModifierEvent;
+import model.event.ManaModifierEvent;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
 import model.item.TakeableItem;
 import model.map.GameTerrain;
-import model.map.ItemMap;
 import model.map.tile.ImpassableTile;
 import model.map.tile.PassableTile;
 import model.statistics.EntityStatistics;
+import model.trigger.PermanentTrigger;
+import model.trigger.SingleUseTrigger;
+import model.trigger.TimedTrigger;
+import model.trigger.Trigger;
+import model.trigger.TriggerManager;
 import view.EntityView;
 import view.item.BasicItemView;
 import view.item.ItemView;
@@ -48,6 +56,8 @@ public class GameplayState extends GameState {
 		super.onEnter();
 		addTilesTest();
 		addEntityTest();
+		addItemTest();
+		addTriggersTest();
 	}
 
 	public void addEntityTest() {
@@ -85,7 +95,10 @@ public class GameplayState extends GameState {
 		eView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(loc));
 
 		
-		ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
+	}
+	
+	private void addItemTest() {
+        ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
 		RealCoordinate takeableItemViewPosition = new RealCoordinate(5, 5);
 		takeableItemView.registerWithGameItemView(layout.getGameItemView(), takeableItemViewPosition);
 		itemEntityAssociation.addItem(new TakeableItem(takeableItemView), RealCoordinate.convertToTileCoordinate(takeableItemViewPosition));
@@ -99,6 +112,24 @@ public class GameplayState extends GameState {
 		RealCoordinate oneshotItemPosition = new RealCoordinate(13, 9);
 		oneshotItemView.registerWithGameItemView(layout.getGameItemView(), oneshotItemPosition);
 		itemEntityAssociation.addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), RealCoordinate.convertToTileCoordinate(oneshotItemPosition));
+
+		
+	}
+	
+	private void addTriggersTest() {
+		TriggerManager triggerManager = TriggerManager.getSingleton();
+
+		// This may need a ViewableTriggerDecorator to display the Decal for the AreaEffect
+		TileCoordinate locOne = new TileCoordinate(2, 6);
+		Area areaOne = new RadialArea(20, locOne);
+		Trigger triggerOne = new SingleUseTrigger(areaOne, new HealthModifierEvent(2, -1));
+		
+		TileCoordinate locTwo = new TileCoordinate(2, 7);
+		Area areaTwo = new RadialArea(1, locTwo);
+		Trigger triggerTwo = new PermanentTrigger(areaTwo, new ManaModifierEvent(10, 200));
+		
+		triggerManager.addNonPartyTrigger(triggerOne);
+		triggerManager.addNonPartyTrigger(triggerTwo);
 	}
 
 	public void addTilesTest() {
