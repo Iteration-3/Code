@@ -38,9 +38,12 @@ public class InventorySlot implements Slot{
 	
 	public void setView(SlotView slotView){
 		this.slotview = slotView;
+		this.registerWithView();
 	}
 	
 	private void registerWithView(){
-		this.slotview.register(this.item.getView());
+		if (has()){
+			this.slotview.register(this.item.getView());
+		}
 	}
 }

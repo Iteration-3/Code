@@ -28,4 +28,8 @@ public class SkillsMenuState extends GameState {
     protected SkillsMenuController getController() {
     	return controller;
     }
+    @Override
+    public void update(){
+    	layout.updateLabelText();
+    }
 }

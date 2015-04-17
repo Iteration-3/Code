@@ -21,17 +21,18 @@ public class KeyPreferences implements SavableLoadable {
     private List<KeyStroke> abilities;
 
     public KeyPreferences() {
-    	/* Num Pad Key Preferences 
-        this.upKey = KeyStroke.getKeyStroke("NUMPAD8");
-        this.upRightKey = KeyStroke.getKeyStroke("NUMPAD9");
-        this.upLeftKey= KeyStroke.getKeyStroke("NUMPAD7");
-        this.downRightKey = KeyStroke.getKeyStroke("NUMPAD3");
-        this.downKey = KeyStroke.getKeyStroke("NUMPAD2");
-        this.downLeftKey = KeyStroke.getKeyStroke("NUMPAD1");
-        */
+        /*
+         * Num Pad Key Preferences this.upKey =
+         * KeyStroke.getKeyStroke("NUMPAD8"); this.upRightKey =
+         * KeyStroke.getKeyStroke("NUMPAD9"); this.upLeftKey=
+         * KeyStroke.getKeyStroke("NUMPAD7"); this.downRightKey =
+         * KeyStroke.getKeyStroke("NUMPAD3"); this.downKey =
+         * KeyStroke.getKeyStroke("NUMPAD2"); this.downLeftKey =
+         * KeyStroke.getKeyStroke("NUMPAD1");
+         */
         this.upKey = KeyStroke.getKeyStroke("W");
         this.upRightKey = KeyStroke.getKeyStroke("E");
-        this.upLeftKey= KeyStroke.getKeyStroke("Q");
+        this.upLeftKey = KeyStroke.getKeyStroke("Q");
         this.downRightKey = KeyStroke.getKeyStroke("C");
         this.downKey = KeyStroke.getKeyStroke("X");
         this.downLeftKey = KeyStroke.getKeyStroke("Z");
@@ -67,6 +68,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setUpKey(KeyStroke upKey) {
         this.upKey = upKey;
+
     }
 
     public KeyStroke getUpRightKey() {
@@ -75,6 +77,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setUpRightKey(KeyStroke upRightKey) {
         this.upRightKey = upRightKey;
+
     }
 
     public KeyStroke getDownRightKey() {
@@ -83,6 +86,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setDownRightKey(KeyStroke downRightKey) {
         this.downRightKey = downRightKey;
+
     }
 
     public KeyStroke getDownKey() {
@@ -91,6 +95,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setDownKey(KeyStroke downKey) {
         this.downKey = downKey;
+
     }
 
     public KeyStroke getDownLeftKey() {
@@ -99,6 +104,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setDownLeftKey(KeyStroke downLeftKey) {
         this.downLeftKey = downLeftKey;
+
     }
 
     public KeyStroke getUpLeftKey() {
@@ -107,6 +113,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setUpLeftKey(KeyStroke upLeftKey) {
         this.upLeftKey = upLeftKey;
+
     }
 
     public KeyStroke getInventoryKey() {
@@ -115,6 +122,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setInventoryKey(KeyStroke inventoryKey) {
         this.inventoryKey = inventoryKey;
+
     }
 
     public KeyStroke getSkillsKey() {
@@ -123,6 +131,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setSkillsKey(KeyStroke skillsKey) {
         this.skillsKey = skillsKey;
+
     }
 
     public KeyStroke getPauseKey() {
@@ -131,6 +140,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public void setPauseKey(KeyStroke pauseKey) {
         this.pauseKey = pauseKey;
+
     }
 
     public KeyStroke getAbility(int number) {
