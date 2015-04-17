@@ -25,10 +25,13 @@ public abstract class GameState extends State {
 
     @Override
     public void onResume() {
+        getModel().setLayout(getLayout());
+        getLayout().setController(getController());
     }
 
     @Override
     public void onExit() {
+        getModel().removeLayout(getLayout());
     }
 
     public Model getModel() {

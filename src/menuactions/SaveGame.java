@@ -2,17 +2,17 @@ package menuactions;
 
 import model.Model;
 import model.states.gamestates.GameState;
-import model.states.gamestates.GameplayState;
+import model.states.gamestates.SaveMenuState;
 
-public class NewGame extends StatePush {
+public class SaveGame extends StatePush {
 
-    public NewGame(Model model) {
+    public SaveGame(Model model) {
         super(model);
     }
 
     @Override
     protected GameState stateToPush() {
-        return new GameplayState(getModel());
+        return new SaveMenuState(getModel());
     }
 
 }

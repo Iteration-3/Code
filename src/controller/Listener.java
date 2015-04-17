@@ -49,7 +49,8 @@ public class Listener {
 
         // Register KeyDown Event
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
-                KeyStroke.getKeyStroke("typed " + Character.toString(key.getKeyChar())), keyDownState);
+                KeyStroke.getKeyStroke("pressed " + Character.toString(Character.toUpperCase(key.getKeyChar()))),
+                keyDownState);
         panel.getActionMap().put(keyDownState, keyDownState.getAction());
 
         // Register KeyReleased Event
@@ -68,6 +69,14 @@ public class Listener {
         if (isPressed()) {
             gameAction.perform();
         }
+    }
+    
+    public KeyStroke getKey() {
+        return this.key;
+    }
+    
+    public GameAction getGameAction() {
+        return this.gameAction;
     }
 
 }

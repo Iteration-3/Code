@@ -1,7 +1,11 @@
 package model.states.gamestates;
 
+import gameactions.GameActionStateSwitchPause;
+
 import java.awt.Color;
 import java.util.Collection;
+
+import javax.swing.KeyStroke;
 
 import model.Model;
 import model.area.RealCoordinate;
@@ -18,6 +22,7 @@ import view.item.BasicItemView;
 import view.item.ItemView;
 import view.map.BasicTileView;
 import view.map.TileView;
+import controller.FireOnceListener;
 import controller.GameplayController;
 import controller.Listener;
 
@@ -42,11 +47,19 @@ public class GameplayState extends GameState {
         RealCoordinate loc = new RealCoordinate(50, 50);
         EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange, loc);
         Avatar avatar = new Smasher("Smasher", eView, loc);
+        
+        Listener escapeListener = new FireOnceListener(KeyStroke.getKeyStroke('6'),
+                new GameActionStateSwitchPause(getModel()));
+        escapeListener.addAsBinding(getLayout());
+        controller.addEntityListener(escapeListener);
+        
         Collection<Listener> listeners = avatar.getListeners();
         for (Listener listener : listeners) {
             listener.addAsBinding(getLayout());
             controller.addEntityListener(listener);
         }
+
+        
         EntityManager.getSingleton().setAvatar(avatar);
         eView.registerWithGameMapView(layout.getGameEntityView(), loc);
     }

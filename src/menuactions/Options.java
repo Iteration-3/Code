@@ -2,17 +2,17 @@ package menuactions;
 
 import model.Model;
 import model.states.gamestates.GameState;
-import model.states.gamestates.GameplayState;
+import model.states.gamestates.OptionsMenuState;
 
-public class NewGame extends StatePush {
+public class Options extends StatePush {
 
-    public NewGame(Model model) {
+    public Options(Model model) {
         super(model);
     }
 
     @Override
     protected GameState stateToPush() {
-        return new GameplayState(getModel());
+      return new OptionsMenuState(getModel()); 
     }
 
 }

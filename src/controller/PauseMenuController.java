@@ -2,9 +2,9 @@ package controller;
 
 import view.Layout;
 
-public class MainMenuController extends Controller {
+public class PauseMenuController extends Controller {
 
-    public MainMenuController() {
+    public PauseMenuController() {
         // TODO Auto-generated constructor stub
     }
 

@@ -15,5 +15,9 @@ public class MenuButton extends JButton {
         super(description);
         this.description = description;
     }
+    
+    public String getDescription() {
+        return this.description;
+    }
 
 }
