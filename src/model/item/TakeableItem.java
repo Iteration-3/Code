@@ -2,13 +2,21 @@ package model.item;
 
 import javax.swing.JOptionPane;
 
+import view.item.ItemView;
 import model.entity.Entity;
 
 public class TakeableItem extends Item {
 
+	public TakeableItem(ItemView itemView) {
+		super(itemView);
+	}
+
 	@Override
 	public void touch(Entity entity) {
-		entity.addItem(this);
+		if (entity.addItem(this)) {
+			// Remove the view from the map somehow...
+			itemView.removeFromMap();
+		}
 	}
 
 	@Override

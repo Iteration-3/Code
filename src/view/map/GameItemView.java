@@ -2,8 +2,8 @@ package view.map;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import model.area.RealCoordinate;
@@ -22,13 +22,20 @@ public class GameItemView implements GameView {
 		this.screenWidth = width;
 		this.screenHeight = height;
 		
+		List<RealCoordinate> toRemove = new ArrayList<RealCoordinate>();
 		for(Map.Entry<RealCoordinate, ItemView> entry: itemViews.entrySet()) {
 			ItemView itemView = entry.getValue();
 			RealCoordinate coordinate = entry.getKey();
+			if (!itemView.onMap()) {
+				toRemove.add(entry.getKey());
+				continue;
+			}
 			int renderX = (int) (coordinate.getX() * itemWidth() * .75);
 			int renderY = (int) (coordinate.getY() * (coordinate.getX() % 2) * itemHeight() / 2);
 			itemView.render(graphics, new RealCoordinate(renderX, renderY), itemWidth() / 1.5f);
 		}
+		for (RealCoordinate coordinate: toRemove)
+			itemViews.remove(coordinate);
 		
 	}
 

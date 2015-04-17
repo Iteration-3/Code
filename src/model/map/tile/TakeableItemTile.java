@@ -16,13 +16,12 @@ public class TakeableItemTile implements SavableLoadable{
 	public void touch(Entity e){
 		//Takes an entity, makes it touch all the items on the square, and then removes
 		//those items that get picked up from the map. 
-		for(TakeableItem i : items){
+		for(TakeableItem i : items) {
 			i.touch(e);
-			if(e.addItem(i)){
-				this.remove(i);
-			}
 		}
+		items.clear();
 	}
+
 	public boolean remove(TakeableItem i){
 		return items.remove(i);
 	}

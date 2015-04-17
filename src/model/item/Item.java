@@ -7,6 +7,10 @@ public abstract class Item {
 	
 	protected ItemView itemView;
 	
+	public Item(ItemView itemView) {
+		this.itemView = itemView;
+	}
+	
 	public abstract void touch(Entity entity);
 	public abstract void use(Entity entity);
 	public abstract String getInfo();

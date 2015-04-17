@@ -2,11 +2,12 @@ package model.item;
 
 import model.slots.SummonerWeaponSlot;
 import model.statistics.Statistics;
+import view.item.ItemView;
 
 public class SummonerWeapon extends Weapon {
 
-	public SummonerWeapon(Statistics stats) {
-		super(stats);
+	public SummonerWeapon(ItemView itemView, Statistics stats) {
+		super(itemView, stats);
 	}
 
 	public boolean equip(SummonerWeaponSlot slot){

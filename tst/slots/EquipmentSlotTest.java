@@ -19,6 +19,8 @@ import model.statistics.Statistics;
 
 import org.junit.Test;
 
+import view.item.BasicItemView;
+
 public class EquipmentSlotTest {
 	
 	@Test
@@ -30,14 +32,14 @@ public class EquipmentSlotTest {
 	@Test
 	public void testHas(){
 		EquipmentSlot<Helmet> slot = new EquipmentSlot<Helmet>();
-		slot.equip(new Helmet(new Statistics()));
+		slot.equip(new Helmet(new BasicItemView(), new Statistics()));
 		assertTrue(slot.has());
 	}
 
 	@Test
 	public void testHasItemAndEquipItem(){
 		EquipmentSlot<Helmet> slot = new EquipmentSlot<Helmet>();
-		Helmet helmet = new Helmet(new Statistics());
+		Helmet helmet = new Helmet(new BasicItemView(), new Statistics());
 		slot.equip(helmet);
 		assertTrue(slot.has(helmet));
 	}
@@ -45,14 +47,14 @@ public class EquipmentSlotTest {
 	@Test
 	public void testHasNotItem(){
 		EquipmentSlot<Helmet> slot = new EquipmentSlot<Helmet>();
-		Helmet helmet = new Helmet(new Statistics());
+		Helmet helmet = new Helmet(new BasicItemView(), new Statistics());
 		assertFalse(slot.has(helmet));
 	}
 	
 	@Test
 	public void unequip(){
 		EquipmentSlot<Helmet> slot = new EquipmentSlot<Helmet>();
-		Helmet helmet = new Helmet(new Statistics());
+		Helmet helmet = new Helmet(new BasicItemView(), new Statistics());
 		slot.equip(helmet);
 		Helmet other = slot.unequip();
 		assertEquals(other,helmet);
@@ -71,7 +73,7 @@ public class EquipmentSlotTest {
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
 		DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot = new DoubleEquipmentSlot(weapon, shield);
-		TwoHandedWeapon THW = new TwoHandedWeapon(new Statistics());
+		TwoHandedWeapon THW = new TwoHandedWeapon(new BasicItemView(), new Statistics());
 		THWSlot.equip(THW);
 		assertTrue(THWSlot.has());
 	}	
@@ -81,8 +83,8 @@ public class EquipmentSlotTest {
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
 		DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot = new DoubleEquipmentSlot(weapon, shield);
-		TwoHandedWeapon THW = new TwoHandedWeapon(new Statistics());
-		SmasherWeapon sw = new SmasherWeapon(new Statistics());
+		TwoHandedWeapon THW = new TwoHandedWeapon(new BasicItemView(), new Statistics());
+		SmasherWeapon sw = new SmasherWeapon(new BasicItemView(), new Statistics());
 		THWSlot.equipFirstSlot(sw);
 		assertTrue(weapon.has());
 	}	
@@ -92,9 +94,9 @@ public class EquipmentSlotTest {
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
 		DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot = new DoubleEquipmentSlot(weapon, shield);
-		TwoHandedWeapon THW = new TwoHandedWeapon(new Statistics());
-		SmasherWeapon sw = new SmasherWeapon(new Statistics());
-		Shield sh = new Shield(new Statistics());
+		TwoHandedWeapon THW = new TwoHandedWeapon(new BasicItemView(), new Statistics());
+		SmasherWeapon sw = new SmasherWeapon(new BasicItemView(), new Statistics());
+		Shield sh = new Shield(new BasicItemView(), new Statistics());
 		THWSlot.equipSecondSlot(sh);
 		assertTrue(shield.has());
 	}	
@@ -104,9 +106,9 @@ public class EquipmentSlotTest {
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
 		DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot = new DoubleEquipmentSlot(weapon, shield);
-		TwoHandedWeapon THW = new TwoHandedWeapon(new Statistics());
-		SmasherWeapon sw = new SmasherWeapon(new Statistics());
-		Shield sh = new Shield(new Statistics());
+		TwoHandedWeapon THW = new TwoHandedWeapon(new BasicItemView(), new Statistics());
+		SmasherWeapon sw = new SmasherWeapon(new BasicItemView(), new Statistics());
+		Shield sh = new Shield(new BasicItemView(), new Statistics());
 		THWSlot.equipSecondSlot(sh);
 //		THWSlot.equipFirstSlot(sw);
 		assertFalse(THWSlot.equip(THW));
@@ -117,9 +119,9 @@ public class EquipmentSlotTest {
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
 		DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot = new DoubleEquipmentSlot(weapon, shield);
-		TwoHandedWeapon THW = new TwoHandedWeapon(new Statistics());
-		SmasherWeapon sw = new SmasherWeapon(new Statistics());
-		Shield sh = new Shield(new Statistics());
+		TwoHandedWeapon THW = new TwoHandedWeapon(new BasicItemView(), new Statistics());
+		SmasherWeapon sw = new SmasherWeapon(new BasicItemView(), new Statistics());
+		Shield sh = new Shield(new BasicItemView(), new Statistics());
 //		THWSlot.equipSecondSlot(sh);
 		THWSlot.equipFirstSlot(sw);
 		assertFalse(THWSlot.equip(THW));
@@ -130,9 +132,9 @@ public class EquipmentSlotTest {
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
 		DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot = new DoubleEquipmentSlot(weapon, shield);
-		TwoHandedWeapon THW = new TwoHandedWeapon(new Statistics());
-		SmasherWeapon sw = new SmasherWeapon(new Statistics());
-		Shield sh = new Shield(new Statistics());
+		TwoHandedWeapon THW = new TwoHandedWeapon(new BasicItemView(), new Statistics());
+		SmasherWeapon sw = new SmasherWeapon(new BasicItemView(), new Statistics());
+		Shield sh = new Shield(new BasicItemView(), new Statistics());
 		THWSlot.equipSecondSlot(sh);
 		THWSlot.equipFirstSlot(sw);
 		assertFalse(THWSlot.equip(THW));
@@ -143,9 +145,9 @@ public class EquipmentSlotTest {
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
 		DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot = new DoubleEquipmentSlot(weapon, shield);
-		TwoHandedWeapon THW = new TwoHandedWeapon(new Statistics());
-		SmasherWeapon sw = new SmasherWeapon(new Statistics());
-		Shield sh = new Shield(new Statistics());
+		TwoHandedWeapon THW = new TwoHandedWeapon(new BasicItemView(), new Statistics());
+		SmasherWeapon sw = new SmasherWeapon(new BasicItemView(), new Statistics());
+		Shield sh = new Shield(new BasicItemView(), new Statistics());
 		assertTrue(THWSlot.equip(THW));
 	}
 	
@@ -153,7 +155,7 @@ public class EquipmentSlotTest {
 	@Test
 	public void testSummonerWeaponSlot(){
 		SummonerWeaponSlot weapon = new SummonerWeaponSlot();
-		SummonerWeapon sw = new SummonerWeapon(new Statistics());
+		SummonerWeapon sw = new SummonerWeapon(new BasicItemView(), new Statistics());
 		weapon.equip(sw);
 		assertTrue(weapon.has());
 	}	
@@ -161,7 +163,7 @@ public class EquipmentSlotTest {
 	@Test
 	public void testSneakWeaponSlot(){
 		SneakWeaponSlot weapon = new SneakWeaponSlot();
-		SneakWeapon sw = new SneakWeapon(new Statistics());
+		SneakWeapon sw = new SneakWeapon(new BasicItemView(), new Statistics());
 		weapon.equip(sw);
 		assertTrue(weapon.has());
 	}	

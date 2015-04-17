@@ -1,7 +1,9 @@
 package model.area;
 
 public class TileCoordinate {
-    private int x;
+    
+
+	private int x;
     private int y;
 
     public TileCoordinate(int x, int y) {
@@ -30,5 +32,35 @@ public class TileCoordinate {
         double y = (double) ((Math.sqrt(3) / 2 * (double) coord.getY()) + (((double) coord.getX() % 2) * Math.sqrt(3.0) / 4.0));
         return new RealCoordinate(x, y);
     }
+    
+    @Override
+    public String toString() {
+    	return "(" + x + ", " + y + ")";
+    }
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + x;
+		result = prime * result + y;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TileCoordinate other = (TileCoordinate) obj;
+		if (x != other.x)
+			return false;
+		if (y != other.y)
+			return false;
+		return true;
+	}
+    
 }

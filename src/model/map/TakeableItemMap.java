@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import model.area.RealCoordinate;
+import model.area.TileCoordinate;
 import model.entity.Entity;
 import model.item.TakeableItem;
 import model.map.tile.TakeableItemTile;
@@ -21,7 +22,7 @@ import utilities.structuredmap.StructuredMap;
  *
  */
 public class TakeableItemMap implements SavableLoadable {
-	private Map<RealCoordinate,TakeableItemTile> items = new HashMap<RealCoordinate, TakeableItemTile>();
+	private Map<TileCoordinate,TakeableItemTile> items = new HashMap<TileCoordinate, TakeableItemTile>();
 	
 	@Override
 	public StructuredMap getStructuredMap() {
@@ -33,21 +34,26 @@ public class TakeableItemMap implements SavableLoadable {
 		// TODO Auto-generated method stub
 		
 	}
-	private TakeableItemTile getItemTileAtLocation(RealCoordinate loc){
+
+	private TakeableItemTile getItemTileAtLocation(TileCoordinate loc) {
 		TakeableItemTile t = items.get(loc);
-		if(t==null){t = new TakeableItemTile();}
+		if (t == null) {
+			t = new TakeableItemTile();
+		}
+		items.put(loc, t);
 		return t;
 	}
 
 	
-	public void touch(Entity e, RealCoordinate loc){
+	public void touch(Entity e) {
 		//Takes an entity, makes it touch all the items on the square, and then removes
 		//those items that get picked up from the map. 
-		this.getItemTileAtLocation(loc).touch(e);
+		getItemTileAtLocation(RealCoordinate.convertToTileCoordinate(e.getLocation())).touch(e);
 		
 	}
 	public void add(TakeableItem i, RealCoordinate loc){
-		this.getItemTileAtLocation(loc).addItem(i);
+		System.out.println(RealCoordinate.convertToTileCoordinate(loc));
+		getItemTileAtLocation(RealCoordinate.convertToTileCoordinate(loc)).addItem(i);
 	}
 
 }

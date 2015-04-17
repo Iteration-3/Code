@@ -2,11 +2,12 @@ package model.item;
 
 import model.slots.ItemManager;
 import model.statistics.Statistics;
+import view.item.ItemView;
 
 public class TwoHandedWeapon extends Weapon {
 
-	public TwoHandedWeapon(Statistics stats) {
-		super(stats);
+	public TwoHandedWeapon(ItemView itemView, Statistics stats) {
+		super(itemView, stats);
 	}
 
 	@Override

@@ -6,11 +6,12 @@ import model.slots.SmasherWeaponSlot;
 import model.slots.SneakWeaponSlot;
 import model.slots.SummonerWeaponSlot;
 import model.statistics.Statistics;
+import view.item.ItemView;
 
 public abstract class Weapon extends EquipableItem{
 
-	public Weapon(Statistics stats) {
-		super(stats);
+	public Weapon(ItemView itemView, Statistics stats) {
+		super(itemView, stats);
 	}
 
 	public boolean equip(EquipmentManager equipment){

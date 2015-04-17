@@ -150,5 +150,10 @@ public class RealCoordinate {
             return y;
         }
     }
+    
+    @Override
+    public String toString() {
+    	return "(" + x + ", " + y + ")";
+    }
 
 }

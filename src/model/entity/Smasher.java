@@ -13,7 +13,8 @@ public class Smasher extends Avatar {
 		super(name, view,loc);
 	}
 
-	protected ItemManager getItemManager() {
+	@Override
+	protected ItemManager createItemManager() {
 		return new ItemManager(this);
 	}
 
@@ -39,11 +40,6 @@ public class Smasher extends Avatar {
 	public void update() {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	protected model.slots.ItemManager createItemManager() {
-		return null;
 	}
 
 }
