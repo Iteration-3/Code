@@ -9,10 +9,11 @@ public class GameActionMovement extends GameAction {
 
 	public GameActionMovement(Entity entity, Angle direction){
 		this.entity = entity;
+		this.direction = direction;
 	}
 
 	@Override
 	public void perform() {
-		entity.move(Angle.DOWN);
+		entity.move(direction);
 	}
 }
