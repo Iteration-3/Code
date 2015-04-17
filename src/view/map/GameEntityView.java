@@ -11,9 +11,9 @@ public class GameEntityView implements GameView {
 	private Collection<EntityView> entityViews = new ArrayList<EntityView>();
 
 	public void render(Graphics graphics, int width, int height) {
-		for(EntityView i : entityViews) {
+		for(EntityView entityView : entityViews) {
 			//TODO(mbregg) Make this not hardcoded, EntityView really needs to be redone
-			i.render(graphics, height/18);
+			entityView.render(graphics, height/18);
 		}
 	}
 	public void addEntityView(EntityView entityView) {

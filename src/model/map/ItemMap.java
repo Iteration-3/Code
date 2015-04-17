@@ -6,7 +6,7 @@ import java.util.Map;
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import model.entity.Entity;
-import model.item.TakeableItem;
+import model.item.Item;
 import model.map.tile.ItemTile;
 import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
@@ -51,9 +51,8 @@ public class ItemMap implements SavableLoadable {
 		getItemTileAtLocation(e.getLocation()).touch(e);
 		
 	}
-	public void add(TakeableItem i, RealCoordinate loc){
-		// System.out.println(RealCoordinate.convertToTileCoordinate(loc));
-		getItemTileAtLocation(RealCoordinate.convertToTileCoordinate(loc)).addItem(i);
+	public void add(Item item, RealCoordinate loc){
+		getItemTileAtLocation(RealCoordinate.convertToTileCoordinate(loc)).addItem(item);
 	}
 
 }

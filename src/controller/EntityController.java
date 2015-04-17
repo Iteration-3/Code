@@ -22,7 +22,7 @@ public class EntityController implements ActionListener {
 	}
 
 	private void startTimer() {
-		Timer t = new Timer(1000 / 30, this);
+		Timer t = new Timer(65, this);
 		t.start();
 	}
 

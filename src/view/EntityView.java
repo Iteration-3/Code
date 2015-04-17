@@ -27,8 +27,9 @@ public class EntityView {
 	}
 	
 	public void render(Graphics graphics, float diameter) {
-		backgroundHexagon.render(graphics, location, diameter * OVERDRAW);
-		foregroundHexagon.render(graphics, location, diameter * (1 - BORDER_PERCENTAGE) * OVERDRAW);
+		RealCoordinate updatedCoordinate = new RealCoordinate(location.getX() * diameter, Math.sqrt( 3 ) / 2.0 * location.getY() * diameter);
+		backgroundHexagon.render(graphics, updatedCoordinate, diameter * OVERDRAW);
+		foregroundHexagon.render(graphics, updatedCoordinate, diameter * (1 - BORDER_PERCENTAGE) * OVERDRAW);
 	}
 
 	public void setLocation(RealCoordinate location) {
