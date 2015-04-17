@@ -4,11 +4,12 @@ import model.entity.Entity;
 import model.slots.EquipmentManager;
 import model.slots.ItemManager;
 import model.statistics.Statistics;
+import view.item.ItemView;
 
 public class Shield extends EquipableItem{
 
-	public Shield(Statistics stats) {
-		super(stats);
+	public Shield(ItemView itemView, Statistics stats) {
+		super(itemView, stats);
 	}
 
 	public boolean equip(EquipmentManager equipment) {

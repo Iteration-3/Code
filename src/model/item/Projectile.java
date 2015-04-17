@@ -4,11 +4,12 @@ import model.entity.Entity;
 import model.slots.EquipmentManager;
 import model.slots.ItemManager;
 import model.statistics.Statistics;
+import view.item.ItemView;
 
 public class Projectile extends EquipableItem{
 
-	public Projectile(Statistics stats) {
-		super(stats);
+	public Projectile(ItemView itemView, Statistics stats) {
+		super(itemView, stats);
 	}
 
 	public boolean equip(EquipmentManager equipment) {

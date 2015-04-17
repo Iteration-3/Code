@@ -2,11 +2,12 @@ package model.item;
 
 import model.slots.SneakWeaponSlot;
 import model.statistics.Statistics;
+import view.item.ItemView;
 
 public class SneakWeapon extends Weapon {
 
-	public SneakWeapon(Statistics stats) {
-		super(stats);
+	public SneakWeapon(ItemView itemView, Statistics stats) {
+		super(itemView, stats);
 	}
 
 	public boolean equip(SneakWeaponSlot slot){

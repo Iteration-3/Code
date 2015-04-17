@@ -1,12 +1,18 @@
 package model.item;
 
 import model.entity.Entity;
+import view.item.ItemView;
 
 public class Door extends Item {
 
 	private TakeableItem requirement; // required to open the Door
 	private boolean open = false;
 
+	public Door(ItemView itemView, TakeableItem requirement) {
+		super(itemView);
+		this.requirement = requirement;
+	}
+	
 	@Override
 	public void touch(Entity entity) {
 		// Should I do something different on touch()? -- Joe

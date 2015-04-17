@@ -1,8 +1,13 @@
 package model.item;
 
+import view.item.ItemView;
 import model.entity.Entity;
 
 public class ObstacleItem extends Item {
+
+	public ObstacleItem(ItemView itemView) {
+		super(itemView);
+	}
 
 	@Override
 	public void touch(Entity entity) {

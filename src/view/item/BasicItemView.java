@@ -18,6 +18,11 @@ public class BasicItemView extends ItemView {
 		foregroundHexagon = new Hexagon(fillColor);
 	}
 	
+	public BasicItemView() {
+		backgroundHexagon = new Hexagon(Color.BLUE);
+		foregroundHexagon = new Hexagon(Color.ORANGE);
+	}
+
 	@Override
 	public void render(Graphics graphics, RealCoordinate location, float diameter) {
 		backgroundHexagon.render(graphics, location, diameter * OVERDRAW);

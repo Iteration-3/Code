@@ -41,7 +41,7 @@ public abstract class Entity implements SavableLoadable {
     }
 
     public Entity() {
-
+    	
     }
 
     private void setNecessities() {
@@ -124,6 +124,7 @@ public abstract class Entity implements SavableLoadable {
     }
 
     public boolean addItem(TakeableItem item) {
+    	System.out.println("Added Item!");
         return this.itemManager.addItem(item);
     }
 

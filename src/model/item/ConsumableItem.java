@@ -8,17 +8,20 @@ import model.event.ManaModifierEvent;
 import model.event.MovementModifierEvent;
 import model.event.StatisticModifierEvent;
 import model.statistics.EntityStatistics;
+import view.item.ItemView;
 
 public class ConsumableItem extends TakeableItem {
 	private EntityStatistics stats;
 	private double duration;
 
-	public ConsumableItem(EntityStatistics stats) {
+	public ConsumableItem(ItemView itemView, EntityStatistics stats) {
+		super(itemView);
 		this.stats = stats;
 		this.duration = 0.0;
 	}
 	
-	public ConsumableItem(EntityStatistics stats, double duration) {
+	public ConsumableItem(ItemView itemView, EntityStatistics stats, double duration) {
+		super(itemView);
 		this.stats = stats;
 		this.duration = duration;
 	}

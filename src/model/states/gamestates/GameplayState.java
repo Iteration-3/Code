@@ -3,17 +3,17 @@ package model.states.gamestates;
 import gameactions.GameActionStatePush;
 
 import java.awt.Color;
-import java.awt.event.KeyEvent;
 import java.util.Collection;
 
 import javax.swing.KeyStroke;
 
+import model.ItemEntityAssociation;
 import model.Model;
 import model.area.RealCoordinate;
 import model.entity.Avatar;
 import model.entity.EntityManager;
 import model.entity.Smasher;
-import model.item.ConsumableItem;
+import model.item.TakeableItem;
 import model.map.GameTerrain;
 import model.map.TakeableItemMap;
 import model.map.tile.PassableTile;
@@ -24,20 +24,19 @@ import view.item.ItemView;
 import view.map.BasicTileView;
 import view.map.TileView;
 import controller.GameplayController;
-import controller.listener.SingleUseListener;
 import controller.listener.Listener;
+import controller.listener.SingleUseListener;
 
 public class GameplayState extends GameState {
     private GameplayController controller;
     private GameplayLayout layout;
     private GameTerrain gameMap;
-    private TakeableItemMap itemMap;
+    private ItemEntityAssociation itemEntityAssociation;
 
     public GameplayState() {
         layout = new GameplayLayout();
         controller = new GameplayController();
         gameMap = new GameTerrain();
-        itemMap = new TakeableItemMap();
     }
 
     @Override
@@ -66,6 +65,13 @@ public class GameplayState extends GameState {
         
         EntityManager.getSingleton().setAvatar(avatar);
         eView.registerWithGameMapView(layout.getGameEntityView(), loc);
+        
+        this.itemEntityAssociation = new ItemEntityAssociation(avatar); 
+
+        ItemView view = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
+        RealCoordinate p = new RealCoordinate(5, 5);
+        view.registerWithGameItemView(layout.getGameItemView(), p);
+        itemEntityAssociation.addItem(new TakeableItem(view), p);
     }
 
     public void addTilesTest() {
@@ -78,10 +84,6 @@ public class GameplayState extends GameState {
                 gameMap.add(new PassableTile(view), p);
             }
         }
-        ItemView view = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
-        RealCoordinate p = new RealCoordinate(5, 5);
-        view.registerWithGameItemView(layout.getGameItemView(), p);
-        itemMap.add(new ConsumableItem(null), p);
     }
 
     @Override
