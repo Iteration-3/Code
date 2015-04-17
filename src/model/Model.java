@@ -38,4 +38,11 @@ public class Model extends StateMachine<GameState> {
 		// TODO link in when we have stuff for the model class
 		return null;
 	}
+
+	public void update() {
+		if(this.currentState()!=null){
+			this.currentState().update();//Currently only updates the current state.
+		}
+		
+	}
 }

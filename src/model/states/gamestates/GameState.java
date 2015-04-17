@@ -39,4 +39,8 @@ public abstract class GameState extends State {
     protected abstract Layout getLayout();
     
     protected abstract Controller getController();
+
+	public void update() {
+		//Defaults to polling nothing, overridden where neded.
+	}
 }

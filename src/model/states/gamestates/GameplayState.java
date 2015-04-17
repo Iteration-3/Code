@@ -14,9 +14,12 @@ import model.entity.Avatar;
 import model.entity.EntityManager;
 import model.entity.GameEntityAssocation;
 import model.entity.Smasher;
+import model.item.ObstacleItem;
+import model.item.OneShotItem;
 import model.item.TakeableItem;
 import model.map.GameTerrain;
 import model.map.tile.PassableTile;
+import model.statistics.EntityStatistics;
 import view.EntityView;
 import view.item.BasicItemView;
 import view.item.ItemView;
@@ -47,7 +50,7 @@ public class GameplayState extends GameState {
     }
     
     public void addEntityTest() {
-        TileCoordinate loc = new TileCoordinate(50, 50);
+        TileCoordinate loc = new TileCoordinate(3, 3);
         EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange, TileCoordinate.convertToRealCoordinate(loc));
         Avatar avatar = new Smasher("Smasher", eView, loc);
         
@@ -81,7 +84,12 @@ public class GameplayState extends GameState {
         ItemView obstacleItemView = new BasicItemView(Color.GRAY, Color.BLACK);
         RealCoordinate obstacleItemPosition = new RealCoordinate(9, 7);
         obstacleItemView.registerWithGameItemView(layout.getGameItemView(), obstacleItemPosition);
-        itemEntityAssociation.addItem(new TakeableItem(obstacleItemView), obstacleItemPosition);
+        itemEntityAssociation.addItem(new ObstacleItem(obstacleItemView), obstacleItemPosition);
+
+        ItemView oneshotItemView = new BasicItemView(Color.GRAY, Color.BLACK);
+        RealCoordinate oneshotItemPosition = new RealCoordinate(13, 9);
+        oneshotItemView.registerWithGameItemView(layout.getGameItemView(), oneshotItemPosition);
+        itemEntityAssociation.addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), oneshotItemPosition);
     }
 
     public void addTilesTest() {
@@ -104,6 +112,11 @@ public class GameplayState extends GameState {
     @Override
     public GameplayController getController() {
     	return controller;
+    }
+    
+    @Override
+    public void update(){
+    	//TODO poll here.
     }
 
 }
