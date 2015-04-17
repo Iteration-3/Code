@@ -46,6 +46,7 @@ public class Model extends StateMachine<GameState> {
         if (this.currentState() != null) {
             this.currentState().update();// Currently only updates the current
                                          // state.
+
         }
 
     }

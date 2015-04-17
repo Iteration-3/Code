@@ -9,28 +9,32 @@ import javax.swing.Timer;
 
 import controller.listener.Listener;
 
-
 public class EntityController implements ActionListener {
-	private Collection<Listener> listeners = new ArrayList<Listener>();
+    private Collection<Listener> listeners = new ArrayList<Listener>();
 
-	public EntityController() {
-		startTimer();
-	}
-	
-	public void addListener(Listener listener) {
-		listeners.add(listener);
-	}
+    public EntityController() {
+        startTimer();
+    }
 
-	private void startTimer() {
-		Timer t = new Timer(65, this);
-		t.start();
-	}
+    public void addListener(Listener listener) {
+        listeners.add(listener);
+    }
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		for(Listener listener: listeners) {
-			listener.activate();
-		}
-	}
+    private void startTimer() {
+        Timer t = new Timer(65, this);
+        t.start();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent arg0) {
+        for (Listener listener : listeners) {
+            listener.activate();
+        }
+    }
+
+    public void removeListeners() {
+        listeners = new ArrayList<Listener>();
+
+    }
 
 }
