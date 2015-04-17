@@ -1,17 +1,17 @@
 package model.trigger;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import model.entity.EntityManager;
 
 public final class TriggerManager {
 	
 	private static TriggerManager _triggerManager = new TriggerManager();
-	private ArrayList<Trigger> partyTriggers = new ArrayList<Trigger>();
-	private ArrayList<Trigger> nonPartyTriggers = new ArrayList<Trigger>();
-	private ArrayList<Trigger> neutralTriggers = new ArrayList<Trigger>();
+	private CopyOnWriteArrayList<Trigger> partyTriggers = new CopyOnWriteArrayList<Trigger>();
+	private CopyOnWriteArrayList<Trigger> nonPartyTriggers = new CopyOnWriteArrayList<Trigger>();
+	private CopyOnWriteArrayList<Trigger> neutralTriggers = new CopyOnWriteArrayList<Trigger>();
 	
 	private TriggerManager() { }
 	
