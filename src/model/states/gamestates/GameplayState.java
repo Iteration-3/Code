@@ -113,5 +113,10 @@ public class GameplayState extends GameState {
     public GameplayController getController() {
     	return controller;
     }
+    
+    @Override
+    public void update(){
+    	//TODO poll here.
+    }
 
 }
