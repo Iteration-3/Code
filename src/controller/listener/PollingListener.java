@@ -31,8 +31,6 @@ public class PollingListener extends Listener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 down = true;
-                // System.out.println("I've been pressed down=" + down);
-                // gameAction.perform();
             }
 
         });
@@ -42,7 +40,6 @@ public class PollingListener extends Listener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 down = false;
-                // System.out.println("I've been released.  down=" + down);
             }
 
         });

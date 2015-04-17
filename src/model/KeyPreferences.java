@@ -21,8 +21,16 @@ public class KeyPreferences implements SavableLoadable {
     private List<KeyStroke> abilities;
 
     public KeyPreferences() {
-        this.upKey = KeyStroke.getKeyStroke("E");
-        this.upRightKey = KeyStroke.getKeyStroke("W");
+    	/* Num Pad Key Preferences 
+        this.upKey = KeyStroke.getKeyStroke("NUMPAD8");
+        this.upRightKey = KeyStroke.getKeyStroke("NUMPAD9");
+        this.upLeftKey= KeyStroke.getKeyStroke("NUMPAD7");
+        this.downRightKey = KeyStroke.getKeyStroke("NUMPAD3");
+        this.downKey = KeyStroke.getKeyStroke("NUMPAD2");
+        this.downLeftKey = KeyStroke.getKeyStroke("NUMPAD1");
+        */
+        this.upKey = KeyStroke.getKeyStroke("W");
+        this.upRightKey = KeyStroke.getKeyStroke("E");
         this.upLeftKey= KeyStroke.getKeyStroke("Q");
         this.downRightKey = KeyStroke.getKeyStroke("C");
         this.downKey = KeyStroke.getKeyStroke("X");
