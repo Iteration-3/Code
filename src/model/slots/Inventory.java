@@ -24,7 +24,7 @@ public class Inventory {
 	
 	private void setSlotView(int index){
 		SlotView slotView = new SlotView();
-		this.slots[index].setView(new SlotView());
+		this.slots[index].setView(slotView);
 		this.inventoryView.register(slotView, index);
 	}
 	

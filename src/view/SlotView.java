@@ -25,10 +25,12 @@ public class SlotView {
 		return this.itemView != null;
 	}
 	
-	public void render(Graphics g,int x,int y, int itemDiameter){
+	public void render(Graphics g,int x,int y, float itemDiameter){
 		this.drawBackGround(g, x, y);
 		if (this.hasItem()){
-			this.itemView.render(g, new RealCoordinate (x,y), itemDiameter );
+			int xLoc = x + 15;
+			int yLoc = y + 15;
+			this.itemView.render(g, new RealCoordinate (xLoc,yLoc), itemDiameter );
 		}
 	}
 	
