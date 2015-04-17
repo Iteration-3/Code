@@ -1,6 +1,6 @@
 package model.states.gamestates;
 
-import view.SkillsMenuLayout;
+import view.layout.SkillsMenuLayout;
 import controller.SkillsMenuController;
 
 public class SkillsMenuState extends GameState {

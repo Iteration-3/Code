@@ -1,7 +1,7 @@
 package model.states.gamestates;
 
 import controller.LoadMenuController;
-import view.LoadMenuLayout;
+import view.layout.LoadMenuLayout;
 
 public class LoadMenuState extends GameState {
 	private LoadMenuLayout layout;

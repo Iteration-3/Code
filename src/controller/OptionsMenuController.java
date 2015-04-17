@@ -26,6 +26,7 @@ public class OptionsMenuController extends Controller {
 	public ToggleAction getBackAction() {
 		return backAction;
 	}
+	
 	public void toggle() {
 		backAction.toggle();
 	}

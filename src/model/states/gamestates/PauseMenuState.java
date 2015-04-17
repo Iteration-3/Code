@@ -1,6 +1,6 @@
 package model.states.gamestates;
 
-import view.PauseMenuLayout;
+import view.layout.PauseMenuLayout;
 import controller.PauseMenuController;
 
 public class PauseMenuState extends GameState {

@@ -26,6 +26,7 @@ public class LoadMenuController extends Controller {
 	public ToggleAction getBackAction() {
 		return backAction;
 	}
+	
 	public void toggle() {
 		backAction.toggle();
 	}

@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.Timer;
 
+import view.layout.Layout;
+
 @SuppressWarnings("serial")
 public class View extends JFrame implements ActionListener {
 	private static final int FPS = 30;

@@ -8,7 +8,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
-import view.Layout;
+import view.layout.Layout;
 import controller.KeyState;
 
 public class SingleUseListener extends Listener {

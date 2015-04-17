@@ -1,16 +1,16 @@
-package view;
+package view.layout;
 
 import java.awt.Color;
 import java.awt.Dimension;
 
-import controller.OptionsMenuController;
 import view.components.MenuButton;
+import controller.SaveMenuController;
 
 @SuppressWarnings("serial")
-public class OptionsMenuLayout extends Layout {
-    private MenuButton backButton;
+public class SaveMenuLayout extends Layout {
+	private MenuButton backButton;
 
-    public OptionsMenuLayout() {
+    public SaveMenuLayout() {
     	setPreferredSize(new Dimension(1024, 768));
      
         initButtons();
@@ -26,8 +26,7 @@ public class OptionsMenuLayout extends Layout {
         add(backButton);
     }
 
-    public void attachController(OptionsMenuController controller) {   	
+    public void attachController(SaveMenuController controller) {   	
     	backButton.addActionListener(controller.getBackAction());
     }
 }
-

@@ -2,7 +2,7 @@ package controller;
 
 import controller.listener.ToggleAction;
 import model.Model;
-import model.states.gamestates.GameplayState;
+import model.states.gamestates.CharacterSelectionState;
 import model.states.gamestates.LoadMenuState;
 
 public class MainMenuController extends Controller{
@@ -22,7 +22,7 @@ public class MainMenuController extends Controller{
 	    	new ToggleAction() {
 	    		@Override
 	    		public void action() {
-	    		model.pushState(new GameplayState());
+	    		model.pushState(new CharacterSelectionState());
 	    		}
 	    	};
 	    

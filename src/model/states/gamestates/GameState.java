@@ -1,7 +1,7 @@
 package model.states.gamestates;
 
 import controller.Controller;
-import view.Layout;
+import view.layout.Layout;
 import model.Model;
 import model.states.State;
 
