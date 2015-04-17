@@ -3,9 +3,6 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-
-import javax.swing.AbstractAction;
 
 import controller.MainMenuController;
 import view.components.MenuButton;
