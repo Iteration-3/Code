@@ -1,4 +1,4 @@
-package controller;
+package controller.listener;
 
 import gameactions.GameAction;
 
@@ -9,32 +9,35 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 import view.Layout;
+import controller.KeyState;
 
-public class FireOnceListener extends Listener {
+public class SingleUseListener extends Listener {
 
-    public FireOnceListener(KeyStroke keystroke, GameAction gameAction) {
+    public SingleUseListener(KeyStroke keystroke, GameAction gameAction) {
         super(keystroke, gameAction);
     }
+
     @Override
     public void addAsBinding(Layout panel) {
-        
+
         @SuppressWarnings("serial")
         KeyState keyUpState = new KeyState(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                active();
+                activate();
             }
 
         });
-        
+
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
-                KeyStroke.getKeyStroke("released " + getKey().toString().replaceAll("(pressed|typed) ", "")),  // This definitely isn't good...
+                KeyStroke.getKeyStroke("released " + getKey().toString().replaceAll("(pressed|typed) ", "")),
                 keyUpState);
         panel.getActionMap().put(keyUpState, keyUpState.getAction());
     }
-    
-    public void active() {
-       getGameAction().perform(); 
+
+    @Override
+    public void activate() {
+        getGameAction().perform();
     }
 
 }

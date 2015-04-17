@@ -7,6 +7,8 @@ import java.util.Collection;
 
 import javax.swing.Timer;
 
+import controller.listener.Listener;
+
 
 public class EntityController implements ActionListener {
 	private Collection<Listener> listeners = new ArrayList<Listener>();

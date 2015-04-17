@@ -23,9 +23,9 @@ import view.item.BasicItemView;
 import view.item.ItemView;
 import view.map.BasicTileView;
 import view.map.TileView;
-import controller.FireOnceListener;
 import controller.GameplayController;
-import controller.Listener;
+import controller.listener.SingleUseListener;
+import controller.listener.Listener;
 
 public class GameplayState extends GameState {
     private GameplayController controller;
@@ -49,10 +49,10 @@ public class GameplayState extends GameState {
         EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange, loc);
         Avatar avatar = new Smasher("Smasher", eView, loc);
         
-        Listener escapeListener = new FireOnceListener(KeyStroke.getKeyStroke("ESCAPE"),
+        Listener escapeListener = new SingleUseListener(KeyStroke.getKeyStroke("ESCAPE"),
                 new GameActionStateSwitchPause(getModel()));
         escapeListener.addAsBinding(getLayout());
-        controller.addEntityListener(escapeListener);
+        //controller.addEntityListener(escapeListener);
         
         Collection<Listener> listeners = avatar.getListeners();
         for (Listener listener : listeners) {
