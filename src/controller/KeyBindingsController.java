@@ -15,7 +15,7 @@ import view.layout.Layout;
 import controller.listener.ToggleAction;
 
 public class KeyBindingsController extends Controller {
-    private KeyPreferences keyPreferences = KeyPreferences.getInstance().clone();
+    private KeyPreferences keyPreferences;
     private Layout layout;
     private Model model;
 
@@ -31,6 +31,7 @@ public class KeyBindingsController extends Controller {
     @SuppressWarnings("serial")
     public KeyBindingsController(Model model) {
         this.model = model;
+        this.keyPreferences = model.getPreferences();
 
         backAction = new ToggleAction() {
             public void action() {

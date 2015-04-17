@@ -69,6 +69,7 @@ public abstract class Entity implements SavableLoadable {
         TileCoordinate nextLocation = nextLocation(angle);
         this.setLocation(nextLocation);
         this.setDirection(angle);
+        System.out.println(nextLocation.toString());
     }
     
     public TileCoordinate nextLocation(Angle angle) {
