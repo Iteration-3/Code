@@ -1,4 +1,4 @@
-package controller;
+package controller.listener;
 
 import gameactions.GameAction;
 
@@ -8,21 +8,21 @@ import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
+import controller.KeyState;
 import view.Layout;
 
-public class Listener {
-    private KeyStroke key;
-    private GameAction gameAction;
+public class PollingListener extends Listener {
+
     private boolean down = false;
     private KeyState keyDownState;
     private KeyState keyUpState;
 
-    public Listener(KeyStroke keystroke, GameAction gameAction) {
-        key = keystroke;
-        this.gameAction = gameAction;
+    public PollingListener(KeyStroke stroke, GameAction action) {
+        super(stroke, action);
     }
 
     @SuppressWarnings("serial")
+    @Override
     public void addAsBinding(Layout panel) {
 
         // Anonymous Classes...
@@ -49,34 +49,27 @@ public class Listener {
 
         // Register KeyDown Event
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
-                KeyStroke.getKeyStroke("pressed " + Character.toString(Character.toUpperCase(key.getKeyChar()))),
+                KeyStroke.getKeyStroke("pressed " + Character.toString(Character.toUpperCase(getKey().getKeyChar()))),
                 keyDownState);
         panel.getActionMap().put(keyDownState, keyDownState.getAction());
 
         // Register KeyReleased Event
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
-                KeyStroke.getKeyStroke("released " + Character.toString(Character.toUpperCase(key.getKeyChar()))),
+                KeyStroke.getKeyStroke("released " + Character.toString(Character.toUpperCase(getKey().getKeyChar()))),
                 keyUpState);
         panel.getActionMap().put(keyUpState, keyUpState.getAction());
 
     }
 
-    public boolean isPressed() {
+    private boolean isPressed() {
         return down;
     }
 
+    @Override
     public void activate() {
         if (isPressed()) {
-            gameAction.perform();
+            getGameAction().perform();
         }
-    }
-    
-    public KeyStroke getKey() {
-        return this.key;
-    }
-    
-    public GameAction getGameAction() {
-        return this.gameAction;
     }
 
 }

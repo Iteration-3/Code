@@ -12,7 +12,6 @@ import java.util.Collection;
 
 import javax.swing.KeyStroke;
 
-import controller.Listener;
 import model.area.RealCoordinate;
 import model.item.EquipableItem;
 import model.item.TakeableItem;
@@ -23,6 +22,8 @@ import utilities.Angle;
 import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
+import controller.listener.Listener;
+import controller.listener.PollingListener;
 
 public abstract class Entity implements SavableLoadable {
     private ItemManager itemManager;
@@ -88,12 +89,12 @@ public abstract class Entity implements SavableLoadable {
     public Collection<Listener> getListeners() {
         Collection<Listener> listeners = new ArrayList<Listener>();
         // TODO(jraviles) get these from the key preferences
-        listeners.add(new Listener(KeyStroke.getKeyStroke('1'), new GameActionMovementDownLeft(this)));
-        listeners.add(new Listener(KeyStroke.getKeyStroke('2'), new GameActionMovementDown(this)));
-        listeners.add(new Listener(KeyStroke.getKeyStroke('3'), new GameActionMovementDownRight(this)));
-        listeners.add(new Listener(KeyStroke.getKeyStroke('7'), new GameActionMovementUpLeft(this)));
-        listeners.add(new Listener(KeyStroke.getKeyStroke('8'), new GameActionMovementUp(this)));
-        listeners.add(new Listener(KeyStroke.getKeyStroke('9'), new GameActionMovementUpRight(this)));
+        listeners.add(new PollingListener(KeyStroke.getKeyStroke('1'), new GameActionMovementDownLeft(this)));
+        listeners.add(new PollingListener(KeyStroke.getKeyStroke('2'), new GameActionMovementDown(this)));
+        listeners.add(new PollingListener(KeyStroke.getKeyStroke('3'), new GameActionMovementDownRight(this)));
+        listeners.add(new PollingListener(KeyStroke.getKeyStroke('7'), new GameActionMovementUpLeft(this)));
+        listeners.add(new PollingListener(KeyStroke.getKeyStroke('8'), new GameActionMovementUp(this)));
+        listeners.add(new PollingListener(KeyStroke.getKeyStroke('9'), new GameActionMovementUpRight(this)));
         return listeners;
     }
 
