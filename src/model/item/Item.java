@@ -27,5 +27,8 @@ public abstract class Item {
 	// When Items are added to the Inventory, there is nothing notifying 
 	// the tile that the Items have been removed. 
 	public abstract void attemptRemoveFrom(ItemTile itemTile);
-
+	
+	public ItemView getView(){
+		return this.itemView;
+	}
 }
