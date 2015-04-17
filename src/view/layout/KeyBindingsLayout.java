@@ -16,7 +16,6 @@ public class KeyBindingsLayout extends Layout {
     private MenuButton rebindUpRight;
     private MenuButton rebindDownLeft;
     private MenuButton rebindDownRight;
-    private MenuButton saveButton;
 
     public KeyBindingsLayout() {
         setPreferredSize(new Dimension(1024, 768));
@@ -33,7 +32,6 @@ public class KeyBindingsLayout extends Layout {
         add(rebindDownLeft);
         add(rebindDownRight);
         add(backButton);
-        add(saveButton);
     }
 
     private void initButtons() {
@@ -58,9 +56,6 @@ public class KeyBindingsLayout extends Layout {
         rebindDownRight = new MenuButton("REBIND DOWN RIGHT");
         rebindDownRight.setColor(Color.GRAY);
 
-        saveButton = new MenuButton("SAVE BINDINGS");
-        saveButton.setColor(Color.CYAN);
-
     }
 
     public void attachController(KeyBindingsController controller) {
@@ -71,7 +66,6 @@ public class KeyBindingsLayout extends Layout {
         rebindUpRight.addActionListener(controller.getRebindUpRightAction());
         rebindDownLeft.addActionListener(controller.getRebindDownLeftAction());
         rebindDownRight.addActionListener(controller.getRebindDownRightAction());
-        saveButton.addActionListener(controller.getSaveAction());
     }
 
 }
