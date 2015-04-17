@@ -8,13 +8,16 @@ import utilities.structuredmap.SavableLoadable;
 import utilities.structuredmap.StructuredMap;
 
 public class KeyPreferences implements SavableLoadable {
-    private static KeyPreferences preferences;
+
     private KeyStroke upKey;
     private KeyStroke upRightKey;
     private KeyStroke upLeftKey;
     private KeyStroke downRightKey;
     private KeyStroke downKey;
     private KeyStroke downLeftKey;
+    private KeyStroke inventoryKey;
+    private KeyStroke skillsKey;
+    private KeyStroke pauseKey;
     private List<KeyStroke> abilities;
 
     public KeyPreferences() {
@@ -32,16 +35,22 @@ public class KeyPreferences implements SavableLoadable {
         this.downRightKey = KeyStroke.getKeyStroke("C");
         this.downKey = KeyStroke.getKeyStroke("X");
         this.downLeftKey = KeyStroke.getKeyStroke("Z");
+        this.pauseKey = KeyStroke.getKeyStroke("ESCAPE");
+        this.inventoryKey = KeyStroke.getKeyStroke("I");
+        this.skillsKey = KeyStroke.getKeyStroke("S");
     }
 
     public KeyPreferences(KeyStroke upKey, KeyStroke upRightKey, KeyStroke downRightKey, KeyStroke downKey,
-            KeyStroke downLeftKey, KeyStroke upLeftKey) {
+            KeyStroke downLeftKey, KeyStroke upLeftKey, KeyStroke pauseKey, KeyStroke inventoryKey, KeyStroke skillsKey) {
         setUpKey(upKey);
         setUpRightKey(upRightKey);
         setDownRightKey(downRightKey);
         setDownKey(downKey);
         setDownLeftKey(downLeftKey);
         setUpLeftKey(upLeftKey);
+        setPauseKey(pauseKey);
+        setInventoryKey(inventoryKey);
+        setSkillsKey(skillsKey);
     }
 
     public StructuredMap getStructuredMap() {
@@ -100,6 +109,30 @@ public class KeyPreferences implements SavableLoadable {
         this.upLeftKey = upLeftKey;
     }
 
+    public KeyStroke getInventoryKey() {
+        return inventoryKey;
+    }
+
+    public void setInventoryKey(KeyStroke inventoryKey) {
+        this.inventoryKey = inventoryKey;
+    }
+
+    public KeyStroke getSkillsKey() {
+        return skillsKey;
+    }
+
+    public void setSkillsKey(KeyStroke skillsKey) {
+        this.skillsKey = skillsKey;
+    }
+
+    public KeyStroke getPauseKey() {
+        return pauseKey;
+    }
+
+    public void setPauseKey(KeyStroke pauseKey) {
+        this.pauseKey = pauseKey;
+    }
+
     public KeyStroke getAbility(int number) {
         return this.getAbilities().get(number - 1);
     }
@@ -116,14 +149,4 @@ public class KeyPreferences implements SavableLoadable {
         this.abilities = abilities;
     }
 
-    public static KeyPreferences getInstance() {
-        if (preferences == null) {
-            preferences = new KeyPreferences();
-        }
-        return preferences;
-    }
-
-    public KeyPreferences clone() {
-        return new KeyPreferences(upKey, upRightKey, downRightKey, downKey, downLeftKey, upLeftKey);
-    }
 }
