@@ -57,8 +57,9 @@ public class SkillsMenuLayout extends Layout {
 		stats.append("ITEMS:");
 		for(Item i : avatar.getItems()){
 			if(i==null){continue;}
-			stats.append(i.getInfo());
+			stats.append(i.toString());
 			stats.append(" " + System.lineSeparator()+ " ");
+
 		}
 				
 		skills.setText(stats.toString());
