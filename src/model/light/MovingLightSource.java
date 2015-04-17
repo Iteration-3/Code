@@ -1,7 +1,7 @@
 package model.light;
 
 import model.area.Area;
-import model.area.RealCoordinate;
+import model.area.TileCoordinate;
 
 public class MovingLightSource extends LightSource {
 
@@ -9,7 +9,7 @@ public class MovingLightSource extends LightSource {
 		super(area, visibility);
 	}
 	
-	public void move(RealCoordinate location) {
+	public void move(TileCoordinate location) {
 		this.getArea().setStartLocation(location);
 	}
 

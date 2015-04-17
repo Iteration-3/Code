@@ -9,8 +9,10 @@ import javax.swing.KeyStroke;
 
 import model.ItemEntityAssociation;
 import model.area.RealCoordinate;
+import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.entity.EntityManager;
+import model.entity.GameEntityAssocation;
 import model.entity.Smasher;
 import model.item.TakeableItem;
 import model.map.GameTerrain;
@@ -45,8 +47,8 @@ public class GameplayState extends GameState {
     }
     
     public void addEntityTest() {
-        RealCoordinate loc = new RealCoordinate(50, 50);
-        EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange, loc);
+        TileCoordinate loc = new TileCoordinate(50, 50);
+        EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange, TileCoordinate.convertToRealCoordinate(loc));
         Avatar avatar = new Smasher("Smasher", eView, loc);
         
         Listener escapeListener = new SingleUseListener(KeyStroke.getKeyStroke("ESCAPE"),
@@ -61,19 +63,16 @@ public class GameplayState extends GameState {
                 new GameActionStatePush(getContext(), new SkillsMenuState()));
         skillsListener.addAsBinding(getLayout());
 
-        
-        Collection<Listener> listeners = avatar.getListeners();
+        Collection<Listener> listeners = new GameEntityAssocation(avatar, gameMap).getListeners();
         for (Listener listener : listeners) {
             listener.addAsBinding(getLayout());
             controller.addEntityListener(listener);
         }
-
         
         EntityManager.getSingleton().setAvatar(avatar);
-        eView.registerWithGameMapView(layout.getGameEntityView(), loc);
+        eView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(loc));
         
         this.itemEntityAssociation = new ItemEntityAssociation(avatar); 
-
         ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
         RealCoordinate takeableItemViewPosition = new RealCoordinate(5, 5);
         takeableItemView.registerWithGameItemView(layout.getGameItemView(), takeableItemViewPosition);
@@ -90,8 +89,8 @@ public class GameplayState extends GameState {
             for (int y = 0; y < 100; ++y) {// Hardcoded for as long as the area
                                            // is
                 TileView view = new BasicTileView(new Color(0, 200, 200), Color.WHITE);
-                RealCoordinate p = new RealCoordinate(x, y);
-                view.registerWithGameMapView(layout.getGameTerrainView(), p);
+                TileCoordinate p = new TileCoordinate(x, y);
+                view.registerWithGameMapView(layout.getGameTerrainView(), TileCoordinate.convertToRealCoordinate(p));
                 gameMap.add(new PassableTile(view), p);
             }
         }

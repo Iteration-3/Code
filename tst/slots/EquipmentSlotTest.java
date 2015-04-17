@@ -3,15 +3,19 @@ package slots;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import model.entity.Smasher;
+import model.entity.Sneak;
 import model.item.Helmet;
 import model.item.Shield;
 import model.item.SmasherWeapon;
 import model.item.SneakWeapon;
 import model.item.SummonerWeapon;
+import model.item.TakeableItem;
 import model.item.TwoHandedWeapon;
 import model.item.Weapon;
 import model.slots.DoubleEquipmentSlot;
 import model.slots.EquipmentSlot;
+import model.slots.ItemManager;
 import model.slots.SmasherWeaponSlot;
 import model.slots.SneakWeaponSlot;
 import model.slots.SummonerWeaponSlot;
@@ -167,4 +171,31 @@ public class EquipmentSlotTest {
 		weapon.equip(sw);
 		assertTrue(weapon.has());
 	}	
+	
+	@Test
+	public void ItemManagerEquipWeapon(){
+		Sneak avatar = new Sneak();
+		ItemManager IM = new ItemManager(avatar);
+		SneakWeapon sw = new SneakWeapon(new BasicItemView(), new Statistics());
+		IM.equip(sw);
+		IM.unequipWeapon();
+		assertTrue(IM.inventoryHasItem(sw));
+	}	
+	
+	@Test
+	public void ItemManagerTHWEquipUnequip(){
+		Smasher avatar = new Smasher();
+		ItemManager IM = new ItemManager(avatar);
+		SmasherWeapon sw = new SmasherWeapon(new BasicItemView(), new Statistics());
+		Shield shield = new Shield(new BasicItemView(),new Statistics());
+		IM.equip(sw);
+		IM.equip(shield);
+		TwoHandedWeapon thw = new TwoHandedWeapon(new BasicItemView(),new Statistics());
+		IM.equip(thw);
+		assertTrue(IM.inventoryHasItem(sw));
+		assertTrue(IM.inventoryHasItem(shield));
+		IM.unequipTHW();
+		assertTrue(IM.inventoryHasItem(thw));
+	}
+	
 }

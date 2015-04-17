@@ -15,13 +15,13 @@ public class ConicalArea extends DirectionalArea {
         super();
     }
 
-    public ConicalArea(int radius, RealCoordinate startLocation, Angle angle) {
+    public ConicalArea(int radius, TileCoordinate startLocation, Angle angle) {
         super(radius, startLocation, angle);
     }
 
     @Override
-    public boolean isInRange(RealCoordinate location) {
-        RealCoordinate testLocation = super.createComparisonLocation(location);
+    public boolean isInRange(TileCoordinate location) {
+        TileCoordinate testLocation = super.createComparisonLocation(location);
         double angle = Math.round(Math.toDegrees(Math.atan2((testLocation.getY()), testLocation.getX())));
         boolean thisResult = angle >= super.getDirection().getAngle()
                 && angle <= (super.getDirection().getAngle() + CONE_WIDTH_IN_DEGREES) && isWithinRadius(location);
@@ -30,8 +30,8 @@ public class ConicalArea extends DirectionalArea {
     }
 
     @Override
-    public List<RealCoordinate> getCoveredLocations() {
-        List<RealCoordinate> returnList = new ArrayList<>();
+    public List<TileCoordinate> getCoveredLocations() {
+        List<TileCoordinate> returnList = new ArrayList<>();
         returnList.add(super.getStartLocation());
         int i = 0;
         while (i != returnList.size()) {

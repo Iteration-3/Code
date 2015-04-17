@@ -3,7 +3,7 @@ package model.light;
 import java.util.List;
 
 import model.area.Area;
-import model.area.RealCoordinate;
+import model.area.TileCoordinate;
 
 public class LightMap {
 	private Visibility[][] visibilities;
@@ -19,10 +19,10 @@ public class LightMap {
 	
 	public void illuminate(LightSource lightSource) {
 		Area lightArea = lightSource.getArea();
-		List<RealCoordinate> coveredLocations = lightArea.getCoveredLocations();
-		for (RealCoordinate location : coveredLocations) {
-			int x = (int) location.getX(); // jraviles - are these casts ok?
-			int y = (int) location.getY();
+		List<TileCoordinate> coveredLocations = lightArea.getCoveredLocations();
+		for (TileCoordinate location : coveredLocations) {
+			int x = location.getX(); // jraviles - are these casts ok?
+			int y = location.getY();
 			visibilities[x][y].setValue(lightSource);
 		}
 	}

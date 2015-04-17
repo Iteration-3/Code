@@ -1,29 +1,25 @@
 package utilities;
 
+import model.area.TileCoordinate;
+
 public enum Angle {
-    UP_RIGHT(0),
-    UP(60),
-    UP_LEFT(120),
-    DOWN_LEFT(-180),
-    DOWN(-120),
-    DOWN_RIGHT(-60);
-
-    private Angle(int theta) {
-        this.theta = theta;
-    }
-
+    UP_RIGHT(1, -1, 0, 0),
+    UP(0, -1, -1, 60),
+    UP_LEFT(-1, -1, 0, 120),
+    DOWN_LEFT(-1, 0, 1, -180),
+    DOWN(0, 1, 1, -120),
+    DOWN_RIGHT(1, 0, 1, -60);
+    
+    private int deltaX;
+    private int evenDeltaY;
+    private int oddDeltaY;
     private int theta;
 
-    public int getAngle() {
-        return this.theta;
-    }
-
-    public double sin() {
-        return Math.sin(Math.toRadians(theta));
-    }
-
-    public double cos() {
-        return Math.cos(Math.toRadians(theta));
+    private Angle(int deltaX, int evenDeltaY, int oddDeltaY, int theta) {
+    	this.deltaX = deltaX;
+    	this.evenDeltaY = evenDeltaY;
+    	this.oddDeltaY = oddDeltaY;
+    	this.theta = theta;
     }
 
     public Angle getLeft() {
@@ -34,5 +30,27 @@ public enum Angle {
     public Angle getRight() {
         Angle[] values = Angle.values();
         return Angle.values()[(ordinal() + 1) % values.length];
+    }
+    
+    public int getAngle() {
+    	return theta;
+    }
+    
+    public TileCoordinate nextLocation(TileCoordinate tileCoordinate) {
+    	int x = tileCoordinate.getX();
+    	int y = tileCoordinate.getY();
+    	return new TileCoordinate(x + deltaX(), y + deltaY(tileCoordinate));
+    }
+    
+    private int deltaX() {
+    	return deltaX;
+    }
+    
+    private int deltaY(TileCoordinate tileCoordinate)  {
+    	if (tileCoordinate.getX() % 2 == 0) {
+    		return evenDeltaY;
+    	} else {
+    		return oddDeltaY;
+    	}
     }
 }

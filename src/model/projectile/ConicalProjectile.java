@@ -1,7 +1,7 @@
 package model.projectile;
 
 import utilities.Angle;
-import model.area.RealCoordinate;
+import model.area.TileCoordinate;
 import model.trigger.TimedTrigger;
 import model.trigger.Trigger;
 
@@ -12,7 +12,7 @@ public class ConicalProjectile extends Projectile {
 		this.setTrigger(new TimedTrigger(this.getTrigger().getArea(), this.getTrigger().getEvent(), 5));
 	}
 
-	public ConicalProjectile(Angle direction, RealCoordinate location, double speed,
+	public ConicalProjectile(Angle direction, TileCoordinate location, double speed,
 			long timeout, Trigger trigger) {
 		super(direction, location, speed, timeout, trigger);
 	}

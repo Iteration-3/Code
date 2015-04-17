@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import model.area.RealCoordinate;
+import model.area.TileCoordinate;
 import view.map.GameEntityView;
 import view.tiles.components.Hexagon;
 
@@ -19,6 +20,7 @@ public class EntityView {
 		backgroundHexagon = new Hexagon(outlineColor);
 		foregroundHexagon = new Hexagon(fillColor);
 	}
+
 	public void registerWithGameMapView(GameEntityView gv, RealCoordinate location) {
 		gv.addEntityView(this);
 		this.location = location;
@@ -28,7 +30,12 @@ public class EntityView {
 		backgroundHexagon.render(graphics, location, diameter * OVERDRAW);
 		foregroundHexagon.render(graphics, location, diameter * (1 - BORDER_PERCENTAGE) * OVERDRAW);
 	}
+
 	public void setLocation(RealCoordinate location) {
 		this.location = location;
+	}
+
+	public void setLocation(TileCoordinate location) {
+		this.setLocation(TileCoordinate.convertToRealCoordinate(location));
 	}
 }

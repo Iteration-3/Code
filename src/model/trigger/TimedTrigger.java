@@ -3,7 +3,7 @@ package model.trigger;
 import java.util.Collection;
 
 import model.area.Area;
-import model.area.RealCoordinate;
+import model.area.TileCoordinate;
 import model.entity.Entity;
 import model.entity.NPC;
 import model.event.Event;
@@ -32,7 +32,7 @@ public class TimedTrigger extends Trigger {
 
     @Override
     public void handle(Entity entity) {
-    	RealCoordinate entityLocation = entity.getLocation();
+    	TileCoordinate entityLocation = entity.getLocation();
     	if (this.getArea().isInRange(entityLocation)) {
     		Event event = this.getEvent().clone();
     		event.setTarget(entity);

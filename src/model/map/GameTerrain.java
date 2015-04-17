@@ -3,7 +3,7 @@ package model.map;
 import java.util.HashMap;
 import java.util.Map;
 
-import model.area.RealCoordinate;
+import model.area.TileCoordinate;
 import model.entity.Entity;
 import model.map.tile.Tile;
 import utilities.structuredmap.SavableLoadable;
@@ -11,7 +11,7 @@ import utilities.structuredmap.StructuredMap;
 
 public class GameTerrain implements SavableLoadable{
 	
-	private Map<RealCoordinate,Tile> tiles = new HashMap<RealCoordinate, Tile>();
+	private Map<TileCoordinate,Tile> tiles = new HashMap<TileCoordinate, Tile>();
 	
 	@Override
 	public StructuredMap getStructuredMap() {
@@ -29,7 +29,7 @@ public class GameTerrain implements SavableLoadable{
 	 * @param t
 	 * @param p 
 	 */
-	public void add(Tile t, RealCoordinate p){
+	public void add(Tile t, TileCoordinate p){
 		tiles.put(p,t);
 	}
 	/**
@@ -39,10 +39,11 @@ public class GameTerrain implements SavableLoadable{
 	 * @param loc
 	 * @return
 	 */
-	public boolean isPassable(Entity e, RealCoordinate loc){
+	public boolean isPassable(Entity e, TileCoordinate loc){
+		//TODO(mbregg) Make null tiles return true once coords are unfucked
 		Tile t = tiles.get(loc);
 		if(t==null){
-			return false;
+			return true;
 		}
 		return t.isPassable(e);
 	}
@@ -51,7 +52,7 @@ public class GameTerrain implements SavableLoadable{
 	 * @param e
 	 * @param loc
 	 */
-	public void touch(Entity e, RealCoordinate loc){
+	public void touch(Entity e, TileCoordinate loc){
 		Tile t = tiles.get(loc);
 		if(t == null){
 			return;
