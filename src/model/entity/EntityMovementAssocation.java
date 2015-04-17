@@ -14,11 +14,11 @@ import utilities.Angle;
 import controller.listener.Listener;
 import controller.listener.PollingListener;
 
-public class GameEntityAssocation {
+public class EntityMovementAssocation {
 	private Entity entity;
 	private GameTerrain terrain;
 	private ItemMap itemMap;
-	public GameEntityAssocation(Entity entity, GameTerrain terrain, ItemMap itemMap){
+	public EntityMovementAssocation(Entity entity, GameTerrain terrain, ItemMap itemMap){
 		this.entity = entity;
 		this.terrain = terrain;
 		this.itemMap = itemMap;

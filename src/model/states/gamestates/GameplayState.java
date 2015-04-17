@@ -11,7 +11,7 @@ import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.entity.EntityManager;
-import model.entity.GameEntityAssocation;
+import model.entity.EntityMovementAssocation;
 import model.entity.Smasher;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
@@ -74,7 +74,7 @@ public class GameplayState extends GameState {
 		this.itemEntityAssociation = new ItemEntityAssociation(avatar);
 
 		Collection<Listener> listeners = 
-				new GameEntityAssocation(avatar, gameMap,
+				new EntityMovementAssocation(avatar, gameMap,
 						itemEntityAssociation.getItemMap()).getListeners(preferences);
 		for (Listener listener : listeners) {
 			listener.addAsBinding(getLayout());
