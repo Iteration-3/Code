@@ -5,11 +5,11 @@ import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;
 
 import model.KeyPreferences;
-import controller.RebindingController;
+import controller.KeyBindingsController;
 
 public class KeyMappingDownLeft extends KeyMapping {
 
-    public KeyMappingDownLeft(KeyPreferences preferences, RebindingController rebindingController) {
+    public KeyMappingDownLeft(KeyPreferences preferences, KeyBindingsController rebindingController) {
         super(preferences, rebindingController);
     }
 

@@ -1,9 +1,8 @@
 package controller;
 
-import controller.listener.ToggleAction;
 import model.Model;
 import model.states.gamestates.GameplayState;
-import model.states.gamestates.LoadMenuState;
+import controller.listener.ToggleAction;
 
 public class CharacterSelectionController extends Controller {
     private Model model;
@@ -18,62 +17,58 @@ public class CharacterSelectionController extends Controller {
     }
 
     @SuppressWarnings("serial")
-	private void initActions() {
-    	chooseSmasherAction =
-			new ToggleAction() {
-				@Override
-				public void action() {
-					model.switchState(new GameplayState());
-				}
-			};
+    private void initActions() {
+        chooseSmasherAction = new ToggleAction() {
+            @Override
+            public void action() {
+                model.switchState(new GameplayState());
+            }
+        };
 
-		chooseSummonerAction =
-			new ToggleAction() {
-				@Override
-				public void action() {
-					model.switchState(new GameplayState());
-				}
-			};
-		
-		chooseSneakAction =
-			new ToggleAction() {
-				@Override
-				public void action() {
-			    	model.switchState(new GameplayState());
-				}
-			};
+        chooseSummonerAction = new ToggleAction() {
+            @Override
+            public void action() {
+                model.switchState(new GameplayState());
+            }
+        };
 
-		backAction =
-			new ToggleAction() {
-				@Override
-				public void action() {
-					model.popState(); 
-				}
-			};
-	}
-    
+        chooseSneakAction = new ToggleAction() {
+            @Override
+            public void action() {
+                model.switchState(new GameplayState());
+            }
+        };
+
+        backAction = new ToggleAction() {
+            @Override
+            public void action() {
+                model.popState();
+            }
+        };
+    }
+
     public ToggleAction getChooseSmasherAction() {
-    	return chooseSmasherAction;
+        return chooseSmasherAction;
     }
 
     public ToggleAction getChooseSummonerAction() {
-    	return chooseSummonerAction;
+        return chooseSummonerAction;
     }
 
     public ToggleAction getChooseSneakAction() {
-    	return chooseSneakAction;
+        return chooseSneakAction;
     }
 
     public ToggleAction getBackAction() {
-       return backAction;
+        return backAction;
     }
 
-	@Override
-	public void toggle() {
-	    chooseSmasherAction.toggle();
-	    chooseSummonerAction.toggle();
-	    chooseSneakAction.toggle();
-	    backAction.toggle();
-	}
+    @Override
+    public void toggle() {
+        chooseSmasherAction.toggle();
+        chooseSummonerAction.toggle();
+        chooseSneakAction.toggle();
+        backAction.toggle();
+    }
 
 }

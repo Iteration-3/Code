@@ -7,13 +7,13 @@ import model.KeyPreferences;
 import org.junit.Before;
 import org.junit.Test;
 
-import controller.RebindingController;
+import controller.KeyBindingsController;
 import view.layout.Layout;
 
 public class KeyPreferencesTest {
 
     Layout layout;
-    RebindingController controller;
+    KeyBindingsController controller;
     JFrame frame;
 
     @Before
@@ -22,7 +22,7 @@ public class KeyPreferencesTest {
         frame.setVisible(true);
         frame.setSize(500, 500);
         layout = new Layout();
-        controller = new RebindingController();
+        controller = new KeyBindingsController();
         //layout.setController(controller); // TODO: i (Daniel) removed this because i revamped the Layout interface
         									// which causes this to no longer makes sense...
         frame.add(layout);
