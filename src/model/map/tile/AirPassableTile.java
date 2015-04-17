@@ -5,9 +5,8 @@ import utilities.structuredmap.StructuredMap;
 import view.map.TileView;
 
 public class AirPassableTile extends Tile{
-	public AirPassableTile(TileView v) {
-		super(v);
-		// TODO Auto-generated constructor stub
+	public AirPassableTile(TileView view) {
+		super(view);
 	}
 
 	@Override
@@ -19,15 +18,14 @@ public class AirPassableTile extends Tile{
 	@Override
 	public void load(StructuredMap map) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public boolean isPassable(Entity e) {
-		if(e.isFlying()){
+		if (e.isFlying()) {
 			return true;
 		}
-		else{
+		else {
 			return false;
 		}
 	}

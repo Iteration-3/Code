@@ -3,7 +3,6 @@ package model.states.gamestates;
 import view.Layout;
 import model.Model;
 import model.states.State;
-import model.states.StateMachine;
 
 public abstract class GameState extends State {
     private Model model;
@@ -28,7 +27,6 @@ public abstract class GameState extends State {
         getContext().removeLayout(getLayout());
     }
 
-    @Override
     public Model getContext() {
         return model;
     }

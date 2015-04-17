@@ -5,9 +5,8 @@ import utilities.structuredmap.StructuredMap;
 import view.map.TileView;
 
 public class PassableTile extends Tile{
-	public PassableTile(TileView v) {
-		super(v);
-		// TODO Auto-generated constructor stub
+	public PassableTile(TileView view) {
+		super(view);
 	}
 
 	@Override

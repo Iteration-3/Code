@@ -8,14 +8,12 @@ import java.util.Collection;
 import javax.swing.KeyStroke;
 
 import model.ItemEntityAssociation;
-import model.Model;
 import model.area.RealCoordinate;
 import model.entity.Avatar;
 import model.entity.EntityManager;
 import model.entity.Smasher;
 import model.item.TakeableItem;
 import model.map.GameTerrain;
-import model.map.TakeableItemMap;
 import model.map.tile.PassableTile;
 import view.EntityView;
 import view.GameplayLayout;

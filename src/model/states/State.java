@@ -8,6 +8,4 @@ public abstract class State {
 	public abstract void onResume();
 	
 	public abstract void onExit();
-	
-	public abstract StateMachine getContext();
 }

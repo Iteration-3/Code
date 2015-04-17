@@ -5,9 +5,8 @@ import utilities.structuredmap.StructuredMap;
 import view.map.TileView;
 
 public class ImpasssibleTile extends Tile {
-	public ImpasssibleTile(TileView v) {
-		super(v);
-		// TODO Auto-generated constructor stub
+	public ImpasssibleTile(TileView view) {
+		super(view);
 	}
 
 	@Override

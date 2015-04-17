@@ -12,14 +12,12 @@ import view.item.ItemView;
 // Copied from GameTerrainView
 public class GameItemView implements GameView {
 	private Map<RealCoordinate, ItemView> itemViews = new HashMap<RealCoordinate, ItemView>();
-	private int screenWidth;
 	private int screenHeight;
 	private static final int NUM_TILES_Y = 18;  
 	private static final float TILE_DIMENSION_RATIO = (float) (Math.sqrt(3) / 2);
 
 	@Override
 	public void render(Graphics graphics, int width, int height) {
-		this.screenWidth = width;
 		this.screenHeight = height;
 		
 		List<RealCoordinate> toRemove = new ArrayList<RealCoordinate>();
@@ -50,9 +48,4 @@ public class GameItemView implements GameView {
 	private float itemWidth() {
 		return (itemHeight() / TILE_DIMENSION_RATIO);
 	}
-	
-	private float aspectRation() {
-		return (float) screenWidth / screenHeight;
-	}
-
 }

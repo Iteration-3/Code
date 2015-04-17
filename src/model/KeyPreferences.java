@@ -110,8 +110,7 @@ public class KeyPreferences implements SavableLoadable {
 
     public static KeyPreferences getInstance() {
         if (preferences == null) {
-            preferences = new KeyPreferences();// TODO Auto-generated method
-                                               // stub
+            preferences = new KeyPreferences();
         }
         return preferences;
     }

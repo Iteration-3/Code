@@ -1,6 +1,5 @@
 package view.map;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import model.area.RealCoordinate;
@@ -56,14 +55,6 @@ public class GameTerrainView implements GameView{
 	
 	private int numberOfVerticalTiles() {
 		return NUM_TILES_Y + 1;
-	}
-	
-	private void initDummyTileViews() {
-		for(int x = 0; x < tileViews.length; ++x) {
-			for(int y = 0; y < tileViews[0].length; ++y) {
-				tileViews[x][y] = new BasicTileView(new Color(0, 200, 200), Color.WHITE);
-			}
-		}
 	}
 
 	public void addTileView(TileView tileView, RealCoordinate p) {

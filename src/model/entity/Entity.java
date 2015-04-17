@@ -1,11 +1,6 @@
 package model.entity;
 
-import gameactions.GameActionMovementDown;
-import gameactions.GameActionMovementDownLeft;
-import gameactions.GameActionMovementDownRight;
-import gameactions.GameActionMovementUp;
-import gameactions.GameActionMovementUpLeft;
-import gameactions.GameActionMovementUpRight;
+import gameactions.GameActionMovement;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -89,12 +84,12 @@ public abstract class Entity implements SavableLoadable {
     public Collection<Listener> getListeners() {
         Collection<Listener> listeners = new ArrayList<Listener>();
         // TODO(jraviles) get these from the key preferences
-        listeners.add(new PollingListener(KeyStroke.getKeyStroke('1'), new GameActionMovementDownLeft(this)));
-        listeners.add(new PollingListener(KeyStroke.getKeyStroke('2'), new GameActionMovementDown(this)));
-        listeners.add(new PollingListener(KeyStroke.getKeyStroke('3'), new GameActionMovementDownRight(this)));
-        listeners.add(new PollingListener(KeyStroke.getKeyStroke('7'), new GameActionMovementUpLeft(this)));
-        listeners.add(new PollingListener(KeyStroke.getKeyStroke('8'), new GameActionMovementUp(this)));
-        listeners.add(new PollingListener(KeyStroke.getKeyStroke('9'), new GameActionMovementUpRight(this)));
+        listeners.add(new PollingListener(KeyStroke.getKeyStroke('1'), new GameActionMovement(this, Angle.DOWN_LEFT)));
+        listeners.add(new PollingListener(KeyStroke.getKeyStroke('2'), new GameActionMovement(this, Angle.DOWN)));
+        listeners.add(new PollingListener(KeyStroke.getKeyStroke('3'), new GameActionMovement(this, Angle.DOWN_RIGHT)));
+        listeners.add(new PollingListener(KeyStroke.getKeyStroke('7'), new GameActionMovement(this, Angle.UP_LEFT)));
+        listeners.add(new PollingListener(KeyStroke.getKeyStroke('8'), new GameActionMovement(this, Angle.UP)));
+        listeners.add(new PollingListener(KeyStroke.getKeyStroke('9'), new GameActionMovement(this, Angle.UP_RIGHT)));
         return listeners;
     }
 

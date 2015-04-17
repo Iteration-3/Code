@@ -2,7 +2,6 @@ package controller;
 
 import controller.listener.Listener;
 import view.GameplayLayout;
-import view.Layout;
 
 public class GameplayController {
 	private EntityController entityController;
