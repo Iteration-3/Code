@@ -53,10 +53,13 @@ public class GameplayState extends GameState {
     @Override
     public void onResume() {
         super.onResume();
-        if (getContext().getPreferences().hasChanged()) {
-            setListeners(getContext().getPreferences());
-            getContext().getPreferences().reset();
-        }
+        setListeners(getContext().getPreferences());
+    }
+
+    @Override
+    public void onPause() {
+        controller.removeListeners();
+        layout.clearBindings();
     }
 
     public void addEntityTest() {
@@ -98,7 +101,6 @@ public class GameplayState extends GameState {
         controller.removeListeners();
         getLayout().clearBindings();
         avatar.getListeners();
-        getContext().getPreferences().reset();
 
         Listener escapeListener = new SingleUseListener(preferences.getPauseKey(), new GameActionStatePush(
                 getContext(), new PauseMenuState()));
