@@ -8,11 +8,17 @@ import keyRemapping.KeyMappingUp;
 import keyRemapping.KeyMappingUpLeft;
 import keyRemapping.KeyMappingUpRight;
 import model.KeyPreferences;
+import model.Model;
 import view.layout.Layout;
 
-public class RebindingController {
+public class KeyBindingsController extends Controller {
     KeyPreferences keyPreferences = KeyPreferences.getInstance().clone();
     Layout layout;
+    Model model;
+
+    public KeyBindingsController(Model model) {
+        this.model = model;
+    }
 
     public void setLayout(Layout layout) {
         this.layout = layout;
@@ -54,5 +60,11 @@ public class RebindingController {
     public void attachNewDownLeftMapping() {
         KeyMapping mapping = new KeyMappingDownLeft(keyPreferences, this);
         attachKeyMapping(mapping);
+    }
+
+    @Override
+    public void toggle() {
+        // TODO Auto-generated method stub
+        
     }
 }
