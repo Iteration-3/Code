@@ -13,8 +13,8 @@ public class ConicalProjectile extends Projectile {
 	}
 
 	public ConicalProjectile(Angle direction, TileCoordinate location, double speed,
-			long timeout, Trigger trigger) {
-		super(direction, location, speed, timeout, trigger);
+			Trigger trigger) {
+		super(direction, location, speed, trigger);
 	}
 
 	/* (non-Javadoc)
@@ -27,10 +27,10 @@ public class ConicalProjectile extends Projectile {
 		Angle rightAngle = this.getDirection().getRight();
 		Projectile leftProjectile = new Projectile(leftAngle, this
 				.getLocation().nextLocation(leftAngle), this.getSpeed(),
-				this.getTimeout(), this.getTrigger());
+				this.getTrigger());
 		Projectile rightProjectile = new Projectile(rightAngle, this
 				.getLocation().nextLocation(rightAngle), this.getSpeed(),
-				this.getTimeout(), this.getTrigger());
+				this.getTrigger());
 		ProjectileManager.addProjectile(leftProjectile);
 		ProjectileManager.addProjectile(rightProjectile);
 
