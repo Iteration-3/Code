@@ -33,10 +33,18 @@ public class GameActionMovement extends GameAction {
 		return itemMap;
 	}
 	
+	protected boolean canMoveTo(TileCoordinate potentialSpot){
+		return (getTerrain().isPassable(getEntity(), potentialSpot) && !getItemMap().isBlocking(potentialSpot));
+	}
+	
+	protected Angle getDirection(){
+		return direction;
+	}
+	
 	@Override
 	public void perform() {
 		TileCoordinate potentialSpot = getEntity().nextLocation(direction);
-		if(getTerrain().isPassable(getEntity(), potentialSpot) && !getItemMap().isBlocking(potentialSpot)){
+		if(this.canMoveTo(potentialSpot)){
 			getEntity().move(direction);
 		}
 	}
