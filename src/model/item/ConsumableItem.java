@@ -10,29 +10,38 @@ import model.event.StatisticModifierEvent;
 import model.statistics.EntityStatistics;
 import view.item.ItemView;
 
-public class ConsumableItem extends TakeableItem {
-	private EntityStatistics stats;
-	private double duration;
-
-	public ConsumableItem(ItemView itemView, EntityStatistics stats) {
+public abstract class ConsumableItem extends TakeableItem {
+	private EntityStatistics statistics;
+	private double duration = 0.0;
+	
+	public ConsumableItem(ItemView itemView) {
 		super(itemView);
-		this.stats = stats;
-		this.duration = 0.0;
+		this.statistics = new EntityStatistics();
+	}
+
+	public ConsumableItem(ItemView itemView, EntityStatistics statistics) {
+		super(itemView);
+		this.statistics = statistics;
 	}
 	
-	public ConsumableItem(ItemView itemView, EntityStatistics stats, double duration) {
+	public ConsumableItem(ItemView itemView, EntityStatistics statistics, double duration) {
 		super(itemView);
-		this.stats = stats;
+		this.statistics = statistics;
 		this.duration = duration;
+	}
+	
+	public ConsumableItem(ItemView itemView, EntityStatistics statistics, double duration, Price price) {
+		this(itemView, statistics, duration);
+		setPrice(price);
 	}
 
 	@Override
 	public void use(Entity entity) {
-		EventManager.getSingleton().addEvent(new StatisticModifierEvent(stats, entity, duration));
-		EventManager.getSingleton().addEvent(new LivesModifierEvent(stats.getLivesLeft(), entity, duration));
-		EventManager.getSingleton().addEvent(new HealthModifierEvent(stats.getCurrentHealth(), entity, duration));
-		EventManager.getSingleton().addEvent(new MovementModifierEvent(stats.getMovement(), entity, duration));
-		EventManager.getSingleton().addEvent(new ManaModifierEvent(stats.getCurrentMana(), entity, duration));
+		EventManager.getSingleton().addEvent(new StatisticModifierEvent(statistics, entity, duration));
+		EventManager.getSingleton().addEvent(new LivesModifierEvent(statistics.getLivesLeft(), entity, duration));
+		EventManager.getSingleton().addEvent(new HealthModifierEvent(statistics.getCurrentHealth(), entity, duration));
+		EventManager.getSingleton().addEvent(new MovementModifierEvent(statistics.getMovement(), entity, duration));
+		EventManager.getSingleton().addEvent(new ManaModifierEvent(statistics.getCurrentMana(), entity, duration));
 	}
 
 	@Override

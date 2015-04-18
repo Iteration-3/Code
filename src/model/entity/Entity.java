@@ -37,8 +37,6 @@ public abstract class Entity implements Saveable {
 
     }
     
-
-
     public Entity(StructuredMap map) {
         name = map.getString("name");
         int[] locationArray = map.getIntArray("location");

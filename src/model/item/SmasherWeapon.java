@@ -5,9 +5,13 @@ import model.statistics.Statistics;
 import view.item.ItemView;
 
 public class SmasherWeapon extends Weapon {
+	
+	public SmasherWeapon(ItemView itemView) {
+		super(itemView);
+	}
 
-	public SmasherWeapon(ItemView itemView, Statistics stats) {
-		super(itemView, stats);
+	public SmasherWeapon(ItemView itemView, Statistics statistics) {
+		super(itemView, statistics);
 	}
 
 	public boolean equip(SmasherWeaponSlot slot){

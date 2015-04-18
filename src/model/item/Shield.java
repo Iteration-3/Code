@@ -6,13 +6,17 @@ import model.statistics.Statistics;
 import view.item.ItemView;
 
 public class Shield extends EquipableItem{
-
-	public Shield(ItemView itemView, Statistics stats) {
-		super(itemView, stats);
+	
+	public Shield(ItemView itemView) {
+		super(itemView);
 	}
 
-	public boolean equip(ItemManager im) {
-		return im.equipToSlot(this);
+	public Shield(ItemView itemView, Statistics statistics) {
+		super(itemView, statistics);
+	}
+
+	public boolean equip(ItemManager itemManager) {
+		return itemManager.equipToSlot(this);
 	}
 
 	@Override
