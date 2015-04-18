@@ -22,7 +22,6 @@ public class GameplayController extends Controller {
     }
     
     private void doUpdates() {
-		model.update();
 		TriggerManager.getSingleton().update();
 		EventManager.getSingleton().update();
     }
