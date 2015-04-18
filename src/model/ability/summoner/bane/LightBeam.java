@@ -13,5 +13,10 @@ public final class LightBeam extends ProjectileAbility {
 		this();
 		this.setManaCost(manaCost);
 	}
+
+	@Override
+	protected String getType() {
+		return "lightBeam";
+	}
 	
 }

@@ -14,4 +14,10 @@ public final class Firebolt extends ProjectileAbility {
 		this.setManaCost(manaCost);
 	}
 
+	@Override
+	protected String getType() {
+		return "firebolt";
+	}
+	
+
 }

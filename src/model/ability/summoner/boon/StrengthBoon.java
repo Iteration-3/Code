@@ -15,4 +15,9 @@ public class StrengthBoon extends SelfAbility {
 		this.setManaCost(manaCost);
 	}
 
+	@Override
+	protected String getType() {
+		return "strengthBoon";
+	}
+
 }

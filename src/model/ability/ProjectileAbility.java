@@ -1,9 +1,11 @@
 package model.ability;
 
-import utilities.Angle;
+import factories.ProjectileFactory;
 import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.projectile.Projectile;
+import utilities.Angle;
+import utilities.structuredmap.StructuredMap;
 
 public abstract class ProjectileAbility extends Ability {
 	private Projectile projectile;
@@ -15,6 +17,11 @@ public abstract class ProjectileAbility extends Ability {
 	public ProjectileAbility(Projectile projectile, int manaCost) {
 		super(manaCost);
 		setProjectile(projectile);
+	}
+	
+	public ProjectileAbility(StructuredMap map) {
+		super(map);
+		this.projectile = ProjectileFactory.createProjectile(map.getStructuredMap("projectile"));
 	}
 
 	@Override
@@ -39,6 +46,12 @@ public abstract class ProjectileAbility extends Ability {
 
 	public void setProjectile(Projectile projectile) {
 		this.projectile = projectile;
+	}
+	
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		map.put("projectile", projectile.getStructuredMap());
+		return map;
 	}
 
 }

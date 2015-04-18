@@ -6,8 +6,10 @@ import model.area.TileCoordinate;
 import model.entity.Entity;
 import model.event.Event;
 import model.event.EventManager;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 
-public abstract class Trigger implements Cloneable {
+public abstract class Trigger implements Cloneable, Saveable {
     private Area area;
     private Event event;
 
@@ -19,6 +21,10 @@ public abstract class Trigger implements Cloneable {
     public Trigger(Area area, Event event) {
         this.area = area;
         this.event = event;
+    }
+    
+    public Trigger(StructuredMap map) {
+    	
     }
 
     public Area getArea() {
@@ -60,4 +66,8 @@ public abstract class Trigger implements Cloneable {
     public abstract boolean hasExpired();
     
     public abstract Trigger clone();
+    
+    public StructuredMap getStructuredMap() {
+    	return null;	
+    }
 }

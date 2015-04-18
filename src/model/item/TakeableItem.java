@@ -57,11 +57,14 @@ public abstract class TakeableItem extends Item {
 
 	@Override
 	public StructuredMap getStructuredMap() {
-		StructuredMap returnMap = new StructuredMap();
 		StructuredMap map = new StructuredMap();
 		map.put("taken", taken);
-		returnMap.put("takeable", map);
-		return returnMap;
+		map.put("type", getType());
+		return map;
+	}
+	
+	protected String getType() {
+		return "takeable";
 	}
 
 	

@@ -32,9 +32,12 @@ public class ChestPiece extends EquipableItem {
     @Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = super.getStructuredMap();
-		StructuredMap returnMap = new StructuredMap();
-		returnMap.put("chestPiece", map);
-		return returnMap;
+		return map;
+	}
+    
+    @Override
+    protected String getType() {
+		return "chestPiece";
 	}
 
 

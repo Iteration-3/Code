@@ -5,8 +5,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import controller.listener.ToggleAction;
-import controller.mouseliseners.InventoryMouseListener;
-import controller.mouseliseners.SlotMouseListener;
 import model.Model;
 
 public class InventoryMenuController extends Controller {

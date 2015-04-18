@@ -14,4 +14,9 @@ public class Cripple extends ProjectileAbility {
 		this.setManaCost(manaCost);
 	}
 
+	@Override
+	protected String getType() {
+		return "cripple";
+	}
+
 }

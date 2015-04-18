@@ -43,7 +43,13 @@ public abstract class Entity extends MobileObject implements Saveable {
     
     public Entity(StructuredMap map) {
     	super(new TileCoordinate(map.getIntArray("location")[0], map.getIntArray("location")[1]));
-        name = map.getString("name");
+        this.name = map.getString("name");
+        int[] locationArray = map.getIntArray("location");
+        this.location = new TileCoordinate(locationArray[0], locationArray[1]);
+        this.stats = new EntityStatistics(map.getStructuredMap("stats"));
+        this.direction = Angle.values()[map.getInteger("direction")];
+        this.itemManager = new ItemManager(map.getStructuredMap("itemManager"));
+        this.isFlying = map.getBoolean("flying");
     }
 
     private void setNecessities() {
@@ -65,11 +71,14 @@ public abstract class Entity extends MobileObject implements Saveable {
         map.put("location", locationArray);
         map.put("stats", stats.getStructuredMap());
         map.put("direction", direction.ordinal());
-        map.put("items", itemManager.getStructuredMap());
+        map.put("itemManager", itemManager.getStructuredMap());
+        map.put("type", getType());
+        map.put("flying", isFlying);
 
-        // TODO more createItemManager
         return map;
     }
+    
+    public abstract String getType();
 
     public abstract void load(StructuredMap map);
 

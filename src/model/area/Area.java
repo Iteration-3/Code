@@ -67,14 +67,6 @@ public abstract class Area implements Saveable {
 
     }
 
-    private boolean lessThan(double double1, double double2) {
-        return double1 <= double2;
-    }
-
-    private boolean withinOffset(double double1, double double2, double offset) {
-        return Math.abs(double1 - double2) <= offset;
-    }
-
     protected List<TileCoordinate> checkSurrounding(TileCoordinate location, List<TileCoordinate> returnList) {
         List<TileCoordinate> testLocations = new ArrayList<>();
         for (Angle angle : Angle.values()) {

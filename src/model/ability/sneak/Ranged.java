@@ -14,4 +14,11 @@ public class Ranged extends ProjectileAbility {
 		this.setManaCost(manaCost);
 	}
 
+	@Override
+	protected String getType() {
+		return "ranged";
+	}
+	
+	
+
 }

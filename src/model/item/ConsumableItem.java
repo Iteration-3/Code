@@ -45,14 +45,17 @@ public class ConsumableItem extends TakeableItem {
 
     @Override
     public StructuredMap getStructuredMap() {
-    	StructuredMap returnMap = new StructuredMap();
         StructuredMap map = super.getStructuredMap();
         map.put("stats", stats.getStructuredMap());
         map.put("duration", this.duration);
-        returnMap.put("consumableItem", map);
-        return returnMap;
+        return map;
     }
-
+    
+    @Override
+    protected String getType() {
+		return "consumeable";
+	}
+    
 	@Override
 	public String getInfo() {
 		// TODO Auto-generated method stub

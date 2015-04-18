@@ -9,6 +9,10 @@ import view.EntityView;
 public class Smasher extends Avatar {
 	
 	public Smasher(){}
+	
+	public Smasher(StructuredMap map) {
+		super(map);
+	}
 
 	public Smasher(String name, EntityView view, TileCoordinate loc) {
 		super(name, view,loc);
@@ -28,18 +32,22 @@ public class Smasher extends Avatar {
 
 	@Override
 	public StructuredMap getStructuredMap() {
-		// TODO Auto-generated method stub
-		return null;
+		return super.getStructuredMap();
 	}
 
 	@Override
-	public void load(StructuredMap map) {
+	public void update() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update() {
+	public String getType() {
+		return "smasher";
+	}
+
+	@Override
+	public void load(StructuredMap map) {
 		// TODO Auto-generated method stub
 		
 	}
