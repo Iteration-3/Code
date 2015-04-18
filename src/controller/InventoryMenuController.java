@@ -3,7 +3,6 @@ package controller;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
-import controller.listener.InventoryActionListener;
 import controller.listener.ToggleAction;
 import model.Model;
 
@@ -35,7 +34,8 @@ public class InventoryMenuController extends Controller {
 	}
 	
 	public ActionListener makeInventoryActionListener(int i){
-		return new InventoryActionListener(i);
+		return null;
+		//return new InventoryActionListener(i);
 	}
 	
 }
