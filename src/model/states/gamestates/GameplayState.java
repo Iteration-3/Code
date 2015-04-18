@@ -65,6 +65,8 @@ public class GameplayState extends GameState {
         super.onEnter();
         addTilesTest();
         addEntityTest();
+        addTriggersTest();
+        addItemsTest();
     }
 
     @Override
