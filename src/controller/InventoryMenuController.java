@@ -1,11 +1,9 @@
 package controller;
 
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 
-import controller.listener.InventoryActionListener;
-import controller.listener.ToggleAction;
 import model.Model;
+import controller.listener.ToggleAction;
 
 public class InventoryMenuController extends Controller {
 	private Model model;

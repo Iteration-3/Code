@@ -64,7 +64,7 @@ public class EntityStatistics extends Statistics {
     }
 
     public int getLevel() {
-        return (experience % 100) + 1;
+        return (experience / 100) + 1;
     }
 
     public int getLivesLeft() {

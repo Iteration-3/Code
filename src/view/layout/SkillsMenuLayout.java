@@ -13,7 +13,8 @@ import controller.SkillsMenuController;
 @SuppressWarnings("serial")
 public class SkillsMenuLayout extends Layout {
 	private MenuButton backButton;
-	private TextLabel skills;
+	private TextLabel skillsLabel;
+	private TextLabel statsLabel;
 
 	public SkillsMenuLayout() {
 		setPreferredSize(new Dimension(1024, 768));
@@ -21,7 +22,6 @@ public class SkillsMenuLayout extends Layout {
 		addLabels();
 		initButtons();
 		addButtons();
-
 	}
 
 	private void initButtons() {
@@ -30,8 +30,8 @@ public class SkillsMenuLayout extends Layout {
 	}
 
 	private void initLabels(){
-		
-		skills = new TextLabel();
+		statsLabel = new TextLabel();
+		skillsLabel = new TextLabel();
 	}
 
 	private void addButtons() {
@@ -39,30 +39,34 @@ public class SkillsMenuLayout extends Layout {
 	}
 
 	private void addLabels(){
-		add(skills);
+		add(statsLabel);
+		add(skillsLabel);
 	}
 	
 	public void generateLabelText(){
-		StringBuilder stats = new StringBuilder();
+		// Stats Label
+		StringBuilder builder = new StringBuilder();
 		Avatar avatar = EntityManager.getSingleton().getAvatar();
+
 		if(avatar == null){return;}
-		stats.append(avatar.getBaseStats().toString());
-		stats.append(" " + System.lineSeparator()+ " ");
-		stats.append(avatar.getDerivedStats().toString());
-		stats.append(" " + System.lineSeparator()+ " ");
-		stats.append(avatar.toString());
-		stats.append(" " + System.lineSeparator()+ " ");
-		stats.append(" LIFE " + avatar.getDerivedStats().getCurrentHealth() + " MANA "
-		+ avatar.getDerivedStats().getCurrentMana());
-		stats.append("ITEMS:");
+		builder.append("<html>");
+		builder.append(avatar.getDerivedStats().toString().replaceAll("\\n", "<br>"));
+		builder.append("<br>");
+		builder.append("ITEMS:<br>");
 		for(Item i : avatar.getItems()){
 			if(i==null){continue;}
-			stats.append(i.toString());
-			stats.append(" " + System.lineSeparator()+ " ");
-
+			builder.append(i.toString());
+			builder.append("<br>");
 		}
-				
-		skills.setText(stats.toString());
+		builder.append("</html>");
+
+		statsLabel.setText(builder.toString());
+
+		builder.setLength(0); // Clear the StringBuilder
+		
+		// Skills Label
+		builder.append("<html>");
+
 	}
 
 	public void attachController(SkillsMenuController controller) {   	
