@@ -14,12 +14,16 @@ public class HealthModifierEvent extends Event {
 		super(target, duration);
 		this.health = health;
 	}
-
+	
 	@Override
 	public void perform() {
 		if (hasTarget()) {
 			getTarget().addHealth(health);
 		}
+	}
+	
+	public void scaleHealh(double scaler) {
+		this.health = (int) Math.round(health * scaler);
 	}
 
 	@Override

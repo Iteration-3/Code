@@ -70,6 +70,10 @@ public abstract class Entity implements SavableLoadable {
         this.setDirection(angle);
     }
     
+    public TileCoordinate nextLocation() {
+    	return nextLocation(this.getDirection());
+    }
+    
     public TileCoordinate nextLocation(Angle angle) {
     	return this.getLocation().nextLocation(angle);
     }
@@ -77,6 +81,14 @@ public abstract class Entity implements SavableLoadable {
     public Collection<Listener> getListeners() {
     	Collection<Listener> listeners = new ArrayList<Listener>();
     	return listeners;
+    }
+    
+    public boolean hasTHW() {
+    	return false;
+    }
+    
+    public boolean hasOHW() {
+    	return false;
     }
 
     /**
