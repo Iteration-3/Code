@@ -147,7 +147,7 @@ public class GameplayState extends GameState {
         obstacleItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(9, 7));
         itemEntityAssociation.addItem(new ObstacleItem(obstacleItemView), obstacleItemPosition);
 
-        ItemView oneshotItemView = new BasicItemView(Color.GRAY, Color.BLACK);
+        ItemView oneshotItemView = new BasicItemView(Color.WHITE, Color.GREEN);
         TileCoordinate oneshotItemPosition = new TileCoordinate(13, 9);
         oneshotItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(13, 9));
         itemEntityAssociation.addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), oneshotItemPosition);
