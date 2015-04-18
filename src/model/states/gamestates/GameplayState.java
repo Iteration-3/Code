@@ -28,6 +28,7 @@ import model.item.Helmet;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
 import model.item.TakeableItem;
+import model.light.LightManager;
 import model.map.GameTerrain;
 import model.map.ItemMap;
 import model.map.tile.AirPassableTile;
@@ -55,12 +56,13 @@ public class GameplayState extends GameState {
     private GameplayController controller;
     private GameplayLayout layout;
     private GameTerrain gameMap;
-    private ItemMap itemMap = new ItemMap();
+    private ItemMap itemMap;
     private Avatar avatar;
 
     public GameplayState() {
         layout = new GameplayLayout();
         gameMap = new GameTerrain();
+        itemMap = new ItemMap();
     }
 
     @Override
@@ -96,6 +98,9 @@ public class GameplayState extends GameState {
     @Override
     public void onExit() {
         controller.terminateUpdateThread();
+        EntityManager.getSingleton().clear();
+        TriggerManager.getSingleton().clear();
+        LightManager.getLightManager().clear();
         super.onExit();
     }
 

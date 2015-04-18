@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import controller.listener.InventoryActionListener;
 import controller.listener.ToggleAction;
 import controller.mouseliseners.InventoryMouseListener;
 import controller.mouseliseners.SlotMouseListener;
