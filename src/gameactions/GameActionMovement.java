@@ -20,9 +20,17 @@ public class GameActionMovement extends GameAction {
 		this.itemMap = itemMap;
 	}
 	
+	public void setTarget(Entity entity){
+		this.entity = entity;
+	}
+	
 
 	protected GameTerrain getTerrain(){
 		return terrain;
+	}
+	
+	protected void setAngle(Angle a){
+		this.direction = a;
 	}
 	
 	protected Entity getEntity(){

@@ -1,13 +1,11 @@
 package model.trigger;
 
-import java.util.Collection;
-
 import model.area.Area;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.entity.Entity;
-import model.entity.NPC;
 import model.event.Event;
+import model.event.EventManager;
 
 public abstract class Trigger implements Cloneable {
     private Area area;
@@ -39,9 +37,21 @@ public abstract class Trigger implements Cloneable {
         this.event = event;
     }
 
-    public abstract void handle(Entity entity);
-
-    public abstract void handle(Collection<NPC> npcs);
+    public void handle(Entity entity){
+    	if(this.isInRange(entity)){
+    		this.perform(entity);
+    	}
+    }
+    
+    protected void perform(Entity entity){
+    	Event event = this.getEvent().clone();
+		event.setTarget(entity);
+		EventManager.getSingleton().addEvent(event);
+    }
+    
+    protected boolean isInRange(Entity entity){
+    	return this.getArea().isInRange(entity.getLocation());
+    }
 
     public void moveLocation(TileCoordinate location) {
         this.area.setStartLocation(location);

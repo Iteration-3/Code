@@ -34,4 +34,27 @@ public class ImageProcessing {
 	    }
 	    return returnImage;
 	}
+
+	public static BufferedImage overlayImages(BufferedImage backgroundImage,BufferedImage centeredImage 
+			, int xPosition, int yPosition){
+		// If the centered Image is any Dimension larger than the background image, it will throw a exception
+		if (backgroundImage.getHeight()< centeredImage.getHeight() ||
+				backgroundImage.getWidth() < centeredImage.getWidth()){
+			try {
+				throw new IOException("the centered Image is to Large,  it needs to be smaller than the backGround");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		Graphics2D g = backgroundImage.createGraphics();
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+		g.drawImage(backgroundImage, 0, 0, null);
+		// make the centeredImage transparent
+		//Aparently we dont need this method,  just taking more time out of the system
+		//ImageProcessing.getTransparentImage(backgroundImage.getWidth(),backgroundImage.getWidth(),centeredImage);
+		g.drawImage(centeredImage, xPosition, yPosition, null);
+		g.dispose();
+		return backgroundImage;
+	}
+	
 }

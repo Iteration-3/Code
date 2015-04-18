@@ -6,6 +6,7 @@ import java.awt.Graphics;
 
 import view.map.GameEntityView;
 import view.map.GameItemView;
+import view.map.GameLightView;
 import view.map.GameTerrainView;
 
 @SuppressWarnings("serial")
@@ -13,11 +14,13 @@ public class GameplayLayout extends Layout {
     GameTerrainView gameTerrainView;
     GameEntityView gameEntityView;
     GameItemView gameItemView;
+    GameLightView gameLightView;
 
     public GameplayLayout() {
         gameTerrainView = new GameTerrainView();
         gameEntityView = new GameEntityView();
         gameItemView = new GameItemView();
+        gameLightView = new GameLightView();
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(1024, 768)); // externalize elsewhere
     }
@@ -33,6 +36,10 @@ public class GameplayLayout extends Layout {
     public GameItemView getGameItemView() {
         return gameItemView;
     }
+    
+    public GameLightView getGameLightView() {
+    	return gameLightView;
+    }
 
     public void clearBindings() {
         getInputMap().clear();
@@ -45,6 +52,7 @@ public class GameplayLayout extends Layout {
         gameTerrainView.render(graphics, this.getWidth(), this.getHeight());
         gameEntityView.render(graphics, this.getWidth(), this.getHeight());
         gameItemView.render(graphics, this.getWidth(), this.getHeight());
+        gameLightView.render(graphics, this.getWidth(), this.getHeight());
     }
 
 }

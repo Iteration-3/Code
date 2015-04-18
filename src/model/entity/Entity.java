@@ -7,6 +7,7 @@ import model.KeyPreferences;
 import model.area.TileCoordinate;
 import model.item.EquipableItem;
 import model.item.TakeableItem;
+import model.observers.MobileObject;
 import model.slots.ItemManager;
 import model.statistics.EntityStatistics;
 import model.statistics.Statistics;
@@ -18,7 +19,8 @@ import view.EquipmentView;
 import view.InventoryView;
 import controller.listener.Listener;
 
-public abstract class Entity implements Saveable {
+public abstract class Entity extends MobileObject implements Saveable {
+	
     private ItemManager itemManager;
     private String name = null;
     private EntityStatistics stats = new EntityStatistics();
@@ -28,6 +30,7 @@ public abstract class Entity implements Saveable {
 	private boolean isFlying = false;
 
     public Entity(String name, EntityView view, TileCoordinate location) {
+    	super(location);
         this.name = name;
         this.view = view;
         this.location = location;
@@ -35,14 +38,15 @@ public abstract class Entity implements Saveable {
     }
 
     public Entity() {
-
+    	super(new TileCoordinate(0, 0));
     }
     
     public Entity(StructuredMap map) {
+    	super(new TileCoordinate(map.getIntArray("location")[0], map.getIntArray("location")[1]));
         name = map.getString("name");
+
         int[] locationArray = map.getIntArray("location");
         this.location = new TileCoordinate(locationArray[0], locationArray[1]);
-        
     }
 
     private void setNecessities() {
@@ -138,10 +142,6 @@ public abstract class Entity implements Saveable {
         return name;
     }
 
-    public TileCoordinate getLocation() {
-        return location;
-    }
-
     public void equip(EquipableItem item) {
         this.itemManager.equip(item);
     }
@@ -196,8 +196,9 @@ public abstract class Entity implements Saveable {
     }
 
     public void setLocation(TileCoordinate location) {
-        this.location = location;
-        this.getEntityView().setLocation(location);
+    	super.setLocation(location);
+    	if (this.getEntityView() != null)
+    		this.getEntityView().setLocation(location);//TODO: FIX
     }
 
     public Angle getDirection() {

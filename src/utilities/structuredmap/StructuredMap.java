@@ -3,6 +3,7 @@ package utilities.structuredmap;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringJoiner;
 
 public class StructuredMap {
 	private Map<String, Object> data;
@@ -40,34 +41,53 @@ public class StructuredMap {
 	}
 
 	public Boolean getBoolean(String key) {
-		return (Boolean) data.get(key);
+		Object value = data.get(key);
+		return value == null ? null : (Boolean) data.get(key);
 	}
 
 	public Double getDouble(String key) {
-		return (Double) data.get(key);
+		Object value = data.get(key);
+		return value == null ? null : (Double) data.get(key);
 	}
 
 	public Integer getInteger(String key) {
-		return (Integer) data.get(key);
+		Object value = data.get(key);
+		return value == null ? null : (Integer) data.get(key);
  	}
 
 	public String getString(String key) {
-		QuotedString quoted = (QuotedString) data.get(key); // get the QuotedString object
+		Object value = data.get(key);
+		
+		if (value == null)
+			return null;
+		
+		QuotedString quoted = (QuotedString) value; // get the QuotedString object
 		String backingString = quoted.toString(); // get the string literal inside the QuotedString
 		return backingString.substring(1, backingString.length() - 1); // trim off the quotes
 	}
 
 	public StructuredMap getStructuredMap(String key) {
-		return (StructuredMap) data.get(key);
+		Object value = data.get(key);
+		return value == null ? null : (StructuredMap) value;
 	}
 
 	public int[] getIntArray(String key) {
-		IntArrayContainer container = (IntArrayContainer) data.get(key);
+		Object value = data.get(key);
+		
+		if (value == null)
+			return null;
+		
+		IntArrayContainer container = (IntArrayContainer) value;
 		return container.getArray();
 	}
 
 	public StructuredMap[] getStructuredMapArray(String key) {
-		StructuredMapArrayContainer container = (StructuredMapArrayContainer) data.get(key);
+		Object value = data.get(key);
+		
+		if(value == null)
+			return null;
+		
+		StructuredMapArrayContainer container = (StructuredMapArrayContainer) value;
 		return container.getArray();
 	}
 	
@@ -78,31 +98,33 @@ public class StructuredMap {
 	
 	// Returns a properly formatted String of Json data
 	public String getJson() {
-		StringBuilder builder = new StringBuilder();
-		
-		builder.append("{\n");
-		
+		StringJoiner joiner =  new StringJoiner(",\n");
 		for (Map.Entry<String, Object> entry : data.entrySet()) {
-			String valueString = prependTab(entry.getValue().toString());
+			Object value = entry.getValue();
+			
+			String valueString = null;
+			if(value == null)
+				valueString = "\tnull";
+			else
+				prependTab(entry.getValue().toString());
+			
 			String formattedEntry = String.format("\"%s\":%s", entry.getKey(), valueString);
-			builder.append(formattedEntry);
+			joiner.add(formattedEntry);
 		}
-		
-		builder.append("\n}");		
-		
-		return builder.toString();
+	
+		return String.format("{\n%s\n}", joiner.toString());
 	}
 	
 	// Adds a tab before every line of a multi-line String
 	private String prependTab(String str) {
 		String[] lines = str.split("\n");
-		StringBuilder builder = new StringBuilder();
 		
+		StringJoiner joiner = new StringJoiner("\n");
 		for(String line : lines) {
-			builder.append(String.format("\t%s\n", line));
+			joiner.add(String.format("\t%s", line));
 		}
 		
-		return builder.toString();
+		return joiner.toString();
 	}
 	
 	////////////////////////////////////////////////////////////////

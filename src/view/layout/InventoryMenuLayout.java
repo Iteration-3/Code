@@ -29,22 +29,27 @@ public class InventoryMenuLayout extends Layout {
 
 	public InventoryMenuLayout(InventoryView inventoryView,
 			EquipmentView equipmentView) {
-		setLayout(new BorderLayout());
-		setPreferredSize(new Dimension(1024, 500));
+		setLayout(null);
+		setToolTipText("ehlkadjflkasd");
+//		setLayout(new BorderLayout());
+		setPreferredSize(new Dimension(1024, 764));
 		setInventoryView(inventoryView);
 		setEquipmentView(equipmentView);
 		initButtons();
 		addViews();
-		setFocusable(true);
+//		setFocusable(true);
 	}
 
 	private void addViews() {
 		// need to look at the Lauouts,  setting the layout
 		// does not allow the components to have ActionListeners
-		add(inventoryView,BorderLayout.WEST);
-		add(equipmentView,BorderLayout.CENTER);
-		add(backButton,BorderLayout.SOUTH);
-//		this.setOffsets();
+//		add(inventoryView,BorderLayout.WEST);
+//		add(equipmentView,BorderLayout.CENTER);
+//		add(backButton,BorderLayout.SOUTH);
+		add(inventoryView);
+		add(equipmentView);
+		add(backButton);
+		this.setOffsets();
 	}
 
 	private void setOffsets() {
@@ -66,10 +71,7 @@ public class InventoryMenuLayout extends Layout {
 
 	public void attachController(InventoryMenuController controller) {
 		backButton.addActionListener(controller.getBackAction());
-		this.inventoryMouseListener = controller.getInventoryMouseListener();
-		this.addViews();
-		this.inventoryView.addMouseListener(this.inventoryMouseListener);
-		this.equipmentView.addMouseListener(controller.getEquipmentMouseListener());
+		this.inventoryView.add(controller);
 	}
 
 	public void setInventoryView(InventoryView inventoryView) {
