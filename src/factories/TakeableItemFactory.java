@@ -14,8 +14,6 @@ public class TakeableItemFactory {
 				return createConsumeable(map);
 			case "noItem":
 				return null;
-			case "takeable":
-				return createTakeable(map);
 			default:
 				return EquipableItemFactory.createItem(key, map);
 		}
@@ -27,9 +25,5 @@ public class TakeableItemFactory {
 		double duration = map.getDouble("duration");
 		return new ConsumableItem(new BasicItemView(), new EntityStatistics(
 				statisitics), duration);
-	}
-
-	private static TakeableItem createTakeable(StructuredMap map) {
-		return new TakeableItem(new BasicItemView(), map);
 	}
 }

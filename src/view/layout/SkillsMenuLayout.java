@@ -42,7 +42,7 @@ public class SkillsMenuLayout extends Layout {
 		add(skills);
 	}
 	
-	public void updateLabelText(){
+	public void generateLabelText(){
 		StringBuilder stats = new StringBuilder();
 		Avatar avatar = EntityManager.getSingleton().getAvatar();
 		if(avatar == null){return;}

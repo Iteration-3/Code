@@ -18,7 +18,9 @@ import model.entity.Summoner;
 import model.event.HealthModifierEvent;
 import model.event.ManaModifierEvent;
 import model.event.TeleportEvent;
+import model.item.Boots;
 import model.item.Door;
+import model.item.Gloves;
 import model.item.Helmet;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
@@ -143,13 +145,13 @@ public class GameplayState extends GameState {
         ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
         TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
         takeableItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(5, 5));
-        this.getItemMap().addItem(new TakeableItem(takeableItemView),
+        this.getItemMap().addItem(new Boots(takeableItemView),
                 takeableItemViewPosition);
 
         ItemView takeableItemViewTwo = new BasicItemView(new Color(100, 60, 100), Color.DARK_GRAY);
         TileCoordinate takeableItemViewPositionTwo = new TileCoordinate(5, 6);
         takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(5, 6));
-        TakeableItem takeableItemTwo = new TakeableItem(takeableItemViewTwo);
+        TakeableItem takeableItemTwo = new Gloves(takeableItemViewTwo);
         this.getItemMap().addItem(takeableItemTwo, takeableItemViewPositionTwo);
 
         ItemView doorItemView = new BasicItemView(Color.RED, Color.MAGENTA);
@@ -228,9 +230,5 @@ public class GameplayState extends GameState {
         return controller;
     }
 
-    @Override
-    public void update() {
-        // TODO poll here.
-    }
 
 }

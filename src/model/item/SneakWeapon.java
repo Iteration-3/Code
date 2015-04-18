@@ -5,9 +5,13 @@ import model.statistics.Statistics;
 import view.item.ItemView;
 
 public class SneakWeapon extends Weapon {
+	
+	public SneakWeapon(ItemView itemView) {
+		super(itemView);
+	}
 
-	public SneakWeapon(ItemView itemView, Statistics stats) {
-		super(itemView, stats);
+	public SneakWeapon(ItemView itemView, Statistics statistics) {
+		super(itemView, statistics);
 	}
 
 	public boolean equip(SneakWeaponSlot slot){

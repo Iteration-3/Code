@@ -13,12 +13,13 @@ import keyRemapping.KeyMappingUpLeft;
 import keyRemapping.KeyMappingUpRight;
 import model.KeyPreferences;
 import model.Model;
+import view.layout.KeyBindingsLayout;
 import view.layout.Layout;
 import controller.listener.ToggleAction;
 
 public class KeyBindingsController extends Controller {
     private KeyPreferences keyPreferences;
-    private Layout layout;
+    private KeyBindingsLayout layout;
     private Model model;
 
     private ToggleAction backAction;
@@ -99,52 +100,53 @@ public class KeyBindingsController extends Controller {
         };
         rebindAbility1 = new ToggleAction() {
             public void action() {
-                attachNewAbilityMapping(1);
+                attachNewAbilityMapping(2);
             }
         };
         rebindAbility2 = new ToggleAction() {
             public void action() {
-                attachNewAbilityMapping(2);
+                attachNewAbilityMapping(3);
             }
         };
         rebindAbility3 = new ToggleAction() {
             public void action() {
-                attachNewAbilityMapping(3);
+                attachNewAbilityMapping(4);
             }
         };
         rebindAbility4 = new ToggleAction() {
             public void action() {
-                attachNewAbilityMapping(4);
+                attachNewAbilityMapping(5);
             }
         };
         rebindAbility5 = new ToggleAction() {
             public void action() {
-                attachNewAbilityMapping(5);
+                attachNewAbilityMapping(6);
             }
         };
         rebindAbility6 = new ToggleAction() {
             public void action() {
-                attachNewAbilityMapping(6);
+                attachNewAbilityMapping(7);
             }
         };
         rebindAbility7 = new ToggleAction() {
             public void action() {
-                attachNewAbilityMapping(7);
+                attachNewAbilityMapping(8);
             }
         };
         rebindAbility8 = new ToggleAction() {
             public void action() {
-                attachNewAbilityMapping(8);
+                attachNewAbilityMapping(9);
             }
         };
         rebindAbility9 = new ToggleAction() {
             public void action() {
-                attachNewAbilityMapping(9);
+                attachNewAbilityMapping(10);
             }
         };
         rebindAbility0 = new ToggleAction() {
             public void action() {
-                attachNewAbilityMapping(0);
+                attachNewAbilityMapping(1);
+                
             }
         };
     }
@@ -157,8 +159,14 @@ public class KeyBindingsController extends Controller {
         return model;
     }
 
-    public void setLayout(Layout layout) {
+    public void updateLayout(){
+        layout.updateKeyText(this.getKeyPreferences());
+
+    }
+    public void setLayout(KeyBindingsLayout layout) {
         this.layout = layout;
+        //Now that we've got a layout, set it
+        this.updateLayout();
     }
 
     public void attachKeyMapping(KeyMapping mapper) {
@@ -170,7 +178,7 @@ public class KeyBindingsController extends Controller {
     public void removeKeyMapping(KeyMapping mapper) {
         this.layout.removeKeyListener(mapper);
     }
-
+    //Add view updating after all of these, so call updateKeyText
     public void attachNewUpMapping() {
         KeyMapping mapping = new KeyMappingUp(keyPreferences, this);
         attachKeyMapping(mapping);
@@ -179,6 +187,7 @@ public class KeyBindingsController extends Controller {
     public void attachNewDownMapping() {
         KeyMapping mapping = new KeyMappingDown(keyPreferences, this);
         attachKeyMapping(mapping);
+
     }
 
     public void attachNewUpLeftMapping() {
@@ -189,36 +198,43 @@ public class KeyBindingsController extends Controller {
     public void attachNewUpRightMapping() {
         KeyMapping mapping = new KeyMappingUpRight(keyPreferences, this);
         attachKeyMapping(mapping);
+
     }
 
     public void attachNewDownRightMapping() {
         KeyMapping mapping = new KeyMappingDownRight(keyPreferences, this);
         attachKeyMapping(mapping);
+
     }
 
     public void attachNewDownLeftMapping() {
         KeyMapping mapping = new KeyMappingDownLeft(keyPreferences, this);
         attachKeyMapping(mapping);
+
     }
 
     public void attachNewInventoryMapping() {
         KeyMapping mapping = new KeyMappingInventory(keyPreferences, this);
         attachKeyMapping(mapping);
+
     }
 
     public void attachNewSkillsMapping() {
         KeyMapping mapping = new KeyMappingSkills(keyPreferences, this);
         attachKeyMapping(mapping);
+
     }
 
     public void attachNewPauseMapping() {
         KeyMapping mapping = new KeyMappingPause(keyPreferences, this);
         attachKeyMapping(mapping);
+
     }
 
     public void attachNewAbilityMapping(int location) {
         KeyMapping mapping = new KeyMappingAbility(keyPreferences, this, location);
         attachKeyMapping(mapping);
+
     }
 
     public ToggleAction goBackAction() {

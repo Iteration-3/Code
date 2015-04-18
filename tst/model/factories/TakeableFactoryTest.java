@@ -25,15 +25,6 @@ public class TakeableFactoryTest {
 		assertEquals(map.getJson(), item.getStructuredMap().getJson());
 	}
 	
-	@Test
-	public void testTakeable() {
-		TakeableItem take = new TakeableItem(new BasicItemView());
-
-		StructuredMap map = take.getStructuredMap();
-
-		TakeableItem item = TakeableItemFactory.createItem("takeable", map.getStructuredMap("takeable"));
-
-		assertEquals(map.getJson(), item.getStructuredMap().getJson());
-	}
+	
 
 }

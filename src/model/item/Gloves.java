@@ -6,24 +6,27 @@ import model.statistics.Statistics;
 import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 
-public class Gloves extends EquipableItem {
+public class Gloves extends EquipableItem{
+	
+	public Gloves(ItemView itemView) {
+		super(itemView);
+	}
 
-    public Gloves(ItemView itemView, Statistics stats) {
-        super(itemView, stats);
-    }
+	public Gloves(ItemView itemView, Statistics statistics) {
+		super(itemView, statistics);
+	}
 
     public Gloves(ItemView itemView, StructuredMap map) {
         super(itemView, map);
     }
 
-    public boolean equip(ItemManager im) {
-        return im.equipToSlot(this);
-    }
+	public boolean equip(ItemManager itemManager) {
+		return itemManager.equipToSlot(this);
+	}
 
     @Override
     public void use(Entity entity) {
         // TODO Auto-generated method stub
-
     }
 
     @Override

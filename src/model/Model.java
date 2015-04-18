@@ -42,15 +42,6 @@ public class Model extends StateMachine<GameState> {
         return null;
     }
 
-    public void update() {
-        if (this.currentState() != null) {
-            this.currentState().update();// Currently only updates the current
-                                         // state.
-
-        }
-
-    }
-
     public void setPreferences(KeyPreferences preferences) {
         this.preferences = preferences;
     }

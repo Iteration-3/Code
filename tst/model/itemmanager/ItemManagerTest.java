@@ -38,7 +38,6 @@ public class ItemManagerTest {
 	@Test
 	public void testInventory() {
 		Inventory inventory = new Inventory();
-		inventory.addItem(new TakeableItem(new BasicItemView()));
 		inventory.addItem(new ConsumableItem(new BasicItemView(), new EntityStatistics(), 4.6));
 		inventory.addItem(new Gloves(new BasicItemView(), new Statistics()));
 		
