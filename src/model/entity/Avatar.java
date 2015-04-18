@@ -9,15 +9,12 @@ import controller.listener.Listener;
 import controller.listener.PollingListener;
 import model.KeyPreferences;
 import model.ability.Ability;
-import model.area.ConicalArea;
-import model.area.LinearArea;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.light.LightManager;
 import model.light.MovingLightSource;
 import model.light.Visibility;
 import model.skillmanager.SkillManager;
-import utilities.Angle;
 import view.EntityView;
 
 public abstract class Avatar extends Entity {

@@ -14,7 +14,6 @@ import keyRemapping.KeyMappingUpRight;
 import model.KeyPreferences;
 import model.Model;
 import view.layout.KeyBindingsLayout;
-import view.layout.Layout;
 import controller.listener.ToggleAction;
 
 public class KeyBindingsController extends Controller {

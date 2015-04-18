@@ -7,7 +7,6 @@ import model.item.ConsumableItem;
 import model.item.Gloves;
 import model.item.Leggings;
 import model.item.Shield;
-import model.item.TakeableItem;
 import model.slots.Inventory;
 import model.slots.ItemManager;
 import model.statistics.EntityStatistics;

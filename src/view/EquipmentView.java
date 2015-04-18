@@ -1,16 +1,10 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 
 import utilities.ImageProcessing;
-import view.components.MenuButton;
 
 @SuppressWarnings("serial")
 public class EquipmentView extends JComponent {
@@ -137,7 +131,7 @@ public class EquipmentView extends JComponent {
 //	}
 	
 	public void setBounds(int x, int y){
-		this.setBounds(x,y,this.WIDTH, this.HEIGHT);
+		this.setBounds(x,y,WIDTH, HEIGHT);
 	}
 	
 	public int getWidth(){
