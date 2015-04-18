@@ -13,6 +13,7 @@ import model.item.Helmet;
 import model.item.Leggings;
 import model.item.Projectile;
 import model.item.Shield;
+import model.item.SmasherWeapon;
 import model.item.TwoHandedWeapon;
 import model.item.Weapon;
 import model.statistics.Statistics;
@@ -26,16 +27,16 @@ public class EquipmentManager {
 	private EquipmentSlot<Boots> bootsSlot;
 	private EquipmentSlot<Gloves> glovesSlot;
 	private EquipmentSlot<Projectile> projectileSlot;
-	private DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot;
+	private DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield> THWSlot;
 	
 	private EquipmentView equipmentView;
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public EquipmentManager(Smasher avatar) {
 		this.equipmentView = new EquipmentView();
-		this.weaponSlot = new SmasherWeaponSlot();
+		SmasherWeaponSlot weaponSlot = new SmasherWeaponSlot();
+		this.weaponSlot = weaponSlot;
 		this.setSlots();
-		this.THWSlot = new DoubleEquipmentSlot(this.weaponSlot, this.shieldSlot);
+		this.THWSlot = new DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield>(weaponSlot, this.shieldSlot);
 		this.registerSlots();
 	}
 
@@ -173,9 +174,6 @@ public class EquipmentManager {
 	}
 
 	public boolean equip(Weapon item) {
-		if (this.hasTHW()){
-			return this.THWSlot.equipFirstSlot(item);
-		}
 		return this.weaponSlot.equip(item);
 	}
 	
@@ -193,5 +191,9 @@ public class EquipmentManager {
 
 	public boolean canEquip(Weapon weapon) {
 		return this.weaponSlot.canEquip(weapon);
+	}
+	
+	public EquipmentView getView(){
+		return this.equipmentView;
 	}
 }

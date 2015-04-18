@@ -68,7 +68,7 @@ public class EquipmentSlotTest {
 	public void DoubleSlotsHasNot(){
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
-		DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THW = new DoubleEquipmentSlot(weapon, shield);
+		DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield> THWSlot = new DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield>(weapon, shield);
 		assertFalse(THW.has());
 	}
 	
@@ -76,7 +76,7 @@ public class EquipmentSlotTest {
 	public void DoubleSlotsHas(){
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
-		DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot = new DoubleEquipmentSlot(weapon, shield);
+		DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield> THWSlot = new DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield>(weapon, shield);
 		TwoHandedWeapon THW = new TwoHandedWeapon(new BasicItemView(), new Statistics());
 		THWSlot.equip(THW);
 		assertTrue(THWSlot.has());
@@ -86,7 +86,7 @@ public class EquipmentSlotTest {
 	public void DoubleEquipFirst(){
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
-		DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot = new DoubleEquipmentSlot(weapon, shield);
+		DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield> THWSlot = new DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield>(weapon, shield);
 		TwoHandedWeapon THW = new TwoHandedWeapon(new BasicItemView(), new Statistics());
 		SmasherWeapon sw = new SmasherWeapon(new BasicItemView(), new Statistics());
 		THWSlot.equipFirstSlot(sw);
@@ -97,7 +97,7 @@ public class EquipmentSlotTest {
 	public void DoubleEquipSecond(){
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
-		DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot = new DoubleEquipmentSlot(weapon, shield);
+		DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield> THWSlot = new DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield>(weapon, shield);
 		TwoHandedWeapon THW = new TwoHandedWeapon(new BasicItemView(), new Statistics());
 		SmasherWeapon sw = new SmasherWeapon(new BasicItemView(), new Statistics());
 		Shield sh = new Shield(new BasicItemView(), new Statistics());
@@ -109,7 +109,7 @@ public class EquipmentSlotTest {
 	public void DoubleCantEquipIfItemInOneOfTheSlots(){
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
-		DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot = new DoubleEquipmentSlot(weapon, shield);
+		DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield> THWSlot = new DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield>(weapon, shield);
 		TwoHandedWeapon THW = new TwoHandedWeapon(new BasicItemView(), new Statistics());
 		SmasherWeapon sw = new SmasherWeapon(new BasicItemView(), new Statistics());
 		Shield sh = new Shield(new BasicItemView(), new Statistics());
@@ -122,7 +122,7 @@ public class EquipmentSlotTest {
 	public void DoubleCantEquipIfItemInSecondOfTheSlots(){
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
-		DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot = new DoubleEquipmentSlot(weapon, shield);
+		DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield> THWSlot = new DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield>(weapon, shield);
 		TwoHandedWeapon THW = new TwoHandedWeapon(new BasicItemView(), new Statistics());
 		SmasherWeapon sw = new SmasherWeapon(new BasicItemView(), new Statistics());
 		Shield sh = new Shield(new BasicItemView(), new Statistics());
@@ -135,7 +135,7 @@ public class EquipmentSlotTest {
 	public void DoubleCantEquipIfItemInBothOfTheSlots(){
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
-		DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot = new DoubleEquipmentSlot(weapon, shield);
+		DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield> THWSlot = new DoubleEquipmentSlot<TwoHandedWeapon, SmasherWeapon, Shield>(weapon, shield);
 		TwoHandedWeapon THW = new TwoHandedWeapon(new BasicItemView(), new Statistics());
 		SmasherWeapon sw = new SmasherWeapon(new BasicItemView(), new Statistics());
 		Shield sh = new Shield(new BasicItemView(), new Statistics());
@@ -148,7 +148,7 @@ public class EquipmentSlotTest {
 	public void DoubleCanEquip(){
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
-		DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot = new DoubleEquipmentSlot(weapon, shield);
+		DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield> THWSlot = new DoubleEquipmentSlot<TwoHandedWeapon, SmasherWeapon, Shield>(weapon, shield);
 		TwoHandedWeapon THW = new TwoHandedWeapon(new BasicItemView(), new Statistics());
 		SmasherWeapon sw = new SmasherWeapon(new BasicItemView(), new Statistics());
 		Shield sh = new Shield(new BasicItemView(), new Statistics());

@@ -13,6 +13,7 @@ import utilities.Angle;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
+import view.EquipmentView;
 import view.InventoryView;
 import controller.listener.Listener;
 
@@ -203,6 +204,10 @@ public abstract class Entity implements Saveable {
     public void addMana(int mana) {
         stats.addMana(mana);
     }
+
+	public boolean containsItem(TakeableItem item) {
+		return itemManager.inventoryHasItem(item);
+	}
     
     
     //DELETE ME AFTER FIXING    FOR TESTING PURPOSES
@@ -211,8 +216,8 @@ public abstract class Entity implements Saveable {
     	return this.itemManager.getInventoryView();
     }
 
-	public boolean containsItem(TakeableItem item) {
-		return itemManager.inventoryHasItem(item);
+	public EquipmentView getEquipmentView() {
+		return itemManager.getEquipmentView();
 	}
     
     

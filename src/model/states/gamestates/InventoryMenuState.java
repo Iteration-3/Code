@@ -10,7 +10,7 @@ public class InventoryMenuState extends GameState {
 	
     public InventoryMenuState(Avatar avatar) {
     	//TODO  need to change this so that Avatar does not have getInventoryView()
-    	layout = new InventoryMenuLayout(avatar.getInventoryView());
+    	layout = new InventoryMenuLayout(avatar.getInventoryView(),avatar.getEquipmentView());
     }
     
     @Override
