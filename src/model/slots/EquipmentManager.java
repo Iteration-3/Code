@@ -50,31 +50,31 @@ public class EquipmentManager implements Saveable {
     public StructuredMap getStructuredMap() {
         StructuredMap map = new StructuredMap();
         if(helmetSlot.get() != null ) {
-            map.put("helmet", helmetSlot.get().getStructuredMap());
+            map.put("helmetSlot", helmetSlot.get().getStructuredMap());
         }
         
         if(chestPieceSlot.get() != null) {
-            map.put("chestPiece", chestPieceSlot.get().getStructuredMap());
+            map.put("chestPieceSlot", chestPieceSlot.get().getStructuredMap());
         }
         
         if(leggingsSlot.get() != null) {
-            map.put("leggings", leggingsSlot.get().getStructuredMap());
+            map.put("leggingsSlot", leggingsSlot.get().getStructuredMap());
         }
         
         if(shieldSlot.get() != null ) {
-            map.put("shield", shieldSlot.get().getStructuredMap());
+            map.put("shieldSlot", shieldSlot.get().getStructuredMap());
         }
         
         if(bootsSlot.get() != null) {
-            map.put("boots", bootsSlot.get().getStructuredMap());
+            map.put("bootsSlot", bootsSlot.get().getStructuredMap());
         }
         
         if(glovesSlot.get() != null) {
-            map.put("gloves", glovesSlot.get().getStructuredMap());
+            map.put("glovesSlot", glovesSlot.get().getStructuredMap());
         }
         
         if(projectileSlot.get() != null) {
-            map.put("projectile", projectileSlot.get().getStructuredMap());
+            map.put("projectileSlot", projectileSlot.get().getStructuredMap());
         }
         
         //TODO Weapon and TWO handed weapon

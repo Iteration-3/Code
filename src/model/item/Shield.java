@@ -31,5 +31,13 @@ public class Shield extends EquipableItem {
         // TODO Auto-generated method stub
         return null;
     }
+    
+    @Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		StructuredMap returnMap = new StructuredMap();
+		returnMap.put("shield", map);
+		return returnMap;
+	}
 
 }

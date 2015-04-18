@@ -140,6 +140,17 @@ public class Inventory implements Saveable {
 
 	@Override
 	public StructuredMap getStructuredMap() {
-		return new StructuredMap();
+		StructuredMap map = new StructuredMap();
+		map.put("slotsLength", slots.length);
+		for(int i = 0; i < slots.length; i++) {
+			if(slots[i].get() != null) {
+				map.put("slot" + i, slots[i].get().getStructuredMap());
+			} else {
+				StructuredMap emptyMap = new StructuredMap();
+				emptyMap.put("noItem", new StructuredMap());
+				map.put("slot" + i, emptyMap);
+			}
+		}
+		return map;
 	}
 }
