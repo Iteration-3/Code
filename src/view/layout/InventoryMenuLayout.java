@@ -1,9 +1,7 @@
 package view.layout;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.event.MouseListener;
 
 import controller.InventoryMenuController;
@@ -30,22 +28,16 @@ public class InventoryMenuLayout extends Layout {
 	public InventoryMenuLayout(InventoryView inventoryView,
 			EquipmentView equipmentView) {
 		setLayout(null);
-		setToolTipText("ehlkadjflkasd");
-//		setLayout(new BorderLayout());
+		this.equipmentView = equipmentView;
+		this.inventoryView = inventoryView;
 		setPreferredSize(new Dimension(1024, 764));
 		setInventoryView(inventoryView);
 		setEquipmentView(equipmentView);
 		initButtons();
 		addViews();
-//		setFocusable(true);
 	}
 
 	private void addViews() {
-		// need to look at the Lauouts,  setting the layout
-		// does not allow the components to have ActionListeners
-//		add(inventoryView,BorderLayout.WEST);
-//		add(equipmentView,BorderLayout.CENTER);
-//		add(backButton,BorderLayout.SOUTH);
 		add(inventoryView);
 		add(equipmentView);
 		add(backButton);
@@ -71,7 +63,9 @@ public class InventoryMenuLayout extends Layout {
 
 	public void attachController(InventoryMenuController controller) {
 		backButton.addActionListener(controller.getBackAction());
+    	System.out.println(this.isValid());
 		this.inventoryView.add(controller);
+		this.inventoryView.addMouseMotionListener(controller.makeInventoryMouseListener());
 	}
 
 	public void setInventoryView(InventoryView inventoryView) {
