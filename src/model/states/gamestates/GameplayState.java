@@ -57,9 +57,11 @@ public class GameplayState extends GameState {
 
     @Override
     public void onEnter() {
-    	//Entity test must run before item test, which must be run before setListeners.
-    	//The reason for this is the avatar must be made prior to items, to make the itemEntityAssocation, 
-    	//Which is needed for other stuff.
+        // Entity test must run before item test, which must be run before
+        // setListeners.
+        // The reason for this is the avatar must be made prior to items, to
+        // make the itemEntityAssocation,
+        // Which is needed for other stuff.
         super.onEnter();
         addTilesTest();
         addEntityTest();
@@ -105,11 +107,11 @@ public class GameplayState extends GameState {
         Listener inventoryListener = new SingleUseListener(preferences.getInventoryKey(), new GameActionStatePush(
                 getContext(), new InventoryMenuState(avatar)));
         inventoryListener.addAsBinding(getLayout());
-        
+
         Listener skillsListener = new SingleUseListener(preferences.getSkillsKey(), new GameActionStatePush(
                 getContext(), new SkillsMenuState()));
         skillsListener.addAsBinding(getLayout());
-        
+
         Collection<Listener> listeners = new EntityMovementAssocation(avatar, gameMap,
                 itemEntityAssociation.getItemMap()).getListeners(preferences);
 
@@ -117,22 +119,21 @@ public class GameplayState extends GameState {
             listener.addAsBinding(getLayout());
             controller.addEntityListener(listener);
         }
-	}
-	
-	private void addItemsTest() {
-		this.itemEntityAssociation = new ItemEntityAssociation(avatar);
+    }
+
+    private void addItemsTest() {
+        this.itemEntityAssociation = new ItemEntityAssociation(avatar);
         ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
         TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
         takeableItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(5, 5));
-        itemEntityAssociation.addItem(new TakeableItem(takeableItemView),
-                new TileCoordinate(5,5));
+        itemEntityAssociation.addItem(new TakeableItem(takeableItemView), new TileCoordinate(5, 5));
 
         ItemView takeableItemViewTwo = new BasicItemView(new Color(100, 60, 100), Color.DARK_GRAY);
         TileCoordinate takeableItemViewPositionTwo = new TileCoordinate(5, 6);
         takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(5, 6));
         TakeableItem takeableItemTwo = new TakeableItem(takeableItemViewTwo);
         itemEntityAssociation.addItem(new TakeableItem(takeableItemViewTwo), takeableItemViewPosition);
-        
+
         ItemView doorItemView = new BasicItemView(Color.RED, Color.MAGENTA);
         TileCoordinate doorItemViewPosition = new TileCoordinate(15, 14);
         doorItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(15, 14));
@@ -148,30 +149,31 @@ public class GameplayState extends GameState {
         TileCoordinate oneshotItemPosition = new TileCoordinate(13, 9);
         oneshotItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(13, 9));
         itemEntityAssociation.addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), oneshotItemPosition);
-		
-	}
-	
-	private void addTriggersTest() {
-		TriggerManager triggerManager = TriggerManager.getSingleton();
 
-		// This may need a ViewableTriggerDecorator to display the Decal for the AreaEffect
-		TileCoordinate locOne = new TileCoordinate(2, 6);
-		Area areaOne = new RadialArea(20, locOne);
-		Trigger triggerOne = new SingleUseTrigger(areaOne, new HealthModifierEvent(2, -1));
-		
-		TileCoordinate locTwo = new TileCoordinate(2, 7);
-		Area areaTwo = new RadialArea(1, locTwo);
-		Trigger triggerTwo = new PermanentTrigger(areaTwo, new ManaModifierEvent(10, 200));
-		
-		TileCoordinate locThree = new TileCoordinate(2, 8);
-		Area areaThree = new RadialArea(1, locThree);
-		Trigger triggerThree = new PermanentTrigger(areaThree, new TeleportEvent(0, new TileCoordinate(0, 0),
-				new GameActionTeleport(avatar, gameMap, this.itemEntityAssociation.getItemMap(), Angle.DOWN)));
-		
-		triggerManager.addNonPartyTrigger(triggerOne);
-		triggerManager.addNonPartyTrigger(triggerTwo);
-		triggerManager.addNonPartyTrigger(triggerThree);
-	
+    }
+
+    private void addTriggersTest() {
+        TriggerManager triggerManager = TriggerManager.getSingleton();
+
+        // This may need a ViewableTriggerDecorator to display the Decal for the
+        // AreaEffect
+        TileCoordinate locOne = new TileCoordinate(2, 6);
+        Area areaOne = new RadialArea(20, locOne);
+        Trigger triggerOne = new SingleUseTrigger(areaOne, new HealthModifierEvent(2, -1));
+
+        TileCoordinate locTwo = new TileCoordinate(2, 7);
+        Area areaTwo = new RadialArea(1, locTwo);
+        Trigger triggerTwo = new PermanentTrigger(areaTwo, new ManaModifierEvent(10, 200));
+
+        TileCoordinate locThree = new TileCoordinate(2, 8);
+        Area areaThree = new RadialArea(1, locThree);
+        Trigger triggerThree = new PermanentTrigger(areaThree, new TeleportEvent(0, new TileCoordinate(2, 0),
+                new GameActionTeleport(avatar, gameMap, this.itemEntityAssociation.getItemMap(), Angle.DOWN)));
+
+        triggerManager.addNonPartyTrigger(triggerOne);
+        triggerManager.addNonPartyTrigger(triggerTwo);
+        triggerManager.addNonPartyTrigger(triggerThree);
+
     }
 
 	public void addTilesTest() {
