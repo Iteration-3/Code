@@ -50,4 +50,9 @@ public class LightManager {
 	public LightMap getLightMap() {
 		return lightMap;
 	}
+	
+	public void clear() {
+		lightSources = new ArrayList<LightSource>();
+		lightMap = new LightMap(100, 100); //TODO temp		
+	}
 }

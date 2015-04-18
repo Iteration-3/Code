@@ -21,5 +21,8 @@ public class ProjectileManager {
 			}
 		}
 	}
-
+	
+	public void clear() {
+		projectiles = new ArrayList<Projectile>();
+	}
 }

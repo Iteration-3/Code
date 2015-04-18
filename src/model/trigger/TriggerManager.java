@@ -83,4 +83,10 @@ public final class TriggerManager {
 	public Collection<Trigger> getNeutralTriggers() {
 		return Collections.unmodifiableCollection(neutralTriggers);
 	}
+	
+	public void clear() {
+		partyTriggers = new CopyOnWriteArrayList<Trigger>();
+		nonPartyTriggers = new CopyOnWriteArrayList<Trigger>();
+		neutralTriggers = new CopyOnWriteArrayList<Trigger>();
+	}
 }
