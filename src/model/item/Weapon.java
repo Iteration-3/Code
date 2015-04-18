@@ -1,6 +1,5 @@
 package model.item;
 
-import model.slots.EquipmentManager;
 import model.slots.ItemManager;
 import model.slots.SmasherWeaponSlot;
 import model.slots.SneakWeaponSlot;
@@ -14,14 +13,10 @@ public abstract class Weapon extends EquipableItem{
 		super(itemView, stats);
 	}
 
-	public boolean equip(EquipmentManager equipment){
-		return equipment.equip(this);
+	public boolean equip(ItemManager im){
+		return im.equipToSlot(this);
 	}
-	
-	public void unequip(ItemManager im){
-		im.unequipWeapon();
-	}
-	
+
 	public boolean equip(SneakWeaponSlot slot){
 		return false;
 	}

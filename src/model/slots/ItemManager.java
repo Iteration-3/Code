@@ -4,7 +4,14 @@ import model.entity.NPC;
 import model.entity.Smasher;
 import model.entity.Sneak;
 import model.entity.Summoner;
+import model.item.Boots;
+import model.item.ChestPiece;
 import model.item.EquipableItem;
+import model.item.Gloves;
+import model.item.Helmet;
+import model.item.Leggings;
+import model.item.Projectile;
+import model.item.Shield;
 import model.item.TakeableItem;
 import model.item.Weapon;
 import model.statistics.Statistics;
@@ -74,19 +81,42 @@ public class ItemManager implements Saveable {
         return this.inventory.hasItem(item);
     }
 
-    // this is used to equip a item, it can always fail
-    private boolean tryToEquip(EquipableItem item) {
-        return item.equip(this.equipment);
-    }
-
-    public void equip(EquipableItem item) {
+    public boolean equip(EquipableItem item) {
         // the item must unequip all the slots that it needs to equip itself
-        item.unequip(this);
-        if (this.tryToEquip(item)) {
-            return;
-        } else {
-            this.inventory.addItem(item);
-        }
+        return item.equip(this);
+    }
+    
+    public boolean equipToSlot(Boots boots){
+    	this.unequipBoots();
+    	return this.equipment.equip(boots);
+    }
+    public boolean equipToSlot(Weapon boots){
+    	this.unequipBoots();
+    	return this.equipment.equip(boots);
+    }
+    public boolean equipToSlot(Leggings boots){
+    	this.unequipBoots();
+    	return this.equipment.equip(boots);
+    }
+    public boolean equipToSlot(ChestPiece boots){
+    	this.unequipBoots();
+    	return this.equipment.equip(boots);
+    }
+    public boolean equipToSlot(Gloves boots){
+    	this.unequipBoots();
+    	return this.equipment.equip(boots);
+    }
+    public boolean equipToSlot(Projectile boots){
+    	this.unequipBoots();
+    	return this.equipment.equip(boots);
+    }
+    public boolean equipToSlot(Helmet boots){
+    	this.unequipBoots();
+    	return this.equipment.equip(boots);
+    }
+    public boolean equipToSlot(Shield boots){
+    	this.unequipBoots();
+    	return this.equipment.equip(boots);
     }
 
     public void unequipProjectile() {
@@ -152,9 +182,9 @@ public class ItemManager implements Saveable {
     public InventoryView getInventoryView() {
         return this.inventory.getView();
     }
-    
+
     public EquipmentView getEquipmentView() {
-    	return this.equipment.getView();
+        return this.equipment.getView();
     }
 
     @Override

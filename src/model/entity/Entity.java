@@ -62,9 +62,8 @@ public abstract class Entity implements Saveable {
         map.put("stats", stats.getStructuredMap());
         map.put("direction", direction.ordinal());
         map.put("items", itemManager.getStructuredMap());
-        
-        //TODO more createItemManager
-        
+
+        // TODO more createItemManager
         return map;
     }
 
@@ -225,17 +224,18 @@ public abstract class Entity implements Saveable {
         stats.addMana(mana);
     }
 
-	public boolean containsItem(TakeableItem item) {
-		return itemManager.inventoryHasItem(item);
-	}
-    
-    //DELETE ME AFTER FIXING    FOR TESTING PURPOSES
-    public InventoryView getInventoryView(){
-    	return this.itemManager.getInventoryView();
+    public boolean containsItem(TakeableItem item) {
+        return itemManager.inventoryHasItem(item);
     }
 
-	public EquipmentView getEquipmentView() {
-		return itemManager.getEquipmentView();
-	}
-    
+    // DELETE ME AFTER FIXING FOR TESTING PURPOSES
+
+    public InventoryView getInventoryView() {
+        return this.itemManager.getInventoryView();
+    }
+
+    public EquipmentView getEquipmentView() {
+        return itemManager.getEquipmentView();
+    }
+
 }

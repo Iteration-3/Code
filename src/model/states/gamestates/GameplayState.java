@@ -19,6 +19,7 @@ import model.event.HealthModifierEvent;
 import model.event.ManaModifierEvent;
 import model.event.TeleportEvent;
 import model.item.Door;
+import model.item.Helmet;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
 import model.item.TakeableItem;
@@ -27,6 +28,7 @@ import model.map.ItemMap;
 import model.map.tile.ImpassableTile;
 import model.map.tile.PassableTile;
 import model.statistics.EntityStatistics;
+import model.statistics.Statistics;
 import model.trigger.PermanentTrigger;
 import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
@@ -65,8 +67,8 @@ public class GameplayState extends GameState {
         super.onEnter();
         addTilesTest();
         addEntityTest();
-        addTriggersTest();
         addItemsTest();
+        addTriggersTest();
     }
 
     @Override
@@ -99,6 +101,9 @@ public class GameplayState extends GameState {
     private void setListeners(KeyPreferences preferences) {
         controller.removeListeners();
         getLayout().clearBindings();
+
+        //testing this for equipped Items
+        avatar.equip(new Helmet(new BasicItemView(),new Statistics()));
 
         Listener escapeListener = new SingleUseListener(preferences.getPauseKey(), new GameActionStatePush(
                 getContext(), new PauseMenuState()));

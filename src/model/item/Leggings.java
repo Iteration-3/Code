@@ -1,7 +1,6 @@
 package model.item;
 
 import model.entity.Entity;
-import model.slots.EquipmentManager;
 import model.slots.ItemManager;
 import model.statistics.Statistics;
 import view.item.ItemView;
@@ -12,14 +11,10 @@ public class Leggings extends EquipableItem{
 		super(itemView, stats);
 	}
 
-	public boolean equip(EquipmentManager equipment) {
-		return equipment.equip(this);
+	public boolean equip(ItemManager im) {
+		return im.equipToSlot(this);
 	}
 	
-	public void unequip(ItemManager im) {
-		im.unequipLeggings();
-	}
-
 	@Override
 	public void use(Entity entity) {
 		// TODO Auto-generated method stub
