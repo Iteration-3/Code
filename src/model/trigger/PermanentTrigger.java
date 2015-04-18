@@ -23,16 +23,8 @@ public class PermanentTrigger extends Trigger {
     public boolean hasExpired() {
         return false;
     }
+ 
 
-    @Override
-    public void handle(Entity entity) {
-    	TileCoordinate entityLocation = entity.getLocation();
-    	if (this.getArea().isInRange(entityLocation)) {
-    		Event event = this.getEvent().clone();
-    		event.setTarget(entity);
-    		EventManager.getSingleton().addEvent(event);
-    	}
-    }
 
 	@Override
 	public void handle(Collection<NPC> npcs) {

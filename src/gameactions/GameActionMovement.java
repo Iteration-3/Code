@@ -25,6 +25,10 @@ public class GameActionMovement extends GameAction {
 		return terrain;
 	}
 	
+	protected void setAngle(Angle a){
+		this.direction = a;
+	}
+	
 	protected Entity getEntity(){
 		return entity;
 	}
