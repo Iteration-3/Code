@@ -1,6 +1,7 @@
 package model.ability.summoner.boon;
 
 import model.ability.SelfAbility;
+import model.entity.Avatar;
 import model.event.FlightEvent;
 
 public class FlightBoon extends SelfAbility{
@@ -12,6 +13,11 @@ public class FlightBoon extends SelfAbility{
 	
 	public FlightBoon(int manacost, int duration){
 		super(new FlightEvent(duration),manacost);
+	}
+	@Override
+	public void perform(Avatar avatar){
+		if(avatar.isFlying()){return;}//You can't fly while flying!
+		super.perform(avatar);
 	}
 
 }
