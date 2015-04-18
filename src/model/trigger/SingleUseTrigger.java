@@ -27,13 +27,11 @@ public class SingleUseTrigger extends Trigger {
 
     @Override
     public void handle(Entity entity) {
-    	TileCoordinate entityLocation = entity.getLocation();
-    	if (this.getArea().isInRange(entityLocation)) {
-    		Event event = this.getEvent().clone();
-    		event.setTarget(entity);
-    		EventManager.getSingleton().addEvent(event);
+    	if(this.isInRange(entity)){
+    		this.perform(entity);
     		triggered = true;
     	}
+    		
     }
 
 	@Override

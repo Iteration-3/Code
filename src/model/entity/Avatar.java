@@ -9,7 +9,11 @@ import controller.listener.Listener;
 import controller.listener.PollingListener;
 import model.KeyPreferences;
 import model.ability.Ability;
+import model.area.RadialArea;
 import model.area.TileCoordinate;
+import model.light.LightManager;
+import model.light.MovingLightSource;
+import model.light.Visibility;
 import model.skillmanager.SkillManager;
 import view.EntityView;
 
@@ -17,10 +21,19 @@ public abstract class Avatar extends Entity {
 	private Collection<Ability> abilities = new ArrayList<Ability>();
 	private SkillManager skillManager;
 	
-	public Avatar(){}
+	public Avatar() {
+		//LightManager.getLightManager().getLightMap().trackMovement(this);
+		//setLocation(getLocation());//So lightMap registers current position
+	}
 
 	public Avatar(String name, EntityView view, TileCoordinate loc){
 		super(name, view, loc);
+		//Make light manager track all avatars movement
+		MovingLightSource avatarLight = new MovingLightSource(new RadialArea(5, loc), new Visibility(255), this);
+		LightManager.getLightManager().addLightSource(avatarLight);
+		setLocation(loc);
+		//LightManager.getLightManager().getLightMap().trackMovement(this);
+		//setLocation(loc);//So lightMap registers current position
 	}
 	
 	protected Collection<Ability> getAbilities(){

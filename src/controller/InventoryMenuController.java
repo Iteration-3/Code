@@ -1,9 +1,10 @@
 package controller;
 
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import controller.listener.ToggleAction;
+import controller.mouseListeners.EquipmentMouseListener;
+import controller.mouseListeners.InventoryMouseListener;
 import model.Model;
 
 public class InventoryMenuController extends Controller {
@@ -29,11 +30,11 @@ public class InventoryMenuController extends Controller {
 		this.equipmentMouseListener = new EquipmentMouseListener();
 	}
 	
-	public MouseListener getInventoryMouseListener(){
+	public InventoryMouseListener getInventoryMouseListener(){
 		return this.inventoryMouseListener;
 	}
 	
-	public MouseListener getEquipmentMouseListener(){
+	public EquipmentMouseListener getEquipmentMouseListener(){
 		return this.equipmentMouseListener;
 	}
 	
@@ -45,47 +46,4 @@ public class InventoryMenuController extends Controller {
 		backAction.toggle();
 	}
 	
-	public class InventoryMouseListener implements MouseListener {
-
-		public void mouseClicked(MouseEvent e) {
-			System.out.println(e);
-		}
-
-		public void mouseEntered(MouseEvent e) {
-			System.out.println(e);
-		}
-
-		public void mouseExited(MouseEvent e) {
-			System.out.println(e);
-		}
-
-		public void mousePressed(MouseEvent e) {
-			System.out.println(e);
-		}
-
-		public void mouseReleased(MouseEvent e) {
-			System.out.println(e);
-		}
-		
-	}
-	
-	public class EquipmentMouseListener implements MouseListener{
-
-		public void mouseClicked(MouseEvent e) {
-			System.out.println(e);
-		}
-
-		public void mouseEntered(MouseEvent e) {
-		}
-
-		public void mouseExited(MouseEvent e) {
-		}
-
-		public void mousePressed(MouseEvent e) {
-		}
-
-		public void mouseReleased(MouseEvent e) {
-		}
-		
-	}
 }
