@@ -1,6 +1,7 @@
 package view.item;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 import view.map.GameItemView;
 import model.area.RealCoordinate;
@@ -22,5 +23,7 @@ public abstract class ItemView {
 	public void removeFromMap() {
 		onMap = false;
 	}
+	
+	public abstract BufferedImage getImage(int x, int y);
 	
 }

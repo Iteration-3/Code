@@ -2,11 +2,16 @@ package view.item;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
+import utilities.ImageProcessing;
 import view.tiles.components.Hexagon;
 import model.area.RealCoordinate;
 
 public class BasicItemView extends ItemView {
+	
+	private static String imagePath = "src/resources/image/item.jpg";
+	private static BufferedImage itemImage;
 
 	private Hexagon backgroundHexagon;
 	private Hexagon foregroundHexagon;
@@ -28,5 +33,10 @@ public class BasicItemView extends ItemView {
 		RealCoordinate updatedCoordinate = new RealCoordinate(location.getX(), location.getY());
 		backgroundHexagon.render(graphics, updatedCoordinate, diameter * OVERDRAW);
 		foregroundHexagon.render(graphics, updatedCoordinate, diameter * (1 - BORDER_PERCENTAGE) * OVERDRAW);
+	}
+	
+	public BufferedImage getImage(int x, int y){
+		itemImage = ImageProcessing.scaleImage(x,y,imagePath);
+		return itemImage;
 	}
 }

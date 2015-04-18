@@ -1,11 +1,7 @@
 package view;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JComponent;
@@ -28,6 +24,7 @@ public class InventoryView extends JComponent {
 	private HashMap<Integer, SlotView> slots;
 
 	public InventoryView() {
+		setLayout(null);//new GridLayout(ROW,COL));
 		this.slots = new HashMap<Integer, SlotView>();
 		setFocusable(true);
 		setVisible(true);
@@ -42,6 +39,10 @@ public class InventoryView extends JComponent {
 	public void register(SlotView slotView, int location) {
 		slots.put(location, slotView);
 		slotView.setBackground(this.getBackgroundImage());
+		int height = SLOT_HEIGHT * (location / ROW) + this.heightOffset;
+		int width = SLOT_WIDTH * (location % COL) + this.widthOffset;
+		slotView.setBounds(width, height, SLOT_WIDTH, SLOT_HEIGHT);
+		add(slotView);
 	}
 
 	private BufferedImage getBackgroundImage() {
@@ -51,15 +52,6 @@ public class InventoryView extends JComponent {
 			slotBackground = ImageProcessing.scaleImage(SLOT_WIDTH,
 					SLOT_HEIGHT, backgroundPath);
 			return slotBackground;
-		}
-	}
-
-	public void paint(Graphics g) {
-		ArrayList<SlotView> slotViews = new ArrayList<SlotView>(slots.values());
-		for (int i = 0; i < slotViews.size(); i++) {
-			int height = SLOT_HEIGHT * (i / ROW) + this.heightOffset;
-			int width = SLOT_WIDTH * (i % COL) + this.widthOffset;
-			slotViews.get(i).render(g, width, height, ITEM_DIAMETER);
 		}
 	}
 
