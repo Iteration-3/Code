@@ -195,14 +195,21 @@ public class EquipmentManager implements Saveable {
 		return this.weaponSlot.canEquip(weapon);
 	}
 	
-	public EquipmentView getView(){
-		return this.equipmentView;
-	}
-
     @Override
     public StructuredMap getStructuredMap() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    public EquipmentView getView() {
+        return this.equipmentView;
+    }
+    
+    public boolean THWSlotHasItem(){
+    	if (hasTHW()){
+    		return this.THWSlot.has();
+    	}
+    	return false;
     }
 
 }

@@ -2,8 +2,6 @@ package view;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
-import utilities.ImageProcessing;
 import view.item.ItemView;
 import model.area.RealCoordinate;
 
