@@ -32,4 +32,9 @@ public class KeyBindingsState extends GameState {
         return controller;
     }
 
+    @Override
+    public void update() {
+        layout.updateKeyText(getContext().getPreferences());
+    }
+
 }
