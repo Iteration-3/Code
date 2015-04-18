@@ -1,17 +1,15 @@
 package controller;
 
+import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
+import controller.listener.InventoryActionListener;
 import controller.listener.ToggleAction;
-import controller.mouseListeners.EquipmentMouseListener;
-import controller.mouseListeners.InventoryMouseListener;
 import model.Model;
 
 public class InventoryMenuController extends Controller {
 	private Model model;
 	private ToggleAction backAction;
-	private InventoryMouseListener inventoryMouseListener;
-	private EquipmentMouseListener equipmentMouseListener;
 	
 	public InventoryMenuController(Model model) {
 		this.model = model;
@@ -26,16 +24,6 @@ public class InventoryMenuController extends Controller {
 				model.popState();
 			}
 		};
-		this.inventoryMouseListener = new InventoryMouseListener(); 
-		this.equipmentMouseListener = new EquipmentMouseListener();
-	}
-	
-	public InventoryMouseListener getInventoryMouseListener(){
-		return this.inventoryMouseListener;
-	}
-	
-	public EquipmentMouseListener getEquipmentMouseListener(){
-		return this.equipmentMouseListener;
 	}
 	
 	public ToggleAction getBackAction() {
@@ -44,6 +32,10 @@ public class InventoryMenuController extends Controller {
 	
 	public void toggle() {
 		backAction.toggle();
+	}
+	
+	public ActionListener makeInventoryActionListener(int i){
+		return new InventoryActionListener(i);
 	}
 	
 }
