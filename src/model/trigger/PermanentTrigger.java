@@ -40,5 +40,12 @@ public class PermanentTrigger extends Trigger {
 			handle(npc);
 		}
 	}
+	
+	public PermanentTrigger clone() {
+		PermanentTrigger permanentTrigger = new PermanentTrigger();
+		permanentTrigger.setArea(this.getArea());
+		permanentTrigger.setEvent(this.getEvent());
+		return permanentTrigger;
+	}
 
 }

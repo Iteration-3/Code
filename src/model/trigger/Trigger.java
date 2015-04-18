@@ -3,14 +3,13 @@ package model.trigger;
 import java.util.Collection;
 
 import model.area.Area;
-import model.area.RealCoordinate;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.entity.Entity;
 import model.entity.NPC;
 import model.event.Event;
 
-public abstract class Trigger {
+public abstract class Trigger implements Cloneable {
     private Area area;
     private Event event;
 
@@ -49,4 +48,6 @@ public abstract class Trigger {
     }
 
     public abstract boolean hasExpired();
+    
+    public abstract Trigger clone();
 }

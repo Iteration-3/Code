@@ -42,5 +42,12 @@ public class SingleUseTrigger extends Trigger {
 			handle(npc);
 		}
 	}
+	
+	public SingleUseTrigger clone() {
+		SingleUseTrigger singleUseTrigger = new SingleUseTrigger();
+		singleUseTrigger.setArea(this.getArea());
+		singleUseTrigger.setEvent(this.getEvent().clone());
+		return singleUseTrigger;
+	}
 
 }

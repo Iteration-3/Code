@@ -35,6 +35,13 @@ public final class TriggerManager {
 		removeExpiredTriggers();
 	}
 	
+	public void removeTrigger(Trigger trigger) {
+		// This works, don't question it.
+		partyTriggers.remove(trigger);
+		nonPartyTriggers.remove(trigger);
+		neutralTriggers.remove(trigger);
+	}
+	
 	private void removeExpiredTriggers() {
 		for (Trigger t : partyTriggers) {
 			if (t.hasExpired()) {

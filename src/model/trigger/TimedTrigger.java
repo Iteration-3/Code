@@ -51,5 +51,13 @@ public class TimedTrigger extends Trigger {
     public boolean hasExpired() {
         return System.currentTimeMillis() > (creationTime + this.duration);
     }
+    
+    public TimedTrigger clone() {
+    	TimedTrigger timedTrigger = new TimedTrigger();
+    	timedTrigger.setArea(this.getArea());
+    	timedTrigger.setDuration(this.getDuration());
+    	timedTrigger.setEvent(this.getEvent().clone());
+    	return timedTrigger;
+    }
 
 }

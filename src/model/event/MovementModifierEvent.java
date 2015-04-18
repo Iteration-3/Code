@@ -23,7 +23,7 @@ public class MovementModifierEvent extends Event {
 	}
 
 	@Override
-	public Event clone() {
+	public MovementModifierEvent clone() {
 		MovementModifierEvent clone = new MovementModifierEvent(movement, getTarget(), getDuration());
 		return clone;
 	}

@@ -53,6 +53,10 @@ public abstract class Event implements Cloneable{
 		return duration;
 	}
 	
+	public void setDuration(double duration) {
+		this.duration = duration;
+	}
+	
 	protected boolean hasTarget() {
 		return target != null;
 	}

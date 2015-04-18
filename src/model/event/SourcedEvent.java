@@ -9,12 +9,15 @@ public abstract class SourcedEvent extends Event {
 		super(target, duration);
 		this.source = source;
 	}
-
-	@Override
-	public void perform() {
-		// An example would be PickPocket.
-		// Taking one Item from the target's Inventory 
-		// and adding it into the Source's Inventory
+	
+	public abstract void perform();
+	
+	public void setSource(Entity source) {
+		this.source = source;
+	}
+	
+	public Entity getSource() {
+		return source;
 	}
 
 }
