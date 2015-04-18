@@ -70,6 +70,7 @@ public class InventoryView extends JComponent {
 
 	public void setBounds(int x, int y) {
 		this.setBounds(x, y, WIDTH, HEIGHT);
+		this.revalidate();
 	}
 
 	public int getWidth() {
