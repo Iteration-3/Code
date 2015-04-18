@@ -187,7 +187,7 @@ public class GameplayState extends GameState {
 
         TileCoordinate locThree = new TileCoordinate(2, 8);
         Area areaThree = new RadialArea(1, locThree);
-        Trigger triggerThree = new PermanentTrigger(areaThree, new TeleportEvent(0, new TileCoordinate(2, 0),
+        Trigger triggerThree = new PermanentTrigger(areaThree, new TeleportEvent(new TileCoordinate(2, 0),
                 new GameActionTeleport(avatar, gameMap, this.getItemMap(), Angle.DOWN)));
 
         triggerManager.addNonPartyTrigger(triggerOne);

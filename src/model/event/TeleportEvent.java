@@ -7,15 +7,15 @@ public class TeleportEvent extends Event {
 
 	private GameActionTeleport teleportAction;
 
-	public TeleportEvent(double duration,TileCoordinate location, GameActionTeleport teleportAction) {
-		super(duration);
+	public TeleportEvent(TileCoordinate location, GameActionTeleport teleportAction) {
+		super(0);
 		this.teleportAction = teleportAction;
 		this.teleportAction.setTeleportToLocation(location);
 		// TODO Auto-generated constructor stub
 	}
 	
-	public TeleportEvent(double duration, GameActionTeleport teleportAction) {
-		super(duration);
+	public TeleportEvent(GameActionTeleport teleportAction) {
+		super(0);
 		this.teleportAction = teleportAction;
 		// TODO Auto-generated constructor stub
 	}
@@ -30,7 +30,7 @@ public class TeleportEvent extends Event {
 
 	@Override
 	public Event clone() {
-		TeleportEvent clone = new TeleportEvent(this.getDuration(),teleportAction);
+		TeleportEvent clone = new TeleportEvent(teleportAction);
 		return clone;
 	}
 
