@@ -8,14 +8,13 @@ import view.item.ItemView;
 import model.area.RealCoordinate;
 
 public class SlotView {
-	private static final String backgroundPath = "src/resources/images/slotImage.png";
-	private static BufferedImage slotBackground;
-	private int height;
-	private int width;
-	private float itemDiameter;
+	private BufferedImage background;
 	private ItemView itemView;
 	
 	public SlotView(){}
+	public SlotView(BufferedImage background){
+		this.background = background;
+	}
 	
 	public void register(ItemView itemView){
 		this.itemView = itemView;
@@ -36,30 +35,10 @@ public class SlotView {
 	}
 	
 	public void drawBackGround(Graphics g, int x, int y){
-		g.drawImage(getBackgroundImage(), x, y, null);
+		g.drawImage(background, x, y, null);
 	}
 	
-	private BufferedImage getBackgroundImage(){
-		if (slotBackground != null){
-			return slotBackground;
-		}
-		else{
-			slotBackground = ImageProcessing.scaleImage(this.width,this.height,backgroundPath);
-			return slotBackground;
-		}
+	public void setBackground(BufferedImage background){
+		this.background = background;
 	}
-	
-	public void setWidth(int width){
-		this.width = width;
-	}
-	
-	public void setHeight(int height){
-		this.height = height;
-	}
-	
-	public void setImageDiameter(float diameter){
-		this.itemDiameter = diameter;
-	}
-	
-
 }

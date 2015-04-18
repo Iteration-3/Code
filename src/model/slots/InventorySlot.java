@@ -33,7 +33,10 @@ public class InventorySlot implements Slot{
 	}
 	
 	public boolean hasItem(TakeableItem item){
-		return this.item == item;
+		if (has()) {
+			return this.item == item;
+		}
+		return false;
 	}
 	
 	public void setView(SlotView slotView){
