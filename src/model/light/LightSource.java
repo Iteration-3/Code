@@ -8,11 +8,7 @@ public class LightSource {
 	
 	public LightSource(Area area, Visibility visibility) {
 		setArea(area);
-		setVisibility(visibility);
-	}
-	
-	public void changeVisibility(int change) {
-		getVisibility().changeValue(change);
+		this.visibility = visibility;
 	}
 
 	public Area getArea() {
@@ -30,5 +26,4 @@ public class LightSource {
 	public void setVisibility(Visibility visibility) {
 		this.visibility = visibility;
 	}
-
 }

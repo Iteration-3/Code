@@ -1,38 +1,28 @@
 package model.light;
 
-import java.util.List;
-
-import model.area.Area;
 import model.area.TileCoordinate;
 
 public class LightMap {
+	
 	private Visibility[][] visibilities;
 	
 	public LightMap(int x, int y) {
 		visibilities = new Visibility[x][y];
 		for (int i = 0; i < x; ++i) {
 			for (int j = 0; j < y; ++j) {
-				this.visibilities[i][j] = new Visibility();
+				this.visibilities[i][j] = new Visibility(0);
 			}
 		}
 	}
 	
-	public void illuminate(LightSource lightSource) {
-		Area lightArea = lightSource.getArea();
-		List<TileCoordinate> coveredLocations = lightArea.getCoveredLocations();
-		for (TileCoordinate location : coveredLocations) {
-			int x = location.getX(); // jraviles - are these casts ok?
-			int y = location.getY();
-			visibilities[x][y].setValue(lightSource);
-		}
+	public Visibility getVisibility(TileCoordinate loc) {
+		return visibilities[loc.getX()][loc.getY()];
 	}
 	
-	public void dimLights() {
-		for (int x = 0; x < visibilities.length; ++x) {
-			for (int y = 0; y < visibilities[0].length; ++y) {
-				visibilities[x][y].changeValue(-10);
-			}
-		}
+	public void see(TileCoordinate loc) {
+		if (loc.getX() < 0 || loc.getY() < 0 || loc.getX() >= visibilities.length || loc.getY() >= visibilities[0].length)
+			return;
+		visibilities[loc.getX()][loc.getY()] = new Visibility(100);
+		System.out.println("SEE: " + loc);
 	}
-
 }
