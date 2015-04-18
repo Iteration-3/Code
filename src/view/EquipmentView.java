@@ -1,11 +1,16 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 
 import utilities.ImageProcessing;
+import view.components.MenuButton;
 
 @SuppressWarnings("serial")
 public class EquipmentView extends JComponent {
@@ -60,7 +65,10 @@ public class EquipmentView extends JComponent {
 	private static SlotView glovesView;
 	
 	public EquipmentView(){
+		setLayout(null);
 		setImages();
+		this.setVisible(true);
+		this.setFocusable(true);
 	}
 	
 	private void setImages(){
@@ -74,59 +82,62 @@ public class EquipmentView extends JComponent {
 		glovesImage = ImageProcessing.scaleImage(SLOT_WIDTH, SLOT_HEIGHT, GLOVES_PATH);
 	}
 	
-	private void setView(SlotView slot,BufferedImage image){
+	private void setView(SlotView slot,BufferedImage image,int x,int y){
 		slot.setBackground(image);
+		add(slot);
+		slot.setBounds(x, y, SLOT_WIDTH, SLOT_HEIGHT);
 	}
 	
 	public void registerHelmet(SlotView slotView){
 		helmetView = slotView;
-		this.setView(slotView,helmetImage);
+		this.setView(slotView,helmetImage,helmetX,helmetY);
 	}
 	public void registerChestPiece(SlotView slotView){
 		chestPieceView = slotView;
-		this.setView(slotView,chestPieceImage);
+		this.setView(slotView,chestPieceImage,chestPieceX,chestPieceY);
 	}
 	public void registerLeggings(SlotView slotView){
 		leggingsView = slotView;
-		this.setView(slotView,leggingsImage);
+		this.setView(slotView,leggingsImage , leggingsX , leggingsY);
 	}
 	public void registerBoots(SlotView slotView){
 		bootsView = slotView;
-		this.setView(slotView,bootsImage);
+		this.setView(slotView,bootsImage , bootsX , bootsY);
 	}
 	public void registerWeapon(SlotView slotView){
 		weaponView = slotView;
-		this.setView(slotView,weaponImage);
+		this.setView(slotView,weaponImage , weaponX , weaponY);
 	}
 	public void registerShield(SlotView slotView){
 		shieldView = slotView;
-		this.setView(slotView,shieldImage);
+		this.setView(slotView,shieldImage , shieldX , shieldY);
 	}
 	public void registerGloves(SlotView slotView){
 		glovesView = slotView;
-		this.setView(slotView,glovesImage);
+		this.setView(slotView,glovesImage , glovesX , glovesY);
 	}
 	public void registerProjectile(SlotView slotView){
 		projectileView = slotView;
-		this.setView(slotView,projectileImage);
+		this.setView(slotView,projectileImage , projectileX , projectileY);
 	}
 	
-	public void paint(Graphics g){
-		int x = 0;
-		int y = 0;
-		float itemDiameter = EQUIPMENT_SCALE;
-		helmetView.render(g,helmetX + x ,helmetY + y , itemDiameter);
-		chestPieceView.render(g,chestPieceX + x ,chestPieceY + y , itemDiameter);
-		leggingsView.render(g,leggingsX + x ,leggingsY + y , itemDiameter);
-		bootsView.render(g,bootsX + x ,bootsY + y , itemDiameter);
-		weaponView.render(g,weaponX + x ,weaponY + y , itemDiameter);
-		shieldView.render(g,shieldX + x ,shieldY + y , itemDiameter);
-		projectileView.render(g ,projectileX + x ,projectileY + y , itemDiameter);
-		glovesView.render(g,glovesX + x ,glovesY + y , itemDiameter);
-	}
+//	public void paint(Graphics g){
+//		int x = 0;
+//		int y = 0;
+//		float itemDiameter = EQUIPMENT_SCALE;
+//		helmetButton.paint(g);
+//		helmetView.render(g,helmetX + x ,helmetY + y , itemDiameter);
+//		chestPieceView.render(g,chestPieceX + x ,chestPieceY + y , itemDiameter);
+//		leggingsView.render(g,leggingsX + x ,leggingsY + y , itemDiameter);
+//		bootsView.render(g,bootsX + x ,bootsY + y , itemDiameter);
+//		weaponView.render(g,weaponX + x ,weaponY + y , itemDiameter);
+//		shieldView.render(g,shieldX + x ,shieldY + y , itemDiameter);
+//		projectileView.render(g ,projectileX + x ,projectileY + y , itemDiameter);
+//		glovesView.render(g,glovesX + x ,glovesY + y , itemDiameter);
+//	}
 	
 	public void setBounds(int x, int y){
-		this.setBounds(x, y, this.WIDTH, this.HEIGHT);
+		this.setBounds(x,y,this.WIDTH, this.HEIGHT);
 	}
 	
 	public int getWidth(){
