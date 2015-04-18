@@ -228,9 +228,5 @@ public class GameplayState extends GameState {
         return controller;
     }
 
-    @Override
-    public void update() {
-        // TODO poll here.
-    }
 
 }
