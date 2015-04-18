@@ -15,6 +15,10 @@ public class InventoryMenuLayout extends Layout {
 	private static int inventoryOffsetY;
 	private static int equipmentOffsetX;
 	private static int equipmentOffsetY;
+	private int inventoryWidth;
+	private int inventoryHeight;
+	private int equipmentWidth;
+	private int equipmentHeight;
 
     private MenuButton backButton;
     private InventoryView inventoryView;
@@ -24,13 +28,21 @@ public class InventoryMenuLayout extends Layout {
     	setPreferredSize(new Dimension(1024, 768));
      
     	setInventoryView(inventoryView);
-    	this.equipmentView = equipmentView;
+    	setEquipmentView(equipmentView);
+    	setOffsets();
         initButtons();
         addViews();
     }
     
     private void addViews(){
     	addButtons();
+    }
+    
+    private void setOffsets(){
+    	inventoryOffsetX = 0;
+    	inventoryOffsetY = 0;
+    	equipmentOffsetX = inventoryWidth + 100;
+    	equipmentOffsetY = 0;
     }
     
     private void initButtons() {
@@ -44,8 +56,8 @@ public class InventoryMenuLayout extends Layout {
     
     public void paint(Graphics g){
     	super.paint(g);
-    	inventoryView.render(g);
-    	equipmentView.render(g);
+    	inventoryView.render(g, inventoryOffsetX, inventoryOffsetY);
+    	equipmentView.render(g, equipmentOffsetX, equipmentOffsetY);
     }
     
 
@@ -55,5 +67,13 @@ public class InventoryMenuLayout extends Layout {
     
     public void setInventoryView(InventoryView inventoryView){
     	this.inventoryView = inventoryView;
+    	this.inventoryWidth = inventoryView.getWidth();
+    	this.inventoryHeight = inventoryView.getHeight();
+    }
+    
+    public void setEquipmentView(EquipmentView equipmentView){
+    	this.equipmentView = equipmentView;
+    	this.equipmentWidth = equipmentView.getWidth();
+    	this.equipmentHeight = equipmentView.getHeight();
     }
 }
