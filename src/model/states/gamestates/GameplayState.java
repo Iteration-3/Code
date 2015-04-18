@@ -126,14 +126,15 @@ public class GameplayState extends GameState {
         ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
         TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
         takeableItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(5, 5));
-        itemEntityAssociation.addItem(new TakeableItem(takeableItemView), new TileCoordinate(5, 5));
+        itemEntityAssociation.addItem(new TakeableItem(takeableItemView),
+                takeableItemViewPosition);
 
         ItemView takeableItemViewTwo = new BasicItemView(new Color(100, 60, 100), Color.DARK_GRAY);
         TileCoordinate takeableItemViewPositionTwo = new TileCoordinate(5, 6);
         takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(5, 6));
         TakeableItem takeableItemTwo = new TakeableItem(takeableItemViewTwo);
-        itemEntityAssociation.addItem(new TakeableItem(takeableItemViewTwo), takeableItemViewPosition);
-
+        itemEntityAssociation.addItem(takeableItemTwo, takeableItemViewPositionTwo);
+        
         ItemView doorItemView = new BasicItemView(Color.RED, Color.MAGENTA);
         TileCoordinate doorItemViewPosition = new TileCoordinate(15, 14);
         doorItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(15, 14));

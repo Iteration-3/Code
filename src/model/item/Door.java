@@ -25,7 +25,6 @@ public class Door extends Item {
 		if (entity.containsItem(requirement)) {
 			open = true;
 		}
-		 
 	}
 
 	@Override
@@ -45,7 +44,7 @@ public class Door extends Item {
 		// TODO Auto-generated method stub
 		// Should this be removed if open? 
 		if (open) {
-			itemTile.remove(this);
+			// itemTile.remove(this);
 		}
 	}
 
