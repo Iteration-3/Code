@@ -1,7 +1,6 @@
 package model.event;
 
 import gameactions.GameActionRiverPush;
-import gameactions.GameActionTeleport;
 import model.entity.Entity;
 
 public class RiverPushEvent extends Event{

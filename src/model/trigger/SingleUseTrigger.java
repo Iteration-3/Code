@@ -1,13 +1,8 @@
 package model.trigger;
 
-import java.util.Collection;
-
 import model.area.Area;
-import model.area.TileCoordinate;
 import model.entity.Entity;
-import model.entity.NPC;
 import model.event.Event;
-import model.event.EventManager;
 
 public class SingleUseTrigger extends Trigger {
 	private boolean triggered = false;

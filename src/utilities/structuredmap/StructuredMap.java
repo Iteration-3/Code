@@ -3,6 +3,7 @@ package utilities.structuredmap;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringJoiner;
 
 public class StructuredMap {
 	private Map<String, Object> data;
@@ -78,31 +79,26 @@ public class StructuredMap {
 	
 	// Returns a properly formatted String of Json data
 	public String getJson() {
-		StringBuilder builder = new StringBuilder();
-		
-		builder.append("{\n");
-		
+		StringJoiner joiner =  new StringJoiner(",\n");
 		for (Map.Entry<String, Object> entry : data.entrySet()) {
 			String valueString = prependTab(entry.getValue().toString());
 			String formattedEntry = String.format("\"%s\":%s", entry.getKey(), valueString);
-			builder.append(formattedEntry);
+			joiner.add(formattedEntry);
 		}
-		
-		builder.append("\n}");		
-		
-		return builder.toString();
+	
+		return String.format("{\n%s\n}", joiner.toString());
 	}
 	
 	// Adds a tab before every line of a multi-line String
 	private String prependTab(String str) {
 		String[] lines = str.split("\n");
-		StringBuilder builder = new StringBuilder();
 		
+		StringJoiner joiner = new StringJoiner("\n");
 		for(String line : lines) {
-			builder.append(String.format("\t%s\n", line));
+			joiner.add(String.format("\t%s", line));
 		}
 		
-		return builder.toString();
+		return joiner.toString();
 	}
 	
 	////////////////////////////////////////////////////////////////

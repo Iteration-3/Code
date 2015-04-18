@@ -1,12 +1,9 @@
 package model.trigger;
 
-import java.util.Collection;
-
 import model.area.Area;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.entity.Entity;
-import model.entity.NPC;
 import model.event.Event;
 import model.event.EventManager;
 
