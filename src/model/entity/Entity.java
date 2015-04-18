@@ -25,6 +25,7 @@ public abstract class Entity implements Saveable {
     private EntityView view = null;
     private TileCoordinate location = new TileCoordinate();
     private Angle direction = Angle.UP;
+	private boolean isFlying = false;
 
     public Entity(String name, EntityView view, TileCoordinate location) {
         this.name = name;
@@ -122,7 +123,12 @@ public abstract class Entity implements Saveable {
      * @return
      */
     public boolean isFlying() {
-        return false;
+        return isFlying;
+    }
+    
+    public void setFlight(Boolean flight){
+    	isFlying = flight;
+    	System.out.println("Flight status " + isFlying);
     }
 
     protected EntityView getEntityView() {
