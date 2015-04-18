@@ -202,5 +202,12 @@ public class EquipmentManager implements Saveable {
     public EquipmentView getView() {
         return this.equipmentView;
     }
+    
+    public boolean THWSlotHasItem(){
+    	if (hasTHW()){
+    		return this.THWSlot.has();
+    	}
+    	return false;
+    }
 
 }

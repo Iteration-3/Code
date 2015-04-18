@@ -109,7 +109,7 @@ public class EquipmentView {
 	}
 	
 	public void render(Graphics g, int x, int y){
-		float itemDiameter = 40;
+		float itemDiameter = EQUIPMENT_SCALE;
 		helmetView.render(g,helmetX + x ,helmetY + y , itemDiameter);
 		chestPieceView.render(g,chestPieceX + x ,chestPieceY + y , itemDiameter);
 		leggingsView.render(g,leggingsX + x ,leggingsY + y , itemDiameter);
