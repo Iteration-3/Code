@@ -5,7 +5,13 @@ import model.entity.Smasher;
 import model.entity.Sneak;
 import model.entity.Summoner;
 import model.item.Boots;
+import model.item.ChestPiece;
 import model.item.EquipableItem;
+import model.item.Gloves;
+import model.item.Helmet;
+import model.item.Leggings;
+import model.item.Projectile;
+import model.item.Shield;
 import model.item.TakeableItem;
 import model.item.Weapon;
 import model.statistics.Statistics;
@@ -81,6 +87,34 @@ public class ItemManager implements Saveable {
     }
     
     public boolean equipToSlot(Boots boots){
+    	this.unequipBoots();
+    	return this.equipment.equip(boots);
+    }
+    public boolean equipToSlot(Weapon boots){
+    	this.unequipBoots();
+    	return this.equipment.equip(boots);
+    }
+    public boolean equipToSlot(Leggings boots){
+    	this.unequipBoots();
+    	return this.equipment.equip(boots);
+    }
+    public boolean equipToSlot(ChestPiece boots){
+    	this.unequipBoots();
+    	return this.equipment.equip(boots);
+    }
+    public boolean equipToSlot(Gloves boots){
+    	this.unequipBoots();
+    	return this.equipment.equip(boots);
+    }
+    public boolean equipToSlot(Projectile boots){
+    	this.unequipBoots();
+    	return this.equipment.equip(boots);
+    }
+    public boolean equipToSlot(Helmet boots){
+    	this.unequipBoots();
+    	return this.equipment.equip(boots);
+    }
+    public boolean equipToSlot(Shield boots){
     	this.unequipBoots();
     	return this.equipment.equip(boots);
     }

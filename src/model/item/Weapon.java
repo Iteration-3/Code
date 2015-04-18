@@ -14,7 +14,7 @@ public abstract class Weapon extends EquipableItem{
 	}
 
 	public boolean equip(ItemManager im){
-		return im.equip(this);
+		return im.equipToSlot(this);
 	}
 
 	public boolean equip(SneakWeaponSlot slot){

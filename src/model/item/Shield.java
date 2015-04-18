@@ -12,7 +12,7 @@ public class Shield extends EquipableItem{
 	}
 
 	public boolean equip(ItemManager im) {
-		return im.equip(this);
+		return im.equipToSlot(this);
 	}
 
 	@Override
