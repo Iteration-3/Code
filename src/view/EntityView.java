@@ -26,10 +26,17 @@ public class EntityView {
 		this.location = location;
 	}
 	
-	public void render(Graphics graphics, float diameter) {
-		RealCoordinate updatedCoordinate = new RealCoordinate(location.getX() * diameter, Math.sqrt( 3 ) / 2.0 * location.getY() * diameter);
-		backgroundHexagon.render(graphics, updatedCoordinate, diameter * OVERDRAW);
-		foregroundHexagon.render(graphics, updatedCoordinate, diameter * (1 - BORDER_PERCENTAGE) * OVERDRAW);
+	float tileWidth;
+	float tileHeight;
+	
+	public void render(Graphics graphics, int screenHeight) {	
+		tileHeight = screenHeight / 18.0f;
+		tileWidth = tileHeight / (float) (Math.sqrt(3) / 2);
+		RealCoordinate updatedCoordinate = new RealCoordinate
+				((location.getX() * tileWidth * 0.75),
+						(location.getY() * tileHeight + (location.getX() % 2) * tileHeight / 2));
+		foregroundHexagon.render(graphics, updatedCoordinate, tileWidth * (1 - BORDER_PERCENTAGE) * OVERDRAW);
+		backgroundHexagon.render(graphics, updatedCoordinate, tileWidth * BORDER_PERCENTAGE * OVERDRAW);
 	}
 
 	public void setLocation(RealCoordinate location) {
@@ -37,6 +44,6 @@ public class EntityView {
 	}
 
 	public void setLocation(TileCoordinate location) {
-		this.setLocation(TileCoordinate.convertToRealCoordinate(location));
+		this.setLocation(new RealCoordinate(location.getX(), location.getY()));
 	}
 }

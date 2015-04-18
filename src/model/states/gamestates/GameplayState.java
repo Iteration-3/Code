@@ -40,64 +40,55 @@ import controller.listener.Listener;
 import controller.listener.SingleUseListener;
 
 public class GameplayState extends GameState {
-	private GameplayController controller;
-	private GameplayLayout layout;
-	private GameTerrain gameMap;
-	private ItemEntityAssociation itemEntityAssociation;
+    private GameplayController controller;
+    private GameplayLayout layout;
+    private GameTerrain gameMap;
+    private ItemEntityAssociation itemEntityAssociation;
+    private Avatar avatar;
 
-	public GameplayState() {
-		layout = new GameplayLayout();
-		controller = new GameplayController();
-		gameMap = new GameTerrain();
-	}
+    public GameplayState() {
+        layout = new GameplayLayout();
+        controller = new GameplayController();
+        gameMap = new GameTerrain();
+    }
 
-	@Override
-	public void onEnter() {
-		super.onEnter();
-		addTilesTest();
-		addEntityTest();
-		addItemTest();
-		addTriggersTest();
-	}
+    @Override
+    public void onEnter() {
+        super.onEnter();
+        addTilesTest();
+        addEntityTest();
+    }
 
-	public void addEntityTest() {
-		TileCoordinate loc = new TileCoordinate(3, 3);
-		EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange,
-				TileCoordinate.convertToRealCoordinate(loc));
-		Avatar avatar = new Smasher("Smasher", eView, loc);
+    @Override
+    public void onResume() {
+        super.onResume();
+        setListeners(getContext().getPreferences());
+    }
 
-		KeyPreferences preferences = new KeyPreferences();
-		super.setPrefrences(preferences);
+    @Override
+    public void onPause() {
+        controller.removeListeners();
+        layout.clearBindings();
+    }
 
-		Listener escapeListener = new SingleUseListener(preferences.getPauseKey(), new GameActionStatePush(
-				getContext(), new PauseMenuState()));
-		escapeListener.addAsBinding(getLayout());
+    public void addEntityTest() {
+        TileCoordinate loc = new TileCoordinate(3, 3);
+        EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange,
+                TileCoordinate.convertToRealCoordinate(loc));
+        avatar = new Smasher("Smasher", eView, loc);
 
-		Listener inventoryListener = new SingleUseListener(preferences.getInventoryKey(), new GameActionStatePush(
-				getContext(), new InventoryMenuState()));
-		inventoryListener.addAsBinding(getLayout());
+        KeyPreferences preferences = new KeyPreferences();
+        getContext().setPreferences(preferences);
 
-		Listener skillsListener = new SingleUseListener(preferences.getSkillsKey(), new GameActionStatePush(
-				getContext(), new SkillsMenuState()));
-		skillsListener.addAsBinding(getLayout());
-		
-		this.itemEntityAssociation = new ItemEntityAssociation(avatar);
+        this.itemEntityAssociation = new ItemEntityAssociation(avatar);
 
-		Collection<Listener> listeners = 
-				new EntityMovementAssocation(avatar, gameMap,
-						itemEntityAssociation.getItemMap()).getListeners(preferences);
-		for (Listener listener : listeners) {
-			listener.addAsBinding(getLayout());
-			controller.addEntityListener(listener);
-		}
+        setListeners(preferences);
 
-		EntityManager.getSingleton().setAvatar(avatar);
-		eView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(loc));
+        EntityManager.getSingleton().setAvatar(avatar);
+        eView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(3, 3));
 
-		
-	}
-	
-	private void addItemTest() {
+        this.itemEntityAssociation = new ItemEntityAssociation(avatar);
+>>>>>>> aligned things
         ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
 		RealCoordinate takeableItemViewPosition = new RealCoordinate(5, 5);
 		takeableItemView.registerWithGameItemView(layout.getGameItemView(), takeableItemViewPosition);
