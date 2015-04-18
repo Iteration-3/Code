@@ -40,10 +40,8 @@ public class ItemMap implements Saveable {
     }
 
     public void touch(Entity e, TileCoordinate tileCoordinate) {
-    	// This will Touch all the items on the Entities Current Location
-    	// And also, it will touch the ones in front of us.  This is
+    	// it will touch the ones in front of us.  This is
     	// Because we need to see if the door will open. 
-        getItemTileAtLocation(e.getLocation()).touch(e);
         getItemTileAtLocation(tileCoordinate).touch(e);
     }
 
