@@ -28,7 +28,7 @@ public abstract class EquipableItem extends TakeableItem {
 	    super(itemView, map);
 	    this.statistics = new Statistics(map.getStructuredMap("stats"));
 	}
-
+	
 	public abstract boolean equip(ItemManager itemManager);
 	
 	public void use(Entity entity) {
@@ -45,4 +45,5 @@ public abstract class EquipableItem extends TakeableItem {
 	    map.put("stats", statistics.getStructuredMap());
 	    return map;
 	}
+
 }

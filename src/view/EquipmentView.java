@@ -3,9 +3,12 @@ package view;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JComponent;
+
 import utilities.ImageProcessing;
 
-public class EquipmentView {
+@SuppressWarnings("serial")
+public class EquipmentView extends JComponent {
 	private static final int WIDTH = 3;
 	private static final int HEIGHT = 4;
 	private static final int SLOT_HEIGHT = 100;
@@ -108,7 +111,9 @@ public class EquipmentView {
 		this.setView(slotView,projectileImage);
 	}
 	
-	public void render(Graphics g, int x, int y){
+	public void paint(Graphics g){
+		int x = 0;
+		int y = 0;
 		float itemDiameter = EQUIPMENT_SCALE;
 		helmetView.render(g,helmetX + x ,helmetY + y , itemDiameter);
 		chestPieceView.render(g,chestPieceX + x ,chestPieceY + y , itemDiameter);
@@ -118,6 +123,10 @@ public class EquipmentView {
 		shieldView.render(g,shieldX + x ,shieldY + y , itemDiameter);
 		projectileView.render(g ,projectileX + x ,projectileY + y , itemDiameter);
 		glovesView.render(g,glovesX + x ,glovesY + y , itemDiameter);
+	}
+	
+	public void setBounds(int x, int y){
+		this.setBounds(x, y, this.WIDTH, this.HEIGHT);
 	}
 	
 	public int getWidth(){

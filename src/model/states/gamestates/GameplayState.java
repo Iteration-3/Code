@@ -27,6 +27,7 @@ import model.item.OneShotItem;
 import model.item.TakeableItem;
 import model.map.GameTerrain;
 import model.map.ItemMap;
+import model.map.tile.AirPassableTile;
 import model.map.tile.ImpassableTile;
 import model.map.tile.PassableTile;
 import model.statistics.EntityStatistics;
@@ -200,14 +201,19 @@ public class GameplayState extends GameState {
             for (int y = 0; y < 100; ++y) {// Hardcoded for as long as the area
                 // is
                 TileCoordinate p = new TileCoordinate(x, y);
-                if (x != 10 || y != 10) {
+                if ((x != 10 || y != 10) && (x!=13 || y!=13)) {
                     TileView view = new BasicTileView(new Color(0, 200, 200), Color.WHITE);
                     view.registerWithGameMapView(layout.getGameTerrainView(), new RealCoordinate(x, y));
                     gameMap.add(new PassableTile(view), p);
-                } else {
+                } else if(x!=13 || y!=13){
                     TileView view = new BasicTileView(new Color(200, 0, 200), Color.WHITE);
                     view.registerWithGameMapView(layout.getGameTerrainView(), new RealCoordinate(x, y));
                     gameMap.add(new ImpassableTile(view), p);
+                }
+                else{
+                	TileView view = new BasicTileView(new Color(100, 0, 200), Color.BLACK);
+                    view.registerWithGameMapView(layout.getGameTerrainView(), new RealCoordinate(x, y));
+                    gameMap.add(new AirPassableTile(view), p);
                 }
 
             }

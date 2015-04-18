@@ -10,11 +10,13 @@ public class InventoryMenuState extends GameState {
 	
     public InventoryMenuState(Avatar avatar) {
     	//TODO  need to change this so that Avatar does not have getInventoryView()
+    	System.out.println("Creating");
     	layout = new InventoryMenuLayout(avatar.getInventoryView(),avatar.getEquipmentView());
     }
     
     @Override
     public void onEnter() {
+    	System.out.println("ON ENTER");
     	super.onEnter();
     	
     	controller = new InventoryMenuController(getContext());
