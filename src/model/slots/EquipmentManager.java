@@ -1,5 +1,7 @@
 package model.slots;
 
+import view.EquipmentView;
+import view.SlotView;
 import model.entity.NPC;
 import model.entity.Smasher;
 import model.entity.Sneak;
@@ -25,22 +27,30 @@ public class EquipmentManager {
 	private EquipmentSlot<Gloves> glovesSlot;
 	private EquipmentSlot<Projectile> projectileSlot;
 	private DoubleEquipmentSlot<TwoHandedWeapon,Weapon,Shield> THWSlot;
+	
+	private EquipmentView equipmentView;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public EquipmentManager(Smasher avatar) {
+		this.equipmentView = new EquipmentView();
 		this.weaponSlot = new SmasherWeaponSlot();
 		this.setSlots();
 		this.THWSlot = new DoubleEquipmentSlot(this.weaponSlot, this.shieldSlot);
+		this.registerSlots();
 	}
 
 	public EquipmentManager(Summoner avatar) {
+		this.equipmentView = new EquipmentView();
 		this.weaponSlot = new SummonerWeaponSlot();
 		this.setSlots();
+		this.registerSlots();
 	}
 
 	public EquipmentManager(Sneak avatar) {
+		this.equipmentView = new EquipmentView();
 		this.weaponSlot = new SneakWeaponSlot();
 		this.setSlots();
+		this.registerSlots();
 	}
 
 	public EquipmentManager(NPC npc) {
@@ -75,7 +85,24 @@ public class EquipmentManager {
 		glovesSlot.merge(statistics);
 		projectileSlot.merge(statistics);
 	}
-
+	
+	public void registerSlots(){
+		this.equipmentView.registerBoots(this.setSlotView(this.bootsSlot));
+		this.equipmentView.registerChestPiece(this.setSlotView(this.chestPieceSlot));
+		this.equipmentView.registerLeggings(this.setSlotView(this.leggingsSlot));
+		this.equipmentView.registerHelmet(this.setSlotView(this.helmetSlot));
+		this.equipmentView.registerGloves(this.setSlotView(this.glovesSlot));
+		this.equipmentView.registerShield(this.setSlotView(this.shieldSlot));
+		this.equipmentView.registerWeapon(this.setSlotView(this.weaponSlot));
+		this.equipmentView.registerProjectile(this.setSlotView(this.projectileSlot));
+	}
+	
+	private SlotView setSlotView(EquipmentSlot<?> slot){
+		SlotView slotView = new SlotView();
+		slot.setView(slotView);
+		return slotView;
+	}
+	
 	/************************* UNEQUIP ************************************/
 	public Projectile unequipProjectile() {
 		return this.projectileSlot.unequip();
