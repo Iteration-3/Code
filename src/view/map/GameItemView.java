@@ -28,9 +28,14 @@ public class GameItemView implements GameView {
 				toRemove.add(entry.getKey());
 				continue;
 			}
-			int renderX = (int) (coordinate.getX() * itemWidth() * .75);
-			int renderY = (int) (coordinate.getY() * (coordinate.getX() % 2) * itemHeight() / 2);
-			itemView.render(graphics, new RealCoordinate(renderX, renderY), itemWidth() / 1.5f);
+			
+
+			double tileHeight = screenHeight / 18.0f;
+			double tileWidth = tileHeight / (float) (Math.sqrt(3) / 2);
+
+			float renderX = (float) (coordinate.getX() * itemWidth() * 0.75);
+			float renderY = (float) (coordinate.getY() * itemHeight() + (coordinate.getX() % 2) * itemHeight() / 2);
+			itemView.render(graphics, new RealCoordinate(renderX, renderY), itemWidth());
 		}
 		for (RealCoordinate coordinate: toRemove)
 			itemViews.remove(coordinate);

@@ -13,7 +13,7 @@ public class GameEntityView implements GameView {
 	public void render(Graphics graphics, int width, int height) {
 		for(EntityView entityView : entityViews) {
 			//TODO(mbregg) Make this not hardcoded, EntityView really needs to be redone
-			entityView.render(graphics, height/18);
+			entityView.render(graphics, height);
 		}
 	}
 	public void addEntityView(EntityView entityView) {

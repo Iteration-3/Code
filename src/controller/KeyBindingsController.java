@@ -26,7 +26,6 @@ public class KeyBindingsController extends Controller {
     private ToggleAction rebindUpRightAction;
     private ToggleAction rebindDownLeftAction;
     private ToggleAction rebindDownRightAction;
-    private ToggleAction saveBindings;
 
     @SuppressWarnings("serial")
     public KeyBindingsController(Model model) {
@@ -66,12 +65,6 @@ public class KeyBindingsController extends Controller {
         rebindDownRightAction = new ToggleAction() {
             public void action() {
                 attachNewDownRightMapping();
-            }
-        };
-        saveBindings = new ToggleAction() {
-            public void action() {
-                // TODO also save the bindings
-                model.popState();
             }
         };
 
@@ -155,7 +148,4 @@ public class KeyBindingsController extends Controller {
         return rebindDownRightAction;
     }
 
-    public ActionListener getSaveAction() {
-        return saveBindings;
-    }
 }
