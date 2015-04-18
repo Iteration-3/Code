@@ -33,7 +33,6 @@ public class ItemEntityAssociation implements ActionListener {
 		// This can't be good.
 		// It is quite verbose to just get the Tile in front of you.
 		TileCoordinate tilePositionInFrontOfEntity = entity.getLocation().nextLocation(entity.getDirection());
-		// System.out.println(tilePositionInFrontOfEntity);
 		itemMap.touch(entity, tilePositionInFrontOfEntity);
 	}
 
