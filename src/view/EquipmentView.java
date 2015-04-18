@@ -6,8 +6,10 @@ import java.awt.image.BufferedImage;
 import utilities.ImageProcessing;
 
 public class EquipmentView {
-	private static final int SLOT_HEIGHT = 80;
-	private static final int SLOT_WIDTH = 80;
+	private static final int WIDTH = 3;
+	private static final int HEIGHT = 4;
+	private static final int SLOT_HEIGHT = 100;
+	private static final int SLOT_WIDTH = 100;
 	private static final float EQUIPMENT_SCALE = 80;	//this is a percentage of the height and scale
 	
 	private static final String HELMET_PATH = "src/resources/images/helmet_slot.jpg";
@@ -19,7 +21,23 @@ public class EquipmentView {
 	private static final String PROJECTILE_PATH = "src/resources/images/projectile_slot.jpg";
 	private static final String GLOVES_PATH = "src/resources/images/gloves_slot.jpg";
 	
-	
+	private static final int helmetX = SLOT_WIDTH;
+	private static final int helmetY = 0;
+	private static final int chestPieceX = helmetX;
+	private static final int chestPieceY = helmetY + SLOT_HEIGHT;
+	private static final int leggingsX = chestPieceX;
+	private static final int leggingsY = chestPieceY +SLOT_HEIGHT;
+	private static final int bootsX = leggingsX;
+	private static final int bootsY = leggingsY + SLOT_HEIGHT;
+	private static final int weaponX = chestPieceX - SLOT_WIDTH;
+	private static final int weaponY = chestPieceY;
+	private static final int glovesX = leggingsX - SLOT_WIDTH;
+	private static final int glovesY = leggingsY;
+	private static final int shieldX = chestPieceX + SLOT_WIDTH;
+	private static final int shieldY = chestPieceY;
+	private static final int projectileX = helmetX + SLOT_WIDTH;
+	private static final int projectileY = helmetY;
+
 	private static BufferedImage helmetImage;
 	private static BufferedImage chestPieceImage;
 	private static BufferedImage leggingsImage;
@@ -90,15 +108,22 @@ public class EquipmentView {
 		this.setView(slotView,projectileImage);
 	}
 	
-	public void render(Graphics g){
+	public void render(Graphics g, int x, int y){
 		float itemDiameter = 40;
-		helmetView.render(g, SLOT_WIDTH, SLOT_HEIGHT, itemDiameter);
-		chestPieceView.render(g, SLOT_WIDTH, SLOT_HEIGHT, itemDiameter);
-		leggingsView.render(g,SLOT_WIDTH, SLOT_HEIGHT, itemDiameter);
-		bootsView.render(g,SLOT_WIDTH, SLOT_HEIGHT, itemDiameter);
-		weaponView.render(g,SLOT_WIDTH, SLOT_HEIGHT, itemDiameter);
-		shieldView.render(g,SLOT_WIDTH, SLOT_HEIGHT, itemDiameter);
-		projectileView.render(g , SLOT_WIDTH, SLOT_HEIGHT, itemDiameter);
-		glovesView.render(g, SLOT_WIDTH, SLOT_HEIGHT, itemDiameter);
+		helmetView.render(g,helmetX + x ,helmetY + y , itemDiameter);
+		chestPieceView.render(g,chestPieceX + x ,chestPieceY + y , itemDiameter);
+		leggingsView.render(g,leggingsX + x ,leggingsY + y , itemDiameter);
+		bootsView.render(g,bootsX + x ,bootsY + y , itemDiameter);
+		weaponView.render(g,weaponX + x ,weaponY + y , itemDiameter);
+		shieldView.render(g,shieldX + x ,shieldY + y , itemDiameter);
+		projectileView.render(g ,projectileX + x ,projectileY + y , itemDiameter);
+		glovesView.render(g,glovesX + x ,glovesY + y , itemDiameter);
+	}
+	
+	public int getWidth(){
+		return WIDTH * SLOT_WIDTH;
+	}
+	public int getHeight(){
+		return HEIGHT * SLOT_HEIGHT;
 	}
 }
