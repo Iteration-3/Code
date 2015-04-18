@@ -26,7 +26,6 @@ public abstract class Entity implements Saveable {
     private EntityView view = null;
     private TileCoordinate location = new TileCoordinate();
     private Angle direction = Angle.UP;
-    private Collection<Ability> abilities = new ArrayList<Ability>();
 
     public Entity(String name, EntityView view, TileCoordinate location) {
         this.name = name;
@@ -39,9 +38,7 @@ public abstract class Entity implements Saveable {
 
     }
     
-    protected Collection<Ability> getAbilities(){
-    	return abilities;
-    }
+
 
     public Entity(StructuredMap map) {
         name = map.getString("name");
