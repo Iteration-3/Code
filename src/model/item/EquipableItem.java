@@ -1,7 +1,6 @@
 package model.item;
 
 import model.entity.Entity;
-import model.slots.EquipmentManager;
 import model.slots.ItemManager;
 import model.statistics.Statistics;
 import view.item.ItemView;
@@ -14,8 +13,7 @@ public abstract class EquipableItem extends TakeableItem {
 		this.stats = stats;
 	}
 
-	public abstract boolean equip(EquipmentManager equipment);
-	public abstract void unequip(ItemManager im);
+	public abstract boolean equip(ItemManager im);
 	
 	public void use(Entity entity) {
 		entity.equip(this);

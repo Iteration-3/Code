@@ -1,7 +1,6 @@
 package model.item;
 
 import model.entity.Entity;
-import model.slots.EquipmentManager;
 import model.slots.ItemManager;
 import model.statistics.Statistics;
 import view.item.ItemView;
@@ -12,12 +11,8 @@ public class Projectile extends EquipableItem{
 		super(itemView, stats);
 	}
 
-	public boolean equip(EquipmentManager equipment) {
-		return equipment.equip(this);
-	}
-
-	public void unequip(ItemManager im) {
-		im.unequipProjectile();
+	public boolean equip(ItemManager im) {
+		return im.equip(this);
 	}
 
 	@Override
