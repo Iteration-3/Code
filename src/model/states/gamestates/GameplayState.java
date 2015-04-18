@@ -102,7 +102,6 @@ public class GameplayState extends GameState {
     private void setListeners(KeyPreferences preferences) {
         controller.removeListeners();
         getLayout().clearBindings();
-        avatar.getListeners();
 
         Listener escapeListener = new SingleUseListener(preferences.getPauseKey(), new GameActionStatePush(
                 getContext(), new PauseMenuState()));
@@ -125,7 +124,6 @@ public class GameplayState extends GameState {
     }
 
     private void addItemsTest() {
-        this.itemEntityAssociation = new ItemEntityAssociation(avatar);
         ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
         TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
         takeableItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(5, 5));
@@ -187,11 +185,11 @@ public class GameplayState extends GameState {
                 TileCoordinate p = new TileCoordinate(x, y);
                 if (x != 10 || y != 10) {
                     TileView view = new BasicTileView(new Color(0, 200, 200), Color.WHITE);
-                    view.registerWithGameMapView(layout.getGameTerrainView(), TileCoordinate.convertToRealCoordinate(p));
+                    view.registerWithGameMapView(layout.getGameTerrainView(), new RealCoordinate(x, y));
                     gameMap.add(new PassableTile(view), p);
                 } else {
                     TileView view = new BasicTileView(new Color(200, 0, 200), Color.WHITE);
-                    view.registerWithGameMapView(layout.getGameTerrainView(), TileCoordinate.convertToRealCoordinate(p));
+                    view.registerWithGameMapView(layout.getGameTerrainView(), new RealCoordinate(x, y));
                     gameMap.add(new ImpassableTile(view), p);
                 }
 

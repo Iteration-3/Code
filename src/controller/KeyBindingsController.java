@@ -28,7 +28,7 @@ public class KeyBindingsController extends Controller {
     private ToggleAction rebindDownRightAction;
 
     @SuppressWarnings("serial")
-    public KeyBindingsController(Model model) {
+    public KeyBindingsController(final Model model) {
         this.model = model;
         this.keyPreferences = model.getPreferences();
 
