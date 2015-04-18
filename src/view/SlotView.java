@@ -28,8 +28,9 @@ public class SlotView {
 	public void render(Graphics g,int x,int y, float itemDiameter){
 		this.drawBackGround(g, x, y);
 		if (this.hasItem()){
-			int xLoc = x + 15;
-			int yLoc = y + 15;
+			int currentOffset = 15;
+			int xLoc = x + currentOffset;
+			int yLoc = y + currentOffset;
 			this.itemView.render(g, new RealCoordinate (xLoc,yLoc), itemDiameter );
 		}
 	}
