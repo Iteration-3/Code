@@ -3,29 +3,26 @@ package model.entity;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import model.KeyPreferences;
 import model.ability.Ability;
+import model.ability.summoner.bane.Firebolt;
+import model.ability.summoner.bane.LightBeam;
+import model.ability.summoner.bane.ShadowBlast;
+import model.ability.summoner.boon.HealBoon;
+import model.ability.summoner.boon.MovementBoon;
+import model.ability.summoner.boon.StrengthBoon;
+import model.ability.summoner.enchantment.Cripple;
+import model.ability.summoner.enchantment.Intimidate;
 import model.ability.summoner.enchantment.Silence;
 import model.area.TileCoordinate;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
-import controller.listener.Listener;
 
 public class Summoner extends Avatar {
 	protected ItemManager itemManger = new ItemManager(this);
 	
-	private Collection<Ability> abilities= new ArrayList<Ability>();
 
-	private Ability Cripple;
-	private Ability Intimidate;
-	private Ability Silence;
-	private Ability HealBoon;
-	private Ability MovementBoon;
-	private Ability StrengthBoon;
-	private Ability FireBolt;
-	private Ability LightBeam;
-	private Ability ShadowBlast;
+
 	
 
 
@@ -33,25 +30,20 @@ public class Summoner extends Avatar {
 		super(name, view, loc);
 		//TODO(mbregg) abilities should level up in strength with you
 		//Bane skills
-		abilities.add(FireBolt);
-		abilities.add(LightBeam);
-		abilities.add(ShadowBlast);
-		//Boon skills
-		abilities.add(HealBoon);
-		abilities.add(MovementBoon);
-		abilities.add(StrengthBoon);
+		this.getAbilities().add(new Firebolt());
+		this.getAbilities().add(new LightBeam());
+		this.getAbilities().add(new ShadowBlast());
+		//Boone skills
+		this.getAbilities().add(new HealBoon());
+		this.getAbilities().add(new MovementBoon());
+		this.getAbilities().add(new StrengthBoon());
 		//Enchantment Skills
-		abilities.add(Cripple);
-		abilities.add(Intimidate);
-		abilities.add(new Silence());
+		this.getAbilities().add(new Cripple());
+		this.getAbilities().add(new Intimidate());
+		this.getAbilities().add(new Silence());
 	}
 	
-	@Override
-	public Collection<Listener> getListeners(KeyPreferences preferences){
-		Collection<Listener> listeners = new ArrayList<Listener>();
-		return listeners;
-		
-	}
+
 
 
 	protected ItemManager createItemManager() {

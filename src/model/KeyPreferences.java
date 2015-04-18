@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.swing.KeyStroke;
@@ -30,6 +32,10 @@ public class KeyPreferences implements Saveable {
         this.pauseKey = KeyStroke.getKeyStroke("ESCAPE");
         this.inventoryKey = KeyStroke.getKeyStroke("I");
         this.skillsKey = KeyStroke.getKeyStroke("S");
+        this.abilities = new ArrayList<KeyStroke>();
+        for(int i = 0; i!=10;++i){
+        	abilities.add(KeyStroke.getKeyStroke((char) ('0'+i)));
+        }
     }
 
     public KeyPreferences(StructuredMap structuredMap) {
@@ -42,10 +48,11 @@ public class KeyPreferences implements Saveable {
         setInventoryKey(KeyStroke.getKeyStroke(structuredMap.getString("inventory")));
         setSkillsKey(KeyStroke.getKeyStroke(structuredMap.getString("skills")));
         setPauseKey(KeyStroke.getKeyStroke(structuredMap.getString("pause")));
+        //TODO load abilitittititites.
     }
 
     public KeyPreferences(KeyStroke upKey, KeyStroke upRightKey, KeyStroke downRightKey, KeyStroke downKey,
-            KeyStroke downLeftKey, KeyStroke upLeftKey, KeyStroke pauseKey, KeyStroke inventoryKey, KeyStroke skillsKey) {
+            KeyStroke downLeftKey, KeyStroke upLeftKey, KeyStroke pauseKey, KeyStroke inventoryKey, KeyStroke skillsKey, List<KeyStroke> abilities) {
         setUpKey(upKey);
         setUpRightKey(upRightKey);
         setDownRightKey(downRightKey);
@@ -55,6 +62,8 @@ public class KeyPreferences implements Saveable {
         setPauseKey(pauseKey);
         setInventoryKey(inventoryKey);
         setSkillsKey(skillsKey);
+        setAbilities(abilities);
+        
     }
 
     public StructuredMap getStructuredMap() {

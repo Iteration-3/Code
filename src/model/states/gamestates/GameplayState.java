@@ -14,7 +14,7 @@ import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.entity.EntityManager;
 import model.entity.EntityMovementAssocation;
-import model.entity.Smasher;
+import model.entity.Summoner;
 import model.event.HealthModifierEvent;
 import model.event.ManaModifierEvent;
 import model.event.TeleportEvent;
@@ -87,7 +87,7 @@ public class GameplayState extends GameState {
         TileCoordinate loc = new TileCoordinate(3, 3);
         EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange,
                 TileCoordinate.convertToRealCoordinate(loc));
-        avatar = new Smasher("Smasher", eView, loc);
+        avatar = new Summoner("Summoner", eView, loc);
 
         KeyPreferences preferences = new KeyPreferences();
         getContext().setPreferences(preferences);
