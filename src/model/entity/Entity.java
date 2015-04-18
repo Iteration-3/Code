@@ -210,6 +210,10 @@ public abstract class Entity implements SavableLoadable {
     public InventoryView getInventoryView(){
     	return this.itemManager.getInventoryView();
     }
+
+	public boolean containsItem(TakeableItem item) {
+		return itemManager.inventoryHasItem(item);
+	}
     
     
 }
