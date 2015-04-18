@@ -1,7 +1,6 @@
 package model.slots;
 
 import view.SlotView;
-import view.item.ItemView;
 import model.item.TakeableItem;
 
 public class InventorySlot implements Slot{

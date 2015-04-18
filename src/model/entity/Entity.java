@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import model.KeyPreferences;
-import model.ability.Ability;
 import model.area.TileCoordinate;
 import model.item.EquipableItem;
 import model.item.TakeableItem;

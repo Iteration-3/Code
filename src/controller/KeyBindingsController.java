@@ -1,7 +1,5 @@
 package controller;
 
-import java.awt.event.ActionListener;
-
 import keyRemapping.KeyMapping;
 import keyRemapping.KeyMappingDown;
 import keyRemapping.KeyMappingDownLeft;

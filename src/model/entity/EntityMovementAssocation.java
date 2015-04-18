@@ -5,7 +5,6 @@ package model.entity;
 
 import gameactions.GameActionMovement;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import model.KeyPreferences;

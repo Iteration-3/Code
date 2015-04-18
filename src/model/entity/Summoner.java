@@ -1,9 +1,5 @@
 package model.entity;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import model.ability.Ability;
 import model.ability.summoner.bane.Firebolt;
 import model.ability.summoner.bane.LightBeam;
 import model.ability.summoner.bane.ShadowBlast;
