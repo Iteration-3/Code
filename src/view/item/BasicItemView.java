@@ -25,7 +25,7 @@ public class BasicItemView extends ItemView {
 
 	@Override
 	public void render(Graphics graphics, RealCoordinate location, float diameter) {
-		RealCoordinate updatedCoordinate = new RealCoordinate(location.getX(), Math.sqrt( 3 ) / 2.0 * location.getY());
+		RealCoordinate updatedCoordinate = new RealCoordinate(location.getX(), location.getY());
 		backgroundHexagon.render(graphics, updatedCoordinate, diameter * OVERDRAW);
 		foregroundHexagon.render(graphics, updatedCoordinate, diameter * (1 - BORDER_PERCENTAGE) * OVERDRAW);
 	}

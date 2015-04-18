@@ -76,7 +76,7 @@ public class GameplayState extends GameState {
         setListeners(preferences);
 
         EntityManager.getSingleton().setAvatar(avatar);
-        eView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(loc));
+        eView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(3, 3));
 
         this.itemEntityAssociation = new ItemEntityAssociation(avatar);
         ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);

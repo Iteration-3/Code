@@ -25,6 +25,7 @@ public class GameTerrainView implements GameView{
 		
 		for(int x = 0; x < numberOfHorizontalTiles(); ++x) {
 			for(int y = 0; y < numberOfVerticalTiles(); ++y) {
+			
 				int renderX = (int) (x * tileWidth() * 0.75);
 				int renderY = (int) (y * tileHeight() + (x % 2) * tileHeight() / 2);
 				if(x < tileViews.length && y < tileViews[0].length && tileViews[x][y]!=null){
