@@ -2,7 +2,6 @@ package model.event;
 
 import gameactions.GameActionTeleport;
 import model.area.TileCoordinate;
-import model.entity.Entity;
 
 public class TeleportEvent extends Event {
 
