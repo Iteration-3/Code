@@ -1,6 +1,7 @@
 package model.states.gamestates;
 
 import gameactions.GameActionStatePush;
+import gameactions.GameActionTeleport;
 
 import java.awt.Color;
 import java.util.Collection;
@@ -17,6 +18,7 @@ import model.entity.EntityMovementAssocation;
 import model.entity.Smasher;
 import model.event.HealthModifierEvent;
 import model.event.ManaModifierEvent;
+import model.event.TeleportEvent;
 import model.item.Door;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
@@ -29,6 +31,7 @@ import model.trigger.PermanentTrigger;
 import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
+import utilities.Angle;
 import view.EntityView;
 import view.item.BasicItemView;
 import view.item.ItemView;
@@ -54,6 +57,9 @@ public class GameplayState extends GameState {
 
     @Override
     public void onEnter() {
+    	//Entity test must run before item test, which must be run before setListeners.
+    	//The reason for this is the avatar must be made prior to items, to make the itemEntityAssocation, 
+    	//Which is needed for other stuff.
         super.onEnter();
         addTilesTest();
         addEntityTest();
@@ -89,7 +95,7 @@ public class GameplayState extends GameState {
         EntityManager.getSingleton().setAvatar(avatar);
         eView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(3, 3));
 
-        this.itemEntityAssociation = new ItemEntityAssociation(avatar);
+     
         
     }
 
@@ -119,6 +125,7 @@ public class GameplayState extends GameState {
 	}
 	
 	private void addItemsTest() {
+		this.itemEntityAssociation = new ItemEntityAssociation(avatar);
         ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
         TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
         takeableItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(5, 5));
@@ -161,8 +168,14 @@ public class GameplayState extends GameState {
 		Area areaTwo = new RadialArea(1, locTwo);
 		Trigger triggerTwo = new PermanentTrigger(areaTwo, new ManaModifierEvent(10, 200));
 		
+		TileCoordinate locThree = new TileCoordinate(2, 8);
+		Area areaThree = new RadialArea(1, locThree);
+		Trigger triggerThree = new PermanentTrigger(areaThree, new TeleportEvent(0, new TileCoordinate(0, 0),
+				new GameActionTeleport(avatar, gameMap, this.itemEntityAssociation.getItemMap(), Angle.DOWN)));
+		
 		triggerManager.addNonPartyTrigger(triggerOne);
 		triggerManager.addNonPartyTrigger(triggerTwo);
+		triggerManager.addNonPartyTrigger(triggerThree);
 	
     }
 
