@@ -16,7 +16,7 @@ public class AirPassableTile extends Tile {
     }
 
     @Override
-    public boolean isPassable(Entity e) {
+    public boolean isPassable(Entity e) {    	
         if (e.isFlying()) {
             return true;
         } else {

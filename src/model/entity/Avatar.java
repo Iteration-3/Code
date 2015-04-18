@@ -45,10 +45,6 @@ public abstract class Avatar extends Entity {
 		
 	}
 	
-	@Override 
-	public boolean isFlying(){
-		return false;
-	}
 	//Ovverrides stats and name? Says in UML, but that's weird
 	//Also overrides move, according to uml? Meh, if we need it, we'll do it, not before IMO
 	

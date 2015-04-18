@@ -123,7 +123,7 @@ public abstract class Entity implements Saveable {
      * @return
      */
     public boolean isFlying() {
-        return isFlying ;
+        return isFlying;
     }
     
     public void setFlight(Boolean flight){
