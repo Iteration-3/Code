@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
@@ -19,11 +17,6 @@ public class SlotView extends JButton {
 	public SlotView() {
 		super();
 		setBorder(null);
-		addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("hdsfkjjdsf");
-			}
-		});
 	}
 
 	public SlotView(BufferedImage background) {

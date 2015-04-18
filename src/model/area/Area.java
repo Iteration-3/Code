@@ -63,23 +63,8 @@ public abstract class Area implements Saveable {
 
     protected boolean isWithinRadius(TileCoordinate loc) {
 
-        return withinOffset(
-                Math.pow(getStartLocation().getX() - loc.getX(), 2)
-                        + Math.pow(getStartLocation().getY() - loc.getY(), 2),
-                Math.pow(((getRadius() - 1) * Area.HEIGHT), 2), .2)
-                || lessThan(
-                        Math.pow(getStartLocation().getX() - loc.getX(), 2)
-                                + Math.pow(getStartLocation().getY() - loc.getY(), 2),
-                        Math.pow(((getRadius() - 1) * Area.HEIGHT), 2));
+        return getCoveredLocations().contains(loc);
 
-    }
-
-    private boolean lessThan(double double1, double double2) {
-        return double1 <= double2;
-    }
-
-    private boolean withinOffset(double double1, double double2, double offset) {
-        return Math.abs(double1 - double2) <= offset;
     }
 
     protected List<TileCoordinate> checkSurrounding(TileCoordinate location, List<TileCoordinate> returnList) {

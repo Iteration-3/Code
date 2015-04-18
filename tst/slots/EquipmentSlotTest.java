@@ -10,9 +10,7 @@ import model.item.Shield;
 import model.item.SmasherWeapon;
 import model.item.SneakWeapon;
 import model.item.SummonerWeapon;
-import model.item.TakeableItem;
 import model.item.TwoHandedWeapon;
-import model.item.Weapon;
 import model.slots.DoubleEquipmentSlot;
 import model.slots.EquipmentSlot;
 import model.slots.ItemManager;
@@ -69,7 +67,7 @@ public class EquipmentSlotTest {
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
 		DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield> THWSlot = new DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield>(weapon, shield);
-		assertFalse(THW.has());
+		assertFalse(THWSlot.has());
 	}
 	
 	@Test

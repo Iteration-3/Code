@@ -20,7 +20,7 @@ public class MenuButton extends JButton {
     }
     
     private void setSettings(){
-    	setFont(FontResources.getTitleFont().deriveFont(30f));
+    	setFont(FontResources.getPrimaryFont().deriveFont(30f));
         setBorderPainted(false);
         setFocusPainted(false);
     }
