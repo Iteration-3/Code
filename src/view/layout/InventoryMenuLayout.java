@@ -65,6 +65,7 @@ public class InventoryMenuLayout extends Layout {
 		backButton.addActionListener(controller.getBackAction());
     	System.out.println(this.isValid());
 		this.inventoryView.add(controller);
+		this.inventoryView.addMouseMotionListener(controller.makeInventoryMouseListener());
 	}
 
 	public void setInventoryView(InventoryView inventoryView) {

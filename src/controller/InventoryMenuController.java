@@ -2,9 +2,12 @@ package controller;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import controller.listener.InventoryActionListener;
 import controller.listener.ToggleAction;
+import controller.mouseliseners.InventoryMouseListener;
+import controller.mouseliseners.SlotMouseListener;
 import model.Model;
 
 public class InventoryMenuController extends Controller {
@@ -34,8 +37,12 @@ public class InventoryMenuController extends Controller {
 		backAction.toggle();
 	}
 	
-	public ActionListener makeInventoryActionListener(int i){
-		return new InventoryActionListener(i);
+	public MouseMotionListener makeInventoryMouseListener(){
+		return new InventoryMouseListener();
+	}
+	
+	public MouseListener makeSlotMouseListener(int i){
+		return new SlotMouseListener(i);
 	}
 	
 }

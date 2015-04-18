@@ -32,6 +32,7 @@ public class InventoryView extends JComponent {
 		this.slots = new HashMap<Integer, SlotView>();
 //		setFocusable(true);
 		setVisible(true);
+		setFocusable(true);
 	}
 
 	public void register(SlotView[] slotViews) {
