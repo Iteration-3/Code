@@ -33,7 +33,16 @@ public abstract class Entity implements Saveable {
     }
 
     public Entity() {
-    	
+
+    }
+
+    public Entity(StructuredMap map) {
+        name = map.getString("name");
+        int[] locationArray = map.getIntArray("location");
+        this.location = new TileCoordinate(locationArray[0], locationArray[1]);
+        
+        
+
     }
 
     private void setNecessities() {
@@ -45,7 +54,22 @@ public abstract class Entity implements Saveable {
 
     public abstract void attack();
 
-    public abstract StructuredMap getStructuredMap();
+    public StructuredMap getStructuredMap() {
+        int[] locationArray = new int[2];
+        locationArray[0] = location.getX();
+        locationArray[1] = location.getY();
+        StructuredMap map = new StructuredMap();
+
+        map.put("name", name);
+        map.put("location", locationArray);
+        map.put("stats", stats.getStructuredMap());
+        map.put("direction", direction.ordinal());
+        map.put("items", itemManager.getStructuredMap());
+        
+        //TODO more createItemManager
+        
+        return map;
+    }
 
     public abstract void load(StructuredMap map);
 
@@ -78,12 +102,12 @@ public abstract class Entity implements Saveable {
     }
     
     public TileCoordinate nextLocation(Angle angle) {
-    	return this.getLocation().nextLocation(angle);
+        return this.getLocation().nextLocation(angle);
     }
 
     public Collection<Listener> getListeners() {
-    	Collection<Listener> listeners = new ArrayList<Listener>();
-    	return listeners;
+        Collection<Listener> listeners = new ArrayList<Listener>();
+        return listeners;
     }
     
     public boolean hasTHW() {
@@ -120,7 +144,7 @@ public abstract class Entity implements Saveable {
     }
 
     public boolean addItem(TakeableItem item) {
-    	System.out.println("Added Item!");
+        System.out.println("Added Item!");
         return this.itemManager.addItem(item);
     }
 
@@ -209,9 +233,7 @@ public abstract class Entity implements Saveable {
 		return itemManager.inventoryHasItem(item);
 	}
     
-    
     //DELETE ME AFTER FIXING    FOR TESTING PURPOSES
-    
     public InventoryView getInventoryView(){
     	return this.itemManager.getInventoryView();
     }
@@ -219,6 +241,5 @@ public abstract class Entity implements Saveable {
 	public EquipmentView getEquipmentView() {
 		return itemManager.getEquipmentView();
 	}
-    
     
 }

@@ -1,10 +1,12 @@
 package model.slots;
 
+import model.item.TakeableItem;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 import view.InventoryView;
 import view.SlotView;
-import model.item.TakeableItem;
 
-public class Inventory {
+public class Inventory implements Saveable {
 	private static final int ROW = 5;
 	private static final int COL = 5;
 	private InventorySlot[] slots;
@@ -133,4 +135,10 @@ public class Inventory {
 	public InventoryView getView(){
 		return this.inventoryView;
 	}
+
+    @Override
+    public StructuredMap getStructuredMap() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

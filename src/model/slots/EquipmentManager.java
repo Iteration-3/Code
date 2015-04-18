@@ -1,5 +1,7 @@
 package model.slots;
 
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 import view.EquipmentView;
 import view.SlotView;
 import model.entity.NPC;
@@ -18,7 +20,7 @@ import model.item.TwoHandedWeapon;
 import model.item.Weapon;
 import model.statistics.Statistics;
 
-public class EquipmentManager {
+public class EquipmentManager implements Saveable {
 	private EquipmentSlot<Helmet> helmetSlot;
 	private EquipmentSlot<ChestPiece> chestPieceSlot;
 	private EquipmentSlot<Leggings> leggingsSlot;
@@ -196,4 +198,11 @@ public class EquipmentManager {
 	public EquipmentView getView(){
 		return this.equipmentView;
 	}
+
+    @Override
+    public StructuredMap getStructuredMap() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }
