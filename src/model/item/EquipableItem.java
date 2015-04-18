@@ -3,6 +3,7 @@ package model.item;
 import model.entity.Entity;
 import model.slots.ItemManager;
 import model.statistics.Statistics;
+import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 
 public abstract class EquipableItem extends TakeableItem {
@@ -22,6 +23,11 @@ public abstract class EquipableItem extends TakeableItem {
 		this(itemView, statistics);
 		setPrice(price);
 	}
+	
+	public EquipableItem(ItemView itemView, StructuredMap map) {
+	    super(itemView, map);
+	    this.statistics = new Statistics(map.getStructuredMap("stats"));
+	}
 
 	public abstract boolean equip(ItemManager itemManager);
 	
@@ -31,5 +37,12 @@ public abstract class EquipableItem extends TakeableItem {
 	
 	public void merge(Statistics stats){
 		stats.merge(this.statistics);
+	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+	    StructuredMap map = super.getStructuredMap();
+	    map.put("stats", statistics.getStructuredMap());
+	    return map;
 	}
 }

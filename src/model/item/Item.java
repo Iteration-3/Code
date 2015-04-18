@@ -2,9 +2,10 @@ package model.item;
 
 import model.entity.Entity;
 import model.map.tile.ItemTile;
+import utilities.structuredmap.Saveable;
 import view.item.ItemView;
 
-public abstract class Item {
+public abstract class Item implements Saveable{
 	
 	protected ItemView itemView;
 	

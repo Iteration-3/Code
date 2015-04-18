@@ -2,6 +2,7 @@ package model.item;
 
 import model.slots.ItemManager;
 import model.statistics.Statistics;
+import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 
 public class Boots extends EquipableItem {
@@ -12,6 +13,10 @@ public class Boots extends EquipableItem {
 
 	public Boots(ItemView itemView, Statistics statistics) {
 		super(itemView, statistics);
+	}
+	
+	public Boots(ItemView itemView, StructuredMap map) {
+	    super(itemView, map);
 	}
 
 	public boolean equip(ItemManager itemManager) {

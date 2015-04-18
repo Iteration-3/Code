@@ -8,6 +8,7 @@ import model.event.ManaModifierEvent;
 import model.event.MovementModifierEvent;
 import model.event.StatisticModifierEvent;
 import model.statistics.EntityStatistics;
+import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 
 public abstract class ConsumableItem extends TakeableItem {
@@ -35,6 +36,12 @@ public abstract class ConsumableItem extends TakeableItem {
 		setPrice(price);
 	}
 
+    public ConsumableItem(ItemView itemView, StructuredMap map) {
+        super(itemView);
+        this.statistics = new EntityStatistics(map.getStructuredMap("stats"));
+        this.duration = map.getDouble("duration");
+    }
+
 	@Override
 	public void use(Entity entity) {
 		EventManager.getSingleton().addEvent(new StatisticModifierEvent(statistics, entity, duration));
@@ -44,10 +51,19 @@ public abstract class ConsumableItem extends TakeableItem {
 		EventManager.getSingleton().addEvent(new ManaModifierEvent(statistics.getCurrentMana(), entity, duration));
 	}
 
+    @Override
+    public StructuredMap getStructuredMap() {
+        StructuredMap map = super.getStructuredMap();
+        map.put("stats", statistics.getStructuredMap());
+        map.put("duration", this.duration);
+        return map;
+    }
+
 	@Override
 	public String getInfo() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }
