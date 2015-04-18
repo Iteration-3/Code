@@ -3,6 +3,7 @@ package model.entity;
 import model.ability.summoner.bane.Firebolt;
 import model.ability.summoner.bane.LightBeam;
 import model.ability.summoner.bane.ShadowBlast;
+import model.ability.summoner.boon.FlightBoon;
 import model.ability.summoner.boon.HealBoon;
 import model.ability.summoner.boon.MovementBoon;
 import model.ability.summoner.boon.StrengthBoon;
@@ -29,10 +30,11 @@ public class Summoner extends Avatar {
 		this.getAbilities().add(new Firebolt());
 		this.getAbilities().add(new LightBeam());
 		this.getAbilities().add(new ShadowBlast());
-		//Boone skills
+		//Boon skills
 		this.getAbilities().add(new HealBoon());
 		this.getAbilities().add(new MovementBoon());
 		this.getAbilities().add(new StrengthBoon());
+		this.getAbilities().add(new FlightBoon());
 		//Enchantment Skills
 		this.getAbilities().add(new Cripple());
 		this.getAbilities().add(new Intimidate());
