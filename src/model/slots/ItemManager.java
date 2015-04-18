@@ -1,5 +1,6 @@
 package model.slots;
 
+import view.EquipmentView;
 import view.InventoryView;
 import model.entity.NPC;
 import model.entity.Smasher;
@@ -149,5 +150,9 @@ public class ItemManager {
 	
 	public InventoryView getInventoryView(){
 		return this.inventory.getView();
+	}
+
+	public EquipmentView getEquipmentView() {
+		return this.equipment.getView();
 	}
 }

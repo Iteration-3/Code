@@ -10,11 +10,11 @@ import utilities.ImageProcessing;
 public class InventoryView {
 	private static final String backgroundPath = "src/resources/images/slotImage.png";
 	private static BufferedImage slotBackground;
-	private final static int SLOT_HEIGHT= 50;
-	private final static int SLOT_WIDTH = 50;
+	private final static int SLOT_HEIGHT= 70;
+	private final static int SLOT_WIDTH = 70;
 	private final static int COL = 5;
 	private final static int ROW = 5;
-	private final static float ITEM_DIAMETER = 20;
+	private final static float ITEM_DIAMETER = 50;
 	
 	
 	private HashMap<Integer,SlotView> slots;
