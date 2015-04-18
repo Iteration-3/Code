@@ -17,7 +17,7 @@ public class ItemSavingTest {
         StructuredMap map = item.getStructuredMap();
         System.out.println(map.getJson());
 
-        ConsumableItem testItem = new ConsumableItem(new BasicItemView(), map);
+        ConsumableItem testItem = new ConsumableItem(new BasicItemView(), map.getStructuredMap("consumableItem"));
 
         assertEquals(map.getJson(), testItem.getStructuredMap().getJson());
     }

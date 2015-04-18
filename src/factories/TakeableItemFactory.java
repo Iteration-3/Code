@@ -10,7 +10,7 @@ public class TakeableItemFactory {
 
 	public static TakeableItem createItem(String key, StructuredMap map) {
 		switch (key) {
-			case "consumeable":
+			case "consumableItem":
 				return createConsumeable(map);
 			case "noItem":
 				return null;
@@ -23,6 +23,7 @@ public class TakeableItemFactory {
 
 	private static TakeableItem createConsumeable(StructuredMap map) {
 		StructuredMap statisitics = map.getStructuredMap("stats");
+		
 		double duration = map.getDouble("duration");
 		return new ConsumableItem(new BasicItemView(), new EntityStatistics(
 				statisitics), duration);
