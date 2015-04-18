@@ -41,34 +41,53 @@ public class StructuredMap {
 	}
 
 	public Boolean getBoolean(String key) {
-		return (Boolean) data.get(key);
+		Object value = data.get(key);
+		return value == null ? null : (Boolean) data.get(key);
 	}
 
 	public Double getDouble(String key) {
-		return (Double) data.get(key);
+		Object value = data.get(key);
+		return value == null ? null : (Double) data.get(key);
 	}
 
 	public Integer getInteger(String key) {
-		return (Integer) data.get(key);
+		Object value = data.get(key);
+		return value == null ? null : (Integer) data.get(key);
  	}
 
 	public String getString(String key) {
-		QuotedString quoted = (QuotedString) data.get(key); // get the QuotedString object
+		Object value = data.get(key);
+		
+		if (value == null)
+			return null;
+		
+		QuotedString quoted = (QuotedString) value; // get the QuotedString object
 		String backingString = quoted.toString(); // get the string literal inside the QuotedString
 		return backingString.substring(1, backingString.length() - 1); // trim off the quotes
 	}
 
 	public StructuredMap getStructuredMap(String key) {
-		return (StructuredMap) data.get(key);
+		Object value = data.get(key);
+		return value == null ? null : (StructuredMap) value;
 	}
 
 	public int[] getIntArray(String key) {
-		IntArrayContainer container = (IntArrayContainer) data.get(key);
+		Object value = data.get(key);
+		
+		if (value == null)
+			return null;
+		
+		IntArrayContainer container = (IntArrayContainer) value;
 		return container.getArray();
 	}
 
 	public StructuredMap[] getStructuredMapArray(String key) {
-		StructuredMapArrayContainer container = (StructuredMapArrayContainer) data.get(key);
+		Object value = data.get(key);
+		
+		if(value == null)
+			return null;
+		
+		StructuredMapArrayContainer container = (StructuredMapArrayContainer) value;
 		return container.getArray();
 	}
 	
@@ -81,7 +100,14 @@ public class StructuredMap {
 	public String getJson() {
 		StringJoiner joiner =  new StringJoiner(",\n");
 		for (Map.Entry<String, Object> entry : data.entrySet()) {
-			String valueString = prependTab(entry.getValue().toString());
+			Object value = entry.getValue();
+			
+			String valueString = null;
+			if(value == null)
+				valueString = "\tnull";
+			else
+				prependTab(entry.getValue().toString());
+			
 			String formattedEntry = String.format("\"%s\":%s", entry.getKey(), valueString);
 			joiner.add(formattedEntry);
 		}
