@@ -16,7 +16,6 @@ public class InventoryMenuState extends GameState {
     
     @Override
     public void onEnter() {
-    	System.out.println("ON ENTER");
     	super.onEnter();
     	
     	controller = new InventoryMenuController(getContext());
