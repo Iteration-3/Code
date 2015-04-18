@@ -24,6 +24,10 @@ public class Sneak extends Avatar {
 		this.getAbilities().add(new Ranged());
 		this.getAbilities().add(new RemoveTrap());
 	}
+	
+	public Sneak(StructuredMap map) {
+		super(map);
+	}
 
 	protected ItemManager createItemManager() {
 		return new ItemManager(this);
@@ -37,8 +41,7 @@ public class Sneak extends Avatar {
 
 	@Override
 	public StructuredMap getStructuredMap() {
-		// TODO Auto-generated method stub
-		return null;
+		return super.getStructuredMap();
 	}
 
 	@Override
@@ -53,5 +56,10 @@ public class Sneak extends Avatar {
 		
 	}
 	//Wasn't sneak going to have creap, and pickpocket? Not in uml anymore, we should discuss
+
+	@Override
+	public String getType() {
+		return "sneak";
+	}
 
 }

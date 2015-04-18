@@ -35,4 +35,9 @@ public class Creep extends SelfAbility {
 		}
 	}
 
+	@Override
+	protected String getType() {
+		return "creep";
+	}
+
 }

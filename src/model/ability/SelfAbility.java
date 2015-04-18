@@ -1,5 +1,7 @@
 package model.ability;
 
+import factories.EventFactory;
+import utilities.structuredmap.StructuredMap;
 import model.entity.Avatar;
 import model.event.Event;
 import model.event.HealthModifierEvent;
@@ -15,6 +17,11 @@ public abstract class SelfAbility extends Ability {
 	public SelfAbility(Event event, int manaCost) {
 		super(manaCost);
 		setEvent(event);
+	}
+
+	public SelfAbility(StructuredMap map) {
+		super(map);
+		this.event = EventFactory.createEvent(map.getStructuredMap("event"));
 	}
 
 	@Override
@@ -33,6 +40,13 @@ public abstract class SelfAbility extends Ability {
 
 	public void setEvent(Event event) {
 		this.event = event;
+	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		map.put("event", event.getStructuredMap());
+		return map;
 	}
 
 }

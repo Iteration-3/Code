@@ -37,4 +37,9 @@ public class RemoveTrap extends Ability {
 		}
 	}
 
+	@Override
+	protected String getType() {
+		return "removeTrap";
+	}
+
 }

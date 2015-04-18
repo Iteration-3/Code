@@ -1,14 +1,20 @@
 package model.ability;
 
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 import model.entity.Avatar;
 
-public abstract class Ability {
+public abstract class Ability implements Saveable {
 	private int manaCost = 0;
 	
 	public Ability() {}
 	
 	public Ability(int manaCost) {
 		setManaCost(manaCost);
+	}
+	
+	public Ability(StructuredMap map) {
+		this.manaCost = map.getInteger("manaCost");
 	}
 
 	public abstract void perform(Avatar avatar);
@@ -28,5 +34,14 @@ public abstract class Ability {
 	public void setManaCost(int manaCost) {
 		this.manaCost = manaCost;
 	}
+	
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		map.put("manaCost", manaCost);
+		map.put("type", getType());
+		return map;
+	}
+	
+	protected abstract String getType();
 
 }

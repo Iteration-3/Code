@@ -1,12 +1,13 @@
 package model.entity;
 
+import factories.AbilityFactory;
+import factories.SkillManagerFactory;
 import gameactions.GameAction;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
-import controller.listener.Listener;
-import controller.listener.PollingListener;
 import model.KeyPreferences;
 import model.ability.Ability;
 import model.area.RadialArea;
@@ -15,7 +16,10 @@ import model.light.LightManager;
 import model.light.MovingLightSource;
 import model.light.Visibility;
 import model.skillmanager.SkillManager;
+import utilities.structuredmap.StructuredMap;
 import view.EntityView;
+import controller.listener.Listener;
+import controller.listener.PollingListener;
 
 public abstract class Avatar extends Entity {
 	private Collection<Ability> abilities = new ArrayList<Ability>();
@@ -24,6 +28,29 @@ public abstract class Avatar extends Entity {
 	public Avatar() {
 		//LightManager.getLightManager().getLightMap().trackMovement(this);
 		//setLocation(getLocation());//So lightMap registers current position
+	}
+	
+	public Avatar(StructuredMap map) {
+		this.abilities = new ArrayList<Ability>();
+		StructuredMap[] abilityMap = map.getStructuredMapArray("abilities");
+		for(StructuredMap ability : abilityMap) {
+			this.abilities.add(AbilityFactory.createAbility(ability));
+		}
+		this.skillManager = SkillManagerFactory.createSkillManager(map.getStructuredMap("skills"));
+	}
+	
+	@Override 
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		StructuredMap[] abilityMap = new StructuredMap[this.abilities.size()];
+		int i = 0;
+		Iterator<Ability> it = abilities.iterator();
+		while(it.hasNext()) {
+			abilityMap[i++] = it.next().getStructuredMap();
+		}
+		map.put("abilities", abilityMap);
+		map.put("skills", skillManager.getStructuredMap());
+		return map;
 	}
 
 	public Avatar(String name, EntityView view, TileCoordinate loc){
@@ -59,6 +86,8 @@ public abstract class Avatar extends Entity {
 		return listeners;
 		
 	}
+	
+	
 	
 	//Ovverrides stats and name? Says in UML, but that's weird
 	//Also overrides move, according to uml? Meh, if we need it, we'll do it, not before IMO
