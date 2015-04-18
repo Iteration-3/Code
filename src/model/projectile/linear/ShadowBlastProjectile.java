@@ -1,6 +1,7 @@
 package model.projectile.linear;
 
 import utilities.Angle;
+import model.area.RadialArea;
 import model.event.Event;
 import model.event.HealthModifierEvent;
 import model.projectile.Projectile;
@@ -13,7 +14,7 @@ public class ShadowBlastProjectile extends Projectile {
 		super();
 		this.setSpeed(3);
 		Event damageEvent = new HealthModifierEvent(0, -40);
-		SingleUseTrigger damageTrigger = new SingleUseTrigger(null, damageEvent);
+		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
 		this.setTrigger(damageTrigger);
 	}
 	

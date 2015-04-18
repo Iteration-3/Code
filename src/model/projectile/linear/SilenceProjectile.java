@@ -1,5 +1,6 @@
 package model.projectile.linear;
 
+import model.area.RadialArea;
 import model.event.Event;
 import model.event.ManaModifierEvent;
 import model.projectile.Projectile;
@@ -13,7 +14,7 @@ public class SilenceProjectile extends Projectile {
 		super();
 		this.setSpeed(3);
 		Event damageEvent = new ManaModifierEvent(10, -100);
-		SingleUseTrigger damageTrigger = new SingleUseTrigger(null, damageEvent);
+		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
 		this.setTrigger(damageTrigger);
 	}
 	
