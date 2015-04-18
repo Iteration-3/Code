@@ -32,8 +32,8 @@ public class KeyPreferences implements Saveable {
         this.inventoryKey = KeyStroke.getKeyStroke("I");
         this.skillsKey = KeyStroke.getKeyStroke("S");
         this.abilities = new ArrayList<KeyStroke>();
-        for(int i = 0; i!=10;++i){
-        	abilities.add(KeyStroke.getKeyStroke((char) ('0'+i)));
+        for (int i = 0; i != 10; ++i) {
+            abilities.add(KeyStroke.getKeyStroke((char) ('0' + i)));
         }
     }
 
@@ -47,11 +47,15 @@ public class KeyPreferences implements Saveable {
         setInventoryKey(KeyStroke.getKeyStroke(structuredMap.getString("inventory")));
         setSkillsKey(KeyStroke.getKeyStroke(structuredMap.getString("skills")));
         setPauseKey(KeyStroke.getKeyStroke(structuredMap.getString("pause")));
-        //TODO load abilitittititites.
+        abilities = new ArrayList<KeyStroke>();
+        for (int i = 0; i < 10; i++) {
+            abilities.add(KeyStroke.getKeyStroke(structuredMap.getString("ability" + i)));
+        }
     }
 
     public KeyPreferences(KeyStroke upKey, KeyStroke upRightKey, KeyStroke downRightKey, KeyStroke downKey,
-            KeyStroke downLeftKey, KeyStroke upLeftKey, KeyStroke pauseKey, KeyStroke inventoryKey, KeyStroke skillsKey, List<KeyStroke> abilities) {
+            KeyStroke downLeftKey, KeyStroke upLeftKey, KeyStroke pauseKey, KeyStroke inventoryKey,
+            KeyStroke skillsKey, List<KeyStroke> abilities) {
         setUpKey(upKey);
         setUpRightKey(upRightKey);
         setDownRightKey(downRightKey);
@@ -62,7 +66,7 @@ public class KeyPreferences implements Saveable {
         setInventoryKey(inventoryKey);
         setSkillsKey(skillsKey);
         setAbilities(abilities);
-        
+
     }
 
     public StructuredMap getStructuredMap() {
@@ -76,6 +80,9 @@ public class KeyPreferences implements Saveable {
         map.put("pause", formatKey(getPauseKey()));
         map.put("inventory", formatKey(getInventoryKey()));
         map.put("skills", formatKey(getSkillsKey()));
+        for (int i = 0; i < abilities.size(); i++) {
+            map.put("ability" + i, formatKey(abilities.get(i)));
+        }
 
         return map;
     }
