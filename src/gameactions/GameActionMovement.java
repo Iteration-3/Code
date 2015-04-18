@@ -44,6 +44,7 @@ public class GameActionMovement extends GameAction {
 	@Override
 	public void perform() {
 		TileCoordinate potentialSpot = getEntity().nextLocation(direction);
+		this.getItemMap().touch(entity, potentialSpot);
 		if(this.canMoveTo(potentialSpot)){
 			getEntity().move(direction);
 		}
