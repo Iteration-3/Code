@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.swing.KeyStroke;
 
-import utilities.structuredmap.SavableLoadable;
+import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 
-public class KeyPreferences implements SavableLoadable {
+public class KeyPreferences implements Saveable {
 
     private KeyStroke upKey;
     private KeyStroke upRightKey;
@@ -21,15 +21,6 @@ public class KeyPreferences implements SavableLoadable {
     private List<KeyStroke> abilities;
 
     public KeyPreferences() {
-        /*
-         * Num Pad Key Preferences this.upKey =
-         * KeyStroke.getKeyStroke("NUMPAD8"); this.upRightKey =
-         * KeyStroke.getKeyStroke("NUMPAD9"); this.upLeftKey=
-         * KeyStroke.getKeyStroke("NUMPAD7"); this.downRightKey =
-         * KeyStroke.getKeyStroke("NUMPAD3"); this.downKey =
-         * KeyStroke.getKeyStroke("NUMPAD2"); this.downLeftKey =
-         * KeyStroke.getKeyStroke("NUMPAD1");
-         */
         this.upKey = KeyStroke.getKeyStroke("W");
         this.upRightKey = KeyStroke.getKeyStroke("E");
         this.upLeftKey = KeyStroke.getKeyStroke("Q");
@@ -39,6 +30,18 @@ public class KeyPreferences implements SavableLoadable {
         this.pauseKey = KeyStroke.getKeyStroke("ESCAPE");
         this.inventoryKey = KeyStroke.getKeyStroke("I");
         this.skillsKey = KeyStroke.getKeyStroke("S");
+    }
+
+    public KeyPreferences(StructuredMap structuredMap) {
+        setUpKey(KeyStroke.getKeyStroke(structuredMap.getString("up")));
+        setUpLeftKey(KeyStroke.getKeyStroke(structuredMap.getString("upLeft")));
+        setUpRightKey(KeyStroke.getKeyStroke(structuredMap.getString("upLeft")));
+        setDownLeftKey(KeyStroke.getKeyStroke(structuredMap.getString("downLeft")));
+        setDownRightKey(KeyStroke.getKeyStroke(structuredMap.getString("downRight")));
+        setDownKey(KeyStroke.getKeyStroke(structuredMap.getString("down")));
+        setInventoryKey(KeyStroke.getKeyStroke(structuredMap.getString("inventory")));
+        setSkillsKey(KeyStroke.getKeyStroke(structuredMap.getString("skills")));
+        setPauseKey(KeyStroke.getKeyStroke(structuredMap.getString("pause")));
     }
 
     public KeyPreferences(KeyStroke upKey, KeyStroke upRightKey, KeyStroke downRightKey, KeyStroke downKey,
@@ -55,11 +58,22 @@ public class KeyPreferences implements SavableLoadable {
     }
 
     public StructuredMap getStructuredMap() {
-        return null;
+        StructuredMap map = new StructuredMap();
+        map.put("up", formatKey(getUpKey()));
+        map.put("upLeft", formatKey(getUpLeftKey()));
+        map.put("upRight", formatKey(getUpRightKey()));
+        map.put("down", formatKey(getDownKey()));
+        map.put("downLeft", formatKey(getDownLeftKey()));
+        map.put("downRight", formatKey(getDownRightKey()));
+        map.put("pause", formatKey(getPauseKey()));
+        map.put("inventory", formatKey(getInventoryKey()));
+        map.put("skills", formatKey(getSkillsKey()));
+
+        return map;
     }
 
-    public void load(StructuredMap map) {
-
+    private String formatKey(KeyStroke stroke) {
+        return stroke.toString().replaceAll("(pressed|typed) ", "");
     }
 
     public KeyStroke getUpKey() {

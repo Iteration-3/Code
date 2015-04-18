@@ -10,13 +10,13 @@ import model.slots.ItemManager;
 import model.statistics.EntityStatistics;
 import model.statistics.Statistics;
 import utilities.Angle;
-import utilities.structuredmap.SavableLoadable;
+import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 import view.InventoryView;
 import controller.listener.Listener;
 
-public abstract class Entity implements SavableLoadable {
+public abstract class Entity implements Saveable {
     private ItemManager itemManager;
     private String name = null;
     private EntityStatistics stats = new EntityStatistics();

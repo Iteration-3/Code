@@ -1,10 +1,10 @@
 package model.map.tile;
 
 import model.entity.Entity;
-import utilities.structuredmap.SavableLoadable;
+import utilities.structuredmap.Saveable;
 import view.map.TileView;
 
-public abstract class Tile implements SavableLoadable {
+public abstract class Tile implements Saveable {
 	private TileView view;
 	
 	public Tile(TileView view){
