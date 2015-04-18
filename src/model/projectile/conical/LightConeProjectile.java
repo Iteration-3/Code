@@ -1,6 +1,7 @@
 package model.projectile.conical;
 
 import utilities.Angle;
+import model.area.RadialArea;
 import model.event.Event;
 import model.event.HealthModifierEvent;
 import model.trigger.SingleUseTrigger;
@@ -12,7 +13,7 @@ public class LightConeProjectile extends ConicalProjectile {
 		super();
 		this.setSpeed(3);
 		Event damageEvent = new HealthModifierEvent(0, -15);
-		SingleUseTrigger damageTrigger = new SingleUseTrigger(null, damageEvent);
+		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
 		this.setTrigger(damageTrigger);
 	}
 	

@@ -1,5 +1,6 @@
 package model.projectile.conical;
 
+import model.area.RadialArea;
 import model.event.Event;
 import model.event.StatisticModifierEvent;
 import model.statistics.Statistics;
@@ -13,7 +14,7 @@ public class IntimidateConeProjectile extends ConicalProjectile {
 		super();
 		this.setSpeed(3);
 		Event damageEvent = new StatisticModifierEvent(new Statistics(-20, 0, 0, 0), 5);
-		SingleUseTrigger damageTrigger = new SingleUseTrigger(null, damageEvent);
+		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
 		this.setTrigger(damageTrigger);
 	}
 	
