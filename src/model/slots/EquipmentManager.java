@@ -1,9 +1,5 @@
 package model.slots;
 
-import utilities.structuredmap.Saveable;
-import utilities.structuredmap.StructuredMap;
-import view.EquipmentView;
-import view.SlotView;
 import model.entity.NPC;
 import model.entity.Smasher;
 import model.entity.Sneak;
@@ -19,6 +15,10 @@ import model.item.SmasherWeapon;
 import model.item.TwoHandedWeapon;
 import model.item.Weapon;
 import model.statistics.Statistics;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
+import view.EquipmentView;
+import view.SlotView;
 
 public class EquipmentManager implements Saveable {
     private EquipmentSlot<Helmet> helmetSlot;
@@ -40,6 +40,45 @@ public class EquipmentManager implements Saveable {
         this.setSlots();
         this.THWSlot = new DoubleEquipmentSlot<TwoHandedWeapon, SmasherWeapon, Shield>(weaponSlot, this.shieldSlot);
         this.registerSlots();
+    }
+    
+    public EquipmentManager(StructuredMap map) {
+        
+    }
+
+    @Override
+    public StructuredMap getStructuredMap() {
+        StructuredMap map = new StructuredMap();
+        if(helmetSlot.get() != null ) {
+            map.put("helmet", helmetSlot.get().getStructuredMap());
+        }
+        
+        if(chestPieceSlot.get() != null) {
+            map.put("chestPiece", chestPieceSlot.get().getStructuredMap());
+        }
+        
+        if(leggingsSlot.get() != null) {
+            map.put("leggings", leggingsSlot.get().getStructuredMap());
+        }
+        
+        if(shieldSlot.get() != null ) {
+            map.put("shield", shieldSlot.get().getStructuredMap());
+        }
+        
+        if(bootsSlot.get() != null) {
+            map.put("boots", bootsSlot.get().getStructuredMap());
+        }
+        
+        if(glovesSlot.get() != null) {
+            map.put("gloves", glovesSlot.get().getStructuredMap());
+        }
+        
+        if(projectileSlot.get() != null) {
+            map.put("projectile", projectileSlot.get().getStructuredMap());
+        }
+        
+        //TODO Weapon and TWO handed weapon
+        return map;
     }
 
     public EquipmentManager(Summoner avatar) {
@@ -193,21 +232,15 @@ public class EquipmentManager implements Saveable {
         return this.weaponSlot.canEquip(weapon);
     }
 
-    @Override
-    public StructuredMap getStructuredMap() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
     public EquipmentView getView() {
         return this.equipmentView;
     }
-    
-    public boolean THWSlotHasItem(){
-    	if (hasTHW()){
-    		return this.THWSlot.has();
-    	}
-    	return false;
+
+    public boolean THWSlotHasItem() {
+        if (hasTHW()) {
+            return this.THWSlot.has();
+        }
+        return false;
     }
 
 }
