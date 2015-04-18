@@ -53,7 +53,6 @@ public class GameplayState extends GameState {
 
     public GameplayState() {
         layout = new GameplayLayout();
-        controller = new GameplayController();
         gameMap = new GameTerrain();
     }
 
@@ -65,10 +64,13 @@ public class GameplayState extends GameState {
         // make the itemEntityAssocation,
         // Which is needed for other stuff.
         super.onEnter();
+        System.out.println(getContext());
+        controller = new GameplayController(getContext());
         addTilesTest();
         addEntityTest();
         addItemsTest();
         addTriggersTest();
+        controller.spawnUpdateThread();
     }
 
     @Override
@@ -79,8 +81,15 @@ public class GameplayState extends GameState {
 
     @Override
     public void onPause() {
+    	super.onPause();
         controller.removeListeners();
         layout.clearBindings();
+    }
+    
+    @Override
+    public void onExit() {
+        controller.terminateUpdateThread();
+        super.onExit();
     }
 
     public void addEntityTest() {

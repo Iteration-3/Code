@@ -12,7 +12,5 @@ public class RunGame {
         gameModel.pushState(new MainMenuState());
       }
     });
-    GameLoop loop = new GameLoop(gameModel);
-    loop.startLoop();
   }
 }
