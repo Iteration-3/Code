@@ -13,6 +13,7 @@ import utilities.Angle;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
+import view.EquipmentView;
 import view.InventoryView;
 import controller.listener.Listener;
 
@@ -39,8 +40,6 @@ public abstract class Entity implements Saveable {
         name = map.getString("name");
         int[] locationArray = map.getIntArray("location");
         this.location = new TileCoordinate(locationArray[0], locationArray[1]);
-        
-        
 
     }
 
@@ -64,9 +63,9 @@ public abstract class Entity implements Saveable {
         map.put("stats", stats.getStructuredMap());
         map.put("direction", direction.ordinal());
         map.put("items", itemManager.getStructuredMap());
-        
-        //TODO more createItemManager
-        
+
+        // TODO more createItemManager
+
         return map;
     }
 
@@ -216,14 +215,18 @@ public abstract class Entity implements Saveable {
         stats.addMana(mana);
     }
 
+    public boolean containsItem(TakeableItem item) {
+        return itemManager.inventoryHasItem(item);
+    }
+
     // DELETE ME AFTER FIXING FOR TESTING PURPOSES
 
     public InventoryView getInventoryView() {
         return this.itemManager.getInventoryView();
     }
 
-    public boolean containsItem(TakeableItem item) {
-        return itemManager.inventoryHasItem(item);
+    public EquipmentView getEquipmentView() {
+        return itemManager.getEquipmentView();
     }
 
 }

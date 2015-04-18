@@ -8,7 +8,7 @@ import utilities.ImageProcessing;
 public class EquipmentView {
 	private static final int SLOT_HEIGHT = 80;
 	private static final int SLOT_WIDTH = 80;
-	private static final int EQUIPMENT_SCALE = 80;	//this is a percentage of the height and scale
+	private static final float EQUIPMENT_SCALE = 80;	//this is a percentage of the height and scale
 	
 	private static final String HELMET_PATH = "src/resources/images/helmet_slot.jpg";
 	private static final String CHEST_PIECE_PATH = "src/resources/images/chest_piece_slot.jpg";
@@ -54,7 +54,7 @@ public class EquipmentView {
 	}
 	
 	private void setView(SlotView slot,BufferedImage image){
-		slot = new SlotView(image);
+		slot.setBackground(image);
 	}
 	
 	public void registerHelmet(SlotView slotView){

@@ -14,6 +14,7 @@ public class DoubleEquipmentSlot <K extends EquipableItem, F extends EquipableIt
 	// TODO change if necessary the WeaponSLot type
 	public DoubleEquipmentSlot(EquipmentSlot<F> weaponSlot,
 			EquipmentSlot<S> shieldSlot) {
+		super();
 		this.weaponSlot = weaponSlot;
 		this.shieldSlot = shieldSlot;
 		this.weaponSlot.setParentSlot(this);
