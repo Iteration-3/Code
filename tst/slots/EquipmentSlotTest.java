@@ -69,7 +69,7 @@ public class EquipmentSlotTest {
 		SmasherWeaponSlot weapon = new SmasherWeaponSlot();
 		EquipmentSlot<Shield> shield = new EquipmentSlot<Shield>();
 		DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield> THWSlot = new DoubleEquipmentSlot<TwoHandedWeapon,SmasherWeapon,Shield>(weapon, shield);
-		assertFalse(THW.has());
+		assertFalse(THWSlot.has());
 	}
 	
 	@Test
