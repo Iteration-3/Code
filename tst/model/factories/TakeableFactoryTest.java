@@ -20,7 +20,7 @@ public class TakeableFactoryTest {
 
 		StructuredMap map = cons.getStructuredMap();
 
-		TakeableItem item = TakeableItemFactory.createItem("consumableItem", map.getStructuredMap("consumableItem"));
+		TakeableItem item = TakeableItemFactory.createItem(map);
 
 		assertEquals(map.getJson(), item.getStructuredMap().getJson());
 	}

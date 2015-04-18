@@ -42,6 +42,7 @@ public abstract class Entity implements Saveable {
         name = map.getString("name");
         int[] locationArray = map.getIntArray("location");
         this.location = new TileCoordinate(locationArray[0], locationArray[1]);
+        
     }
 
     private void setNecessities() {

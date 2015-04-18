@@ -11,9 +11,8 @@ import utilities.structuredmap.StructuredMap;
 import view.item.BasicItemView;
 
 public class EquipableItemFactory {
-
-	public static EquipableItem createItem(String key, StructuredMap map) {
-		switch (key) {
+	public static EquipableItem createItem(StructuredMap map) {
+		switch (map.getString("type")) {
 		case "helmet":
 			return new Helmet(new BasicItemView(), map);
 		case "chestPiece":
@@ -31,5 +30,4 @@ public class EquipableItemFactory {
 
 		}
 	}
-
 }

@@ -32,9 +32,11 @@ public class Boots extends EquipableItem {
 	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = super.getStructuredMap();
-		StructuredMap returnMap = new StructuredMap();
-		returnMap.put("boots", map);
-		return returnMap;
+		return map;
+	}
+	
+	protected String getType() {
+		return "boots";
 	}
 
 }

@@ -45,7 +45,12 @@ public class ItemManager implements Saveable {
         this.inventory = new Inventory();
     }
 
-    public void merge(Statistics statistitcs) {
+    public ItemManager(StructuredMap map) {
+		this.equipment = new EquipmentManager(map.getStructuredMap("equipment"));
+		this.inventory = new Inventory(map.getStructuredMap("inventory"));
+	}
+
+	public void merge(Statistics statistitcs) {
         this.equipment.merge(statistitcs);
     }
 
