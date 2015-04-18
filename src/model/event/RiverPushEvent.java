@@ -23,6 +23,12 @@ public class RiverPushEvent extends Event{
 		RiverPushEvent clone = new RiverPushEvent(this.getGameActionRiverPush());
 		return clone;
 	}
+	
+	@Override
+	public void setTarget(Entity entity){
+		gameActionRiverPush.setTarget(entity);
+		super.setTarget(entity);
+	}
 
 	private GameActionRiverPush getGameActionRiverPush() {
 		return gameActionRiverPush;

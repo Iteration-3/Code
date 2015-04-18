@@ -25,6 +25,10 @@ public class GameActionRiverPush extends GameAction {
 		teleport.perform();
 		
 	}
+
+	public void setTarget(Entity entity) {
+		teleport.setTarget(entity);
+	}
 	
 	
 
