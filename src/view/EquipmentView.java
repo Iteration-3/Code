@@ -121,21 +121,6 @@ public class EquipmentView extends JComponent {
 		this.setView(slotView,projectileImage , projectileX , projectileY);
 	}
 	
-//	public void paint(Graphics g){
-//		int x = 0;
-//		int y = 0;
-//		float itemDiameter = EQUIPMENT_SCALE;
-//		helmetButton.paint(g);
-//		helmetView.render(g,helmetX + x ,helmetY + y , itemDiameter);
-//		chestPieceView.render(g,chestPieceX + x ,chestPieceY + y , itemDiameter);
-//		leggingsView.render(g,leggingsX + x ,leggingsY + y , itemDiameter);
-//		bootsView.render(g,bootsX + x ,bootsY + y , itemDiameter);
-//		weaponView.render(g,weaponX + x ,weaponY + y , itemDiameter);
-//		shieldView.render(g,shieldX + x ,shieldY + y , itemDiameter);
-//		projectileView.render(g ,projectileX + x ,projectileY + y , itemDiameter);
-//		glovesView.render(g,glovesX + x ,glovesY + y , itemDiameter);
-//	}
-	
 	public void setBounds(int x, int y){
 		this.setBounds(x,y,this.WIDTH, this.HEIGHT);
 	}

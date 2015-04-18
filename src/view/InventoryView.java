@@ -18,6 +18,9 @@ public class InventoryView extends JComponent {
 	private final static int COL = 5;
 	private final static int ROW = 5;
 	private final static float ITEM_DIAMETER = 50;
+	
+	private int width = SLOT_WIDTH * ROW;
+	private int height = SLOT_HEIGHT * COL;
 
 	private int widthOffset;
 	private int heightOffset;
@@ -62,7 +65,7 @@ public class InventoryView extends JComponent {
 
 
 	public void setBounds(int x, int y) {
-		this.setBounds(x, y, WIDTH, HEIGHT);
+		this.setBounds(x, y, this.width, this.height);
 		this.revalidate();
 	}
 
@@ -81,7 +84,8 @@ public class InventoryView extends JComponent {
 	
 	public void add(InventoryMenuController controller){
 		for (int i:slots.keySet()){
-			slots.get(i).addActionListener(controller.makeInventoryActionListener(i));
+			slots.get(i).addMouseListener(controller.makeSlotMouseListener(i));
+			System.out.println(slots.get(i).isValid());
 		}
 	}
 }
