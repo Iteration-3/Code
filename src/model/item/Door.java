@@ -16,15 +16,16 @@ public class Door extends Item {
 	
 	@Override
 	public void touch(Entity entity) {
-		// Should I do something different on touch()? -- Joe
+		System.out.println(getInfo());
 		use(entity);
 	}
 
 	@Override
 	public void use(Entity entity) {
-		/*
-		 * if (entity.containsItem(requirement)) { open = true; }
-		 */
+		if (entity.containsItem(requirement)) {
+			open = true;
+		}
+		 
 	}
 
 	@Override

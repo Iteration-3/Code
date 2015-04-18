@@ -17,6 +17,7 @@ import model.entity.EntityMovementAssocation;
 import model.entity.Smasher;
 import model.event.HealthModifierEvent;
 import model.event.ManaModifierEvent;
+import model.item.Door;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
 import model.item.TakeableItem;
@@ -26,7 +27,6 @@ import model.map.tile.PassableTile;
 import model.statistics.EntityStatistics;
 import model.trigger.PermanentTrigger;
 import model.trigger.SingleUseTrigger;
-import model.trigger.TimedTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import view.EntityView;
@@ -124,6 +124,19 @@ public class GameplayState extends GameState {
         takeableItemView.registerWithGameItemView(layout.getGameItemView(), takeableItemViewPosition);
         itemEntityAssociation.addItem(new TakeableItem(takeableItemView),
                 RealCoordinate.convertToTileCoordinate(takeableItemViewPosition));
+
+        ItemView takeableItemViewTwo = new BasicItemView(new Color(100, 60, 100), Color.DARK_GRAY);
+        RealCoordinate takeableItemViewPositionTwo = new RealCoordinate(5, 6);
+        takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView(), takeableItemViewPositionTwo);
+        TakeableItem takeableItemTwo = new TakeableItem(takeableItemViewTwo);
+        itemEntityAssociation.addItem(new TakeableItem(takeableItemViewTwo),
+                RealCoordinate.convertToTileCoordinate(takeableItemViewPositionTwo));
+        
+        ItemView doorItemView = new BasicItemView(Color.GRAY, Color.DARK_GRAY);
+        RealCoordinate doorItemViewPosition = new RealCoordinate(15, 15);
+        doorItemView.registerWithGameItemView(layout.getGameItemView(), doorItemViewPosition);
+        Door doorItem = new Door(takeableItemView, takeableItemTwo);
+        itemEntityAssociation.addItem(doorItem, RealCoordinate.convertToTileCoordinate(doorItemViewPosition));
 
         ItemView obstacleItemView = new BasicItemView(Color.GRAY, Color.BLACK);
         RealCoordinate obstacleItemPosition = new RealCoordinate(9, 7);
