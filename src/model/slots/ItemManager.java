@@ -86,37 +86,37 @@ public class ItemManager implements Saveable {
         return item.equip(this);
     }
     
-    public boolean equipToSlot(Boots boots){
+    public boolean equipToSlot(Boots item){
     	this.unequipBoots();
-    	return this.equipment.equip(boots);
+    	return this.equipment.equip(item);
     }
-    public boolean equipToSlot(Weapon boots){
-    	this.unequipBoots();
-    	return this.equipment.equip(boots);
+    public boolean equipToSlot(Weapon item){
+    	this.unequipWeapon();
+    	return this.equipment.equip(item);
     }
-    public boolean equipToSlot(Leggings boots){
-    	this.unequipBoots();
-    	return this.equipment.equip(boots);
+    public boolean equipToSlot(Leggings item){
+    	this.unequipLeggings();
+    	return this.equipment.equip(item);
     }
-    public boolean equipToSlot(ChestPiece boots){
-    	this.unequipBoots();
-    	return this.equipment.equip(boots);
+    public boolean equipToSlot(ChestPiece item){
+    	this.unequipChestPiece();
+    	return this.equipment.equip(item);
     }
-    public boolean equipToSlot(Gloves boots){
-    	this.unequipBoots();
-    	return this.equipment.equip(boots);
+    public boolean equipToSlot(Gloves item){
+    	this.unequipGloves();
+    	return this.equipment.equip(item);
     }
-    public boolean equipToSlot(Projectile boots){
-    	this.unequipBoots();
-    	return this.equipment.equip(boots);
+    public boolean equipToSlot(Projectile item){
+    	this.unequipProjectile();
+    	return this.equipment.equip(item);
     }
-    public boolean equipToSlot(Helmet boots){
-    	this.unequipBoots();
-    	return this.equipment.equip(boots);
+    public boolean equipToSlot(Helmet item){
+    	this.unequipHelmet();
+    	return this.equipment.equip(item);
     }
-    public boolean equipToSlot(Shield boots){
-    	this.unequipBoots();
-    	return this.equipment.equip(boots);
+    public boolean equipToSlot(Shield item){
+    	this.unequipShield();
+    	return this.equipment.equip(item);
     }
 
     public void unequipProjectile() {
