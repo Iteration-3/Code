@@ -1,5 +1,6 @@
 package model.item;
 
+import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 import model.entity.Entity;
 import model.map.tile.ItemTile;
@@ -37,5 +38,10 @@ public class ObstacleItem extends Item {
 		// You don't want to have a method that does nothing...
 		System.out.println("Can't remove an Obstacle Item!");
 	}
+
+    @Override
+    public StructuredMap getStructuredMap() {
+        return new StructuredMap();
+    }
 
 }

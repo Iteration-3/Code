@@ -2,6 +2,7 @@ package model.item;
 
 import model.entity.Entity;
 import model.map.tile.ItemTile;
+import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 
 public class Door extends Item {
@@ -12,6 +13,12 @@ public class Door extends Item {
 	public Door(ItemView itemView, TakeableItem requirement) {
 		super(itemView);
 		this.requirement = requirement;
+	}
+	
+	public Door(ItemView itemView, StructuredMap map) {
+	    super(itemView);
+	    //TODO this definitely doesn't work
+	    //requirement = new TakeableItem(map.getStructuredMap("requirement"));
 	}
 	
 	@Override
@@ -47,5 +54,12 @@ public class Door extends Item {
 			// itemTile.remove(this);
 		}
 	}
+
+    @Override
+    public StructuredMap getStructuredMap() {
+        StructuredMap map = new StructuredMap();
+        map.put("requirement", requirement.getStructuredMap());
+        return map;
+    }
 
 }

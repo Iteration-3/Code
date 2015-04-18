@@ -8,37 +8,52 @@ import model.event.ManaModifierEvent;
 import model.event.MovementModifierEvent;
 import model.event.StatisticModifierEvent;
 import model.statistics.EntityStatistics;
+import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 
 public class ConsumableItem extends TakeableItem {
-	private EntityStatistics stats;
-	private double duration;
+    private EntityStatistics stats;
+    private double duration;
 
-	public ConsumableItem(ItemView itemView, EntityStatistics stats) {
-		super(itemView);
-		this.stats = stats;
-		this.duration = 0.0;
-	}
-	
-	public ConsumableItem(ItemView itemView, EntityStatistics stats, double duration) {
-		super(itemView);
-		this.stats = stats;
-		this.duration = duration;
-	}
+    public ConsumableItem(ItemView itemView, EntityStatistics stats) {
+        super(itemView);
+        this.stats = stats;
+        this.duration = 0.0;
+    }
 
-	@Override
-	public void use(Entity entity) {
-		EventManager.getSingleton().addEvent(new StatisticModifierEvent(stats, entity, duration));
-		EventManager.getSingleton().addEvent(new LivesModifierEvent(stats.getLivesLeft(), entity, duration));
-		EventManager.getSingleton().addEvent(new HealthModifierEvent(stats.getCurrentHealth(), entity, duration));
-		EventManager.getSingleton().addEvent(new MovementModifierEvent(stats.getMovement(), entity, duration));
-		EventManager.getSingleton().addEvent(new ManaModifierEvent(stats.getCurrentMana(), entity, duration));
-	}
+    public ConsumableItem(ItemView itemView, EntityStatistics stats, double duration) {
+        super(itemView);
+        this.stats = stats;
+        this.duration = duration;
+    }
 
-	@Override
-	public String getInfo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public ConsumableItem(ItemView itemView, StructuredMap map) {
+        super(itemView);
+        this.stats = new EntityStatistics(map.getStructuredMap("stats"));
+        this.duration = map.getDouble("duration");
+    }
+
+    @Override
+    public void use(Entity entity) {
+        EventManager.getSingleton().addEvent(new StatisticModifierEvent(stats, entity, duration));
+        EventManager.getSingleton().addEvent(new LivesModifierEvent(stats.getLivesLeft(), entity, duration));
+        EventManager.getSingleton().addEvent(new HealthModifierEvent(stats.getCurrentHealth(), entity, duration));
+        EventManager.getSingleton().addEvent(new MovementModifierEvent(stats.getMovement(), entity, duration));
+        EventManager.getSingleton().addEvent(new ManaModifierEvent(stats.getCurrentMana(), entity, duration));
+    }
+
+    @Override
+    public String getInfo() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public StructuredMap getStructuredMap() {
+        StructuredMap map = super.getStructuredMap();
+        map.put("stats", stats.getStructuredMap());
+        map.put("duration", this.duration);
+        return map;
+    }
 
 }

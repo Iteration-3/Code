@@ -2,6 +2,7 @@ package model.item;
 
 import javax.swing.JOptionPane;
 
+import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 import model.entity.Entity;
 import model.map.tile.ItemTile;
@@ -11,6 +12,11 @@ public class TakeableItem extends Item {
 
 	public TakeableItem(ItemView itemView) {
 		super(itemView);
+	}
+	
+	public TakeableItem(ItemView itemView, StructuredMap map) {
+	    super(itemView);
+	    this.taken = map.getBoolean("taken");
 	}
 
 	@Override
@@ -40,5 +46,12 @@ public class TakeableItem extends Item {
 			itemTile.remove(this);
 		}
 	}
+
+    @Override
+    public StructuredMap getStructuredMap() {
+       StructuredMap map = new StructuredMap();
+       map.put("taken", taken);
+       return map;
+    }
 	
 }

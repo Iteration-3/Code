@@ -9,6 +9,7 @@ import model.event.MovementModifierEvent;
 import model.event.StatisticModifierEvent;
 import model.map.tile.ItemTile;
 import model.statistics.EntityStatistics;
+import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 
 public class OneShotItem extends Item {
@@ -17,6 +18,12 @@ public class OneShotItem extends Item {
 	public OneShotItem(ItemView itemView, EntityStatistics modifiers) {
 		super(itemView);
 		this.modifiers = modifiers;
+	}
+	
+	public OneShotItem(ItemView itemView, StructuredMap map) {
+	    //TODO verify saving and loading
+	    super(itemView);
+	    this.modifiers = new EntityStatistics(map.getStructuredMap("modifiers"));
 	}
 
 	@Override
@@ -44,5 +51,12 @@ public class OneShotItem extends Item {
 	public void attemptRemoveFrom(ItemTile itemTile) {
 		itemTile.remove(this);
 	}
+
+    @Override
+    public StructuredMap getStructuredMap() {
+       StructuredMap map = new StructuredMap();
+       map.put("modifiers", modifiers.getStructuredMap());
+       return map;
+    }
 
 }
