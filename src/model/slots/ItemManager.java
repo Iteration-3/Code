@@ -10,6 +10,7 @@ import model.item.Weapon;
 import model.statistics.Statistics;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import view.EquipmentView;
 import view.InventoryView;
 
 public class ItemManager implements Saveable {
@@ -150,6 +151,10 @@ public class ItemManager implements Saveable {
 
     public InventoryView getInventoryView() {
         return this.inventory.getView();
+    }
+    
+    public EquipmentView getEquipmentView() {
+    	return this.equipment.getView();
     }
 
     @Override
