@@ -8,7 +8,6 @@ public class LightManager {
 	
 	private static LightManager _lightManager = new LightManager();
 	private ArrayList<LightSource> lightSources = new ArrayList<LightSource>();
-	private ArrayList<LightSource> seenSources = new ArrayList<LightSource>();
 	private LightMap lightMap = new LightMap(100, 100); //TODO temp
 	
 	private LightManager() { 
@@ -18,7 +17,7 @@ public class LightManager {
 		int baseStrength = getLightMap().getVisibility(loc).getValue();
 		
 		int sum = 0;
-		for (LightSource l : seenSources) {
+		for (LightSource l : lightSources) {
 			if (l.getArea().isInRange(loc)) {
 				sum += l.getVisibility().getValue();
 			}
@@ -39,13 +38,9 @@ public class LightManager {
 		return _lightManager;
 	}
 	
-	public void addSeenSource(LightSource lightSource) {
-		seenSources.add(lightSource);
-		updateSeen();
-	}
-	
 	public void addLightSource(LightSource lightSource) {
 		lightSources.add(lightSource);
+		updateSeen();
 	}
 	
 	public boolean removeLightSource(LightSource lightSource) {
