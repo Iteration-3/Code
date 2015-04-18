@@ -4,10 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
-import javax.swing.ActionMap;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
-
 import view.map.GameEntityView;
 import view.map.GameItemView;
 import view.map.GameTerrainView;
