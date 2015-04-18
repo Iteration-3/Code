@@ -6,7 +6,6 @@ import gameactions.GameActionTeleport;
 import java.awt.Color;
 import java.util.Collection;
 
-import model.ItemEntityAssociation;
 import model.KeyPreferences;
 import model.area.Area;
 import model.area.RadialArea;
@@ -24,6 +23,7 @@ import model.item.ObstacleItem;
 import model.item.OneShotItem;
 import model.item.TakeableItem;
 import model.map.GameTerrain;
+import model.map.ItemMap;
 import model.map.tile.ImpassableTile;
 import model.map.tile.PassableTile;
 import model.statistics.EntityStatistics;
@@ -46,7 +46,7 @@ public class GameplayState extends GameState {
     private GameplayController controller;
     private GameplayLayout layout;
     private GameTerrain gameMap;
-    private ItemEntityAssociation itemEntityAssociation;
+    private ItemMap itemMap = new ItemMap();
     private Avatar avatar;
 
     public GameplayState() {
@@ -88,8 +88,6 @@ public class GameplayState extends GameState {
         KeyPreferences preferences = new KeyPreferences();
         getContext().setPreferences(preferences);
 
-        this.itemEntityAssociation = new ItemEntityAssociation(avatar);
-
         setListeners(preferences);
 
         EntityManager.getSingleton().setAvatar(avatar);
@@ -112,7 +110,7 @@ public class GameplayState extends GameState {
         skillsListener.addAsBinding(getLayout());
 
         Collection<Listener> listeners = new EntityMovementAssocation(avatar, gameMap,
-                itemEntityAssociation.getItemMap()).getListeners(preferences);
+                this.getItemMap()).getListeners(preferences);
 
         for (Listener listener : listeners) {
             listener.addAsBinding(getLayout());
@@ -120,34 +118,38 @@ public class GameplayState extends GameState {
         }
     }
 
-    private void addItemsTest() {
+    private ItemMap getItemMap() {
+		return itemMap;
+	}
+
+	private void addItemsTest() {
         ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
         TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
         takeableItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(5, 5));
-        itemEntityAssociation.addItem(new TakeableItem(takeableItemView),
+        this.getItemMap().addItem(new TakeableItem(takeableItemView),
                 takeableItemViewPosition);
 
         ItemView takeableItemViewTwo = new BasicItemView(new Color(100, 60, 100), Color.DARK_GRAY);
         TileCoordinate takeableItemViewPositionTwo = new TileCoordinate(5, 6);
         takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(5, 6));
         TakeableItem takeableItemTwo = new TakeableItem(takeableItemViewTwo);
-        itemEntityAssociation.addItem(takeableItemTwo, takeableItemViewPositionTwo);
-        
+        this.getItemMap().addItem(takeableItemTwo, takeableItemViewPositionTwo);
+
         ItemView doorItemView = new BasicItemView(Color.RED, Color.MAGENTA);
         TileCoordinate doorItemViewPosition = new TileCoordinate(15, 14);
         doorItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(15, 14));
         Door doorItem = new Door(doorItemView, takeableItemTwo);
-        itemEntityAssociation.addItem(doorItem, doorItemViewPosition);
+        this.getItemMap().addItem(doorItem, doorItemViewPosition);
 
         ItemView obstacleItemView = new BasicItemView(Color.GRAY, Color.BLACK);
         TileCoordinate obstacleItemPosition = new TileCoordinate(9, 7);
         obstacleItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(9, 7));
-        itemEntityAssociation.addItem(new ObstacleItem(obstacleItemView), obstacleItemPosition);
+        this.getItemMap().addItem(new ObstacleItem(obstacleItemView), obstacleItemPosition);
 
         ItemView oneshotItemView = new BasicItemView(Color.GRAY, Color.BLACK);
         TileCoordinate oneshotItemPosition = new TileCoordinate(13, 9);
         oneshotItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(13, 9));
-        itemEntityAssociation.addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), oneshotItemPosition);
+        this.getItemMap().addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), oneshotItemPosition);
 
     }
 
@@ -167,7 +169,7 @@ public class GameplayState extends GameState {
         TileCoordinate locThree = new TileCoordinate(2, 8);
         Area areaThree = new RadialArea(1, locThree);
         Trigger triggerThree = new PermanentTrigger(areaThree, new TeleportEvent(0, new TileCoordinate(2, 0),
-                new GameActionTeleport(avatar, gameMap, this.itemEntityAssociation.getItemMap(), Angle.DOWN)));
+                new GameActionTeleport(avatar, gameMap, this.getItemMap(), Angle.DOWN)));
 
         triggerManager.addNonPartyTrigger(triggerOne);
         triggerManager.addNonPartyTrigger(triggerTwo);

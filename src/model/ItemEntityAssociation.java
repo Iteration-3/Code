@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import model.entity.Entity;
 import model.item.Item;
@@ -25,7 +24,7 @@ public class ItemEntityAssociation implements ActionListener {
 	}
 	
 	public void addItem(Item item, TileCoordinate position) {
-		itemMap.add(item, position);
+		itemMap.addItem(item, position);
 	}
 
 	@Override

@@ -34,8 +34,8 @@ public class ItemMap implements Saveable {
         ItemTile t = items.get(loc);
         if (t == null) {
             t = new ItemTile();
+            items.put(loc, t);
         }
-        items.put(loc, t);
         return t;
     }
 
@@ -46,7 +46,7 @@ public class ItemMap implements Saveable {
         getItemTileAtLocation(tileCoordinate).touch(e);
     }
 
-    public void add(Item item, TileCoordinate loc) {
+    public void addItem(Item item, TileCoordinate loc) {
         getItemTileAtLocation(loc).addItem(item);
     }
 
