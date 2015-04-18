@@ -1,6 +1,5 @@
 package utilities.structuredmap;
 
-public interface SavableLoadable {
+public interface Saveable {
 	public StructuredMap getStructuredMap();
-	public void load(StructuredMap map);
 }

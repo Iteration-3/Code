@@ -1,8 +1,8 @@
 package model.skillmanager;
 
-import utilities.structuredmap.SavableLoadable;
+import utilities.structuredmap.Saveable;
 
-public abstract class SkillManager implements SavableLoadable {
+public abstract class SkillManager implements Saveable {
 	
 	private int attackSkill = 1;
 	private int bindWoundSkill = 1;

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utilities.Angle;
-import utilities.structuredmap.SavableLoadable;
+import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 
-public abstract class Area implements SavableLoadable {
+public abstract class Area implements Saveable {
     private int range;
     private TileCoordinate startLocation;
     private Area compositeArea;
