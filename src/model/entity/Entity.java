@@ -3,6 +3,8 @@ package model.entity;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import model.KeyPreferences;
+import model.ability.Ability;
 import model.area.TileCoordinate;
 import model.item.EquipableItem;
 import model.item.TakeableItem;
@@ -24,6 +26,7 @@ public abstract class Entity implements Saveable {
     private EntityView view = null;
     private TileCoordinate location = new TileCoordinate();
     private Angle direction = Angle.UP;
+    private Collection<Ability> abilities = new ArrayList<Ability>();
 
     public Entity(String name, EntityView view, TileCoordinate location) {
         this.name = name;
@@ -34,6 +37,10 @@ public abstract class Entity implements Saveable {
 
     public Entity() {
 
+    }
+    
+    protected Collection<Ability> getAbilities(){
+    	return abilities;
     }
 
     public Entity(StructuredMap map) {
@@ -100,7 +107,7 @@ public abstract class Entity implements Saveable {
         return this.getLocation().nextLocation(angle);
     }
 
-    public Collection<Listener> getListeners() {
+    public Collection<Listener> getListeners(KeyPreferences preferences) {
         Collection<Listener> listeners = new ArrayList<Listener>();
         return listeners;
     }

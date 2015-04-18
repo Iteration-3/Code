@@ -26,7 +26,7 @@ public class EntityMovementAssocation {
 
 	}
 	public Collection<Listener> getListeners(KeyPreferences preferences){
-		Collection<Listener> listeners = new ArrayList<Listener>();
+		Collection<Listener> listeners = entity.getListeners(preferences);
 		listeners.add(new PollingListener(preferences.getUpLeftKey(), new GameActionMovement(entity,terrain, itemMap, Angle.UP_LEFT)));
 		listeners.add(new PollingListener(preferences.getDownKey(), new GameActionMovement(entity,terrain, itemMap, Angle.DOWN)));
 		listeners.add(new PollingListener(preferences.getDownRightKey(), new GameActionMovement(entity,terrain, itemMap,Angle.DOWN_RIGHT)));
