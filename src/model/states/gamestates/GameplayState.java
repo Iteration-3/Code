@@ -89,35 +89,32 @@ public class GameplayState extends GameState {
 
         this.itemEntityAssociation = new ItemEntityAssociation(avatar);
         ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
-        RealCoordinate takeableItemViewPosition = new RealCoordinate(5, 5);
-        takeableItemView.registerWithGameItemView(layout.getGameItemView(), takeableItemViewPosition);
+        TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
+        takeableItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(5, 5));
         itemEntityAssociation.addItem(new TakeableItem(takeableItemView),
-                RealCoordinate.convertToTileCoordinate(takeableItemViewPosition));
+                new TileCoordinate(5,5));
 
         ItemView takeableItemViewTwo = new BasicItemView(new Color(100, 60, 100), Color.DARK_GRAY);
-        RealCoordinate takeableItemViewPositionTwo = new RealCoordinate(5, 6);
-        takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView(), takeableItemViewPositionTwo);
+        TileCoordinate takeableItemViewPositionTwo = new TileCoordinate(5, 6);
+        takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(5, 6));
         TakeableItem takeableItemTwo = new TakeableItem(takeableItemViewTwo);
-        itemEntityAssociation.addItem(new TakeableItem(takeableItemViewTwo),
-                RealCoordinate.convertToTileCoordinate(takeableItemViewPositionTwo));
+        itemEntityAssociation.addItem(new TakeableItem(takeableItemViewTwo), takeableItemViewPosition);
         
-        ItemView doorItemView = new BasicItemView(Color.GRAY, Color.DARK_GRAY);
-        RealCoordinate doorItemViewPosition = new RealCoordinate(15, 15);
-        doorItemView.registerWithGameItemView(layout.getGameItemView(), doorItemViewPosition);
-        Door doorItem = new Door(takeableItemView, takeableItemTwo);
-        itemEntityAssociation.addItem(doorItem, RealCoordinate.convertToTileCoordinate(doorItemViewPosition));
+        ItemView doorItemView = new BasicItemView(Color.RED, Color.MAGENTA);
+        TileCoordinate doorItemViewPosition = new TileCoordinate(15, 14);
+        doorItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(15, 14));
+        Door doorItem = new Door(doorItemView, takeableItemTwo);
+        itemEntityAssociation.addItem(doorItem, doorItemViewPosition);
 
         ItemView obstacleItemView = new BasicItemView(Color.GRAY, Color.BLACK);
-        RealCoordinate obstacleItemPosition = new RealCoordinate(9, 7);
-        obstacleItemView.registerWithGameItemView(layout.getGameItemView(), obstacleItemPosition);
-        itemEntityAssociation.addItem(new ObstacleItem(obstacleItemView),
-                RealCoordinate.convertToTileCoordinate(obstacleItemPosition));
+        TileCoordinate obstacleItemPosition = new TileCoordinate(9, 7);
+        obstacleItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(9, 7));
+        itemEntityAssociation.addItem(new ObstacleItem(obstacleItemView), obstacleItemPosition);
 
         ItemView oneshotItemView = new BasicItemView(Color.GRAY, Color.BLACK);
-        RealCoordinate oneshotItemPosition = new RealCoordinate(13, 9);
-        oneshotItemView.registerWithGameItemView(layout.getGameItemView(), oneshotItemPosition);
-        itemEntityAssociation.addItem(new OneShotItem(oneshotItemView, new EntityStatistics()),
-                RealCoordinate.convertToTileCoordinate(oneshotItemPosition));
+        TileCoordinate oneshotItemPosition = new TileCoordinate(13, 9);
+        oneshotItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(13, 9));
+        itemEntityAssociation.addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), oneshotItemPosition);
 		
 	}
 	
