@@ -5,9 +5,13 @@ import model.statistics.Statistics;
 import view.item.ItemView;
 
 public class TwoHandedWeapon extends Weapon {
+	
+	public TwoHandedWeapon(ItemView itemView) {
+		super(itemView);
+	}
 
-	public TwoHandedWeapon(ItemView itemView, Statistics stats) {
-		super(itemView, stats);
+	public TwoHandedWeapon(ItemView itemView, Statistics statistics) {
+		super(itemView, statistics);
 	}
 
 	@Override
@@ -15,8 +19,8 @@ public class TwoHandedWeapon extends Weapon {
 		return null;
 	}
 
-	public void unequip(ItemManager im) {
-		im.unequipTHW();
+	public void unequip(ItemManager itemManager) {
+		itemManager.unequipTHW();
 	}
 
 }

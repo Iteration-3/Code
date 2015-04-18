@@ -10,10 +10,12 @@ import controller.listener.PollingListener;
 import model.KeyPreferences;
 import model.ability.Ability;
 import model.area.TileCoordinate;
+import model.skillmanager.SkillManager;
 import view.EntityView;
 
 public abstract class Avatar extends Entity {
-	private Collection<Ability> abilities= new ArrayList<Ability>();
+	private Collection<Ability> abilities = new ArrayList<Ability>();
+	private SkillManager skillManager;
 	
 	public Avatar(){}
 
@@ -56,4 +58,29 @@ public abstract class Avatar extends Entity {
 	//like an uneeded ovverride, so won't do until needed.
 	
 	//getListeners will be needed
+	
+	public int getAttackSkill() {
+		return getSkillManager().getAttackSkill();
+	}
+	
+	public int getBarterSkill() {
+		return getSkillManager().getBarterSkill();
+	}
+	
+	public int getBindWoundSkill() {
+		return getSkillManager().getBindWoundsSkill();
+	}
+	
+	public int getObserveSkill() {
+		return getSkillManager().getObserveSkill();
+	}
+	
+	protected SkillManager getSkillManager() {
+		return this.skillManager;
+	}
+	
+	protected void setSkillManager(SkillManager skillManager) {
+		this.skillManager = skillManager;
+	}
+	
 }

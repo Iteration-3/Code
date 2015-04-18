@@ -6,17 +6,21 @@ import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 
 public class Boots extends EquipableItem {
+	
+	public Boots(ItemView itemView) {
+		super(itemView);
+	}
 
-	public Boots(ItemView itemView, Statistics stats) {
-		super(itemView, stats);
+	public Boots(ItemView itemView, Statistics statistics) {
+		super(itemView, statistics);
 	}
 	
 	public Boots(ItemView itemView, StructuredMap map) {
 	    super(itemView, map);
 	}
 
-	public boolean equip(ItemManager im) {
-		return im.equipToSlot(this);
+	public boolean equip(ItemManager itemManager) {
+		return itemManager.equipToSlot(this);
 	}
 
 	@Override

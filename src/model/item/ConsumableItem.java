@@ -43,17 +43,18 @@ public class ConsumableItem extends TakeableItem {
     }
 
     @Override
-    public String getInfo() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public StructuredMap getStructuredMap() {
         StructuredMap map = super.getStructuredMap();
         map.put("stats", stats.getStructuredMap());
         map.put("duration", this.duration);
         return map;
     }
+
+	@Override
+	public String getInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

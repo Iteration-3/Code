@@ -4,14 +4,22 @@ import javax.swing.JOptionPane;
 
 import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
+import model.entity.Avatar;
 import model.entity.Entity;
 import model.map.tile.ItemTile;
 
-public class TakeableItem extends Item {
+public abstract class TakeableItem extends Item {
 	private boolean taken = false;
+	private Price price;
 
 	public TakeableItem(ItemView itemView) {
 		super(itemView);
+		setPrice(new Price());
+	}
+	
+	public TakeableItem(ItemView itemView, Price price) {
+		this(itemView);
+		setPrice(price);
 	}
 	
 	public TakeableItem(ItemView itemView, StructuredMap map) {
@@ -23,7 +31,6 @@ public class TakeableItem extends Item {
 	public void touch(Entity entity) {
 		if (entity.addItem(this)) {
 			taken = true;
-			
 			// Remove the view from the map somehow...
 			itemView.removeFromMap();
 		}
@@ -53,5 +60,17 @@ public class TakeableItem extends Item {
        map.put("taken", taken);
        return map;
     }
+	
+	public int getBarteredCost(Avatar avatar) {
+		return getPrice().getBarteredCost(avatar);
+	}
+	
+	protected Price getPrice() {
+		return this.price;
+	}
+	
+	protected void setPrice(Price price) {
+		this.price = price;
+	}
 	
 }

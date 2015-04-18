@@ -8,13 +8,17 @@ import model.statistics.Statistics;
 import view.item.ItemView;
 
 public abstract class Weapon extends EquipableItem{
-
-	public Weapon(ItemView itemView, Statistics stats) {
-		super(itemView, stats);
+	
+	public Weapon(ItemView itemView) {
+		super(itemView);
 	}
 
-	public boolean equip(ItemManager im){
-		return im.equipToSlot(this);
+	public Weapon(ItemView itemView, Statistics statistics) {
+		super(itemView, statistics);
+	}
+
+	public boolean equip(ItemManager itemManager){
+		return itemManager.equipToSlot(this);
 	}
 
 	public boolean equip(SneakWeaponSlot slot){
