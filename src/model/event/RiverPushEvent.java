@@ -1,7 +1,6 @@
 package model.event;
 
 import gameactions.GameActionRiverPush;
-import gameactions.GameActionTeleport;
 import model.entity.Entity;
 
 public class RiverPushEvent extends Event{
@@ -22,6 +21,12 @@ public class RiverPushEvent extends Event{
 	public Event clone() {
 		RiverPushEvent clone = new RiverPushEvent(this.getGameActionRiverPush());
 		return clone;
+	}
+	
+	@Override
+	public void setTarget(Entity entity){
+		gameActionRiverPush.setTarget(entity);
+		super.setTarget(entity);
 	}
 
 	private GameActionRiverPush getGameActionRiverPush() {

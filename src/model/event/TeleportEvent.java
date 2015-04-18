@@ -2,6 +2,7 @@ package model.event;
 
 import gameactions.GameActionTeleport;
 import model.area.TileCoordinate;
+import model.entity.Entity;
 
 public class TeleportEvent extends Event {
 
@@ -18,6 +19,12 @@ public class TeleportEvent extends Event {
 		super(0);
 		this.teleportAction = teleportAction;
 		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public void setTarget(Entity entity){
+		teleportAction.setTarget(entity);
+		super.setTarget(entity);
 	}
 
 	@Override

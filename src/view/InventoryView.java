@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import javax.swing.JComponent;
 
+import controller.InventoryMenuController;
 import utilities.ImageProcessing;
 
 @SuppressWarnings("serial")
@@ -26,7 +27,7 @@ public class InventoryView extends JComponent {
 	public InventoryView() {
 		setLayout(null);//new GridLayout(ROW,COL));
 		this.slots = new HashMap<Integer, SlotView>();
-		setFocusable(true);
+//		setFocusable(true);
 		setVisible(true);
 	}
 
@@ -76,5 +77,11 @@ public class InventoryView extends JComponent {
 	public void setOffsets(int width, int height) {
 		this.widthOffset = width;
 		this.heightOffset = height;
+	}
+	
+	public void add(InventoryMenuController controller){
+		for (int i:slots.keySet()){
+			slots.get(i).addActionListener(controller.makeInventoryActionListener(i));
+		}
 	}
 }

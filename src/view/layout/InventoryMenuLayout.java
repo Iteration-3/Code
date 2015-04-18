@@ -37,7 +37,7 @@ public class InventoryMenuLayout extends Layout {
 		setEquipmentView(equipmentView);
 		initButtons();
 		addViews();
-		setFocusable(true);
+//		setFocusable(true);
 	}
 
 	private void addViews() {
@@ -71,10 +71,7 @@ public class InventoryMenuLayout extends Layout {
 
 	public void attachController(InventoryMenuController controller) {
 		backButton.addActionListener(controller.getBackAction());
-		this.inventoryMouseListener = controller.getInventoryMouseListener();
-		this.addViews();
-		this.inventoryView.addMouseListener(this.inventoryMouseListener);
-		this.equipmentView.addMouseListener(controller.getEquipmentMouseListener());
+		this.inventoryView.add(controller);
 	}
 
 	public void setInventoryView(InventoryView inventoryView) {
