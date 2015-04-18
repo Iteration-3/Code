@@ -43,13 +43,11 @@ public class ItemMap implements Saveable {
         // Takes an entity, makes it touch all the items on the square, and then
         // removes
         // those items that get picked up from the map.
-        getItemTileAtLocation(e.getLocation()).touch(e);
-
+        getItemTileAtLocation(tileCoordinate).touch(e);
     }
 
     public void addItem(Item item, TileCoordinate loc) {
         getItemTileAtLocation(loc).addItem(item);
-        System.out.println("Added at" + (loc).toString() + " " + item.isBlocking());
     }
 
     public boolean isBlocking(TileCoordinate potentialSpot) {

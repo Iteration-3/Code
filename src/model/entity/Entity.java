@@ -92,16 +92,10 @@ public abstract class Entity implements Saveable {
         TileCoordinate nextLocation = nextLocation(angle);
         this.setLocation(nextLocation);
         this.setDirection(angle);
-        System.out.println(nextLocation.toString());
     }
 
     public TileCoordinate nextLocation(Angle angle) {
         return this.getLocation().nextLocation(angle);
-    }
-
-    public Collection<Listener> getListeners() {
-        Collection<Listener> listeners = new ArrayList<Listener>();
-        return listeners;
     }
 
     /**
