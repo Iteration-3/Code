@@ -26,12 +26,6 @@ public class PermanentTrigger extends Trigger {
  
 
 
-	@Override
-	public void handle(Collection<NPC> npcs) {
-		for (NPC npc : npcs) {
-			handle(npc);
-		}
-	}
 	
 	public PermanentTrigger clone() {
 		PermanentTrigger permanentTrigger = new PermanentTrigger();

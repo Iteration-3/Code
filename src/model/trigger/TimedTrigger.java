@@ -31,12 +31,6 @@ public class TimedTrigger extends Trigger {
     }
 
 
-	@Override
-	public void handle(Collection<NPC> npcs) {
-		for (NPC npc : npcs) {
-			handle(npc);
-		}
-	}
 
     @Override
     public boolean hasExpired() {

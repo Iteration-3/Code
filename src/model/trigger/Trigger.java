@@ -56,8 +56,6 @@ public abstract class Trigger implements Cloneable {
     	return this.getArea().isInRange(entity.getLocation());
     }
 
-    public abstract void handle(Collection<NPC> npcs);
-
     public void moveLocation(TileCoordinate location) {
         this.area.setStartLocation(location);
     }
