@@ -45,8 +45,8 @@ public class KeyBindingsLayout extends Layout {
     public KeyBindingsLayout() {
         setPreferredSize(new Dimension(1024, 768));
 
-        initButtons();
         initLabels();
+        initButtons();
         addComponents();
     }
 
@@ -114,7 +114,6 @@ public class KeyBindingsLayout extends Layout {
 
         rebindInventory = new MenuButton("REBIND INVENTORY");
         rebindInventory.setColor(Color.GRAY);
-
     }
 
     public void attachController(KeyBindingsController controller) {
