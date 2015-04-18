@@ -1,5 +1,6 @@
 package model.entity;
 
+import model.ability.smasher.SmasherWeaponAttack;
 import model.area.TileCoordinate;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
@@ -11,6 +12,7 @@ public class Smasher extends Avatar {
 
 	public Smasher(String name, EntityView view, TileCoordinate loc) {
 		super(name, view,loc);
+		this.getAbilities().add(new SmasherWeaponAttack());
 	}
 
 	@Override
