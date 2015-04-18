@@ -1,5 +1,10 @@
 package model.entity;
 
+import model.ability.sneak.Creep;
+import model.ability.sneak.DetectTrap;
+import model.ability.sneak.PickPocket;
+import model.ability.sneak.Ranged;
+import model.ability.sneak.RemoveTrap;
 import model.area.TileCoordinate;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
@@ -13,6 +18,11 @@ public class Sneak extends Avatar {
 
 	public Sneak(String name, EntityView view, TileCoordinate loc) {
 		super(name, view,loc);
+		this.getAbilities().add(new Creep());
+		this.getAbilities().add(new DetectTrap());
+		this.getAbilities().add(new PickPocket());
+		this.getAbilities().add(new Ranged());
+		this.getAbilities().add(new RemoveTrap());
 	}
 
 	protected ItemManager createItemManager() {
