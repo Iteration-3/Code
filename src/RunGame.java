@@ -2,7 +2,6 @@ import java.awt.EventQueue;
 
 import model.Model;
 import model.states.gamestates.MainMenuState;
-import view.EntitySpriteFactory;
 
 public class RunGame {
   public static void main(String[] args) {
