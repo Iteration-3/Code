@@ -3,7 +3,6 @@ package utilities;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -11,16 +10,16 @@ import javax.swing.ImageIcon;
 
 public class ImageProcessing {
 	public static BufferedImage getImage(String filename){
-		try {
+		//try {
 			// return ImageIO.read(new File(filename));
-			Image image = Toolkit.getDefaultToolkit().getImage(ImageProcessing.class.getResource(filename));
+			Image image = new ImageIcon(ImageProcessing.class.getResource(filename)).getImage();
 			return toBufferedImage(image);
-		} catch (Exception e) {
+		/*} catch (IOException e) {
 			System.out.println(filename);
 			System.out.println("The image does not exist");
 			e.printStackTrace();
 			return null;
-		}
+		}*/
 	}
 	
 	private static BufferedImage toBufferedImage(Image image) {
