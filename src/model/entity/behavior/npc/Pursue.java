@@ -10,8 +10,9 @@ public class Pursue implements Behaviorable {
 	private Entity chosenOne;
 	private ListenForMovement pursue;
 	private TargetEntity targetEntity;
-	
-	public Pursue(){}
+
+	public Pursue() {
+	}
 
 	public void perform() {
 		this.pursue.perform();
@@ -19,7 +20,7 @@ public class Pursue implements Behaviorable {
 
 	public void observe() {
 		this.targetEntity.observe();
-		if (this.targetEntity.found()){
+		if (this.targetEntity.found()) {
 			this.pursue.push(this.targetEntity.getMove());
 		}
 	}
@@ -47,7 +48,8 @@ public class Pursue implements Behaviorable {
 
 	public void setStates() {
 		this.pursue = new ListenForMovement(this.chosenOne);
-		this.targetEntity = new TargetEntity(this.chosenOne,7,EntityManager.getSingleton().getAvatar(),new RadialArea());
+		this.targetEntity = new TargetEntity(this.chosenOne, 7, EntityManager
+				.getSingleton().getAvatar(), new RadialArea());
 	}
 
 }
