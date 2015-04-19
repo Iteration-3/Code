@@ -2,15 +2,20 @@ package view.layout;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 
 import controller.InventoryMenuController;
+import utilities.ImageProcessing;
 import view.EquipmentView;
 import view.InventoryView;
 import view.components.MenuButton;
 
 @SuppressWarnings("serial")
 public class InventoryMenuLayout extends Layout {
+	private static final String BACKGROUND_PATH = "src/resources/images/inventoryLayout.jpg";
+	private static BufferedImage background;
 	private static int inventoryOffsetX;
 	private static int inventoryOffsetY;
 	private static int equipmentOffsetX;
@@ -20,8 +25,11 @@ public class InventoryMenuLayout extends Layout {
 	private int equipmentWidth;
 	private int equipmentHeight;
 	
-	private int width = 100;
-	private int height = 100;
+	private int width = 1024;
+	private int height = 764;
+	
+	private int slotWidth = 100;
+	private int slotHeight = 100;
 
 	private MenuButton backButton;
 	private InventoryView inventoryView;
@@ -33,7 +41,7 @@ public class InventoryMenuLayout extends Layout {
 		setLayout(null);
 		this.equipmentView = equipmentView;
 		this.inventoryView = inventoryView;
-		setPreferredSize(new Dimension(1024, 764));
+		setPreferredSize(new Dimension(this.width, this.height));
 		setInventoryView(inventoryView);
 		setEquipmentView(equipmentView);
 		initButtons();
@@ -52,9 +60,9 @@ public class InventoryMenuLayout extends Layout {
 		inventoryOffsetY = 0;
 		equipmentOffsetX = inventoryWidth + 100;
 		equipmentOffsetY = 0;
-		this.inventoryView.setSlotDimensions(this.width,this.height);
+		this.inventoryView.setSlotDimensions(this.slotWidth,this.slotHeight);
 		this.inventoryView.setBounds(inventoryOffsetX, inventoryOffsetY);
-		this.equipmentView.setSlotDimensions(this.width,this.height);
+		this.equipmentView.setSlotDimensions(this.slotWidth,this.slotHeight);
 		this.equipmentView.setBounds(equipmentOffsetX, equipmentOffsetY);
 		this.backButton.setBounds(600, 600,
 				this.backButton.getPreferredSize().width,
@@ -88,5 +96,30 @@ public class InventoryMenuLayout extends Layout {
 	public void setDimensions(int width, int height){
 		this.width = width;
 		this.height = height;
+		this.resetBackgroundImage();
+	}
+	
+	public void setSlotDimensions(int width,int height){
+		this.slotWidth = width;
+		this.slotHeight = height;
+	}
+	
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		g.drawImage(this.getBackgroundImage(),0, 0, null);
+	}
+	
+	private void resetBackgroundImage(){
+		background = ImageProcessing.scaleImage(this.width, this.height, BACKGROUND_PATH);
+	}
+	
+	private BufferedImage getBackgroundImage(){
+		if (background != null){
+			return background;
+		}
+		else{
+			background = ImageProcessing.scaleImage(this.width, this.height, BACKGROUND_PATH);
+			return background;
+		}
 	}
 }

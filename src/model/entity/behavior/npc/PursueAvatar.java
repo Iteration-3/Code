@@ -19,6 +19,7 @@ public class PursueAvatar implements Behaviorable {
 	public void observe() {
 		this.targetEntity.observe();
 		if (this.targetEntity.found()){
+			System.out.println("FOund you");
 			this.pursue.push(this.targetEntity.getMove());
 		}
 	}
