@@ -210,7 +210,7 @@ public class GameplayState extends GameState {
         Trigger triggerTwo = new PermanentTrigger(areaTwo, new ManaModifierEvent(10, 200));
 
         TileCoordinate locThree = new TileCoordinate(2, 8);
-        Area areaThree = new RadialArea(1, locThree);
+        Area areaThree = new RadialArea(0, locThree);
         Trigger triggerThree = new PermanentTrigger(areaThree, new TeleportEvent(new TileCoordinate(2, 0),
                 new GameActionTeleport(avatar, gameMap, this.getItemMap(), Angle.DOWN)));
         
