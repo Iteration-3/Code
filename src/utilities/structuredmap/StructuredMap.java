@@ -106,7 +106,7 @@ public class StructuredMap {
 			if(value == null)
 				valueString = "\tnull";
 			else
-				prependTab(entry.getValue().toString());
+				valueString = prependTab(entry.getValue().toString());
 			
 			String formattedEntry = String.format("\"%s\":%s", entry.getKey(), valueString);
 			joiner.add(formattedEntry);
