@@ -46,7 +46,7 @@ public class InventoryMenuController extends Controller implements SlotViewMouse
 	}
 	
 	public MouseListener makeSlotMouseListener(int i){
-		return new InventorySlotMouseListener(i);
+		return new InventorySlotMouseListener(this.entity,i);
 	}
 	
 	public MouseListener makeHelmetListener(){

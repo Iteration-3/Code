@@ -252,5 +252,9 @@ public abstract class Entity extends MobileObject implements Saveable {
     public EquipmentView getEquipmentView() {
         return itemManager.getEquipmentView();
     }
+    
+    public ItemManager getItemManager(){
+    	return this.itemManager;
+    }
 
 }

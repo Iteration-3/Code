@@ -37,8 +37,8 @@ public class EquipmentView extends JComponent {
 	private int shieldY;
 	private int projectileX;
 	private int projectileY;
-	private int slotHeight;
-	private int slotWidth;
+	private int slotHeight = 100;
+	private int slotWidth = 100;
 
 	private static BufferedImage helmetImage;
 	private static BufferedImage chestPieceImage;
@@ -49,19 +49,20 @@ public class EquipmentView extends JComponent {
 	private static BufferedImage projectileImage;
 	private static BufferedImage glovesImage;
 	
-	private static SlotView helmetView;
-	private static SlotView chestPieceView;
-	private static SlotView leggingsView;
-	private static SlotView bootsView;
-	private static SlotView weaponView;
-	private static SlotView shieldView;
-	private static SlotView projectileView;
-	private static SlotView glovesView;
+	private SlotView helmetView;
+	private SlotView chestPieceView;
+	private SlotView leggingsView;
+	private SlotView bootsView;
+	private SlotView weaponView;
+	private SlotView shieldView;
+	private SlotView projectileView;
+	private SlotView glovesView;
 	
 	public EquipmentView(){
 		setLayout(null);
 		this.setVisible(true);
 		this.setFocusable(true);
+		this.setImages();
 	}
 	
 	private void setImages(){

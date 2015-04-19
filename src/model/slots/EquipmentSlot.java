@@ -87,10 +87,14 @@ public class EquipmentSlot<K extends EquipableItem> {
 		if (this.has()) {
 			this.slotView.register(this.item.getView());
 		}
+		else{
+			this.slotView.register(null);
+		}
 	}
 	
 	public void setView(SlotView slotView){
 		this.slotView = slotView;
+		this.register();
 	}
 
 }
