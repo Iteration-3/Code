@@ -4,16 +4,36 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 
+import utilities.Angle;
 import model.area.RealCoordinate;
 
-public abstract class EntitySpriteHolder {
+public abstract class EntitySpriteHolder  {
 	
-	public void render(Graphics graphics, RealCoordinate location, float diameter) {
-		BufferedImage image = null;
-		graphics.drawImage(image,(int)location.getX()-image.getWidth()/2,
-				(int)location.getY()-image.getHeight()/2,null );
-
+	public void render(Graphics graphics, RealCoordinate location, float diameter, Angle angle) {
+		switch(angle){
+		case UP:
+			this.getUp().render(graphics,location,diameter);
+			break;
+		case DOWN:
+			this.getDown().render(graphics,location,diameter);
+			break;
+		case UP_LEFT:
+			this.getUpLeft().render(graphics,location,diameter);
+			break;
+		case DOWN_LEFT:
+			this.getDownLeft().render(graphics,location,diameter);
+			break;
+		case UP_RIGHT:
+			this.getUpRight().render(graphics,location,diameter);
+			break;
+		case DOWN_RIGHT:
+			this.getDownRight().render(graphics,location,diameter);
+			break;
+		default:
+			throw new IllegalArgumentException("IMPOSSIBLE");
+		}
 	}
+
 
 	protected abstract void setUp(BufferedImage[] images);
 

@@ -4,7 +4,12 @@ import java.awt.image.BufferedImage;
 
 class SummonerSpriteHolder extends EntitySpriteHolder {
 	public SummonerSpriteHolder(BufferedImage[] images) {
-		
+		this.setUp(images);
+		this.setDown(images);
+		this.setUpRight(images);
+		this.setDownRight(images);
+		this.setUpLeft(images);
+		this.setUpRight(images);
 	}
 	private BufferedImage[] getImages(BufferedImage[] src, int index){
 		BufferedImage temp[]=new BufferedImage[3];

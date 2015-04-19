@@ -1,14 +1,11 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.image.ImageObserver;
 
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
+import utilities.Angle;
 import view.map.GameEntityView;
-import view.tiles.components.Hexagon;
 
 public class EntityView {
 	//COPY AND PASTED SHIT FROM HEXAGON PLACE HOLDER
@@ -37,7 +34,7 @@ public class EntityView {
 						(location.getY() * tileHeight + (location.getX() % 2) * tileHeight / 2));
 		//foregroundHexagon.render(graphics, updatedCoordinate, tileWidth * (1 - BORDER_PERCENTAGE) * OVERDRAW);
 		//backgroundHexagon.render(graphics, updatedCoordinate, tileWidth * BORDER_PERCENTAGE * OVERDRAW);
-		sprites.getUp(0).render(graphics, updatedCoordinate, 1);
+		sprites.render(graphics, updatedCoordinate, 1,Angle.UP);
 		
 	}
 
