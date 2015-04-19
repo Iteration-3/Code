@@ -41,6 +41,7 @@ public class GameLightView implements GameView{
 					}
 					percentage = 1-percentage;
 					int strength = LightManager.getSingleton().getLightMap().getPrevStrength(new TileCoordinate(x, y));
+					if (strength > 255) strength = 255;
 					if (strength > 80) {
 						int delt = strength-80;
 						int amt = (int) (delt*percentage);
