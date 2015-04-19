@@ -21,8 +21,7 @@ import controller.listener.PollingListener;
 public abstract class Avatar extends Entity {
 	private Collection<Ability> abilities = new ArrayList<Ability>();
 	
-
-	public Avatar(String name, EntityView view, TileCoordinate loc){
+	public Avatar(String name, EntityView view, TileCoordinate loc) {
 		super(name, view, loc);
 		//Make light manager track all avatars movement
 		MovingLightSource avatarLight = new MovingLightSource(new RadialArea(3, loc), 255, this);

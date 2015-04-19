@@ -66,10 +66,11 @@ public class GameplayState extends GameState {
     private ItemMap itemMap;
     private Avatar avatar;
 
-    public GameplayState() {
+    public GameplayState(Avatar avatar) {
         layout = new GameplayLayout();
         gameMap = new GameTerrain();
         itemMap = new ItemMap();
+        this.avatar = avatar;
     }
 
     public void update(double deltaTime) {
@@ -125,8 +126,8 @@ public class GameplayState extends GameState {
 
     public void addEntityTest() {
         TileCoordinate loc = new TileCoordinate(3, 3);
-        EntityView eView = new EntityView(EntitySpriteFactory.getSummonerSpriteHolder());
-        avatar = new Summoner("Summoner", eView, loc);
+        EntityView eView = avatar.getEntityView();
+        avatar.setLocation(loc);
         //testing this for equipped Items
         avatar.equip(new Helmet(new BasicItemView(),new Statistics()));
 

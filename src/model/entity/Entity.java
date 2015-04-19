@@ -180,8 +180,12 @@ public abstract class Entity extends MobileObject implements Saveable {
     	isFlying = flight;
     	System.out.println("Flight status " + isFlying);
     }
+    
+    public void setEntityView(EntityView entityView) {
+    	this.view = entityView;
+    }
 
-    protected EntityView getEntityView() {
+    public EntityView getEntityView() {
         return view;
     }
     

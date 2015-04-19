@@ -10,12 +10,15 @@ import model.skillmanager.SkillManager;
 import model.skillmanager.SneakSkillManager;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
+import view.EntitySpriteFactory;
 import view.EntityView;
 
 public class Sneak extends Avatar {
-	
 	private SneakSkillManager skillManager;
 
+	public Sneak() {
+		this("Sneak", new EntityView(EntitySpriteFactory.getSneakerSpriteHolder()), new TileCoordinate(1, 1));
+	}
 
 	public Sneak(String name, EntityView view, TileCoordinate loc) {
 		super(name, view,loc);

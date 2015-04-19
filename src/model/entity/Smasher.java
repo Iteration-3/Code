@@ -5,13 +5,15 @@ import model.area.TileCoordinate;
 import model.skillmanager.SmasherSkillManager;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
+import view.EntitySpriteFactory;
 import view.EntityView;
 
 public class Smasher extends Avatar {
-	
-
-
 	private SmasherSkillManager skillManager;
+	
+	public Smasher() {
+		this("Smasher", new EntityView(EntitySpriteFactory.getSmasherSpriteHolder()), new TileCoordinate(1, 1));
+	}
 
 	public Smasher(String name, EntityView view, TileCoordinate loc) {
 		super(name, view,loc);
