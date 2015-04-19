@@ -22,6 +22,10 @@ public class Smasher extends Avatar {
 		this.generateSkills();
 	}
 	
+	public Smasher(StructuredMap map) {
+		super(map);
+	}
+	
 	@Override
 	protected void generateSkills() {
 		this.getAbilities().add(new SmasherWeaponAttack(this.getSkillManager()));

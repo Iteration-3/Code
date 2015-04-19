@@ -64,6 +64,25 @@ public abstract class Entity extends MobileObject implements Saveable {
         setDirection(Angle.values()[map.getInteger("direction")]);
         this.itemManager = new ItemManager(map.getStructuredMap("itemManager"));
         this.isFlying = map.getBoolean("flying");
+        this.view = map.getStructuredMap("entityView") == null ? null : new EntityView(map.getStructuredMap("entityView"));
+    }
+    
+    public StructuredMap getStructuredMap() {
+        int[] locationArray = new int[2];
+        locationArray[0] = getLocation().getX();
+        locationArray[1] = getLocation().getY();
+        StructuredMap map = new StructuredMap();
+
+        map.put("name", name);
+        map.put("location", locationArray);
+        map.put("stats", stats.getStructuredMap());
+        map.put("direction", getDirection().ordinal());
+        map.put("itemManager", itemManager.getStructuredMap());
+        map.put("entityView", view == null ? null : view.getStructuredMap());
+        map.put("type", getType());
+        map.put("flying", isFlying);
+
+        return map;
     }
 
     private void setNecessities() {
@@ -100,22 +119,7 @@ public abstract class Entity extends MobileObject implements Saveable {
 
     public abstract void attack();
 
-    public StructuredMap getStructuredMap() {
-        int[] locationArray = new int[2];
-        locationArray[0] = getLocation().getX();
-        locationArray[1] = getLocation().getY();
-        StructuredMap map = new StructuredMap();
-
-        map.put("name", name);
-        map.put("location", locationArray);
-        map.put("stats", stats.getStructuredMap());
-        map.put("direction", getDirection().ordinal());
-        map.put("itemManager", itemManager.getStructuredMap());
-        map.put("type", getType());
-        map.put("flying", isFlying);
-
-        return map;
-    }
+    
     
     public abstract String getType();
 
