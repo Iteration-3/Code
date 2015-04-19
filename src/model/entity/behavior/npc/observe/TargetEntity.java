@@ -26,7 +26,6 @@ public class TargetEntity implements ObservableBehaviorState {
 			RadialArea radius = new RadialArea(this.radius,this.chosenOne.getLocation());
 			if (EntityManager.getSingleton().findEntityFromLocations(radius.getCoveredLocations(), 
 					this.target)){
-				System.out.println("SEETING THE MOCVE");
 				this.setMove();
 			}
 			count = 0;
