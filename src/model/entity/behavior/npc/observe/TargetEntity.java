@@ -18,6 +18,7 @@ public class TargetEntity implements ObservableBehaviorState {
 	public TargetEntity(Entity entity,int radius,Entity target){
 		this.chosenOne = entity;
 		this.radius = radius;
+		this.target = target;
 	}
 
 	public void observe() {
