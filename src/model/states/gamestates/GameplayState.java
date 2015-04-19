@@ -129,6 +129,8 @@ public class GameplayState extends GameState {
         TileCoordinate loc = new TileCoordinate(3, 3);
         EntityView eView = avatar.getEntityView();
         avatar.setLocation(loc);
+        getController().registerAvatar(avatar);
+        
         //testing this for equipped Items
         avatar.equip(new Helmet(new BasicItemView(),new Statistics()));
 

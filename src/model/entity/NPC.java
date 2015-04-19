@@ -52,7 +52,6 @@ public class NPC extends Entity {
 		DialogManager.getSingleton().initDialog(this, avatar);
 	}
 
-
 	protected ItemManager createItemManager() {
 		return new ItemManager(this);
 	}
