@@ -14,7 +14,7 @@ import view.components.MenuButton;
 
 @SuppressWarnings("serial")
 public class InventoryMenuLayout extends Layout {
-	private static final String BACKGROUND_PATH = "src/resources/images/inventoryLayout.jpg";
+	private static final String BACKGROUND_PATH = "/images/inventoryLayout.jpg";
 	private static BufferedImage background;
 	private static int inventoryOffsetX;
 	private static int inventoryOffsetY;
