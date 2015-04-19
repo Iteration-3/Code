@@ -46,6 +46,7 @@ public abstract class Entity extends MobileObject implements Saveable {
 
     public Entity(String name, EntityView view, TileCoordinate location,Behaviorable behavior) {
     	super(location);
+    	System.out.println("PURSUR IN TACK");
         this.name = name;
         this.view = view;
         setLocation(location);

@@ -1,13 +1,14 @@
 package model.entity.behavior.npc;
 
 import model.entity.Entity;
+import model.entity.EntityManager;
 import model.entity.behavior.npc.defaultb.Pursue;
-import model.entity.behavior.npc.observe.TargetAvatar;
+import model.entity.behavior.npc.observe.TargetEntity;
 
 public class PursueAvatar implements Behaviorable {
 	private Entity chosenOne;
 	private Pursue pursue;
-	private TargetAvatar targetAvatar;
+	private TargetEntity targetEntity;
 	
 	public PursueAvatar(){}
 
@@ -16,9 +17,9 @@ public class PursueAvatar implements Behaviorable {
 	}
 
 	public void observe() {
-		this.targetAvatar.observe();
-		if (this.targetAvatar.found()){
-			this.pursue.push(this.targetAvatar.getMove());
+		this.targetEntity.observe();
+		if (this.targetEntity.found()){
+			this.pursue.push(this.targetEntity.getMove());
 		}
 	}
 
@@ -45,7 +46,7 @@ public class PursueAvatar implements Behaviorable {
 
 	public void setStates() {
 		this.pursue = new Pursue(this.chosenOne);
-		this.targetAvatar = new TargetAvatar(this.chosenOne,7);
+		this.targetEntity = new TargetEntity(this.chosenOne,7,EntityManager.getSingleton().getAvatar());
 	}
 
 }
