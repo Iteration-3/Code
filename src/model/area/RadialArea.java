@@ -14,6 +14,10 @@ public class RadialArea extends Area {
     public RadialArea() {
         super();
     }
+    
+    private TileCoordinate lastStart;
+    private List<TileCoordinate> coverCache;
+    private HashSet<TileCoordinate> resCache;
 
     public RadialArea(int radius, TileCoordinate startLocation) {
         super(radius, startLocation);
@@ -21,29 +25,34 @@ public class RadialArea extends Area {
 
     @Override
     public boolean isInRange(TileCoordinate location) {
-        return super.hasCompositeArea() ? isWithinRadius(location) || super.compositeInRange(location)
-                : isWithinRadius(location);
+    	getCoveredLocations();
+        return resCache.contains(location);
     }
 
     @Override
     public List<TileCoordinate> getCoveredLocations() {
-    	HashSet<TileCoordinate> res = new HashSet<TileCoordinate>();
-    	Queue<Pair> bfsQ = new LinkedList<Pair>();
-    	res.add(getStartLocation());
-    	bfsQ.add(new Pair(getStartLocation(), 0));
-    	while (!bfsQ.isEmpty()) {
-    		Pair poll = bfsQ.poll();
-    		int nextDist = poll.dist + 1;
-    		if (nextDist > getRadius()) continue;
-    		for (Angle ang : Angle.values()) {
-    			TileCoordinate next = poll.coord.nextLocation(ang);
-    			if (!res.contains(next)) {
-    				res.add(next);
-    				bfsQ.add(new Pair(next, nextDist));
-    			}
-    		}
+    	if (lastStart != getStartLocation() || coverCache == null) {
+	    	HashSet<TileCoordinate> res = new HashSet<TileCoordinate>();
+	    	Queue<Pair> bfsQ = new LinkedList<Pair>();
+	    	res.add(getStartLocation());
+	    	bfsQ.add(new Pair(getStartLocation(), 0));
+	    	while (!bfsQ.isEmpty()) {
+	    		Pair poll = bfsQ.poll();
+	    		int nextDist = poll.dist + 1;
+	    		if (nextDist > getRadius()) continue;
+	    		for (Angle ang : Angle.values()) {
+	    			TileCoordinate next = poll.coord.nextLocation(ang);
+	    			if (!res.contains(next)) {
+	    				res.add(next);
+	    				bfsQ.add(new Pair(next, nextDist));
+	    			}
+	    		}
+	    	}
+	    	coverCache = new ArrayList<TileCoordinate>(res);
+	    	resCache = res;
+	    	lastStart = getStartLocation();
     	}
-        return new ArrayList<TileCoordinate>(res);
+        return coverCache;
     }
     
     private class Pair {

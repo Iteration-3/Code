@@ -66,6 +66,7 @@ public class InventoryMenuLayout extends Layout {
     	System.out.println(this.isValid());
 		this.inventoryView.add(controller);
 		this.inventoryView.addMouseMotionListener(controller.makeInventoryMouseListener());
+		this.equipmentView.add(controller);
 	}
 
 	public void setInventoryView(InventoryView inventoryView) {

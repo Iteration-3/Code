@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
 
+import controller.InventoryMenuController;
 import utilities.ImageProcessing;
 
 @SuppressWarnings("serial")
@@ -124,5 +125,16 @@ public class EquipmentView extends JComponent {
 	}
 	public int getHeight(){
 		return HEIGHT * SLOT_HEIGHT;
+	}
+	
+	public void add(InventoryMenuController controller){
+		helmetView.addMouseListener(controller.makeHelmetListener());
+		leggingsView.addMouseListener(controller.makeLeggingsListener());
+		glovesView.addMouseListener(controller.makeGlovesListener());
+		bootsView.addMouseListener(controller.makeBootsListener());
+		projectileView.addMouseListener(controller.makeProjectileListener());
+		weaponView.addMouseListener(controller.makeWeaponListener());
+		shieldView.addMouseListener(controller.makeShieldListener());
+		chestPieceView.addMouseListener(controller.makeChestPieceListener());
 	}
 }
