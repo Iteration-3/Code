@@ -1,16 +1,18 @@
 package model.entity.behavior.npc;
 
+import model.area.RadialArea;
 import model.entity.Entity;
 import model.entity.EntityManager;
-import model.entity.behavior.npc.defaultb.Pursue;
+import model.entity.behavior.npc.defaultb.ListenForMovement;
 import model.entity.behavior.npc.observe.TargetEntity;
 
-public class PursueAvatar implements Behaviorable {
+public class Pursue implements Behaviorable {
 	private Entity chosenOne;
-	private Pursue pursue;
+	private ListenForMovement pursue;
 	private TargetEntity targetEntity;
-	
-	public PursueAvatar(){}
+
+	public Pursue() {
+	}
 
 	public void perform() {
 		this.pursue.perform();
@@ -18,8 +20,7 @@ public class PursueAvatar implements Behaviorable {
 
 	public void observe() {
 		this.targetEntity.observe();
-		if (this.targetEntity.found()){
-			System.out.println("FOund you");
+		if (this.targetEntity.found()) {
 			this.pursue.push(this.targetEntity.getMove());
 		}
 	}
@@ -46,8 +47,9 @@ public class PursueAvatar implements Behaviorable {
 	}
 
 	public void setStates() {
-		this.pursue = new Pursue(this.chosenOne);
-		this.targetEntity = new TargetEntity(this.chosenOne,7,EntityManager.getSingleton().getAvatar());
+		this.pursue = new ListenForMovement(this.chosenOne);
+		this.targetEntity = new TargetEntity(this.chosenOne, 7, EntityManager
+				.getSingleton().getAvatar(), new RadialArea());
 	}
 
 }

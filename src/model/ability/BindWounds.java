@@ -1,49 +1,40 @@
 package model.ability;
 
 import model.entity.Avatar;
-import model.event.Event;
 import model.event.HealthModifierEvent;
-import utilities.structuredmap.StructuredMap;
-import factories.EventFactory;
+import model.skillmanager.SkillManager;
 
 public class BindWounds extends SelfAbility {
-	private Event event;
+	private HealthModifierEvent event;
+	private SkillManager manager;
 	
-	public BindWounds() {
-		super(new HealthModifierEvent(5, 1), 5);
+	public BindWounds(SkillManager manager) {
+		super();
+		event = new HealthModifierEvent(5, 1);
+		this.setManaCost(5);
+		this.setEvent(event);
+		this.manager = manager;
 	}
 	
-	public BindWounds(int manaCost) {
-		this();
-		this.setManaCost(manaCost);
+	protected SkillManager getManager(){
+		return manager;
 	}
+
 	
-	public BindWounds(StructuredMap map) {
-		super(map);
-		this.event = EventFactory.createEvent(map.getStructuredMap("healthEvent"));
-	}
+
+	
 	
 	@Override
 	public void perform(Avatar avatar) {
+		this.setManaCost(this.getManager().getBindWoundsSkill());
 		if (hasMana(avatar)) {
 			removeMana(avatar);
-			HealthModifierEvent event = (HealthModifierEvent) this.event.clone();
+			HealthModifierEvent event =  this.event.clone();
 			event.setTarget(avatar);
-			event.scaleHealh(avatar.getBindWoundSkill());
+			event.scaleHealh(this.getManager().getBindWoundsSkill());
 			event.placeOnEventManager();
 		}
 	}
 	
-	@Override
-	public StructuredMap getStructuredMap() {
-		StructuredMap map = super.getStructuredMap();
-		map.put("healthEvent", event.getStructuredMap());
-		return map;
-	}
-
-	@Override
-	protected String getType() {
-		return "bindWounds";
-	}
 
 }

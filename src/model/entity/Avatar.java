@@ -1,51 +1,26 @@
 package model.entity;
 
+import gameactions.GameAction;
+
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 import model.KeyPreferences;
 import model.ability.Ability;
+import model.ability.BindWounds;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.light.LightManager;
 import model.light.MovingLightSource;
 import model.skillmanager.SkillManager;
 import utilities.Angle;
-import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 import controller.listener.Listener;
 import controller.listener.PollingListener;
-import factories.AbilityFactory;
-import factories.SkillManagerFactory;
-import gameactions.GameAction;
 
 public abstract class Avatar extends Entity {
 	private Collection<Ability> abilities = new ArrayList<Ability>();
-	private SkillManager skillManager;
 	
-	public Avatar(StructuredMap map) {
-		this.abilities = new ArrayList<Ability>();
-		StructuredMap[] abilityMap = map.getStructuredMapArray("abilities");
-		for(StructuredMap ability : abilityMap) {
-			this.abilities.add(AbilityFactory.createAbility(ability));
-		}
-		this.skillManager = SkillManagerFactory.createSkillManager(map.getStructuredMap("skills"));
-	}
-	
-	@Override 
-	public StructuredMap getStructuredMap() {
-		StructuredMap map = super.getStructuredMap();
-		StructuredMap[] abilityMap = new StructuredMap[this.abilities.size()];
-		int i = 0;
-		Iterator<Ability> it = abilities.iterator();
-		while(it.hasNext()) {
-			abilityMap[i++] = it.next().getStructuredMap();
-		}
-		map.put("abilities", abilityMap);
-		map.put("skills", skillManager.getStructuredMap());
-		return map;
-	}
 
 	public Avatar(String name, EntityView view, TileCoordinate loc){
 		super(name, view, loc);
@@ -55,6 +30,11 @@ public abstract class Avatar extends Entity {
 		setLocation(loc);
 		//LightManager.getLightManager().getLightMap().trackMovement(this);
 		//setLocation(loc);//So lightMap registers current position
+	}
+	
+	protected void generateSkills(){
+		System.out.println("skills 2" + this.getSkillManager());
+		this.getAbilities().add(new BindWounds(this.getSkillManager()));
 	}
 	
 	@Override
@@ -73,9 +53,8 @@ public abstract class Avatar extends Entity {
 		int level = getBaseStats().getLevel();
         getBaseStats().addExperience(experience);
         int updatedLevel = getBaseStats().getLevel();
-        // +1 on level because we start at Level 1.
-		for (int i = level+1; i < updatedLevel; ++i )
-			skillManager.incrementSkillPointToSpend();
+		for (int i = level; i < updatedLevel; ++i )
+			this.getSkillManager().incrementSkillPointToSpend();
 	}
 	
 	@Override
@@ -127,13 +106,10 @@ public abstract class Avatar extends Entity {
 	// The alternative is making things like: incrementAttackSkill() in the 
 	// Avatar's public interface
 	// This may not be good Encapsulation practices though
-	public SkillManager getSkillManager() {
-		return this.skillManager;
-	}
+	public abstract SkillManager getSkillManager();
+
 	
-	protected void setSkillManager(SkillManager skillManager) {
-		this.skillManager = skillManager;
-	}
+
 	
 	protected Collection<Ability> getAbilities(){
 		return abilities;

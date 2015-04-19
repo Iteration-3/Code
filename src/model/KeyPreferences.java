@@ -20,7 +20,7 @@ public class KeyPreferences implements Saveable {
     private KeyStroke skillsKey;
     private KeyStroke pauseKey;
     private KeyStroke dismountKey;
-	private static final int NUM_ABILITIES = 10;
+	private static final int NUM_ABILITIES = 11;
     private List<KeyStroke> abilities;
 
     public KeyPreferences() {
@@ -35,9 +35,10 @@ public class KeyPreferences implements Saveable {
         this.skillsKey = KeyStroke.getKeyStroke("ENTER");
         this.dismountKey = KeyStroke.getKeyStroke("H");
         this.abilities = new ArrayList<KeyStroke>();
-        for (int i = 0; i != NUM_ABILITIES; ++i) {
+        for (int i = 0; i != 10; ++i) {//This should never go above 10, don't have that many keys!
             abilities.add(KeyStroke.getKeyStroke((char) ('0' + i)));
         }
+        abilities.add(KeyStroke.getKeyStroke('`'));
     }
 
     public KeyPreferences(StructuredMap structuredMap) {

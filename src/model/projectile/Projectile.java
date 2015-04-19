@@ -2,7 +2,6 @@ package model.projectile;
 
 import java.awt.Color;
 
-import factories.TriggerFactory;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.event.StatisticModifierEvent;
@@ -11,12 +10,10 @@ import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
-import utilities.structuredmap.Saveable;
-import utilities.structuredmap.StructuredMap;
 import view.projectiles.BasicProjectileView;
 import view.projectiles.ProjectileView;
 
-public class Projectile implements Cloneable, Saveable {
+public class Projectile implements Cloneable {
 	private Angle direction;
 	private TileCoordinate location;
 	private double speed;
@@ -33,32 +30,9 @@ public class Projectile implements Cloneable, Saveable {
 		projView = new BasicProjectileView(location, Color.RED, 40);
 	}
 	
-	public Projectile(StructuredMap map) {
-		this.direction = Angle.values()[map.getInteger("direction")];
-		int[] locations = map.getIntArray("location");
-		this.location = new TileCoordinate(locations[0], locations[1]);
-		this.speed = map.getDouble("speed");
-		this.timeout = map.getDouble("timeout").longValue();
-		this.trigger = TriggerFactory.createTrigger(map.getStructuredMap("trigger"));
-		projView = new BasicProjectileView(location, Color.RED, 40);
-	}
+
 	
-	public StructuredMap getStructuredMap() {
-		StructuredMap map = new StructuredMap();
-		
-		int[] locationArray = new int[2];
-        locationArray[0] = location.getX();
-        locationArray[1] = location.getY();
- 
-		map.put("direction", direction.ordinal());
-		map.put("location", locationArray);
-		map.put("speed", speed);
-		map.put("timeout",(double) timeout);
-		map.put("trigger", trigger.getStructuredMap());
-		map.put("type", getType());
-		
-		return map;
-	}
+	
 
 	protected String getType() {
 		return "projectile";

@@ -5,20 +5,20 @@ import java.util.Collection;
 import model.ability.Ability;
 import model.area.TileCoordinate;
 import model.entity.Avatar;
+import model.skillmanager.SneakSkillManager;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
-import utilities.structuredmap.StructuredMap;
 
 public class RemoveTrap extends Ability {
 	
-	public RemoveTrap() {
+	private SneakSkillManager manager;
+	
+	public RemoveTrap(SneakSkillManager sneakSkillManager) {
 		super(10);
+		this.manager = sneakSkillManager;
 	}
 	
-	public RemoveTrap(StructuredMap map) {
-		super(map);
-	}
 
 	@Override
 	public void perform(Avatar avatar) {
@@ -42,9 +42,5 @@ public class RemoveTrap extends Ability {
 		}
 	}
 
-	@Override
-	protected String getType() {
-		return "removeTrap";
-	}
 
 }

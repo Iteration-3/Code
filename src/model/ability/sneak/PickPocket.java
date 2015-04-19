@@ -5,31 +5,27 @@ import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.event.PickPocketEvent;
+import model.skillmanager.SneakSkillManager;
 import model.trigger.TimedTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
-import utilities.structuredmap.StructuredMap;
 
 public class PickPocket extends TriggerAbility {
 	
-	public PickPocket() {
+	private SneakSkillManager manager;
+	
+	public PickPocket(SneakSkillManager sneakSkillManager) {
 		super();
 		TimedTrigger trigger = new TimedTrigger();
 		trigger.setEvent(new PickPocketEvent());
 		trigger.setDuration(0);
 		trigger.setArea(new RadialArea(1, null));
 		this.setManaCost(10);
+		this.manager = sneakSkillManager;
 	}
 	
-	public PickPocket(int manaCost) {
-		this();
-		this.setManaCost(manaCost);
-	}
 	
-	public PickPocket(StructuredMap map) {
-		super(map);
-	}
 
 	@Override
 	public void perform(Avatar avatar) {
@@ -49,9 +45,5 @@ public class PickPocket extends TriggerAbility {
 		}
 	}
 
-	@Override
-	protected String getType() {
-		return "pickPocket";
-	}
 
 }

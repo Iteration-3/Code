@@ -2,30 +2,23 @@ package model.ability.sneak;
 
 import model.ability.Ability;
 import model.entity.Avatar;
-import utilities.structuredmap.StructuredMap;
+import model.skillmanager.SneakSkillManager;
 
 public class DetectTrap extends Ability {
 	
-	public DetectTrap() {
+	private SneakSkillManager manager;
+	
+	public DetectTrap(SneakSkillManager sneakSkillManager) {
 		super();
+		this.manager = sneakSkillManager;
 	}
 	
-	public DetectTrap(int manaCost) {
-		super(manaCost);
-	}
 	
-	public DetectTrap(StructuredMap map) {
-		super(map);
-	}
 
 	@Override
 	public void perform(Avatar avatar) {
 		// TODO (jraviles)
 	}
 
-	@Override
-	protected String getType() {
-		return "detectTrap";
-	}
 
 }

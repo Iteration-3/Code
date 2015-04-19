@@ -4,11 +4,11 @@ import utilities.Angle;
 import model.entity.Entity;
 import model.entity.behavior.npc.defaultb.curcuit.PushableCurcuit;
 
-public class Pursue implements DefaultableBehaviorState {
+public class ListenForMovement implements DefaultableBehaviorState {
 	private Entity chosenOne;
 	private PushableCurcuit curcuit = new PushableCurcuit();
 
-	public Pursue(Entity entity){
+	public ListenForMovement(Entity entity){
 		this.chosenOne = entity;
 	}
 
@@ -26,7 +26,4 @@ public class Pursue implements DefaultableBehaviorState {
 		}
 		this.curcuit.push(move);
 	}
-	
-	
-
 }

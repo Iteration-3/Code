@@ -1,31 +1,33 @@
 package model.ability.summoner.bane;
 
 import model.ability.ProjectileAbility;
-import model.projectile.Projectile;
+import model.entity.Avatar;
 import model.projectile.linear.FireProjectile;
-import utilities.structuredmap.StructuredMap;
+import model.skillmanager.SummonerSkillManager;
 
 public final class Firebolt extends ProjectileAbility {
 	
-	public Firebolt() {
+	private SummonerSkillManager manager;
+	private FireProjectile projectile = new FireProjectile();
+	
+	public Firebolt(SummonerSkillManager manager) {
 		super(10);
+		this.manager = manager;
 	}
 	
-	public Firebolt(StructuredMap map) {
-		super(map);
+	protected SummonerSkillManager getSkillManager(){
+		return manager;
 	}
 	
-	public Firebolt(int manaCost) {
-		this();
-		this.setManaCost(manaCost);
+	@Override
+	public FireProjectile getProjectile(){
+		return projectile;
 	}
 
 	@Override
-	protected String getType() {
-		return "firebolt";
-	}
-	
-	public Projectile getProjectile() {
-		return new FireProjectile();
+	public void perform(Avatar avatar){
+		this.setManaCost(this.getSkillManager().getBaneSkill());
+		this.getProjectile().setLevel(this.getSkillManager().getBaneSkill());
+		super.perform(avatar);
 	}
 }

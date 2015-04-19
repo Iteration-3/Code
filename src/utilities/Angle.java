@@ -8,12 +8,14 @@ public enum Angle {
     UP_LEFT(-1, -1, 0, 120),
     DOWN_LEFT(-1, 0, 1, -180),
     DOWN(0, 1, 1, -120),
-    DOWN_RIGHT(1, 0, 1, -60);
+    DOWN_RIGHT(1, 0, 1, -60),
+    PRODUCE_A_ANGLE();
     
     private int deltaX;
     private int evenDeltaY;
     private int oddDeltaY;
     private int theta;
+    
 
     private Angle(int deltaX, int evenDeltaY, int oddDeltaY, int theta) {
     	this.deltaX = deltaX;
@@ -21,6 +23,8 @@ public enum Angle {
     	this.oddDeltaY = oddDeltaY;
     	this.theta = theta;
     }
+    
+    private Angle(){}
 
     public Angle getLeft() {
         Angle[] values = Angle.values();
@@ -34,6 +38,50 @@ public enum Angle {
     
     public int getAngle() {
     	return theta;
+    }
+
+    public Angle getNearestAngleTowardTarget(TileCoordinate startingLocation, TileCoordinate targetLocation){
+		int chosenX = startingLocation.getX();
+		int chosenY = startingLocation.getY();
+		int avatarX = targetLocation.getX();
+		int avatarY = targetLocation.getY();
+		if (avatarY > chosenY && avatarX < chosenX){
+			return Angle.DOWN_RIGHT;
+		}
+		else if (avatarX > chosenX && avatarY < chosenX){
+			return Angle.UP_RIGHT;
+		}
+		else if (avatarX < chosenX){
+			return Angle.UP_LEFT;
+		}
+		else if (avatarY < chosenY){
+			return Angle.UP;
+		}
+		else{
+			return null;    // dont move
+		}
+    }
+
+    public Angle getFarthestAngleFromTarget(TileCoordinate startingLocation, TileCoordinate targetLocation){
+		int chosenX = startingLocation.getX();
+		int chosenY = startingLocation.getY();
+		int avatarX = targetLocation.getX();
+		int avatarY = targetLocation.getY();
+		if (avatarY > chosenY){
+			return Angle.UP;
+		}
+		else if (avatarX > chosenX){
+			return Angle.UP_RIGHT;
+		}
+		else if (avatarX < chosenX){
+			return Angle.UP_LEFT;
+		}
+		else if (avatarY < chosenY){
+			return Angle.UP;
+		}
+		else{
+			return null;    // dont move
+		}
     }
     
     public TileCoordinate nextLocation(TileCoordinate tileCoordinate) {

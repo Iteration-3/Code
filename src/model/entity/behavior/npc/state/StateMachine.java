@@ -18,10 +18,13 @@ public class StateMachine implements StateMachineable {
 		this.states.push(state);
 	}
 		
-	public void pop() {
+	public Behaviorable pop() {
 		//keeps its original behavior
 		if (this.states.size() > 1){
-			this.states.pop();
+			return this.states.pop();
+		}
+		else{
+			return null;
 		}
 	}
 	
