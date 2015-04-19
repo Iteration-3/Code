@@ -28,6 +28,19 @@ public class NPC extends Entity {
 		setDialogTree(new DialogTree(dialogEntries));
 	}
 	
+	public NPC(StructuredMap map) {
+		super(map);
+		this.dialogTree = new DialogTree(map.getStructuredMap("dialogueTree"));
+	}
+	
+	
+	@Override 
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		map.put("dialogueTree", dialogTree.getStructuredMap());
+		return map;
+	}
+	
 	public NPC(String name, EntityView view, TileCoordinate location, DialogTree dialogTree) {
 		super(name, view, location);
 		setDialogTree(dialogTree);
@@ -37,12 +50,6 @@ public class NPC extends Entity {
 		DialogManager.getSingleton().initDialog(this, avatar);
 	}
 
-	// Needs behavior shit!
-	// Behavior shit will be overridden by subclasses
-
-	public NPC(StructuredMap map) {
-		super(map);
-	}
 
 	protected ItemManager createItemManager() {
 		return new ItemManager(this);
@@ -52,12 +59,7 @@ public class NPC extends Entity {
 	public void attack() {
 		// TODO Auto-generated method stub
 	}
-
-	@Override
-	public StructuredMap getStructuredMap() {
-		return super.getStructuredMap();
-	}
-
+	
 	@Override
 	public void load(StructuredMap map) {
 		// TODO Auto-generated method stub

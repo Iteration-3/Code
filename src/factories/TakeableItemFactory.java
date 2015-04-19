@@ -8,13 +8,10 @@ import view.item.ItemView;
 
 public class TakeableItemFactory {
 	public static TakeableItem createItem(StructuredMap map) {
-		if(map == null) {
+		if (map == null) {
 			return null;
 		}
-		try {
-			
-		
-		
+
 		switch (map.getString("type")) {
 		case "consumeable":
 			return createConsumeable(map);
@@ -23,12 +20,7 @@ public class TakeableItemFactory {
 		default:
 			return EquipableItemFactory.createItem(map);
 		}
-		}
-		catch (Exception e) {
-			StructuredMap tempMap = map;
-			System.out.println(map.getJson());
-			return null;
-		}
+
 	}
 
 	private static TakeableItem createConsumeable(StructuredMap map) {

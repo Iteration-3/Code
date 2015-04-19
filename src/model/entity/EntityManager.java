@@ -8,9 +8,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import factories.EntityFactory;
 import model.area.TileCoordinate;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 
-public class EntityManager implements Iterable<Entity> {
+public class EntityManager implements Iterable<Entity>, Saveable {
 	
 	private static EntityManager _entityManager = new EntityManager();	
 	private ArrayList<NPC> partyNpcs = new ArrayList<NPC>();
@@ -18,6 +21,20 @@ public class EntityManager implements Iterable<Entity> {
 	private Avatar avatar;
 	
 	private EntityManager() {
+	}
+	
+	public void loadEntities(StructuredMap map) {
+		this.avatar = EntityFactory.createAvatar(map.getStructuredMap("avatar"));
+		this.partyNpcs = new ArrayList<NPC>();
+		this.nonPartyNpcs = new ArrayList<NPC>();
+		StructuredMap[] array1 = map.getStructuredMapArray("partyNPC");
+		StructuredMap[] array2 = map.getStructuredMapArray("nonPartyNPC");
+		for(StructuredMap tempMap : array1) {
+			this.partyNpcs.add(EntityFactory.createNPC(tempMap));
+		}
+		for(StructuredMap tempMap : array2) {
+			this.nonPartyNpcs.add(EntityFactory.createNPC(tempMap));
+		}
 	}
 	
 	private class EntityIterator implements Iterator<Entity> {
@@ -163,5 +180,26 @@ public class EntityManager implements Iterable<Entity> {
 		partyNpcs = new ArrayList<NPC>();
 		nonPartyNpcs = new ArrayList<NPC>();
 		avatar = null;
+	}
+
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		map.put("avatar", avatar.getStructuredMap());
+		StructuredMap[] partyNPCArray = new StructuredMap[partyNpcs.size()];
+		for(int i = 0; i < partyNpcs.size(); i++) {
+			partyNPCArray[i] = partyNpcs.get(i).getStructuredMap();
+		}
+		
+		StructuredMap[] nonPartyNPCArray = new StructuredMap[nonPartyNpcs.size()];
+		for(int i = 0; i < partyNpcs.size(); i++) {
+			nonPartyNPCArray[i] = nonPartyNpcs.get(i).getStructuredMap();
+		}
+		
+		map.put("partyNPC", partyNPCArray);
+		map.put("nonPartyNPC", nonPartyNPCArray);
+		
+		return map;
+		
 	}
 }

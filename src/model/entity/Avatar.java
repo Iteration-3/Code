@@ -14,6 +14,7 @@ import model.light.LightManager;
 import model.light.MovingLightSource;
 import model.skillmanager.SkillManager;
 import utilities.Angle;
+import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 import controller.listener.Listener;
 import controller.listener.PollingListener;
@@ -30,6 +31,10 @@ public abstract class Avatar extends Entity {
 		setLocation(loc);
 		//LightManager.getLightManager().getLightMap().trackMovement(this);
 		//setLocation(loc);//So lightMap registers current position
+	}
+	
+	public Avatar(StructuredMap map) {
+		super(map);
 	}
 	
 	protected void generateSkills(){

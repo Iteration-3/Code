@@ -29,7 +29,6 @@ public class Mount extends NPC {
 
 	public Mount(StructuredMap map) {
 		super(map);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
