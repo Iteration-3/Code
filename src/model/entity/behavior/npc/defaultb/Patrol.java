@@ -1,25 +1,19 @@
 package model.entity.behavior.npc.defaultb;
 
 import model.entity.Entity;
+import model.entity.behavior.npc.defaultb.curcuit.UpDown;
 
-public class Patrol {
-	// prop want to make a circuit of where the NPC is moving and such
+public class Patrol implements DefaultableBehaviorState {
 	private Entity chosenOne;
+	private UpDown curcit;
 	
 	public Patrol(Entity entity){
 		this.chosenOne = entity;
+		this.curcit = new UpDown();
 	}
 	
 	public void perform(){
-		// first lets make it walk in a circle
-		
-		
-		
-		
-		
-		// second make it follow a circuit
-		
-		
-		// third make it come back to a position in its circuit,  it runs away
+		this.chosenOne.move(this.curcit.nextMove());
 	}
+
 }
