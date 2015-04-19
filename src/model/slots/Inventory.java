@@ -1,6 +1,5 @@
 package model.slots;
 
-import factories.TakeableItemFactory;
 import model.item.TakeableItem;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
@@ -19,18 +18,15 @@ public class Inventory implements Saveable {
 	}
 	
 	public Inventory(StructuredMap map) {
-		this.inventoryView = new InventoryView();
+		
 		slots = new InventorySlot[map.getInteger("slotsLength")];
-		for (int i = 0; i < (map.getInteger("slotsLength")); i++) {
-			this.setSlot(i);
+		StructuredMap[] array = map.getStructuredMapArray("items");
+		
+		for (int i = 0; i < array.length; i++) {
+			slots[i] = new InventorySlot(array[i]);
 		}
-		StructuredMap[] items = map.getStructuredMapArray("items");
-		for(StructuredMap item : items) {
-			TakeableItem savedItem = TakeableItemFactory.createItem(item);
-			if(item != null) {
-				this.addItem(savedItem);
-			}
-		}
+		
+		this.inventoryView = new InventoryView(map.getStructuredMap("inventoryView"));
 	}
 
 	private void setInventory() {
@@ -161,13 +157,10 @@ public class Inventory implements Saveable {
 		StructuredMap[] items = new StructuredMap[slots.length];
 		
 		for(int i = 0; i < slots.length; i++) {
-			if(slots[i].get() != null) {
-				items[i] = slots[i].get().getStructuredMap();
-			} else {
-				items[i] = null;
-			}
+			items[i] = this.slots[i].getStructuredMap();
 		}
 		map.put("items", items);
+		map.put("inventoryView", inventoryView.getStructuredMap());
 		return map;
 	}
 }

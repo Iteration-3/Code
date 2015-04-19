@@ -3,6 +3,14 @@ package view;
 import java.awt.image.BufferedImage;
 
 class ConcreteEntitySpriteHolder extends AbstractEntitySpriteHolder {
+	
+	private String upPath;
+	private String downPath;
+	private String downLeftPath;
+	private String downRightPath;
+	private String upLeftPath;
+	private String upRightPath;
+	
 	public ConcreteEntitySpriteHolder(BufferedImage[] images) {
 		this.setUp(images);
 		this.setDown(images);
@@ -20,7 +28,6 @@ class ConcreteEntitySpriteHolder extends AbstractEntitySpriteHolder {
 	private Sprite up;
 	@Override
 	protected void setUp(BufferedImage[] images) {
-		//9-11 is up poses.
 		up = new Sprite(getImages(images,9));
 		
 	}
@@ -92,6 +99,10 @@ class ConcreteEntitySpriteHolder extends AbstractEntitySpriteHolder {
 	@Override
 	protected Sprite getDownRight() {
 		return downRight;
+	}
+	@Override
+	protected String getType() {
+		return "concrete";
 	}
 
 	

@@ -3,19 +3,22 @@ package view;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JComponent;
 
 import utilities.ImageProcessing;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 import controller.SlotViewMouseListenerFactory;
 
 @SuppressWarnings("serial")
-public class InventoryView extends JComponent {
-	private static final String backgroundPath = "/images/slotImage.png";
+public class InventoryView extends JComponent implements Saveable {
+	private static String backgroundPath = "src/resources/images/slotImage.png";
 	private static BufferedImage slotBackground;
-	private final static int COL = 5;
-	private final static int ROW = 5;
-	private final static float ITEM_DIAMETER = 50;
+	private static int COL = 5;
+	private static int ROW = 5;
+	private static double ITEM_DIAMETER = 50;
 
 	private int slotWidth = 100;
 	private int slotHeight = 100;
@@ -34,10 +37,47 @@ public class InventoryView extends JComponent {
 		setVisible(true);
 		setFocusable(true);
 	}
+	
+	public InventoryView(StructuredMap map) {
+		backgroundPath = map.getString("path");
+		COL = map.getInteger("col");
+		ROW = map.getInteger("row");
+		ITEM_DIAMETER = map.getDouble("itemDiameter");
+		slotHeight = map.getInteger("slotHeight");
+		slotWidth = map.getInteger("slotWidth");
+		StructuredMap[] array = map.getStructuredMapArray("viewMap");
+		this.slots = new HashMap<Integer, SlotView>();
+		for(int i =0; i < array.length; i++) {
+			slots.put(array[i].getInteger("key"), new SlotView(array[i].getStructuredMap("value")));
+		}
+	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		map.put("path", backgroundPath);
+		map.put("col", COL);
+		map.put("row", ROW);
+		map.put("itemDiameter", ITEM_DIAMETER);
+		map.put("slotHeight", slotHeight);
+		map.put("slotWidth", slotWidth);
+		StructuredMap[] array = new StructuredMap[slots.size()];
+		int i = 0;
+		for(Map.Entry<Integer, SlotView> set : slots.entrySet()) {
+			StructuredMap tempMap = new StructuredMap();
+			tempMap.put("key", set.getKey());
+			tempMap.put("value", set.getValue().getStructuredMap());
+			array[i++] = tempMap;
+		}
+		
+		map.put("viewMap", array);
+		
+		return map;
+	}
 
 	public void register(SlotView slotView, int location) {
 		slots.put(location, slotView);
-		slotView.setBackground(this.getBackgroundImage());
+		slotView.setBackground(this.getBackgroundImage(), backgroundPath);
 		int height = slotHeight * (location / ROW) + this.heightOffset;
 		int width = slotWidth * (location % COL) + this.widthOffset;
 		slotView.setBounds(width, height, slotWidth, slotHeight);
@@ -95,4 +135,6 @@ public class InventoryView extends JComponent {
 		this.slotHeight = height;
 		this.resetSlotDimensions();
 	}
+
+	
 }

@@ -5,21 +5,87 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
 
-import controller.InventoryMenuController;
 import utilities.ImageProcessing;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
+import controller.InventoryMenuController;
 
 @SuppressWarnings("serial")
-public class EquipmentView extends JComponent {
+public class EquipmentView extends JComponent implements Saveable {
 	private float EQUIPMENT_SCALE = 80;	//this is a percentage of the height and scale
 	
-	private static final String HELMET_PATH = "/images/helmet_slot.jpg";
-	private static final String CHEST_PIECE_PATH = "/images/chest_piece_slot.jpg";
-	private static final String LEGGINGS_PATH = "/images/leggings_slot.jpg";
-	private static final String BOOTS_PATH = "/images/boots_slot.jpg";
-	private static final String WEAPON_PATH = "/images/weapon_slot.jpg";
-	private static final String SHIELD_PATH = "/images/shield_slot.jpg";
-	private static final String PROJECTILE_PATH = "/images/projectile_slot.jpg";
-	private static final String GLOVES_PATH = "/images/gloves_slot.jpg";
+	private static String HELMET_PATH = "src/resources/images/helmet_slot.jpg";
+	private static String CHEST_PIECE_PATH = "src/resources/images/chest_piece_slot.jpg";
+	private static String LEGGINGS_PATH = "src/resources/images/leggings_slot.jpg";
+	private static String BOOTS_PATH = "src/resources/images/boots_slot.jpg";
+	private static String WEAPON_PATH = "src/resources/images/weapon_slot.jpg";
+	private static String SHIELD_PATH = "src/resources/images/shield_slot.jpg";
+	private static String PROJECTILE_PATH = "src/resources/images/projectile_slot.jpg";
+	private static String GLOVES_PATH = "src/resources/images/gloves_slot.jpg";
+	
+	public EquipmentView(StructuredMap map) {
+		HELMET_PATH = map.getString("helmet");
+		CHEST_PIECE_PATH = map.getString("chestPiece");
+		LEGGINGS_PATH = map.getString("leggings");
+		BOOTS_PATH = map.getString("boots");
+		WEAPON_PATH = map.getString("weapon");
+		SHIELD_PATH = map.getString("shield");
+		PROJECTILE_PATH = map.getString("projectile");
+		GLOVES_PATH = map.getString("gloves");
+		this.slotHeight = map.getInteger("slotHeight");
+		this.slotWidth = map.getInteger("slotWidth");
+		this.helmetX = map.getInteger("helmetX");
+		helmetY = map.getInteger("helmetY");
+		chestPieceX = map.getInteger("chestPieceX");
+		chestPieceY = map.getInteger("chestPieceY");
+		leggingsX = map.getInteger("leggingsX");
+		leggingsY = map.getInteger("leggingsY");
+		bootsX = map.getInteger("bootsX");
+		bootsY = map.getInteger("bootsY");
+		weaponX = map.getInteger("weaponX");
+		weaponY = map.getInteger("weaponY");
+		glovesX = map.getInteger("glovesX");
+		glovesY = map.getInteger("glovesY");
+		shieldX = map.getInteger("shieldX");
+		shieldY = map.getInteger("shieldY");
+		projectileX = map.getInteger("projectileX");
+		projectileY = map.getInteger("projectileY");
+		
+		setImages();
+	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		map.put("helmet", HELMET_PATH);
+		map.put("chestPiece", CHEST_PIECE_PATH);
+		map.put("leggings", LEGGINGS_PATH);
+		map.put("boots", BOOTS_PATH);
+		map.put("weapon", WEAPON_PATH);
+		map.put("shield", SHIELD_PATH);
+		map.put("projectile", PROJECTILE_PATH);
+		map.put("gloves", GLOVES_PATH);
+		map.put("slotHeight", slotHeight);
+		map.put("slotWidth", slotWidth);
+		map.put("helmetX", helmetX);
+		map.put("helmetY", helmetY);
+		map.put("chestPieceX", chestPieceX);
+		map.put("chestPieceY", chestPieceY);
+		map.put("leggingsX", leggingsX);
+		map.put("leggingsY", leggingsY);
+		map.put("bootsX", bootsX);
+		map.put("bootsY", bootsY);
+		map.put("weaponX", weaponX);
+		map.put("weaponY", weaponY);
+		map.put("glovesX", glovesX);
+		map.put("glovesY", glovesY);
+		map.put("shieldX", shieldX);
+		map.put("shieldY", shieldY);
+		map.put("projectileX", projectileX);
+		map.put("projectileY", projectileY);
+	
+		return map;
+	}
 	
 	private int helmetX;
 	private int helmetY;
@@ -76,42 +142,42 @@ public class EquipmentView extends JComponent {
 		glovesImage = ImageProcessing.scaleImage(slotHeight, slotHeight, GLOVES_PATH);
 	}
 	
-	private void setView(SlotView slot,BufferedImage image,int x,int y){
-		slot.setBackground(image);
+	private void setView(SlotView slot,BufferedImage image, String imagePath, int x,int y){
+		slot.setBackground(image, imagePath );
 		add(slot);
 	}
 	
 	public void registerHelmet(SlotView slotView){
 		helmetView = slotView;
-		this.setView(slotView,helmetImage,helmetX,helmetY);
+		this.setView(slotView,helmetImage, HELMET_PATH, helmetX,helmetY);
 	}
 	public void registerChestPiece(SlotView slotView){
 		chestPieceView = slotView;
-		this.setView(slotView,chestPieceImage,chestPieceX,chestPieceY);
+		this.setView(slotView,chestPieceImage,CHEST_PIECE_PATH, chestPieceX,chestPieceY);
 	}
 	public void registerLeggings(SlotView slotView){
 		leggingsView = slotView;
-		this.setView(slotView,leggingsImage , leggingsX , leggingsY);
+		this.setView(slotView,leggingsImage , LEGGINGS_PATH, leggingsX , leggingsY);
 	}
 	public void registerBoots(SlotView slotView){
 		bootsView = slotView;
-		this.setView(slotView,bootsImage , bootsX , bootsY);
+		this.setView(slotView,bootsImage , BOOTS_PATH, bootsX , bootsY);
 	}
 	public void registerWeapon(SlotView slotView){
 		weaponView = slotView;
-		this.setView(slotView,weaponImage , weaponX , weaponY);
+		this.setView(slotView,weaponImage , WEAPON_PATH, weaponX , weaponY);
 	}
 	public void registerShield(SlotView slotView){
 		shieldView = slotView;
-		this.setView(slotView,shieldImage , shieldX , shieldY);
+		this.setView(slotView,shieldImage , SHIELD_PATH, shieldX , shieldY);
 	}
 	public void registerGloves(SlotView slotView){
 		glovesView = slotView;
-		this.setView(slotView,glovesImage , glovesX , glovesY);
+		this.setView(slotView,glovesImage ,GLOVES_PATH , glovesX , glovesY);
 	}
 	public void registerProjectile(SlotView slotView){
 		projectileView = slotView;
-		this.setView(slotView,projectileImage , projectileX , projectileY);
+		this.setView(slotView,projectileImage ,PROJECTILE_PATH, projectileX , projectileY);
 	}
 	
 	public void setBounds(int x, int y){
@@ -172,13 +238,15 @@ public class EquipmentView extends JComponent {
 		projectileView.setBounds(projectileX , projectileY , slotHeight, slotHeight);
 		chestPieceView.setBounds(chestPieceX , chestPieceY , slotHeight, slotHeight);
 		this.setImages();
-		this.setView(shieldView ,shieldImage , shieldX , shieldY);
-		this.setView(glovesView ,glovesImage , glovesX , glovesY);
-		this.setView(projectileView ,projectileImage , projectileX , projectileY);
-		this.setView(helmetView ,helmetImage,helmetX,helmetY);
-		this.setView(chestPieceView ,chestPieceImage,chestPieceX,chestPieceY);
-		this.setView(leggingsView ,leggingsImage , leggingsX , leggingsY);
-		this.setView(bootsView ,bootsImage , bootsX , bootsY);
-		this.setView(weaponView ,weaponImage , weaponX , weaponY);
+		this.setView(shieldView ,shieldImage , SHIELD_PATH, shieldX , shieldY);
+		this.setView(glovesView ,glovesImage ,GLOVES_PATH, glovesX , glovesY);
+		this.setView(projectileView ,projectileImage , PROJECTILE_PATH, projectileX , projectileY);
+		this.setView(helmetView ,helmetImage, HELMET_PATH,helmetX,helmetY);
+		this.setView(chestPieceView ,chestPieceImage, CHEST_PIECE_PATH,chestPieceX,chestPieceY);
+		this.setView(leggingsView ,leggingsImage , LEGGINGS_PATH, leggingsX , leggingsY);
+		this.setView(bootsView ,bootsImage , BOOTS_PATH, bootsX , bootsY);
+		this.setView(weaponView ,weaponImage ,WEAPON_PATH, weaponX , weaponY);
 	}
+
+	
 }
