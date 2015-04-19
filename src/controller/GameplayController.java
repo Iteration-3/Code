@@ -1,6 +1,7 @@
 package controller;
 
 import model.Model;
+import model.entity.EntityManager;
 import model.event.EventManager;
 import model.trigger.TriggerManager;
 import controller.listener.Listener;
@@ -23,6 +24,7 @@ public class GameplayController extends Controller {
     private void doUpdates(double deltaTime) {
 		TriggerManager.getSingleton().update(deltaTime);
 		EventManager.getSingleton().update(deltaTime);
+		EntityManager.getSingleton().update(deltaTime);
     }
     
     public void spawnUpdateThread() {

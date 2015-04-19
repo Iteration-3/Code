@@ -2,11 +2,16 @@ package model.event;
 
 import model.entity.Avatar;
 import model.item.TakeableItem;
+import utilities.structuredmap.StructuredMap;
 
 public final class PickPocketEvent extends SourcedEvent {
 	
 	public PickPocketEvent() {
 		super(null, null, 0);
+	}
+	
+	public PickPocketEvent(StructuredMap map) {
+		super(map);
 	}
 	
 	@Override
@@ -29,6 +34,11 @@ public final class PickPocketEvent extends SourcedEvent {
 		clone.setTarget(this.getTarget());
 		clone.setDuration(this.getDuration());
 		return clone;
+	}
+
+	@Override
+	protected String getType() {
+		return "pickPocket";
 	}
 
 }

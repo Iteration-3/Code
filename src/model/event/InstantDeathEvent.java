@@ -1,6 +1,7 @@
 package model.event;
 
 import model.entity.Entity;
+import utilities.structuredmap.StructuredMap;
 
 public class InstantDeathEvent extends Event {
 
@@ -10,6 +11,10 @@ public class InstantDeathEvent extends Event {
 
 	public InstantDeathEvent(Entity target, double duration) {
 		super(target, duration);
+	}
+	
+	public InstantDeathEvent(StructuredMap map) {
+		super(map);
 	}
 
 	@Override
@@ -24,5 +29,12 @@ public class InstantDeathEvent extends Event {
 		InstantDeathEvent clone = new InstantDeathEvent(getTarget(), getDuration());
 		return clone;
 	}
+
+	@Override
+	protected String getType() {
+		return "instantDeath";
+	}
+	
+	
 
 }

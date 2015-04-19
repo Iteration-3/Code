@@ -7,6 +7,7 @@ import model.projectile.Projectile;
 import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import utilities.Angle;
+import utilities.structuredmap.StructuredMap;
 
 public class FireProjectile extends Projectile {
 	
@@ -20,6 +21,15 @@ public class FireProjectile extends Projectile {
 	
 	public FireProjectile(Angle direction, double speed, Trigger trigger) {
 		super(direction, null, speed, trigger);
+	}
+	
+	public FireProjectile(StructuredMap map) {
+		super(map);
+	}
+	
+	@Override
+	protected String getType() {
+		return "fireProjectile";
 	}
 
 }

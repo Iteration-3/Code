@@ -1,13 +1,27 @@
 package factories;
 
+import model.trigger.PermanentTrigger;
+import model.trigger.RateLimitedTrigger;
+import model.trigger.SingleUseTrigger;
+import model.trigger.TimedTrigger;
 import model.trigger.Trigger;
 import utilities.structuredmap.StructuredMap;
 
 public class TriggerFactory {
 
 	public static Trigger createTrigger(StructuredMap map) {
-		// TODO Auto-generated method stub
-		return null;
+		switch (map.getString("type")) {
+		case "permanent":
+			return new PermanentTrigger(map);
+		case "rateLimited":
+			return new RateLimitedTrigger(map);
+		case "singleUseTrigger":
+			return new SingleUseTrigger(map);
+		case "timedTrigger":
+			return new TimedTrigger(map);
+		default:
+			throw new IllegalArgumentException("Fuck you");
+		}
 	}
 
 }

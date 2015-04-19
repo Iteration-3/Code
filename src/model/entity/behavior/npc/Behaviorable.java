@@ -17,5 +17,9 @@ public interface Behaviorable {
 	public void onExit();
 	
 	public void onEnter();
+	
+	public void setEntity(Entity entity);
+	
+	public void setStates();
 
 }

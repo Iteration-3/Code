@@ -1,5 +1,6 @@
 package model.event;
 
+import utilities.structuredmap.StructuredMap;
 import model.entity.Entity;
 
 public class MovementModifierEvent extends Event {
@@ -14,6 +15,11 @@ public class MovementModifierEvent extends Event {
 		super(target, duration);
 		this.movement = movement;
 	}
+	
+	public MovementModifierEvent(StructuredMap map) {
+		super(map);
+		this.movement = map.getInteger("movement");
+	}
 
 	@Override
 	public void perform() {
@@ -26,6 +32,18 @@ public class MovementModifierEvent extends Event {
 	public MovementModifierEvent clone() {
 		MovementModifierEvent clone = new MovementModifierEvent(movement, getTarget(), getDuration());
 		return clone;
+	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		map.put("movement", movement);
+		return map;
+	}
+
+	@Override
+	protected String getType() {
+		return "movementModifier";
 	}
 
 }

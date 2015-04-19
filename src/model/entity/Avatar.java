@@ -96,6 +96,18 @@ public abstract class Avatar extends Entity {
 		
 	}
 	
+	public boolean hasMoney(int money) {
+		return this.getBaseStats().getMoney() >= money;
+	}
+	
+	public void addMoney(int money) {
+		this.removeMoney(-1 * money);
+	}
+	
+	public void removeMoney(int money) {
+		this.getBaseStats().addMoney(-1 * money);
+	}
+	
 	public int getAttackSkill() {
 		return getSkillManager().getAttackSkill();
 	}

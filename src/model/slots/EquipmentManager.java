@@ -8,6 +8,7 @@ import model.entity.Sneak;
 import model.entity.Summoner;
 import model.item.Boots;
 import model.item.ChestPiece;
+import model.item.EquipableItem;
 import model.item.Gloves;
 import model.item.Helmet;
 import model.item.Leggings;
@@ -37,7 +38,6 @@ public class EquipmentManager implements Saveable {
 	private EquipmentView equipmentView;
 
 	public EquipmentManager(Smasher avatar) {
-		this.equipmentView = new EquipmentView();
 		SmasherWeaponSlot weaponSlot = new SmasherWeaponSlot();
 		this.weaponSlot = weaponSlot;
 		this.setSlots();
@@ -47,7 +47,6 @@ public class EquipmentManager implements Saveable {
 	}
 
 	public EquipmentManager(StructuredMap map) {
-		this.equipmentView = new EquipmentView();
 		this.setSlots();
 		
 		this.weaponSlot = WeaponSlotFactory.createWeaponSlot(map
@@ -139,14 +138,12 @@ public class EquipmentManager implements Saveable {
 	}
 
 	public EquipmentManager(Summoner avatar) {
-		this.equipmentView = new EquipmentView();
 		this.weaponSlot = new SummonerWeaponSlot();
 		this.setSlots();
 		this.registerSlots();
 	}
 
 	public EquipmentManager(Sneak avatar) {
-		this.equipmentView = new EquipmentView();
 		this.weaponSlot = new SneakWeaponSlot();
 		this.setSlots();
 		this.registerSlots();
@@ -157,7 +154,7 @@ public class EquipmentManager implements Saveable {
 		this.setSlots();
 	}
 
-	private void setSlots() { // TODO (Weapon)
+	private void setSlots() { 
 		this.helmetSlot = new EquipmentSlot<Helmet>();
 		this.chestPieceSlot = new EquipmentSlot<ChestPiece>();
 		this.leggingsSlot = new EquipmentSlot<Leggings>();
@@ -186,6 +183,7 @@ public class EquipmentManager implements Saveable {
 	}
 
 	public void registerSlots() {
+		this.equipmentView = new EquipmentView();
 		this.equipmentView.registerBoots(this.setSlotView(this.bootsSlot));
 		this.equipmentView.registerChestPiece(this
 				.setSlotView(this.chestPieceSlot));
@@ -301,6 +299,31 @@ public class EquipmentManager implements Saveable {
 			return this.THWSlot.has();
 		}
 		return false;
+	}
+	
+	public EquipableItem getHelmet(){
+		return this.helmetSlot.get();
+	}
+	public EquipableItem getLeggings(){
+		return this.leggingsSlot.get();
+	}
+	public EquipableItem getGloves(){
+		return this.glovesSlot.get();
+	}
+	public EquipableItem getBoots(){
+		return this.bootsSlot.get();
+	}
+	public EquipableItem getProjectile(){
+		return this.helmetSlot.get();
+	}
+	public EquipableItem getShield(){
+		return this.shieldSlot.get();
+	}
+	public EquipableItem getWeapon(){
+		return this.weaponSlot.get();
+	}
+	public EquipableItem getChestPiece(){
+		return this.chestPieceSlot.get();
 	}
 
 }

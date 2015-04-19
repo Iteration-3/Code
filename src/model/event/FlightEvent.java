@@ -1,9 +1,15 @@
 package model.event;
 
+import utilities.structuredmap.StructuredMap;
+
 public class FlightEvent extends Event {
 
 		public FlightEvent(double duration){
 			super(duration);
+		}
+		
+		public FlightEvent(StructuredMap map) {
+			super(map);
 		}
 		
 		@Override
@@ -31,6 +37,11 @@ public class FlightEvent extends Event {
 			FlightEvent clone = 
 					new FlightEvent(this.getDuration());
 			return clone;
+		}
+
+		@Override
+		protected String getType() {
+			return "flightEvent";
 		}
 	
 }

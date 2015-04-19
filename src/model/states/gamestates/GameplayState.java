@@ -43,6 +43,7 @@ import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
+import view.EntitySpriteFactory;
 import view.EntityView;
 import view.item.BasicItemView;
 import view.item.ItemView;
@@ -107,8 +108,7 @@ public class GameplayState extends GameState {
 
     public void addEntityTest() {
         TileCoordinate loc = new TileCoordinate(3, 3);
-        EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange,
-                new RealCoordinate(3, 3));
+        EntityView eView = new EntityView(EntitySpriteFactory.getSummonerSpriteHolder());
         avatar = new Summoner("Summoner", eView, loc);
         //testing this for equipped Items
         avatar.equip(new Helmet(new BasicItemView(),new Statistics()));
@@ -119,15 +119,12 @@ public class GameplayState extends GameState {
         setListeners(preferences);
 
         EntityManager.getSingleton().setAvatar(avatar);
-        eView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(3, 3));
+        eView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(3, 3),Angle.UP);
         
         TileCoordinate npcLocation = new TileCoordinate(7, 7);
-        EntityView npcView = new EntityView(new Color(200, 200, 0), Color.orange,
-        		new RealCoordinate(7, 7));
-        npcView = new EntityView(new Color(0, 0, 255), Color.ORANGE,
-        		new RealCoordinate(7, 7));
+        EntityView npcView = new EntityView(EntitySpriteFactory.getLadySpriteHolder());
         NPC npc = new NPC("DaveTheBargainer", npcView, npcLocation);
-        npcView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(7, 7));
+        npcView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(7, 7),Angle.UP);
         EntityManager.getSingleton().addPartyNpc(npc);
     }
 

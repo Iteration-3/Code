@@ -1,5 +1,6 @@
 package model.event;
 
+import utilities.structuredmap.StructuredMap;
 import model.entity.Entity;
 
 public class ManaModifierEvent extends Event {
@@ -14,6 +15,11 @@ public class ManaModifierEvent extends Event {
 		super(target, duration);
 		this.mana = mana;
 	}
+	
+	public ManaModifierEvent(StructuredMap map) {
+		super(map);
+		this.mana = map.getInteger("mana");
+	}
 
 	@Override
 	public void perform() {
@@ -24,8 +30,21 @@ public class ManaModifierEvent extends Event {
 
 	@Override
 	public Event clone() {
-		ManaModifierEvent clone = new ManaModifierEvent(mana, getTarget(), getDuration());
+		ManaModifierEvent clone = new ManaModifierEvent(mana, getTarget(),
+				getDuration());
 		return clone;
+	}
+
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		map.put("mana", mana);
+		return map;
+	}
+
+	@Override
+	protected String getType() {
+		return "manaModifier";
 	}
 
 }

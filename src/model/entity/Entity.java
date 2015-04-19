@@ -5,6 +5,8 @@ import java.util.Collection;
 
 import model.KeyPreferences;
 import model.area.TileCoordinate;
+import model.entity.behavior.npc.Behaviorable;
+import model.entity.behavior.npc.state.StateMachine;
 import model.item.EquipableItem;
 import model.item.TakeableItem;
 import model.observers.MobileObject;
@@ -25,8 +27,8 @@ public abstract class Entity extends MobileObject implements Saveable {
     private String name = null;
     private EntityStatistics stats = new EntityStatistics();
     private EntityView view = null;
-    private TileCoordinate location = new TileCoordinate();
 	private boolean isFlying = false;
+	private StateMachine state;
 
     protected Entity() {
     	super(new TileCoordinate(0, 0));
@@ -36,16 +38,29 @@ public abstract class Entity extends MobileObject implements Saveable {
     	super(location);
         this.name = name;
         this.view = view;
-        this.location = location;
+        setLocation(location);
         this.setNecessities();
         setDirection(Angle.UP);
+        this.state = new StateMachine(this);
     }
+
+    public Entity(String name, EntityView view, TileCoordinate location,Behaviorable behavior) {
+    	super(location);
+        this.name = name;
+        this.view = view;
+        setLocation(location);
+        this.setNecessities();
+        setDirection(Angle.UP);
+        this.state = new StateMachine(this);
+        this.state.push(behavior);
+    }
+    
     
     public Entity(StructuredMap map) {
     	super(new TileCoordinate(map.getIntArray("location")[0], map.getIntArray("location")[1]));
         this.name = map.getString("name");
         int[] locationArray = map.getIntArray("location");
-        this.location = new TileCoordinate(locationArray[0], locationArray[1]);
+        setLocation(new TileCoordinate(locationArray[0], locationArray[1]));
         this.stats = new EntityStatistics(map.getStructuredMap("stats"));
         setDirection(Angle.values()[map.getInteger("direction")]);
         this.itemManager = new ItemManager(map.getStructuredMap("itemManager"));
@@ -56,6 +71,23 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.itemManager = this.createItemManager();
         // other things go here
     }
+    
+    /***********STATES***************/
+    public void perform(){
+    	this.state.perform();
+    }
+    
+    public void interact(Entity entity){
+    	this.state.interact(entity);
+    }
+    
+    public void onDamage(){
+    	this.state.onDamage();
+    }
+    
+    public void observe(){
+    	this.state.observe();
+    }
 
     protected abstract ItemManager createItemManager();
 
@@ -63,8 +95,8 @@ public abstract class Entity extends MobileObject implements Saveable {
 
     public StructuredMap getStructuredMap() {
         int[] locationArray = new int[2];
-        locationArray[0] = location.getX();
-        locationArray[1] = location.getY();
+        locationArray[0] = getLocation().getX();
+        locationArray[1] = getLocation().getY();
         StructuredMap map = new StructuredMap();
 
         map.put("name", name);
@@ -101,8 +133,8 @@ public abstract class Entity extends MobileObject implements Saveable {
 
     public void move(Angle angle) {
         TileCoordinate nextLocation = nextLocation(angle);
-        this.setLocation(nextLocation);
-        this.setDirection(angle);
+        this.setLocationNoNotify(nextLocation);
+        this.setDirectionNoNotify(angle);
         this.notifySubscribers();
     }
     
@@ -165,6 +197,10 @@ public abstract class Entity extends MobileObject implements Saveable {
     public TakeableItem[] getItems() {
         return this.itemManager.getInventoryItems();
     }
+    
+    public TakeableItem getItem(int slotNumber) {
+    	return this.itemManager.getInventoryItem(slotNumber);
+    }
 
     public boolean hasItem(TakeableItem item) {
         return this.itemManager.inventoryHasItem(item);
@@ -207,6 +243,26 @@ public abstract class Entity extends MobileObject implements Saveable {
     	if (this.getEntityView() != null)
     		this.getEntityView().setLocation(location);//TODO: FIX
     }
+    
+    public void setDirection(Angle angle){
+    	super.setDirection(angle);
+    	if(this.getEntityView()!=null){
+    		this.getEntityView().setDirection(angle);
+    	}
+    }
+    
+    protected void setLocationNoNotify(TileCoordinate location) {
+    	super.setLocationNoNotify(location);
+    	if (this.getEntityView() != null)
+    		this.getEntityView().setLocation(location);//TODO: FIX
+    }
+    
+    protected void setDirectionNoNotify(Angle angle){
+    	super.setDirectionNoNotify(angle);
+    	if(this.getEntityView()!=null){
+    		this.getEntityView().setDirection(angle);
+    	}
+    }
 
     public void modifyStats(Statistics otherStats) {
         stats.mergeInto(otherStats);
@@ -244,6 +300,10 @@ public abstract class Entity extends MobileObject implements Saveable {
 
     public EquipmentView getEquipmentView() {
         return itemManager.getEquipmentView();
+    }
+    
+    public ItemManager getItemManager(){
+    	return this.itemManager;
     }
 
 }

@@ -1,11 +1,12 @@
 package model.projectile.conical;
 
-import utilities.Angle;
 import model.area.RadialArea;
 import model.event.Event;
 import model.event.HealthModifierEvent;
 import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
+import utilities.Angle;
+import utilities.structuredmap.StructuredMap;
 
 public class LightConeProjectile extends ConicalProjectile {
 	
@@ -19,6 +20,15 @@ public class LightConeProjectile extends ConicalProjectile {
 	
 	public LightConeProjectile(Angle direction, double speed, Trigger trigger) {
 		super(direction, null, speed, trigger);
+	}
+	
+	public LightConeProjectile(StructuredMap map) {
+		super(map);
+	}
+	
+	@Override
+	protected String getType() {
+		return "lightConeProjectile";
 	}
 
 }

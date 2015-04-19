@@ -191,6 +191,10 @@ public class ItemManager implements Saveable {
     public EquipmentView getEquipmentView() {
         return this.equipment.getView();
     }
+    
+    public EquipmentManager getEquipment(){
+    	return this.equipment;
+    }
 
     @Override
     public StructuredMap getStructuredMap() {

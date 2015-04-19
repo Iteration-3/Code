@@ -21,6 +21,10 @@ public abstract class Event implements Cloneable, Saveable{
 		this.duration = duration;
 	}
 	
+	public Event(StructuredMap map) {
+		this.duration = map.getDouble("duration");
+	}
+	
 	// Called by the event manager
 	public void onBegin() {
 		// System.out.println("onBegin() called, NOT IMPLEMENTED");
@@ -66,6 +70,12 @@ public abstract class Event implements Cloneable, Saveable{
 	public abstract Event clone();
 	
 	public StructuredMap getStructuredMap() {
-		return null;
+		StructuredMap map = new StructuredMap();
+		map.put("duration", duration);
+		map.put("type", getType());
+		return map;
 	}
+	
+	protected abstract String getType();
+		
 }

@@ -12,7 +12,7 @@ import model.Model;
 import controller.listener.ToggleAction;
 import model.entity.Entity;
 
-public class InventoryMenuController extends Controller {
+public class InventoryMenuController extends Controller implements SlotViewMouseListenerFactory {
 	private Model model;
 	private ToggleAction backAction;
 	private Entity entity;
@@ -46,7 +46,7 @@ public class InventoryMenuController extends Controller {
 	}
 	
 	public MouseListener makeSlotMouseListener(int i){
-		return new InventorySlotMouseListener(i);
+		return new InventorySlotMouseListener(this.entity,i);
 	}
 	
 	public MouseListener makeHelmetListener(){
