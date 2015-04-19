@@ -21,7 +21,7 @@ public abstract class MobileObject {
 	
 	public void setLocation(TileCoordinate location) {
 		this.location = location;
-		notifySubscribers();
+		//notifySubscribers();
 	}
 
 	public TileCoordinate getLocation() {
@@ -34,10 +34,10 @@ public abstract class MobileObject {
 	
 	public void setDirection(Angle direction) {
 		this.direction = direction;
-		notifySubscribers();
+		//notifySubscribers();
 	}
 	
-	private void notifySubscribers() {
+	protected void notifySubscribers() {
 		for (MobileListener list : listeners) {
 			list.notify(this);
 		}

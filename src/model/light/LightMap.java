@@ -4,25 +4,62 @@ import model.area.TileCoordinate;
 
 public class LightMap {
 	
-	private Visibility[][] visibilities;
+	private int[][] strengths;
+	private int[][] lightsOn;
+	private long[][] timeDimmed;
+	private int[][] lastStrength;
 	
 	public LightMap(int x, int y) {
-		visibilities = new Visibility[x][y];
-		for (int i = 0; i < x; ++i) {
-			for (int j = 0; j < y; ++j) {
-				this.visibilities[i][j] = new Visibility(0);
-			}
+		strengths = new int[x][y];
+		lastStrength = new int[x][y];
+		lightsOn = new int[x][y];
+		timeDimmed = new long[x][y];
+	}
+	
+	public int getStrength(TileCoordinate loc) {
+		if (loc.getX() < 0 || loc.getY() < 0 || loc.getX() >= strengths.length || loc.getY() >= strengths[0].length) 
+			return 0;
+		return strengths[loc.getX()][loc.getY()];
+	}
+	
+	public int getPrevStrength(TileCoordinate loc) {
+		if (loc.getX() < 0 || loc.getY() < 0 || loc.getX() >= strengths.length || loc.getY() >= strengths[0].length) 
+			return 0;
+		return lastStrength[loc.getX()][loc.getY()];
+	}
+	
+	public boolean isEmpty(TileCoordinate loc) {
+		if (loc.getX() < 0 || loc.getY() < 0 || loc.getX() >= strengths.length || loc.getY() >= strengths[0].length) 
+			return false;
+		return lightsOn[loc.getX()][loc.getY()] == 0;
+	}
+	
+	public long getTime(TileCoordinate loc) {
+		if (loc.getX() < 0 || loc.getY() < 0 || loc.getX() >= strengths.length || loc.getY() >= strengths[0].length) 
+			return 0;
+		return timeDimmed[loc.getX()][loc.getY()];
+	}
+	
+	public void increment(TileCoordinate loc) {
+		if (loc.getX() < 0 || loc.getY() < 0 || loc.getX() >= strengths.length || loc.getY() >= strengths[0].length) 
+			return;
+		lightsOn[loc.getX()][loc.getY()]++;
+		timeDimmed[loc.getX()][loc.getY()] = 0;
+	}
+	
+	public void decrement(TileCoordinate loc) {
+		if (loc.getX() < 0 || loc.getY() < 0 || loc.getX() >= strengths.length || loc.getY() >= strengths[0].length) 
+			return;
+		lightsOn[loc.getX()][loc.getY()]--;
+		if (lightsOn[loc.getX()][loc.getY()] == 0) {
+			timeDimmed[loc.getX()][loc.getY()] = System.currentTimeMillis();
 		}
 	}
 	
-	public Visibility getVisibility(TileCoordinate loc) {
-		return visibilities[loc.getX()][loc.getY()];
-	}
-	
-	public void see(TileCoordinate loc) {
-		if (loc.getX() < 0 || loc.getY() < 0 || loc.getX() >= visibilities.length || loc.getY() >= visibilities[0].length)
+	public void setStrength(TileCoordinate loc, int val) {
+		if (loc.getX() < 0 || loc.getY() < 0 || loc.getX() >= strengths.length || loc.getY() >= strengths[0].length) 
 			return;
-		visibilities[loc.getX()][loc.getY()] = new Visibility(100);
-		System.out.println("SEE: " + loc);
+		lastStrength[loc.getX()][loc.getY()] = strengths[loc.getX()][loc.getY()];
+		strengths[loc.getX()][loc.getY()] = val;
 	}
 }

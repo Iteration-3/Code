@@ -7,10 +7,10 @@ import java.util.Iterator;
 import model.KeyPreferences;
 import model.ability.Ability;
 import model.area.ConicalArea;
+import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.light.LightManager;
 import model.light.MovingLightSource;
-import model.light.Visibility;
 import model.skillmanager.SkillManager;
 import utilities.Angle;
 import utilities.structuredmap.StructuredMap;
@@ -51,8 +51,8 @@ public abstract class Avatar extends Entity {
 	public Avatar(String name, EntityView view, TileCoordinate loc){
 		super(name, view, loc);
 		//Make light manager track all avatars movement
-		MovingLightSource avatarLight = new MovingLightSource(new ConicalArea(5, loc, Angle.UP), new Visibility(255), this);
-		LightManager.getLightManager().addLightSource(avatarLight);
+		MovingLightSource avatarLight = new MovingLightSource(new RadialArea(3, loc), 255, this);
+		LightManager.getSingleton().addLightSource(avatarLight);
 		setLocation(loc);
 		//LightManager.getLightManager().getLightMap().trackMovement(this);
 		//setLocation(loc);//So lightMap registers current position
