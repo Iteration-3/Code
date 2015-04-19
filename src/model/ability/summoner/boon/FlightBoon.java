@@ -20,4 +20,9 @@ public class FlightBoon extends SelfAbility{
 		super.perform(avatar);
 	}
 
+	@Override
+	protected String getType() {
+		return "flightBoon";
+	}
+
 }

@@ -3,11 +3,27 @@ package model.skillmanager;
 import utilities.structuredmap.StructuredMap;
 
 public class SummonerSkillManager extends SkillManager {
+	
+	public SummonerSkillManager() {
+		
+	}
 
-    @Override
+    public SummonerSkillManager(StructuredMap map) {
+		super(map);
+		this.boonSkill = map.getInteger("boonSkill");
+		this.baneSkill = map.getInteger("baneSkill");
+		this.enchantSkill = map.getInteger("enchantSkill");
+		this.staffSkill = map.getInteger("staffSkill");
+	}
+
+	@Override
     public StructuredMap getStructuredMap() {
-        // TODO Auto-generated method stub
-        return null;
+    	StructuredMap map = super.getStructuredMap();
+    	map.put("boonSkill", boonSkill);
+    	map.put("baneSkill", baneSkill);
+    	map.put("enchantSkill", enchantSkill);
+    	map.put("staffSkill", staffSkill);
+    	return map;
     }
 
     private int boonSkill = 1;
@@ -46,4 +62,9 @@ public class SummonerSkillManager extends SkillManager {
     public void incrementStaff() {
         ++staffSkill;
     }
+
+	@Override
+	protected String getType() {
+		return "summoner";
+	}
 }

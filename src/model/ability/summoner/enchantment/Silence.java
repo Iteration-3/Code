@@ -15,4 +15,9 @@ public class Silence extends ProjectileAbility {
 		this.setManaCost(manaCost);
 	}
 
+	@Override
+	protected String getType() {
+		return "silence";
+	}
+
 }

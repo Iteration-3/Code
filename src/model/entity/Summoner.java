@@ -21,7 +21,9 @@ public class Summoner extends Avatar {
 	
 
 
-	
+	public Summoner(StructuredMap map) {
+		super(map);
+	}
 
 
 	public Summoner(String name, EntityView view, TileCoordinate loc) {
@@ -73,6 +75,14 @@ public class Summoner extends Avatar {
 	public void update() {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+
+
+	@Override
+	public String getType() {
+		return "summoner";
 	}
 
 

@@ -12,13 +12,10 @@ public class MovingLightSource extends LightSource implements MobileListener {
 		mo.subscribe(this);
 	}
 	
-	private void move(TileCoordinate location) {
-		this.getArea().setStartLocation(location);
-		LightManager.getLightManager().updateSeen();
-	}
-
 	@Override
 	public void notify(MobileObject mo) {
-		move(mo.getLocation());
+		getArea().setStartLocation(mo.getLocation());
+		getArea().setDirection(mo.getDirection());
+		LightManager.getLightManager().updateSeen();
 	}
 }

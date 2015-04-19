@@ -1,8 +1,10 @@
 package model.event;
 
 import model.entity.Entity;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 
-public abstract class Event implements Cloneable{
+public abstract class Event implements Cloneable, Saveable{
 
 	private final double CREATION_TIME = System.currentTimeMillis() / 1000.0;
 	
@@ -62,4 +64,8 @@ public abstract class Event implements Cloneable{
 	}
 
 	public abstract Event clone();
+	
+	public StructuredMap getStructuredMap() {
+		return null;
+	}
 }

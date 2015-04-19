@@ -14,4 +14,9 @@ public class MovementBoon extends SelfAbility {
 		this.setManaCost(manaCost);
 	}
 
+	@Override
+	protected String getType() {
+		return "movementBoon";
+	}
+
 }

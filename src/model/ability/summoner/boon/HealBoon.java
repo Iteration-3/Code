@@ -14,4 +14,9 @@ public final class HealBoon extends SelfAbility {
 		this.setManaCost(manaCost);
 	}
 
+	@Override
+	protected String getType() {
+		return "healBoon";
+	}
+
 }

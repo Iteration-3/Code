@@ -16,6 +16,7 @@ import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.entity.EntityManager;
 import model.entity.EntityMovementAssocation;
+import model.entity.NPC;
 import model.entity.Summoner;
 import model.event.ExperienceModifierEvent;
 import model.event.HealthModifierEvent;
@@ -108,7 +109,7 @@ public class GameplayState extends GameState {
     public void addEntityTest() {
         TileCoordinate loc = new TileCoordinate(3, 3);
         EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange,
-                TileCoordinate.convertToRealCoordinate(loc));
+                new RealCoordinate(3, 3));
         avatar = new Summoner("Summoner", eView, loc);
 
         KeyPreferences preferences = new KeyPreferences();
@@ -118,6 +119,15 @@ public class GameplayState extends GameState {
 
         EntityManager.getSingleton().setAvatar(avatar);
         eView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(3, 3));
+        
+        TileCoordinate npcLocation = new TileCoordinate(7, 7);
+        EntityView npcView = new EntityView(new Color(200, 200, 0), Color.orange,
+        		new RealCoordinate(7, 7));
+        npcView = new EntityView(new Color(0, 0, 255), Color.ORANGE,
+        		new RealCoordinate(7, 7));
+        NPC npc = new NPC("DaveTheBargainer", npcView, npcLocation);
+        npcView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(7, 7));
+        EntityManager.getSingleton().addPartyNpc(npc);
     }
 
     private void setListeners(KeyPreferences preferences) {
@@ -201,7 +211,7 @@ public class GameplayState extends GameState {
         Trigger triggerTwo = new SingleUseTrigger(areaTwo, new ExperienceModifierEvent(0, 750));
 
         TileCoordinate locThree = new TileCoordinate(2, 8);
-        Area areaThree = new RadialArea(1, locThree);
+        Area areaThree = new RadialArea(0, locThree);
         Trigger triggerThree = new PermanentTrigger(areaThree, new TeleportEvent(new TileCoordinate(2, 0),
                 new GameActionTeleport(avatar, gameMap, this.getItemMap(), Angle.DOWN)));
         

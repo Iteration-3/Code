@@ -1,15 +1,17 @@
 package model.projectile;
 
-import model.area.TileCoordinate;
 import model.area.RadialArea;
+import model.area.TileCoordinate;
 import model.event.StatisticModifierEvent;
 import model.statistics.EntityStatistics;
 import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 
-public class Projectile implements Cloneable {
+public class Projectile implements Cloneable, Saveable {
 	private Angle direction;
 	private TileCoordinate location;
 	private double speed;
@@ -106,5 +108,9 @@ public class Projectile implements Cloneable {
 
 	public void setTrigger(Trigger trigger) {
 		this.trigger = trigger;
+	}
+	
+	public StructuredMap getStructuredMap() {
+		return null;
 	}
 }

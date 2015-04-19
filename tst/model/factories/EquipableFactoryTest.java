@@ -19,7 +19,7 @@ public class EquipableFactoryTest {
 		Helmet met = new Helmet(new BasicItemView(), new Statistics());
 		StructuredMap map = met.getStructuredMap();
 
-		EquipableItem testHelmet = EquipableItemFactory.createItem("helmet", map.getStructuredMap("helmet"));
+		EquipableItem testHelmet = EquipableItemFactory.createItem( map);
 		assertEquals(met.getStructuredMap().getJson(), testHelmet.getStructuredMap().getJson());
 		
 	}
@@ -29,7 +29,7 @@ public class EquipableFactoryTest {
 		ChestPiece met = new ChestPiece(new BasicItemView(), new Statistics());
 		StructuredMap map = met.getStructuredMap();
 		
-		EquipableItem testHelmet = EquipableItemFactory.createItem("chestPiece", map.getStructuredMap("chestPiece"));
+		EquipableItem testHelmet = EquipableItemFactory.createItem(map);
 		assertEquals(met.getStructuredMap().getJson(), testHelmet.getStructuredMap().getJson());
 		
 	}
