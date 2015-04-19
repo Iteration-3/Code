@@ -165,6 +165,10 @@ public abstract class Entity extends MobileObject implements Saveable {
     public TakeableItem[] getItems() {
         return this.itemManager.getInventoryItems();
     }
+    
+    public TakeableItem getItem(int slotNumber) {
+    	return this.itemManager.getInventoryItem(slotNumber);
+    }
 
     public boolean hasItem(TakeableItem item) {
         return this.itemManager.inventoryHasItem(item);

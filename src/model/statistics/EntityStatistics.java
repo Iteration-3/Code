@@ -8,14 +8,16 @@ public class EntityStatistics extends Statistics {
     private int movement;
     private int currentHealth;
     private int currentMana;
+    private int money;
 
     public EntityStatistics() {
         super();
-        this.livesLeft = 3;
-        this.experience = 0;
-        this.movement = 5;
-        this.currentHealth = getMaximumHealth();
-        this.currentMana = getMaximumMana();
+        setLivesLeft(3);
+        setExperience(0);
+        setMovement(0);
+        setCurrentHealth(getMaximumHealth());
+        setCurrentMana(getMaximumMana());
+        setMoney(30);
     }
 
     public EntityStatistics(StructuredMap map) {
@@ -25,16 +27,18 @@ public class EntityStatistics extends Statistics {
         setMovement(map.getInteger("movement"));
         setCurrentHealth(map.getInteger("currentHealth"));
         setCurrentMana(map.getInteger("currentMana"));
+        setMoney(map.getInteger("money"));
     }
 
     public EntityStatistics(int strength, int agility, int intellect, int hardiness, int livesLeft, int experience,
-            int movement, int currentHealth, int currentMana) {
+            int movement, int currentHealth, int currentMana, int money) {
         super(strength, agility, intellect, hardiness);
-        this.livesLeft = livesLeft;
-        this.experience = experience;
-        this.movement = movement;
-        this.currentHealth = currentHealth;
-        this.currentMana = currentMana;
+        setLivesLeft(livesLeft);
+        setExperience(experience);
+        setMovement(movement);
+        setCurrentHealth(currentHealth);
+        setCurrentMana(currentMana);
+        setMoney(money);
     }
 
     public int getOffensiveRating() {
@@ -106,6 +110,14 @@ public class EntityStatistics extends Statistics {
     public int getCurrentMana() {
         return currentMana;
     }
+    
+    public void setMoney(int money) {
+    	this.money = money;
+    }
+    
+    public int getMoney() {
+    	return money;
+    }
 
     public void setCurrentMana(int currentMana) {
         this.currentMana = currentMana;
@@ -138,6 +150,10 @@ public class EntityStatistics extends Statistics {
     public void addMana(int mana) {
         this.currentMana += mana;
     }
+    
+    public void addMoney(int money) {
+    	this.money += money;
+    }
 
     @Override
     public String toString() {
@@ -155,6 +171,7 @@ public class EntityStatistics extends Statistics {
         map.put("movement", getMovement());
         map.put("currentHealth", getCurrentHealth());
         map.put("currentMana", getCurrentMana());
+        map.put("money", getMoney());
 
         return map;
     }

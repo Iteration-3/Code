@@ -21,10 +21,11 @@ public final class BuyingMouseListener implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON1) {
-			// TODO(jraviles) Check prices
 			TakeableItem takeableItem = getBuyer().removeItem(getSlotNumber());
 			if (takeableItem != null) {
+				int itemPrice = takeableItem.getBarteredCost(getBuyer());
 				getSeller().addItem(takeableItem);
+				getBuyer().addMoney(itemPrice);
 			}
 		}
 	}
