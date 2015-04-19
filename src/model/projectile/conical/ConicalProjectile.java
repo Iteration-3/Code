@@ -18,11 +18,6 @@ public class ConicalProjectile extends Projectile {
 			Trigger trigger) {
 		super(direction, location, speed, trigger);
 	}
-	
-	@Override
-	protected String getType() {
-		return "conical";
-	}
 
 	/* (non-Javadoc)
 	 * @see projectile.Projectile#advance()

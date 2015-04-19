@@ -2,15 +2,41 @@ package view;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
+import factories.ItemViewFactory;
 
 @SuppressWarnings("serial")
-public class SlotView extends JButton {
+public class SlotView extends JButton implements Saveable {
+	private String backgroundPath;
 	private BufferedImage background;
 	private ItemView itemView;
+	
+	public SlotView(StructuredMap map) {
+		this.itemView = map.getStructuredMap("itemView") == null ? null :ItemViewFactory.createItemView(map.getStructuredMap("itemView"));
+		this.backgroundPath = map.getString("background");
+		try {
+			this.background = ImageIO.read(new File(backgroundPath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		map.put("background", backgroundPath);
+	
+		map.put("itemView", itemView == null ? null : itemView.getStructuredMap());
+		return map;
+	}
 
 	public SlotView() {
 		super();
@@ -18,7 +44,7 @@ public class SlotView extends JButton {
 		setBorder(null);
 	}
 
-	public SlotView(BufferedImage background) {
+	public SlotView(BufferedImage background, String backgroundPath) {
 		this.background = background;
 	}
 
@@ -42,7 +68,10 @@ public class SlotView extends JButton {
 			g.drawImage(this.itemView.getImage(40, 40), 40, 40, null);
 		}
 	}
-	public void setBackground(BufferedImage background) {
+	public void setBackground(BufferedImage background, String backgroundPath) {
+		this.backgroundPath = backgroundPath;
 		this.background = background;
 	}
+
+	
 }

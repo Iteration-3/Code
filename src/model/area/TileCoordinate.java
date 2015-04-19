@@ -75,4 +75,19 @@ public class TileCoordinate {
 			return false;
 		return true;
 	}
+
+	public boolean nextTo(TileCoordinate target) {
+		int difX = Math.abs(this.x - target.x);
+		int difY = Math.abs(this.y - target.y);
+		int difTotal = difX + difY;
+		if (difX == 1 && difTotal == 2  && difY == 1) {
+			return true;
+		}
+		else if (difTotal == 1){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }

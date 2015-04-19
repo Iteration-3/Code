@@ -20,17 +20,10 @@ public class ThrowingKnife extends Projectile {
 		super(direction, null, speed, trigger);
 	}
 	
-	
-	@Override
-	protected String getType() {
-		return "throwingKnife";
-	}
-	
 	public void setLevel(int x){
 		this.setSpeed(3);
 		Event damageEvent = new HealthModifierEvent(0, -10*x);
 		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
 		this.setTrigger(damageTrigger);
 	}
-
 }

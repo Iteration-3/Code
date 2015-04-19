@@ -5,7 +5,9 @@ import java.util.Collection;
 
 import model.area.TileCoordinate;
 import model.entity.behavior.npc.Behaviorable;
+import model.entity.behavior.npc.Coward;
 import model.entity.behavior.npc.Patroling;
+import model.entity.behavior.npc.PetBehavior;
 import model.entity.behavior.npc.Pursue;
 import model.entity.dialog.DialogEntry;
 import model.entity.dialog.DialogManager;
@@ -21,11 +23,24 @@ public class NPC extends Entity {
 	
 	public NPC(String name, EntityView view, TileCoordinate location) {
 		//they wont chase you in their radius
-		super(name, view, location,new Pursue(false));
+		super(name, view, location,new PetBehavior());
 		Collection<DialogEntry> dialogEntries = new ArrayList<DialogEntry>(1);
 		dialogEntries.add(new DialogEntry("Barter", new BarterAction()));
 		dialogEntries.add(new DialogEntry("Exit", new ExitAction()));
 		setDialogTree(new DialogTree(dialogEntries));
+	}
+	
+	public NPC(StructuredMap map) {
+		super(map);
+		this.dialogTree = new DialogTree(map.getStructuredMap("dialogueTree"));
+	}
+	
+	
+	@Override 
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		map.put("dialogueTree", dialogTree.getStructuredMap());
+		return map;
 	}
 	
 	public NPC(String name, EntityView view, TileCoordinate location, DialogTree dialogTree) {
@@ -37,10 +52,6 @@ public class NPC extends Entity {
 		DialogManager.getSingleton().initDialog(this, avatar);
 	}
 
-	public NPC(StructuredMap map) {
-		super(map);
-	}
-
 	protected ItemManager createItemManager() {
 		return new ItemManager(this);
 	}
@@ -49,12 +60,7 @@ public class NPC extends Entity {
 	public void attack() {
 		// TODO Auto-generated method stub
 	}
-
-	@Override
-	public StructuredMap getStructuredMap() {
-		return super.getStructuredMap();
-	}
-
+	
 	@Override
 	public void load(StructuredMap map) {
 		// TODO Auto-generated method stub

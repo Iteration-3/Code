@@ -35,6 +35,10 @@ public class Summoner extends Avatar {
 
 	}
 	
+	public Summoner(StructuredMap map) {
+		super(map);
+	}
+	
 	protected void addRandomItems(){
 		//TODO why are items here???
 		this.addItem(new Helmet(new BasicItemView(),new Statistics()));

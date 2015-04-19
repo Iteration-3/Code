@@ -1,11 +1,11 @@
-package model.entity.behavior.npc.defaultb.curcuit;
+package model.entity.behavior.npc.defaultb.circuit;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 import utilities.Angle;
 
-public class PushableCurcuit implements Curcuitable{
+public class PushableCurcuit implements Circuitable{
 	Queue<Angle> moves = new LinkedList<Angle>();
 	
 	public PushableCurcuit(){

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import model.area.RealCoordinate;
+import model.area.TileCoordinate;
 import view.EntityView;
 import view.projectiles.ProjectileView;
 
@@ -27,12 +28,15 @@ public class GameProjectileView implements GameView {
 			projectileViews.addAll(toAdd);
 			toAdd.clear();
 		}
-		//System.out.println("SUP");
 		for (ProjectileView projView : projectileViews) {		
 			//Sysem.out.println("RENDERING@: " + projView.getLocation());
-			float renderX = (float) (projView.getLocation().getX() * tileWidth() * 0.75);
-			float renderY = (float) (projView.getLocation().getY() * tileHeight() + (projView.getLocation().getX() % 2) * tileHeight() / 2);
-			projView.render(graphics, new RealCoordinate(renderX, renderY), tileWidth());
+			System.out.println("SUP");
+			for (TileCoordinate loc : projView.getArea().getCoveredLocations()) {
+				System.out.println("LOC: " + loc);
+				float renderX = (float) (loc.getX() * tileWidth() * 0.75);
+				float renderY = (float) (loc.getY() * tileHeight() + (loc.getX() % 2) * tileHeight() / 2);
+				projView.render(graphics, new RealCoordinate(renderX, renderY), tileWidth());
+			}
 		}
 	}
 	
