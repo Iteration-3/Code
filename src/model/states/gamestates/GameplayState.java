@@ -151,7 +151,7 @@ public class GameplayState extends GameState {
         skillsListener.addAsBinding(getLayout());
 
         Collection<Listener> listeners = new EntityMovementAssocation(getContext().getCurrentUnit(), gameMap,
-                this.getItemMap()).getListeners(preferences);
+                this.getItemMap()).getListeners(getContext());
 
         for (Listener listener : listeners) {
             listener.addAsBinding(getLayout());

@@ -36,6 +36,9 @@ public class KeyBindingsLayout extends Layout {
 
     private MenuButton rebindPause;
     private TextLabel pauseLabel;
+    
+    private MenuButton rebindDismount;
+    private TextLabel dismountLabel;
 
     private MenuButton rebindInventory;
     private TextLabel inventoryLabel;
@@ -89,6 +92,7 @@ public class KeyBindingsLayout extends Layout {
         downLeftLabel = new TextLabel();
         downRightLabel = new TextLabel();
         pauseLabel = new TextLabel();
+        dismountLabel = new TextLabel();
         skillLabel = new TextLabel();
         inventoryLabel = new TextLabel();
         ability0Label = new TextLabel();
@@ -118,6 +122,7 @@ public class KeyBindingsLayout extends Layout {
         add(downRightLabel);
         add(rebindPause);
         add(pauseLabel);
+        add(dismountLabel);
         add(rebindSkills);
         add(skillLabel);
         add(rebindInventory);
@@ -171,6 +176,9 @@ public class KeyBindingsLayout extends Layout {
 
         rebindPause = new MenuButton("REBIND PAUSE");
         rebindPause.setColor(Color.GRAY);
+        
+        rebindDismount = new MenuButton("REBIND DISMOUNT");
+        rebindDismount.setColor(Color.GRAY);
 
         rebindSkills = new MenuButton("REBIND SKILLS");
         rebindSkills.setColor(Color.GRAY);
@@ -231,6 +239,7 @@ public class KeyBindingsLayout extends Layout {
         rebindInventory.addActionListener(controller.getRebindInventory());
         rebindSkills.addActionListener(controller.getRebindSkills());
         rebindPause.addActionListener(controller.getRebindPause());
+        rebindDismount.addActionListener(controller.getRebindDismount());
     }
 
     public void updateKeyText(KeyPreferences preferences) {
@@ -242,6 +251,7 @@ public class KeyBindingsLayout extends Layout {
         downRightLabel.setText(formatKey(preferences.getDownRightKey()));
         skillLabel.setText(formatKey(preferences.getSkillsKey()));
         pauseLabel.setText(formatKey(preferences.getPauseKey()));
+        dismountLabel.setText(formatKey(preferences.getDismountKey()));
         inventoryLabel.setText(formatKey(preferences.getInventoryKey()));
 
         List<KeyStroke> abilities = preferences.getAbilities();

@@ -45,7 +45,7 @@ public class Mount extends NPC {
 		if (this.rider != null) {
 			// Rider will move with the avatar
 			TileCoordinate riderLocation = this.getLocation();
-			rider.move(angle);
+			rider.setDirection(angle);
 			rider.setLocation(riderLocation);
 		}
 	}
@@ -69,8 +69,10 @@ public class Mount extends NPC {
 	}
 	
 	public void dismount() {
-		this.rider.toggleView();
-		this.rider = null;
+		if (this.rider != null) {
+			this.rider.toggleView();
+			this.rider = null;
+		}
 	}
 
 	@Override

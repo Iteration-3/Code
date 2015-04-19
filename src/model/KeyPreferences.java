@@ -19,6 +19,7 @@ public class KeyPreferences implements Saveable {
     private KeyStroke inventoryKey;
     private KeyStroke skillsKey;
     private KeyStroke pauseKey;
+    private KeyStroke dismountKey;
     private List<KeyStroke> abilities;
 
     public KeyPreferences() {
@@ -31,6 +32,7 @@ public class KeyPreferences implements Saveable {
         this.pauseKey = KeyStroke.getKeyStroke("ESCAPE");
         this.inventoryKey = KeyStroke.getKeyStroke("I");
         this.skillsKey = KeyStroke.getKeyStroke("ENTER");
+        this.dismountKey = KeyStroke.getKeyStroke("H");
         this.abilities = new ArrayList<KeyStroke>();
         for (int i = 0; i != 10; ++i) {
             abilities.add(KeyStroke.getKeyStroke((char) ('0' + i)));
@@ -47,6 +49,7 @@ public class KeyPreferences implements Saveable {
         setInventoryKey(KeyStroke.getKeyStroke(structuredMap.getString("inventory")));
         setSkillsKey(KeyStroke.getKeyStroke(structuredMap.getString("skills")));
         setPauseKey(KeyStroke.getKeyStroke(structuredMap.getString("pause")));
+        setDismountKey(KeyStroke.getKeyStroke(structuredMap.getString("dismount")));
         abilities = new ArrayList<KeyStroke>();
         for (int i = 0; i < 10; i++) {
             abilities.add(KeyStroke.getKeyStroke(structuredMap.getString("ability" + i)));
@@ -55,7 +58,7 @@ public class KeyPreferences implements Saveable {
 
     public KeyPreferences(KeyStroke upKey, KeyStroke upRightKey, KeyStroke downRightKey, KeyStroke downKey,
             KeyStroke downLeftKey, KeyStroke upLeftKey, KeyStroke pauseKey, KeyStroke inventoryKey,
-            KeyStroke skillsKey, List<KeyStroke> abilities) {
+            KeyStroke dismountKey, KeyStroke skillsKey, List<KeyStroke> abilities) {
         setUpKey(upKey);
         setUpRightKey(upRightKey);
         setDownRightKey(downRightKey);
@@ -66,7 +69,7 @@ public class KeyPreferences implements Saveable {
         setInventoryKey(inventoryKey);
         setSkillsKey(skillsKey);
         setAbilities(abilities);
-
+        setDismountKey(dismountKey);
     }
 
     public StructuredMap getStructuredMap() {
@@ -80,10 +83,10 @@ public class KeyPreferences implements Saveable {
         map.put("pause", formatKey(getPauseKey()));
         map.put("inventory", formatKey(getInventoryKey()));
         map.put("skills", formatKey(getSkillsKey()));
+        map.put("dismount", formatKey(getDismountKey()));
         for (int i = 0; i < abilities.size(); i++) {
             map.put("ability" + i, formatKey(abilities.get(i)));
         }
-
         return map;
     }
 
@@ -169,8 +172,15 @@ public class KeyPreferences implements Saveable {
 
     public void setPauseKey(KeyStroke pauseKey) {
         this.pauseKey = pauseKey;
-
     }
+    
+   public KeyStroke getDismountKey() {
+	   return dismountKey;
+   }
+   
+   public void setDismountKey(KeyStroke dismountKey) {
+	   this.dismountKey = dismountKey;
+   }
 
     public KeyStroke getAbility(int number) {
         return this.getAbilities().get(number - 1);
