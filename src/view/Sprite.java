@@ -6,10 +6,10 @@ import java.awt.image.BufferedImage;
 import model.area.RealCoordinate;
 
 public class Sprite {
-	private BufferedImage image;
+	private BufferedImage[] images;
 	
-	public Sprite(BufferedImage image){
-		this.image = image;
+	public Sprite(BufferedImage[] images){
+		this.images = images;
 	}
 
 
