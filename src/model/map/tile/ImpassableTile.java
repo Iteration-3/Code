@@ -6,24 +6,27 @@ import view.map.TileView;
 
 public class ImpassableTile extends Tile {
 
-    public ImpassableTile(TileView v) {
-        super(v);
-    }
+	public ImpassableTile(TileView v) {
+		super(v);
+	}
 
-    @Override
-    public StructuredMap getStructuredMap() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	public ImpassableTile(StructuredMap map) {
+		super(map);
+	}
 
-    @Override
-    public boolean isPassable(Entity e) {
-        return false;
-    }
+	@Override
+	public boolean isPassable(Entity e) {
+		return false;
+	}
 
-    @Override
-    public void touch(Entity e) {
-        return;
-    }
+	@Override
+	public void touch(Entity e) {
+		return;
+	}
+
+	@Override
+	protected String getType() {
+		return "impassable";
+	}
 
 }
