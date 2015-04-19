@@ -3,6 +3,7 @@ package model.event;
 import gameactions.GameActionTeleport;
 import model.area.TileCoordinate;
 import model.entity.Entity;
+import utilities.structuredmap.StructuredMap;
 
 public class TeleportEvent extends Event {
 
@@ -19,6 +20,10 @@ public class TeleportEvent extends Event {
 		super(0);
 		this.teleportAction = teleportAction;
 		// TODO Auto-generated constructor stub
+	}
+	
+	public TeleportEvent(StructuredMap map) {
+		super(map);
 	}
 	
 	@Override
@@ -39,6 +44,11 @@ public class TeleportEvent extends Event {
 	public Event clone() {
 		TeleportEvent clone = new TeleportEvent(teleportAction);
 		return clone;
+	}
+
+	@Override
+	protected String getType() {
+		return "teleportEvent";
 	}
 
 }

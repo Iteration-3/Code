@@ -2,13 +2,19 @@ package model.event;
 
 import gameactions.GameActionRiverPush;
 import model.entity.Entity;
+import utilities.structuredmap.StructuredMap;
 
 public class RiverPushEvent extends Event{
 	private GameActionRiverPush gameActionRiverPush;
+	
 	public RiverPushEvent(GameActionRiverPush gameActionRiverPush) {
 		super(0);
 		this.gameActionRiverPush = gameActionRiverPush;
 		// TODO Auto-generated constructor stub
+	}
+	
+	public RiverPushEvent(StructuredMap map) {
+		super(map);
 	}
 	
 	@Override
@@ -37,6 +43,11 @@ public class RiverPushEvent extends Event{
 	public void perform() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	protected String getType() {
+		return "riverPush";
 	}
 
 }
