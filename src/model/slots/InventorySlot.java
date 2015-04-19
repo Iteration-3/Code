@@ -1,13 +1,29 @@
 package model.slots;
 
+import factories.TakeableItemFactory;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 import view.SlotView;
 import model.item.TakeableItem;
 
-public class InventorySlot implements Slot{
+public class InventorySlot implements Slot, Saveable{
 	private TakeableItem item = null;
 	private SlotView slotview;
 	
 	public InventorySlot(){}
+	
+	public InventorySlot(StructuredMap map) {
+		this.slotview = new SlotView(map.getStructuredMap("slotView"));
+		this.item = TakeableItemFactory.createItem(map.getStructuredMap("item"));
+	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		map.put("item", item == null ? null : item.getStructuredMap());
+		map.put("slotView",  slotview == null ? null : slotview.getStructuredMap());
+		return map;
+	}
 	
 	public boolean has(){
 		boolean itemIsNotNull = ! (this.item==null);
@@ -51,4 +67,6 @@ public class InventorySlot implements Slot{
 			this.slotview.register(null);
 		}
 	}
+
+	
 }

@@ -19,18 +19,10 @@ public class SilenceProjectile extends Projectile {
 		super(direction, null, speed, trigger);
 	}
 	
-	
-	@Override
-	protected String getType() {
-		return "silenceProjectile";
-	}
-
 	public void setLevel(int x) {
 		this.setSpeed(3);
 		Event damageEvent = new ManaModifierEvent(10*x, -100*x);
 		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
 		this.setTrigger(damageTrigger);
-		
 	}
-
 }

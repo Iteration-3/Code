@@ -5,9 +5,11 @@ import java.awt.Graphics;
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import utilities.Angle;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 import view.map.GameEntityView;
 
-public class EntityView {
+public class EntityView implements Saveable {
 	//COPY AND PASTED SHIT FROM HEXAGON PLACE HOLDER
 	AbstractEntitySpriteHolder sprites;
 	private RealCoordinate location;
@@ -18,12 +20,18 @@ public class EntityView {
 	public EntityView(AbstractEntitySpriteHolder sprites) {
 		this.sprites=sprites;
 	}
+	
+	public EntityView(StructuredMap map) {
+		this.sprites = EntitySpriteFactory.getSpritesFromType(map.getStructuredMap("sprites").getString("spriteType"));
+		this.location = new RealCoordinate(map.getDouble("locationX"), map.getDouble("locationY"));
+	}
 
 	public void registerWithGameMapView(GameEntityView gv, RealCoordinate location, Angle angle) {
 		gv.addEntityView(this);
 		this.location = location;
 		this.setDirection(angle);
 	}
+	
 	
 	float tileWidth;
 	float tileHeight;
@@ -65,5 +73,15 @@ public class EntityView {
 	public void setDirection(Angle angle) {
 		this.angle = angle;
 		
+	}
+
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		
+		map.put("locationX", location.getX());
+		map.put("locationY", location.getY());
+		map.put("sprites", sprites.getStructuredMap());
+		return map;
 	}
 }

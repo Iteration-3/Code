@@ -17,12 +17,6 @@ public class LightConeProjectile extends ConicalProjectile {
 	public LightConeProjectile(Angle direction, double speed, Trigger trigger) {
 		super(direction, null, speed, trigger);
 	}
-	
-	
-	@Override
-	protected String getType() {
-		return "lightConeProjectile";
-	}
 
 	public void setLevel(int x) {
 		this.setSpeed(3);
@@ -31,5 +25,4 @@ public class LightConeProjectile extends ConicalProjectile {
 		this.setTrigger(damageTrigger);
 		
 	}
-
 }

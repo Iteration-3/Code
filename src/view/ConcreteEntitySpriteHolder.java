@@ -2,8 +2,14 @@ package view;
 
 import java.awt.image.BufferedImage;
 
+import utilities.structuredmap.StructuredMap;
+
 class ConcreteEntitySpriteHolder extends AbstractEntitySpriteHolder {
-	public ConcreteEntitySpriteHolder(BufferedImage[] images) {
+	
+	private String type;
+	
+	public ConcreteEntitySpriteHolder(BufferedImage[] images, String type) {
+		this.type = type;
 		this.setUp(images);
 		this.setDown(images);
 		this.setDownLeft(images);
@@ -11,6 +17,7 @@ class ConcreteEntitySpriteHolder extends AbstractEntitySpriteHolder {
 		this.setUpLeft(images);
 		this.setUpRight(images);
 	}
+	
 	private BufferedImage[] getImages(BufferedImage[] src, int index){
 		BufferedImage temp[]=new BufferedImage[3];
 		System.arraycopy(src, index,temp, 0, 3);
@@ -20,7 +27,6 @@ class ConcreteEntitySpriteHolder extends AbstractEntitySpriteHolder {
 	private Sprite up;
 	@Override
 	protected void setUp(BufferedImage[] images) {
-		//9-11 is up poses.
 		up = new Sprite(getImages(images,9));
 		
 	}
@@ -92,6 +98,18 @@ class ConcreteEntitySpriteHolder extends AbstractEntitySpriteHolder {
 	@Override
 	protected Sprite getDownRight() {
 		return downRight;
+	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		map.put("spriteType", type);
+		return map;
+	}
+	
+	@Override
+	protected String getType() {
+		return "concrete";
 	}
 
 	

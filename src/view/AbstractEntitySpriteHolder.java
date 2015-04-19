@@ -5,8 +5,10 @@ import java.awt.image.BufferedImage;
 
 import model.area.RealCoordinate;
 import utilities.Angle;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 
-public abstract class AbstractEntitySpriteHolder  {
+public abstract class AbstractEntitySpriteHolder implements Saveable {
 	
 	public void render(Graphics graphics, RealCoordinate location, float diameter, Angle angle) {
 		switch(angle){
@@ -32,6 +34,14 @@ public abstract class AbstractEntitySpriteHolder  {
 			throw new IllegalArgumentException("IMPOSSIBLE");
 		}
 	}
+	
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		map.put("type", getType());
+		return map;
+	}
+	
+	protected abstract String getType();
 
 
 	protected abstract void setUp(BufferedImage[] images);
