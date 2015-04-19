@@ -20,7 +20,7 @@ public final class TriggerManager {
 		return _triggerManager;
 	}
 	
-	public void update() {
+	public void update(float deltaTime) {
 		for (Trigger t : partyTriggers) {
 			for(Entity i : EntityManager.getSingleton().getPartyNpcs()){
 				t.handle(i);
