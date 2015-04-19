@@ -1,8 +1,10 @@
 package model.item;
 
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 import model.entity.Avatar;
 
-public class Price {
+public class Price implements Saveable {
 	private int cost;
 	
 	public Price() {
@@ -11,6 +13,10 @@ public class Price {
 
 	public Price(int cost) {
 		setCost(cost);
+	}
+	
+	public Price(StructuredMap map) {
+		this.cost = map.getInteger("cost");
 	}
 	
 	/**
@@ -28,6 +34,13 @@ public class Price {
 	
 	private int getCost() {
 		return cost;
+	}
+
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		map.put("cost", cost);
+		return map;
 	}
 
 }
