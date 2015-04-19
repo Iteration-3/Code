@@ -2,6 +2,7 @@ package model.item;
 
 import model.slots.SmasherWeaponSlot;
 import model.statistics.Statistics;
+import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 
 public class SmasherWeapon extends Weapon {
@@ -12,6 +13,10 @@ public class SmasherWeapon extends Weapon {
 
 	public SmasherWeapon(ItemView itemView, Statistics statistics) {
 		super(itemView, statistics);
+	}
+
+	public SmasherWeapon(StructuredMap structuredMap) {
+		super(structuredMap);
 	}
 
 	public boolean equip(SmasherWeaponSlot slot){
@@ -26,6 +31,11 @@ public class SmasherWeapon extends Weapon {
 	public String getInfo() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String getType() {
+		return "smasher";
 	}
 
 }

@@ -15,4 +15,9 @@ public class SneakWeaponSlot extends WeaponSlot<SneakWeapon> {
 		return weapon.canEquip(this);
 	}
 
+	@Override
+	public String getType() {
+		return "sneak";
+	}
+
 }

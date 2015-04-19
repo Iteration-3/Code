@@ -25,7 +25,6 @@ public class SlotView extends JButton {
 	}
 
 	public void register(ItemView itemView) {
-		System.out.println(itemView);
 		this.itemView = itemView;
 	}
 
@@ -35,17 +34,14 @@ public class SlotView extends JButton {
 
 	@Override
 	public void paintComponent(Graphics g) {
-		this.setImage();
 		super.paintComponent(g);
+		this.setImage(g);
 	}
 
-	private void setImage() {
+	private void setImage(Graphics g) {
+		g.drawImage(background, 0, 0, null);
 		if (this.hasItem()) {
-			System.out.println(this.itemView + "   " + this.hashCode());
-			this.setIcon( new ImageIcon( ImageProcessing.overlayImages(background, this.itemView.getImage(40, 40),40 , 40)));
-		}
-		else{
-			this.setIcon(new ImageIcon(background));
+			g.drawImage(this.itemView.getImage(40, 40), 40, 40, null);
 		}
 	}
 

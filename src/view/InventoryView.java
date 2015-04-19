@@ -31,7 +31,6 @@ public class InventoryView extends JComponent {
 	public InventoryView() {
 		setLayout(null);// new GridLayout(ROW,COL));
 		this.slots = new HashMap<Integer, SlotView>();
-		// setFocusable(true);
 		setVisible(true);
 		setFocusable(true);
 	}
@@ -78,7 +77,6 @@ public class InventoryView extends JComponent {
 
 	public void add(SlotViewMouseListenerFactory controller) {
 		for (int i : slots.keySet()) {
-			System.out.println(slots.get(i).hashCode());
 			slots.get(i).addMouseListener(controller.makeSlotMouseListener(i));
 		}
 	}

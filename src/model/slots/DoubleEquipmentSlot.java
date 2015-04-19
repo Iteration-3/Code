@@ -4,7 +4,7 @@ import model.item.EquipableItem;
 
 //TODO structure the THW and all others  so that it is not a EquipableItem
 
-public class DoubleEquipmentSlot <K extends EquipableItem, F extends EquipableItem,S extends EquipableItem>
+public class DoubleEquipmentSlot  <K extends EquipableItem, F extends EquipableItem,S extends EquipableItem>
 								extends EquipmentSlot<K> {
 
 
@@ -48,4 +48,5 @@ public class DoubleEquipmentSlot <K extends EquipableItem, F extends EquipableIt
 	private boolean childrenHaveItem() {
 		return this.weaponSlot.has() || this.shieldSlot.has();
 	}
+	
 }
