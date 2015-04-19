@@ -18,6 +18,7 @@ import model.entity.EntityManager;
 import model.entity.EntityMovementAssocation;
 import model.entity.NPC;
 import model.entity.Summoner;
+import model.event.EventManager;
 import model.event.ExperienceModifierEvent;
 import model.event.HealthModifierEvent;
 import model.event.RiverPushEvent;
@@ -67,6 +68,12 @@ public class GameplayState extends GameState {
         itemMap = new ItemMap();
     }
 
+    public void update(double deltaTime) {
+		TriggerManager.getSingleton().update(deltaTime);
+		EventManager.getSingleton().update(deltaTime);
+		EntityManager.getSingleton().update(deltaTime);
+    }
+    
     @Override
     public void onEnter() {
         // Entity test must run before item test, which must be run before
@@ -76,7 +83,7 @@ public class GameplayState extends GameState {
         // Which is needed for other stuff.
         super.onEnter();
         System.out.println(getContext());
-        controller = new GameplayController(getContext());
+        controller = new GameplayController(this);
         addTilesTest();
         addEntityTest();
         addItemsTest();
