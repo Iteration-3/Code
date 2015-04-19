@@ -9,6 +9,7 @@ public class GameplayController extends Controller {
     private EntityController entityController;
     private Thread updateThread;
     private boolean threadIsRunning;
+    private long previousTime;
 
     public GameplayController(Model model) {
     	threadIsRunning = false;
@@ -25,7 +26,7 @@ public class GameplayController extends Controller {
     }
     
     public void spawnUpdateThread() {
-    	long previousTime = System.currentTimeMillis();
+    	previousTime = System.currentTimeMillis();
     	updateThread = new Thread(
     		new Runnable() {
     			@Override
