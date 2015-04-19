@@ -16,6 +16,8 @@ public class TileFactory {
 			return new ImpassableTile(map);
 		case "airPassable":
 			return new AirPassableTile(map);
+		default:
+			throw new IllegalArgumentException("Bad tiles");
 		}
 	}
 }
