@@ -87,6 +87,7 @@ public class KeyBindingsLayout extends Layout {
         downRightLabel.setHorizontalAlignment(TextLabel.CENTER);
         pauseLabel = new TextLabel();
         dismountLabel = new TextLabel();
+        dismountLabel.setHorizontalAlignment(TextLabel.CENTER);
         pauseLabel.setHorizontalAlignment(TextLabel.CENTER);
         skillLabel = new TextLabel();
         skillLabel.setHorizontalAlignment(TextLabel.CENTER);
@@ -131,6 +132,7 @@ public class KeyBindingsLayout extends Layout {
                 
                 add(rebindPause);
                 add(pauseLabel);
+                add(rebindDismount);
                 add(dismountLabel);
                 add(rebindSkills);
                 add(skillLabel);
