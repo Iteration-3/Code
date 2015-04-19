@@ -12,5 +12,4 @@ public class Barter implements InteractableBehaviorState{
 	public void interact(Entity entity) {
 		//barter stuff
 	}
-
 }

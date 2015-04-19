@@ -2,7 +2,6 @@ package controller;
 
 import model.Model;
 import model.event.EventManager;
-import model.light.LightManager;
 import model.trigger.TriggerManager;
 import controller.listener.Listener;
 

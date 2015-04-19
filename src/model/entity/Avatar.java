@@ -6,7 +6,6 @@ import java.util.Iterator;
 
 import model.KeyPreferences;
 import model.ability.Ability;
-import model.area.ConicalArea;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.light.LightManager;
@@ -83,7 +82,7 @@ public abstract class Avatar extends Entity {
 	public Collection<Listener> getListeners(KeyPreferences preferences) {
 		System.out.println("Test");
 		Collection<Listener> listeners = new ArrayList<Listener>();
-		int i = 1;
+		int i = 0;
 		for(final Ability a : this.getAbilities()){
 			listeners.add(new PollingListener(preferences.getAbility(i),new GameAction() {
 				@Override

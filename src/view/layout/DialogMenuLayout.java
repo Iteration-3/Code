@@ -1,7 +1,6 @@
 package view.layout;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,7 +22,6 @@ public class DialogMenuLayout extends Layout {
 		dialogEntries = dialogTree.getDialogEntries();
 		int numEntries = dialogEntries.size();
 
-		setPreferredSize(new Dimension(204 * numEntries, 768));
 		setLayout(new GridLayout(numEntries, 1));
 		setBorder(new EmptyBorder(100, 300, 100, 300));
 		setOpaque(false);

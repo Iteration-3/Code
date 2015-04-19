@@ -3,10 +3,8 @@ package view;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import utilities.ImageProcessing;
 import view.item.ItemView;
 
 @SuppressWarnings("serial")

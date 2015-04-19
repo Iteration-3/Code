@@ -19,6 +19,7 @@ public class KeyPreferences implements Saveable {
     private KeyStroke inventoryKey;
     private KeyStroke skillsKey;
     private KeyStroke pauseKey;
+	private static final int NUM_ABILITIES = 10;
     private List<KeyStroke> abilities;
 
     public KeyPreferences() {
@@ -32,7 +33,7 @@ public class KeyPreferences implements Saveable {
         this.inventoryKey = KeyStroke.getKeyStroke("I");
         this.skillsKey = KeyStroke.getKeyStroke("ENTER");
         this.abilities = new ArrayList<KeyStroke>();
-        for (int i = 0; i != 10; ++i) {
+        for (int i = 0; i != NUM_ABILITIES; ++i) {
             abilities.add(KeyStroke.getKeyStroke((char) ('0' + i)));
         }
     }
@@ -48,7 +49,7 @@ public class KeyPreferences implements Saveable {
         setSkillsKey(KeyStroke.getKeyStroke(structuredMap.getString("skills")));
         setPauseKey(KeyStroke.getKeyStroke(structuredMap.getString("pause")));
         abilities = new ArrayList<KeyStroke>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i <= NUM_ABILITIES; i++) {
             abilities.add(KeyStroke.getKeyStroke(structuredMap.getString("ability" + i)));
         }
     }
@@ -80,7 +81,7 @@ public class KeyPreferences implements Saveable {
         map.put("pause", formatKey(getPauseKey()));
         map.put("inventory", formatKey(getInventoryKey()));
         map.put("skills", formatKey(getSkillsKey()));
-        for (int i = 0; i < abilities.size(); i++) {
+        for (int i = 1; i <= abilities.size(); i++) {
             map.put("ability" + i, formatKey(abilities.get(i)));
         }
 
@@ -173,11 +174,11 @@ public class KeyPreferences implements Saveable {
     }
 
     public KeyStroke getAbility(int number) {
-        return this.getAbilities().get(number - 1);
+        return this.getAbilities().get(number);
     }
 
     public void setAbility(int number, KeyStroke key) {
-        this.getAbilities().set(number - 1, key);
+        this.getAbilities().set(number, key);
     }
 
     public List<KeyStroke> getAbilities() {

@@ -1,10 +1,6 @@
 package model.light;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import model.area.Area;
-import model.area.TileCoordinate;
 import model.observers.MobileListener;
 import model.observers.MobileObject;
 

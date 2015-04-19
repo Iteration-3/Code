@@ -14,13 +14,14 @@ public class MenuButton extends JButton {
 		super(icon);
         this.setSettings();
 	}
-    public MenuButton(String buttonText) {
+
+	public MenuButton(String buttonText) {
         super(buttonText);
         this.setSettings();
     }
     
     private void setSettings(){
-    	setFont(FontResources.getPrimaryFont().deriveFont(30f));
+    	setFont(FontResources.getPrimaryFont().deriveFont(24f));
         setBorderPainted(false);
         setFocusPainted(false);
     }

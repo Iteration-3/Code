@@ -20,7 +20,6 @@ import model.entity.NPC;
 import model.entity.Summoner;
 import model.event.ExperienceModifierEvent;
 import model.event.HealthModifierEvent;
-import model.event.ManaModifierEvent;
 import model.event.RiverPushEvent;
 import model.event.TeleportEvent;
 import model.item.Boots;
