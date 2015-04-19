@@ -3,6 +3,7 @@ package model.area;
 import java.util.ArrayList;
 import java.util.List;
 
+import factories.AreaFactory;
 import utilities.Angle;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
@@ -25,8 +26,31 @@ public abstract class Area implements Saveable {
         this.range = 1;
         this.startLocation = new TileCoordinate();
     }
+    
+    public Area(StructuredMap map) {
+    	this.range = map.getInteger("range");
+    	int[] location = map.getIntArray("coordinate");
+    	this.startLocation = new TileCoordinate(location[0], location[1]);
+    	this.compositeArea = AreaFactory.createArea(map.getStructuredMap("area"));
+    	this.direction = Angle.values()[map.getInteger("direction")];
+    }
 
-    public TileCoordinate getStartLocation() {
+    public StructuredMap getStructuredMap() {
+    	StructuredMap map = new StructuredMap();
+    	int[] location = new int[2];
+    	location[0] = startLocation.getX();
+    	location[1] = startLocation.getY();
+    	map.put("range", range);
+    	map.put("coordinate", location);
+    	map.put("compositeArea", compositeArea.getStructuredMap());
+    	map.put("type", getType());
+    	map.put("direction", direction.ordinal());
+    	return map;
+    }
+    
+    protected abstract String getType();
+
+	public TileCoordinate getStartLocation() {
         return startLocation;
     }
 
@@ -102,7 +126,7 @@ public abstract class Area implements Saveable {
 
     public abstract List<TileCoordinate> getCoveredLocations();
 
-    public abstract StructuredMap getStructuredMap();
+    
 
-    public abstract void load(StructuredMap map);
+    
 }

@@ -22,6 +22,10 @@ public class RadialArea extends Area {
     public RadialArea(int radius, TileCoordinate startLocation) {
         super(radius, startLocation);
     }
+    
+    public RadialArea(StructuredMap map) {
+    	super(map);
+    }
 
     @Override
     public boolean isInRange(TileCoordinate location) {
@@ -64,16 +68,9 @@ public class RadialArea extends Area {
     	}
     }
 
-    @Override
-    public StructuredMap getStructuredMap() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void load(StructuredMap map) {
-        // TODO Auto-generated method stub
-
-    }
+	@Override
+	protected String getType() {
+		return "radial";
+	}
 
 }
