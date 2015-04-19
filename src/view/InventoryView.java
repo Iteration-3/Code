@@ -75,13 +75,13 @@ public class InventoryView extends JComponent {
 		this.heightOffset = height;
 	}
 
-	public void add(SlotViewMouseListenerFactory controller) {
-		for (int i : slots.keySet()) {
+	public void add(SlotViewMouseListenerFactory controller){
+		for (int i:slots.keySet()){
 			slots.get(i).addMouseListener(controller.makeSlotMouseListener(i));
 		}
 	}
 	
-	public void resetSlotDimensions(){
+	public void resetSlotDimensions() { 
 		for (int i : slots.keySet()) {
 			int height = slotHeight * (i/ ROW) + this.heightOffset;
 			int width = slotWidth * (i % COL) + this.widthOffset;
