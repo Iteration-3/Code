@@ -14,6 +14,7 @@ public class GameEntityView implements GameView {
 		for(EntityView entityView : entityViews) {
 			//TODO(mbregg) Make this not hardcoded, EntityView really needs to be redone
 			entityView.render(graphics, height);
+			
 		}
 	}
 	public void addEntityView(EntityView entityView) {

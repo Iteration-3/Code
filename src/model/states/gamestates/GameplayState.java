@@ -43,6 +43,7 @@ import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
+import view.EntitySpriteFactory;
 import view.EntityView;
 import view.item.BasicItemView;
 import view.item.ItemView;
@@ -107,8 +108,7 @@ public class GameplayState extends GameState {
 
     public void addEntityTest() {
         TileCoordinate loc = new TileCoordinate(3, 3);
-        EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange,
-                new RealCoordinate(3, 3));
+        EntityView eView = new EntityView(EntitySpriteFactory.getSummonerSpriteHolder());
         avatar = new Summoner("Summoner", eView, loc);
 
         KeyPreferences preferences = new KeyPreferences();
@@ -120,10 +120,7 @@ public class GameplayState extends GameState {
         eView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(3, 3));
         
         TileCoordinate npcLocation = new TileCoordinate(7, 7);
-        EntityView npcView = new EntityView(new Color(200, 200, 0), Color.orange,
-        		new RealCoordinate(7, 7));
-        npcView = new EntityView(new Color(0, 0, 255), Color.ORANGE,
-        		new RealCoordinate(7, 7));
+        EntityView npcView = new EntityView(EntitySpriteFactory.getSummonerSpriteHolder());
         NPC npc = new NPC("DaveTheBargainer", npcView, npcLocation);
         npcView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(7, 7));
         EntityManager.getSingleton().addPartyNpc(npc);
