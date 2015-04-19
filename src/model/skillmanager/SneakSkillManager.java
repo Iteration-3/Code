@@ -4,14 +4,27 @@ import utilities.structuredmap.StructuredMap;
 
 public class SneakSkillManager extends SkillManager {
 
-    @Override
+    public SneakSkillManager(StructuredMap map) {
+		super(map);
+		this.creepSkill = map.getInteger("creepSkill");
+		this.pickPocketSkill = map.getInteger("pickPocketSkill");
+		this.trapRemoveSkill = map.getInteger("trapRemoveSkill");
+		this.rangedSkill = map.getInteger("rangedSkill");
+
+	}
+
+	@Override
     public StructuredMap getStructuredMap() {
-        // TODO Auto-generated method stub
-        return null;
+    	StructuredMap map = super.getStructuredMap();
+    	map.put("creepSkill", creepSkill);
+    	map.put("pickPocketSkill", pickPocketSkill);
+    	map.put("trapRemoveSkill", trapRemoveSkill);
+    	map.put("rangedSkill", rangedSkill);
+    	return map;
     }
 
     private int creepSkill = 1;
-    private int pickPicketSkill = 1;
+    private int pickPocketSkill = 1;
     private int trapRemoveSkill = 1;
     private int rangedSkill = 1;
 
@@ -20,7 +33,7 @@ public class SneakSkillManager extends SkillManager {
     }
 
     public int getPickPocketSkill() {
-        return pickPicketSkill;
+        return pickPocketSkill;
     }
 
     public int trapRemoveSkill() {
@@ -40,11 +53,16 @@ public class SneakSkillManager extends SkillManager {
     }
 
     public void incrementPickPocketSkill() {
-        ++pickPicketSkill;
+        ++pickPocketSkill;
     }
 
     public void incrementCreepSkill() {
         ++creepSkill;
     }
+
+	@Override
+	protected String getType() {
+		return "sneak";
+	}
 
 }
