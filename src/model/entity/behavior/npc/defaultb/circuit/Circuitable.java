@@ -1,8 +1,8 @@
-package model.entity.behavior.npc.defaultb.curcuit;
+package model.entity.behavior.npc.defaultb.circuit;
 
 import utilities.Angle;
 
-public interface Curcuitable {
+public interface Circuitable {
 	
 	public Angle nextMove();
 	

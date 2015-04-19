@@ -145,11 +145,12 @@ public abstract class Entity extends MobileObject implements Saveable {
     }
 
     public void move(Angle angle) {
-        TileCoordinate nextLocation = nextLocation(angle);
-        this.setLocationNoNotify(nextLocation);
-        this.setDirectionNoNotify(angle);
-        this.notifySubscribers();
-        System.out.println("MOVE TO: "+nextLocation);
+    	if (angle != null){
+    		TileCoordinate nextLocation = nextLocation(angle);
+    		this.setLocationNoNotify(nextLocation);
+    		this.setDirectionNoNotify(angle);
+    		this.notifySubscribers();
+    	}
     }
     
     public TileCoordinate nextLocation() {

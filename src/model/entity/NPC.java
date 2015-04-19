@@ -5,7 +5,9 @@ import java.util.Collection;
 
 import model.area.TileCoordinate;
 import model.entity.behavior.npc.Behaviorable;
+import model.entity.behavior.npc.Coward;
 import model.entity.behavior.npc.Patroling;
+import model.entity.behavior.npc.PetBehavior;
 import model.entity.behavior.npc.Pursue;
 import model.entity.dialog.DialogEntry;
 import model.entity.dialog.DialogManager;
@@ -21,7 +23,7 @@ public class NPC extends Entity {
 	
 	public NPC(String name, EntityView view, TileCoordinate location) {
 		//they wont chase you in their radius
-		super(name, view, location,new Pursue(false));
+		super(name, view, location,new PetBehavior());
 		Collection<DialogEntry> dialogEntries = new ArrayList<DialogEntry>(1);
 		dialogEntries.add(new DialogEntry("Barter", new BarterAction()));
 		dialogEntries.add(new DialogEntry("Exit", new ExitAction()));
