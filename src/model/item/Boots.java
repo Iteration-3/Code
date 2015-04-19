@@ -15,8 +15,8 @@ public class Boots extends EquipableItem {
 		super(itemView, statistics);
 	}
 	
-	public Boots(ItemView itemView, StructuredMap map) {
-	    super(itemView, map);
+	public Boots(StructuredMap map) {
+	    super(map);
 	}
 
 	public boolean equip(ItemManager itemManager) {

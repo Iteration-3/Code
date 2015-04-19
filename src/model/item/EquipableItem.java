@@ -24,9 +24,8 @@ public abstract class EquipableItem extends TakeableItem {
 		setPrice(price);
 	}
 	
-	public EquipableItem(ItemView itemView, StructuredMap map) {
-
-	    super(itemView, map);
+	public EquipableItem(StructuredMap map) {
+	    super(map);
 	    this.statistics = new Statistics(map.getStructuredMap("stats"));
 	}
 	

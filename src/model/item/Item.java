@@ -1,8 +1,10 @@
 package model.item;
 
+import factories.ItemViewFactory;
 import model.entity.Entity;
 import model.map.tile.ItemTile;
 import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 
 public abstract class Item implements Saveable{
@@ -10,6 +12,10 @@ public abstract class Item implements Saveable{
 	
 	public Item(ItemView itemView) {
 		this.itemView = itemView;
+	}
+	
+	public Item(StructuredMap map) {
+		this.itemView = ItemViewFactory.createItemView(map.getStructuredMap("itemView"));
 	}
 	
 	public abstract void touch(Entity entity);
@@ -31,5 +37,14 @@ public abstract class Item implements Saveable{
 	public ItemView getView(){
 		return this.itemView;
 	}
+	
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		map.put("itemView", itemView.getStructuredMap());
+		map.put("type", getType());
+		return map;
+	}
+	
+	protected abstract String getType();
 
 }

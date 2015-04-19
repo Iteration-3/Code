@@ -1,6 +1,7 @@
 package model.item;
 
 import model.statistics.Statistics;
+import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 
 public class NPCWeapon extends Weapon {
@@ -14,6 +15,10 @@ public class NPCWeapon extends Weapon {
 
 	public NPCWeapon(ItemView itemView, Statistics statistics) {
 		super(itemView, statistics);
+	}
+
+	public NPCWeapon(StructuredMap structuredMap) {
+		super(structuredMap);
 	}
 
 	@Override

@@ -8,7 +8,6 @@ import model.item.Helmet;
 import model.item.Leggings;
 import model.item.Shield;
 import utilities.structuredmap.StructuredMap;
-import view.item.BasicItemView;
 
 public class EquipableItemFactory {
 	public static EquipableItem createItem(StructuredMap map) {
@@ -17,17 +16,17 @@ public class EquipableItemFactory {
 		}
 		switch (map.getString("type")) {
 		case "helmet":
-			return new Helmet(new BasicItemView(), map);
+			return new Helmet(map);
 		case "chestPiece":
-			return new ChestPiece(new BasicItemView(), map);
+			return new ChestPiece(map);
 		case "leggings":
-			return new Leggings(new BasicItemView(), map);
+			return new Leggings(map);
 		case "gloves":
-			return new Gloves(new BasicItemView(), map);
+			return new Gloves( map);
 		case "boots":
-			return new Boots(new BasicItemView(), map);
+			return new Boots(map);
 		case "shield":
-			return new Shield(new BasicItemView(), map);
+			return new Shield( map);
 		default:
 			return null;
 		}
