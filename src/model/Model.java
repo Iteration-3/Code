@@ -5,8 +5,8 @@ import model.entity.EntityManager;
 import model.entity.Mount;
 import model.entity.dialog.DialogManager;
 import model.states.StateMachine;
-import model.states.gamestates.BlankState;
 import model.states.gamestates.GameState;
+import model.states.gamestates.PauseMenuState;
 import view.View;
 import view.layout.Layout;
 
@@ -66,7 +66,7 @@ public class Model extends StateMachine<GameState> {
     private void refreshListeners() {
     	// This hack is needed because of the gameplay state machine, this should
     	// be taken out at a later time.
-    	pushState(new BlankState());
+    	pushState(new PauseMenuState());
     	popState();
     }
     
