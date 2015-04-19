@@ -1,5 +1,6 @@
 package model.projectile;
 
+import factories.TriggerFactory;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.event.StatisticModifierEvent;
@@ -24,6 +25,36 @@ public class Projectile implements Cloneable, Saveable {
 		this.speed = 1;
 		this.trigger = new SingleUseTrigger(new RadialArea(1, this.location),
 				new StatisticModifierEvent(new EntityStatistics(), 5));
+	}
+	
+	public Projectile(StructuredMap map) {
+		this.direction = Angle.values()[map.getInteger("direction")];
+		int[] locations = map.getIntArray("location");
+		this.location = new TileCoordinate(locations[0], locations[1]);
+		this.speed = map.getDouble("speed");
+		this.timeout = map.getDouble("timeout").longValue();
+		this.trigger = TriggerFactory.createTrigger(map.getStructuredMap("trigger"));
+	}
+	
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		
+		int[] locationArray = new int[2];
+        locationArray[0] = location.getX();
+        locationArray[1] = location.getY();
+ 
+		map.put("direction", direction.ordinal());
+		map.put("location", locationArray);
+		map.put("speed", speed);
+		map.put("timeout",(double) timeout);
+		map.put("trigger", trigger.getStructuredMap());
+		map.put("type", getType());
+		
+		return map;
+	}
+
+	protected String getType() {
+		return "projectile";
 	}
 
 	public Projectile(Angle direction, TileCoordinate location, double speed,
@@ -110,7 +141,5 @@ public class Projectile implements Cloneable, Saveable {
 		this.trigger = trigger;
 	}
 	
-	public StructuredMap getStructuredMap() {
-		return null;
-	}
+	
 }

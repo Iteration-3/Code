@@ -1,11 +1,12 @@
 package model.projectile.conical;
 
-import utilities.Angle;
 import model.area.TileCoordinate;
 import model.projectile.Projectile;
 import model.projectile.ProjectileManager;
 import model.trigger.TimedTrigger;
 import model.trigger.Trigger;
+import utilities.Angle;
+import utilities.structuredmap.StructuredMap;
 
 public class ConicalProjectile extends Projectile {
 
@@ -17,6 +18,15 @@ public class ConicalProjectile extends Projectile {
 	public ConicalProjectile(Angle direction, TileCoordinate location, double speed,
 			Trigger trigger) {
 		super(direction, location, speed, trigger);
+	}
+	
+	public ConicalProjectile(StructuredMap map) {
+		super(map);
+	}
+	
+	@Override
+	protected String getType() {
+		return "conical";
 	}
 
 	/* (non-Javadoc)
