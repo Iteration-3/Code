@@ -1,11 +1,6 @@
 package model.itemmanager;
 
 import static org.junit.Assert.assertEquals;
-
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-
-import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import model.entity.Smasher;
 import model.item.Boots;
@@ -24,18 +19,16 @@ import model.statistics.Statistics;
 import org.junit.Test;
 
 import utilities.structuredmap.StructuredMap;
-import view.EntitySpriteHolder;
+import view.EntitySpriteFactory;
 import view.EntityView;
-import view.Sprite;
 import view.item.BasicItemView;
 
 public class ItemManagerTest {
-/*
+
 	@Test
 	public void testItemManagerSaving() {
 		ItemManager manager = new ItemManager(
-				new Smasher("kyle", new EntityView(Color.RED, Color.BLACK,
-						new RealCoordinate(5, 5)), new TileCoordinate(5, 5)));
+				new Smasher("kyle", new EntityView(EntitySpriteFactory.getBaldySpriteHolder()), new TileCoordinate(5, 5)));
 
 		manager.equipToSlot(new Boots(new BasicItemView(), new Statistics()));
 		manager.equipToSlot(new ChestPiece(new BasicItemView(),
@@ -54,7 +47,7 @@ public class ItemManagerTest {
 		assertEquals(manager.getStructuredMap().getJson(), managerTest.getStructuredMap().getJson());
 
 	}
-*/
+
 	@Test
 	public void testInventory() {
 		Inventory inventory = new Inventory();
@@ -64,7 +57,7 @@ public class ItemManagerTest {
 
 		StructuredMap map = inventory.getStructuredMap();
 
-		System.out.println(map.getJson());
+		//System.out.println(map.getJson());
 
 		Inventory newInventory = new Inventory(map);
 		assertEquals(map.getJson(), newInventory.getStructuredMap().getJson());
@@ -74,7 +67,7 @@ public class ItemManagerTest {
 	@Test
 	public void testEquipmentManager() {
 		EquipmentManager manager = new EquipmentManager(
-				new Smasher("kyle", new EntityView(new SummonerSpriteHolder()), new TileCoordinate(5, 5)));
+				new Smasher("kyle", new EntityView(EntitySpriteFactory.getBaldySpriteHolder()), new TileCoordinate(5, 5)));
 		manager.equip(new Boots(new BasicItemView(), new Statistics()));
 		manager.equip(new ChestPiece(new BasicItemView(), new Statistics()));
 		manager.equip(new SmasherWeapon(new BasicItemView()));

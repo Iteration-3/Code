@@ -27,8 +27,8 @@ public class ConsumableItem extends TakeableItem {
         this.duration = duration;
     }
 
-    public ConsumableItem(ItemView itemView, StructuredMap map) {
-        super(itemView);
+    public ConsumableItem(StructuredMap map) {
+        super(map);
         
         this.stats = new EntityStatistics(map.getStructuredMap("stats"));
         this.duration = map.getDouble("duration");
