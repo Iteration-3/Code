@@ -53,13 +53,6 @@ public class SkillsMenuLayout extends Layout {
 		if(avatar == null){return;}
 		builder.append("<html>");
 		builder.append(avatar.getDerivedStats().toString().replaceAll("\\n", "<br>"));
-		builder.append("<br>");
-		builder.append("ITEMS:<br>");
-		for(Item i : avatar.getItems()){
-			if(i==null){continue;}
-			builder.append(i.toString());
-			builder.append("<br>");
-		}
 		builder.append("</html>");
 
 		statsLabel.setText(builder.toString());
