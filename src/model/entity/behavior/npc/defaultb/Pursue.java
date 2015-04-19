@@ -17,7 +17,6 @@ public class Pursue implements DefaultableBehaviorState {
 		// these movements will be sent from the Observable State
 		if (this.curcuit.hasMove()){
 			this.chosenOne.move(this.curcuit.nextMove());
-			System.out.println(this.chosenOne.toString());
 		}
 	}
 	

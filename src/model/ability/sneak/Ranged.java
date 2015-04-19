@@ -1,13 +1,14 @@
 package model.ability.sneak;
 
 import model.ability.ProjectileAbility;
+import model.projectile.Projectile;
 import model.projectile.linear.ThrowingKnife;
 import utilities.structuredmap.StructuredMap;
 
 public class Ranged extends ProjectileAbility {
 	
 	public Ranged() {
-		super(new ThrowingKnife(), 10);
+		super(10);
 	}
 	
 	public Ranged(int manaCost) {
@@ -24,6 +25,7 @@ public class Ranged extends ProjectileAbility {
 		return "ranged";
 	}
 	
-	
-
+	public Projectile getProjectile() {
+		return new ThrowingKnife();
+	}
 }

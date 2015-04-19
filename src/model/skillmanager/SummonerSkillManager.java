@@ -51,19 +51,27 @@ public class SummonerSkillManager extends SkillManager {
     }
 
     public void incrementBoon() {
+		if (!hasSkillPointsToSpend()) return;
         ++boonSkill;
+        spendSkillPoint();
     }
 
     public void incrementBane() {
+		if (!hasSkillPointsToSpend()) return;
         ++baneSkill;
+        spendSkillPoint();
     }
 
     public void incrementEnchant() {
+		if (!hasSkillPointsToSpend()) return;
         ++enchantSkill;
+        spendSkillPoint();
     }
 
     public void incrementStaff() {
+		if (!hasSkillPointsToSpend()) return;
         ++staffSkill;
+        spendSkillPoint();
     }
 
 	@Override

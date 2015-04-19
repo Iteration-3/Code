@@ -1,6 +1,7 @@
 package model.ability.summoner.enchantment;
 
 import model.ability.ProjectileAbility;
+import model.projectile.Projectile;
 import model.projectile.linear.SilenceProjectile;
 import utilities.structuredmap.StructuredMap;
 
@@ -8,7 +9,7 @@ import utilities.structuredmap.StructuredMap;
 public class Silence extends ProjectileAbility {
 	
 	public Silence() {
-		super(new SilenceProjectile(), 10);
+		super(10);
 	}
 	
 	public Silence(int manaCost) {
@@ -25,4 +26,7 @@ public class Silence extends ProjectileAbility {
 		return "silence";
 	}
 
+	public Projectile getProjectile() {
+		return new SilenceProjectile();
+	}
 }

@@ -74,7 +74,7 @@ public class ItemManagerTest {
 	@Test
 	public void testEquipmentManager() {
 		EquipmentManager manager = new EquipmentManager(
-				new Smasher("kyle", new EntityView(new SummonerSpriteHolder()), new TileCoordinate(5, 5));
+				new Smasher("kyle", new EntityView(new SummonerSpriteHolder()), new TileCoordinate(5, 5)));
 		manager.equip(new Boots(new BasicItemView(), new Statistics()));
 		manager.equip(new ChestPiece(new BasicItemView(), new Statistics()));
 		manager.equip(new SmasherWeapon(new BasicItemView()));

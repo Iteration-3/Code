@@ -1,6 +1,5 @@
 package model.item;
 
-import model.entity.Entity;
 import model.slots.ItemManager;
 import model.statistics.Statistics;
 import utilities.structuredmap.StructuredMap;
@@ -16,8 +15,8 @@ public class Shield extends EquipableItem{
 		super(itemView, statistics);
 	}
 
-    public Shield(ItemView itemView, StructuredMap map) {
-        super(itemView, map);
+    public Shield(StructuredMap map) {
+        super(map);
     }
 
 	public boolean equip(ItemManager itemManager) {

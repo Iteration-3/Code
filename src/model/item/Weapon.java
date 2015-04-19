@@ -6,7 +6,6 @@ import model.slots.SneakWeaponSlot;
 import model.slots.SummonerWeaponSlot;
 import model.statistics.Statistics;
 import utilities.structuredmap.StructuredMap;
-import view.item.BasicItemView;
 import view.item.ItemView;
 
 public abstract class Weapon extends EquipableItem{
@@ -20,7 +19,7 @@ public abstract class Weapon extends EquipableItem{
 	}
 	
 	public Weapon(StructuredMap map) {
-		super(new BasicItemView(), map);
+		super(map);
 	}
 
 	public boolean equip(ItemManager itemManager){
