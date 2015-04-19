@@ -24,11 +24,5 @@ public class CripplingProjectile extends Projectile {
 	public CripplingProjectile(Angle direction, double speed, Trigger trigger) {
 		super(direction, null, speed, trigger);
 	}
-	
-	
-	@Override
-	protected String getType() {
-		return "cripplingProjectile";
-	}
 
 }

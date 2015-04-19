@@ -19,12 +19,6 @@ public class FireProjectile extends Projectile {
 	public FireProjectile(TileCoordinate tile, Angle direction, double speed, Trigger trigger) {
 		super(direction, tile, speed, trigger);
 	}
-	
-	
-	@Override
-	protected String getType() {
-		return "fireProjectile";
-	}
 
 
 	public void setLevel(int x) {
