@@ -8,6 +8,9 @@ import view.item.BasicItemView;
 
 public class TakeableItemFactory {
 	public static TakeableItem createItem(StructuredMap map) {
+		if(map == null) {
+			return null;
+		}
 		switch (map.getString("type")) {
 		case "consumeable":
 			return createConsumeable(map);

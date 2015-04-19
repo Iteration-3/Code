@@ -31,7 +31,7 @@ public class EquipableFactoryTest {
 		
 		EquipableItem testHelmet = EquipableItemFactory.createItem(map);
 		assertEquals(met.getStructuredMap().getJson(), testHelmet.getStructuredMap().getJson());
-		
 	}
+	
 
 }

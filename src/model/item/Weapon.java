@@ -5,6 +5,8 @@ import model.slots.SmasherWeaponSlot;
 import model.slots.SneakWeaponSlot;
 import model.slots.SummonerWeaponSlot;
 import model.statistics.Statistics;
+import utilities.structuredmap.StructuredMap;
+import view.item.BasicItemView;
 import view.item.ItemView;
 
 public abstract class Weapon extends EquipableItem{
@@ -15,6 +17,10 @@ public abstract class Weapon extends EquipableItem{
 
 	public Weapon(ItemView itemView, Statistics statistics) {
 		super(itemView, statistics);
+	}
+	
+	public Weapon(StructuredMap map) {
+		super(new BasicItemView(), map);
 	}
 
 	public boolean equip(ItemManager itemManager){
@@ -39,4 +45,12 @@ public abstract class Weapon extends EquipableItem{
 	public boolean canEquip(SmasherWeaponSlot slot){
 		return false;
 	}
+	
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		map.put("type", getType());
+		return map;
+	}
+	
+	public abstract String getType();
 }

@@ -12,4 +12,9 @@ public class SmasherWeaponSlot extends WeaponSlot<SmasherWeapon>{
 	public boolean canEquip(Weapon weapon) {
 		return weapon.canEquip(this);
 	}
+
+	@Override
+	public String getType() {
+		return "smasher";
+	}
 }

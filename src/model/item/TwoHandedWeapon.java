@@ -2,6 +2,7 @@ package model.item;
 
 import model.slots.ItemManager;
 import model.statistics.Statistics;
+import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 
 public class TwoHandedWeapon extends Weapon {
@@ -14,6 +15,10 @@ public class TwoHandedWeapon extends Weapon {
 		super(itemView, statistics);
 	}
 
+	public TwoHandedWeapon(StructuredMap structuredMap) {
+		super(structuredMap);
+	}
+
 	@Override
 	public String getInfo() {
 		return null;
@@ -21,6 +26,11 @@ public class TwoHandedWeapon extends Weapon {
 
 	public void unequip(ItemManager itemManager) {
 		itemManager.unequipTHW();
+	}
+
+	@Override
+	public String getType() {
+		return "THW";
 	}
 
 }

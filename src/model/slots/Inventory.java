@@ -21,11 +21,16 @@ public class Inventory implements Saveable {
 	public Inventory(StructuredMap map) {
 		this.inventoryView = new InventoryView();
 		slots = new InventorySlot[map.getInteger("slotsLength")];
-//		StructuredMap[] items = map.getStructuredMapArray("items");
-//		for(StructuredMap item : items) {
-//			TakeableItem savedItem = TakeableItemFactory.createItem(item);
-//			this.addItem(savedItem);
-//		}
+		for (int i = 0; i < (map.getInteger("slotsLength")); i++) {
+			this.setSlot(i);
+		}
+		StructuredMap[] items = map.getStructuredMapArray("items");
+		for(StructuredMap item : items) {
+			TakeableItem savedItem = TakeableItemFactory.createItem(item);
+			if(item != null) {
+				this.addItem(savedItem);
+			}
+		}
 	}
 
 	private void setInventory() {
@@ -159,9 +164,7 @@ public class Inventory implements Saveable {
 			if(slots[i].get() != null) {
 				items[i] = slots[i].get().getStructuredMap();
 			} else {
-				StructuredMap emptyMap = new StructuredMap();
-				emptyMap.put("noItem", new StructuredMap());
-				items[i] = emptyMap;
+				items[i] = null;
 			}
 		}
 		map.put("items", items);

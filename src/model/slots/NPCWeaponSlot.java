@@ -15,4 +15,9 @@ public class NPCWeaponSlot extends WeaponSlot<NPCWeapon> {
 		return false;
 	}
 
+	@Override
+	public String getType() {
+		return "npc";
+	}
+
 }
