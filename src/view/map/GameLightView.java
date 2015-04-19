@@ -18,21 +18,55 @@ public class GameLightView implements GameView{
 	private int screenWidth;
 	private int screenHeight;
 	
+	public static long TIME_TO_DIM = 2000;
+	
 	public void render(Graphics graphics, int width, int height) {
 		this.screenWidth = width;
 		this.screenHeight = height;
-		
+		long time = System.currentTimeMillis();
 		for(int x = 0; x < numberOfHorizontalTiles(); ++x) {
 			for(int y = 0; y < numberOfVerticalTiles(); ++y) {
 			
 				int renderX = (int) (x * tileWidth() * 0.75);
 				int renderY = (int) (y * tileHeight() + (x % 2) * tileHeight() / 2);
 				
-				int vis = LightManager.getLightManager().strength(new TileCoordinate(x, y));
-				Color col = new Color(84,84,84, 255-vis);
-				Hexagon hex = new Hexagon(col);
-				
-				hex.render(graphics, new RealCoordinate(renderX, renderY), tileWidth());
+				if (LightManager.getSingleton().getLightMap().isEmpty(new TileCoordinate(x, y))) {
+					//do dim sum
+					long timeDelta = time - LightManager.getSingleton().getLightMap().getTime(new TileCoordinate(x, y));
+					double percentage;
+					if (timeDelta > TIME_TO_DIM) {					
+						percentage = 1.0;
+					} else {
+						percentage = ((double)timeDelta)/TIME_TO_DIM;
+					}
+					percentage = 1-percentage;
+					int strength = LightManager.getSingleton().getLightMap().getPrevStrength(new TileCoordinate(x, y));
+					if (strength > 80) {
+						int delt = strength-80;
+						int amt = (int) (delt*percentage);
+						strength = strength-Math.abs(delt-amt);
+						if (strength > 255) strength = 255;
+						if (strength < 0) strength = 0;
+					} else {
+						if (timeDelta != time) // seen
+							strength = 80;
+					}
+					//System.out.println("STRENGTH: " + strength);
+					Color col = new Color(84,84,84, 255-strength);
+					Hexagon hex = new Hexagon(col);
+					
+					hex.render(graphics, new RealCoordinate(renderX, renderY), tileWidth());
+				} else {
+					int strength = LightManager.getSingleton().getLightMap().getStrength(new TileCoordinate(x, y));
+					
+					if (strength > 255) strength = 255;
+					if (strength < 0) strength = 0;
+					//System.out.println("STRENGTH: " + strength);
+					Color col = new Color(84,84,84, 255-strength);
+					Hexagon hex = new Hexagon(col);
+					
+					hex.render(graphics, new RealCoordinate(renderX, renderY), tileWidth());
+				}
 			}
 		}
 	}

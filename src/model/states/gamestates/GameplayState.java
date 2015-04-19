@@ -102,7 +102,7 @@ public class GameplayState extends GameState {
         controller.terminateUpdateThread();
         EntityManager.getSingleton().clear();
         TriggerManager.getSingleton().clear();
-        LightManager.getLightManager().clear();
+        LightManager.getSingleton().clear();
         super.onExit();
     }
 

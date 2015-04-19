@@ -103,6 +103,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         TileCoordinate nextLocation = nextLocation(angle);
         this.setLocation(nextLocation);
         this.setDirection(angle);
+        this.notifySubscribers();
     }
     
     public TileCoordinate nextLocation() {
