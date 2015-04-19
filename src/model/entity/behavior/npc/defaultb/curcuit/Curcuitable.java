@@ -5,5 +5,7 @@ import utilities.Angle;
 public interface Curcuitable {
 	
 	public Angle nextMove();
+	
+	public boolean hasMove();
 
 }
