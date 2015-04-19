@@ -56,6 +56,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     }
     
     
+    
     public Entity(StructuredMap map) {
     	super(new TileCoordinate(map.getIntArray("location")[0], map.getIntArray("location")[1]));
         this.name = map.getString("name");
@@ -184,6 +185,11 @@ public abstract class Entity extends MobileObject implements Saveable {
 
     protected EntityView getEntityView() {
         return view;
+    }
+    
+    public void toggleView() {
+    	getEntityView().toggle();
+    	getEntityView().setLocation(getLocation());
     }
 
     public String getName() {

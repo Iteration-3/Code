@@ -59,7 +59,6 @@ public abstract class Avatar extends Entity {
 	
 	@Override
 	public Collection<Listener> getListeners(KeyPreferences preferences) {
-		System.out.println("Test");
 		Collection<Listener> listeners = new ArrayList<Listener>();
 		int i = 0;
 		for(final Ability a : this.getAbilities()){

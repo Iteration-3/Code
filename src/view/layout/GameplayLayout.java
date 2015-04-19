@@ -48,7 +48,7 @@ public class GameplayLayout extends Layout implements ActionListener {
     public GameLightView getGameLightView() {
     	return gameLightView;
     }
-    
+
     public GameProjectileView getGameProjectileView() {
     	return gameProjectileView;
     }
