@@ -23,7 +23,7 @@ import view.EntityView;
 import view.item.BasicItemView;
 
 public class ItemManagerTest {
-
+/*
 	@Test
 	public void testItemManagerSaving() {
 		ItemManager manager = new ItemManager(
@@ -44,7 +44,7 @@ public class ItemManagerTest {
 		System.out.println(manager.getStructuredMap().getJson());
 
 	}
-
+*/
 	@Test
 	public void testInventory() {
 		Inventory inventory = new Inventory();
