@@ -1,5 +1,6 @@
 package model.entity.behavior.npc;
 
+import model.area.RadialArea;
 import model.entity.Entity;
 import model.entity.EntityManager;
 import model.entity.behavior.npc.defaultb.ListenForMovement;
@@ -46,7 +47,7 @@ public class Pursue implements Behaviorable {
 
 	public void setStates() {
 		this.pursue = new ListenForMovement(this.chosenOne);
-		this.targetEntity = new TargetEntity(this.chosenOne,7,EntityManager.getSingleton().getAvatar());
+		this.targetEntity = new TargetEntity(this.chosenOne,7,EntityManager.getSingleton().getAvatar(),new RadialArea());
 	}
 
 }
