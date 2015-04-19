@@ -11,7 +11,7 @@ import controller.SlotViewMouseListenerFactory;
 
 @SuppressWarnings("serial")
 public class InventoryView extends JComponent {
-	private static final String backgroundPath = "src/resources/images/slotImage.png";
+	private static final String backgroundPath = "/images/slotImage.png";
 	private static BufferedImage slotBackground;
 	private final static int COL = 5;
 	private final static int ROW = 5;

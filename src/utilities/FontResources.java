@@ -5,6 +5,7 @@ import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class FontResources {
 	private static Font primaryFont;
@@ -27,7 +28,8 @@ public class FontResources {
 		Font font = null;
 		
 		try {
-			 font = Font.createFont(Font.TRUETYPE_FONT, new File("./src/resources/fonts/" + fontName));
+			 InputStream fontStream = FontResources.class.getResourceAsStream("/fonts/" + fontName);
+			 font = Font.createFont(Font.TRUETYPE_FONT, fontStream);
 		     GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		     ge.registerFont(font);
 		} catch (IOException|FontFormatException e) {

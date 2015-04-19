@@ -12,14 +12,14 @@ import utilities.ImageProcessing;
 public class EquipmentView extends JComponent {
 	private float EQUIPMENT_SCALE = 80;	//this is a percentage of the height and scale
 	
-	private static final String HELMET_PATH = "src/resources/images/helmet_slot.jpg";
-	private static final String CHEST_PIECE_PATH = "src/resources/images/chest_piece_slot.jpg";
-	private static final String LEGGINGS_PATH = "src/resources/images/leggings_slot.jpg";
-	private static final String BOOTS_PATH = "src/resources/images/boots_slot.jpg";
-	private static final String WEAPON_PATH = "src/resources/images/weapon_slot.jpg";
-	private static final String SHIELD_PATH = "src/resources/images/shield_slot.jpg";
-	private static final String PROJECTILE_PATH = "src/resources/images/projectile_slot.jpg";
-	private static final String GLOVES_PATH = "src/resources/images/gloves_slot.jpg";
+	private static final String HELMET_PATH = "/images/helmet_slot.jpg";
+	private static final String CHEST_PIECE_PATH = "/images/chest_piece_slot.jpg";
+	private static final String LEGGINGS_PATH = "/images/leggings_slot.jpg";
+	private static final String BOOTS_PATH = "/images/boots_slot.jpg";
+	private static final String WEAPON_PATH = "/images/weapon_slot.jpg";
+	private static final String SHIELD_PATH = "/images/shield_slot.jpg";
+	private static final String PROJECTILE_PATH = "/images/projectile_slot.jpg";
+	private static final String GLOVES_PATH = "/images/gloves_slot.jpg";
 	
 	private int helmetX;
 	private int helmetY;

@@ -10,7 +10,7 @@ import model.area.RealCoordinate;
 
 public class BasicItemView extends ItemView {
 	
-	private static String imagePath = "src/resources/images/item.jpg";
+	private static String imagePath = "/images/item.jpg";
 	private BufferedImage itemImage;
 
 	private Hexagon backgroundHexagon;
