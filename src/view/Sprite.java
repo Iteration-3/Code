@@ -7,7 +7,10 @@ import model.area.RealCoordinate;
 
 public class Sprite {
 	private BufferedImage[] images;
-	int counter = 0;
+	private int counter = 0;
+	private boolean animated = true;
+	
+	
 	
 	public Sprite(BufferedImage[] images){
 		this.images = images;
@@ -25,9 +28,23 @@ public class Sprite {
 		}
 	}
 	
+	public void resumeAnimation(){
+		this.animated = true;
+	}
+	
+	public void stopAnimation(){
+		this.animated = false;
+	}
+	
+	public boolean isAnimatedATM(){
+		return this.animated;
+	}
+	
 	public void render(Graphics graphics, RealCoordinate location, float diameter) {
 		BufferedImage image = getCurrentFrame();
-		advanceCounter();
+		if(isAnimatedATM()){
+			advanceCounter();
+		}
 		graphics.drawImage(image,(int)location.getX()-image.getWidth()/2,
 				(int)location.getY()-image.getHeight()/2,null );
 
