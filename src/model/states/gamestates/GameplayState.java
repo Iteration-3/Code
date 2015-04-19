@@ -111,6 +111,8 @@ public class GameplayState extends GameState {
         EntityView eView = new EntityView(new Color(200, 200, 0), Color.orange,
                 new RealCoordinate(3, 3));
         avatar = new Summoner("Summoner", eView, loc);
+        //testing this for equipped Items
+        avatar.equip(new Helmet(new BasicItemView(),new Statistics()));
 
         KeyPreferences preferences = new KeyPreferences();
         getContext().setPreferences(preferences);
@@ -134,8 +136,6 @@ public class GameplayState extends GameState {
         controller.removeListeners();
         getLayout().clearBindings();
 
-        //testing this for equipped Items
-        avatar.equip(new Helmet(new BasicItemView(),new Statistics()));
 
         Listener escapeListener = new SingleUseListener(preferences.getPauseKey(), new GameActionStatePush(
                 getContext(), new PauseMenuState()));

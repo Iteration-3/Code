@@ -36,12 +36,6 @@ public class InventoryView extends JComponent {
 		setFocusable(true);
 	}
 
-	public void register(SlotView[] slotViews) {
-		for (int i = 0; i < slotViews.length; i++) {
-			this.register(slotViews[i], i);
-		}
-	}
-
 	public void register(SlotView slotView, int location) {
 		slots.put(location, slotView);
 		slotView.setBackground(this.getBackgroundImage());
@@ -81,15 +75,26 @@ public class InventoryView extends JComponent {
 		this.widthOffset = width;
 		this.heightOffset = height;
 	}
-	
-	public void add(SlotViewMouseListenerFactory controller){
-		for (int i:slots.keySet()) {
+
+	public void add(SlotViewMouseListenerFactory controller) {
+		for (int i : slots.keySet()) {
+			System.out.println(slots.get(i).hashCode());
 			slots.get(i).addMouseListener(controller.makeSlotMouseListener(i));
 		}
+	}
+	
+	public void resetSlotDimensions(){
+		for (int i : slots.keySet()) {
+			int height = slotHeight * (i/ ROW) + this.heightOffset;
+			int width = slotWidth * (i % COL) + this.widthOffset;
+			slots.get(i).setBounds(width, height, slotWidth, slotHeight);
+		}
+		
 	}
 
 	public void setSlotDimensions(int width, int height) {
 		this.slotWidth = width;
 		this.slotHeight = height;
+		this.resetSlotDimensions();
 	}
 }
