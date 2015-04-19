@@ -77,19 +77,12 @@ public class EntityStatistics extends Statistics {
 
     public void setLivesLeft(int livesLeft) {
         this.livesLeft = livesLeft;
-        livesCheck();
     }
     
     public void decrementLives(){
     	--this.livesLeft;
-    	livesCheck();
     }
     
-    private void livesCheck(){
-    	if(this.getLivesLeft() <= 0){
-    		System.out.println("OUT OF LIVES, PERMA DEAD, PROB SHOULD DO SOMETHING");
-    	}
-    }
 
     public int getExperience() {
         return experience;
@@ -114,19 +107,8 @@ public class EntityStatistics extends Statistics {
   
     public void setCurrentHealth(int currentHealth) {
         this.currentHealth = currentHealth;
-        this.healthCheck();
     }
     
-    private void healthCheck(){
-    	 if(this.currentHealth < 0){
-         	this.currentHealth = getMaximumHealth();
-         	this.decrementLives();
-         	System.out.println("You haved Died!");
-         }
-         if(this.currentHealth > this.getMaximumHealth()){
-         	this.currentHealth = this.getMaximumHealth();
-         }
-    }
 
     public int getMaximumHealth() {
         return getStrength() * 100;
@@ -144,24 +126,14 @@ public class EntityStatistics extends Statistics {
     	return money;
     }
 
-    private void setCurrentMana(int currentMana) {
+    protected void setCurrentMana(int currentMana) {
         this.currentMana = currentMana;
-        this.manaCheck();
     }
 
     public void addCurrentMana(int change) {
         this.currentMana += change;
-        this.manaCheck();
     }
-    private void manaCheck(){
-    	if(this.currentMana < 0){
-    		this.currentMana = 0;
-    	}
-    	if(this.currentMana > this.getMaximumMana()){
-    		this.currentMana = this.getMaximumMana();
-    	}
-    }
-
+   
     public int getMaximumMana() {
         return getIntellect() * 100;
     }
