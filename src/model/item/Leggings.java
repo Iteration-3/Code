@@ -25,12 +25,6 @@ public class Leggings extends EquipableItem{
 	}
 	
 	@Override
-	public void use(Entity entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public String getInfo() {
 		// TODO Auto-generated method stub
 		return null;
