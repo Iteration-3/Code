@@ -20,6 +20,11 @@ public class EntityView implements Saveable {
 	public EntityView(AbstractEntitySpriteHolder sprites) {
 		this.sprites=sprites;
 	}
+	
+	public EntityView(StructuredMap map) {
+		this.sprites = EntitySpriteFactory.getSpritesFromType(map.getStructuredMap("sprites").getString("spriteType"));
+		this.location = new RealCoordinate(map.getDouble("locationX"), map.getDouble("locationY"));
+	}
 
 	public void registerWithGameMapView(GameEntityView gv, RealCoordinate location, Angle angle) {
 		gv.addEntityView(this);
@@ -27,10 +32,6 @@ public class EntityView implements Saveable {
 		this.setDirection(angle);
 	}
 	
-	public EntityView(StructuredMap map) {
-		//this.sprites = EntitySpriteFactory.createSprites(map.getStructuredMap("sprites"));
-		this.location = new RealCoordinate(map.getDouble("locationX"), map.getDouble("locationY"));
-	}
 	
 	float tileWidth;
 	float tileHeight;
