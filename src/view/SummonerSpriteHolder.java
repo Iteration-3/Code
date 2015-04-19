@@ -6,7 +6,7 @@ class SummonerSpriteHolder extends EntitySpriteHolder {
 	public SummonerSpriteHolder(BufferedImage[] images) {
 		this.setUp(images);
 		this.setDown(images);
-		this.setUpRight(images);
+		this.setDownLeft(images);
 		this.setDownRight(images);
 		this.setUpLeft(images);
 		this.setUpRight(images);

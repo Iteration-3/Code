@@ -120,12 +120,12 @@ public class GameplayState extends GameState {
         setListeners(preferences);
 
         EntityManager.getSingleton().setAvatar(avatar);
-        eView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(3, 3));
+        eView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(3, 3),Angle.UP);
         
         TileCoordinate npcLocation = new TileCoordinate(7, 7);
         EntityView npcView = new EntityView(EntitySpriteFactory.getSummonerSpriteHolder());
         NPC npc = new NPC("DaveTheBargainer", npcView, npcLocation);
-        npcView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(7, 7));
+        npcView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(7, 7),Angle.UP);
         EntityManager.getSingleton().addPartyNpc(npc);
     }
 
