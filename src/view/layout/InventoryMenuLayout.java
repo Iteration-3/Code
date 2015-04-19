@@ -19,6 +19,9 @@ public class InventoryMenuLayout extends Layout {
 	private int inventoryHeight;
 	private int equipmentWidth;
 	private int equipmentHeight;
+	
+	private int width = 100;
+	private int height = 100;
 
 	private MenuButton backButton;
 	private InventoryView inventoryView;
@@ -49,7 +52,9 @@ public class InventoryMenuLayout extends Layout {
 		inventoryOffsetY = 0;
 		equipmentOffsetX = inventoryWidth + 100;
 		equipmentOffsetY = 0;
+		this.inventoryView.setSlotDimensions(this.width,this.height);
 		this.inventoryView.setBounds(inventoryOffsetX, inventoryOffsetY);
+		this.equipmentView.setSlotDimensions(this.width,this.height);
 		this.equipmentView.setBounds(equipmentOffsetX, equipmentOffsetY);
 		this.backButton.setBounds(600, 600,
 				this.backButton.getPreferredSize().width,
@@ -63,9 +68,8 @@ public class InventoryMenuLayout extends Layout {
 
 	public void attachController(InventoryMenuController controller) {
 		backButton.addActionListener(controller.getBackAction());
-    	System.out.println(this.isValid());
 		this.inventoryView.add(controller);
-		this.inventoryView.addMouseMotionListener(controller.makeInventoryMouseListener());
+//		this.inventoryView.addMouseMotionListener(controller.makeInventoryMouseListener());
 		this.equipmentView.add(controller);
 	}
 
@@ -79,5 +83,10 @@ public class InventoryMenuLayout extends Layout {
 		this.equipmentView = equipmentView;
 		this.equipmentWidth = equipmentView.getWidth();
 		this.equipmentHeight = equipmentView.getHeight();
+	}
+	
+	public void setDimensions(int width, int height){
+		this.width = width;
+		this.height = height;
 	}
 }
