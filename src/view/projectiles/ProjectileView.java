@@ -3,15 +3,16 @@ package view.projectiles;
 import java.awt.Graphics;
 
 import view.map.GameProjectileView;
+import model.area.Area;
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 
 public abstract class ProjectileView {
 	
-	private TileCoordinate location;
+	private Area area;
 	
-	public ProjectileView(TileCoordinate location) {
-		this.location = location;
+	public ProjectileView(Area area) {
+		this.area = area;
 	}
 
 	public abstract void render(Graphics graphics, RealCoordinate location, float diam);
@@ -20,11 +21,11 @@ public abstract class ProjectileView {
 		gv.addProjectileView(this);
 	}
 	
-	public TileCoordinate getLocation() {
-		return location;
+	public Area getArea() {
+		return area;
 	}
 	
-	public void setLocation(TileCoordinate location) {
-		this.location = location;
+	public void setArea(Area area) {
+		//this.area = area;
 	}
 }

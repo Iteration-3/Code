@@ -41,8 +41,4 @@ public class LinearArea extends DirectionalArea {
 	protected String getType() {
 		return "linear";
 	}
-
- 
-
-
 }

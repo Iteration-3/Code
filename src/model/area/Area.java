@@ -9,9 +9,9 @@ import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 
 public abstract class Area implements Saveable {
+	
     private int range;
     private TileCoordinate startLocation;
-    private Area compositeArea;    
     private Angle direction;
 
     public static final double WIDTH = 1.0;
@@ -31,7 +31,6 @@ public abstract class Area implements Saveable {
     	this.range = map.getInteger("range");
     	int[] location = map.getIntArray("coordinate");
     	this.startLocation = new TileCoordinate(location[0], location[1]);
-    	this.compositeArea = AreaFactory.createArea(map.getStructuredMap("area"));
     	this.direction = Angle.values()[map.getInteger("direction")];
     }
 
@@ -42,7 +41,6 @@ public abstract class Area implements Saveable {
     	location[1] = startLocation.getY();
     	map.put("range", range);
     	map.put("coordinate", location);
-    	map.put("compositeArea", compositeArea.getStructuredMap());
     	map.put("type", getType());
     	map.put("direction", direction.ordinal());
     	return map;
@@ -66,46 +64,10 @@ public abstract class Area implements Saveable {
         this.range = range;
     }
 
-    public void addCompositeArea(Area area) {
-        this.compositeArea = area;
-    }
-
-    public Area getCompositeArea(Area area) {
-        return this.compositeArea;
-    }
-
-    protected boolean hasCompositeArea() {
-        return this.compositeArea != null;
-    }
-
-    protected List<TileCoordinate> getCompositeCoveredLocations() {
-        List<TileCoordinate> emptyList = new ArrayList<>();
-
-        return hasCompositeArea() ? compositeArea.getCoveredLocations() : emptyList;
-    }
-
     public abstract boolean isInRange(TileCoordinate location);
 
     protected boolean isWithinRadius(TileCoordinate loc) {
-
         return getCoveredLocations().contains(loc);
-
-    }
-
-    protected List<TileCoordinate> checkSurrounding(TileCoordinate location, List<TileCoordinate> returnList) {
-        List<TileCoordinate> testLocations = new ArrayList<>();
-        for (Angle angle : Angle.values()) {
-            int xOffset = (int) Math.round(Area.HEIGHT * Math.cos(Math.toRadians(angle.getAngle() + 30)));
-            int yOffset = (int) Math.round(Area.HEIGHT * Math.sin(Math.toRadians(angle.getAngle() + 30)));
-
-            TileCoordinate testLocation = new TileCoordinate(location.getX() + xOffset, location.getY() - yOffset);
-
-            if (canAdd(testLocation, returnList)) {
-                returnList.add(testLocation);
-            }
-        }
-        return testLocations;
-
     }
 
     public Angle getDirection() {
@@ -116,17 +78,5 @@ public abstract class Area implements Saveable {
         this.direction = direction;
     }
 
-    protected boolean compositeInRange(TileCoordinate location) {
-        return this.compositeArea.isInRange(location);
-    }
-
-    private boolean canAdd(TileCoordinate location, List<TileCoordinate> locations) {
-        return !locations.contains(location) && isInRange(location);
-    }
-
     public abstract List<TileCoordinate> getCoveredLocations();
-
-    
-
-    
 }

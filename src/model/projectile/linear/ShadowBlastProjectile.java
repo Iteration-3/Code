@@ -18,12 +18,6 @@ public class ShadowBlastProjectile extends Projectile {
 	public ShadowBlastProjectile(Angle direction, double speed, Trigger trigger) {
 		super(direction, null, speed, trigger);
 	}
-	
-	
-	@Override
-	protected String getType() {
-		return "shadowBlastProjectile";
-	}
 
 	public void setLevel(int x) {
 		this.setSpeed(3);
