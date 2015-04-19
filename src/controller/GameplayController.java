@@ -1,32 +1,28 @@
 package controller;
 
-import model.Model;
 import model.entity.EntityManager;
 import model.event.EventManager;
+import model.states.gamestates.GameplayState;
 import model.trigger.TriggerManager;
 import controller.listener.Listener;
 
 public class GameplayController extends Controller {
     private EntityController entityController;
     private Thread updateThread;
+    private GameplayState state;
     private boolean threadIsRunning;
     private long previousTime;
 
-    public GameplayController(Model model) {
+    public GameplayController(GameplayState state) {
     	threadIsRunning = false;
         this.entityController = new EntityController();
+        this.state = state;
     }
 
     public void addEntityListener(Listener listener) {
         entityController.addListener(listener);
     }
-    
-    private void doUpdates(double deltaTime) {
-		TriggerManager.getSingleton().update(deltaTime);
-		EventManager.getSingleton().update(deltaTime);
-		EntityManager.getSingleton().update(deltaTime);
-    }
-    
+  
     public void spawnUpdateThread() {
     	previousTime = System.nanoTime();
     	updateThread = new Thread(
@@ -39,7 +35,7 @@ public class GameplayController extends Controller {
     						return;
     					}
     					double deltaTime = (System.nanoTime()  - previousTime) / 1000000000.0d;
-    					doUpdates(deltaTime);
+    					state.update(deltaTime);
 //    					System.out.println(deltaTime);
     					previousTime = System.nanoTime();
     					
