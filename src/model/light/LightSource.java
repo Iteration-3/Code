@@ -16,27 +16,25 @@ public class LightSource {
 	}
 	
 	public void addLighting() {
-		//System.out.println("ADD: " + area.getStartLocation());
 		List<TileCoordinate> locs = getArea().getCoveredLocations();
 		for (TileCoordinate t : locs) {
 			int strengthAt = LightManager.getSingleton().getLightMap().getStrength(t);
 			LightManager.getSingleton().getLightMap().setStrength(t, strengthAt+strength);
 			LightManager.getSingleton().getLightMap().increment(t);
-			//System.out.println("INCREMENT: " + LightManager.getSingleton().getLightMap().getAmt(t));
 			
 		}
 	}	
 	
 	public void removeLighting() {
-		//System.out.println("REMOVE " + area.getStartLocation());
 		List<TileCoordinate> locs = getArea().getCoveredLocations();
 		for (TileCoordinate t : locs) {
 			int strengthAt = LightManager.getSingleton().getLightMap().getStrength(t);
 			LightManager.getSingleton().getLightMap().setStrength(t, strengthAt-strength);
 			LightManager.getSingleton().getLightMap().decrement(t);
-			//System.out.println("DECREMENT: " + LightManager.getSingleton().getLightMap().getAmt(t));
 		}
 	}
+	
+	public void remove() {}
 
 	public Area getArea() {
 		return area;

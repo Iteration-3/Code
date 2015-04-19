@@ -2,8 +2,8 @@ package view;
 
 import java.awt.image.BufferedImage;
 
-class SummonerSpriteHolder extends EntitySpriteHolder {
-	public SummonerSpriteHolder(BufferedImage[] images) {
+class ConcreteEntitySpriteHolder extends AbstractEntitySpriteHolder {
+	public ConcreteEntitySpriteHolder(BufferedImage[] images) {
 		this.setUp(images);
 		this.setDown(images);
 		this.setDownLeft(images);

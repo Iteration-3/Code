@@ -11,6 +11,7 @@ import view.map.GameTerrainView;
 
 @SuppressWarnings("serial")
 public class GameplayLayout extends Layout {
+
 	GameTerrainView gameTerrainView;
 	GameEntityView gameEntityView;
 	GameItemView gameItemView;
@@ -54,5 +55,4 @@ public class GameplayLayout extends Layout {
 		gameItemView.render(graphics, getWidth(), getHeight());
 		gameLightView.render(graphics, getWidth(), getHeight());
 	}
-
 }

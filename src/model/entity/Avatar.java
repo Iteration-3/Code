@@ -6,7 +6,6 @@ import java.util.Iterator;
 
 import model.KeyPreferences;
 import model.ability.Ability;
-import model.area.ConicalArea;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.light.LightManager;
@@ -95,6 +94,18 @@ public abstract class Avatar extends Entity {
 		}
 		return listeners;
 		
+	}
+	
+	public boolean hasMoney(int money) {
+		return this.getBaseStats().getMoney() >= money;
+	}
+	
+	public void addMoney(int money) {
+		this.removeMoney(-1 * money);
+	}
+	
+	public void removeMoney(int money) {
+		this.getBaseStats().addMoney(-1 * money);
 	}
 	
 	public int getAttackSkill() {
