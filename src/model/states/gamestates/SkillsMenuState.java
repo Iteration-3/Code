@@ -18,7 +18,6 @@ public class SkillsMenuState extends GameState {
     	
     	controller = new SkillsMenuController(getContext());
     	layout.attachController(controller);
-    	this.generateStatsText();
     }
 
     @Override
@@ -29,9 +28,5 @@ public class SkillsMenuState extends GameState {
     @Override
     protected SkillsMenuController getController() {
     	return controller;
-    }
-    
-    public void generateStatsText(){
-    	layout.generateLabelText();
     }
 }

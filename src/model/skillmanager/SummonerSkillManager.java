@@ -1,5 +1,7 @@
 package model.skillmanager;
 
+import java.util.Map;
+
 import utilities.structuredmap.StructuredMap;
 
 public class SummonerSkillManager extends SkillManager {
@@ -66,5 +68,15 @@ public class SummonerSkillManager extends SkillManager {
 	@Override
 	protected String getType() {
 		return "summoner";
+	}
+	
+	@Override
+	public Map<String, Integer> getSkillNamesWithValues() {
+		Map<String, Integer> skillsMap = super.getSkillNamesWithValues();
+		skillsMap.put("Boon", boonSkill);
+		skillsMap.put("Enchant", enchantSkill);
+		skillsMap.put("Bane", baneSkill);
+		skillsMap.put("Staff", staffSkill);
+		return skillsMap;
 	}
 }
