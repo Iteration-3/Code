@@ -7,6 +7,7 @@ import model.area.TileCoordinate;
 public class LightManager {
 	
 	private static LightManager _lightManager = new LightManager();
+	private ArrayList<LightSource> lightSources = new ArrayList<LightSource>();
 	private LightMap lightMap = new LightMap(100, 100); //TODO temp
 	
 	private LightManager() { 
@@ -18,6 +19,7 @@ public class LightManager {
 	
 	public void addLightSource(LightSource lightSource) {
 		lightSource.addLighting();
+		lightSources.add(lightSource);
 	}
 	
 	public void removeLightSource(LightSource lightSource) {
@@ -29,7 +31,9 @@ public class LightManager {
 	}
 	
 	public void clear() {
-		//lightMap = new LightMap(100, 100); //TODO temp
-		//right now lightsources manage themselves. TODO: fix :(
+		for (LightSource l : lightSources) {
+			l.remove();
+		}
+		lightMap = new LightMap(100, 100); //TODO temp
 	}
 }

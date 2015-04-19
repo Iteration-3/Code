@@ -52,7 +52,7 @@ public class GameplayLayout extends Layout {
         gameTerrainView.render(graphics, getWidth(), getHeight());
         gameEntityView.render(graphics, getWidth(), getHeight());
 //        gameItemView.render(graphics, getWidth(), getHeight());
-//        gameLightView.render(graphics, getWidth(), getHeight());
+        gameLightView.render(graphics, getWidth(), getHeight());
     }
 
 }

@@ -18,7 +18,7 @@ public class GameLightView implements GameView{
 	private int screenWidth;
 	private int screenHeight;
 	
-	public static long TIME_TO_DIM = 2000;
+	public static long TIME_TO_DIM = 800;
 	
 	public void render(Graphics graphics, int width, int height) {
 		this.screenWidth = width;

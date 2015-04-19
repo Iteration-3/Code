@@ -18,6 +18,10 @@ public abstract class MobileObject {
 	public void subscribe(MobileListener list) {
 		listeners.add(list);
 	}
+
+	public void unsubscribe(MobileListener list) {
+		listeners.remove(list);
+	}
 	
 	public void setLocation(TileCoordinate location) {
 		this.location = location;
