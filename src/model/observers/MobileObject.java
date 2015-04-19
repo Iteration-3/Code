@@ -25,20 +25,28 @@ public abstract class MobileObject {
 	
 	public void setLocation(TileCoordinate location) {
 		this.location = location;
-		//notifySubscribers();
+		notifySubscribers();
 	}
-
+	
+	public void setDirection(Angle direction) {
+		this.direction = direction;
+		notifySubscribers();
+	}
+	
+	protected void setLocationNoNotify(TileCoordinate location) {
+		this.location = location;
+	}
+	
+	protected void setDirectionNoNotify(Angle direction) {
+		this.direction = direction;
+	}
+	
 	public TileCoordinate getLocation() {
 		return location;
 	}
 	
 	public Angle getDirection() {
 		return direction;
-	}
-	
-	public void setDirection(Angle direction) {
-		this.direction = direction;
-		//notifySubscribers();
 	}
 	
 	protected void notifySubscribers() {
