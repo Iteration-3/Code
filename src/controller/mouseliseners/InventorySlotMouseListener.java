@@ -3,15 +3,19 @@ package controller.mouseliseners;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import model.entity.Entity;
+
 public class InventorySlotMouseListener implements MouseListener {
 	private int location;
+	private Entity entity;
 	
-	public InventorySlotMouseListener(int location){
+	public InventorySlotMouseListener(Entity entity,int location){
 		this.location = location;
+		this.entity = entity;
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("the mouse sevent of "+ location);
+		this.entity.removeItem(location);
 	}
 
 	public void mouseEntered(MouseEvent e) {

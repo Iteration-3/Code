@@ -44,11 +44,6 @@ public class SlotView extends JButton {
 			g.drawImage(this.itemView.getImage(40, 40), 40, 40, null);
 		}
 	}
-
-	public void drawBackGround(Graphics g, int x, int y) {
-		g.drawImage(background, x, y, null);
-	}
-
 	public void setBackground(BufferedImage background) {
 		this.background = background;
 	}
