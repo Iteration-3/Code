@@ -6,7 +6,6 @@ import utilities.structuredmap.Saveable;
 import view.item.ItemView;
 
 public abstract class Item implements Saveable{
-	
 	protected ItemView itemView;
 	
 	public Item(ItemView itemView) {

@@ -8,25 +8,25 @@ import controller.listener.Listener;
 public class GameplayController extends Controller {
     private EntityController entityController;
     private Thread updateThread;
-    private Model model;
     private boolean threadIsRunning;
+    private long previousTime;
 
     public GameplayController(Model model) {
     	threadIsRunning = false;
         this.entityController = new EntityController();
-        this.model = model;
     }
 
     public void addEntityListener(Listener listener) {
         entityController.addListener(listener);
     }
     
-    private void doUpdates() {
-		TriggerManager.getSingleton().update();
-		EventManager.getSingleton().update();
+    private void doUpdates(float deltaTime) {
+		TriggerManager.getSingleton().update(deltaTime);
+		EventManager.getSingleton().update(deltaTime);
     }
     
     public void spawnUpdateThread() {
+    	previousTime = System.currentTimeMillis();
     	updateThread = new Thread(
     		new Runnable() {
     			@Override
@@ -36,7 +36,9 @@ public class GameplayController extends Controller {
     					   	threadIsRunning = false;
     						return;
     					}
-    					doUpdates();
+    					float deltaTime = (System.currentTimeMillis() - previousTime) / 1000f;
+    					doUpdates(deltaTime);
+    					previousTime = System.currentTimeMillis();
     				}
     			}
     		});

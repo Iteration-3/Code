@@ -16,7 +16,7 @@ public class EventManager {
 		return eventManager;
 	}
 	
-	public void update() {
+	public void update(float deltaTime) {
 		for (Event event : eventList) {
 			event.perform();
 			if (event.hasExpired()) {
