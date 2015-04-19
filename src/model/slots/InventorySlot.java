@@ -47,5 +47,8 @@ public class InventorySlot implements Slot{
 		if (has()){
 			this.slotview.register(this.item.getView());
 		}
+		else{
+			this.slotview.register(null);
+		}
 	}
 }

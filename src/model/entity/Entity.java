@@ -157,8 +157,8 @@ public abstract class Entity extends MobileObject implements Saveable {
         return this.itemManager.addItem(item);
     }
 
-    public void removeItem(int index) {
-        this.itemManager.removeItem(index);
+    public TakeableItem removeItem(int index) {
+        return this.itemManager.removeItem(index);
     }
 
     public TakeableItem[] getItems() {
