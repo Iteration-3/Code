@@ -11,7 +11,7 @@ import model.item.EquipableItem;
 import model.item.TakeableItem;
 import model.observers.MobileObject;
 import model.slots.ItemManager;
-import model.statistics.EntityStatistics;
+import model.statistics.BoundedEntityStatistics;
 import model.statistics.Statistics;
 import utilities.Angle;
 import utilities.structuredmap.Saveable;
@@ -25,7 +25,7 @@ public abstract class Entity extends MobileObject implements Saveable {
 	
     private ItemManager itemManager;
     private String name = null;
-    private EntityStatistics stats = new EntityStatistics();
+    private BoundedEntityStatistics stats = new BoundedEntityStatistics();
     private EntityView view = null;
 	private boolean isFlying = false;
 	private StateMachine state;
@@ -62,7 +62,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.name = map.getString("name");
         int[] locationArray = map.getIntArray("location");
         setLocation(new TileCoordinate(locationArray[0], locationArray[1]));
-        this.stats = new EntityStatistics(map.getStructuredMap("stats"));
+        this.stats = new BoundedEntityStatistics(map.getStructuredMap("stats"));
         setDirection(Angle.values()[map.getInteger("direction")]);
         this.itemManager = new ItemManager(map.getStructuredMap("itemManager"));
         this.isFlying = map.getBoolean("flying");
@@ -134,12 +134,12 @@ public abstract class Entity extends MobileObject implements Saveable {
     // Contained in the super class, subclasses provide a way to get it via
     // this.
 
-    public EntityStatistics getBaseStats() {
+    public BoundedEntityStatistics getBaseStats() {
         return this.stats;
     }
 
-    public EntityStatistics getDerivedStats() {
-        EntityStatistics derivedStats = this.stats.clone();
+    public BoundedEntityStatistics getDerivedStats() {
+        BoundedEntityStatistics derivedStats = this.stats.clone();
         itemManager.merge(derivedStats);
         return derivedStats;
     }
