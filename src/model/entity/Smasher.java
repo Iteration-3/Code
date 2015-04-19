@@ -8,8 +8,6 @@ import view.EntityView;
 
 public class Smasher extends Avatar {
 	
-	public Smasher(){}
-
 	public Smasher(String name, EntityView view, TileCoordinate loc) {
 		super(name, view,loc);
 		this.getAbilities().add(new SmasherWeaponAttack());

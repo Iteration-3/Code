@@ -12,10 +12,6 @@ import view.EntityView;
 
 public class Sneak extends Avatar {
 	
-	public Sneak(){
-		super();
-	}
-
 	public Sneak(String name, EntityView view, TileCoordinate loc) {
 		super(name, view,loc);
 		this.getAbilities().add(new Creep());

@@ -1,6 +1,7 @@
 package model;
 
 import model.entity.Avatar;
+import model.entity.dialog.DialogManager;
 import model.states.StateMachine;
 import model.states.gamestates.GameState;
 import view.View;
@@ -12,6 +13,7 @@ public class Model extends StateMachine<GameState> {
 
     public Model() {
         view = new View();
+        DialogManager.getSingleton().setModel(this);
     }
 
     @Override

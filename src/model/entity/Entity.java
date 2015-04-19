@@ -33,10 +33,6 @@ public abstract class Entity implements Saveable {
         this.location = location;
         this.setNecessities();
     }
-
-    public Entity() {
-
-    }
     
     public Entity(StructuredMap map) {
         name = map.getString("name");
