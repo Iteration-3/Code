@@ -1,14 +1,18 @@
 package model.item;
 
-import utilities.structuredmap.StructuredMap;
-import view.item.ItemView;
 import model.entity.Entity;
 import model.map.tile.ItemTile;
+import utilities.structuredmap.StructuredMap;
+import view.item.ItemView;
 
 public class ObstacleItem extends Item {
 
 	public ObstacleItem(ItemView itemView) {
 		super(itemView);
+	}
+	
+	public ObstacleItem(StructuredMap map) {
+		super(map);
 	}
 
 	@Override
@@ -43,5 +47,10 @@ public class ObstacleItem extends Item {
     public StructuredMap getStructuredMap() {
         return new StructuredMap();
     }
+
+	@Override
+	protected String getType() {
+		return "obstacleItem";
+	}
 
 }

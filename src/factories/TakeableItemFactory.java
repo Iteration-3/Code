@@ -4,7 +4,7 @@ import model.item.ConsumableItem;
 import model.item.TakeableItem;
 import model.statistics.EntityStatistics;
 import utilities.structuredmap.StructuredMap;
-import view.item.BasicItemView;
+import view.item.ItemView;
 
 public class TakeableItemFactory {
 	public static TakeableItem createItem(StructuredMap map) {
@@ -25,7 +25,8 @@ public class TakeableItemFactory {
 		StructuredMap statisitics = map.getStructuredMap("stats");
 
 		double duration = map.getDouble("duration");
-		return new ConsumableItem(new BasicItemView(), new EntityStatistics(
+		ItemView itemView = ItemViewFactory.createItemView(map.getStructuredMap("itemView"));
+		return new ConsumableItem(itemView, new EntityStatistics(
 				statisitics), duration);
 	}
 }

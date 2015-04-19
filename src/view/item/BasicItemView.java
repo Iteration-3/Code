@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import utilities.ImageProcessing;
+import utilities.structuredmap.StructuredMap;
 import view.tiles.components.Hexagon;
 import model.area.RealCoordinate;
 
@@ -27,6 +28,11 @@ public class BasicItemView extends ItemView {
 		backgroundHexagon = new Hexagon(Color.BLUE);
 		foregroundHexagon = new Hexagon(Color.ORANGE);
 	}
+	
+	public BasicItemView(StructuredMap map) {
+		super(map);
+		imagePath = map.getString("path");
+	}
 
 	@Override
 	public void render(Graphics graphics, RealCoordinate location, float diameter) {
@@ -38,5 +44,16 @@ public class BasicItemView extends ItemView {
 	public BufferedImage getImage(int x, int y){
 		itemImage = ImageProcessing.scaleImage(x,y,imagePath);
 		return itemImage;
+	}
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		map.put("path", imagePath);
+		return map;
+	}
+
+	@Override
+	public String getType() {
+		return "basicItem";
 	}
 }

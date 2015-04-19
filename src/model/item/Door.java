@@ -4,6 +4,7 @@ import model.entity.Entity;
 import model.map.tile.ItemTile;
 import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
+import factories.TakeableItemFactory;
 
 public class Door extends Item {
 
@@ -15,10 +16,10 @@ public class Door extends Item {
 		this.requirement = requirement;
 	}
 	
-	public Door(ItemView itemView, StructuredMap map) {
-	    super(itemView);
+	public Door(StructuredMap map) {
+	    super(map);
 	    //TODO this definitely doesn't work
-	    //requirement = new TakeableItem(map.getStructuredMap("requirement"));
+	    requirement = TakeableItemFactory.createItem(map.getStructuredMap("requirement"));
 	}
 	
 	@Override
@@ -61,5 +62,10 @@ public class Door extends Item {
         map.put("requirement", requirement.getStructuredMap());
         return map;
     }
+
+	@Override
+	protected String getType() {
+		return "door";
+	}
 
 }

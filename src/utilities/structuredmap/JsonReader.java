@@ -1,16 +1,19 @@
-package utilities;
+package utilities.structuredmap;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class StringFileReader {
-	private static final String resourcesPath = "src/resources/";
+public class JsonReader {
+	private static final String datapath = "gamedata/";
 	
-	// Dumps the entire contents of a file to a String
-	public static String readFileContentsAsString(String filename) {
-	    String fullyQualifiedFilename = resourcesPath + filename;
+	public static StructuredMap readJson(String filename) {
+		return JsonParser.parse(readFileContentsAsString(filename));
+	}
+	
+	private static String readFileContentsAsString(String filename) {
+	    String fullyQualifiedFilename = datapath + filename;
 	    
 	    BufferedReader reader = null;
 	    try {

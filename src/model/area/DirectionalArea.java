@@ -1,6 +1,7 @@
 package model.area;
 
 import utilities.Angle;
+import utilities.structuredmap.StructuredMap;
 
 public abstract class DirectionalArea extends Area {
 
@@ -13,4 +14,8 @@ public abstract class DirectionalArea extends Area {
         super();
         setDirection(Angle.UP);
     }
+
+	public DirectionalArea(StructuredMap map) {
+		super(map);
+	}
 }
