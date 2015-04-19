@@ -10,7 +10,8 @@ import utilities.structuredmap.StructuredMap;
 public abstract class Area implements Saveable {
     private int range;
     private TileCoordinate startLocation;
-    private Area compositeArea;
+    private Area compositeArea;    
+    private Angle direction;
 
     public static final double WIDTH = 1.0;
     public static final double HEIGHT = Math.sqrt(3) / 2.0;
@@ -81,6 +82,14 @@ public abstract class Area implements Saveable {
         }
         return testLocations;
 
+    }
+
+    public Angle getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Angle direction) {
+        this.direction = direction;
     }
 
     protected boolean compositeInRange(TileCoordinate location) {
