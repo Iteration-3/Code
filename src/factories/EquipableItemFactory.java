@@ -12,6 +12,9 @@ import view.item.BasicItemView;
 
 public class EquipableItemFactory {
 	public static EquipableItem createItem(StructuredMap map) {
+		if(map == null) {
+			return null;
+		}
 		switch (map.getString("type")) {
 		case "helmet":
 			return new Helmet(new BasicItemView(), map);
@@ -26,8 +29,7 @@ public class EquipableItemFactory {
 		case "shield":
 			return new Shield(new BasicItemView(), map);
 		default:
-			throw new IllegalArgumentException("Fuck this");
-
+			return null;
 		}
 	}
 }

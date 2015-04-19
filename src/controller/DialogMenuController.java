@@ -49,7 +49,7 @@ public class DialogMenuController extends Controller {
 		this.toggleActions = new ArrayList<ToggleAction>(dialogEntries.size());
 		Iterator<DialogEntry> entryIterator = dialogEntries.iterator();
 		while (entryIterator.hasNext()) {
-			DialogEntry dialogEntry = entryIterator.next();
+			final DialogEntry dialogEntry = entryIterator.next();
 			this.toggleActions.add(new ToggleAction() {
 				@Override
 				public void action() {

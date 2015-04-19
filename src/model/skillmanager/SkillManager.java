@@ -4,7 +4,8 @@ import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 
 public abstract class SkillManager implements Saveable {
-	
+
+	private int skillPointsToSpend = 0;
 	private int attackSkill = 1;
 	private int bindWoundSkill = 1;
 	private int observeSkill = 1;
@@ -17,6 +18,10 @@ public abstract class SkillManager implements Saveable {
 		this.barterSkill = map.getInteger("barterSkill");
 	}
 	
+	public SkillManager() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getBarterSkill(){
 		return barterSkill;
 	}
@@ -34,18 +39,54 @@ public abstract class SkillManager implements Saveable {
 	}
 	
 	public void incrementAttack(){
+		if (!hasSkillPointsToSpend()) return;
 		++attackSkill;
+		spendSkillPoint();
 	}
+
 	public void incrementBindWound(){
+		if (!hasSkillPointsToSpend()) return;
 		++bindWoundSkill;
+		spendSkillPoint();
 	}
+
 	public void incrementObserve(){
+		if (!hasSkillPointsToSpend()) return;
 		++observeSkill;
+		spendSkillPoint();
 	}
+
 	public void incrementBarter(){
+		if (!hasSkillPointsToSpend()) return;
 		++barterSkill;
+		spendSkillPoint();
 	}
 	
+	public void incrementSkillPointToSpend() {
+		skillPointsToSpend++;
+	}
+	
+	private void spendSkillPoint() {
+		skillPointsToSpend--;
+	}
+	
+	public int getSkillPointsToSpend() {
+		return skillPointsToSpend;
+	}
+
+	private boolean hasSkillPointsToSpend() {
+		return (skillPointsToSpend > 0);
+	}
+	
+	@Override
+	public String toString() {
+		String contents = "Skill Points Remaining: " + skillPointsToSpend + "\n"
+				+ "Attack: " + attackSkill + "\n" 
+				+ "Bind Wound: " + bindWoundSkill + "\n"
+				+ "Observe: " + observeSkill + "\n"
+				+ "Barter: " + barterSkill;
+		return contents;
+	}
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = new StructuredMap();
 		map.put("attackSkill", attackSkill);

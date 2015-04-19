@@ -3,6 +3,10 @@ package model.skillmanager;
 import utilities.structuredmap.StructuredMap;
 
 public class SneakSkillManager extends SkillManager {
+	
+	public SneakSkillManager() {
+		
+	}
 
     public SneakSkillManager(StructuredMap map) {
 		super(map);

@@ -9,6 +9,11 @@ public class ExperienceModifierEvent extends Event {
 		super(target, duration);
 		this.experience = experience;
 	}
+	
+	public ExperienceModifierEvent(double duration, int experience) {
+		super(duration);
+		this.experience= experience;
+	}
 
 	@Override
 	public void perform() {

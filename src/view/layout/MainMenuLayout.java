@@ -14,7 +14,6 @@ public class MainMenuLayout extends Layout {
     private MenuButton exitGameButton;
 
     public MainMenuLayout() {
-    	setPreferredSize(new Dimension(1024, 768));
         setLayout(new GridLayout(3, 1));
         
         initButtons();
@@ -44,5 +43,10 @@ public class MainMenuLayout extends Layout {
     	loadGameButton.addActionListener(controller.getLoadGameAction());
     	
     	exitGameButton.addActionListener(controller.getExitAction());
-    }   
+    }  
+    
+    @Override
+    public void revalidate() {
+    	System.out.println("I'm the main menu!");
+    }
 }

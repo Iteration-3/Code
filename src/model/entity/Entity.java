@@ -103,6 +103,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         TileCoordinate nextLocation = nextLocation(angle);
         this.setLocation(nextLocation);
         this.setDirection(angle);
+        this.notifySubscribers();
     }
     
     public TileCoordinate nextLocation() {
@@ -157,8 +158,8 @@ public abstract class Entity extends MobileObject implements Saveable {
         return this.itemManager.addItem(item);
     }
 
-    public void removeItem(int index) {
-        this.itemManager.removeItem(index);
+    public TakeableItem removeItem(int index) {
+        return this.itemManager.removeItem(index);
     }
 
     public TakeableItem[] getItems() {

@@ -49,10 +49,10 @@ public class GameplayLayout extends Layout {
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        gameTerrainView.render(graphics, this.getWidth(), this.getHeight());
-        gameEntityView.render(graphics, this.getWidth(), this.getHeight());
-        gameItemView.render(graphics, this.getWidth(), this.getHeight());
-        gameLightView.render(graphics, this.getWidth(), this.getHeight());
+        gameTerrainView.render(graphics, getWidth(), getHeight());
+        gameEntityView.render(graphics, getWidth(), getHeight());
+//        gameItemView.render(graphics, getWidth(), getHeight());
+//        gameLightView.render(graphics, getWidth(), getHeight());
     }
 
 }

@@ -17,7 +17,7 @@ public class EquipmentMouseListener implements MouseListener {
 
 	public void mouseClicked(MouseEvent e) {
 		if (MouseEvent.BUTTON1 == e.getButton()){
-			this.unequipper.unequip(this.entity);
+			System.out.println(entity);
 		}
 		else if(MouseEvent.BUTTON2 == e.getButton()){
 			System.out.println("print thing the ");

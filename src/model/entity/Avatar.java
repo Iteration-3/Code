@@ -7,10 +7,10 @@ import java.util.Iterator;
 import model.KeyPreferences;
 import model.ability.Ability;
 import model.area.ConicalArea;
+import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.light.LightManager;
 import model.light.MovingLightSource;
-import model.light.Visibility;
 import model.skillmanager.SkillManager;
 import utilities.Angle;
 import utilities.structuredmap.StructuredMap;
@@ -51,8 +51,8 @@ public abstract class Avatar extends Entity {
 	public Avatar(String name, EntityView view, TileCoordinate loc){
 		super(name, view, loc);
 		//Make light manager track all avatars movement
-		MovingLightSource avatarLight = new MovingLightSource(new ConicalArea(5, loc, Angle.UP), new Visibility(255), this);
-		LightManager.getLightManager().addLightSource(avatarLight);
+		MovingLightSource avatarLight = new MovingLightSource(new RadialArea(3, loc), 255, this);
+		LightManager.getSingleton().addLightSource(avatarLight);
 		setLocation(loc);
 		//LightManager.getLightManager().getLightMap().trackMovement(this);
 		//setLocation(loc);//So lightMap registers current position
@@ -70,11 +70,21 @@ public abstract class Avatar extends Entity {
 	}
 	
 	@Override
+	public void addExperience(int experience) {
+		int level = getBaseStats().getLevel();
+        getBaseStats().addExperience(experience);
+        int updatedLevel = getBaseStats().getLevel();
+        if (updatedLevel > level) {
+        	skillManager.incrementSkillPointToSpend();
+        }
+	}
+	
+	@Override
 	public Collection<Listener> getListeners(KeyPreferences preferences) {
 		System.out.println("Test");
 		Collection<Listener> listeners = new ArrayList<Listener>();
 		int i = 1;
-		for(Ability a : this.getAbilities()){
+		for(final Ability a : this.getAbilities()){
 			listeners.add(new PollingListener(preferences.getAbility(i),new GameAction() {
 				@Override
 				public void perform() {
@@ -103,7 +113,11 @@ public abstract class Avatar extends Entity {
 		return getSkillManager().getObserveSkill();
 	}
 	
-	protected SkillManager getSkillManager() {
+	// I made this public instead of protected.  
+	// The alternative is making things like: incrementAttackSkill() in the 
+	// Avatar's public interface
+	// This may not be good Encapsulation practices though
+	public SkillManager getSkillManager() {
 		return this.skillManager;
 	}
 	

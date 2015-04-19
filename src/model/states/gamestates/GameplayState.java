@@ -18,6 +18,7 @@ import model.entity.EntityManager;
 import model.entity.EntityMovementAssocation;
 import model.entity.NPC;
 import model.entity.Summoner;
+import model.event.ExperienceModifierEvent;
 import model.event.HealthModifierEvent;
 import model.event.ManaModifierEvent;
 import model.event.RiverPushEvent;
@@ -102,7 +103,7 @@ public class GameplayState extends GameState {
         controller.terminateUpdateThread();
         EntityManager.getSingleton().clear();
         TriggerManager.getSingleton().clear();
-        LightManager.getLightManager().clear();
+        LightManager.getSingleton().clear();
         super.onExit();
     }
 
@@ -110,6 +111,8 @@ public class GameplayState extends GameState {
         TileCoordinate loc = new TileCoordinate(3, 3);
         EntityView eView = new EntityView(EntitySpriteFactory.getSummonerSpriteHolder());
         avatar = new Summoner("Summoner", eView, loc);
+        //testing this for equipped Items
+        avatar.equip(new Helmet(new BasicItemView(),new Statistics()));
 
         KeyPreferences preferences = new KeyPreferences();
         getContext().setPreferences(preferences);
@@ -130,8 +133,6 @@ public class GameplayState extends GameState {
         controller.removeListeners();
         getLayout().clearBindings();
 
-        //testing this for equipped Items
-        avatar.equip(new Helmet(new BasicItemView(),new Statistics()));
 
         Listener escapeListener = new SingleUseListener(preferences.getPauseKey(), new GameActionStatePush(
                 getContext(), new PauseMenuState()));
@@ -204,7 +205,7 @@ public class GameplayState extends GameState {
 
         TileCoordinate locTwo = new TileCoordinate(2, 7);
         Area areaTwo = new RadialArea(1, locTwo);
-        Trigger triggerTwo = new PermanentTrigger(areaTwo, new ManaModifierEvent(10, 200));
+        Trigger triggerTwo = new SingleUseTrigger(areaTwo, new ExperienceModifierEvent(0, 750));
 
         TileCoordinate locThree = new TileCoordinate(2, 8);
         Area areaThree = new RadialArea(0, locThree);

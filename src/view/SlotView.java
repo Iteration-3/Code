@@ -16,6 +16,7 @@ public class SlotView extends JButton {
 
 	public SlotView() {
 		super();
+		setToolTipText("hello");
 		setBorder(null);
 	}
 
@@ -33,16 +34,14 @@ public class SlotView extends JButton {
 
 	@Override
 	public void paintComponent(Graphics g) {
-		this.setImage();
 		super.paintComponent(g);
+		this.setImage(g);
 	}
 
-	private void setImage() {
+	private void setImage(Graphics g) {
+		g.drawImage(background, 0, 0, null);
 		if (this.hasItem()) {
-			this.setIcon( new ImageIcon( ImageProcessing.overlayImages(background, this.itemView.getImage(20, 20),25 , 25)));
-		}
-		else{
-			this.setIcon(new ImageIcon(background));
+			g.drawImage(this.itemView.getImage(40, 40), 40, 40, null);
 		}
 	}
 

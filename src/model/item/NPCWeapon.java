@@ -21,4 +21,9 @@ public class NPCWeapon extends Weapon {
 		return "This is the NPC Weapon";
 	}
 
+	@Override
+	public String getType() {
+		return "npc";
+	}
+
 }
