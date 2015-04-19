@@ -145,7 +145,7 @@ public class StructuredMap {
 			return String.format("\"%s\"", str);
 		}
 	}
-	
+
 	// The toString() method on arrays in java essentially gives us garbage. This wraps an array and overrides
 	// toString() to use a proper array-to-string conversion facility
 	private static class IntArrayContainer {
