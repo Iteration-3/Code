@@ -5,7 +5,7 @@ import model.entity.behavior.npc.Behaviorable;
 
 public interface StateMachineable {
 	
-	public void pop();
+	public Behaviorable pop();
 	
 	public void push(Behaviorable behavior);
 	

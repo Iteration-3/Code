@@ -71,5 +71,4 @@ public class TileCoordinate {
 			return false;
 		return true;
 	}
-    
 }
