@@ -1,28 +1,35 @@
 package model.ability.summoner.enchantment;
 
 import model.ability.ProjectileAbility;
+import model.entity.Avatar;
 import model.projectile.linear.SilenceProjectile;
-import utilities.structuredmap.StructuredMap;
+import model.skillmanager.SummonerSkillManager;
 
 
 public class Silence extends ProjectileAbility {
 	
-	public Silence() {
-		super(new SilenceProjectile(), 10);
+	private SummonerSkillManager manager;
+	private SilenceProjectile projectile = new SilenceProjectile();
+	
+	public Silence(SummonerSkillManager manager) {
+		super(10);
+		this.manager = manager;
 	}
 	
-	public Silence(int manaCost) {
-		this();
-		this.setManaCost(manaCost);
+	protected SummonerSkillManager getSkillManager(){
+		return manager;
 	}
 	
-	public Silence(StructuredMap map) {
-		super(map);
+	@Override
+	public SilenceProjectile getProjectile(){
+		return projectile;
 	}
 
 	@Override
-	protected String getType() {
-		return "silence";
+	public void perform(Avatar avatar){
+		this.setManaCost(this.getSkillManager().getEnchantSkill());
+		this.getProjectile().setLevel(this.getSkillManager().getEnchantSkill());
+		super.perform(avatar);
 	}
 
 }

@@ -2,6 +2,7 @@ package controller;
 
 import keyRemapping.KeyMapping;
 import keyRemapping.KeyMappingAbility;
+import keyRemapping.KeyMappingDismount;
 import keyRemapping.KeyMappingDown;
 import keyRemapping.KeyMappingDownLeft;
 import keyRemapping.KeyMappingDownRight;
@@ -31,6 +32,7 @@ public class KeyBindingsController extends Controller {
     private ToggleAction rebindInventory;
     private ToggleAction rebindSkills;
     private ToggleAction rebindPause;
+    private ToggleAction rebindDismount;
   
     private static final int NUM_ABILITIES = 10;
     private ToggleAction[] rebindAbilities;
@@ -90,7 +92,11 @@ public class KeyBindingsController extends Controller {
                 attachNewPauseMapping();
             }
         };
-        
+        rebindDismount = new ToggleAction() {
+			public void action() {
+				attachNewDismountMapping();
+			}
+		};
         rebindAbilities = new ToggleAction[NUM_ABILITIES];
         for(int i = 0; i < NUM_ABILITIES; ++i) {
         	final int index = i;
@@ -112,7 +118,7 @@ public class KeyBindingsController extends Controller {
         return model;
     }
 
-    public void updateLayout(){
+    public void updateLayout() {
         layout.updateKeyText(this.getKeyPreferences());
 
     }
@@ -183,6 +189,11 @@ public class KeyBindingsController extends Controller {
         attachKeyMapping(mapping);
 
     }
+    
+    public void attachNewDismountMapping() {
+    	KeyMapping mapping = new KeyMappingDismount(keyPreferences, this);
+    	attachKeyMapping(mapping);
+    }
 
     public void attachNewAbilityMapping(int location) {
         KeyMapping mapping = new KeyMappingAbility(keyPreferences, this, location);
@@ -238,6 +249,10 @@ public class KeyBindingsController extends Controller {
 
     public ToggleAction getRebindPause() {
         return rebindPause;
+    }
+    
+    public ToggleAction getRebindDismount() {
+    	return rebindDismount;
     }
 
     public ToggleAction getRebindAbility(int i) {

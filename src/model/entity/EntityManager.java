@@ -133,6 +133,10 @@ public class EntityManager implements Iterable<Entity> {
 	public void addPartyNpc(NPC npc) {
 		partyNpcs.add(npc);
 	}
+	
+	public void addNonPartyNpc(NPC npc) {
+		nonPartyNpcs.add(npc);
+	}
 
 	public Collection<NPC> getPartyNpcs() {
 		return Collections.unmodifiableCollection(partyNpcs);

@@ -70,7 +70,7 @@ public abstract class SkillManager implements Saveable {
 		skillPointsToSpend++;
 	}
 	
-	private void spendSkillPoint() {
+	protected void spendSkillPoint() {
 		skillPointsToSpend--;
 	}
 	
@@ -78,7 +78,7 @@ public abstract class SkillManager implements Saveable {
 		return skillPointsToSpend;
 	}
 
-	private boolean hasSkillPointsToSpend() {
+	protected boolean hasSkillPointsToSpend() {
 		return (skillPointsToSpend > 0);
 	}
 	

@@ -1,27 +1,33 @@
 package model.ability.summoner.bane;
 
 import model.ability.ProjectileAbility;
+import model.entity.Avatar;
 import model.projectile.conical.LightConeProjectile;
-import utilities.structuredmap.StructuredMap;
+import model.skillmanager.SummonerSkillManager;
 
 public final class LightBeam extends ProjectileAbility {
 	
-	public LightBeam() {
-		super(new LightConeProjectile(), 20);
+	private SummonerSkillManager manager;
+	private LightConeProjectile projectile = new LightConeProjectile();
+	
+	public LightBeam(SummonerSkillManager manager) {
+		super(20);
+		this.manager = manager;
 	}
 	
-	public LightBeam(StructuredMap map) {
-		super(map);
+	protected SummonerSkillManager getSkillManager(){
+		return manager;
 	}
 	
-	public LightBeam(int manaCost) {
-		this();
-		this.setManaCost(manaCost);
+	@Override
+	public LightConeProjectile getProjectile(){
+		return projectile;
 	}
 
 	@Override
-	protected String getType() {
-		return "lightBeam";
+	public void perform(Avatar avatar){
+		this.setManaCost(this.getSkillManager().getBaneSkill());
+		this.getProjectile().setLevel(this.getSkillManager().getBaneSkill());
+		super.perform(avatar);
 	}
-	
 }

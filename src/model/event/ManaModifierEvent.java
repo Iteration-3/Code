@@ -24,7 +24,7 @@ public class ManaModifierEvent extends Event {
 	@Override
 	public void perform() {
 		if (hasTarget()) {
-			getTarget().addMana(mana);
+			getTarget().addCurrentMana(mana);
 		}
 	}
 

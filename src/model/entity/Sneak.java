@@ -6,6 +6,7 @@ import model.ability.sneak.PickPocket;
 import model.ability.sneak.Ranged;
 import model.ability.sneak.RemoveTrap;
 import model.area.TileCoordinate;
+import model.skillmanager.SkillManager;
 import model.skillmanager.SneakSkillManager;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
@@ -13,18 +14,23 @@ import view.EntityView;
 
 public class Sneak extends Avatar {
 	
+	private SneakSkillManager skillManager;
+
+
 	public Sneak(String name, EntityView view, TileCoordinate loc) {
 		super(name, view,loc);
-		this.getAbilities().add(new Creep());
-		this.getAbilities().add(new DetectTrap());
-		this.getAbilities().add(new PickPocket());
-		this.getAbilities().add(new Ranged());
-		this.getAbilities().add(new RemoveTrap());
-		setSkillManager(new SneakSkillManager());
+		this.skillManager = (new SneakSkillManager());
 	}
 	
-	public Sneak(StructuredMap map) {
-		super(map);
+	@Override
+	protected void generateSkills(){
+		
+		this.getAbilities().add(new Creep(this.getSkillManager()));
+		this.getAbilities().add(new DetectTrap(this.getSkillManager()));
+		this.getAbilities().add(new PickPocket(this.getSkillManager()));
+		this.getAbilities().add(new Ranged(this.getSkillManager()));
+		this.getAbilities().add(new RemoveTrap(this.getSkillManager()));
+		super.generateSkills();
 	}
 
 	protected ItemManager createItemManager() {
@@ -58,6 +64,12 @@ public class Sneak extends Avatar {
 	@Override
 	public String getType() {
 		return "sneak";
+	}
+
+
+	@Override
+	public SneakSkillManager getSkillManager() {
+		return skillManager;
 	}
 
 }

@@ -1,29 +1,23 @@
 package model.ability.sneak;
 
 import model.ability.ProjectileAbility;
+import model.projectile.Projectile;
 import model.projectile.linear.ThrowingKnife;
-import utilities.structuredmap.StructuredMap;
+import model.skillmanager.SneakSkillManager;
 
 public class Ranged extends ProjectileAbility {
 	
-	public Ranged() {
-		super(new ThrowingKnife(), 10);
-	}
+	private SneakSkillManager manager;
 	
-	public Ranged(int manaCost) {
-		this();
-		this.setManaCost(manaCost);
-	}
-	
-	public Ranged(StructuredMap map) {
-		super(map);
-	}
-
-	@Override
-	protected String getType() {
-		return "ranged";
+	public Ranged(SneakSkillManager sneakSkillManager) {
+		super(10);
+		this.manager = sneakSkillManager;
 	}
 	
 	
-
+	public Projectile getProjectile() {
+		ThrowingKnife knife =  new ThrowingKnife();
+		knife.setLevel(1);
+		return knife;
+	}
 }

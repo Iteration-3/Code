@@ -14,14 +14,14 @@ import controller.InventoryMenuController;
 public class EquipmentView extends JComponent implements Saveable {
 	private float EQUIPMENT_SCALE = 80;	//this is a percentage of the height and scale
 	
-	private static String HELMET_PATH = "src/resources/images/helmet_slot.jpg";
-	private static String CHEST_PIECE_PATH = "src/resources/images/chest_piece_slot.jpg";
-	private static String LEGGINGS_PATH = "src/resources/images/leggings_slot.jpg";
-	private static String BOOTS_PATH = "src/resources/images/boots_slot.jpg";
-	private static String WEAPON_PATH = "src/resources/images/weapon_slot.jpg";
-	private static String SHIELD_PATH = "src/resources/images/shield_slot.jpg";
-	private static String PROJECTILE_PATH = "src/resources/images/projectile_slot.jpg";
-	private static String GLOVES_PATH = "src/resources/images/gloves_slot.jpg";
+	private static String HELMET_PATH = "/images/helmet_slot.jpg";
+	private static String CHEST_PIECE_PATH = "/images/chest_piece_slot.jpg";
+	private static String LEGGINGS_PATH = "/images/leggings_slot.jpg";
+	private static String BOOTS_PATH = "/images/boots_slot.jpg";
+	private static String WEAPON_PATH = "/images/weapon_slot.jpg";
+	private static String SHIELD_PATH = "/images/shield_slot.jpg";
+	private static String PROJECTILE_PATH = "/images/projectile_slot.jpg";
+	private static String GLOVES_PATH = "/images/gloves_slot.jpg";
 	
 	public EquipmentView(StructuredMap map) {
 		HELMET_PATH = map.getString("helmet");
@@ -86,6 +86,9 @@ public class EquipmentView extends JComponent implements Saveable {
 	
 		return map;
 	}
+
+	
+
 	
 	private int helmetX;
 	private int helmetY;

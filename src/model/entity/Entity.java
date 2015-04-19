@@ -46,7 +46,6 @@ public abstract class Entity extends MobileObject implements Saveable {
 
     public Entity(String name, EntityView view, TileCoordinate location,Behaviorable behavior) {
     	super(location);
-    	System.out.println("PURSUR IN TACK");
         this.name = name;
         this.view = view;
         setLocation(location);
@@ -55,6 +54,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.state = new StateMachine(this);
         this.state.push(behavior);
     }
+    
     
     
     public Entity(StructuredMap map) {
@@ -88,6 +88,14 @@ public abstract class Entity extends MobileObject implements Saveable {
     
     public void observe(){
     	this.state.observe();
+    }
+    
+    public void push(Behaviorable state){
+    	this.state.push(state);
+    }
+    
+    public Behaviorable pop(){
+    	return this.state.pop();
     }
 
     protected abstract ItemManager createItemManager();
@@ -137,6 +145,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.setLocationNoNotify(nextLocation);
         this.setDirectionNoNotify(angle);
         this.notifySubscribers();
+        System.out.println("MOVE TO: "+nextLocation);
     }
     
     public TileCoordinate nextLocation() {
@@ -176,6 +185,11 @@ public abstract class Entity extends MobileObject implements Saveable {
 
     protected EntityView getEntityView() {
         return view;
+    }
+    
+    public void toggleView() {
+    	getEntityView().toggle();
+    	getEntityView().setLocation(getLocation());
     }
 
     public String getName() {
@@ -285,8 +299,8 @@ public abstract class Entity extends MobileObject implements Saveable {
         stats.addLives(lives);
     }
 
-    public void addMana(int mana) {
-        stats.addMana(mana);
+    public void addCurrentMana(int mana) {
+        stats.addCurrentMana(mana);
     }
 
     public boolean containsItem(TakeableItem item) {

@@ -48,6 +48,9 @@ public class KeyBindingsLayout extends Layout {
 
     private MenuButton rebindPause;
     private TextLabel pauseLabel;
+    
+    private MenuButton rebindDismount;
+    private TextLabel dismountLabel;
 
     private MenuButton rebindInventory;
     private TextLabel inventoryLabel;
@@ -83,6 +86,8 @@ public class KeyBindingsLayout extends Layout {
         downRightLabel = new TextLabel();
         downRightLabel.setHorizontalAlignment(TextLabel.CENTER);
         pauseLabel = new TextLabel();
+        dismountLabel = new TextLabel();
+        dismountLabel.setHorizontalAlignment(TextLabel.CENTER);
         pauseLabel.setHorizontalAlignment(TextLabel.CENTER);
         skillLabel = new TextLabel();
         skillLabel.setHorizontalAlignment(TextLabel.CENTER);
@@ -127,6 +132,8 @@ public class KeyBindingsLayout extends Layout {
                 
                 add(rebindPause);
                 add(pauseLabel);
+                add(rebindDismount);
+                add(dismountLabel);
                 add(rebindSkills);
                 add(skillLabel);
                 add(rebindInventory);
@@ -183,6 +190,9 @@ public class KeyBindingsLayout extends Layout {
 
         rebindPause = new MenuButton("PAUSE MENU");
         rebindPause.setColor(Color.GRAY);
+        
+        rebindDismount = new MenuButton("REBIND DISMOUNT");
+        rebindDismount.setColor(Color.GRAY);
 
         rebindSkills = new MenuButton("SKILLS MENU");
         rebindSkills.setColor(Color.GRAY);
@@ -208,6 +218,7 @@ public class KeyBindingsLayout extends Layout {
         rebindInventory.addActionListener(controller.getRebindInventory());
         rebindSkills.addActionListener(controller.getRebindSkills());
         rebindPause.addActionListener(controller.getRebindPause());
+        rebindDismount.addActionListener(controller.getRebindDismount());
         for(int i = 0; i < NUM_ABILITIES; ++i) {
         	rebindAbilities[i].addActionListener(controller.getRebindAbility(i));
         }
@@ -222,6 +233,7 @@ public class KeyBindingsLayout extends Layout {
         downRightLabel.setText(formatKey(preferences.getDownRightKey()));
         skillLabel.setText(formatKey(preferences.getSkillsKey()));
         pauseLabel.setText(formatKey(preferences.getPauseKey()));
+        dismountLabel.setText(formatKey(preferences.getDismountKey()));
         inventoryLabel.setText(formatKey(preferences.getInventoryKey()));
 
         List<KeyStroke> abilities = preferences.getAbilities();

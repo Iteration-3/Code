@@ -1,33 +1,44 @@
 package utilities;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class ImageProcessing {
 	public static BufferedImage getImage(String filename){
-		try {
-			return ImageIO.read(new File(filename));
-		} catch (IOException e) {
+		//try {
+			// return ImageIO.read(new File(filename));
+			Image image = new ImageIcon(ImageProcessing.class.getResource(filename)).getImage();
+			return toBufferedImage(image);
+		/*} catch (IOException e) {
+			System.out.println(filename);
 			System.out.println("The image does not exist");
 			e.printStackTrace();
 			return null;
-		}
+		}*/
+	}
+	
+	private static BufferedImage toBufferedImage(Image image) {
+		BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = bufferedImage.createGraphics(); 
+		g2d.drawImage(image, 0, 0, null);
+		g2d.dispose();
+		return bufferedImage;
 	}
 	
 	public static BufferedImage scaleImage(int width, int height, String filename) {
 	    BufferedImage returnImage = null;
 	    try {
-	        ImageIcon image = new ImageIcon(filename);//path to image
+	        // ImageIcon image = new ImageIcon(filename);//path to image
+	    	Image image = getImage(filename);
 	        returnImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 	        Graphics2D g2d = (Graphics2D) returnImage.createGraphics();
 	        g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY));
-	        g2d.drawImage(image.getImage(), 0, 0, width, height, null);
+	        g2d.drawImage(image, 0, 0, width, height, null);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        return null;

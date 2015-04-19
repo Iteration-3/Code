@@ -33,7 +33,7 @@ public class HealthModifierEvent extends Event {
 	}
 
 	@Override
-	public Event clone() {
+	public HealthModifierEvent clone() {
 		HealthModifierEvent clone = new HealthModifierEvent(health, getTarget(), getDuration());
 		return clone;
 	}

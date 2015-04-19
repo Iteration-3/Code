@@ -1,27 +1,32 @@
 package model.ability.summoner.boon;
 
 import model.ability.SelfAbility;
+import model.entity.Avatar;
 import model.event.MovementModifierEvent;
-import utilities.structuredmap.StructuredMap;
+import model.skillmanager.SummonerSkillManager;
 
 public class MovementBoon extends SelfAbility {
 	
-	public MovementBoon() {
-		super(new MovementModifierEvent(7, 50), 15);
+	private MovementModifierEvent event= new MovementModifierEvent(defaultDuration, defaultHealth);
+	private SummonerSkillManager manager;
+	final static private int defaultDuration = 7;
+	final static private int defaultHealth = 50;
+	
+	public MovementBoon(SummonerSkillManager manager) {
+		super(null, 15);
+		this.setEvent(event);
+		this.manager = manager;
 	}
 	
-	public MovementBoon(int manaCost) {
-		this();
-		this.setManaCost(manaCost);
+	protected SummonerSkillManager getSkillManager(){
+		return manager;
 	}
 	
-	public MovementBoon(StructuredMap map) {
-		super(map);
-	}
-
 	@Override
-	protected String getType() {
-		return "movementBoon";
+	public void perform(Avatar avatar){
+		event.setDuration(defaultDuration *this.getSkillManager().getBoonSkill());
+		this.setManaCost(this.getSkillManager().getBoonSkill());
+		super.perform(avatar);
 	}
 
 }

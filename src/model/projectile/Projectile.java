@@ -1,92 +1,73 @@
 package model.projectile;
 
+import java.awt.Color;
+
 import factories.TriggerFactory;
+import model.area.ConicalArea;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.event.StatisticModifierEvent;
+import model.light.LightManager;
+import model.light.MovingLightSource;
+import model.observers.MobileObject;
 import model.statistics.EntityStatistics;
 import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
-import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import view.projectiles.BasicProjectileView;
+import view.projectiles.ProjectileView;
 
-public class Projectile implements Cloneable, Saveable {
+public class Projectile extends MobileObject implements Cloneable {
 	private Angle direction;
-	private TileCoordinate location;
 	private double speed;
 	private long timeout;
 	private Trigger trigger;
+	public ProjectileView projView;
 
 	public Projectile() {
+		super(new TileCoordinate());
 		this.direction = Angle.UP;
-		this.location = new TileCoordinate();
 		this.speed = 1;
-		this.trigger = new SingleUseTrigger(new RadialArea(1, this.location),
+		this.trigger = new SingleUseTrigger(new RadialArea(2, this.getLocation()),
 				new StatisticModifierEvent(new EntityStatistics(), 5));
-	}
-	
-	public Projectile(StructuredMap map) {
-		this.direction = Angle.values()[map.getInteger("direction")];
-		int[] locations = map.getIntArray("location");
-		this.location = new TileCoordinate(locations[0], locations[1]);
-		this.speed = map.getDouble("speed");
-		this.timeout = map.getDouble("timeout").longValue();
-		this.trigger = TriggerFactory.createTrigger(map.getStructuredMap("trigger"));
-	}
-	
-	public StructuredMap getStructuredMap() {
-		StructuredMap map = new StructuredMap();
-		
-		int[] locationArray = new int[2];
-        locationArray[0] = location.getX();
-        locationArray[1] = location.getY();
- 
-		map.put("direction", direction.ordinal());
-		map.put("location", locationArray);
-		map.put("speed", speed);
-		map.put("timeout",(double) timeout);
-		map.put("trigger", trigger.getStructuredMap());
-		map.put("type", getType());
-		
-		return map;
-	}
-
-	protected String getType() {
-		return "projectile";
+		projView = new BasicProjectileView(trigger.getArea(), new Color(255, 0, 0, 200));
+		MovingLightSource mlb = new MovingLightSource(this.trigger.getArea(), 255, this);
+		LightManager.getSingleton().addLightSource(mlb);
 	}
 
 	public Projectile(Angle direction, TileCoordinate location, double speed,
 			Trigger trigger) {
+		super(location);
 		this.direction = direction;
-		this.location = location;
 		this.speed = speed;
 		this.trigger = trigger;
+		projView = new BasicProjectileView(trigger.getArea(), Color.RED);
+		MovingLightSource mlb = new MovingLightSource(this.trigger.getArea(), 255, this);
+		LightManager.getSingleton().addLightSource(mlb);
+	}
+	
+	public void move(TileCoordinate location) {
+		this.setLocationNoNotify(location);
+		trigger.moveLocation(location);
+		projView.setArea(trigger.getArea());
+		notifySubscribers();
 	}
 
 	public void advance() {
 		if (!isTimedOut()) {
-			this.location = location.nextLocation(direction);
-			trigger.moveLocation(location);
+			System.out.println("DIRECTION: " + direction);
+			System.out.println("AREA: " + trigger.getArea().getStartLocation());
+			move(getLocation().nextLocation(direction));
 			timeOutProjectile();
 		}
 	}
 	
 	public void placeOnMap() {
 		this.getTrigger().moveLocation(this.getLocation());
-		TriggerManager.getSingleton().addNeutralTrigger(trigger);
-		ProjectileManager.addProjectile(this);
-	}
-	
-	public Projectile clone() {
-		Projectile clone = new Projectile();
-		clone.setDirection(this.getDirection());
-		clone.setLocation(this.getLocation());
-		clone.setSpeed(this.getSpeed());
-		clone.setTimeout(this.getTimeout());
-		clone.setTrigger(this.getTrigger());
-		return clone;
+		TriggerManager.getSingleton().addNonPartyTrigger(trigger);
+		ProjectileManager.getSingleton().enqueueProjectile(this);
 	}
 	
 	public boolean hasExpired() {
@@ -94,11 +75,11 @@ public class Projectile implements Cloneable, Saveable {
 	}
 
 	private void timeOutProjectile() {
-		this.timeout = (long) (System.currentTimeMillis() + 1 / speed);
+		this.timeout = (long) (System.currentTimeMillis());
 	}
 
 	private boolean isTimedOut() {
-		return this.timeout > System.currentTimeMillis();
+		return (System.currentTimeMillis()-timeout) < 1000.0/speed;
 	}
 
 	public Angle getDirection() {
@@ -107,14 +88,6 @@ public class Projectile implements Cloneable, Saveable {
 
 	public void setDirection(Angle direction) {
 		this.direction = direction;
-	}
-
-	public TileCoordinate getLocation() {
-		return location;
-	}
-
-	public void setLocation(TileCoordinate location) {
-		this.location = location;
 	}
 
 	public double getSpeed() {
@@ -140,6 +113,4 @@ public class Projectile implements Cloneable, Saveable {
 	public void setTrigger(Trigger trigger) {
 		this.trigger = trigger;
 	}
-	
-	
 }

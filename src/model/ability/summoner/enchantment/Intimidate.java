@@ -1,26 +1,35 @@
 package model.ability.summoner.enchantment;
 
 import model.ability.ProjectileAbility;
+import model.entity.Avatar;
 import model.projectile.conical.IntimidateConeProjectile;
-import utilities.structuredmap.StructuredMap;
+import model.skillmanager.SummonerSkillManager;
 
 public class Intimidate extends ProjectileAbility {
 	
-	public Intimidate() {
-		super(new IntimidateConeProjectile(), 15);
+	private SummonerSkillManager manager;
+	private IntimidateConeProjectile projectile = new IntimidateConeProjectile();
+	
+	public Intimidate(SummonerSkillManager manager) {
+		super(15);
+		this.manager=manager;
 	}
 	
-	public Intimidate(int manaCost) {
-		this();
-		this.setManaCost(manaCost);
+
+	protected SummonerSkillManager getSkillManager(){
+		return manager;
 	}
 	
-	public Intimidate(StructuredMap map) {
-		super(map);
+	@Override
+	public IntimidateConeProjectile getProjectile(){
+		return projectile;
 	}
 
 	@Override
-	protected String getType() {
-		return "intimidate";
+	public void perform(Avatar avatar){
+		this.setManaCost(this.getSkillManager().getEnchantSkill());
+		this.getProjectile().setLevel(this.getSkillManager().getEnchantSkill());
+		super.perform(avatar);
 	}
+	
 }
