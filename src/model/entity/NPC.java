@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import model.area.TileCoordinate;
+import model.entity.behavior.npc.Behaviorable;
+import model.entity.behavior.npc.Patroling;
 import model.entity.dialog.DialogEntry;
 import model.entity.dialog.DialogManager;
 import model.entity.dialog.DialogTree;
@@ -17,7 +19,7 @@ public class NPC extends Entity {
 	private DialogTree dialogTree;
 	
 	public NPC(String name, EntityView view, TileCoordinate location) {
-		super(name, view, location);
+		super(name, view, location,new Patroling());
 		Collection<DialogEntry> dialogEntries = new ArrayList<DialogEntry>(1);
 		dialogEntries.add(new DialogEntry("Barter", new BarterAction()));
 		dialogEntries.add(new DialogEntry("Exit", new ExitAction()));

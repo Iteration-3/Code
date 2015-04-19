@@ -5,6 +5,8 @@ import java.util.Collection;
 
 import model.KeyPreferences;
 import model.area.TileCoordinate;
+import model.entity.behavior.npc.Behaviorable;
+import model.entity.behavior.npc.state.StateMachine;
 import model.item.EquipableItem;
 import model.item.TakeableItem;
 import model.observers.MobileObject;
@@ -26,6 +28,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     private EntityStatistics stats = new EntityStatistics();
     private EntityView view = null;
 	private boolean isFlying = false;
+	private StateMachine state;
 
     protected Entity() {
     	super(new TileCoordinate(0, 0));
@@ -38,7 +41,20 @@ public abstract class Entity extends MobileObject implements Saveable {
         setLocation(location);
         this.setNecessities();
         setDirection(Angle.UP);
+        this.state = new StateMachine(this);
     }
+
+    public Entity(String name, EntityView view, TileCoordinate location,Behaviorable behavior) {
+    	super(location);
+        this.name = name;
+        this.view = view;
+        setLocation(location);
+        this.setNecessities();
+        setDirection(Angle.UP);
+        this.state = new StateMachine(this);
+        this.state.push(behavior);
+    }
+    
     
     public Entity(StructuredMap map) {
     	super(new TileCoordinate(map.getIntArray("location")[0], map.getIntArray("location")[1]));
@@ -54,6 +70,23 @@ public abstract class Entity extends MobileObject implements Saveable {
     private void setNecessities() {
         this.itemManager = this.createItemManager();
         // other things go here
+    }
+    
+    /***********STATES***************/
+    public void perform(){
+    	this.state.perform();
+    }
+    
+    public void interact(Entity entity){
+    	this.state.interact(entity);
+    }
+    
+    public void onDamage(){
+    	this.state.onDamage();
+    }
+    
+    public void observe(){
+    	this.state.observe();
     }
 
     protected abstract ItemManager createItemManager();

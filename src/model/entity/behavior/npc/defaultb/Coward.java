@@ -3,11 +3,12 @@ package model.entity.behavior.npc.defaultb;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import utilities.Angle;
 import model.area.RealCoordinate;
 import model.entity.Entity;
 
 public class Coward implements DefaultableBehaviorState {
-	private Queue<RealCoordinate> nextMove = new LinkedList<RealCoordinate>();
+	private Queue<Angle> nextMove = new LinkedList<Angle>();
 	private Entity chosenOne;
 	
 	// this will receive information from the Observe that is given to the Entity
@@ -23,11 +24,12 @@ public class Coward implements DefaultableBehaviorState {
 	private void move() {
 		boolean isNotEmpty = !this.nextMove.isEmpty();
 		if (isNotEmpty) {
-			RealCoordinate moveTo = this.nextMove.poll();
+			Angle moveTo = this.nextMove.poll();
+			this.chosenOne.move(moveTo);
 		}
 	}
 
-	public void setNextMove(RealCoordinate loc) {
+	public void setNextMove(Angle loc) {
 		this.nextMove.add(loc);
 	}
 
