@@ -1,5 +1,7 @@
 package model.skillmanager;
 
+import java.util.Map;
+
 import utilities.structuredmap.StructuredMap;
 
 public class SneakSkillManager extends SkillManager {
@@ -67,6 +69,15 @@ public class SneakSkillManager extends SkillManager {
 	@Override
 	protected String getType() {
 		return "sneak";
+	}
+
+	@Override
+	public Map<String, Integer> getSkillNamesWithValues() {
+		Map<String, Integer> skillsMap = super.getSkillNamesWithValues();
+		skillsMap.put("Creep", creepSkill);
+		skillsMap.put("Pick Pocket", pickPocketSkill);
+		skillsMap.put("Detect & Remove Trap", rangedSkill);
+		return skillsMap;
 	}
 
 }

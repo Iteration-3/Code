@@ -1,5 +1,8 @@
 package model.skillmanager;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 
@@ -87,6 +90,7 @@ public abstract class SkillManager implements Saveable {
 				+ "Barter: " + barterSkill;
 		return contents;
 	}
+
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = new StructuredMap();
 		map.put("attackSkill", attackSkill);
@@ -95,6 +99,15 @@ public abstract class SkillManager implements Saveable {
 		map.put("barterSkill", barterSkill);
 		map.put("type", getType());
 		return map;
+	}
+	
+	public Map<String, Integer> getSkillNamesWithValues() {
+		Map<String, Integer> skillMap = new HashMap<String, Integer>();
+		skillMap.put("Attack", attackSkill);
+		skillMap.put("Bind Wound", attackSkill);
+		skillMap.put("Observe", attackSkill);
+		skillMap.put("Barter", barterSkill);
+		return skillMap;
 	}
 	
 	protected abstract String getType();

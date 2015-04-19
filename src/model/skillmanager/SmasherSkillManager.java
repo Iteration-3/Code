@@ -1,5 +1,7 @@
 package model.skillmanager;
 
+import java.util.Map;
+
 import utilities.structuredmap.StructuredMap;
 
 public class SmasherSkillManager extends SkillManager {
@@ -57,6 +59,14 @@ public class SmasherSkillManager extends SkillManager {
 		return "smasher";
 	}
     
+	@Override
+	public Map<String, Integer> getSkillNamesWithValues() {
+		Map<String, Integer> skillsMap = super.getSkillNamesWithValues();
+		skillsMap.put("Two Handed", twoHandedSkill);
+		skillsMap.put("One Handed", oneHandedSkill);
+		skillsMap.put("Brawl", brawlSkill);
+		return skillsMap;
+	}
     
 
 }

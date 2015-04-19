@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 import model.entity.Avatar;
 import model.entity.EntityManager;
-import model.item.Item;
 import model.skillmanager.SkillManager;
 import view.components.MenuButton;
 import view.components.TextLabel;
@@ -17,13 +16,15 @@ public class SkillsMenuLayout extends Layout {
 	private MenuButton backButton;
 	private TextLabel skillsLabel;
 	private TextLabel statsLabel;
+	private TextLabel skillPointsRemainingLabel;
 
 	public SkillsMenuLayout() {
-		initLabels();
-		addLabels();
+		initStatsLabels();
+		generateStatsLabelText();
+		addStatsLabels();
+		addSkillPointInterface();
 		initButtons();
 		addButtons();
-		addSkillPointInterface();
 	}
 
 	private void initButtons() {
@@ -31,7 +32,7 @@ public class SkillsMenuLayout extends Layout {
 		backButton.setColor(Color.CYAN);
 	}
 
-	private void initLabels(){
+	private void initStatsLabels(){
 		statsLabel = new TextLabel();
 		skillsLabel = new TextLabel();
 	}
@@ -40,12 +41,12 @@ public class SkillsMenuLayout extends Layout {
 		add(backButton);
 	}
 
-	private void addLabels(){
+	private void addStatsLabels(){
 		add(statsLabel);
 		add(skillsLabel);
 	}
 	
-	public void generateLabelText(){
+	public void generateStatsLabelText(){
 		// Stats Label
 		StringBuilder builder = new StringBuilder();
 		Avatar avatar = EntityManager.getSingleton().getAvatar();
@@ -58,15 +59,89 @@ public class SkillsMenuLayout extends Layout {
 		statsLabel.setText(builder.toString());
 	}
 	
+	private void refreshSkillPointsRemainingLabel(SkillManager skillManager) {
+		skillPointsRemainingLabel.setText("Skill Points Left To Spend: " + skillManager.getSkillPointsToSpend());
+	}
+	
+	private void refreshBindWoundLabel(SkillManager skillManager, TextLabel bindWoundLabel) {
+		bindWoundLabel.setText("Bind Wound: " + skillManager.getBindWoundsSkill());
+	}
+	
+	private void refreshBarterLabel(SkillManager skillManager, TextLabel barterLabel) {
+		barterLabel.setText("Barter: " + skillManager.getBarterSkill());
+	}
+
+	private void initSkillPointsRemainingLabel(SkillManager skillManager) {
+		TextLabel skillPointsRemainingLabel = new TextLabel();
+		this.skillPointsRemainingLabel = skillPointsRemainingLabel;
+		refreshSkillPointsRemainingLabel(skillManager);
+		add(skillPointsRemainingLabel);
+	}
+	
+	private TextLabel initBindWoundLabel(SkillManager skillManager) {
+		TextLabel bindWoundLabel = new TextLabel();
+		refreshBindWoundLabel(skillManager, bindWoundLabel);
+		add(bindWoundLabel);
+		return bindWoundLabel;
+	}
+	
+	private void initBindWoundButton(final SkillManager skillManager, final TextLabel bindWoundLabel) {
+		MenuButton bindWoundButton = new MenuButton("+");
+		bindWoundButton.setColor(Color.GREEN);
+		bindWoundButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				skillManager.incrementBindWound();
+				refreshBindWoundLabel(skillManager, bindWoundLabel);
+				refreshSkillPointsRemainingLabel(skillManager);
+			}
+			
+		});
+		add(bindWoundButton);
+		
+	}
+	
+	private TextLabel initBarterLabel(SkillManager skillManager) {
+		TextLabel barterLabel = new TextLabel();
+		refreshBarterLabel(skillManager, barterLabel);
+		add(barterLabel);
+		return barterLabel;
+	}
+	
+	private void initBarterButton(final SkillManager skillManager, final TextLabel barterLabel) {
+		MenuButton barterButton = new MenuButton("+");
+		barterButton.setColor(Color.GREEN);
+		barterButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				skillManager.incrementBarter();
+				refreshBarterLabel(skillManager, barterLabel);
+				refreshSkillPointsRemainingLabel(skillManager);
+			}
+			
+		});
+		add(barterButton);
+		
+	}
+	
 	private void addSkillPointInterface() {
 		final Avatar avatar = EntityManager.getSingleton().getAvatar();
 		if(avatar == null){return;}
 
 		final SkillManager skillManager = avatar.getSkillManager();
-		final TextLabel skillPointsRemainingLabel = new TextLabel();
-		skillPointsRemainingLabel.setText("Skill Points Left To Spend: " + skillManager.getSkillPointsToSpend());
+		initSkillPointsRemainingLabel(skillManager);
+		TextLabel bindWoundLabel = initBindWoundLabel(skillManager);
+		initBindWoundButton(skillManager, bindWoundLabel);
+		TextLabel barterLabel = initBarterLabel(skillManager);
+		initBarterButton(skillManager, barterLabel);
+		//TextLabel observeLabel = initObserveLabel(skillManager);
+
+		// For the Occupation Specific Skills
+		//skillManager.accept(this);
 		
-		final TextLabel bindWoundTextLabel = new TextLabel();
+		/*
 		bindWoundTextLabel.setText("Bind Wound: " + avatar.getBindWoundSkill());
 		MenuButton incrementBindWoundButton = new MenuButton("+");
 		incrementBindWoundButton.setColor(Color.GREEN);
@@ -76,14 +151,13 @@ public class SkillsMenuLayout extends Layout {
 			public void actionPerformed(ActionEvent e) {
 				skillManager.incrementBindWound();
 				bindWoundTextLabel.setText("Bind Wound: " + avatar.getBindWoundSkill());
-				skillPointsRemainingLabel.setText("Skill Points Left To Spend: " + skillManager.getSkillPointsToSpend());
-				// bindWoundTextLabel.repaint();
+				refreshSkillPointsRemainingLabel(skillManager);
 			}
 		});
 		add(skillPointsRemainingLabel);
 		add(bindWoundTextLabel);
 		add(incrementBindWoundButton);
-		
+		*/
 	}
 
 	public void attachController(SkillsMenuController controller) {   	
