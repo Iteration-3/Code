@@ -35,7 +35,6 @@ public class RadialArea extends Area {
 
     @Override
     public List<TileCoordinate> getCoveredLocations() {
-    	System.out.println(getRadius());
     	if (lastStart != getStartLocation() || coverCache == null) {
 	    	HashSet<TileCoordinate> res = new HashSet<TileCoordinate>();
 	    	Queue<Pair> bfsQ = new LinkedList<Pair>();

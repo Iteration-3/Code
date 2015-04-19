@@ -46,8 +46,6 @@ public enum Angle {
 		int targetX = targetLocation.getX();
 		int targetY = targetLocation.getY();
 		
-		System.out.println(chosenY +"   " + chosenX + "   " + targetX + "  "+ targetY);
-
 		if (targetX < chosenX && targetY > chosenY ){
 			return Angle.DOWN_LEFT;
 		}
@@ -82,6 +80,7 @@ public enum Angle {
 		int chosenY = startingLocation.getY();
 		int targetX = targetLocation.getX();
 		int targetY = targetLocation.getY();
+
 		if (targetX < chosenX && targetY > chosenY ){
 			return Angle.UP_RIGHT;
 		}

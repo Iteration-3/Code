@@ -1,14 +1,14 @@
 package model.entity.behavior.npc.defaultb;
 
 import model.entity.Entity;
-import model.entity.behavior.npc.defaultb.curcuit.Curcuitable;
-import model.entity.behavior.npc.defaultb.curcuit.UpDown;
+import model.entity.behavior.npc.defaultb.circuit.Circuitable;
+import model.entity.behavior.npc.defaultb.circuit.UpDown;
 
 public class Patrol implements DefaultableBehaviorState {
 	private Entity chosenOne;
-	private Curcuitable curcit;
+	private Circuitable curcit;
 	
-	public Patrol(Entity entity, Curcuitable curcuit){
+	public Patrol(Entity entity, Circuitable curcuit){
 		this.chosenOne = entity;
 		this.curcit = curcuit;
 	}

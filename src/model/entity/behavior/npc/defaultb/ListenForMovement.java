@@ -2,7 +2,7 @@ package model.entity.behavior.npc.defaultb;
 
 import utilities.Angle;
 import model.entity.Entity;
-import model.entity.behavior.npc.defaultb.curcuit.PushableCurcuit;
+import model.entity.behavior.npc.defaultb.circuit.PushableCurcuit;
 
 public class ListenForMovement implements DefaultableBehaviorState {
 	private Entity chosenOne;
