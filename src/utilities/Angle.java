@@ -45,10 +45,10 @@ public enum Angle {
 		int chosenY = startingLocation.getY();
 		int avatarX = targetLocation.getX();
 		int avatarY = targetLocation.getY();
-		if (avatarY > chosenY){
-			return Angle.DOWN;
+		if (avatarY > chosenY && avatarX < chosenX){
+			return Angle.DOWN_RIGHT;
 		}
-		else if (avatarX > chosenX){
+		else if (avatarX > chosenX && avatarY < chosenX){
 			return Angle.UP_RIGHT;
 		}
 		else if (avatarX < chosenX){
@@ -68,7 +68,7 @@ public enum Angle {
 		int avatarX = targetLocation.getX();
 		int avatarY = targetLocation.getY();
 		if (avatarY > chosenY){
-			return Angle.DOWN;
+			return Angle.UP;
 		}
 		else if (avatarX > chosenX){
 			return Angle.UP_RIGHT;
