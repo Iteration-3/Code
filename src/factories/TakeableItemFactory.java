@@ -2,9 +2,7 @@ package factories;
 
 import model.item.ConsumableItem;
 import model.item.TakeableItem;
-import model.statistics.EntityStatistics;
 import utilities.structuredmap.StructuredMap;
-import view.item.ItemView;
 
 public class TakeableItemFactory {
 	public static TakeableItem createItem(StructuredMap map) {
