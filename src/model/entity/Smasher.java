@@ -8,8 +8,6 @@ import view.EntityView;
 
 public class Smasher extends Avatar {
 	
-	public Smasher(){}
-	
 	public Smasher(StructuredMap map) {
 		super(map);
 	}
@@ -27,7 +25,6 @@ public class Smasher extends Avatar {
 	@Override
 	public void attack() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
