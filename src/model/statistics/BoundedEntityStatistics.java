@@ -1,5 +1,6 @@
 package model.statistics;
 
+import model.event.ExperienceModifierEvent;
 import utilities.structuredmap.StructuredMap;
 /**
  * 
@@ -69,7 +70,16 @@ public class BoundedEntityStatistics extends EntityStatistics{
 	@Override
 	public void setExperience(int experience) {
 		super.setExperience(experience);
+		this.experienceCheck();
+		
 	}
+	
+	private void experienceCheck(){
+		if(this.getExperience() < 0){
+			this.setExperience(0);
+		}
+	}
+	
 	@Override
 	public void setMovement(int movement) {
 		super.setMovement(movement);
@@ -122,10 +132,12 @@ public class BoundedEntityStatistics extends EntityStatistics{
 	@Override
 	public void addExperience(int experience) {
 		super.addExperience(experience);
+		this.experienceCheck();
 	}
 	@Override
 	public void addHealth(int health) {
 		super.addHealth(health);
+		this.healthCheck();
 	}
 	@Override
 	public void addMovement(int movement) {
@@ -150,4 +162,55 @@ public class BoundedEntityStatistics extends EntityStatistics{
 	public void addMoney(int money) {
 		super.addMoney(money);
 	}
+	
+	//Non derived stats.
+	@Override
+    public void setStrength(int strength) {
+        super.setStrength(strength);
+        this.strengthCheck();
+    }
+	
+	private void strengthCheck(){
+		if(this.getStrength() < 1){
+			this.setStrength(1);
+		}
+	}
+
+	@Override
+    public void setAgility(int agility) {
+        super.setAgility(agility);
+        this.agilityCheck();
+    }
+	
+	private void agilityCheck(){
+		if(this.getAgility() < 1){
+			this.setAgility(1);
+		}
+	}
+
+	@Override
+    public void setIntellect(int intellect) {
+		super.setIntellect(intellect);
+		this.intellectCheck();
+    }
+	
+	private void intellectCheck(){
+		if(this.getIntellect() < 1){
+			this.setIntellect(1);
+		}
+	}
+	
+	@Override
+    public void setHardiness(int hardiness) {
+        super.setHardiness(hardiness);
+        this.hardinessCheck();
+    }
+	
+	private void hardinessCheck(){
+		if(this.getHardiness() < 1){
+			this.setHardiness(1);
+		}
+	}
+
+	
 }
