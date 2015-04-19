@@ -33,7 +33,6 @@ public abstract class Avatar extends Entity {
 	}
 	
 	protected void generateSkills(){
-		System.out.println("skills 2" + this.getSkillManager());
 		this.getAbilities().add(new BindWounds(this.getSkillManager()));
 	}
 	
