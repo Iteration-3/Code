@@ -3,6 +3,7 @@ package model.skillmanager;
 import java.util.Map;
 
 import utilities.structuredmap.StructuredMap;
+import view.layout.SkillsMenuLayout;
 
 public class SneakSkillManager extends SkillManager {
 	
@@ -42,7 +43,7 @@ public class SneakSkillManager extends SkillManager {
         return pickPocketSkill;
     }
 
-    public int trapRemoveSkill() {
+    public int getTrapRemoveSkill() {
         return trapRemoveSkill;
     }
 
@@ -80,4 +81,8 @@ public class SneakSkillManager extends SkillManager {
 		return skillsMap;
 	}
 
+	@Override
+	public void accept(SkillsMenuLayout skillsMenuLayout) {
+		skillsMenuLayout.populateSneakSkills(this);
+	}
 }

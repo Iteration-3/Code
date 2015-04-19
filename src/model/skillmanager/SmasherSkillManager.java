@@ -3,6 +3,7 @@ package model.skillmanager;
 import java.util.Map;
 
 import utilities.structuredmap.StructuredMap;
+import view.layout.SkillsMenuLayout;
 
 public class SmasherSkillManager extends SkillManager {
 	
@@ -66,6 +67,11 @@ public class SmasherSkillManager extends SkillManager {
 		skillsMap.put("One Handed", oneHandedSkill);
 		skillsMap.put("Brawl", brawlSkill);
 		return skillsMap;
+	}
+
+	@Override
+	public void accept(SkillsMenuLayout skillsMenuLayout) {
+		skillsMenuLayout.populateSmasherSkills(this);
 	}
     
 

@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import model.entity.Avatar;
 import model.entity.EntityManager;
 import model.skillmanager.SkillManager;
+import model.skillmanager.SmasherSkillManager;
+import model.skillmanager.SneakSkillManager;
+import model.skillmanager.SummonerSkillManager;
 import view.components.MenuButton;
 import view.components.TextLabel;
 import controller.SkillsMenuController;
@@ -71,6 +74,10 @@ public class SkillsMenuLayout extends Layout {
 		barterLabel.setText("Barter: " + skillManager.getBarterSkill());
 	}
 
+	private void refreshObserveLabel(SkillManager skillManager, TextLabel observeLabel) {
+		observeLabel.setText("Observe: " + skillManager.getObserveSkill());
+	}
+
 	private void initSkillPointsRemainingLabel(SkillManager skillManager) {
 		TextLabel skillPointsRemainingLabel = new TextLabel();
 		this.skillPointsRemainingLabel = skillPointsRemainingLabel;
@@ -126,6 +133,198 @@ public class SkillsMenuLayout extends Layout {
 		
 	}
 	
+	private TextLabel initObserveLabel(SkillManager skillManager) {
+		TextLabel observeLabel = new TextLabel();
+		refreshObserveLabel(skillManager, observeLabel);
+		add(observeLabel);
+		return observeLabel;
+	}
+	
+	private void initObserveButton(final SkillManager skillManager, final TextLabel observeLabel) {
+		MenuButton observeButton = new MenuButton("+");
+		observeButton.setColor(Color.GREEN);
+		observeButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				skillManager.incrementObserve();
+				refreshObserveLabel(skillManager, observeLabel);
+				refreshSkillPointsRemainingLabel(skillManager);
+			}
+			
+		});
+		add(observeButton);
+		
+	}	
+
+	private void refreshTwoHandedLabel(SmasherSkillManager smasherSkillManager, TextLabel bindWoundLabel) {
+		bindWoundLabel.setText("Two Handed: " + smasherSkillManager.getTwoHandedSkill());
+	}
+	
+	private TextLabel initTwoHandedLabel(SmasherSkillManager smasherSkillManager) {
+		TextLabel twoHandedLabel = new TextLabel();
+		refreshTwoHandedLabel(smasherSkillManager, twoHandedLabel);
+		add(twoHandedLabel);
+		return twoHandedLabel;
+	}
+	
+	private void initTwoHandedButton(final SmasherSkillManager smasherSkillManager, final TextLabel twoHandedLabel) {
+		MenuButton twoHandedButton = new MenuButton("+");
+		twoHandedButton.setColor(Color.GREEN);
+		twoHandedButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				smasherSkillManager.incrementTwoHand();
+				refreshTwoHandedLabel(smasherSkillManager, twoHandedLabel);
+				refreshSkillPointsRemainingLabel(smasherSkillManager);
+			}
+			
+		});
+		add(twoHandedButton);
+		
+	}	
+
+	private void refreshOneHandedLabel(SmasherSkillManager smasherSkillManager, TextLabel twoHandedLabel) {
+		twoHandedLabel.setText("Two Handed: " + smasherSkillManager.getOneHandedSkill());
+	}
+	
+	private TextLabel initOneHandedLabel(SmasherSkillManager smasherSkillManager) {
+		TextLabel oneHandedLabel = new TextLabel();
+		refreshOneHandedLabel(smasherSkillManager, oneHandedLabel);
+		add(oneHandedLabel);
+		return oneHandedLabel;
+	}
+	
+	private void initOneHandedButton(final SmasherSkillManager smasherSkillManager, final TextLabel oneHandedLabel) {
+		MenuButton oneHandedButton = new MenuButton("+");
+		oneHandedButton.setColor(Color.GREEN);
+		oneHandedButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				smasherSkillManager.incrementOneHand();
+				refreshOneHandedLabel(smasherSkillManager, oneHandedLabel);
+				refreshSkillPointsRemainingLabel(smasherSkillManager);
+			}
+			
+		});
+		add(oneHandedButton);
+		
+	}
+	
+	private void refreshBrawlLabel(SmasherSkillManager smasherSkillManager, TextLabel brawlLabel) {
+		brawlLabel.setText("Brawl: " + smasherSkillManager.getBrawlSkill());
+	}
+	
+	private TextLabel initBrawlLabel(SmasherSkillManager smasherSkillManager) {
+		TextLabel brawlLabel = new TextLabel();
+		refreshBrawlLabel(smasherSkillManager, brawlLabel);
+		add(brawlLabel);
+		return brawlLabel;
+	}
+	
+	private void initBrawlButton(final SmasherSkillManager smasherSkillManager, final TextLabel brawlLabel) {
+		MenuButton brawlButton = new MenuButton("+");
+		brawlButton.setColor(Color.GREEN);
+		brawlButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				smasherSkillManager.incrementBrawl();
+				refreshBrawlLabel(smasherSkillManager, brawlLabel);
+				refreshSkillPointsRemainingLabel(smasherSkillManager);
+			}
+			
+		});
+		add(brawlButton);
+		
+	}
+
+	private void refreshPickPocketLabel(SneakSkillManager sneakSkillManager, TextLabel pickPocketLabel) {
+		pickPocketLabel.setText("Pick Pocket: " + sneakSkillManager.getPickPocketSkill());
+	}
+	
+	private TextLabel initPickPocketLabel(SneakSkillManager sneakSkillManager) {
+		TextLabel pickPocketLabel = new TextLabel();
+		refreshPickPocketLabel(sneakSkillManager, pickPocketLabel);
+		add(pickPocketLabel);
+		return pickPocketLabel;
+	}
+	
+	private void initPickPocketButton(final SneakSkillManager sneakSkillManager, final TextLabel pickPocketLabel) {
+		MenuButton pickPocketButton = new MenuButton("+");
+		pickPocketButton.setColor(Color.GREEN);
+		pickPocketButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				sneakSkillManager.incrementPickPocketSkill();
+				refreshPickPocketLabel(sneakSkillManager, pickPocketLabel);
+				refreshSkillPointsRemainingLabel(sneakSkillManager);
+			}
+			
+		});
+		add(pickPocketButton);
+		
+	}
+
+	private void refreshDetectTrapLabel(SneakSkillManager sneakSkillManager, TextLabel detectTrapLabel) {
+		detectTrapLabel.setText("Detect & Remove Trap: " + sneakSkillManager.getTrapRemoveSkill());
+	}
+	
+	private TextLabel initDetectTrapLabel(SneakSkillManager sneakSkillManager) {
+		TextLabel detectTrapLabel = new TextLabel();
+		refreshDetectTrapLabel(sneakSkillManager, detectTrapLabel);
+		add(detectTrapLabel);
+		return detectTrapLabel;
+	}
+	
+	private void initDetectTrapButton(final SneakSkillManager sneakSkillManager, final TextLabel detectTrapLabel) {
+		MenuButton detectTrapButton = new MenuButton("+");
+		detectTrapButton.setColor(Color.GREEN);
+		detectTrapButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				sneakSkillManager.incrementTrapRemoveSkill();
+				refreshDetectTrapLabel(sneakSkillManager, detectTrapLabel);
+				refreshSkillPointsRemainingLabel(sneakSkillManager);
+			}
+			
+		});
+		add(detectTrapButton);
+		
+	}
+
+	private void refreshCreepLabel(SneakSkillManager sneakSkillManager, TextLabel creepLabel) {
+		creepLabel.setText("Creep: " + sneakSkillManager.getCreepskill());
+	}
+	
+	private TextLabel initCreepLabel(SneakSkillManager sneakSkillManager) {
+		TextLabel creepLabel = new TextLabel();
+		refreshCreepLabel(sneakSkillManager, creepLabel);
+		add(creepLabel);
+		return creepLabel;
+	}
+	
+	private void initCreepButton(final SneakSkillManager sneakSkillManager, final TextLabel creepLabel) {
+		MenuButton creepButton = new MenuButton("+");
+		creepButton.setColor(Color.GREEN);
+		creepButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				sneakSkillManager.incrementCreepSkill();
+				refreshCreepLabel(sneakSkillManager, creepLabel);
+				refreshSkillPointsRemainingLabel(sneakSkillManager);
+			}
+			
+		});
+		add(creepButton);
+		
+	}
+
 	private void addSkillPointInterface() {
 		final Avatar avatar = EntityManager.getSingleton().getAvatar();
 		if(avatar == null){return;}
@@ -136,31 +335,38 @@ public class SkillsMenuLayout extends Layout {
 		initBindWoundButton(skillManager, bindWoundLabel);
 		TextLabel barterLabel = initBarterLabel(skillManager);
 		initBarterButton(skillManager, barterLabel);
-		//TextLabel observeLabel = initObserveLabel(skillManager);
-
-		// For the Occupation Specific Skills
-		//skillManager.accept(this);
+		TextLabel observeLabel = initObserveLabel(skillManager);
+		initObserveButton(skillManager, observeLabel);
 		
-		/*
-		bindWoundTextLabel.setText("Bind Wound: " + avatar.getBindWoundSkill());
-		MenuButton incrementBindWoundButton = new MenuButton("+");
-		incrementBindWoundButton.setColor(Color.GREEN);
-		incrementBindWoundButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				skillManager.incrementBindWound();
-				bindWoundTextLabel.setText("Bind Wound: " + avatar.getBindWoundSkill());
-				refreshSkillPointsRemainingLabel(skillManager);
-			}
-		});
-		add(skillPointsRemainingLabel);
-		add(bindWoundTextLabel);
-		add(incrementBindWoundButton);
-		*/
+		// We don't what type of Skill Manager we have, so this
+		// Will fill in the remaining Buttons for each skill.
+		skillManager.accept(this);
 	}
 
 	public void attachController(SkillsMenuController controller) {   	
 		backButton.addActionListener(controller.getBackAction());
+	}
+
+	public void populateSmasherSkills(SmasherSkillManager smasherSkillManager) {
+		TextLabel twoHandedLabel = initTwoHandedLabel(smasherSkillManager);
+		initTwoHandedButton(smasherSkillManager, twoHandedLabel);
+		TextLabel oneHandedLabel = initOneHandedLabel(smasherSkillManager);
+		initOneHandedButton(smasherSkillManager, oneHandedLabel);
+		TextLabel brawlLabel = initBrawlLabel(smasherSkillManager);
+		initBrawlButton(smasherSkillManager, brawlLabel);
+	}
+
+	public void populateSneakSkills(SneakSkillManager sneakSkillManager) {
+		TextLabel pickPocketLabel = initPickPocketLabel(sneakSkillManager);
+		initPickPocketButton(sneakSkillManager, pickPocketLabel);
+		TextLabel detectTrapLabel = initDetectTrapLabel(sneakSkillManager);
+		initDetectTrapButton(sneakSkillManager, detectTrapLabel);
+		TextLabel creepLabel = initCreepLabel(sneakSkillManager);
+		initCreepButton(sneakSkillManager, creepLabel);
+	}
+
+	public void populateSummonerSkills(SummonerSkillManager summonerSkillManager) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -3,6 +3,7 @@ package model.skillmanager;
 import java.util.Map;
 
 import utilities.structuredmap.StructuredMap;
+import view.layout.SkillsMenuLayout;
 
 public class SummonerSkillManager extends SkillManager {
 	
@@ -78,5 +79,10 @@ public class SummonerSkillManager extends SkillManager {
 		skillsMap.put("Bane", baneSkill);
 		skillsMap.put("Staff", staffSkill);
 		return skillsMap;
+	}
+
+	@Override
+	public void accept(SkillsMenuLayout skillsMenuLayout) {
+		skillsMenuLayout.populateSummonerSkills(this);
 	}
 }
