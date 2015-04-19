@@ -21,11 +21,11 @@ public class Inventory implements Saveable {
 	public Inventory(StructuredMap map) {
 		this.inventoryView = new InventoryView();
 		slots = new InventorySlot[map.getInteger("slotsLength")];
-		StructuredMap[] items = map.getStructuredMapArray("items");
-		for(StructuredMap item : items) {
-			TakeableItem savedItem = TakeableItemFactory.createItem(item);
-			this.addItem(savedItem);
-		}
+//		StructuredMap[] items = map.getStructuredMapArray("items");
+//		for(StructuredMap item : items) {
+//			TakeableItem savedItem = TakeableItemFactory.createItem(item);
+//			this.addItem(savedItem);
+//		}
 	}
 
 	private void setInventory() {

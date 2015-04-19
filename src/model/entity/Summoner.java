@@ -47,6 +47,11 @@ public class Summoner extends Avatar {
 		this.getAbilities().add(new Intimidate());
 		this.getAbilities().add(new Silence());
         this.addItem(new Helmet(new BasicItemView(),new Statistics()));
+        this.addItem(new Helmet(new BasicItemView(),new Statistics()));
+        this.addItem(new Helmet(new BasicItemView(),new Statistics()));
+        this.addItem(new Helmet(new BasicItemView(),new Statistics()));
+        this.addItem(new Helmet(new BasicItemView(),new Statistics()));
+        this.equip(new Helmet(new BasicItemView(),new Statistics()));
 		
 		setSkillManager(new SummonerSkillManager());
 	}
