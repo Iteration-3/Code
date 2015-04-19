@@ -5,6 +5,7 @@ import java.util.Map;
 
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import view.layout.SkillsMenuLayout;
 
 public abstract class SkillManager implements Saveable {
 
@@ -111,6 +112,8 @@ public abstract class SkillManager implements Saveable {
 	}
 	
 	protected abstract String getType();
+
+	public abstract void accept(SkillsMenuLayout skillsMenuLayout);
 	
 }
 
