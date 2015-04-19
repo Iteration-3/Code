@@ -26,7 +26,7 @@ public class ShadowBlastProjectile extends Projectile {
 	}
 
 	public void setLevel(int x) {
-		this.setSpeed(3*x);
+		this.setSpeed(3);
 		Event damageEvent = new HealthModifierEvent(0, -40*x);
 		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
 		this.setTrigger(damageTrigger);

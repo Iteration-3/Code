@@ -25,7 +25,7 @@ public class LightConeProjectile extends ConicalProjectile {
 	}
 
 	public void setLevel(int x) {
-		this.setSpeed(3*x);
+		this.setSpeed(3);
 		Event damageEvent = new HealthModifierEvent(0, -15*x);
 		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
 		this.setTrigger(damageTrigger);

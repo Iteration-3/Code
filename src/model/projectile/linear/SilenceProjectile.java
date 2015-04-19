@@ -26,7 +26,7 @@ public class SilenceProjectile extends Projectile {
 	}
 
 	public void setLevel(int x) {
-		this.setSpeed(3*x);
+		this.setSpeed(3);
 		Event damageEvent = new ManaModifierEvent(10*x, -100*x);
 		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
 		this.setTrigger(damageTrigger);

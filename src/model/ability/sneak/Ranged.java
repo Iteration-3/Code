@@ -3,20 +3,21 @@ package model.ability.sneak;
 import model.ability.ProjectileAbility;
 import model.projectile.Projectile;
 import model.projectile.linear.ThrowingKnife;
+import model.skillmanager.SneakSkillManager;
 
 public class Ranged extends ProjectileAbility {
 	
-	public Ranged() {
-		super(10);
-	}
+	private SneakSkillManager manager;
 	
-	public Ranged(int manaCost) {
-		this();
-		this.setManaCost(manaCost);
+	public Ranged(SneakSkillManager sneakSkillManager) {
+		super(10);
+		this.manager = sneakSkillManager;
 	}
 	
 	
 	public Projectile getProjectile() {
-		return new ThrowingKnife();
+		ThrowingKnife knife =  new ThrowingKnife();
+		knife.setLevel(1);
+		return knife;
 	}
 }

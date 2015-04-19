@@ -4,6 +4,7 @@ import model.ability.TriggerAbility;
 import model.area.RadialArea;
 import model.entity.Avatar;
 import model.event.HealthModifierEvent;
+import model.skillmanager.SmasherSkillManager;
 import model.trigger.TimedTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
@@ -11,16 +12,15 @@ import model.trigger.TriggerManager;
 public class SmasherWeaponAttack extends TriggerAbility {
 
 	private long timeout = 0;
+	private SmasherSkillManager manager;
 
-	public SmasherWeaponAttack() {
+	
+	public SmasherWeaponAttack(SmasherSkillManager smasherSkillManager) {
 		super(new TimedTrigger(new RadialArea(1, null),
 				new HealthModifierEvent(0, -15), 0), 10);
+		this.manager = smasherSkillManager;
 	}
 
-	public SmasherWeaponAttack(int manaCost) {
-		this();
-		this.setManaCost(manaCost);
-	}
 
 
 	@Override

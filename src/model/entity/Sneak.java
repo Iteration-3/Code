@@ -19,14 +19,19 @@ public class Sneak extends Avatar {
 
 	public Sneak(String name, EntityView view, TileCoordinate loc) {
 		super(name, view,loc);
-		this.getAbilities().add(new Creep());
-		this.getAbilities().add(new DetectTrap());
-		this.getAbilities().add(new PickPocket());
-		this.getAbilities().add(new Ranged());
-		this.getAbilities().add(new RemoveTrap());
 		this.skillManager = (new SneakSkillManager());
 	}
 	
+	@Override
+	protected void generateSkills(){
+		
+		this.getAbilities().add(new Creep(this.getSkillManager()));
+		this.getAbilities().add(new DetectTrap(this.getSkillManager()));
+		this.getAbilities().add(new PickPocket(this.getSkillManager()));
+		this.getAbilities().add(new Ranged(this.getSkillManager()));
+		this.getAbilities().add(new RemoveTrap(this.getSkillManager()));
+		super.generateSkills();
+	}
 
 	protected ItemManager createItemManager() {
 		return new ItemManager(this);
@@ -63,7 +68,7 @@ public class Sneak extends Avatar {
 
 
 	@Override
-	public SkillManager getSkillManager() {
+	public SneakSkillManager getSkillManager() {
 		return skillManager;
 	}
 
