@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.ConcurrentModificationException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -89,6 +90,30 @@ public class EntityManager implements Iterable<Entity> {
 			}
 		}
 		return null;
+	}
+	
+	
+	public Collection<Entity> getEntityFromLocaitons(Collection<TileCoordinate> locations){
+		HashMap<TileCoordinate,Entity> mapOfEntities = new HashMap<TileCoordinate,Entity>();
+		Collection<Entity> entitiesFound = new ArrayList<Entity>();
+		for (Entity entity: this) {
+			mapOfEntities.put(entity.getLocation(), entity);
+		}
+		for (TileCoordinate location : locations){
+			if (mapOfEntities.containsKey(location)){
+				entitiesFound.add(mapOfEntities.get(location));
+			}
+		}
+		return entitiesFound;
+	}
+	
+	public boolean findEntityFromLocations(Collection<TileCoordinate> locations, Entity target){
+		for (Entity entity: this.getEntityFromLocaitons(locations)){
+			if (entity == target){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public NPC getNPCAtLocation(TileCoordinate location) {
