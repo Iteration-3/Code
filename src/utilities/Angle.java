@@ -42,6 +42,12 @@ public enum Angle {
     	return new TileCoordinate(x + deltaX(), y + deltaY(tileCoordinate));
     }
     
+    public TileCoordinate previousLocation(TileCoordinate tileCoordinate) {
+    	int x = tileCoordinate.getX();
+    	int y = tileCoordinate.getY();
+    	return new TileCoordinate(x - deltaX(), y + deltaY(tileCoordinate));
+    }
+    
     private int deltaX() {
     	return deltaX;
     }

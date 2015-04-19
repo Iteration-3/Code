@@ -4,7 +4,7 @@ import gameactions.GameActionRiverPush;
 import model.entity.Entity;
 import utilities.structuredmap.StructuredMap;
 
-public class RiverPushEvent extends Event{
+public class RiverPushEvent extends Event {
 	private GameActionRiverPush gameActionRiverPush;
 	
 	public RiverPushEvent(GameActionRiverPush gameActionRiverPush) {

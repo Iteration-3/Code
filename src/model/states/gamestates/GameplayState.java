@@ -16,11 +16,11 @@ import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.entity.EntityManager;
 import model.entity.EntityMovementAssocation;
+import model.entity.Mount;
 import model.entity.NPC;
 import model.entity.Summoner;
 import model.event.ExperienceModifierEvent;
 import model.event.HealthModifierEvent;
-import model.event.ManaModifierEvent;
 import model.event.RiverPushEvent;
 import model.event.TeleportEvent;
 import model.item.Boots;
@@ -114,11 +114,6 @@ public class GameplayState extends GameState {
         //testing this for equipped Items
         avatar.equip(new Helmet(new BasicItemView(),new Statistics()));
 
-        KeyPreferences preferences = new KeyPreferences();
-        getContext().setPreferences(preferences);
-
-        setListeners(preferences);
-
         EntityManager.getSingleton().setAvatar(avatar);
         eView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(3, 3),Angle.UP);
         
@@ -127,13 +122,23 @@ public class GameplayState extends GameState {
         NPC npc = new NPC("DaveTheBargainer", npcView, npcLocation);
         npcView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(7, 7),Angle.UP);
         EntityManager.getSingleton().addPartyNpc(npc);
+        
+        TileCoordinate mountLocation = new TileCoordinate(7, 2);
+        EntityView mountView = new EntityView(EntitySpriteFactory.getUnderlingSpriteHolder());
+        Mount mount = new Mount("My first mount", mountView, mountLocation);
+        mountView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(7, 2), Angle.UP);
+        EntityManager.getSingleton().addNonPartyNpc(mount);
+
+        KeyPreferences preferences = new KeyPreferences();
+        getContext().setPreferences(preferences);
+        setListeners(preferences);
+
     }
 
     private void setListeners(KeyPreferences preferences) {
         controller.removeListeners();
         getLayout().clearBindings();
-
-
+        
         Listener escapeListener = new SingleUseListener(preferences.getPauseKey(), new GameActionStatePush(
                 getContext(), new PauseMenuState()));
         escapeListener.addAsBinding(getLayout());
@@ -145,7 +150,7 @@ public class GameplayState extends GameState {
                 getContext(), new SkillsMenuState()));
         skillsListener.addAsBinding(getLayout());
 
-        Collection<Listener> listeners = new EntityMovementAssocation(avatar, gameMap,
+        Collection<Listener> listeners = new EntityMovementAssocation(getContext().getCurrentUnit(), gameMap,
                 this.getItemMap()).getListeners(preferences);
 
         for (Listener listener : listeners) {

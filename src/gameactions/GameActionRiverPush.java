@@ -8,6 +8,7 @@ import utilities.Angle;
 public class GameActionRiverPush extends GameAction {
 	GameActionTeleport teleport;
 	Entity entity;
+
 	public GameActionRiverPush(Entity entity, GameTerrain terrain,
 			ItemMap itemMap, Angle angle) {
 		teleport = new GameActionTeleport(entity, terrain, itemMap, angle);

@@ -143,6 +143,10 @@ public abstract class Entity extends MobileObject implements Saveable {
     protected EntityView getEntityView() {
         return view;
     }
+    
+    public void toggleView() {
+    	getEntityView().toggle();
+    }
 
     public String getName() {
         return name;

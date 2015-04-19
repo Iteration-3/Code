@@ -42,6 +42,10 @@ public class TileCoordinate {
     	return angle.nextLocation(this);
     }
     
+    public TileCoordinate previousLocation(Angle angle) {
+    	return angle.previousLocation(this);
+    }
+    
     @Override
     public String toString() {
     	return "(" + x + ", " + y + ")";

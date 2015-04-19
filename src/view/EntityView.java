@@ -11,6 +11,7 @@ public class EntityView {
 	//COPY AND PASTED SHIT FROM HEXAGON PLACE HOLDER
 	AbstractEntitySpriteHolder sprites;
 	private RealCoordinate location;
+	private boolean hidden = false;
 	private static final float BORDER_PERCENTAGE = 0.15f; // 15% border edge
 	private static final float OVERDRAW = 1.05f; // To eliminate little blank spaces between tiles
 	
@@ -39,6 +40,13 @@ public class EntityView {
 		sprites.render(graphics, updatedCoordinate, 1,this.getDirection());
 		
 	}
+	
+	public void toggle() {
+		hidden = !hidden;
+		if (hidden) {
+			this.setLocation(new RealCoordinate(-5, -5));
+		}
+	}
 
 	private Angle getDirection() {
 		return angle;
@@ -49,7 +57,9 @@ public class EntityView {
 	}
 
 	public void setLocation(TileCoordinate location) {
-		this.setLocation(new RealCoordinate(location.getX(), location.getY()));
+		if (hidden == false) {
+			this.setLocation(new RealCoordinate(location.getX(), location.getY()));
+		}
 	}
 
 	public void setDirection(Angle angle) {

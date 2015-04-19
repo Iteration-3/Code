@@ -1,6 +1,8 @@
 package model;
 
-import model.entity.Avatar;
+import model.entity.Entity;
+import model.entity.EntityManager;
+import model.entity.Mount;
 import model.entity.dialog.DialogManager;
 import model.states.StateMachine;
 import model.states.gamestates.GameState;
@@ -10,6 +12,7 @@ import view.layout.Layout;
 public class Model extends StateMachine<GameState> {
     private View view;
     private KeyPreferences preferences;
+    private Mount currentMount;
 
     public Model() {
         view = new View();
@@ -39,9 +42,19 @@ public class Model extends StateMachine<GameState> {
         view.removeGameLayout(layout);
     }
 
-    public Avatar getAvatar() {
-        // TODO link in when we have stuff for the model class
-        return null;
+    public Entity getCurrentUnit() {
+    	return currentMount == null ? EntityManager.getSingleton().getAvatar() : currentMount;
+    }
+    
+    public void setMount(Mount mount) {
+    	this.currentMount = mount;
+    }
+    
+    public void clearMount() {
+    	if (this.currentMount != null) {
+    		this.currentMount.dismount();
+    		this.currentMount = null;
+    	}
     }
 
     public void setPreferences(KeyPreferences preferences) {
