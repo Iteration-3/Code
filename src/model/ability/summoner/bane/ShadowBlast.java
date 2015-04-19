@@ -1,31 +1,34 @@
 package model.ability.summoner.bane;
 
 import model.ability.ProjectileAbility;
-import model.projectile.Projectile;
+import model.entity.Avatar;
 import model.projectile.linear.ShadowBlastProjectile;
-import utilities.structuredmap.StructuredMap;
+import model.skillmanager.SummonerSkillManager;
 
 public final class ShadowBlast extends ProjectileAbility {
+	
+	private SummonerSkillManager manager;
+	private ShadowBlastProjectile projectile = new ShadowBlastProjectile();
 
-	public ShadowBlast() {
+
+	public ShadowBlast(SummonerSkillManager manager) {
 		super(50);
+		this.manager = manager;
 	}
 	
-	public ShadowBlast(StructuredMap map) {
-		super(map);
+	protected SummonerSkillManager getSkillManager(){
+		return manager;
 	}
 	
-	public ShadowBlast(int manaCost) {
-		this();
-		this.setManaCost(manaCost);
+	@Override
+	public ShadowBlastProjectile getProjectile(){
+		return projectile;
 	}
 
 	@Override
-	protected String getType() {
-		return "shadowBlast";
-	}
-	
-	public Projectile getProjectile() {
-		return new ShadowBlastProjectile();
+	public void perform(Avatar avatar){
+		this.setManaCost(this.getSkillManager().getBaneSkill());
+		this.getProjectile().setLevel(this.getSkillManager().getBaneSkill());
+		super.perform(avatar);
 	}
 }

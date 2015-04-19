@@ -14,10 +14,7 @@ public class FireProjectile extends Projectile {
 	
 	public FireProjectile() {
 		super();
-		this.setSpeed(3);
-		Event damageEvent = new HealthModifierEvent(0, -10);
-		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(0, null), damageEvent);
-		this.setTrigger(damageTrigger);
+		this.setLevel(1);
 	}
 	
 	public FireProjectile(TileCoordinate tile, Angle direction, double speed, Trigger trigger) {
@@ -31,5 +28,14 @@ public class FireProjectile extends Projectile {
 	@Override
 	protected String getType() {
 		return "fireProjectile";
+	}
+
+
+	public void setLevel(int x) {
+		this.setSpeed(3*x);
+		Event damageEvent = new HealthModifierEvent(0, -10*x);
+		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
+		this.setTrigger(damageTrigger);
+		
 	}
 }

@@ -8,7 +8,6 @@ import model.entity.Avatar;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
-import utilities.structuredmap.StructuredMap;
 
 public class RemoveTrap extends Ability {
 	
@@ -16,9 +15,6 @@ public class RemoveTrap extends Ability {
 		super(10);
 	}
 	
-	public RemoveTrap(StructuredMap map) {
-		super(map);
-	}
 
 	@Override
 	public void perform(Avatar avatar) {
@@ -42,9 +38,5 @@ public class RemoveTrap extends Ability {
 		}
 	}
 
-	@Override
-	protected String getType() {
-		return "removeTrap";
-	}
 
 }

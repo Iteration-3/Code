@@ -7,7 +7,6 @@ import model.event.HealthModifierEvent;
 import model.trigger.TimedTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
-import utilities.structuredmap.StructuredMap;
 
 public class SmasherWeaponAttack extends TriggerAbility {
 
@@ -23,10 +22,6 @@ public class SmasherWeaponAttack extends TriggerAbility {
 		this.setManaCost(manaCost);
 	}
 
-	public SmasherWeaponAttack(StructuredMap map) {
-		super(map);
-		this.timeout =  map.getDouble("smasherWeaponAttack").longValue();
-	}
 
 	@Override
 	public void perform(Avatar avatar) {
@@ -60,18 +55,6 @@ public class SmasherWeaponAttack extends TriggerAbility {
 
 	private long getTimeout() {
 		return timeout;
-	}
-
-	@Override
-	public StructuredMap getStructuredMap() {
-		StructuredMap map = super.getStructuredMap();
-		map.put("timeout", (double) timeout);
-		return map;
-	}
-
-	@Override
-	protected String getType() {
-		return "smasherWeaponAttack";
 	}
 
 }
