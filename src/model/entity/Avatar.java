@@ -73,9 +73,8 @@ public abstract class Avatar extends Entity {
 		int level = getBaseStats().getLevel();
         getBaseStats().addExperience(experience);
         int updatedLevel = getBaseStats().getLevel();
-        if (updatedLevel > level) {
-        	skillManager.incrementSkillPointToSpend();
-        }
+		for (int i = level; i < updatedLevel; ++i )
+			skillManager.incrementSkillPointToSpend();
 	}
 	
 	@Override

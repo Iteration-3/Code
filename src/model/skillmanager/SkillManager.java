@@ -100,3 +100,4 @@ public abstract class SkillManager implements Saveable {
 	protected abstract String getType();
 	
 }
+
