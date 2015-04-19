@@ -299,8 +299,8 @@ public abstract class Entity extends MobileObject implements Saveable {
         stats.addLives(lives);
     }
 
-    public void addMana(int mana) {
-        stats.addMana(mana);
+    public void addCurrentMana(int mana) {
+        stats.addCurrentMana(mana);
     }
 
     public boolean containsItem(TakeableItem item) {

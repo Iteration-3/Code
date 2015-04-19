@@ -77,6 +77,18 @@ public class EntityStatistics extends Statistics {
 
     public void setLivesLeft(int livesLeft) {
         this.livesLeft = livesLeft;
+        livesCheck();
+    }
+    
+    public void decrementLives(){
+    	--this.livesLeft;
+    	livesCheck();
+    }
+    
+    private void livesCheck(){
+    	if(this.getLivesLeft() <= 0){
+    		System.out.println("OUT OF LIVES, PERMA DEAD, PROB SHOULD DO SOMETHING");
+    	}
     }
 
     public int getExperience() {
@@ -99,8 +111,21 @@ public class EntityStatistics extends Statistics {
         return currentHealth;
     }
 
+  
     public void setCurrentHealth(int currentHealth) {
         this.currentHealth = currentHealth;
+        this.healthCheck();
+    }
+    
+    private void healthCheck(){
+    	 if(this.currentHealth < 0){
+         	this.currentHealth = getMaximumHealth();
+         	this.decrementLives();
+         	System.out.println("You haved Died!");
+         }
+         if(this.currentHealth > this.getMaximumHealth()){
+         	this.currentHealth = this.getMaximumHealth();
+         }
     }
 
     public int getMaximumHealth() {
@@ -119,12 +144,22 @@ public class EntityStatistics extends Statistics {
     	return money;
     }
 
-    public void setCurrentMana(int currentMana) {
+    private void setCurrentMana(int currentMana) {
         this.currentMana = currentMana;
+        this.manaCheck();
     }
 
     public void addCurrentMana(int change) {
         this.currentMana += change;
+        this.manaCheck();
+    }
+    private void manaCheck(){
+    	if(this.currentMana < 0){
+    		this.currentMana = 0;
+    	}
+    	if(this.currentMana > this.getMaximumMana()){
+    		this.currentMana = this.getMaximumMana();
+    	}
     }
 
     public int getMaximumMana() {
@@ -147,9 +182,7 @@ public class EntityStatistics extends Statistics {
         this.livesLeft += lives;
     }
 
-    public void addMana(int mana) {
-        this.currentMana += mana;
-    }
+
     
     public void addMoney(int money) {
     	this.money += money;
