@@ -20,9 +20,9 @@ public class OneShotItem extends Item {
 		this.modifiers = modifiers;
 	}
 	
-	public OneShotItem(ItemView itemView, StructuredMap map) {
+	public OneShotItem(StructuredMap map) {
 	    //TODO verify saving and loading
-	    super(itemView);
+	    super(map);
 	    this.modifiers = new EntityStatistics(map.getStructuredMap("modifiers"));
 	}
 
@@ -58,5 +58,10 @@ public class OneShotItem extends Item {
        map.put("modifiers", modifiers.getStructuredMap());
        return map;
     }
+
+	@Override
+	protected String getType() {
+		return "oneShot";
+	}
 
 }

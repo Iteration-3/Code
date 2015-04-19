@@ -15,8 +15,8 @@ public class ChestPiece extends EquipableItem {
 		super(itemView, statistics);
 	}
 
-    public ChestPiece(ItemView itemView, StructuredMap map) {
-        super(itemView, map);
+    public ChestPiece(StructuredMap map) {
+        super(map);
     }
 
 	public boolean equip(ItemManager itemManager) {

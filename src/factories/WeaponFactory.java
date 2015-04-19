@@ -1,5 +1,6 @@
 package factories;
 
+import model.item.NPCWeapon;
 import model.item.SmasherWeapon;
 import model.item.SneakWeapon;
 import model.item.SummonerWeapon;
@@ -17,6 +18,8 @@ public class WeaponFactory {
 			return new SneakWeapon(structuredMap);
 		case "summoner":
 			return new SummonerWeapon(structuredMap);
+		case "npc" :
+			return new NPCWeapon(structuredMap);
 		default:
 			throw new IllegalArgumentException("Fuck you");
 		}
