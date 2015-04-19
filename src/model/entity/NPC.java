@@ -37,9 +37,6 @@ public class NPC extends Entity {
 		DialogManager.getSingleton().initDialog(this, avatar);
 	}
 
-	// Needs behavior shit!
-	// Behavior shit will be overridden by subclasses
-
 	public NPC(StructuredMap map) {
 		super(map);
 	}

@@ -14,7 +14,7 @@ public class EntityStatistics extends Statistics {
         super();
         setLivesLeft(3);
         setExperience(0);
-        setMovement(0);
+        setMovement(5);
         setCurrentHealth(getMaximumHealth());
         setCurrentMana(getMaximumMana());
         setMoney(30);
@@ -121,7 +121,7 @@ public class EntityStatistics extends Statistics {
     	 if(this.currentHealth < 0){
          	this.currentHealth = getMaximumHealth();
          	this.decrementLives();
-         	System.out.println("You haved Died!");
+         	// System.out.println("You haved Died!");
          }
          if(this.currentHealth > this.getMaximumHealth()){
          	this.currentHealth = this.getMaximumHealth();

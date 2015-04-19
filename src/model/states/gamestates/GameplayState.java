@@ -126,6 +126,9 @@ public class GameplayState extends GameState {
         TileCoordinate loc = new TileCoordinate(3, 3);
         EntityView eView = new EntityView(EntitySpriteFactory.getSummonerSpriteHolder());
         avatar = new Summoner("Summoner", eView, loc);
+
+        getController().registerAvatar(avatar);
+        
         //testing this for equipped Items
         avatar.equip(new Helmet(new BasicItemView(),new Statistics()));
 
