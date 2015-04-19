@@ -6,8 +6,8 @@ import java.util.HashMap;
 
 import javax.swing.JComponent;
 
-import controller.InventoryMenuController;
 import utilities.ImageProcessing;
+import controller.SlotViewMouseListenerFactory;
 
 @SuppressWarnings("serial")
 public class InventoryView extends JComponent {
@@ -81,9 +81,9 @@ public class InventoryView extends JComponent {
 		this.widthOffset = width;
 		this.heightOffset = height;
 	}
-
-	public void add(InventoryMenuController controller) {
-		for (int i : slots.keySet()) {
+	
+	public void add(SlotViewMouseListenerFactory controller){
+		for (int i:slots.keySet()) {
 			slots.get(i).addMouseListener(controller.makeSlotMouseListener(i));
 		}
 	}
