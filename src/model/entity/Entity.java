@@ -29,16 +29,16 @@ public abstract class Entity extends MobileObject implements Saveable {
     private Angle direction = Angle.UP;
 	private boolean isFlying = false;
 
+    protected Entity() {
+    	super(new TileCoordinate(0, 0));
+    }
+
     public Entity(String name, EntityView view, TileCoordinate location) {
     	super(location);
         this.name = name;
         this.view = view;
         this.location = location;
         this.setNecessities();
-    }
-
-    public Entity() {
-    	super(new TileCoordinate(0, 0));
     }
     
     public Entity(StructuredMap map) {
