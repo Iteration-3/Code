@@ -8,11 +8,12 @@ public class SkillsMenuState extends GameState {
 	private SkillsMenuController controller;
 	
     public SkillsMenuState() {
-    	layout = new SkillsMenuLayout();
+    	// layout = new SkillsMenuLayout();
     }
     
     @Override
     public void onEnter() {
+    	layout = new SkillsMenuLayout();
     	super.onEnter();
     	
     	controller = new SkillsMenuController(getContext());

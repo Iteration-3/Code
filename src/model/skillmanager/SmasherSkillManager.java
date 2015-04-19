@@ -8,6 +8,10 @@ public class SmasherSkillManager extends SkillManager {
     private int oneHandedSkill = 1;
     private int brawlSkill = 1;
     
+   public SmasherSkillManager() {
+
+   }
+    
     public SmasherSkillManager(StructuredMap map) {
 		super(map);
 		this.twoHandedSkill = map.getInteger("twoHandedSkill");

@@ -70,11 +70,21 @@ public abstract class Avatar extends Entity {
 	}
 	
 	@Override
+	public void addExperience(int experience) {
+		int level = getBaseStats().getLevel();
+        getBaseStats().addExperience(experience);
+        int updatedLevel = getBaseStats().getLevel();
+        if (updatedLevel > level) {
+        	skillManager.incrementSkillPointToSpend();
+        }
+	}
+	
+	@Override
 	public Collection<Listener> getListeners(KeyPreferences preferences) {
 		System.out.println("Test");
 		Collection<Listener> listeners = new ArrayList<Listener>();
 		int i = 1;
-		for(Ability a : this.getAbilities()){
+		for(final Ability a : this.getAbilities()){
 			listeners.add(new PollingListener(preferences.getAbility(i),new GameAction() {
 				@Override
 				public void perform() {
@@ -103,7 +113,11 @@ public abstract class Avatar extends Entity {
 		return getSkillManager().getObserveSkill();
 	}
 	
-	protected SkillManager getSkillManager() {
+	// I made this public instead of protected.  
+	// The alternative is making things like: incrementAttackSkill() in the 
+	// Avatar's public interface
+	// This may not be good Encapsulation practices though
+	public SkillManager getSkillManager() {
 		return this.skillManager;
 	}
 	

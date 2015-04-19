@@ -2,10 +2,13 @@ package view.layout;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import model.entity.Avatar;
 import model.entity.EntityManager;
 import model.item.Item;
+import model.skillmanager.SkillManager;
 import view.components.MenuButton;
 import view.components.TextLabel;
 import controller.SkillsMenuController;
@@ -13,7 +16,8 @@ import controller.SkillsMenuController;
 @SuppressWarnings("serial")
 public class SkillsMenuLayout extends Layout {
 	private MenuButton backButton;
-	private TextLabel skills;
+	private TextLabel skillsLabel;
+	private TextLabel statsLabel;
 
 	public SkillsMenuLayout() {
 		setPreferredSize(new Dimension(1024, 768));
@@ -21,7 +25,7 @@ public class SkillsMenuLayout extends Layout {
 		addLabels();
 		initButtons();
 		addButtons();
-
+		addSkillPointInterface();
 	}
 
 	private void initButtons() {
@@ -30,8 +34,8 @@ public class SkillsMenuLayout extends Layout {
 	}
 
 	private void initLabels(){
-		
-		skills = new TextLabel();
+		statsLabel = new TextLabel();
+		skillsLabel = new TextLabel();
 	}
 
 	private void addButtons() {
@@ -39,30 +43,56 @@ public class SkillsMenuLayout extends Layout {
 	}
 
 	private void addLabels(){
-		add(skills);
+		add(statsLabel);
+		add(skillsLabel);
 	}
 	
 	public void generateLabelText(){
-		StringBuilder stats = new StringBuilder();
+		// Stats Label
+		StringBuilder builder = new StringBuilder();
 		Avatar avatar = EntityManager.getSingleton().getAvatar();
+
 		if(avatar == null){return;}
-		stats.append(avatar.getBaseStats().toString());
-		stats.append(" " + System.lineSeparator()+ " ");
-		stats.append(avatar.getDerivedStats().toString());
-		stats.append(" " + System.lineSeparator()+ " ");
-		stats.append(avatar.toString());
-		stats.append(" " + System.lineSeparator()+ " ");
-		stats.append(" LIFE " + avatar.getDerivedStats().getCurrentHealth() + " MANA "
-		+ avatar.getDerivedStats().getCurrentMana());
-		stats.append("ITEMS:");
+		builder.append("<html>");
+		builder.append(avatar.getDerivedStats().toString().replaceAll("\\n", "<br>"));
+		builder.append("<br>");
+		builder.append("ITEMS:<br>");
 		for(Item i : avatar.getItems()){
 			if(i==null){continue;}
-			stats.append(i.toString());
-			stats.append(" " + System.lineSeparator()+ " ");
-
+			builder.append(i.toString());
+			builder.append("<br>");
 		}
-				
-		skills.setText(stats.toString());
+		builder.append("</html>");
+
+		statsLabel.setText(builder.toString());
+	}
+	
+	private void addSkillPointInterface() {
+		final Avatar avatar = EntityManager.getSingleton().getAvatar();
+		if(avatar == null){return;}
+
+		final SkillManager skillManager = avatar.getSkillManager();
+		final TextLabel skillPointsRemainingLabel = new TextLabel();
+		skillPointsRemainingLabel.setText("Skill Points Left To Spend: " + skillManager.getSkillPointsToSpend());
+		
+		final TextLabel bindWoundTextLabel = new TextLabel();
+		bindWoundTextLabel.setText("Bind Wound: " + avatar.getBindWoundSkill());
+		MenuButton incrementBindWoundButton = new MenuButton("+");
+		incrementBindWoundButton.setColor(Color.GREEN);
+		incrementBindWoundButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				skillManager.incrementBindWound();
+				bindWoundTextLabel.setText("Bind Wound: " + avatar.getBindWoundSkill());
+				skillPointsRemainingLabel.setText("Skill Points Left To Spend: " + skillManager.getSkillPointsToSpend());
+				// bindWoundTextLabel.repaint();
+			}
+		});
+		add(skillPointsRemainingLabel);
+		add(bindWoundTextLabel);
+		add(incrementBindWoundButton);
+		
 	}
 
 	public void attachController(SkillsMenuController controller) {   	

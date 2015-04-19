@@ -3,6 +3,10 @@ package model.skillmanager;
 import utilities.structuredmap.StructuredMap;
 
 public class SummonerSkillManager extends SkillManager {
+	
+	public SummonerSkillManager() {
+		
+	}
 
     public SummonerSkillManager(StructuredMap map) {
 		super(map);

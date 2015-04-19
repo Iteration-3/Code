@@ -18,6 +18,7 @@ import model.entity.EntityManager;
 import model.entity.EntityMovementAssocation;
 import model.entity.NPC;
 import model.entity.Summoner;
+import model.event.ExperienceModifierEvent;
 import model.event.HealthModifierEvent;
 import model.event.ManaModifierEvent;
 import model.event.RiverPushEvent;
@@ -207,7 +208,7 @@ public class GameplayState extends GameState {
 
         TileCoordinate locTwo = new TileCoordinate(2, 7);
         Area areaTwo = new RadialArea(1, locTwo);
-        Trigger triggerTwo = new PermanentTrigger(areaTwo, new ManaModifierEvent(10, 200));
+        Trigger triggerTwo = new SingleUseTrigger(areaTwo, new ExperienceModifierEvent(0, 750));
 
         TileCoordinate locThree = new TileCoordinate(2, 8);
         Area areaThree = new RadialArea(0, locThree);
