@@ -12,10 +12,7 @@ public class LightConeProjectile extends ConicalProjectile {
 	
 	public LightConeProjectile() {
 		super();
-		this.setSpeed(3);
-		Event damageEvent = new HealthModifierEvent(0, -15);
-		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
-		this.setTrigger(damageTrigger);
+		this.setLevel(1);
 	}
 	
 	public LightConeProjectile(Angle direction, double speed, Trigger trigger) {
@@ -29,6 +26,14 @@ public class LightConeProjectile extends ConicalProjectile {
 	@Override
 	protected String getType() {
 		return "lightConeProjectile";
+	}
+
+	public void setLevel(int x) {
+		this.setSpeed(3*x);
+		Event damageEvent = new HealthModifierEvent(0, -15*x);
+		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
+		this.setTrigger(damageTrigger);
+		
 	}
 
 }

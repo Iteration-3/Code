@@ -91,3 +91,8 @@ RemoteSystemsTempFiles/
 /img8.png
 /img9.png
 /target/
+/tst/model/Key/GPATH
+/tst/model/Key/GRTAGS
+/tst/model/Key/GTAGS
+
+/.settings/

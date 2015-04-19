@@ -1,6 +1,5 @@
 package model.ability.sneak;
 
-import factories.EventFactory;
 import model.ability.SelfAbility;
 import model.entity.Avatar;
 import model.event.Event;
@@ -8,7 +7,6 @@ import model.event.EventManager;
 import model.event.MovementModifierEvent;
 import model.event.StatisticModifierEvent;
 import model.statistics.Statistics;
-import utilities.structuredmap.StructuredMap;
 
 public class Creep extends SelfAbility {
 	
@@ -21,11 +19,6 @@ public class Creep extends SelfAbility {
 	public Creep(int manaCost) {
 		super();
 		this.setManaCost(manaCost);
-	}
-	
-	public Creep(StructuredMap map) {
-		super(map);
-		movementModifier = EventFactory.createMovementModifierEvent(map);
 	}
 	
 	@Override
@@ -42,9 +35,5 @@ public class Creep extends SelfAbility {
 		}
 	}
 
-	@Override
-	protected String getType() {
-		return "creep";
-	}
 
 }

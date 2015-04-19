@@ -9,14 +9,14 @@ import view.EntityView;
 
 public class Smasher extends Avatar {
 	
-	public Smasher(StructuredMap map) {
-		super(map);
-	}
+
+
+	private SmasherSkillManager skillManager;
 
 	public Smasher(String name, EntityView view, TileCoordinate loc) {
 		super(name, view,loc);
 		this.getAbilities().add(new SmasherWeaponAttack());
-		setSkillManager(new SmasherSkillManager());
+		skillManager = (new SmasherSkillManager());
 	}
 
 	@Override
@@ -49,6 +49,11 @@ public class Smasher extends Avatar {
 	public void load(StructuredMap map) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public SmasherSkillManager getSkillManager() {
+		return skillManager;
 	}
 
 }
