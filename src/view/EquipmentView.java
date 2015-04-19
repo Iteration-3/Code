@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
@@ -9,11 +10,7 @@ import utilities.ImageProcessing;
 
 @SuppressWarnings("serial")
 public class EquipmentView extends JComponent {
-	private static final int WIDTH = 3;
-	private static final int HEIGHT = 4;
-	private static final int SLOT_HEIGHT = 100;
-	private static final int SLOT_WIDTH = 100;
-	private static final float EQUIPMENT_SCALE = 80;	//this is a percentage of the height and scale
+	private float EQUIPMENT_SCALE = 80;	//this is a percentage of the height and scale
 	
 	private static final String HELMET_PATH = "src/resources/images/helmet_slot.jpg";
 	private static final String CHEST_PIECE_PATH = "src/resources/images/chest_piece_slot.jpg";
@@ -24,22 +21,24 @@ public class EquipmentView extends JComponent {
 	private static final String PROJECTILE_PATH = "src/resources/images/projectile_slot.jpg";
 	private static final String GLOVES_PATH = "src/resources/images/gloves_slot.jpg";
 	
-	private static final int helmetX = SLOT_WIDTH;
-	private static final int helmetY = 0;
-	private static final int chestPieceX = helmetX;
-	private static final int chestPieceY = helmetY + SLOT_HEIGHT;
-	private static final int leggingsX = chestPieceX;
-	private static final int leggingsY = chestPieceY +SLOT_HEIGHT;
-	private static final int bootsX = leggingsX;
-	private static final int bootsY = leggingsY + SLOT_HEIGHT;
-	private static final int weaponX = chestPieceX - SLOT_WIDTH;
-	private static final int weaponY = chestPieceY;
-	private static final int glovesX = leggingsX - SLOT_WIDTH;
-	private static final int glovesY = leggingsY;
-	private static final int shieldX = chestPieceX + SLOT_WIDTH;
-	private static final int shieldY = chestPieceY;
-	private static final int projectileX = helmetX + SLOT_WIDTH;
-	private static final int projectileY = helmetY;
+	private int helmetX;
+	private int helmetY;
+	private int chestPieceX;
+	private int chestPieceY;
+	private int leggingsX;
+	private int leggingsY;
+	private int bootsX;
+	private int bootsY;
+	private int weaponX;
+	private int weaponY;
+	private int glovesX;
+	private int glovesY;
+	private int shieldX;
+	private int shieldY;
+	private int projectileX;
+	private int projectileY;
+	private int slotHeight;
+	private int slotWidth;
 
 	private static BufferedImage helmetImage;
 	private static BufferedImage chestPieceImage;
@@ -61,26 +60,24 @@ public class EquipmentView extends JComponent {
 	
 	public EquipmentView(){
 		setLayout(null);
-		setImages();
 		this.setVisible(true);
 		this.setFocusable(true);
 	}
 	
 	private void setImages(){
-		helmetImage = ImageProcessing.scaleImage(SLOT_WIDTH, SLOT_HEIGHT, HELMET_PATH);
-		chestPieceImage = ImageProcessing.scaleImage(SLOT_WIDTH, SLOT_HEIGHT, CHEST_PIECE_PATH);
-		leggingsImage = ImageProcessing.scaleImage(SLOT_WIDTH, SLOT_HEIGHT, LEGGINGS_PATH);
-		bootsImage = ImageProcessing.scaleImage(SLOT_WIDTH,SLOT_HEIGHT, BOOTS_PATH);
-		weaponImage = ImageProcessing.scaleImage(SLOT_WIDTH, SLOT_HEIGHT, WEAPON_PATH);
-		shieldImage = ImageProcessing.scaleImage(SLOT_WIDTH, SLOT_HEIGHT, SHIELD_PATH);
-		projectileImage = ImageProcessing.scaleImage(SLOT_WIDTH, SLOT_HEIGHT, PROJECTILE_PATH);
-		glovesImage = ImageProcessing.scaleImage(SLOT_WIDTH, SLOT_HEIGHT, GLOVES_PATH);
+		helmetImage = ImageProcessing.scaleImage(slotHeight, slotHeight, HELMET_PATH);
+		chestPieceImage = ImageProcessing.scaleImage(slotHeight, slotHeight, CHEST_PIECE_PATH);
+		leggingsImage = ImageProcessing.scaleImage(slotHeight, slotHeight, LEGGINGS_PATH);
+		bootsImage = ImageProcessing.scaleImage(slotHeight,slotHeight, BOOTS_PATH);
+		weaponImage = ImageProcessing.scaleImage(slotHeight, slotHeight, WEAPON_PATH);
+		shieldImage = ImageProcessing.scaleImage(slotHeight, slotHeight, SHIELD_PATH);
+		projectileImage = ImageProcessing.scaleImage(slotHeight, slotHeight, PROJECTILE_PATH);
+		glovesImage = ImageProcessing.scaleImage(slotHeight, slotHeight, GLOVES_PATH);
 	}
 	
 	private void setView(SlotView slot,BufferedImage image,int x,int y){
 		slot.setBackground(image);
 		add(slot);
-		slot.setBounds(x, y, SLOT_WIDTH, SLOT_HEIGHT);
 	}
 	
 	public void registerHelmet(SlotView slotView){
@@ -117,14 +114,18 @@ public class EquipmentView extends JComponent {
 	}
 	
 	public void setBounds(int x, int y){
-		this.setBounds(x,y,WIDTH, HEIGHT);
+		this.setBounds(x,y,this.getWidth(), this.getHeight());
 	}
 	
 	public int getWidth(){
-		return WIDTH * SLOT_WIDTH;
+		return 3 * slotHeight;
 	}
 	public int getHeight(){
-		return HEIGHT * SLOT_HEIGHT;
+		return 4 * slotHeight;
+	}
+	
+	public Dimension getPreferredSize(){
+		return new Dimension(this.getWidth(),this.getHeight());
 	}
 	
 	public void add(InventoryMenuController controller){
@@ -136,5 +137,47 @@ public class EquipmentView extends JComponent {
 		weaponView.addMouseListener(controller.makeWeaponListener());
 		shieldView.addMouseListener(controller.makeShieldListener());
 		chestPieceView.addMouseListener(controller.makeChestPieceListener());
+	}
+	
+	public void setSlotDimensions(int width,int height){
+		this.slotHeight = height;
+		this.slotWidth = width;
+		setSlotDimensions();
+	}
+	
+	private void setSlotDimensions(){
+		helmetX = slotHeight;
+		helmetY = 0;
+		chestPieceX = helmetX;
+		chestPieceY = helmetY + slotHeight;
+		leggingsX = chestPieceX;
+		leggingsY = chestPieceY +slotHeight;
+		bootsX = leggingsX;
+		bootsY = leggingsY + slotHeight;
+		weaponX = chestPieceX - slotHeight;
+		weaponY = chestPieceY;
+		glovesX = leggingsX - slotHeight;
+		glovesY = leggingsY;
+		shieldX = chestPieceX + slotHeight;
+		shieldY = chestPieceY;
+		projectileX = helmetX + slotHeight;
+		projectileY = helmetY;
+		helmetView.setBounds(helmetX , helmetY , slotHeight, slotHeight);
+		leggingsView.setBounds(leggingsX , leggingsY , slotHeight, slotHeight);
+		glovesView.setBounds(glovesX , glovesY , slotHeight, slotHeight);
+		weaponView.setBounds(weaponX , weaponY , slotHeight, slotHeight);
+		bootsView.setBounds(bootsX , bootsY , slotHeight, slotHeight);
+		shieldView.setBounds(shieldX , shieldY , slotHeight, slotHeight);
+		projectileView.setBounds(projectileX , projectileY , slotHeight, slotHeight);
+		chestPieceView.setBounds(chestPieceX , chestPieceY , slotHeight, slotHeight);
+		this.setImages();
+		this.setView(shieldView ,shieldImage , shieldX , shieldY);
+		this.setView(glovesView ,glovesImage , glovesX , glovesY);
+		this.setView(projectileView ,projectileImage , projectileX , projectileY);
+		this.setView(helmetView ,helmetImage,helmetX,helmetY);
+		this.setView(chestPieceView ,chestPieceImage,chestPieceX,chestPieceY);
+		this.setView(leggingsView ,leggingsImage , leggingsX , leggingsY);
+		this.setView(bootsView ,bootsImage , bootsX , bootsY);
+		this.setView(weaponView ,weaponImage , weaponX , weaponY);
 	}
 }
