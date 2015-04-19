@@ -1,7 +1,6 @@
 package view.layout;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,7 +19,6 @@ public class SkillsMenuLayout extends Layout {
 	private TextLabel statsLabel;
 
 	public SkillsMenuLayout() {
-		setPreferredSize(new Dimension(1024, 768));
 		initLabels();
 		addLabels();
 		initButtons();

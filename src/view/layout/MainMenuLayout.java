@@ -44,9 +44,4 @@ public class MainMenuLayout extends Layout {
     	
     	exitGameButton.addActionListener(controller.getExitAction());
     }  
-    
-    @Override
-    public void revalidate() {
-    	System.out.println("I'm the main menu!");
-    }
 }

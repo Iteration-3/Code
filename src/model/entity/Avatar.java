@@ -81,7 +81,7 @@ public abstract class Avatar extends Entity {
 	@Override
 	public Collection<Listener> getListeners(KeyPreferences preferences) {
 		Collection<Listener> listeners = new ArrayList<Listener>();
-		int i = 1;
+		int i = 0;
 		for(final Ability a : this.getAbilities()){
 			listeners.add(new PollingListener(preferences.getAbility(i),new GameAction() {
 				@Override

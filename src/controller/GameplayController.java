@@ -3,7 +3,6 @@ package controller;
 import model.Model;
 import model.entity.EntityManager;
 import model.event.EventManager;
-import model.light.LightManager;
 import model.trigger.TriggerManager;
 import controller.listener.Listener;
 

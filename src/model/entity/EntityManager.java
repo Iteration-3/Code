@@ -70,7 +70,7 @@ public class EntityManager implements Iterable<Entity> {
 		return _entityManager;
 	}
 	
-	public void update(float deltaTime) {
+	public void update(double deltaTime) {
 		for(Entity e : this){
 			e.update();
 			e.perform();

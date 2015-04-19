@@ -1,9 +1,6 @@
 package model.area;
 
-import java.util.List;
-
 import utilities.Angle;
-import utilities.structuredmap.StructuredMap;
 
 public abstract class DirectionalArea extends Area {
 

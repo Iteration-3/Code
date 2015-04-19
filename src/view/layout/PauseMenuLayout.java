@@ -1,7 +1,6 @@
 package view.layout;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.border.EmptyBorder;
@@ -18,7 +17,6 @@ public class PauseMenuLayout extends Layout {
     private MenuButton mainMenuButton;
 
     public PauseMenuLayout() {
-    	setPreferredSize(new Dimension(1024, 768));
         setLayout(new GridLayout(5, 1));
         setBorder(new EmptyBorder(100,300,100,300));
         setOpaque(false);

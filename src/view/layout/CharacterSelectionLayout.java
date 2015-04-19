@@ -1,7 +1,6 @@
 package view.layout;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import view.components.MenuButton;
@@ -16,7 +15,6 @@ public class CharacterSelectionLayout extends Layout {
     private MenuButton backButton;
 
     public CharacterSelectionLayout() {
-        setPreferredSize(new Dimension(1024, 768));
         setLayout(new GridLayout(1, 3));
 
         initButtons();

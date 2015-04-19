@@ -2,8 +2,6 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.LinkedList;
@@ -11,15 +9,11 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
-import javax.swing.Timer;
 
 import view.layout.Layout;
 
 @SuppressWarnings("serial")
-public class View extends JFrame implements ActionListener {
-	private static final int FPS = 30;
-	private static final int REDRAW_INTERVAL = 1000 / FPS;
-	
+public class View extends JFrame {
 	private int currentLayer;
 	private List<Layout> activeLayouts;
 	
@@ -34,8 +28,6 @@ public class View extends JFrame implements ActionListener {
 		
 		setupFrame();
 
-		initRedrawTimer();
-		
 		addResizeListener();
 	}
 
@@ -47,33 +39,28 @@ public class View extends JFrame implements ActionListener {
 		setLocationRelativeTo(null);
 	}
 	
-	private void initRedrawTimer() {
-		Timer t = new Timer(REDRAW_INTERVAL, this);
-		t.start();
-	}
-	
-	public void actionPerformed(ActionEvent e) {
-		repaint();
-	}
-	
 	public void addGameLayout(Layout layout) {
 		Dimension contentSize = layeredPane.getSize();
 		layout.setSize(getSize());
 		layeredPane.add(layout, new Integer(++currentLayer));
 		activeLayouts.add(layout);
+		revalidate();
 	}
 	
 	public void removeGameLayout(Layout layout) {
 		layeredPane.remove(layout);
 		activeLayouts.remove(layout);
 		--currentLayer;
+		revalidate();
 	}
 	
 	@Override
 	public void revalidate() {
 		for(Layout activeLayout : activeLayouts) {
-			activeLayout.setBounds(0, 0, getSize().width, getSize().height);
+			Dimension paneSize = getContentPane().getSize();
+			activeLayout.setBounds(0, 0, paneSize.width, paneSize.height);
 			activeLayout.revalidate();
+			activeLayout.repaint();
 		}
 		super.revalidate();
 	}

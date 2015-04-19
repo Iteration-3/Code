@@ -33,16 +33,9 @@ public class KeyBindingsController extends Controller {
     private ToggleAction rebindSkills;
     private ToggleAction rebindPause;
     private ToggleAction rebindDismount;
-    private ToggleAction rebindAbility1;
-    private ToggleAction rebindAbility2;
-    private ToggleAction rebindAbility3;
-    private ToggleAction rebindAbility4;
-    private ToggleAction rebindAbility5;
-    private ToggleAction rebindAbility6;
-    private ToggleAction rebindAbility7;
-    private ToggleAction rebindAbility8;
-    private ToggleAction rebindAbility9;
-    private ToggleAction rebindAbility0;
+  
+    private static final int NUM_ABILITIES = 10;
+    private ToggleAction[] rebindAbilities;
 
     @SuppressWarnings("serial")
     public KeyBindingsController(final Model model) {
@@ -104,57 +97,17 @@ public class KeyBindingsController extends Controller {
 				attachNewDismountMapping();
 			}
 		};
-        rebindAbility1 = new ToggleAction() {
-            public void action() {
-                attachNewAbilityMapping(2);
-            }
-        };
-        rebindAbility2 = new ToggleAction() {
-            public void action() {
-                attachNewAbilityMapping(3);
-            }
-        };
-        rebindAbility3 = new ToggleAction() {
-            public void action() {
-                attachNewAbilityMapping(4);
-            }
-        };
-        rebindAbility4 = new ToggleAction() {
-            public void action() {
-                attachNewAbilityMapping(5);
-            }
-        };
-        rebindAbility5 = new ToggleAction() {
-            public void action() {
-                attachNewAbilityMapping(6);
-            }
-        };
-        rebindAbility6 = new ToggleAction() {
-            public void action() {
-                attachNewAbilityMapping(7);
-            }
-        };
-        rebindAbility7 = new ToggleAction() {
-            public void action() {
-                attachNewAbilityMapping(8);
-            }
-        };
-        rebindAbility8 = new ToggleAction() {
-            public void action() {
-                attachNewAbilityMapping(9);
-            }
-        };
-        rebindAbility9 = new ToggleAction() {
-            public void action() {
-                attachNewAbilityMapping(10);
-            }
-        };
-        rebindAbility0 = new ToggleAction() {
-            public void action() {
-                attachNewAbilityMapping(1);
-                
-            }
-        };
+        rebindAbilities = new ToggleAction[NUM_ABILITIES];
+        for(int i = 0; i < NUM_ABILITIES; ++i) {
+        	final int index = i;
+        	rebindAbilities[i] = new ToggleAction() {
+        		@Override
+        		public void action() {
+        			attachNewAbilityMapping(index);
+        			System.out.println(index);
+        		}
+        	};
+        }
     }
 
     public KeyPreferences getKeyPreferences() {
@@ -302,44 +255,7 @@ public class KeyBindingsController extends Controller {
     	return rebindDismount;
     }
 
-    public ToggleAction getRebindAbility1() {
-        return rebindAbility1;
+    public ToggleAction getRebindAbility(int i) {
+    	return rebindAbilities[i];
     }
-
-    public ToggleAction getRebindAbility2() {
-        return rebindAbility2;
-    }
-
-    public ToggleAction getRebindAbility3() {
-        return rebindAbility3;
-    }
-
-    public ToggleAction getRebindAbility4() {
-        return rebindAbility4;
-    }
-
-    public ToggleAction getRebindAbility5() {
-        return rebindAbility5;
-    }
-
-    public ToggleAction getRebindAbility6() {
-        return rebindAbility6;
-    }
-
-    public ToggleAction getRebindAbility7() {
-        return rebindAbility7;
-    }
-
-    public ToggleAction getRebindAbility8() {
-        return rebindAbility8;
-    }
-
-    public ToggleAction getRebindAbility9() {
-        return rebindAbility9;
-    }
-
-    public ToggleAction getRebindAbility0() {
-        return rebindAbility0;
-    }
-
 }

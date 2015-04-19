@@ -1,7 +1,6 @@
 package view.layout;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import controller.OptionsMenuController;
@@ -13,7 +12,6 @@ public class OptionsMenuLayout extends Layout {
     private MenuButton changeUpKeyButton;
 
     public OptionsMenuLayout() {
-        setPreferredSize(new Dimension(1024, 768));
         setLayout(new GridLayout(2, 1));
         initButtons();
         addButtons();

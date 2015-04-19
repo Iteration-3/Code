@@ -11,7 +11,6 @@ import model.ability.summoner.enchantment.Cripple;
 import model.ability.summoner.enchantment.Intimidate;
 import model.ability.summoner.enchantment.Silence;
 import model.area.TileCoordinate;
-import model.item.ChestPiece;
 import model.item.Helmet;
 import model.skillmanager.SummonerSkillManager;
 import model.slots.ItemManager;

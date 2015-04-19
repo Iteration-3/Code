@@ -2,8 +2,6 @@ package model.light;
 
 import java.util.ArrayList;
 
-import model.area.TileCoordinate;
-
 public class LightManager {
 	
 	private static LightManager _lightManager = new LightManager();

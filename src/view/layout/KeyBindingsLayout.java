@@ -1,10 +1,22 @@
 package view.layout;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.RenderingHints;
 import java.util.List;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
+import javax.swing.border.EmptyBorder;
 
 import model.KeyPreferences;
 import view.components.MenuButton;
@@ -45,40 +57,16 @@ public class KeyBindingsLayout extends Layout {
 
     private MenuButton rebindSkills;
     private TextLabel skillLabel;
-
-    private MenuButton rebindAbility0;
-    private TextLabel ability0Label;
-
-    private MenuButton rebindAbility1;
-    private TextLabel ability1Label;
-
-    private MenuButton rebindAbility2;
-    private TextLabel ability2Label;
-
-    private MenuButton rebindAbility3;
-    private TextLabel ability3Label;
-
-    private MenuButton rebindAbility4;
-    private TextLabel ability4Label;
-
-    private MenuButton rebindAbility5;
-    private TextLabel ability5Label;
-
-    private MenuButton rebindAbility6;
-    private TextLabel ability6Label;
-
-    private MenuButton rebindAbility7;
-    private TextLabel ability7Label;
-
-    private MenuButton rebindAbility8;
-    private TextLabel ability8Label;
-
-    private MenuButton rebindAbility9;
-    private TextLabel ability9Label;
+    
+    private static final int NUM_ABILITIES = 10;
+    private MenuButton[] rebindAbilities;
+    private TextLabel[] abilityLabels;
+    private Image bgImage;
 
     public KeyBindingsLayout() {
-        setPreferredSize(new Dimension(1024, 768));
-
+		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+    	setBorder(new EmptyBorder(50, 50, 50, 50));
+    	bgImage = new ImageIcon("src/resources/images/hex_bg.jpg").getImage();
         initLabels();
         initButtons();
         addComponents();
@@ -86,69 +74,93 @@ public class KeyBindingsLayout extends Layout {
 
     private void initLabels() {
         upLabel = new TextLabel();
+        upLabel.setHorizontalAlignment(TextLabel.CENTER);
         downLabel = new TextLabel();
+        downLabel.setHorizontalAlignment(TextLabel.CENTER);
         upLeftLabel = new TextLabel();
+        upLeftLabel.setHorizontalAlignment(TextLabel.CENTER);
         upRightLabel = new TextLabel();
+        upRightLabel.setHorizontalAlignment(TextLabel.CENTER);
         downLeftLabel = new TextLabel();
+        downLeftLabel.setHorizontalAlignment(TextLabel.CENTER);
         downRightLabel = new TextLabel();
+        downRightLabel.setHorizontalAlignment(TextLabel.CENTER);
         pauseLabel = new TextLabel();
         dismountLabel = new TextLabel();
+        pauseLabel.setHorizontalAlignment(TextLabel.CENTER);
         skillLabel = new TextLabel();
+        skillLabel.setHorizontalAlignment(TextLabel.CENTER);
         inventoryLabel = new TextLabel();
-        ability0Label = new TextLabel();
-        ability1Label = new TextLabel();
-        ability2Label = new TextLabel();
-        ability3Label = new TextLabel();
-        ability4Label = new TextLabel();
-        ability5Label = new TextLabel();
-        ability6Label = new TextLabel();
-        ability7Label = new TextLabel();
-        ability8Label = new TextLabel();
-        ability9Label = new TextLabel();
+        inventoryLabel.setHorizontalAlignment(TextLabel.CENTER);
+        abilityLabels = new TextLabel[NUM_ABILITIES];
+        for(int i = 0; i < NUM_ABILITIES; ++i) {
+        	abilityLabels[i] = new TextLabel();
+        	abilityLabels[i].setHorizontalAlignment(TextLabel.CENTER);
+        }
     }
 
     private void addComponents() {
-        add(rebindUp);
-        add(upLabel);
-        add(rebindUpLeft);
-        add(upLeftLabel);
-        add(rebindUpRight);
-        add(upRightLabel);
-        add(rebindDown);
-        add(downLabel);
-        add(rebindDownLeft);
-        add(downLeftLabel);
-        add(rebindDownRight);
-        add(downRightLabel);
-        add(rebindPause);
-        add(pauseLabel);
-        add(dismountLabel);
-        add(rebindSkills);
-        add(skillLabel);
-        add(rebindInventory);
-        add(inventoryLabel);
+    	TextLabel title = new TextLabel("Controls");
+    	title.setFont(title.getFont().deriveFont(50.0f));
+    	title.setForeground(Color.WHITE);
+    	title.setAlignmentX(Component.CENTER_ALIGNMENT);
+    	add(title);
+    	
+    	JPanel centerPanel = new JPanel() {
+    		{
+    			setLayout(new GridLayout(10,4));
+    			setBorder(new EmptyBorder(50, 20, 50, 20));
+    	    	setOpaque(false);
+    			add(rebindUp);
+    			add(upLabel);
+                add(rebindUpLeft);
+                add(upLeftLabel);
+                add(rebindUpRight);
+                add(upRightLabel);
+                add(rebindDown);
+                add(downLabel);
+                add(rebindDownLeft);
+                add(downLeftLabel);
+                add(rebindDownRight);
+                add(downRightLabel);
+                
+                for(int i = 0; i < NUM_ABILITIES; ++i){
+                	add(rebindAbilities[i]);
+                	add(abilityLabels[i]);
+                }
+                
+                add(rebindPause);
+                add(pauseLabel);
+                add(dismountLabel);
+                add(rebindSkills);
+                add(skillLabel);
+                add(rebindInventory);
+                add(inventoryLabel);
+    		}
+    		
+    	    @Override
+    	    public void paintComponent(Graphics graphics) {
+    	    	Graphics2D graphics2D = (Graphics2D) graphics;
+    	    	graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+    	    			RenderingHints.VALUE_ANTIALIAS_ON);
+    	    	graphics2D.setColor(Color.LIGHT_GRAY);
+    	    	float alpha = 0.75f;
+    	    	int type = AlphaComposite.SRC_OVER; 
+    	    	AlphaComposite composite = 
+    	    	  AlphaComposite.getInstance(type, alpha);
+    	    	graphics2D.setComposite(composite);
+    	    	graphics2D.fillRoundRect(0, 0, getWidth(), getHeight(), 35, 35);
+    	    	super.paintComponent(graphics);
+    	    }
+    	};
+    	
+    	add(Box.createRigidArea(new Dimension(0, 15)));
+    	
+    	add(centerPanel);
 
-        add(rebindAbility1);
-        add(ability1Label);
-        add(rebindAbility2);
-        add(ability2Label);
-        add(rebindAbility3);
-        add(ability3Label);
-        add(rebindAbility4);
-        add(ability4Label);
-        add(rebindAbility5);
-        add(ability5Label);
-        add(rebindAbility6);
-        add(ability6Label);
-        add(rebindAbility7);
-        add(ability7Label);
-        add(rebindAbility8);
-        add(ability8Label);
-        add(rebindAbility9);
-        add(ability9Label);
-        add(rebindAbility0);
-        add(ability0Label);
-
+    	add(Box.createRigidArea(new Dimension(0, 15)));
+    	
+    	backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(backButton);
     }
 
@@ -156,66 +168,41 @@ public class KeyBindingsLayout extends Layout {
         backButton = new MenuButton("BACK");
         backButton.setColor(Color.CYAN);
 
-        rebindUp = new MenuButton("REBIND UP");
+        rebindUp = new MenuButton("MOVE UP");
         rebindUp.setColor(Color.GRAY);
 
-        rebindDown = new MenuButton("REBIND DOWN");
+        rebindDown = new MenuButton("MOVE DOWN");
         rebindDown.setColor(Color.GRAY);
 
-        rebindUpLeft = new MenuButton("REBIND UP LEFT");
+        rebindUpLeft = new MenuButton("MOVE UP-LEFT");
         rebindUpLeft.setColor(Color.GRAY);
 
-        rebindUpRight = new MenuButton("REBIND UP RIGHT");
+        rebindUpRight = new MenuButton("MOVE UP-RIGHT");
         rebindUpRight.setColor(Color.GRAY);
 
-        rebindDownLeft = new MenuButton("REBIND DOWN LEFT");
+        rebindDownLeft = new MenuButton("MOVE LEFT");
         rebindDownLeft.setColor(Color.GRAY);
 
-        rebindDownRight = new MenuButton("REBIND DOWN RIGHT");
+        rebindDownRight = new MenuButton("MOVE DOWN-RIGHT");
         rebindDownRight.setColor(Color.GRAY);
 
-        rebindPause = new MenuButton("REBIND PAUSE");
+        rebindPause = new MenuButton("PAUSE MENU");
         rebindPause.setColor(Color.GRAY);
         
         rebindDismount = new MenuButton("REBIND DISMOUNT");
         rebindDismount.setColor(Color.GRAY);
 
-        rebindSkills = new MenuButton("REBIND SKILLS");
+        rebindSkills = new MenuButton("SKILLS MENU");
         rebindSkills.setColor(Color.GRAY);
 
-        rebindInventory = new MenuButton("REBIND INVENTORY");
+        rebindInventory = new MenuButton("INVENTORY MENU");
         rebindInventory.setColor(Color.GRAY);
 
-        rebindAbility0 = new MenuButton("REBIND ABILITY TEN");
-        rebindAbility0.setColor(Color.GRAY);
-
-        rebindAbility1 = new MenuButton("REBIND ABILITY ONE");
-        rebindAbility1.setColor(Color.GRAY);
-
-        rebindAbility2 = new MenuButton("REBIND ABILITY TWO");
-        rebindAbility2.setColor(Color.GRAY);
-
-        rebindAbility3 = new MenuButton("REBIND ABILITY THREE");
-        rebindAbility3.setColor(Color.GRAY);
-
-        rebindAbility4 = new MenuButton("REBIND ABILITY FOUR");
-        rebindAbility4.setColor(Color.GRAY);
-
-        rebindAbility5 = new MenuButton("REBIND ABILITY FIVE");
-        rebindAbility5.setColor(Color.GRAY);
-
-        rebindAbility6 = new MenuButton("REBIND ABILITY SIX");
-        rebindAbility6.setColor(Color.GRAY);
-
-        rebindAbility7 = new MenuButton("REBIND ABILITY SEVEN");
-        rebindAbility7.setColor(Color.GRAY);
-
-        rebindAbility8 = new MenuButton("REBIND ABILITY EIGHT");
-        rebindAbility8.setColor(Color.GRAY);
-
-        rebindAbility9 = new MenuButton("REBIND ABILITY NINE");
-        rebindAbility9.setColor(Color.GRAY);
-
+        rebindAbilities = new MenuButton[NUM_ABILITIES];
+        for(int i = 0; i < NUM_ABILITIES; ++i) {
+        	rebindAbilities[i] = new MenuButton("ABILITY " + (i + 1));
+        	rebindAbilities[i].setColor(Color.GRAY);
+        }
     }
 
     public void attachController(KeyBindingsController controller) {
@@ -226,20 +213,13 @@ public class KeyBindingsLayout extends Layout {
         rebindUpRight.addActionListener(controller.getRebindUpRightAction());
         rebindDownLeft.addActionListener(controller.getRebindDownLeftAction());
         rebindDownRight.addActionListener(controller.getRebindDownRightAction());
-        rebindAbility0.addActionListener(controller.getRebindAbility0());
-        rebindAbility1.addActionListener(controller.getRebindAbility1());
-        rebindAbility2.addActionListener(controller.getRebindAbility2());
-        rebindAbility3.addActionListener(controller.getRebindAbility3());
-        rebindAbility4.addActionListener(controller.getRebindAbility4());
-        rebindAbility5.addActionListener(controller.getRebindAbility5());
-        rebindAbility6.addActionListener(controller.getRebindAbility6());
-        rebindAbility7.addActionListener(controller.getRebindAbility7());
-        rebindAbility8.addActionListener(controller.getRebindAbility8());
-        rebindAbility9.addActionListener(controller.getRebindAbility9());
         rebindInventory.addActionListener(controller.getRebindInventory());
         rebindSkills.addActionListener(controller.getRebindSkills());
         rebindPause.addActionListener(controller.getRebindPause());
         rebindDismount.addActionListener(controller.getRebindDismount());
+        for(int i = 0; i < NUM_ABILITIES; ++i) {
+        	rebindAbilities[i].addActionListener(controller.getRebindAbility(i));
+        }
     }
 
     public void updateKeyText(KeyPreferences preferences) {
@@ -255,20 +235,23 @@ public class KeyBindingsLayout extends Layout {
         inventoryLabel.setText(formatKey(preferences.getInventoryKey()));
 
         List<KeyStroke> abilities = preferences.getAbilities();
-        ability0Label.setText(formatKey(abilities.get(0)));
-        ability1Label.setText(formatKey(abilities.get(1)));
-        ability2Label.setText(formatKey(abilities.get(2)));
-        ability3Label.setText(formatKey(abilities.get(3)));
-        ability4Label.setText(formatKey(abilities.get(4)));
-        ability5Label.setText(formatKey(abilities.get(5)));
-        ability6Label.setText(formatKey(abilities.get(6)));
-        ability7Label.setText(formatKey(abilities.get(7)));
-        ability8Label.setText(formatKey(abilities.get(8)));
-        ability9Label.setText(formatKey(abilities.get(9)));
+        for(int i = 0; i < NUM_ABILITIES; ++i)
+        	abilityLabels[i].setText(formatKey(abilities.get(i)));
     }
 
     private String formatKey(KeyStroke stroke) {
         return stroke.toString().replaceAll("(pressed|typed) ", "");
     }
+    @Override
+    public Dimension getPreferredSize()
+    {
+        return (new Dimension(bgImage.getWidth(null), bgImage.getHeight(null)));
+    }
 
+    @Override
+    public void paintComponent(Graphics graphics) {
+    	super.paintComponent(graphics);
+    	int width = (int) (bgImage.getWidth(null) * ((float)getHeight() / bgImage.getHeight(null)));
+    	graphics.drawImage(bgImage, (getWidth() - width) / 2, 0, width, getHeight(), null);
+    }
 }
