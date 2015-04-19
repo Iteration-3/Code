@@ -2,12 +2,14 @@ package model.observers;
 
 import java.util.ArrayList;
 
+import utilities.Angle;
 import model.area.TileCoordinate;
 
 public abstract class MobileObject {
 	
 	private ArrayList<MobileListener> listeners = new ArrayList<MobileListener>();
 	private TileCoordinate location;
+	private Angle direction;
 	
 	public MobileObject(TileCoordinate loc) {
 		setLocation(loc);
@@ -19,12 +21,25 @@ public abstract class MobileObject {
 	
 	public void setLocation(TileCoordinate location) {
 		this.location = location;
-		for (MobileListener list : listeners) {
-			list.notify(this);
-		}
+		notifySubscribers();
 	}
 
 	public TileCoordinate getLocation() {
 		return location;
+	}
+	
+	public Angle getDirection() {
+		return direction;
+	}
+	
+	public void setDirection(Angle direction) {
+		this.direction = direction;
+		notifySubscribers();
+	}
+	
+	private void notifySubscribers() {
+		for (MobileListener list : listeners) {
+			list.notify(this);
+		}
 	}
 }

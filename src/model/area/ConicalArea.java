@@ -22,6 +22,7 @@ public class ConicalArea extends DirectionalArea {
     private TileCoordinate lastStart;
     private List<TileCoordinate> coverCache;
     private HashSet<TileCoordinate> resCache;
+    private Angle lastDir;
 
     @Override
     public boolean isInRange(TileCoordinate location) {
@@ -31,7 +32,7 @@ public class ConicalArea extends DirectionalArea {
 
     @Override
     public List<TileCoordinate> getCoveredLocations() {
-    	if (lastStart == null || coverCache == null || lastStart != getStartLocation()) {
+    	if (lastStart == null || coverCache == null || lastStart != getStartLocation() || lastDir != getDirection()) {
 	    	HashSet<TileCoordinate> res = new HashSet<TileCoordinate>();
 	    	TileCoordinate curCenter = getStartLocation();
 	    	int distFromCenter = 0;
@@ -66,6 +67,7 @@ public class ConicalArea extends DirectionalArea {
 	    	lastStart = getStartLocation();
 	    	coverCache = new ArrayList<TileCoordinate>(res);
 	    	resCache = res;
+	    	lastDir = getDirection();
     	}
         return coverCache;
     }
