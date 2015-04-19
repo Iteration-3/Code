@@ -40,7 +40,7 @@ public class GameplayController extends Controller {
     					}
     					double deltaTime = (System.nanoTime()  - previousTime) / 1000000000.0d;
     					doUpdates(deltaTime);
-    					System.out.println(deltaTime);
+//    					System.out.println(deltaTime);
     					previousTime = System.nanoTime();
     					
     					try {

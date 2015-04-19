@@ -5,9 +5,8 @@ import java.util.LinkedList;
 
 import utilities.Angle;
 
-public class UpDown implements Curcuitable {
-	private Deque<Angle> moves = new LinkedList<Angle>();
-	
+public class UpDown implements Curcuitable{
+	Deque<Angle> moves = new LinkedList<Angle>();
 	public UpDown(){
 		this.setMoves();
 	}
@@ -20,13 +19,16 @@ public class UpDown implements Curcuitable {
 		moves.push(Angle.DOWN);
 		moves.push(Angle.DOWN);
 	}
-
-	public Angle nextMove() {
+	
+	public Angle nextMove(){
 		Angle move = moves.removeFirst();
-		moves.addLast(move);
+		moves.addFirst(move);
 		return move;
 	}
-	
+
+	public boolean hasMove() {
+		return true;
+	}
 	
 
 }
