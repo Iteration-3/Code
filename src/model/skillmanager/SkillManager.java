@@ -27,27 +27,43 @@ public abstract class SkillManager implements Saveable {
 	}
 	
 	public void incrementAttack(){
+		if (!hasSkillPointsToSpend()) return;
 		++attackSkill;
+		spendSkillPoint();
 	}
 
 	public void incrementBindWound(){
+		if (!hasSkillPointsToSpend()) return;
 		++bindWoundSkill;
+		spendSkillPoint();
 	}
 
 	public void incrementObserve(){
+		if (!hasSkillPointsToSpend()) return;
 		++observeSkill;
+		spendSkillPoint();
 	}
 
 	public void incrementBarter(){
+		if (!hasSkillPointsToSpend()) return;
 		++barterSkill;
+		spendSkillPoint();
 	}
 	
 	public void incrementSkillPointToSpend() {
 		skillPointsToSpend++;
 	}
 	
+	private void spendSkillPoint() {
+		skillPointsToSpend--;
+	}
+	
 	public int getSkillPointsToSpend() {
 		return skillPointsToSpend;
+	}
+
+	private boolean hasSkillPointsToSpend() {
+		return (skillPointsToSpend > 0);
 	}
 	
 	@Override

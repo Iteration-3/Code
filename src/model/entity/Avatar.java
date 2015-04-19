@@ -48,7 +48,6 @@ public abstract class Avatar extends Entity {
         if (updatedLevel > level) {
         	skillManager.incrementSkillPointToSpend();
         }
-
 	}
 	
 	@Override
@@ -99,7 +98,11 @@ public abstract class Avatar extends Entity {
 		return getSkillManager().getObserveSkill();
 	}
 	
-	protected SkillManager getSkillManager() {
+	// I made this public instead of protected.  
+	// The alternative is making things like: incrementAttackSkill() in the 
+	// Avatar's public interface
+	// This may not be good Encapsulation practices though
+	public SkillManager getSkillManager() {
 		return this.skillManager;
 	}
 	

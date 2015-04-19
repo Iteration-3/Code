@@ -2,6 +2,7 @@ package model.entity;
 
 import model.ability.smasher.SmasherWeaponAttack;
 import model.area.TileCoordinate;
+import model.skillmanager.SmasherSkillManager;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
@@ -13,6 +14,7 @@ public class Smasher extends Avatar {
 	public Smasher(String name, EntityView view, TileCoordinate loc) {
 		super(name, view,loc);
 		this.getAbilities().add(new SmasherWeaponAttack());
+		setSkillManager(new SmasherSkillManager());
 	}
 
 	@Override

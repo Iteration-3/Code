@@ -143,7 +143,7 @@ public class EntityStatistics extends Statistics {
     public String toString() {
         String contents = super.toString() + "Lives Left: " + livesLeft + "\n" + "Experience: " + experience + "\n"
                 + "Movement: " + movement + "\n" + "Current Health: " + currentHealth + "\n" + "Current Mana: "
-                + currentMana + "\n";
+                + currentMana + "\n" + "Level: " + getLevel() + "\n";
         return contents;
     }
 
