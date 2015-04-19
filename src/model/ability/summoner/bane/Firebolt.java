@@ -1,13 +1,14 @@
 package model.ability.summoner.bane;
 
 import model.ability.ProjectileAbility;
+import model.projectile.Projectile;
 import model.projectile.linear.FireProjectile;
 import utilities.structuredmap.StructuredMap;
 
 public final class Firebolt extends ProjectileAbility {
 	
 	public Firebolt() {
-		super(new FireProjectile(), 10);
+		super(10);
 	}
 	
 	public Firebolt(StructuredMap map) {
@@ -24,5 +25,7 @@ public final class Firebolt extends ProjectileAbility {
 		return "firebolt";
 	}
 	
-
+	public Projectile getProjectile() {
+		return new FireProjectile();
+	}
 }

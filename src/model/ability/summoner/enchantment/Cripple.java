@@ -1,13 +1,14 @@
 package model.ability.summoner.enchantment;
 
 import model.ability.ProjectileAbility;
+import model.projectile.Projectile;
 import model.projectile.linear.CripplingProjectile;
 import utilities.structuredmap.StructuredMap;
 
 public class Cripple extends ProjectileAbility {
 	
 	public Cripple() {
-		super(new CripplingProjectile(), 15);
+		super(15);
 	}
 	
 	public Cripple(int manaCost) {
@@ -24,4 +25,7 @@ public class Cripple extends ProjectileAbility {
 		return "cripple";
 	}
 
+	public Projectile getProjectile() {
+		return new CripplingProjectile();
+	}
 }

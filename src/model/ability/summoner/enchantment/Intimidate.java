@@ -1,13 +1,14 @@
 package model.ability.summoner.enchantment;
 
 import model.ability.ProjectileAbility;
+import model.projectile.Projectile;
 import model.projectile.conical.IntimidateConeProjectile;
 import utilities.structuredmap.StructuredMap;
 
 public class Intimidate extends ProjectileAbility {
 	
 	public Intimidate() {
-		super(new IntimidateConeProjectile(), 15);
+		super(15);
 	}
 	
 	public Intimidate(int manaCost) {
@@ -22,5 +23,9 @@ public class Intimidate extends ProjectileAbility {
 	@Override
 	protected String getType() {
 		return "intimidate";
+	}
+	
+	public Projectile getProjectile() {
+		return new IntimidateConeProjectile();
 	}
 }

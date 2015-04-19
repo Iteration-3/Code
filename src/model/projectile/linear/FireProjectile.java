@@ -1,6 +1,7 @@
 package model.projectile.linear;
 
 import model.area.RadialArea;
+import model.area.TileCoordinate;
 import model.event.Event;
 import model.event.HealthModifierEvent;
 import model.projectile.Projectile;
@@ -15,12 +16,12 @@ public class FireProjectile extends Projectile {
 		super();
 		this.setSpeed(3);
 		Event damageEvent = new HealthModifierEvent(0, -10);
-		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
+		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(0, null), damageEvent);
 		this.setTrigger(damageTrigger);
 	}
 	
-	public FireProjectile(Angle direction, double speed, Trigger trigger) {
-		super(direction, null, speed, trigger);
+	public FireProjectile(TileCoordinate tile, Angle direction, double speed, Trigger trigger) {
+		super(direction, tile, speed, trigger);
 	}
 	
 	public FireProjectile(StructuredMap map) {
@@ -31,5 +32,4 @@ public class FireProjectile extends Projectile {
 	protected String getType() {
 		return "fireProjectile";
 	}
-
 }

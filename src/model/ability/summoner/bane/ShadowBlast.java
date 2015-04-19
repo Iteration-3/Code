@@ -1,13 +1,14 @@
 package model.ability.summoner.bane;
 
 import model.ability.ProjectileAbility;
+import model.projectile.Projectile;
 import model.projectile.linear.ShadowBlastProjectile;
 import utilities.structuredmap.StructuredMap;
 
 public final class ShadowBlast extends ProjectileAbility {
 
 	public ShadowBlast() {
-		super(new ShadowBlastProjectile(), 50);
+		super(50);
 	}
 	
 	public ShadowBlast(StructuredMap map) {
@@ -22,5 +23,9 @@ public final class ShadowBlast extends ProjectileAbility {
 	@Override
 	protected String getType() {
 		return "shadowBlast";
+	}
+	
+	public Projectile getProjectile() {
+		return new ShadowBlastProjectile();
 	}
 }

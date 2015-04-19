@@ -1,13 +1,14 @@
 package model.ability.summoner.bane;
 
 import model.ability.ProjectileAbility;
+import model.projectile.Projectile;
 import model.projectile.conical.LightConeProjectile;
 import utilities.structuredmap.StructuredMap;
 
 public final class LightBeam extends ProjectileAbility {
 	
 	public LightBeam() {
-		super(new LightConeProjectile(), 20);
+		super(20);
 	}
 	
 	public LightBeam(StructuredMap map) {
@@ -23,5 +24,8 @@ public final class LightBeam extends ProjectileAbility {
 	protected String getType() {
 		return "lightBeam";
 	}
-	
+
+	public Projectile getProjectile() {
+		return new LightConeProjectile();
+	}
 }

@@ -43,8 +43,8 @@ public class ConicalProjectile extends Projectile {
 		Projectile rightProjectile = new Projectile(rightAngle, this
 				.getLocation().nextLocation(rightAngle), this.getSpeed(),
 				this.getTrigger());
-		ProjectileManager.addProjectile(leftProjectile);
-		ProjectileManager.addProjectile(rightProjectile);
+		ProjectileManager.getSingleton().enqueueProjectile(leftProjectile);
+		ProjectileManager.getSingleton().enqueueProjectile(rightProjectile);
 
 		this.setLocation(this.getLocation().nextLocation(this.getDirection()));
 		this.getTrigger().moveLocation(this.getLocation());
@@ -54,15 +54,4 @@ public class ConicalProjectile extends Projectile {
 	public boolean hasExpired() {
 		return getTrigger().hasExpired(); // TODO(jraviles) figure out collisions
 	}
-	
-	public ConicalProjectile clone() {
-		ConicalProjectile clone = new ConicalProjectile();
-		clone.setDirection(this.getDirection());
-		clone.setLocation(this.getLocation());
-		clone.setSpeed(this.getSpeed());
-		clone.setTimeout(this.getTimeout());
-		clone.setTrigger(this.getTrigger());
-		return clone;
-	}
-
 }
