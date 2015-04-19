@@ -15,4 +15,9 @@ public class SummonerWeaponSlot extends WeaponSlot<SummonerWeapon>{
 		return weapon.canEquip(this);
 	}
 
+	@Override
+	public String getType() {
+		return "summoner";
+	}
+
 }

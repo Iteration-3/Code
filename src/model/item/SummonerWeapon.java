@@ -2,6 +2,7 @@ package model.item;
 
 import model.slots.SummonerWeaponSlot;
 import model.statistics.Statistics;
+import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 
 public class SummonerWeapon extends Weapon {
@@ -12,6 +13,10 @@ public class SummonerWeapon extends Weapon {
 
 	public SummonerWeapon(ItemView itemView, Statistics statistics) {
 		super(itemView, statistics);
+	}
+
+	public SummonerWeapon(StructuredMap structuredMap) {
+		super(structuredMap);
 	}
 
 	public boolean equip(SummonerWeaponSlot slot){
@@ -25,5 +30,10 @@ public class SummonerWeapon extends Weapon {
 	public String getInfo() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String getType() {
+		return "summoner";
 	}
 }
