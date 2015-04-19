@@ -1,5 +1,6 @@
 package model.trigger;
 
+import utilities.structuredmap.StructuredMap;
 import model.area.Area;
 import model.event.Event;
 
@@ -14,6 +15,12 @@ public class TimedTrigger extends Trigger {
     public TimedTrigger(Area area, Event event, long duration) {
         super(area, event);
         this.duration = duration;
+    }
+    
+    public TimedTrigger(StructuredMap map) {
+    	super(map);
+    	this.duration = map.getDouble("duration").longValue();
+    	this.creationTime = System.currentTimeMillis();
     }
 
     public long getDuration() {
@@ -38,5 +45,17 @@ public class TimedTrigger extends Trigger {
     	timedTrigger.setEvent(this.getEvent().clone());
     	return timedTrigger;
     }
+    
+    @Override
+    public StructuredMap getStructuredMap() {
+    	StructuredMap map = new StructuredMap();
+    	map.put("duration", (double)(this.duration - (System.currentTimeMillis() - creationTime)));
+    	return map;
+    }
+
+	@Override
+	protected String getType() {
+		return "timedTrigger";
+	}
 
 }

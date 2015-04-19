@@ -1,5 +1,7 @@
 package model.trigger;
 
+import factories.AreaFactory;
+import factories.EventFactory;
 import model.area.Area;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
@@ -24,7 +26,8 @@ public abstract class Trigger implements Cloneable, Saveable {
     }
     
     public Trigger(StructuredMap map) {
-    	
+    	this.area = AreaFactory.createArea(map.getStructuredMap("area"));
+    	this.event = EventFactory.createEvent(map.getStructuredMap("event"));
     }
 
     public Area getArea() {
@@ -68,6 +71,12 @@ public abstract class Trigger implements Cloneable, Saveable {
     public abstract Trigger clone();
     
     public StructuredMap getStructuredMap() {
-    	return null;	
+    	StructuredMap map = new StructuredMap();
+    	map.put("area", area.getStructuredMap());
+    	map.put("event", event.getStructuredMap());
+    	map.put("type", getType());
+    	return map;
     }
+    
+    protected abstract String getType();
 }
