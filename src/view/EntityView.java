@@ -9,12 +9,12 @@ import view.map.GameEntityView;
 
 public class EntityView {
 	//COPY AND PASTED SHIT FROM HEXAGON PLACE HOLDER
-	EntitySpriteHolder sprites;
+	AbstractEntitySpriteHolder sprites;
 	private RealCoordinate location;
 	private static final float BORDER_PERCENTAGE = 0.15f; // 15% border edge
 	private static final float OVERDRAW = 1.05f; // To eliminate little blank spaces between tiles
 	
-	public EntityView(EntitySpriteHolder sprites) {
+	public EntityView(AbstractEntitySpriteHolder sprites) {
 		this.sprites=sprites;
 	}
 

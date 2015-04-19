@@ -2,12 +2,11 @@ package view;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.BufferedWriter;
 
-import utilities.Angle;
 import model.area.RealCoordinate;
+import utilities.Angle;
 
-public abstract class EntitySpriteHolder  {
+public abstract class AbstractEntitySpriteHolder  {
 	
 	public void render(Graphics graphics, RealCoordinate location, float diameter, Angle angle) {
 		switch(angle){
