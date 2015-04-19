@@ -17,6 +17,10 @@ public class LinearArea extends DirectionalArea {
     public LinearArea() {
         super();
     }
+    
+    public LinearArea(StructuredMap map) {
+    	super(map);
+    }
 
     @Override
     public boolean isInRange(TileCoordinate location) {
@@ -33,16 +37,12 @@ public class LinearArea extends DirectionalArea {
         return returnList;
     }
 
-    @Override
-    public StructuredMap getStructuredMap() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@Override
+	protected String getType() {
+		return "linear";
+	}
 
-    @Override
-    public void load(StructuredMap map) {
-        // TODO Auto-generated method stub
+ 
 
-    }
 
 }

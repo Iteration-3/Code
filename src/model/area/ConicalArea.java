@@ -19,6 +19,10 @@ public class ConicalArea extends DirectionalArea {
         super(radius, startLocation, angle);
     }  
     
+    public ConicalArea(StructuredMap map) {
+    	super(map);
+    }
+    
     private TileCoordinate lastStart;
     private List<TileCoordinate> coverCache;
     private HashSet<TileCoordinate> resCache;
@@ -112,10 +116,9 @@ public class ConicalArea extends DirectionalArea {
         return null;
     }
 
-    @Override
-    public void load(StructuredMap map) {
-        // TODO Auto-generated method stub
-
-    }
+	@Override
+	protected String getType() {
+		return "conical";
+	}
 
 }
