@@ -26,8 +26,11 @@ public abstract class Entity extends MobileObject implements Saveable {
     private EntityStatistics stats = new EntityStatistics();
     private EntityView view = null;
     private TileCoordinate location = new TileCoordinate();
-    private Angle direction = Angle.UP;
 	private boolean isFlying = false;
+
+    protected Entity() {
+    	super(new TileCoordinate(0, 0));
+    }
 
     public Entity(String name, EntityView view, TileCoordinate location) {
     	super(location);
@@ -35,10 +38,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.view = view;
         this.location = location;
         this.setNecessities();
-    }
-
-    public Entity() {
-    	super(new TileCoordinate(0, 0));
+        setDirection(Angle.UP);
     }
     
     public Entity(StructuredMap map) {
@@ -47,7 +47,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         int[] locationArray = map.getIntArray("location");
         this.location = new TileCoordinate(locationArray[0], locationArray[1]);
         this.stats = new EntityStatistics(map.getStructuredMap("stats"));
-        this.direction = Angle.values()[map.getInteger("direction")];
+        setDirection(Angle.values()[map.getInteger("direction")]);
         this.itemManager = new ItemManager(map.getStructuredMap("itemManager"));
         this.isFlying = map.getBoolean("flying");
     }
@@ -70,7 +70,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         map.put("name", name);
         map.put("location", locationArray);
         map.put("stats", stats.getStructuredMap());
-        map.put("direction", direction.ordinal());
+        map.put("direction", getDirection().ordinal());
         map.put("itemManager", itemManager.getStructuredMap());
         map.put("type", getType());
         map.put("flying", isFlying);
@@ -205,14 +205,6 @@ public abstract class Entity extends MobileObject implements Saveable {
     	super.setLocation(location);
     	if (this.getEntityView() != null)
     		this.getEntityView().setLocation(location);//TODO: FIX
-    }
-
-    public Angle getDirection() {
-        return this.direction;
-    }
-
-    public void setDirection(Angle angle) {
-        this.direction = angle;
     }
 
     public void modifyStats(Statistics otherStats) {

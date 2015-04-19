@@ -3,8 +3,6 @@ package model.area;
 import utilities.Angle;
 
 public class TileCoordinate {
-    
-
 	private int x;
     private int y;
     

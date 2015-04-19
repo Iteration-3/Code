@@ -7,7 +7,7 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import model.area.RealCoordinate;
+import model.area.TileCoordinate;
 
 public class EntityManager implements Iterable<Entity> {
 	
@@ -80,10 +80,24 @@ public class EntityManager implements Iterable<Entity> {
 	 * @param location
 	 * @return
 	 */
-	public Entity getEntityAtLocation(RealCoordinate location) {
-		for(Entity e : this){
-			if(location.equals(e.getLocation())){
-				return e;
+	public Entity getEntityAtLocation(TileCoordinate location) {
+		for(Entity entity : this) {
+			if(location.equals(entity.getLocation())) {
+				return entity;
+			}
+		}
+		return null;
+	}
+	
+	public NPC getNPCAtLocation(TileCoordinate location) {
+		for (NPC npc : this.getPartyNpcs()) {
+			if (npc.getLocation().equals(location)) {
+				return npc;
+			}
+		}
+		for (NPC npc : this.getNonPartyNpcs()) {
+			if (npc.getLocation().equals(location)) {
+				return npc;
 			}
 		}
 		return null;

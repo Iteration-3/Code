@@ -11,6 +11,7 @@ import model.ability.summoner.enchantment.Cripple;
 import model.ability.summoner.enchantment.Intimidate;
 import model.ability.summoner.enchantment.Silence;
 import model.area.TileCoordinate;
+import model.skillmanager.SummonerSkillManager;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
@@ -41,6 +42,8 @@ public class Summoner extends Avatar {
 		this.getAbilities().add(new Cripple());
 		this.getAbilities().add(new Intimidate());
 		this.getAbilities().add(new Silence());
+		
+		setSkillManager(new SummonerSkillManager());
 	}
 	
 

@@ -3,16 +3,21 @@ package model.skillmanager;
 import utilities.structuredmap.StructuredMap;
 
 public class SmasherSkillManager extends SkillManager {
-
-    @Override
-    public StructuredMap getStructuredMap() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    private int twoHandedSkill = 1;
+	
+	private int twoHandedSkill = 1;
     private int oneHandedSkill = 1;
     private int brawlSkill = 1;
+    
+   public SmasherSkillManager() {
+
+   }
+    
+    public SmasherSkillManager(StructuredMap map) {
+		super(map);
+		this.twoHandedSkill = map.getInteger("twoHandedSkill");
+		this.oneHandedSkill =  map.getInteger("oneHandedSkill");
+		this.brawlSkill =  map.getInteger("brawlSkill");
+	}
 
     public int getTwoHandedSkill() {
         return twoHandedSkill;
@@ -37,5 +42,21 @@ public class SmasherSkillManager extends SkillManager {
     public void incrementTwoHand() {
         ++twoHandedSkill;
     }
+    
+    @Override
+    public StructuredMap getStructuredMap() {
+    	StructuredMap map = super.getStructuredMap();
+    	map.put("twoHandedSkill", twoHandedSkill);
+    	map.put("oneHandedSkill", oneHandedSkill);
+    	map.put("brawlSkill", brawlSkill);
+    	return map;
+    }
+
+	@Override
+	protected String getType() {
+		return "smasher";
+	}
+    
+    
 
 }

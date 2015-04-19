@@ -9,6 +9,7 @@ import controller.mouseliseners.EquipmentMouseListener;
 import controller.mouseliseners.InventoryMouseListener;
 import controller.mouseliseners.InventorySlotMouseListener;
 import model.Model;
+import controller.listener.ToggleAction;
 import model.entity.Entity;
 
 public class InventoryMenuController extends Controller {

@@ -3,6 +3,7 @@ package model.ability.summoner.boon;
 import model.ability.SelfAbility;
 import model.event.StatisticModifierEvent;
 import model.statistics.Statistics;
+import utilities.structuredmap.StructuredMap;
 
 public class StrengthBoon extends SelfAbility {
 	
@@ -13,6 +14,10 @@ public class StrengthBoon extends SelfAbility {
 	public StrengthBoon(int manaCost) {
 		this();
 		this.setManaCost(manaCost);
+	}
+	
+	public StrengthBoon(StructuredMap map) {
+		super(map);
 	}
 
 	@Override

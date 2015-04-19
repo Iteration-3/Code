@@ -1,9 +1,5 @@
 package model.entity;
 
-import factories.AbilityFactory;
-import factories.SkillManagerFactory;
-import gameactions.GameAction;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -21,15 +17,13 @@ import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 import controller.listener.Listener;
 import controller.listener.PollingListener;
+import factories.AbilityFactory;
+import factories.SkillManagerFactory;
+import gameactions.GameAction;
 
 public abstract class Avatar extends Entity {
 	private Collection<Ability> abilities = new ArrayList<Ability>();
 	private SkillManager skillManager;
-	
-	public Avatar() {
-		//LightManager.getLightManager().getLightMap().trackMovement(this);
-		//setLocation(getLocation());//So lightMap registers current position
-	}
 	
 	public Avatar(StructuredMap map) {
 		this.abilities = new ArrayList<Ability>();
@@ -57,29 +51,44 @@ public abstract class Avatar extends Entity {
 	public Avatar(String name, EntityView view, TileCoordinate loc){
 		super(name, view, loc);
 		//Make light manager track all avatars movement
-		MovingLightSource avatarLight = new MovingLightSource(new ConicalArea(8, loc, Angle.UP), new Visibility(255), this);
+		MovingLightSource avatarLight = new MovingLightSource(new ConicalArea(5, loc, Angle.UP), new Visibility(255), this);
 		LightManager.getLightManager().addLightSource(avatarLight);
 		setLocation(loc);
 		//LightManager.getLightManager().getLightMap().trackMovement(this);
 		//setLocation(loc);//So lightMap registers current position
 	}
 	
-	protected Collection<Ability> getAbilities(){
-		return abilities;
+	@Override
+	public void move(Angle angle) {
+		TileCoordinate nextLocation = this.nextLocation(angle);
+		NPC npc = EntityManager.getSingleton().getNPCAtLocation(nextLocation);
+		if (npc != null) {
+			npc.interact(this);
+		} else {
+			super.move(angle);
+		}
 	}
 	
 	@Override
-	public Collection<Listener> getListeners(KeyPreferences preferences){
+	public void addExperience(int experience) {
+		int level = getBaseStats().getLevel();
+        getBaseStats().addExperience(experience);
+        int updatedLevel = getBaseStats().getLevel();
+        if (updatedLevel > level) {
+        	skillManager.incrementSkillPointToSpend();
+        }
+	}
+	
+	@Override
+	public Collection<Listener> getListeners(KeyPreferences preferences) {
 		System.out.println("Test");
 		Collection<Listener> listeners = new ArrayList<Listener>();
 		int i = 1;
-		for(Ability a : this.getAbilities()){
+		for(final Ability a : this.getAbilities()){
 			listeners.add(new PollingListener(preferences.getAbility(i),new GameAction() {
-				
 				@Override
 				public void perform() {
 					a.perform(Avatar.this);
-					
 				}
 			}));
 			++i;
@@ -87,20 +96,6 @@ public abstract class Avatar extends Entity {
 		return listeners;
 		
 	}
-	
-	
-	
-	//Ovverrides stats and name? Says in UML, but that's weird
-	//Also overrides move, according to uml? Meh, if we need it, we'll do it, not before IMO
-	
-	//SkillManager
-	//Abilities
-	//ControlerManager
-	
-	//Also apparently ovverrides add/removeItem, and equip/unequipItem, but that also seems 
-	//like an uneeded ovverride, so won't do until needed.
-	
-	//getListeners will be needed
 	
 	public int getAttackSkill() {
 		return getSkillManager().getAttackSkill();
@@ -118,12 +113,20 @@ public abstract class Avatar extends Entity {
 		return getSkillManager().getObserveSkill();
 	}
 	
-	protected SkillManager getSkillManager() {
+	// I made this public instead of protected.  
+	// The alternative is making things like: incrementAttackSkill() in the 
+	// Avatar's public interface
+	// This may not be good Encapsulation practices though
+	public SkillManager getSkillManager() {
 		return this.skillManager;
 	}
 	
 	protected void setSkillManager(SkillManager skillManager) {
 		this.skillManager = skillManager;
+	}
+	
+	protected Collection<Ability> getAbilities(){
+		return abilities;
 	}
 	
 }

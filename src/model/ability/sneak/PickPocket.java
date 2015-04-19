@@ -9,6 +9,7 @@ import model.trigger.TimedTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
+import utilities.structuredmap.StructuredMap;
 
 public class PickPocket extends TriggerAbility {
 	
@@ -24,6 +25,10 @@ public class PickPocket extends TriggerAbility {
 	public PickPocket(int manaCost) {
 		this();
 		this.setManaCost(manaCost);
+	}
+	
+	public PickPocket(StructuredMap map) {
+		super(map);
 	}
 
 	@Override
