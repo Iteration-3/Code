@@ -29,6 +29,7 @@ public class ConsumableItem extends TakeableItem {
 
     public ConsumableItem(ItemView itemView, StructuredMap map) {
         super(itemView);
+        
         this.stats = new EntityStatistics(map.getStructuredMap("stats"));
         this.duration = map.getDouble("duration");
     }
@@ -49,12 +50,16 @@ public class ConsumableItem extends TakeableItem {
         map.put("duration", this.duration);
         return map;
     }
-
+    
+    @Override
+    protected String getType() {
+		return "consumeable";
+	}
+    
 	@Override
 	public String getInfo() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 }

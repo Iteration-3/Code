@@ -25,6 +25,7 @@ public abstract class EquipableItem extends TakeableItem {
 	}
 	
 	public EquipableItem(ItemView itemView, StructuredMap map) {
+
 	    super(itemView, map);
 	    this.statistics = new Statistics(map.getStructuredMap("stats"));
 	}

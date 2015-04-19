@@ -1,15 +1,15 @@
 package model.trigger;
 
-import java.util.Collection;
-
 import model.area.Area;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.entity.Entity;
-import model.entity.NPC;
 import model.event.Event;
+import model.event.EventManager;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 
-public abstract class Trigger implements Cloneable {
+public abstract class Trigger implements Cloneable, Saveable {
     private Area area;
     private Event event;
 
@@ -21,6 +21,10 @@ public abstract class Trigger implements Cloneable {
     public Trigger(Area area, Event event) {
         this.area = area;
         this.event = event;
+    }
+    
+    public Trigger(StructuredMap map) {
+    	
     }
 
     public Area getArea() {
@@ -39,9 +43,21 @@ public abstract class Trigger implements Cloneable {
         this.event = event;
     }
 
-    public abstract void handle(Entity entity);
-
-    public abstract void handle(Collection<NPC> npcs);
+    public void handle(Entity entity){
+    	if(this.isInRange(entity)){
+    		this.perform(entity);
+    	}
+    }
+    
+    protected void perform(Entity entity){
+    	Event event = this.getEvent().clone();
+		event.setTarget(entity);
+		EventManager.getSingleton().addEvent(event);
+    }
+    
+    protected boolean isInRange(Entity entity){
+    	return this.getArea().isInRange(entity.getLocation());
+    }
 
     public void moveLocation(TileCoordinate location) {
         this.area.setStartLocation(location);
@@ -50,4 +66,8 @@ public abstract class Trigger implements Cloneable {
     public abstract boolean hasExpired();
     
     public abstract Trigger clone();
+    
+    public StructuredMap getStructuredMap() {
+    	return null;	
+    }
 }

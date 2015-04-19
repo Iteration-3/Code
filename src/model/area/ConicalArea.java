@@ -21,12 +21,13 @@ public class ConicalArea extends DirectionalArea {
 
     @Override
     public boolean isInRange(TileCoordinate location) {
-        TileCoordinate testLocation = super.createComparisonLocation(location);
-        double angle = Math.round(Math.toDegrees(Math.atan2((testLocation.getY()), testLocation.getX())));
-        boolean thisResult = angle >= super.getDirection().getAngle()
-                && angle <= (super.getDirection().getAngle() + CONE_WIDTH_IN_DEGREES) && isWithinRadius(location);
-
-        return super.hasCompositeArea() ? thisResult || super.compositeInRange(location) : thisResult;
+//        TileCoordinate testLocation = super.createComparisonLocation(location);
+//        double angle = Math.round(Math.toDegrees(Math.atan2((testLocation.getY()), testLocation.getX())));
+//        boolean thisResult = angle >= super.getDirection().getAngle()
+//                && angle <= (super.getDirection().getAngle() + CONE_WIDTH_IN_DEGREES) && isWithinRadius(location);
+//
+//        return super.hasCompositeArea() ? thisResult || super.compositeInRange(location) : thisResult;
+    	return false;
     }
 
     @Override

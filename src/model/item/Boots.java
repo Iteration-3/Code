@@ -28,5 +28,15 @@ public class Boots extends EquipableItem {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		return map;
+	}
+	
+	protected String getType() {
+		return "boots";
+	}
 
 }

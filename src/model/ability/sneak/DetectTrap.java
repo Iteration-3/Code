@@ -18,4 +18,9 @@ public class DetectTrap extends Ability {
 		// TODO (jraviles)
 	}
 
+	@Override
+	protected String getType() {
+		return "detectTrap";
+	}
+
 }

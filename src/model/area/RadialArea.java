@@ -1,8 +1,12 @@
 package model.area;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
+import utilities.Angle;
 import utilities.structuredmap.StructuredMap;
 
 public class RadialArea extends Area {
@@ -23,15 +27,32 @@ public class RadialArea extends Area {
 
     @Override
     public List<TileCoordinate> getCoveredLocations() {
-        List<TileCoordinate> returnList = new ArrayList<>();
-        returnList.add(getStartLocation());
-        int i = 0;
-        while (i != returnList.size()) {
-            returnList.addAll(checkSurrounding(returnList.get(i), returnList));
-            ++i;
-        }
-        returnList.addAll(getCompositeCoveredLocations());
-        return returnList;
+    	HashSet<TileCoordinate> res = new HashSet<TileCoordinate>();
+    	Queue<Pair> bfsQ = new LinkedList<Pair>();
+    	res.add(getStartLocation());
+    	bfsQ.add(new Pair(getStartLocation(), 0));
+    	while (!bfsQ.isEmpty()) {
+    		Pair poll = bfsQ.poll();
+    		int nextDist = poll.dist + 1;
+    		if (nextDist > getRadius()) continue;
+    		for (Angle ang : Angle.values()) {
+    			TileCoordinate next = poll.coord.nextLocation(ang);
+    			if (!res.contains(next)) {
+    				res.add(next);
+    				bfsQ.add(new Pair(next, nextDist));
+    			}
+    		}
+    	}
+        return new ArrayList<TileCoordinate>(res);
+    }
+    
+    private class Pair {
+    	TileCoordinate coord;
+    	int dist;
+    	public Pair(TileCoordinate coord, int dist) {
+    		this.coord = coord;
+    		this.dist = dist;
+    	}
     }
 
     @Override

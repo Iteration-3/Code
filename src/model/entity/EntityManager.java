@@ -127,4 +127,10 @@ public class EntityManager implements Iterable<Entity> {
 	public Iterator<Entity> iterator() {
 		return new EntityIterator();
 	}
+	
+	public void clear() {
+		partyNpcs = new ArrayList<NPC>();
+		nonPartyNpcs = new ArrayList<NPC>();
+		avatar = null;
+	}
 }

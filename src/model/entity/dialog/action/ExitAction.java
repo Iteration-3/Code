@@ -9,9 +9,7 @@ public final class ExitAction extends DialogAction {
 
 	@Override
 	public void perform(Model model, NPC npc, Avatar avatar) {
-		System.out.println("It worked!!! You just popped the dialog state.");
 		DialogManager.getSingleton().exit();
 	}
-	
 
 }

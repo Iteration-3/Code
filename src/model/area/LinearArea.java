@@ -1,5 +1,6 @@
 package model.area;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import utilities.Angle;
@@ -17,25 +18,18 @@ public class LinearArea extends DirectionalArea {
         super();
     }
 
-    /**
-     * Not a fan of this but whatever for now. Should work for regular hexagons.
-     * If it doesn't just yell at Kyle.
-     */
     @Override
     public boolean isInRange(TileCoordinate location) {
-        TileCoordinate testLocation = super.createComparisonLocation(location);
-        int angle = (int) (Math.round(Math.toDegrees(Math.atan2((testLocation.getY()), testLocation.getX()))));
-
-        boolean thisResult = angle == (super.getDirection().getAngle() + ANGLE_OFFSET)
-                && super.isWithinRadius(location);
-        return super.hasCompositeArea() ? thisResult || super.compositeInRange(location) : thisResult;
+        return getCoveredLocations().contains(location);
     }
 
     @Override
     public List<TileCoordinate> getCoveredLocations() {
-        List<TileCoordinate> returnList = super.getCompositeCoveredLocations();
-        returnList.addAll(super.locationsInALine(super.getDirection().getAngle(), super.getRadius(),
-                super.getStartLocation()));
+        List<TileCoordinate> returnList = new ArrayList<TileCoordinate>();
+        returnList.add(getStartLocation());
+        for (int i = 1; i <= getRadius(); i++) {
+        	returnList.add(returnList.get(returnList.size()-1).nextLocation(getDirection()));
+        }
         return returnList;
     }
 

@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import model.entity.Entity;
 import model.entity.EntityManager;
 
 public final class TriggerManager {
@@ -21,15 +22,23 @@ public final class TriggerManager {
 	
 	public void update() {
 		for (Trigger t : partyTriggers) {
-			t.handle(EntityManager.getSingleton().getPartyNpcs());
+			for(Entity i : EntityManager.getSingleton().getPartyNpcs()){
+				t.handle(i);
+			}
 		}
 		for (Trigger t : nonPartyTriggers) {
-			t.handle(EntityManager.getSingleton().getNonPartyNpcs());
+			for(Entity i : EntityManager.getSingleton().getNonPartyNpcs()){
+				t.handle(i);
+			}
 			t.handle(EntityManager.getSingleton().getAvatar());
 		}
 		for (Trigger t : neutralTriggers) {
-			t.handle(EntityManager.getSingleton().getPartyNpcs());
-			t.handle(EntityManager.getSingleton().getNonPartyNpcs());
+			for(Entity i : EntityManager.getSingleton().getNonPartyNpcs()){
+				t.handle(i);
+			}
+			for(Entity i : EntityManager.getSingleton().getPartyNpcs()){
+				t.handle(i);
+			}
 			t.handle(EntityManager.getSingleton().getAvatar());
 		}
 		removeExpiredTriggers();
@@ -82,5 +91,11 @@ public final class TriggerManager {
 
 	public Collection<Trigger> getNeutralTriggers() {
 		return Collections.unmodifiableCollection(neutralTriggers);
+	}
+	
+	public void clear() {
+		partyTriggers = new CopyOnWriteArrayList<Trigger>();
+		nonPartyTriggers = new CopyOnWriteArrayList<Trigger>();
+		neutralTriggers = new CopyOnWriteArrayList<Trigger>();
 	}
 }

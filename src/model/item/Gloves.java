@@ -34,5 +34,16 @@ public class Gloves extends EquipableItem{
         // TODO Auto-generated method stub
         return null;
     }
+    
+    @Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		return map;
+	}
+    
+    @Override 
+    protected String getType() {
+		return "gloves";
+	}
 
 }

@@ -1,18 +1,23 @@
 package controller;
 
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
+import controller.commands.Unequip;
 import controller.listener.ToggleAction;
+import controller.mouseliseners.EquipmentMouseListener;
+import controller.mouseliseners.InventoryMouseListener;
+import controller.mouseliseners.InventorySlotMouseListener;
 import model.Model;
+import model.entity.Entity;
 
 public class InventoryMenuController extends Controller {
 	private Model model;
 	private ToggleAction backAction;
-	private InventoryMouseListener inventoryMouseListener;
-	private EquipmentMouseListener equipmentMouseListener;
+	private Entity entity;
 	
-	public InventoryMenuController(Model model) {
+	public InventoryMenuController(Model model,Entity entity) {
+		this.entity = entity;
 		this.model = model;
 		initActions();
 	}
@@ -25,16 +30,6 @@ public class InventoryMenuController extends Controller {
 				model.popState();
 			}
 		};
-		this.inventoryMouseListener = new InventoryMouseListener(); 
-		this.equipmentMouseListener = new EquipmentMouseListener();
-	}
-	
-	public MouseListener getInventoryMouseListener(){
-		return this.inventoryMouseListener;
-	}
-	
-	public MouseListener getEquipmentMouseListener(){
-		return this.equipmentMouseListener;
 	}
 	
 	public ToggleAction getBackAction() {
@@ -45,47 +40,37 @@ public class InventoryMenuController extends Controller {
 		backAction.toggle();
 	}
 	
-	public class InventoryMouseListener implements MouseListener {
-
-		public void mouseClicked(MouseEvent e) {
-			System.out.println(e);
-		}
-
-		public void mouseEntered(MouseEvent e) {
-			System.out.println(e);
-		}
-
-		public void mouseExited(MouseEvent e) {
-			System.out.println(e);
-		}
-
-		public void mousePressed(MouseEvent e) {
-			System.out.println(e);
-		}
-
-		public void mouseReleased(MouseEvent e) {
-			System.out.println(e);
-		}
-		
+	public MouseMotionListener makeInventoryMouseListener(){
+		return new InventoryMouseListener();
 	}
 	
-	public class EquipmentMouseListener implements MouseListener{
-
-		public void mouseClicked(MouseEvent e) {
-			System.out.println(e);
-		}
-
-		public void mouseEntered(MouseEvent e) {
-		}
-
-		public void mouseExited(MouseEvent e) {
-		}
-
-		public void mousePressed(MouseEvent e) {
-		}
-
-		public void mouseReleased(MouseEvent e) {
-		}
-		
+	public MouseListener makeSlotMouseListener(int i){
+		return new InventorySlotMouseListener(i);
 	}
+	
+	public MouseListener makeHelmetListener(){
+		return new EquipmentMouseListener(this.entity,Unequip.HELMET);
+	}
+	public MouseListener makeLeggingsListener(){
+		return new EquipmentMouseListener(this.entity,Unequip.LEGGINGS);
+	}
+	public MouseListener makeWeaponListener(){
+		return new EquipmentMouseListener(this.entity,Unequip.WEAPON);
+	}
+	public MouseListener makeGlovesListener(){
+		return new EquipmentMouseListener(this.entity,Unequip.GLOVES);
+	}
+	public MouseListener makeChestPieceListener(){
+		return new EquipmentMouseListener(this.entity,Unequip.CHESTPIECE);
+	}
+	public MouseListener makeBootsListener(){
+		return new EquipmentMouseListener(this.entity,Unequip.BOOTS);
+	}
+	public MouseListener makeShieldListener(){
+		return new EquipmentMouseListener(this.entity,Unequip.SHIELD);
+	}
+	public MouseListener makeProjectileListener(){
+		return new EquipmentMouseListener(this.entity,Unequip.PROJECTILE);
+	}
+
 }

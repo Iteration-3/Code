@@ -25,12 +25,12 @@ public class KeyPreferences implements Saveable {
         this.upKey = KeyStroke.getKeyStroke("W");
         this.upRightKey = KeyStroke.getKeyStroke("E");
         this.upLeftKey = KeyStroke.getKeyStroke("Q");
-        this.downRightKey = KeyStroke.getKeyStroke("C");
-        this.downKey = KeyStroke.getKeyStroke("X");
-        this.downLeftKey = KeyStroke.getKeyStroke("Z");
+        this.downRightKey = KeyStroke.getKeyStroke("D");
+        this.downKey = KeyStroke.getKeyStroke("S");
+        this.downLeftKey = KeyStroke.getKeyStroke("A");
         this.pauseKey = KeyStroke.getKeyStroke("ESCAPE");
         this.inventoryKey = KeyStroke.getKeyStroke("I");
-        this.skillsKey = KeyStroke.getKeyStroke("S");
+        this.skillsKey = KeyStroke.getKeyStroke("ENTER");
         this.abilities = new ArrayList<KeyStroke>();
         for (int i = 0; i != 10; ++i) {
             abilities.add(KeyStroke.getKeyStroke((char) ('0' + i)));

@@ -1,5 +1,6 @@
 package model.states.gamestates;
 
+import gameactions.GameActionRiverPush;
 import gameactions.GameActionStatePush;
 import gameactions.GameActionTeleport;
 
@@ -8,6 +9,7 @@ import java.util.Collection;
 
 import model.KeyPreferences;
 import model.area.Area;
+import model.area.LinearArea;
 import model.area.RadialArea;
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
@@ -18,6 +20,7 @@ import model.entity.NPC;
 import model.entity.Summoner;
 import model.event.HealthModifierEvent;
 import model.event.ManaModifierEvent;
+import model.event.RiverPushEvent;
 import model.event.TeleportEvent;
 import model.item.Boots;
 import model.item.Door;
@@ -26,6 +29,7 @@ import model.item.Helmet;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
 import model.item.TakeableItem;
+import model.light.LightManager;
 import model.map.GameTerrain;
 import model.map.ItemMap;
 import model.map.tile.AirPassableTile;
@@ -34,6 +38,7 @@ import model.map.tile.PassableTile;
 import model.statistics.EntityStatistics;
 import model.statistics.Statistics;
 import model.trigger.PermanentTrigger;
+import model.trigger.RateLimitedTrigger;
 import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
@@ -52,12 +57,13 @@ public class GameplayState extends GameState {
     private GameplayController controller;
     private GameplayLayout layout;
     private GameTerrain gameMap;
-    private ItemMap itemMap = new ItemMap();
+    private ItemMap itemMap;
     private Avatar avatar;
 
     public GameplayState() {
         layout = new GameplayLayout();
         gameMap = new GameTerrain();
+        itemMap = new ItemMap();
     }
 
     @Override
@@ -93,6 +99,9 @@ public class GameplayState extends GameState {
     @Override
     public void onExit() {
         controller.terminateUpdateThread();
+        EntityManager.getSingleton().clear();
+        TriggerManager.getSingleton().clear();
+        LightManager.getLightManager().clear();
         super.onExit();
     }
 
@@ -179,6 +188,11 @@ public class GameplayState extends GameState {
         TileCoordinate oneshotItemPosition = new TileCoordinate(13, 9);
         oneshotItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(13, 9));
         this.getItemMap().addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), oneshotItemPosition);
+        
+        ItemView riverMarker = new BasicItemView(Color.GRAY, Color.BLACK);
+        TileCoordinate riverMarkerSpot = new TileCoordinate(13, 0);
+        riverMarker.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(13, 0));
+        this.getItemMap().addItem(new ObstacleItem(riverMarker), riverMarkerSpot);
 
     }
 
@@ -197,12 +211,18 @@ public class GameplayState extends GameState {
 
         TileCoordinate locThree = new TileCoordinate(2, 8);
         Area areaThree = new RadialArea(1, locThree);
-        Trigger triggerThree = new PermanentTrigger(areaThree, new TeleportEvent(0, new TileCoordinate(2, 0),
+        Trigger triggerThree = new PermanentTrigger(areaThree, new TeleportEvent(new TileCoordinate(2, 0),
                 new GameActionTeleport(avatar, gameMap, this.getItemMap(), Angle.DOWN)));
+        
+        TileCoordinate locFour = new TileCoordinate(13, 0);
+        Area areaFour = new LinearArea(20, locFour, Angle.DOWN);
+        Trigger triggerFour = new RateLimitedTrigger(areaFour, new RiverPushEvent(
+                new GameActionRiverPush(avatar, gameMap, this.getItemMap(), Angle.DOWN)),1000);
 
         triggerManager.addNonPartyTrigger(triggerOne);
         triggerManager.addNonPartyTrigger(triggerTwo);
         triggerManager.addNonPartyTrigger(triggerThree);
+        triggerManager.addNonPartyTrigger(triggerFour);
 
     }
 

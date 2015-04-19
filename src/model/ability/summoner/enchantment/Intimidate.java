@@ -13,4 +13,9 @@ public class Intimidate extends ProjectileAbility {
 		this();
 		this.setManaCost(manaCost);
 	}
+
+	@Override
+	protected String getType() {
+		return "intimidate";
+	}
 }

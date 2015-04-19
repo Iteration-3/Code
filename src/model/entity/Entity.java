@@ -7,6 +7,7 @@ import model.KeyPreferences;
 import model.area.TileCoordinate;
 import model.item.EquipableItem;
 import model.item.TakeableItem;
+import model.observers.MobileObject;
 import model.slots.ItemManager;
 import model.statistics.EntityStatistics;
 import model.statistics.Statistics;
@@ -18,7 +19,8 @@ import view.EquipmentView;
 import view.InventoryView;
 import controller.listener.Listener;
 
-public abstract class Entity implements Saveable {
+public abstract class Entity extends MobileObject implements Saveable {
+	
     private ItemManager itemManager;
     private String name = null;
     private EntityStatistics stats = new EntityStatistics();
@@ -27,7 +29,12 @@ public abstract class Entity implements Saveable {
     private Angle direction = Angle.UP;
 	private boolean isFlying = false;
 
+    protected Entity() {
+    	super(new TileCoordinate(0, 0));
+    }
+
     public Entity(String name, EntityView view, TileCoordinate location) {
+    	super(location);
         this.name = name;
         this.view = view;
         this.location = location;
@@ -35,9 +42,14 @@ public abstract class Entity implements Saveable {
     }
     
     public Entity(StructuredMap map) {
-        name = map.getString("name");
+    	super(new TileCoordinate(map.getIntArray("location")[0], map.getIntArray("location")[1]));
+        this.name = map.getString("name");
         int[] locationArray = map.getIntArray("location");
         this.location = new TileCoordinate(locationArray[0], locationArray[1]);
+        this.stats = new EntityStatistics(map.getStructuredMap("stats"));
+        this.direction = Angle.values()[map.getInteger("direction")];
+        this.itemManager = new ItemManager(map.getStructuredMap("itemManager"));
+        this.isFlying = map.getBoolean("flying");
     }
 
     private void setNecessities() {
@@ -59,11 +71,14 @@ public abstract class Entity implements Saveable {
         map.put("location", locationArray);
         map.put("stats", stats.getStructuredMap());
         map.put("direction", direction.ordinal());
-        map.put("items", itemManager.getStructuredMap());
+        map.put("itemManager", itemManager.getStructuredMap());
+        map.put("type", getType());
+        map.put("flying", isFlying);
 
-        // TODO more createItemManager
         return map;
     }
+    
+    public abstract String getType();
 
     public abstract void load(StructuredMap map);
 
@@ -133,10 +148,6 @@ public abstract class Entity implements Saveable {
         return name;
     }
 
-    public TileCoordinate getLocation() {
-        return location;
-    }
-
     public void equip(EquipableItem item) {
         this.itemManager.equip(item);
     }
@@ -191,8 +202,9 @@ public abstract class Entity implements Saveable {
     }
 
     public void setLocation(TileCoordinate location) {
-        this.location = location;
-        this.getEntityView().setLocation(location);
+    	super.setLocation(location);
+    	if (this.getEntityView() != null)
+    		this.getEntityView().setLocation(location);//TODO: FIX
     }
 
     public Angle getDirection() {

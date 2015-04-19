@@ -1,9 +1,9 @@
 package model.entity;
 
-import view.EntityView;
 import model.area.TileCoordinate;
 import model.entity.dialog.DialogTree;
-
+import utilities.structuredmap.StructuredMap;
+import view.EntityView;
 
 public class Pet extends NPC {
 	
@@ -15,5 +15,18 @@ public class Pet extends NPC {
 		super(name, view, location, dialogTree);
 	}
 
+	public Pet(StructuredMap map) {
+		super(map);
+	}
+
+	@Override
+	public String getType() {
+		return "pet";
+	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+		return super.getStructuredMap();
+	}
 	
 }

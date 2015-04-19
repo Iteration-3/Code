@@ -13,4 +13,9 @@ public final class ShadowBlast extends ProjectileAbility {
 		this();
 		this.setManaCost(manaCost);
 	}
+
+	@Override
+	protected String getType() {
+		return "shadowBlast";
+	}
 }

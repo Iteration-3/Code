@@ -21,16 +21,17 @@ public abstract class TakeableItem extends Item {
 		this(itemView);
 		setPrice(price);
 	}
-	
+
 	public TakeableItem(ItemView itemView, StructuredMap map) {
-	    super(itemView);
-	    this.taken = map.getBoolean("taken");
+		super(itemView);
+		this.taken = map.getBoolean("taken");
 	}
 
 	@Override
 	public void touch(Entity entity) {
 		if (entity.addItem(this)) {
 			taken = true;
+
 			// Remove the view from the map somehow...
 			itemView.removeFromMap();
 		}
@@ -54,12 +55,18 @@ public abstract class TakeableItem extends Item {
 		}
 	}
 
-    @Override
-    public StructuredMap getStructuredMap() {
-       StructuredMap map = new StructuredMap();
-       map.put("taken", taken);
-       return map;
-    }
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		map.put("taken", taken);
+		map.put("type", getType());
+		return map;
+	}
+	
+	protected String getType() {
+		return "takeable";
+	}
+
 	
 	public int getBarteredCost(Avatar avatar) {
 		return getPrice().getBarteredCost(avatar);

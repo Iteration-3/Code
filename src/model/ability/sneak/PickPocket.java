@@ -44,4 +44,9 @@ public class PickPocket extends TriggerAbility {
 		}
 	}
 
+	@Override
+	protected String getType() {
+		return "pickPocket";
+	}
+
 }
