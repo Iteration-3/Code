@@ -10,8 +10,10 @@ public class Pursue implements Behaviorable {
 	private Entity chosenOne;
 	private ListenForMovement pursue;
 	private TargetEntity targetEntity;
+	private Boolean reset;
 
-	public Pursue() {
+	public Pursue(Boolean continuousAreaReset) {
+		this.reset = continuousAreaReset;
 	}
 
 	public void perform() {
@@ -48,8 +50,9 @@ public class Pursue implements Behaviorable {
 
 	public void setStates() {
 		this.pursue = new ListenForMovement(this.chosenOne);
-		this.targetEntity = new TargetEntity(this.chosenOne, 7, EntityManager
-				.getSingleton().getAvatar(), new RadialArea());
+		this.targetEntity = new TargetEntity(this.chosenOne, EntityManager
+				.getSingleton().getAvatar(), new RadialArea(7,
+				this.chosenOne.getLocation()), this.reset);
 	}
 
 }

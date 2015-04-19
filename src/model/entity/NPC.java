@@ -20,7 +20,8 @@ public class NPC extends Entity {
 	private DialogTree dialogTree;
 	
 	public NPC(String name, EntityView view, TileCoordinate location) {
-		super(name, view, location,new Pursue());
+		//they wont chase you in their radius
+		super(name, view, location,new Pursue(false));
 		Collection<DialogEntry> dialogEntries = new ArrayList<DialogEntry>(1);
 		dialogEntries.add(new DialogEntry("Barter", new BarterAction()));
 		dialogEntries.add(new DialogEntry("Exit", new ExitAction()));
