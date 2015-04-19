@@ -22,14 +22,14 @@ public class GameplayController extends Controller {
         entityController.addListener(listener);
     }
     
-    private void doUpdates(float deltaTime) {
+    private void doUpdates(double deltaTime) {
 		TriggerManager.getSingleton().update(deltaTime);
 		EventManager.getSingleton().update(deltaTime);
 		EntityManager.getSingleton().update(deltaTime);
     }
     
     public void spawnUpdateThread() {
-    	previousTime = System.currentTimeMillis();
+    	previousTime = System.nanoTime();
     	updateThread = new Thread(
     		new Runnable() {
     			@Override
@@ -39,9 +39,16 @@ public class GameplayController extends Controller {
     					   	threadIsRunning = false;
     						return;
     					}
-    					float deltaTime = (System.currentTimeMillis() - previousTime) / 1000f;
+    					double deltaTime = (System.nanoTime()  - previousTime) / 1000000000.0d;
     					doUpdates(deltaTime);
-    					previousTime = System.currentTimeMillis();
+    					System.out.println(deltaTime);
+    					previousTime = System.nanoTime();
+    					
+    					try {
+    						Thread.sleep(1);
+    					} catch (InterruptedException e) {
+    						Thread.currentThread().interrupt();
+    					}
     				}
     			}
     		});
