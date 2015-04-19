@@ -36,6 +36,8 @@ import model.map.ItemMap;
 import model.map.tile.AirPassableTile;
 import model.map.tile.ImpassableTile;
 import model.map.tile.PassableTile;
+import model.projectile.Projectile;
+import model.projectile.ProjectileManager;
 import model.statistics.EntityStatistics;
 import model.statistics.Statistics;
 import model.trigger.PermanentTrigger;
@@ -72,6 +74,12 @@ public class GameplayState extends GameState {
 		TriggerManager.getSingleton().update(deltaTime);
 		EventManager.getSingleton().update(deltaTime);
 		EntityManager.getSingleton().update(deltaTime);
+		ProjectileManager.getSingleton().update(deltaTime);
+		/* Run through projectile queue */
+		while (!ProjectileManager.getSingleton().isQueueEmpty()) {
+			Projectile poll = ProjectileManager.getSingleton().dequeueProjectile();
+			poll.projView.registerWithGameProjectileView(layout.getGameProjectileView());
+		}
     }
     
     @Override

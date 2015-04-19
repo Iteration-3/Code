@@ -1,5 +1,7 @@
 package model.projectile;
 
+import java.awt.Color;
+
 import factories.TriggerFactory;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
@@ -11,6 +13,8 @@ import model.trigger.TriggerManager;
 import utilities.Angle;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import view.projectiles.BasicProjectileView;
+import view.projectiles.ProjectileView;
 
 public class Projectile implements Cloneable, Saveable {
 	private Angle direction;
@@ -18,13 +22,15 @@ public class Projectile implements Cloneable, Saveable {
 	private double speed;
 	private long timeout;
 	private Trigger trigger;
+	public ProjectileView projView;
 
 	public Projectile() {
 		this.direction = Angle.UP;
 		this.location = new TileCoordinate();
 		this.speed = 1;
-		this.trigger = new SingleUseTrigger(new RadialArea(1, this.location),
+		this.trigger = new SingleUseTrigger(new RadialArea(0, this.location),
 				new StatisticModifierEvent(new EntityStatistics(), 5));
+		projView = new BasicProjectileView(location, Color.RED, 40);
 	}
 	
 	public Projectile(StructuredMap map) {
@@ -34,6 +40,7 @@ public class Projectile implements Cloneable, Saveable {
 		this.speed = map.getDouble("speed");
 		this.timeout = map.getDouble("timeout").longValue();
 		this.trigger = TriggerFactory.createTrigger(map.getStructuredMap("trigger"));
+		projView = new BasicProjectileView(location, Color.RED, 40);
 	}
 	
 	public StructuredMap getStructuredMap() {
@@ -63,12 +70,20 @@ public class Projectile implements Cloneable, Saveable {
 		this.location = location;
 		this.speed = speed;
 		this.trigger = trigger;
+		projView = new BasicProjectileView(location, Color.RED, 40);
+	}
+	
+	public void move(TileCoordinate location) {
+		this.location = location;
+		trigger.moveLocation(location);
+		projView.setLocation(location);
 	}
 
 	public void advance() {
 		if (!isTimedOut()) {
-			this.location = location.nextLocation(direction);
-			trigger.moveLocation(location);
+			System.out.println("DIRECTION: " + direction);
+			System.out.println("AREA: " + trigger.getArea().getStartLocation());
+			move(location.nextLocation(direction));
 			timeOutProjectile();
 		}
 	}
@@ -76,17 +91,7 @@ public class Projectile implements Cloneable, Saveable {
 	public void placeOnMap() {
 		this.getTrigger().moveLocation(this.getLocation());
 		TriggerManager.getSingleton().addNeutralTrigger(trigger);
-		ProjectileManager.addProjectile(this);
-	}
-	
-	public Projectile clone() {
-		Projectile clone = new Projectile();
-		clone.setDirection(this.getDirection());
-		clone.setLocation(this.getLocation());
-		clone.setSpeed(this.getSpeed());
-		clone.setTimeout(this.getTimeout());
-		clone.setTrigger(this.getTrigger());
-		return clone;
+		ProjectileManager.getSingleton().enqueueProjectile(this);
 	}
 	
 	public boolean hasExpired() {
@@ -94,11 +99,11 @@ public class Projectile implements Cloneable, Saveable {
 	}
 
 	private void timeOutProjectile() {
-		this.timeout = (long) (System.currentTimeMillis() + 1 / speed);
+		this.timeout = (long) (System.currentTimeMillis());
 	}
 
 	private boolean isTimedOut() {
-		return this.timeout > System.currentTimeMillis();
+		return (System.currentTimeMillis()-timeout) < 2000;
 	}
 
 	public Angle getDirection() {
@@ -114,7 +119,7 @@ public class Projectile implements Cloneable, Saveable {
 	}
 
 	public void setLocation(TileCoordinate location) {
-		this.location = location;
+		//this.location = location;
 	}
 
 	public double getSpeed() {

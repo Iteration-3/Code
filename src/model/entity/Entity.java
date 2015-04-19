@@ -137,6 +137,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.setLocationNoNotify(nextLocation);
         this.setDirectionNoNotify(angle);
         this.notifySubscribers();
+        System.out.println("MOVE TO: "+nextLocation);
     }
     
     public TileCoordinate nextLocation() {
