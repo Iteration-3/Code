@@ -159,6 +159,27 @@ public class EntityManager implements Iterable<Entity> {
 		return new EntityIterator();
 	}
 	
+	public void removeEntity(Entity entity) {
+		for (Entity e : getPartyNpcs()) {
+			if (e.equals(entity)) {
+				getPartyNpcs().remove(e);
+				e.getEntityView().toggle();
+				return;
+			}
+		}
+		for (Entity e : getNonPartyNpcs()) {
+			if (e.equals(entity)) {
+				getNonPartyNpcs().remove(e);
+				e.getEntityView().toggle();
+				return;
+			}
+		}
+		if (getAvatar().equals(entity))  {
+			setAvatar(null);
+			entity.getEntityView().toggle();
+		}
+	}
+	
 	public void clear() {
 		partyNpcs = new ArrayList<NPC>();
 		nonPartyNpcs = new ArrayList<NPC>();

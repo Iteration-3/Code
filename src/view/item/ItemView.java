@@ -45,4 +45,8 @@ public abstract class ItemView implements Saveable{
 	
 	public abstract String getType();
 	
+	public void toggle() {
+		this.removeFromMap();
+	}
+	
 }

@@ -31,6 +31,7 @@ import model.item.Helmet;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
 import model.item.TakeableItem;
+import model.item.Trap;
 import model.light.LightManager;
 import model.map.GameTerrain;
 import model.map.ItemMap;
@@ -211,6 +212,12 @@ public class GameplayState extends GameState {
         TileCoordinate riverMarkerSpot = new TileCoordinate(13, 0);
         riverMarker.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(13, 0));
         this.getItemMap().addItem(new ObstacleItem(riverMarker), riverMarkerSpot);
+        
+        ItemView trapView = new BasicItemView(Color.RED, Color.BLACK);
+        TileCoordinate trapSpot = new TileCoordinate(15, 12);
+        trapView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(15, 12));
+        this.getItemMap().addItem(new Trap(trapView), trapSpot);
+        
 
     }
 

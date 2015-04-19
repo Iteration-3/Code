@@ -55,8 +55,6 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.state.push(behavior);
     }
     
-    
-    
     public Entity(StructuredMap map) {
     	super(new TileCoordinate(map.getIntArray("location")[0], map.getIntArray("location")[1]));
         this.name = map.getString("name");
