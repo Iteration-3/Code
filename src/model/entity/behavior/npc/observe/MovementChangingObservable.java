@@ -14,33 +14,41 @@ public abstract class MovementChangingObservable implements ObservableBehaviorSt
 	private int count;
 	private boolean found = false;
 	private Angle move;
+	private boolean reset;
 	
-	public MovementChangingObservable(Entity entity,int radius,Entity target,Area area){
+	public MovementChangingObservable(Entity entity,Entity target,Area area){
 		this.chosenOne = entity;
 		this.target = target;
 		this.area = area;
-		this.area.setRange(radius);
-		this.area.setStartLocation(target.getLocation());
 	}
 
 	protected abstract Angle setMove(TileCoordinate chosen,TileCoordinate target);
+	protected abstract boolean setResetAreaValue();
 
 	public final void observe() {
 		if (count++ == ticker){
-			if (EntityManager.getSingleton().findEntityFromLocations(area.getCoveredLocations(), 
+			if (EntityManager.getSingleton().findEntityFromLocations(this.area.getCoveredLocations(), 
 					this.target)){
 				TileCoordinate targetLocation = this.target.getLocation();
 				TileCoordinate chosenLocation = this.chosenOne.getLocation();
 				this.move = this.setMove(chosenLocation,targetLocation);
+				this.reset = this.setResetAreaValue();
 				this.setFound();
 			}
 			count = 0;
 		}
 	}
 	
+	private boolean getResetArea(){
+		return reset;
+	}
+	
 	public final Angle getMove(){
 		Angle move = this.move;
 		this.move = null;
+		if (this.getResetArea()){
+			area.setStartLocation(this.chosenOne.getLocation());
+		}
 		return move;
 	}
 	

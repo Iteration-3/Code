@@ -45,7 +45,10 @@ public enum Angle {
 		int chosenY = startingLocation.getY();
 		int targetX = targetLocation.getX();
 		int targetY = targetLocation.getY();
-		if (targetY > chosenY && targetX < chosenX){
+		
+		System.out.println(chosenY +"   " + chosenX + "   " + targetX + "  "+ targetY);
+
+		if (targetX < chosenX && targetY > chosenY ){
 			return Angle.DOWN_LEFT;
 		}
 		else if (targetX > chosenX && targetY < chosenY){
@@ -77,19 +80,31 @@ public enum Angle {
     public Angle getFarthestAngleFromTarget(TileCoordinate startingLocation, TileCoordinate targetLocation){
 		int chosenX = startingLocation.getX();
 		int chosenY = startingLocation.getY();
-		int avatarX = targetLocation.getX();
-		int avatarY = targetLocation.getY();
-		if (avatarY > chosenY){
-			return Angle.UP;
-		}
-		else if (avatarX > chosenX){
+		int targetX = targetLocation.getX();
+		int targetY = targetLocation.getY();
+		if (targetX < chosenX && targetY > chosenY ){
 			return Angle.UP_RIGHT;
 		}
-		else if (avatarX < chosenX){
+		else if (targetX > chosenX && targetY < chosenY){
+			return Angle.DOWN_LEFT;
+		}
+		else if (targetX < chosenX && targetY < chosenY){
+			return Angle.DOWN_RIGHT;
+		}
+		else if (targetX > chosenX && targetY > chosenY){
 			return Angle.UP_LEFT;
 		}
-		else if (avatarY < chosenY){
+		else if (targetY < chosenY){
+			return Angle.DOWN;
+		}
+		else if (targetY > chosenY){
 			return Angle.UP;
+		}
+		else if (targetX > chosenX){
+			return Angle.DOWN_LEFT;
+		}
+		else if (targetX < chosenX){
+			return Angle.DOWN_RIGHT;
 		}
 		else{
 			return null;    // dont move
