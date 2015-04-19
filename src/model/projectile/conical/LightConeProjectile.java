@@ -6,7 +6,6 @@ import model.event.HealthModifierEvent;
 import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import utilities.Angle;
-import utilities.structuredmap.StructuredMap;
 
 public class LightConeProjectile extends ConicalProjectile {
 	
@@ -19,9 +18,6 @@ public class LightConeProjectile extends ConicalProjectile {
 		super(direction, null, speed, trigger);
 	}
 	
-	public LightConeProjectile(StructuredMap map) {
-		super(map);
-	}
 	
 	@Override
 	protected String getType() {

@@ -1,7 +1,6 @@
 package model.projectile.linear;
 
 import utilities.Angle;
-import utilities.structuredmap.StructuredMap;
 import model.area.RadialArea;
 import model.event.Event;
 import model.event.HealthModifierEvent;
@@ -23,9 +22,6 @@ public class ThrowingKnife extends Projectile {
 		super(direction, null, speed, trigger);
 	}
 	
-	public ThrowingKnife(StructuredMap map) {
-		super(map);
-	}
 	
 	@Override
 	protected String getType() {

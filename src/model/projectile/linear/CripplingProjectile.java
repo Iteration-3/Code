@@ -7,7 +7,6 @@ import model.projectile.Projectile;
 import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import utilities.Angle;
-import utilities.structuredmap.StructuredMap;
 
 public class CripplingProjectile extends Projectile {
 	
@@ -26,9 +25,6 @@ public class CripplingProjectile extends Projectile {
 		super(direction, null, speed, trigger);
 	}
 	
-	public CripplingProjectile(StructuredMap map) {
-		super(map);
-	}
 	
 	@Override
 	protected String getType() {
