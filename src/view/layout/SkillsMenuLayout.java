@@ -63,6 +63,7 @@ public class SkillsMenuLayout extends Layout {
 	}
 	
 	private void refreshSkillPointsRemainingLabel(SkillManager skillManager) {
+		System.out.println(skillManager.getSkillPointsToSpend());
 		skillPointsRemainingLabel.setText("Skill Points Left To Spend: " + skillManager.getSkillPointsToSpend());
 	}
 	

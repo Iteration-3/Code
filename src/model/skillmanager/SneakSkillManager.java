@@ -52,19 +52,27 @@ public class SneakSkillManager extends SkillManager {
     }
 
     public void incrementRangedSkill() {
+		if (!hasSkillPointsToSpend()) return;
         ++rangedSkill;
+		spendSkillPoint();
     }
 
     public void incrementTrapRemoveSkill() {
+		if (!hasSkillPointsToSpend()) return;
         ++trapRemoveSkill;
+		spendSkillPoint();
     }
 
     public void incrementPickPocketSkill() {
+		if (!hasSkillPointsToSpend()) return;
         ++pickPocketSkill;
+		spendSkillPoint();
     }
 
     public void incrementCreepSkill() {
+		if (!hasSkillPointsToSpend()) return;
         ++creepSkill;
+		spendSkillPoint();
     }
 
 	@Override

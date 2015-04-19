@@ -35,15 +35,21 @@ public class SmasherSkillManager extends SkillManager {
     }
 
     public void incrementBrawl() {
+		if (!hasSkillPointsToSpend()) return;
         ++brawlSkill;
+        spendSkillPoint();
     }
 
     public void incrementOneHand() {
+		if (!hasSkillPointsToSpend()) return;
         ++oneHandedSkill;
+        spendSkillPoint();
     }
 
     public void incrementTwoHand() {
+		if (!hasSkillPointsToSpend()) return;
         ++twoHandedSkill;
+        spendSkillPoint();
     }
     
     @Override
