@@ -1,31 +1,33 @@
 package model.ability.summoner.enchantment;
 
 import model.ability.ProjectileAbility;
-import model.projectile.Projectile;
+import model.entity.Avatar;
 import model.projectile.linear.CripplingProjectile;
-import utilities.structuredmap.StructuredMap;
+import model.skillmanager.SummonerSkillManager;
 
 public class Cripple extends ProjectileAbility {
+	private SummonerSkillManager manager;
+	private CripplingProjectile projectile = new CripplingProjectile();
 	
-	public Cripple() {
+	public Cripple(SummonerSkillManager manager) {
 		super(15);
+		this.manager = manager;
 	}
 	
-	public Cripple(int manaCost) {
-		this();
-		this.setManaCost(manaCost);
+	protected SummonerSkillManager getSkillManager(){
+		return manager;
 	}
 	
-	public Cripple(StructuredMap map) {
-		super(map);
-	}
-
 	@Override
-	protected String getType() {
-		return "cripple";
+	public CripplingProjectile getProjectile(){
+		return projectile;
+	}
+	
+	@Override
+	public void perform(Avatar avatar){
+		this.setManaCost(this.getSkillManager().getEnchantSkill());
+		this.getProjectile().setLevel(this.getSkillManager().getEnchantSkill());
+		super.perform(avatar);
 	}
 
-	public Projectile getProjectile() {
-		return new CripplingProjectile();
-	}
 }

@@ -13,10 +13,7 @@ public class IntimidateConeProjectile extends ConicalProjectile {
 
 	public IntimidateConeProjectile() {
 		super();
-		this.setSpeed(3);
-		Event damageEvent = new StatisticModifierEvent(new Statistics(-20, 0, 0, 0), 5);
-		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
-		this.setTrigger(damageTrigger);
+		this.setLevel(1);
 	}
 	
 	public IntimidateConeProjectile(Angle direction, double speed, Trigger trigger) {
@@ -30,6 +27,14 @@ public class IntimidateConeProjectile extends ConicalProjectile {
 	@Override
 	protected String getType() {
 		return "intimidateConeProjectile";
+	}
+
+	public void setLevel(int x) {
+		this.setSpeed(3*x);
+		Event damageEvent = new StatisticModifierEvent(new Statistics(-20*x, 0, 0, 0), 5*x);
+		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
+		this.setTrigger(damageTrigger);
+		
 	}
 
 }

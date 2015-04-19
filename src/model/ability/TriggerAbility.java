@@ -1,12 +1,10 @@
 package model.ability;
 
-import factories.TriggerFactory;
 import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
-import utilities.structuredmap.StructuredMap;
 
 public abstract class TriggerAbility extends Ability {
 	private Trigger trigger;
@@ -20,10 +18,6 @@ public abstract class TriggerAbility extends Ability {
 		this.setTrigger(trigger);
 	}
 	
-	public TriggerAbility(StructuredMap map) {
-		super(map);
-		this.trigger = TriggerFactory.createTrigger(map);
-	}
 	
 	@Override
 	public void perform(Avatar avatar) {
@@ -42,13 +36,7 @@ public abstract class TriggerAbility extends Ability {
 		}
 	}
 	
-	@Override
-	public StructuredMap getStructuredMap() {
-		StructuredMap map = super.getStructuredMap();
-		map.put("trigger", trigger.getStructuredMap());
-		return map;
-	}
-	
+
 	public final void setTrigger(Trigger trigger) {
 		this.trigger = trigger;
 	}
