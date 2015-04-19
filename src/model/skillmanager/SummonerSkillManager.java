@@ -46,7 +46,7 @@ public class SummonerSkillManager extends SkillManager {
         return enchantSkill;
     }
 
-    public int getStaffskill() {
+    public int getStaffSkill() {
         return staffSkill;
     }
 

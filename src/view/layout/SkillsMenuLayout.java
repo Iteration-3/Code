@@ -325,6 +325,118 @@ public class SkillsMenuLayout extends Layout {
 		
 	}
 
+	private void refreshStaffLabel(SummonerSkillManager summonerSkillManager, TextLabel staffLabel) {
+		staffLabel.setText("Staff: " + summonerSkillManager.getStaffSkill());
+	}
+	
+	private TextLabel initStaffLabel(SummonerSkillManager summonerSkillManager) {
+		TextLabel staffLabel = new TextLabel();
+		refreshStaffLabel(summonerSkillManager, staffLabel);
+		add(staffLabel);
+		return staffLabel;
+	}
+	
+	private void initStaffButton(final SummonerSkillManager summonerSkillManager, final TextLabel staffLabel) {
+		MenuButton staffButton = new MenuButton("+");
+		staffButton.setColor(Color.GREEN);
+		staffButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				summonerSkillManager.incrementStaff();
+				refreshStaffLabel(summonerSkillManager, staffLabel);
+				refreshSkillPointsRemainingLabel(summonerSkillManager);
+			}
+			
+		});
+		add(staffButton);
+		
+	}
+
+	private void refreshEnchantmentLabel(SummonerSkillManager summonerSkillManager, TextLabel enchantmentLabel) {
+		enchantmentLabel.setText("Enchantment: " + summonerSkillManager.getEnchantSkill());
+	}
+	
+	private TextLabel initEnchantmentLabel(SummonerSkillManager summonerSkillManager) {
+		TextLabel enchantmentLabel = new TextLabel();
+		refreshEnchantmentLabel(summonerSkillManager, enchantmentLabel);
+		add(enchantmentLabel);
+		return enchantmentLabel;
+	}
+	
+	private void initEnchantmentButton(final SummonerSkillManager summonerSkillManager, final TextLabel enchantmentLabel) {
+		MenuButton enchantmentButton = new MenuButton("+");
+		enchantmentButton.setColor(Color.GREEN);
+		enchantmentButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				summonerSkillManager.incrementEnchant();
+				refreshEnchantmentLabel(summonerSkillManager, enchantmentLabel);
+				refreshSkillPointsRemainingLabel(summonerSkillManager);
+			}
+			
+		});
+		add(enchantmentButton);
+		
+	}
+
+	private void refreshBoonLabel(SummonerSkillManager summonerSkillManager, TextLabel boonLabel) {
+		boonLabel.setText("Boon: " + summonerSkillManager.getBoonSkill());
+	}
+	
+	private TextLabel initBoonLabel(SummonerSkillManager summonerSkillManager) {
+		TextLabel boonLabel = new TextLabel();
+		refreshBoonLabel(summonerSkillManager, boonLabel);
+		add(boonLabel);
+		return boonLabel;
+	}
+	
+	private void initBoonButton(final SummonerSkillManager summonerSkillManager, final TextLabel boonLabel) {
+		MenuButton boonButton = new MenuButton("+");
+		boonButton.setColor(Color.GREEN);
+		boonButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				summonerSkillManager.incrementBoon();
+				refreshBoonLabel(summonerSkillManager, boonLabel);
+				refreshSkillPointsRemainingLabel(summonerSkillManager);
+			}
+			
+		});
+		add(boonButton);
+		
+	}
+	
+	private void refreshBaneLabel(SummonerSkillManager summonerSkillManager, TextLabel baneLabel) {
+		baneLabel.setText("Bane: " + summonerSkillManager.getBaneSkill());
+	}
+	
+	private TextLabel initBaneLabel(SummonerSkillManager summonerSkillManager) {
+		TextLabel baneLabel = new TextLabel();
+		refreshBaneLabel(summonerSkillManager, baneLabel);
+		add(baneLabel);
+		return baneLabel;
+	}
+	
+	private void initBaneButton(final SummonerSkillManager summonerSkillManager, final TextLabel baneLabel) {
+		MenuButton baneButton = new MenuButton("+");
+		baneButton.setColor(Color.GREEN);
+		baneButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				summonerSkillManager.incrementBane();
+				refreshBaneLabel(summonerSkillManager, baneLabel);
+				refreshSkillPointsRemainingLabel(summonerSkillManager);
+			}
+			
+		});
+		add(baneButton);
+		
+	}
+	
 	private void addSkillPointInterface() {
 		final Avatar avatar = EntityManager.getSingleton().getAvatar();
 		if(avatar == null){return;}
@@ -366,7 +478,13 @@ public class SkillsMenuLayout extends Layout {
 	}
 
 	public void populateSummonerSkills(SummonerSkillManager summonerSkillManager) {
-		// TODO Auto-generated method stub
-		
+		TextLabel enchantLabel = initEnchantmentLabel(summonerSkillManager);
+		initEnchantmentButton(summonerSkillManager, enchantLabel);
+		TextLabel baneLabel = initBaneLabel(summonerSkillManager);
+		initBaneButton(summonerSkillManager, baneLabel);
+		TextLabel boonLabel = initBoonLabel(summonerSkillManager);
+		initBoonButton(summonerSkillManager, boonLabel);
+		TextLabel staffLabel = initStaffLabel(summonerSkillManager);
+		initStaffButton(summonerSkillManager, staffLabel);
 	}
 }
