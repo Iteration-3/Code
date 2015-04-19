@@ -7,6 +7,7 @@ import model.statistics.Statistics;
 import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import utilities.Angle;
+import utilities.structuredmap.StructuredMap;
 
 public class IntimidateConeProjectile extends ConicalProjectile {
 
@@ -20,6 +21,15 @@ public class IntimidateConeProjectile extends ConicalProjectile {
 	
 	public IntimidateConeProjectile(Angle direction, double speed, Trigger trigger) {
 		super(direction, null, speed, trigger);
+	}
+	
+	public IntimidateConeProjectile(StructuredMap map) {
+		super(map);
+	}
+	
+	@Override
+	protected String getType() {
+		return "intimidateConeProjectile";
 	}
 
 }
