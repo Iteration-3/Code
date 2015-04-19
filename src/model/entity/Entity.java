@@ -207,6 +207,13 @@ public abstract class Entity extends MobileObject implements Saveable {
     	if (this.getEntityView() != null)
     		this.getEntityView().setLocation(location);//TODO: FIX
     }
+    
+    public void setDirection(Angle angle){
+    	super.setDirection(angle);
+    	if(this.getEntityView()!=null){
+    		this.getEntityView().setDirection(angle);
+    	}
+    }
 
     public void modifyStats(Statistics otherStats) {
         stats.mergeInto(otherStats);
