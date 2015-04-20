@@ -1346,7 +1346,22 @@
 			},
 		"itemTile":	{
 			"items":	[{
-				
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	9.75,
+						"y":	0.4330127018922193
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/slotImage.png",
+						"position":	{
+							"x":	9.75,
+							"y":	0.4330127018922193
+							}
+						}
+					},
+				"type":	"obstacleItem"
 				}]
 			}
 		}, {
@@ -1407,7 +1422,22 @@
 			},
 		"itemTile":	{
 			"items":	[{
-				
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	6.75,
+						"y":	6.49519052838329
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/slotImage.png",
+						"position":	{
+							"x":	6.75,
+							"y":	6.49519052838329
+							}
+						}
+					},
+				"type":	"obstacleItem"
 				}]
 			}
 		}]

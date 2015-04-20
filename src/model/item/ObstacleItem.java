@@ -44,7 +44,7 @@ public class ObstacleItem extends Item {
 
     @Override
     public StructuredMap getStructuredMap() {
-        return new StructuredMap();
+        return super.getStructuredMap();
     }
 
 	@Override
