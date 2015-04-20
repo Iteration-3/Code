@@ -11,6 +11,7 @@ import view.item.ItemView;
 public abstract class TakeableItem extends Item {
 	private boolean taken = false;
 	private Price price;
+	private String name;
 
 	public TakeableItem(ItemView itemView) {
 		super(itemView);
@@ -26,6 +27,7 @@ public abstract class TakeableItem extends Item {
 		super(map);
 		this.taken = map.getBoolean("taken");
 		this.price = new Price(map.getStructuredMap("price"));
+		this.name = map.getString("name");
 	}
 
 	@Override
@@ -61,6 +63,7 @@ public abstract class TakeableItem extends Item {
 		StructuredMap map = super.getStructuredMap();
 		map.put("taken", taken);
 		map.put("price", getPrice().getStructuredMap());
+		map.put("name", name);
 		return map;
 	}
 	

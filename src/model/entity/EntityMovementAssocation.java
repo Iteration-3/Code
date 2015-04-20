@@ -11,7 +11,7 @@ import java.util.Collection;
 
 import model.KeyPreferences;
 import model.Model;
-import model.map.GameTerrain;
+import model.map.GameMap;
 import model.map.ItemMap;
 import utilities.Angle;
 import controller.listener.Listener;
@@ -19,10 +19,10 @@ import controller.listener.PollingListener;
 
 public class EntityMovementAssocation {
 	private Entity entity;
-	private GameTerrain terrain;
+	private GameMap terrain;
 	private ItemMap itemMap;
 
-	public EntityMovementAssocation(Entity entity, GameTerrain terrain, ItemMap itemMap) {
+	public EntityMovementAssocation(Entity entity, GameMap terrain, ItemMap itemMap) {
 		this.entity = entity;
 		this.terrain = terrain;
 		this.itemMap = itemMap;
