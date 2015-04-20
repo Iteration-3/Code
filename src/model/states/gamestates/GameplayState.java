@@ -129,7 +129,7 @@ public class GameplayState extends GameState {
        LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
        map.put("lightStuff", LightManager.getSingleton().getStructuredMap());
        	JsonWriter writer = new JsonWriter();
-        writer.writeStructuredMap(map, "filePath");
+        writer.writeStructuredMap(map, filePath);
         
        
         
