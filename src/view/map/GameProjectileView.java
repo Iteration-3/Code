@@ -3,7 +3,9 @@ package view.map;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
+
 import view.Camera;
+import view.ViewTransform;
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import utilities.ScreenCoordinate;
