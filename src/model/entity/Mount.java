@@ -3,7 +3,7 @@ package model.entity;
 import model.area.TileCoordinate;
 import model.entity.behavior.npc.Behaviorable;
 import model.entity.behavior.npc.MountBehavior;
-import utilities.Angle;
+import utilities.Direction;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 
@@ -11,7 +11,7 @@ public class Mount extends NPC {
 	private Avatar rider;
 	
 	public Mount(String name, EntityView view, TileCoordinate location) {
-		super(name, view, location);
+		super(name, "mount",  view, location, new MountBehavior());
 	}
 
 	public Mount(StructuredMap map) {
@@ -19,7 +19,7 @@ public class Mount extends NPC {
 	}
 	
 	@Override
-	public void move(Angle angle) {
+	public void move(Direction angle) {
 		super.move(angle);
 		if (this.rider != null) {
 			// Rider will move with the avatar
@@ -51,6 +51,7 @@ public class Mount extends NPC {
 		if (this.rider != null) {
 			this.rider.toggleView();
 			this.rider = null;
+			this.push(new MountBehavior());
 		}
 	}
 
@@ -59,6 +60,7 @@ public class Mount extends NPC {
 		return "mount";
 	}
 	
+	@Override
 	protected Behaviorable getBehavior(){
 		return new MountBehavior();
 	}

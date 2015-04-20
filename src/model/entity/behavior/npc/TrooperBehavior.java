@@ -10,35 +10,42 @@ public class TrooperBehavior implements Behaviorable {
 	private AttackInteract interact;
 	private LinkAndInteract perform;
 
-	public void perform() {
+	public void perform(double deltaTime) {
 		this.perform.perform();
 	}
 
-	public void observe() {
+	public void observe(double deltaTime) {
 	}
 
+	@Override
 	public void interact(Entity entity) {
 		interact.interact(entity);
 	}
 
+	@Override
 	public void onDamage(Entity entity) {
 	}
 
+	@Override
 	public boolean isExpired() {
 		return false;
 	}
 
+	@Override
 	public void onExit() {
 	}
 
+	@Override
 	public void onEnter() {
 	}
 
+	@Override
 	public void setEntity(Entity entity) {
 		this.chosen = entity;
 		this.setStates();
 	}
 
+	@Override
 	public void setStates() {
 		this.interact = new AttackInteract(this.chosen);
 		this.perform = new LinkAndInteract(this.chosen,EntityManager.getSingleton().getAvatar());

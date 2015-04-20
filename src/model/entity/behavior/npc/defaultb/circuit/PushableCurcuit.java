@@ -3,20 +3,21 @@ package model.entity.behavior.npc.defaultb.circuit;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import utilities.Angle;
+import utilities.Direction;
 
 public class PushableCurcuit implements Circuitable{
-	Queue<Angle> moves = new LinkedList<Angle>();
+	Queue<Direction> moves = new LinkedList<Direction>();
 	
 	public PushableCurcuit(){
 		
 	}
 	
-	public void push(Angle move){
+	public void push(Direction move){
 		this.moves.add(move);
 	}
 
-	public Angle nextMove() {
+	@Override
+	public Direction nextMove() {
 		if(moves.isEmpty()){
 			return null;
 		}
@@ -25,6 +26,7 @@ public class PushableCurcuit implements Circuitable{
 		}
 	}
 
+	@Override
 	public boolean hasMove() {
 		return !this.moves.isEmpty();
 	}

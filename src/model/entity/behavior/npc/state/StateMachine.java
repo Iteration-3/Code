@@ -13,6 +13,7 @@ public class StateMachine implements StateMachineable {
 		this.entity = entity;
 	}
 	
+	@Override
 	public void push(Behaviorable state){
 		if (state != null){
 			state.setEntity(entity);
@@ -20,6 +21,7 @@ public class StateMachine implements StateMachineable {
 		}
 	}
 		
+	@Override
 	public Behaviorable pop() {
 		//keeps its original behavior
 		if (this.states.size() > 1){
@@ -30,13 +32,15 @@ public class StateMachine implements StateMachineable {
 		}
 	}
 	
-	public void perform(){
+	@Override
+	public void perform(double deltaTime){
 		if (this.states.isEmpty()){
 			return;
 		}
-		this.states.peek().perform();
+		this.states.peek().perform(deltaTime);
 	}
 	
+	@Override
 	public void interact(Entity entity){
 		if (this.states.isEmpty()){
 			return;
@@ -51,10 +55,11 @@ public class StateMachine implements StateMachineable {
 		this.states.peek().onDamage(entity);
 	}
 	
-	public void observe(){
+	@Override
+	public void observe(double deltaTime){
 		if (this.states.isEmpty()){
 			return;
 		}
-		this.states.peek().observe();
+		this.states.peek().observe(deltaTime);
 	}
 }

@@ -2,7 +2,6 @@ package model.ability.summoner.enchantment;
 
 import model.ability.ProjectileAbility;
 import model.area.GrowingConicalArea;
-import model.area.RadialArea;
 import model.entity.Avatar;
 import model.entity.Entity;
 import model.event.Event;
@@ -10,7 +9,6 @@ import model.event.StatisticModifierEvent;
 import model.projectile.conical.IntimidateConeProjectile;
 import model.skillmanager.SummonerSkillManager;
 import model.statistics.Statistics;
-import model.trigger.SingleUseTrigger;
 
 public class Intimidate extends ProjectileAbility {
 	

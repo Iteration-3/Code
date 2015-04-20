@@ -1,6 +1,6 @@
 package model.entity.behavior.npc.defaultb;
 
-import utilities.Angle;
+import utilities.Direction;
 import model.entity.Entity;
 
 public class LinkAndInteract {
@@ -16,7 +16,7 @@ public class LinkAndInteract {
 
 		public void perform() {
 			if (count++ == ticker){
-				this.chosen.move(Angle.PRODUCE_A_ANGLE.getNearestAngleTowardTarget(
+				this.chosen.move(Direction.PRODUCE_A_ANGLE.getNearestAngleTowardTarget(
 						this.chosen.getLocation(), this.target.getLocation()));
 				count = 0;
 			}

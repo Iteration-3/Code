@@ -92,6 +92,7 @@ public abstract class SkillManager implements Saveable {
 		return contents;
 	}
 
+	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = new StructuredMap();
 		map.put("attackSkill", attackSkill);

@@ -40,15 +40,11 @@ public class Sneak extends Avatar {
 		super.generateSkills();
 	}
 
+	@Override
 	protected ItemManager createItemManager() {
 		return new ItemManager(this);
 	}
 
-	@Override
-	public void attack() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public StructuredMap getStructuredMap() {
@@ -61,12 +57,6 @@ public class Sneak extends Avatar {
 		
 	}
 
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		super.update();
-		
-	}
 	//Wasn't sneak going to have creap, and pickpocket? Not in uml anymore, we should discuss
 
 	@Override

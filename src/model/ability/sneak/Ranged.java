@@ -8,7 +8,6 @@ import model.event.HealthModifierEvent;
 import model.projectile.Projectile;
 import model.projectile.linear.ThrowingKnife;
 import model.skillmanager.SneakSkillManager;
-import model.trigger.SingleUseTrigger;
 
 public class Ranged extends ProjectileAbility {
 	
@@ -20,6 +19,7 @@ public class Ranged extends ProjectileAbility {
 	}
 	
 	
+	@Override
 	public Projectile getProjectile(Entity ent) {
 		//TODO: Currently no level for this?
 		Event damageEvent = new HealthModifierEvent(ent, null, 0, -10);

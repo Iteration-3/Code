@@ -3,17 +3,16 @@ package view;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import model.Camera;
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
-import utilities.Angle;
+import utilities.Direction;
 import utilities.ScreenCoordinate;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 import view.map.GameEntityView;
 
 
-public class EntityView implements Saveable {
+public class EntityView implements Renderable, Saveable {
 	private StatBar healthBar = new StatBar(Color.red,Color.white);
 	private boolean drawHealthBar = false;
 	private float lastKnownHealth = 1f;
@@ -25,7 +24,7 @@ public class EntityView implements Saveable {
 	AbstractEntitySpriteHolder sprites;
 	private RealCoordinate location;
 	private boolean hidden = false;
-	private Angle angle;
+	private Direction angle;
 	
 	public EntityView(AbstractEntitySpriteHolder sprites) {
 		this.sprites = sprites;
@@ -36,17 +35,17 @@ public class EntityView implements Saveable {
 		this.location = new RealCoordinate(map.getDouble("locationX"), map.getDouble("locationY"));
 	}
 
-	public void registerWithGameMapView(GameEntityView gv, RealCoordinate location, Angle angle) {
+	public void registerWithGameMapView(GameEntityView gv, RealCoordinate location, Direction angle) {
 		gv.addEntityView(this);
 		this.location = location;
 		this.setDirection(angle);
 	}
 	
-	
-	public void render(Graphics graphics, Camera camera) {		
+	@Override
+	public void render(Graphics graphics, ViewTransform transform) {		
 		if (!hidden) {
-			ScreenCoordinate renderPosition = camera.getTranslatedPosition(location, camera.getPosition()); // may be buggy?
-			sprites.render(graphics, renderPosition.getX(), renderPosition.getY(), camera.getTileHeight(), this.getDirection());
+			ScreenCoordinate renderPosition = transform.getTranslatedPosition(location);
+			sprites.render(graphics, renderPosition.getX(), renderPosition.getY(), transform.getTileHeight(), this.getDirection());
 			
 			if(drawHealthBar){
 				healthBar.render(graphics, renderPosition.getX(), renderPosition.getY()-25, lastKnownHealth);
@@ -90,7 +89,7 @@ public class EntityView implements Saveable {
 		return hidden;
 	}
 
-	private Angle getDirection() {
+	private Direction getDirection() {
 		return angle;
 	}
 
@@ -104,7 +103,7 @@ public class EntityView implements Saveable {
 		}
 	}
 
-	public void setDirection(Angle angle) {
+	public void setDirection(Direction angle) {
 		this.angle = angle;
 	}
 

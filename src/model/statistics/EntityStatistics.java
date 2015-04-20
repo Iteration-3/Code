@@ -52,7 +52,8 @@ public class EntityStatistics extends Statistics {
         return (getHardiness() + getCurrentHealth()) / 2;
     }
 
-    public EntityStatistics clone() {
+    @Override
+	public EntityStatistics clone() {
         EntityStatistics cloned = new EntityStatistics();
         cloned.setStrength(this.getStrength());
         cloned.setAgility(this.getAgility());

@@ -16,38 +16,45 @@ public class Pursue implements Behaviorable {
 		this.reset = continuousAreaReset;
 	}
 
-	public void perform() {
+	public void perform(double deltaTime) {
 		this.pursue.perform();
 	}
 
-	public void observe() {
+	public void observe(double deltaTime) {
 		this.targetEntity.observe();
 		if (this.targetEntity.found()) {
 			this.pursue.push(this.targetEntity.getMove());
 		}
 	}
 
+	@Override
 	public void interact(Entity entity) {
 	}
 
+	@Override
 	public void onDamage(Entity entity) {
 	}
 
+	@Override
 	public boolean isExpired() {
 		return false;
 	}
 
+	@Override
 	public void onExit() {
 	}
 
+	@Override
 	public void onEnter() {
 	}
 
+	@Override
 	public void setEntity(Entity entity) {
 		this.chosenOne = entity;
 		this.setStates();
 	}
 
+	@Override
 	public void setStates() {
 		this.pursue = new ListenForMovement(this.chosenOne);
 		this.targetEntity = new TargetEntity(this.chosenOne, EntityManager

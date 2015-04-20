@@ -16,6 +16,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import model.KeyPreferences;
@@ -74,29 +75,29 @@ public class KeyBindingsLayout extends Layout {
 
     private void initLabels() {
         upLabel = new TextLabel();
-        upLabel.setHorizontalAlignment(TextLabel.CENTER);
+        upLabel.setHorizontalAlignment(SwingConstants.CENTER);
         downLabel = new TextLabel();
-        downLabel.setHorizontalAlignment(TextLabel.CENTER);
+        downLabel.setHorizontalAlignment(SwingConstants.CENTER);
         upLeftLabel = new TextLabel();
-        upLeftLabel.setHorizontalAlignment(TextLabel.CENTER);
+        upLeftLabel.setHorizontalAlignment(SwingConstants.CENTER);
         upRightLabel = new TextLabel();
-        upRightLabel.setHorizontalAlignment(TextLabel.CENTER);
+        upRightLabel.setHorizontalAlignment(SwingConstants.CENTER);
         downLeftLabel = new TextLabel();
-        downLeftLabel.setHorizontalAlignment(TextLabel.CENTER);
+        downLeftLabel.setHorizontalAlignment(SwingConstants.CENTER);
         downRightLabel = new TextLabel();
-        downRightLabel.setHorizontalAlignment(TextLabel.CENTER);
+        downRightLabel.setHorizontalAlignment(SwingConstants.CENTER);
         pauseLabel = new TextLabel();
         dismountLabel = new TextLabel();
-        dismountLabel.setHorizontalAlignment(TextLabel.CENTER);
-        pauseLabel.setHorizontalAlignment(TextLabel.CENTER);
+        dismountLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        pauseLabel.setHorizontalAlignment(SwingConstants.CENTER);
         skillLabel = new TextLabel();
-        skillLabel.setHorizontalAlignment(TextLabel.CENTER);
+        skillLabel.setHorizontalAlignment(SwingConstants.CENTER);
         inventoryLabel = new TextLabel();
-        inventoryLabel.setHorizontalAlignment(TextLabel.CENTER);
+        inventoryLabel.setHorizontalAlignment(SwingConstants.CENTER);
         abilityLabels = new TextLabel[NUM_ABILITIES];
         for(int i = 0; i < NUM_ABILITIES; ++i) {
         	abilityLabels[i] = new TextLabel();
-        	abilityLabels[i].setHorizontalAlignment(TextLabel.CENTER);
+        	abilityLabels[i].setHorizontalAlignment(SwingConstants.CENTER);
         }
     }
 

@@ -3,29 +3,31 @@ package model.entity.behavior.npc.defaultb.circuit;
 import java.util.Deque;
 import java.util.LinkedList;
 
-import utilities.Angle;
+import utilities.Direction;
 
 public class UpDown implements Circuitable{
-	Deque<Angle> moves = new LinkedList<Angle>();
+	Deque<Direction> moves = new LinkedList<Direction>();
 	public UpDown(){
 		this.setMoves();
 	}
 	
-	public void setMoves(){
-		moves.push(Angle.UP);
-		moves.push(Angle.UP);
-		moves.push(Angle.UP);
-		moves.push(Angle.DOWN);
-		moves.push(Angle.DOWN);
-		moves.push(Angle.DOWN);
+	public void setMoves() {
+		moves.push(Direction.UP);
+		moves.push(Direction.UP);
+		moves.push(Direction.UP);
+		moves.push(Direction.DOWN);
+		moves.push(Direction.DOWN);
+		moves.push(Direction.DOWN);
 	}
 	
-	public Angle nextMove(){
-		Angle move = moves.removeFirst();
+	@Override
+	public Direction nextMove() {
+		Direction move = moves.removeFirst();
 		moves.addFirst(move);
 		return move;
 	}
 
+	@Override
 	public boolean hasMove() {
 		return true;
 	}

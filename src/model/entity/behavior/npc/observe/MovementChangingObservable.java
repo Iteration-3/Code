@@ -4,7 +4,7 @@ import model.area.Area;
 import model.area.TileCoordinate;
 import model.entity.Entity;
 import model.entity.EntityManager;
-import utilities.Angle;
+import utilities.Direction;
 
 public abstract class MovementChangingObservable implements ObservableBehaviorState {
 	private Entity target;
@@ -13,7 +13,7 @@ public abstract class MovementChangingObservable implements ObservableBehaviorSt
 	private int ticker  = 500;
 	private int count;
 	private boolean found = false;
-	private Angle move;
+	private Direction move;
 	private boolean reset;
 	
 	public MovementChangingObservable(Entity entity,Entity target,Area area){
@@ -22,9 +22,10 @@ public abstract class MovementChangingObservable implements ObservableBehaviorSt
 		this.area = area;
 	}
 
-	protected abstract Angle setMove(TileCoordinate chosen,TileCoordinate target);
+	protected abstract Direction setMove(TileCoordinate chosen,TileCoordinate target);
 	protected abstract boolean setResetAreaValue();
 
+	@Override
 	public final void observe() {
 		if (count++ == ticker){
 			if (EntityManager.getSingleton().findEntityFromLocations(this.area.getCoveredLocations(), 
@@ -43,8 +44,8 @@ public abstract class MovementChangingObservable implements ObservableBehaviorSt
 		return reset;
 	}
 	
-	public final Angle getMove(){
-		Angle move = this.move;
+	public final Direction getMove(){
+		Direction move = this.move;
 		this.move = null;
 		if (this.getResetArea()){
 			area.setStartLocation(this.chosenOne.getLocation());

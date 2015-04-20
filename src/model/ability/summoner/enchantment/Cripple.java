@@ -8,7 +8,6 @@ import model.event.Event;
 import model.event.MovementModifierEvent;
 import model.projectile.linear.CripplingProjectile;
 import model.skillmanager.SummonerSkillManager;
-import model.trigger.SingleUseTrigger;
 
 public class Cripple extends ProjectileAbility {
 	

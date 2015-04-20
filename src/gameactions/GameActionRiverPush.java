@@ -3,20 +3,20 @@ package gameactions;
 import model.entity.Entity;
 import model.map.GameMap;
 import model.map.ItemMap;
-import utilities.Angle;
+import utilities.Direction;
 
 public class GameActionRiverPush extends GameAction {
 	GameActionTeleport teleport;
 	Entity entity;
 
 	public GameActionRiverPush(Entity entity, GameMap terrain,
-			ItemMap itemMap, Angle angle) {
+			ItemMap itemMap, Direction angle) {
 		teleport = new GameActionTeleport(entity, terrain, itemMap, angle);
 		this.entity = entity;
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void setAngle(Angle a){
+	public void setAngle(Direction a){
 		teleport.setAngle(a);
 	}
 	

@@ -19,14 +19,17 @@ public class SummonerWeapon extends Weapon {
 		super(structuredMap);
 	}
 
+	@Override
 	public boolean equip(SummonerWeaponSlot slot){
 		return slot.equipWeapon(this);
 	}
 	
+	@Override
 	public boolean canEquip(SummonerWeaponSlot slot){
 		return true;
 	}
 
+	@Override
 	public String getInfo() {
 		// TODO Auto-generated method stub
 		return null;

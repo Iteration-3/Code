@@ -55,7 +55,8 @@ public class MainMenuController extends Controller{
     	return exitGameAction;
     }
     
-    public void toggle() {
+    @Override
+	public void toggle() {
     	newGameAction.toggle();
     	loadGameAction.toggle();
     	exitGameAction.toggle();

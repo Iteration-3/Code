@@ -37,21 +37,10 @@ public class Smasher extends Avatar {
 		return new ItemManager(this);
 	}
 
-	@Override
-	public void attack() {
-		// TODO Auto-generated method stub
-	}
 
 	@Override
 	public StructuredMap getStructuredMap() {
 		return super.getStructuredMap();
-	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		super.update();
-		
 	}
 
 	@Override

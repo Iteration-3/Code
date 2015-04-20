@@ -43,7 +43,8 @@ public class GameplayController extends Controller {
     					try {
     						Thread.sleep(1);
     					} catch (InterruptedException e) {
-    						Thread.currentThread().interrupt();
+    						// Thread.currentThread().interrupt();
+    						e.printStackTrace();
     					}
     				}
     			}
@@ -58,7 +59,8 @@ public class GameplayController extends Controller {
     	updateThread = null;
      }
 
-    public void toggle() {
+    @Override
+	public void toggle() {
     	if(threadIsRunning) {
     		terminateUpdateThread();
     	} else {

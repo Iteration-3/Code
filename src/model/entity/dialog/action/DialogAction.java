@@ -8,6 +8,7 @@ import utilities.structuredmap.StructuredMap;
 
 public abstract class DialogAction  implements Saveable{
 	public abstract void perform(Model model, Entity npc, Avatar avatar);
+	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = new StructuredMap();
 		map.put("type", getType());

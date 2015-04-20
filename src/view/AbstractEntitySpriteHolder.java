@@ -3,13 +3,13 @@ package view;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import utilities.Angle;
+import utilities.Direction;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 
 public abstract class AbstractEntitySpriteHolder implements Saveable {
 	
-	public void render(Graphics graphics, float x, float y, float diameter, Angle angle) {
+	public void render(Graphics graphics, float x, float y, float diameter, Direction angle) {
 		switch(angle){
 		case UP:
 			this.getUp().render(graphics, x, y, diameter);
@@ -34,6 +34,7 @@ public abstract class AbstractEntitySpriteHolder implements Saveable {
 		}
 	}
 	
+	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = new StructuredMap();
 		map.put("type", getType());

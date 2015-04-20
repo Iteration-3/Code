@@ -69,7 +69,8 @@ public class View extends JFrame {
 	
 	private void addResizeListener() {
 		this.getRootPane().addComponentListener(new ComponentAdapter() {
-	        public void componentResized(ComponentEvent e) {
+	        @Override
+			public void componentResized(ComponentEvent e) {
 	        	revalidate();
 	        }
 	    });

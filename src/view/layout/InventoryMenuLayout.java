@@ -104,6 +104,7 @@ public class InventoryMenuLayout extends Layout {
 		this.slotHeight = height;
 	}
 	
+	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(this.getBackgroundImage(),0, 0, null);

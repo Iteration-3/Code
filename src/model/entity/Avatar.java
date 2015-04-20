@@ -14,7 +14,7 @@ import model.entity.behavior.npc.Behaviorable;
 import model.light.LightManager;
 import model.light.MovingLightSource;
 import model.skillmanager.SkillManager;
-import utilities.Angle;
+import utilities.Direction;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 import controller.listener.Listener;
@@ -45,7 +45,7 @@ public abstract class Avatar extends Entity {
 	}
 	
 	@Override
-	public void move(Angle angle) {
+	public void move(Direction angle) {
 		TileCoordinate nextLocation = this.nextLocation(angle);
 		NPC npc = EntityManager.getSingleton().getNPCAtLocation(nextLocation);
 		if (npc != null) {
@@ -77,6 +77,17 @@ public abstract class Avatar extends Entity {
 			}));
 			++i;
 		}
+		listeners.add(new PollingListener(preferences.getAttackKey(), new GameAction() {
+			
+			@Override
+			public void perform() {
+				//TODO Ensure this isaffected by equipement and so forth.
+				//Same for defending.
+				System.out.println("attack");
+				Avatar.this.attackInFront(-Avatar.this.getDerivedStats().getOffensiveRating());
+				
+			}
+		}));
 		return listeners;
 		
 	}
@@ -117,26 +128,30 @@ public abstract class Avatar extends Entity {
 
 	
 	@Override
-	public void update(){
+	public void updateExtras(double deltaTime){
 		this.updateStatBars();
 	}
 	
 	private void updateStatBars(){
 		//Only appear during combat state.
-		this.getEntityView().updateHP(this.getHpPercentage());
-		this.getEntityView().turnOnHealthBar();
-		this.getEntityView().updateMana(this.getManaPercentage());
-		this.getEntityView().turnOnManaBar();
+		if(this.isInCombat()){
+			this.getEntityView().updateHP(this.getHpPercentage());
+			this.getEntityView().turnOnHealthBar();
+			this.getEntityView().updateMana(this.getManaPercentage());
+			this.getEntityView().turnOnManaBar();
+		}
 	}
 	
 	protected Collection<Ability> getAbilities(){
 		return abilities;
 	}
 	
+	@Override
 	public void accept(EntiyVisitorable visitor){
 		visitor.accept(this);
 	}
 	
+	@Override
 	protected Behaviorable getBehavior(){
 		//there is none now
 		return null;

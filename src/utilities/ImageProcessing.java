@@ -34,7 +34,7 @@ public class ImageProcessing {
 	        // ImageIcon image = new ImageIcon(filename);//path to image
 	    	Image image = getImage(filename);
 	        returnImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-	        Graphics2D g2d = (Graphics2D) returnImage.createGraphics();
+	        Graphics2D g2d = returnImage.createGraphics();
 	        g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY));
 	        g2d.drawImage(image, 0, 0, width, height, null);
 	    } catch (Exception e) {

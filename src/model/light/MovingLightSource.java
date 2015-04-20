@@ -23,6 +23,7 @@ public class MovingLightSource extends LightSource implements MobileListener {
 		followee = mo;
 	}
 	
+	@Override
 	public void remove() {
 		if (followee != null) 
 			followee.unsubscribe(this);
@@ -30,13 +31,13 @@ public class MovingLightSource extends LightSource implements MobileListener {
 	
 	@Override
 	public void notify(MobileObject mo) {
-		removeLighting();
+		removeLighting(getArea());
 		
 		getArea().setStartLocation(mo.getLocation());
 		getArea().setDirection(mo.getDirection());
 		
 
-		addLighting();
+		addLighting(getArea());
 	}
 	
 	@Override

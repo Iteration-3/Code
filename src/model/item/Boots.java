@@ -19,6 +19,7 @@ public class Boots extends EquipableItem {
 	    super(map);
 	}
 
+	@Override
 	public boolean equip(ItemManager itemManager) {
 		return itemManager.equipToSlot(this);
 	}
@@ -35,6 +36,7 @@ public class Boots extends EquipableItem {
 		return map;
 	}
 	
+	@Override
 	protected String getType() {
 		return "boots";
 	}

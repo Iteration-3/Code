@@ -23,8 +23,8 @@ public class LightSource implements Saveable {
 		this.strength = map.getInteger("strength");
 	}
 	
-	public void addLighting() {
-		List<TileCoordinate> locs = getArea().getCoveredLocations();
+	public void addLighting(Area area) {
+		List<TileCoordinate> locs = area.getCoveredLocations();
 		for (TileCoordinate t : locs) {
 			int strengthAt = LightManager.getSingleton().getLightMap().getStrength(t);
 			LightManager.getSingleton().getLightMap().setStrength(t, strengthAt+strength);
@@ -33,8 +33,8 @@ public class LightSource implements Saveable {
 		}
 	}	
 	
-	public void removeLighting() {
-		List<TileCoordinate> locs = getArea().getCoveredLocations();
+	public void removeLighting(Area area) {
+		List<TileCoordinate> locs = area.getCoveredLocations();
 		for (TileCoordinate t : locs) {
 			int strengthAt = LightManager.getSingleton().getLightMap().getStrength(t);
 			LightManager.getSingleton().getLightMap().setStrength(t, strengthAt-strength);

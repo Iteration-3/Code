@@ -4,16 +4,17 @@ import model.area.TileCoordinate;
 import model.entity.Entity;
 import model.map.GameMap;
 import model.map.ItemMap;
-import utilities.Angle;
+import utilities.Direction;
 
 public class GameActionMovement extends GameAction {
 	private Entity entity;
-	private Angle direction;
+	private Direction direction;
 	
 	private GameMap terrain;
 	private ItemMap itemMap;
 
-	public GameActionMovement(Entity entity, GameMap terrain, ItemMap itemMap, Angle angle){
+	public GameActionMovement(Entity entity, GameMap terrain, ItemMap itemMap, Direction angle){
+
 		this.entity = entity;
 		this.terrain = terrain;
 		this.direction = angle;
@@ -29,7 +30,7 @@ public class GameActionMovement extends GameAction {
 		return terrain;
 	}
 	
-	protected void setAngle(Angle a){
+	protected void setAngle(Direction a){
 		this.direction = a;
 	}
 	
@@ -45,7 +46,7 @@ public class GameActionMovement extends GameAction {
 		return (getTerrain().isPassable(getEntity(), potentialSpot) && !getItemMap().isBlocking(potentialSpot));
 	}
 	
-	protected Angle getDirection(){
+	protected Direction getDirection(){
 		return direction;
 	}
 	

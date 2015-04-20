@@ -20,12 +20,12 @@ public class LightManager implements Saveable {
 	}
 	
 	public void addLightSource(LightSource lightSource) {
-		lightSource.addLighting();
+		lightSource.addLighting(lightSource.getArea());
 		lightSources.add(lightSource);
 	}
 	
 	public void removeLightSource(LightSource lightSource) {
-		lightSource.removeLighting();
+		lightSource.removeLighting(lightSource.getArea());
 	}
 
 	public LightMap getLightMap() {

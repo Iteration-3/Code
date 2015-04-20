@@ -19,10 +19,12 @@ public class SneakWeapon extends Weapon {
 		super(structuredMap);
 	}
 
+	@Override
 	public boolean equip(SneakWeaponSlot slot){
 		return slot.equipWeapon(this);
 	}
 	
+	@Override
 	public boolean canEquip(SneakWeaponSlot slot){
 		return true;
 	}
