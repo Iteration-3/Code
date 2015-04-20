@@ -13,13 +13,14 @@ public class TakeableItem extends Item {
 	private Price price;
 	private String name;
 
-	public TakeableItem(ItemView itemView) {
+	public TakeableItem(ItemView itemView, String name) {
 		super(itemView);
 		setPrice(new Price());
+		this.name = name;
 	}
 	
-	public TakeableItem(ItemView itemView, Price price) {
-		this(itemView);
+	public TakeableItem(ItemView itemView, Price price, String name) {
+		this(itemView, name);
 		setPrice(price);
 	}
 

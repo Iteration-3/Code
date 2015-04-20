@@ -7,12 +7,12 @@ import view.item.ItemView;
 
 public class Boots extends EquipableItem {
 	
-	public Boots(ItemView itemView) {
-		super(itemView);
+	public Boots(ItemView itemView, String name) {
+		super(itemView, name);
 	}
 
-	public Boots(ItemView itemView, Statistics statistics) {
-		super(itemView, statistics);
+	public Boots(ItemView itemView, Statistics statistics, String name) {
+		super(itemView, statistics, name);
 	}
 	
 	public Boots(StructuredMap map) {

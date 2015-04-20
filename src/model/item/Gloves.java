@@ -7,12 +7,12 @@ import view.item.ItemView;
 
 public class Gloves extends EquipableItem{
 	
-	public Gloves(ItemView itemView) {
-		super(itemView);
+	public Gloves(ItemView itemView, String name) {
+		super(itemView, name);
 	}
 
-	public Gloves(ItemView itemView, Statistics statistics) {
-		super(itemView, statistics);
+	public Gloves(ItemView itemView, Statistics statistics, String name) {
+		super(itemView, statistics, name);
 	}
 
     public Gloves(StructuredMap map) {

@@ -7,12 +7,12 @@ import view.item.ItemView;
 
 public class Projectile extends EquipableItem{
 	
-	public Projectile(ItemView itemView) {
-		super(itemView);
+	public Projectile(ItemView itemView, String name) {
+		super(itemView, name);
 	}
 
-	public Projectile(ItemView itemView, Statistics statistics) {
-		super(itemView, statistics);
+	public Projectile(ItemView itemView, Statistics statistics, String name) {
+		super(itemView, statistics, name);
 	}
 
     public Projectile(StructuredMap map) {

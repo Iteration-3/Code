@@ -38,7 +38,7 @@ public abstract class Avatar extends Entity {
 		this.addItem(new HPPotion(
 				new BasicItemView(TileCoordinate.convertToRealCoordinate(this.getLocation()),
 						new Decal("/images/items/healthpack.png", TileCoordinate.convertToRealCoordinate(this.getLocation())))
-				, new Price(10), 1000));
+				, new Price(10), 1000, "HPPotion"));
 		//LightManager.getLightManager().getLightMap().trackMovement(this);
 		//setLocation(loc);//So lightMap registers current position
 	}
@@ -51,7 +51,7 @@ public abstract class Avatar extends Entity {
 		this.addItem(new HPPotion(
 				new BasicItemView(TileCoordinate.convertToRealCoordinate(this.getLocation()),
 						new Decal("/images/items/healthpack.png", TileCoordinate.convertToRealCoordinate(this.getLocation())))
-				, new Price(10), 1000));
+				, new Price(10), 1000, "HPPotion"));
 	}
 	
 	protected void generateSkills(){

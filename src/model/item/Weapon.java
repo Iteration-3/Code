@@ -10,12 +10,12 @@ import view.item.ItemView;
 
 public abstract class Weapon extends EquipableItem{
 	
-	public Weapon(ItemView itemView) {
-		super(itemView);
+	public Weapon(ItemView itemView, String name) {
+		super(itemView, name);
 	}
 
-	public Weapon(ItemView itemView, Statistics statistics) {
-		super(itemView, statistics);
+	public Weapon(ItemView itemView, Statistics statistics, String name) {
+		super(itemView, statistics, name);
 	}
 	
 	public Weapon(StructuredMap map) {

@@ -7,12 +7,12 @@ import view.item.ItemView;
 
 public class SummonerWeapon extends Weapon {
 	
-	public SummonerWeapon(ItemView itemView) {
-		super(itemView);
+	public SummonerWeapon(ItemView itemView, String name) {
+		super(itemView, name);
 	}
 
-	public SummonerWeapon(ItemView itemView, Statistics statistics) {
-		super(itemView, statistics);
+	public SummonerWeapon(ItemView itemView, Statistics statistics, String name) {
+		super(itemView, statistics, name);
 	}
 
 	public SummonerWeapon(StructuredMap structuredMap) {

@@ -7,12 +7,12 @@ import view.item.ItemView;
 
 public class ChestPiece extends EquipableItem {
 	
-	public ChestPiece(ItemView itemView) {
-		super(itemView);
+	public ChestPiece(ItemView itemView, String name) {
+		super(itemView, name);
 	}
 
-	public ChestPiece(ItemView itemView, Statistics statistics) {
-		super(itemView, statistics);
+	public ChestPiece(ItemView itemView, Statistics statistics, String name) {
+		super(itemView, statistics, name);
 	}
 
     public ChestPiece(StructuredMap map) {
