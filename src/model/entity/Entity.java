@@ -193,7 +193,6 @@ public abstract class Entity extends MobileObject implements Saveable {
     
     public void setFlight(Boolean flight){
     	isFlying = flight;
-    	System.out.println("Flight status " + isFlying);
     }
     
     public void setEntityView(EntityView entityView) {
@@ -218,7 +217,6 @@ public abstract class Entity extends MobileObject implements Saveable {
     }
 
     public boolean addItem(TakeableItem item) {
-        System.out.println("Added Item!");
         return this.itemManager.addItem(item);
     }
 

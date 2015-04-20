@@ -22,7 +22,6 @@ public class RemoveTrap extends Ability {
 		if (hasMana(avatar)) {
 			removeMana(avatar);
 			// TODO (jraviles) make the skill matter
-			System.out.println("Removing Trap!!");
 			boolean success = Math.random() > 0.5;
 			if (success) {
 				TileCoordinate mineSweeperLocation = avatar.getLocation();

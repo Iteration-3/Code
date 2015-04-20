@@ -63,7 +63,6 @@ public class BoundedEntityStatistics extends EntityStatistics{
 
 	private void livesCheck(){
 		if(this.getLivesLeft() <= 0){
-			System.out.println("OUT OF LIVES, PERMA DEAD, PROB SHOULD DO SOMETHING");
 		}
 	}
 
@@ -97,7 +96,6 @@ public class BoundedEntityStatistics extends EntityStatistics{
 			if(this.getMaximumHealth() < 0){System.err.println("NEGATIVE HP ERROR"); return;}
 			this.setCurrentHealth(getMaximumHealth());
 			this.decrementLives();
-			System.out.println("You haved Died!");
 
 		}
 		if(this.getCurrentHealth() > this.getMaximumHealth()){

@@ -41,6 +41,27 @@ public class EntityManager implements Iterable<Entity>, Saveable {
 		}
 	}
 	
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		map.put("avatar", avatar.getStructuredMap());
+		StructuredMap[] partyNPCArray = new StructuredMap[partyNpcs.size()];
+		for(int i = 0; i < partyNpcs.size(); i++) {
+			partyNPCArray[i] = partyNpcs.get(i).getStructuredMap();
+		}
+		
+		StructuredMap[] nonPartyNPCArray = new StructuredMap[nonPartyNpcs.size()];
+		for(int i = 0; i < partyNpcs.size(); i++) {
+			nonPartyNPCArray[i] = nonPartyNpcs.get(i).getStructuredMap();
+		}
+		
+		map.put("partyNPC", partyNPCArray);
+		map.put("nonPartyNPC", nonPartyNPCArray);
+		
+		return map;
+		
+	}
+	
 	private class EntityIterator implements Iterator<Entity> {
 		
 		private int index = 0;
@@ -215,23 +236,4 @@ public class EntityManager implements Iterable<Entity>, Saveable {
 		}
 	}
 
-	@Override
-	public StructuredMap getStructuredMap() {
-		StructuredMap map = new StructuredMap();
-		map.put("avatar", avatar.getStructuredMap());
-		StructuredMap[] partyNPCArray = new StructuredMap[partyNpcs.size()];
-		for(int i = 0; i < partyNpcs.size(); i++) {
-			partyNPCArray[i] = partyNpcs.get(i).getStructuredMap();
-		}
-		
-		StructuredMap[] nonPartyNPCArray = new StructuredMap[nonPartyNpcs.size()];
-		for(int i = 0; i < partyNpcs.size(); i++) {
-			nonPartyNPCArray[i] = nonPartyNpcs.get(i).getStructuredMap();
-		}
-		
-		map.put("partyNPC", partyNPCArray);
-		map.put("nonPartyNPC", nonPartyNPCArray);
-		
-		return map;
-	}
 }

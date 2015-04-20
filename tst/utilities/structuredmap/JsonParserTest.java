@@ -12,5 +12,7 @@ public class JsonParserTest {
 		StructuredMap sm = JsonParser.parse(json);
 		System.out.println(sm.toString());
 	}
+	
+	
 
 }

@@ -30,9 +30,7 @@ public class GameProjectileView implements GameView {
 		}
 		for (ProjectileView projView : projectileViews) {		
 			//Sysem.out.println("RENDERING@: " + projView.getLocation());
-			System.out.println("SUP");
 			for (TileCoordinate loc : projView.getArea().getCoveredLocations()) {
-				System.out.println("LOC: " + loc);
 				float renderX = (float) (loc.getX() * tileWidth() * 0.75);
 				float renderY = (float) (loc.getY() * tileHeight() + (loc.getX() % 2) * tileHeight() / 2);
 				projView.render(graphics, new RealCoordinate(renderX, renderY), tileWidth());

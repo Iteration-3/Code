@@ -5,6 +5,9 @@ import gameactions.GameActionStatePush;
 import gameactions.GameActionTeleport;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.Collection;
 
 import model.KeyPreferences;
@@ -48,6 +51,8 @@ import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
+import utilities.structuredmap.JsonReader;
+import utilities.structuredmap.StructuredMap;
 import view.EntitySpriteFactory;
 import view.EntityView;
 import view.item.BasicItemView;
@@ -65,6 +70,7 @@ public class GameplayState extends GameState {
     private GameTerrain gameMap;
     private ItemMap itemMap;
     private Avatar avatar;
+	private boolean hasBeenDumped = false;
 
     public GameplayState(Avatar avatar) {
         layout = new GameplayLayout();
@@ -81,10 +87,12 @@ public class GameplayState extends GameState {
 		ProjectileManager.getSingleton().update(deltaTime);
 		/* Run through projectile queue */
 		while (!ProjectileManager.getSingleton().isQueueEmpty()) {
-			Projectile poll = ProjectileManager.getSingleton().dequeueProjectile();
-			poll.projView.registerWithGameProjectileView(layout.getGameProjectileView());
+			Projectile poll = ProjectileManager.getSingleton()
+					.dequeueProjectile();
+			poll.projView.registerWithGameProjectileView(layout
+					.getGameProjectileView());
 		}
-    }
+	}
     
     @Override
     public void onEnter() {
@@ -94,7 +102,6 @@ public class GameplayState extends GameState {
         // make the itemEntityAssocation,
         // Which is needed for other stuff.
         super.onEnter();
-        System.out.println(getContext());
         controller = new GameplayController(this);
         addTilesTest();
         addEntityTest();

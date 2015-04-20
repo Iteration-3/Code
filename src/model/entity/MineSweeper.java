@@ -33,7 +33,6 @@ public class MineSweeper extends NPC {
 
 	@Override
 	public void update() {
-		System.out.println("YOOOO I'm at " + getLocation().toString());
 		EntityManager.getSingleton().removeEntity(this);
 	}
 	

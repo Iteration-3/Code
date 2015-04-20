@@ -75,7 +75,6 @@ public class Summoner extends Avatar {
 
 		//Print out the abilities we have. 
 		for(Ability a : this.getAbilities()){
-			System.out.println(a.toString());
 		}
 		
 		//To avoid breaking shit
@@ -96,8 +95,7 @@ public class Summoner extends Avatar {
 
 	@Override
 	public StructuredMap getStructuredMap() {
-		// TODO Auto-generated method stub
-		return null;
+		return super.getStructuredMap();
 	}
 
 	@Override

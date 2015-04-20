@@ -113,7 +113,6 @@ public class EntityStatistics extends Statistics {
     	 if(this.currentHealth < 0){
          	this.currentHealth = getMaximumHealth();
          	this.decrementLives();
-         	// System.out.println("You haved Died!");
          }
          if(this.currentHealth > this.getMaximumHealth()){
          	this.currentHealth = this.getMaximumHealth();

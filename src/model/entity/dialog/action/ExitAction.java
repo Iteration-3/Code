@@ -12,4 +12,9 @@ public final class ExitAction extends DialogAction {
 		DialogManager.getSingleton().exit();
 	}
 
+	@Override
+	public String getType() {
+		return "exit";
+	}
+
 }

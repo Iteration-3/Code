@@ -22,7 +22,6 @@ public class Trap extends Item {
 
 	@Override
 	public void touch(Entity entity) {
-		System.out.println("Touched!!!!!!!!!!!!!!!!!!!!");
 		event.setTarget(entity);
 		event.placeOnEventManager();
 		getView().toggle();
