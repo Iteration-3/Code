@@ -226,6 +226,10 @@ public abstract class Entity extends MobileObject implements Saveable {
     public BoundedEntityStatistics getBaseStats() {
         return this.stats;
     }
+    
+    public void setStats(BoundedEntityStatistics stats){
+    	this.stats = stats;
+    }
 
     public BoundedEntityStatistics getDerivedStats() {
         BoundedEntityStatistics derivedStats = this.stats.clone();
