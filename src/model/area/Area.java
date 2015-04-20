@@ -11,6 +11,7 @@ public abstract class Area implements Saveable {
     private int range;
     private TileCoordinate startLocation;
     private Direction direction;
+    protected List<TileCoordinate> prevCovered;
 
     public static final double WIDTH = 1.0;
     public static final double HEIGHT = Math.sqrt(3) / 2.0;
@@ -54,7 +55,14 @@ public abstract class Area implements Saveable {
     }
 
     public void setStartLocation(TileCoordinate startLocation) {
+    	if (this.startLocation != null) {
+    		prevCovered = getCoveredLocations();
+    	}
         this.startLocation = startLocation;
+    }
+    
+    public List<TileCoordinate> getPrevCoveredLocations() {
+    	return prevCovered;
     }
 
     public int getRadius() {

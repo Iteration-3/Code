@@ -14,7 +14,6 @@ public final class ShadowBlast extends ProjectileAbility {
 	
 	private SummonerSkillManager manager;
 
-
 	public ShadowBlast(SummonerSkillManager manager) {
 		super(50);
 		this.manager = manager;
