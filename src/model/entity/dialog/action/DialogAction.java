@@ -9,6 +9,10 @@ import utilities.structuredmap.StructuredMap;
 public abstract class DialogAction  implements Saveable{
 	public abstract void perform(Model model, NPC npc, Avatar avatar);
 	public StructuredMap getStructuredMap() {
-		return null;
+		StructuredMap map = new StructuredMap();
+		map.put("type", getType());
+		return map;
 	}
+	
+	public abstract String getType();
 }

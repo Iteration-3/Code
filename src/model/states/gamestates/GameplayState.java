@@ -5,6 +5,9 @@ import gameactions.GameActionStatePush;
 import gameactions.GameActionTeleport;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.Collection;
 
 import model.KeyPreferences;
@@ -47,6 +50,8 @@ import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
+import utilities.structuredmap.JsonReader;
+import utilities.structuredmap.StructuredMap;
 import view.EntitySpriteFactory;
 import view.EntityView;
 import view.item.BasicItemView;
@@ -59,223 +64,284 @@ import controller.listener.Listener;
 import controller.listener.SingleUseListener;
 
 public class GameplayState extends GameState {
-    private GameplayController controller;
-    private GameplayLayout layout;
-    private GameTerrain gameMap;
-    private ItemMap itemMap;
-    private Avatar avatar;
+	private GameplayController controller;
+	private GameplayLayout layout;
+	private GameTerrain gameMap;
+	private ItemMap itemMap;
+	private Avatar avatar;
+	private boolean hasBeenDumped = false;
 
-    public GameplayState() {
-        layout = new GameplayLayout();
-        gameMap = new GameTerrain();
-        itemMap = new ItemMap();
-    }
+	public GameplayState() {
+		layout = new GameplayLayout();
+		gameMap = new GameTerrain();
+		itemMap = new ItemMap();
+	}
 
-    public void update(double deltaTime) {
+	public void update(double deltaTime) {
 		TriggerManager.getSingleton().update(deltaTime);
 		EventManager.getSingleton().update(deltaTime);
 		EntityManager.getSingleton().update(deltaTime);
 		ProjectileManager.getSingleton().update(deltaTime);
 		/* Run through projectile queue */
 		while (!ProjectileManager.getSingleton().isQueueEmpty()) {
-			Projectile poll = ProjectileManager.getSingleton().dequeueProjectile();
-			poll.projView.registerWithGameProjectileView(layout.getGameProjectileView());
+			Projectile poll = ProjectileManager.getSingleton()
+					.dequeueProjectile();
+			poll.projView.registerWithGameProjectileView(layout
+					.getGameProjectileView());
 		}
-    }
-    
-    @Override
-    public void onEnter() {
-        // Entity test must run before item test, which must be run before
-        // setListeners.
-        // The reason for this is the avatar must be made prior to items, to
-        // make the itemEntityAssocation,
-        // Which is needed for other stuff.
-        super.onEnter();
-        System.out.println(getContext());
-        controller = new GameplayController(this);
-        addTilesTest();
-        addEntityTest();
-        addItemsTest();
-        addTriggersTest();
-        controller.spawnUpdateThread();
-    }
+	}
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        setListeners(getContext().getPreferences());
-    }
+	@Override
+	public void onEnter() {
+		// Entity test must run before item test, which must be run before
+		// setListeners.
+		// The reason for this is the avatar must be made prior to items, to
+		// make the itemEntityAssocation,
+		// Which is needed for other stuff.
+		super.onEnter();
+		System.out.println(getContext());
+		controller = new GameplayController(this);
+		addTilesTest();
+		addEntityTest();
+		addItemsTest();
+		addTriggersTest();
+		/*
+		if (!hasBeenDumped) {
+			StructuredMap map = new StructuredMap();
+			map.put("entities", EntityManager.getSingleton().getStructuredMap());
+			try {
 
-    @Override
-    public void onPause() {
-    	super.onPause();
-        controller.removeListeners();
-        layout.clearBindings();
-    }
-    
-    @Override
-    public void onExit() {
-        controller.terminateUpdateThread();
-        EntityManager.getSingleton().clear();
-        TriggerManager.getSingleton().clear();
-        LightManager.getSingleton().clear();
-        super.onExit();
-    }
+				//File outFile = new File("GameData/filename.txt");
+				File dir = new File("GameData");
+				dir.mkdir();
+				File outFile = new File(dir, "filename.txt");
+				FileWriter writer = new FileWriter(outFile);
+				writer.write(map.getJson());
+				writer.flush();
+				writer.close();
 
-    public void addEntityTest() {
-        TileCoordinate loc = new TileCoordinate(3, 3);
-        EntityView eView = new EntityView(EntitySpriteFactory.getSummonerSpriteHolder());
-        avatar = new Summoner("Summoner", eView, loc);
-        //testing this for equipped Items
-        avatar.equip(new Helmet(new BasicItemView(),new Statistics()));
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+			hasBeenDumped = true;
+		}
+		*/
+		controller.spawnUpdateThread();
+	}
 
-        EntityManager.getSingleton().setAvatar(avatar);
-        eView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(3, 3),Angle.UP);
-        
-        TileCoordinate npcLocation = new TileCoordinate(7, 7);
-        EntityView npcView = new EntityView(EntitySpriteFactory.getLadySpriteHolder());
-        NPC npc = new NPC("DaveTheBargainer", npcView, npcLocation);
-        npcView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(7, 7),Angle.UP);
-        EntityManager.getSingleton().addPartyNpc(npc);
-        
-        TileCoordinate mountLocation = new TileCoordinate(7, 2);
-        EntityView mountView = new EntityView(EntitySpriteFactory.getUnderlingSpriteHolder());
-        Mount mount = new Mount("My first mount", mountView, mountLocation);
-        mountView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(7, 2), Angle.UP);
-        EntityManager.getSingleton().addNonPartyNpc(mount);
+	@Override
+	public void onResume() {
+		super.onResume();
+		setListeners(getContext().getPreferences());
+	}
 
-        KeyPreferences preferences = new KeyPreferences();
-        getContext().setPreferences(preferences);
-        setListeners(preferences);
+	@Override
+	public void onPause() {
+		super.onPause();
+		controller.removeListeners();
+		layout.clearBindings();
+	}
 
-    }
+	@Override
+	public void onExit() {
+		controller.terminateUpdateThread();
+		EntityManager.getSingleton().clear();
+		TriggerManager.getSingleton().clear();
+		LightManager.getSingleton().clear();
+		super.onExit();
+	}
 
-    private void setListeners(KeyPreferences preferences) {
-        controller.removeListeners();
-        getLayout().clearBindings();
-        
-        Listener escapeListener = new SingleUseListener(preferences.getPauseKey(), new GameActionStatePush(
-                getContext(), new PauseMenuState()));
-        escapeListener.addAsBinding(getLayout());
-        Listener inventoryListener = new SingleUseListener(preferences.getInventoryKey(), new GameActionStatePush(
-                getContext(), new InventoryMenuState(avatar)));
-        inventoryListener.addAsBinding(getLayout());
+	public void addEntityTest() {
+		
+		TileCoordinate loc = new TileCoordinate(3, 3);
+		EntityView eView = new EntityView(
+				EntitySpriteFactory.getSummonerSpriteHolder());
+		avatar = new Summoner("Summoner", eView, loc);
+		// testing this for equipped Items
+		avatar.equip(new Helmet(new BasicItemView(), new Statistics()));
 
-        Listener skillsListener = new SingleUseListener(preferences.getSkillsKey(), new GameActionStatePush(
-                getContext(), new SkillsMenuState()));
-        skillsListener.addAsBinding(getLayout());
+		EntityManager.getSingleton().setAvatar(avatar);
+		eView.registerWithGameMapView(layout.getGameEntityView(),
+				new RealCoordinate(3, 3), Angle.UP);
 
-        Collection<Listener> listeners = new EntityMovementAssocation(getContext().getCurrentUnit(), gameMap,
-                this.getItemMap()).getListeners(getContext());
+		TileCoordinate npcLocation = new TileCoordinate(7, 7);
+		EntityView npcView = new EntityView(
+				EntitySpriteFactory.getLadySpriteHolder());
+		NPC npc = new NPC("DaveTheBargainer", npcView, npcLocation);
+		npcView.registerWithGameMapView(layout.getGameEntityView(),
+				new RealCoordinate(7, 7), Angle.UP);
+		EntityManager.getSingleton().addPartyNpc(npc);
 
-        for (Listener listener : listeners) {
-            listener.addAsBinding(getLayout());
-            controller.addEntityListener(listener);
-        }
-    }
+		TileCoordinate mountLocation = new TileCoordinate(7, 2);
+		EntityView mountView = new EntityView(
+				EntitySpriteFactory.getUnderlingSpriteHolder());
+		Mount mount = new Mount("My first mount", mountView, mountLocation);
+		mountView.registerWithGameMapView(layout.getGameEntityView(),
+				new RealCoordinate(7, 2), Angle.UP);
+		EntityManager.getSingleton().addNonPartyNpc(mount);
 
-    private ItemMap getItemMap() {
+		/*
+		StructuredMap map = JsonReader.readJson("filename.txt");
+		EntityManager.getSingleton().loadEntities(map.getStructuredMap("entities"));
+		*/
+		KeyPreferences preferences = new KeyPreferences();
+		getContext().setPreferences(preferences);
+		setListeners(preferences);
+
+	}
+
+	private void setListeners(KeyPreferences preferences) {
+		controller.removeListeners();
+		getLayout().clearBindings();
+
+		Listener escapeListener = new SingleUseListener(
+				preferences.getPauseKey(), new GameActionStatePush(
+						getContext(), new PauseMenuState()));
+		escapeListener.addAsBinding(getLayout());
+		Listener inventoryListener = new SingleUseListener(
+				preferences.getInventoryKey(), new GameActionStatePush(
+						getContext(), new InventoryMenuState(avatar)));
+		inventoryListener.addAsBinding(getLayout());
+
+		Listener skillsListener = new SingleUseListener(
+				preferences.getSkillsKey(), new GameActionStatePush(
+						getContext(), new SkillsMenuState()));
+		skillsListener.addAsBinding(getLayout());
+
+		Collection<Listener> listeners = new EntityMovementAssocation(
+				getContext().getCurrentUnit(), gameMap, this.getItemMap())
+				.getListeners(getContext());
+
+		for (Listener listener : listeners) {
+			listener.addAsBinding(getLayout());
+			controller.addEntityListener(listener);
+		}
+	}
+
+	private ItemMap getItemMap() {
 		return itemMap;
 	}
 
 	private void addItemsTest() {
-        ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
-        TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
-        takeableItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(5, 5));
-        this.getItemMap().addItem(new Boots(takeableItemView),
-                takeableItemViewPosition);
+		ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100),
+				Color.GREEN);
+		TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
+		takeableItemView.registerWithGameItemView(layout.getGameItemView(),
+				new RealCoordinate(5, 5));
+		this.getItemMap().addItem(new Boots(takeableItemView),
+				takeableItemViewPosition);
 
-        ItemView takeableItemViewTwo = new BasicItemView(new Color(100, 60, 100), Color.DARK_GRAY);
-        TileCoordinate takeableItemViewPositionTwo = new TileCoordinate(5, 6);
-        takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(5, 6));
-        TakeableItem takeableItemTwo = new Gloves(takeableItemViewTwo);
-        this.getItemMap().addItem(takeableItemTwo, takeableItemViewPositionTwo);
+		ItemView takeableItemViewTwo = new BasicItemView(
+				new Color(100, 60, 100), Color.DARK_GRAY);
+		TileCoordinate takeableItemViewPositionTwo = new TileCoordinate(5, 6);
+		takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView(),
+				new RealCoordinate(5, 6));
+		TakeableItem takeableItemTwo = new Gloves(takeableItemViewTwo);
+		this.getItemMap().addItem(takeableItemTwo, takeableItemViewPositionTwo);
 
-        ItemView doorItemView = new BasicItemView(Color.RED, Color.MAGENTA);
-        TileCoordinate doorItemViewPosition = new TileCoordinate(15, 14);
-        doorItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(15, 14));
-        Door doorItem = new Door(doorItemView, takeableItemTwo);
-        this.getItemMap().addItem(doorItem, doorItemViewPosition);
+		ItemView doorItemView = new BasicItemView(Color.RED, Color.MAGENTA);
+		TileCoordinate doorItemViewPosition = new TileCoordinate(15, 14);
+		doorItemView.registerWithGameItemView(layout.getGameItemView(),
+				new RealCoordinate(15, 14));
+		Door doorItem = new Door(doorItemView, takeableItemTwo);
+		this.getItemMap().addItem(doorItem, doorItemViewPosition);
 
-        ItemView obstacleItemView = new BasicItemView(Color.GRAY, Color.BLACK);
-        TileCoordinate obstacleItemPosition = new TileCoordinate(9, 7);
-        obstacleItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(9, 7));
-        this.getItemMap().addItem(new ObstacleItem(obstacleItemView), obstacleItemPosition);
+		ItemView obstacleItemView = new BasicItemView(Color.GRAY, Color.BLACK);
+		TileCoordinate obstacleItemPosition = new TileCoordinate(9, 7);
+		obstacleItemView.registerWithGameItemView(layout.getGameItemView(),
+				new RealCoordinate(9, 7));
+		this.getItemMap().addItem(new ObstacleItem(obstacleItemView),
+				obstacleItemPosition);
 
-        ItemView oneshotItemView = new BasicItemView(Color.WHITE, Color.GREEN);
-        TileCoordinate oneshotItemPosition = new TileCoordinate(13, 9);
-        oneshotItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(13, 9));
-        this.getItemMap().addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), oneshotItemPosition);
-        
-        ItemView riverMarker = new BasicItemView(Color.GRAY, Color.BLACK);
-        TileCoordinate riverMarkerSpot = new TileCoordinate(13, 0);
-        riverMarker.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(13, 0));
-        this.getItemMap().addItem(new ObstacleItem(riverMarker), riverMarkerSpot);
+		ItemView oneshotItemView = new BasicItemView(Color.WHITE, Color.GREEN);
+		TileCoordinate oneshotItemPosition = new TileCoordinate(13, 9);
+		oneshotItemView.registerWithGameItemView(layout.getGameItemView(),
+				new RealCoordinate(13, 9));
+		this.getItemMap().addItem(
+				new OneShotItem(oneshotItemView, new EntityStatistics()),
+				oneshotItemPosition);
 
-    }
+		ItemView riverMarker = new BasicItemView(Color.GRAY, Color.BLACK);
+		TileCoordinate riverMarkerSpot = new TileCoordinate(13, 0);
+		riverMarker.registerWithGameItemView(layout.getGameItemView(),
+				new RealCoordinate(13, 0));
+		this.getItemMap().addItem(new ObstacleItem(riverMarker),
+				riverMarkerSpot);
 
-    private void addTriggersTest() {
-        TriggerManager triggerManager = TriggerManager.getSingleton();
+	}
 
-        // This may need a ViewableTriggerDecorator to display the Decal for the
-        // AreaEffect
-        TileCoordinate locOne = new TileCoordinate(2, 6);
-        Area areaOne = new RadialArea(20, locOne);
-        Trigger triggerOne = new SingleUseTrigger(areaOne, new HealthModifierEvent(2, -1));
+	private void addTriggersTest() {
+		TriggerManager triggerManager = TriggerManager.getSingleton();
 
-        TileCoordinate locTwo = new TileCoordinate(2, 7);
-        Area areaTwo = new RadialArea(1, locTwo);
-        Trigger triggerTwo = new SingleUseTrigger(areaTwo, new ExperienceModifierEvent(0, 750));
+		// This may need a ViewableTriggerDecorator to display the Decal for the
+		// AreaEffect
+		TileCoordinate locOne = new TileCoordinate(2, 6);
+		Area areaOne = new RadialArea(20, locOne);
+		Trigger triggerOne = new SingleUseTrigger(areaOne,
+				new HealthModifierEvent(2, -1));
 
-        TileCoordinate locThree = new TileCoordinate(2, 8);
-        Area areaThree = new RadialArea(0, locThree);
-        Trigger triggerThree = new PermanentTrigger(areaThree, new TeleportEvent(new TileCoordinate(2, 0),
-                new GameActionTeleport(avatar, gameMap, this.getItemMap(), Angle.DOWN)));
-        
-        TileCoordinate locFour = new TileCoordinate(13, 0);
-        Area areaFour = new LinearArea(20, locFour, Angle.DOWN);
-        Trigger triggerFour = new RateLimitedTrigger(areaFour, new RiverPushEvent(
-                new GameActionRiverPush(avatar, gameMap, this.getItemMap(), Angle.DOWN)),1000);
+		TileCoordinate locTwo = new TileCoordinate(2, 7);
+		Area areaTwo = new RadialArea(1, locTwo);
+		Trigger triggerTwo = new SingleUseTrigger(areaTwo,
+				new ExperienceModifierEvent(0, 750));
 
-        triggerManager.addNonPartyTrigger(triggerOne);
-        triggerManager.addNonPartyTrigger(triggerTwo);
-        triggerManager.addNonPartyTrigger(triggerThree);
-        triggerManager.addNonPartyTrigger(triggerFour);
+		TileCoordinate locThree = new TileCoordinate(2, 8);
+		Area areaThree = new RadialArea(0, locThree);
+		Trigger triggerThree = new PermanentTrigger(areaThree,
+				new TeleportEvent(new TileCoordinate(2, 0),
+						new GameActionTeleport(avatar, gameMap,
+								this.getItemMap(), Angle.DOWN)));
 
-    }
+		TileCoordinate locFour = new TileCoordinate(13, 0);
+		Area areaFour = new LinearArea(20, locFour, Angle.DOWN);
+		Trigger triggerFour = new RateLimitedTrigger(areaFour,
+				new RiverPushEvent(new GameActionRiverPush(avatar, gameMap,
+						this.getItemMap(), Angle.DOWN)), 1000);
 
-    public void addTilesTest() {
-        for (int x = 0; x < 100; ++x) {
-            for (int y = 0; y < 100; ++y) {// Hardcoded for as long as the area
-                // is
-                TileCoordinate p = new TileCoordinate(x, y);
-                if ((x != 10 || y != 10) && (x!=13 || y!=13)) {
-                    TileView view = new BasicTileView(new Color(0, 200, 200), Color.WHITE);
-                    view.registerWithGameMapView(layout.getGameTerrainView(), new RealCoordinate(x, y));
-                    gameMap.add(new PassableTile(view), p);
-                } else if(x!=13 || y!=13){
-                    TileView view = new BasicTileView(new Color(200, 0, 200), Color.WHITE);
-                    view.registerWithGameMapView(layout.getGameTerrainView(), new RealCoordinate(x, y));
-                    gameMap.add(new ImpassableTile(view), p);
-                }
-                else{
-                	TileView view = new BasicTileView(new Color(100, 0, 200), Color.BLACK);
-                    view.registerWithGameMapView(layout.getGameTerrainView(), new RealCoordinate(x, y));
-                    gameMap.add(new AirPassableTile(view), p);
-                }
+		triggerManager.addNonPartyTrigger(triggerOne);
+		triggerManager.addNonPartyTrigger(triggerTwo);
+		triggerManager.addNonPartyTrigger(triggerThree);
+		triggerManager.addNonPartyTrigger(triggerFour);
 
-            }
-        }
-    }
+	}
 
-    @Override
-    public GameplayLayout getLayout() {
-        return layout;
-    }
+	public void addTilesTest() {
+		for (int x = 0; x < 100; ++x) {
+			for (int y = 0; y < 100; ++y) {// Hardcoded for as long as the area
+				// is
+				TileCoordinate p = new TileCoordinate(x, y);
+				if ((x != 10 || y != 10) && (x != 13 || y != 13)) {
+					TileView view = new BasicTileView(new Color(0, 200, 200),
+							Color.WHITE);
+					view.registerWithGameMapView(layout.getGameTerrainView(),
+							new RealCoordinate(x, y));
+					gameMap.add(new PassableTile(view), p);
+				} else if (x != 13 || y != 13) {
+					TileView view = new BasicTileView(new Color(200, 0, 200),
+							Color.WHITE);
+					view.registerWithGameMapView(layout.getGameTerrainView(),
+							new RealCoordinate(x, y));
+					gameMap.add(new ImpassableTile(view), p);
+				} else {
+					TileView view = new BasicTileView(new Color(100, 0, 200),
+							Color.BLACK);
+					view.registerWithGameMapView(layout.getGameTerrainView(),
+							new RealCoordinate(x, y));
+					gameMap.add(new AirPassableTile(view), p);
+				}
 
-    @Override
-    public GameplayController getController() {
-        return controller;
-    }
+			}
+		}
+	}
+
+	@Override
+	public GameplayLayout getLayout() {
+		return layout;
+	}
+
+	@Override
+	public GameplayController getController() {
+		return controller;
+	}
 
 }

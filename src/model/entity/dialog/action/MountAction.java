@@ -16,4 +16,9 @@ public final class MountAction extends DialogAction {
 		DialogManager.getSingleton().exit();
 	}
 
+	@Override
+	public String getType() {
+		return "mount";
+	}
+
 }

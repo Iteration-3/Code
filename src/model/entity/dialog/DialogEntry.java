@@ -3,6 +3,7 @@ package model.entity.dialog;
 import model.entity.dialog.action.DialogAction;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import factories.DialogActionFactory;
 
 public class DialogEntry implements Saveable {
 	private String entryText;
@@ -11,6 +12,11 @@ public class DialogEntry implements Saveable {
 	public DialogEntry(String entryText, DialogAction action) {
 		setEntryText(entryText);
 		setAction(action);
+	}
+	
+	public DialogEntry(StructuredMap map) {
+		this.entryText = map.getString("text");
+		this.action = DialogActionFactory.createDialogAction(map.getStructuredMap("action"));
 	}
 	
 	public String getEntryText() {

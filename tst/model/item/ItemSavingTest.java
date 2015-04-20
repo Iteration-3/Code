@@ -1,6 +1,10 @@
 package model.item;
 
 import static org.junit.Assert.assertEquals;
+
+import java.io.File;
+import java.io.FileWriter;
+
 import model.statistics.EntityStatistics;
 import model.statistics.Statistics;
 
@@ -21,6 +25,21 @@ public class ItemSavingTest {
 		ConsumableItem testItem = new ConsumableItem(map);
 
 		assertEquals(map.getJson(), testItem.getStructuredMap().getJson());
+		
+		try {
+			map = testItem.getStructuredMap();
+			
+			File dir = new File("gamedata");
+			dir.mkdir();
+			File outFile = new File(dir, "filetest.txt");
+			FileWriter writer = new FileWriter(outFile);
+			writer.write(map.getJson());
+			writer.flush();
+			writer.close();
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	@Test
