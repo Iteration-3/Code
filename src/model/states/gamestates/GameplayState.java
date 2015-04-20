@@ -5,9 +5,6 @@ import gameactions.GameActionStatePush;
 import gameactions.GameActionTeleport;
 
 import java.awt.Color;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.util.Collection;
 
 import model.KeyPreferences;
@@ -21,10 +18,8 @@ import model.entity.EntityManager;
 import model.entity.EntityMovementAssocation;
 import model.entity.Mount;
 import model.entity.NPC;
-import model.entity.Summoner;
 import model.event.EventManager;
 import model.event.ExperienceModifierEvent;
-import model.event.HealthModifierEvent;
 import model.event.RiverPushEvent;
 import model.event.TeleportEvent;
 import model.item.Boots;
@@ -51,8 +46,6 @@ import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
-import utilities.structuredmap.JsonReader;
-import utilities.structuredmap.StructuredMap;
 import view.EntitySpriteFactory;
 import view.EntityView;
 import view.item.BasicItemView;
@@ -70,7 +63,6 @@ public class GameplayState extends GameState {
     private GameTerrain gameMap;
     private ItemMap itemMap;
     private Avatar avatar;
-	private boolean hasBeenDumped = false;
 
     public GameplayState(Avatar avatar) {
         layout = new GameplayLayout();
@@ -108,6 +100,7 @@ public class GameplayState extends GameState {
         addItemsTest();
         addTriggersTest();
         controller.spawnUpdateThread();
+        avatar.subscribe(layout.getCamera());
     }
 
     @Override
@@ -142,18 +135,18 @@ public class GameplayState extends GameState {
 
         EntityManager.getSingleton().setAvatar(avatar);
         getController().registerAvatar(avatar);
-        eView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(3, 3),Angle.UP);
+        eView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(loc),Angle.UP);
         
         TileCoordinate npcLocation = new TileCoordinate(7, 7);
         EntityView npcView = new EntityView(EntitySpriteFactory.getLadySpriteHolder());
         NPC npc = new NPC("DaveTheBargainer", npcView, npcLocation);
-        npcView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(7, 7),Angle.UP);
+        npcView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(npcLocation),Angle.UP);
         EntityManager.getSingleton().addPartyNpc(npc);
         
         TileCoordinate mountLocation = new TileCoordinate(7, 2);
         EntityView mountView = new EntityView(EntitySpriteFactory.getUnderlingSpriteHolder());
         Mount mount = new Mount("My first mount", mountView, mountLocation);
-        mountView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(7, 2), Angle.UP);
+        mountView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(mountLocation), Angle.UP);
         EntityManager.getSingleton().addNonPartyNpc(mount);
 
         KeyPreferences preferences = new KeyPreferences();
@@ -193,35 +186,35 @@ public class GameplayState extends GameState {
 	private void addItemsTest() {
         ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
         TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
-        takeableItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(5, 5));
+        takeableItemView.registerWithGameItemView(layout.getGameItemView(), TileCoordinate.convertToRealCoordinate(takeableItemViewPosition));
         this.getItemMap().addItem(new Boots(takeableItemView),
                 takeableItemViewPosition);
 
         ItemView takeableItemViewTwo = new BasicItemView(new Color(100, 60, 100), Color.DARK_GRAY);
         TileCoordinate takeableItemViewPositionTwo = new TileCoordinate(5, 6);
-        takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(5, 6));
+        takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView(),  TileCoordinate.convertToRealCoordinate(takeableItemViewPositionTwo));
         TakeableItem takeableItemTwo = new Gloves(takeableItemViewTwo);
         this.getItemMap().addItem(takeableItemTwo, takeableItemViewPositionTwo);
 
         ItemView doorItemView = new BasicItemView(Color.RED, Color.MAGENTA);
         TileCoordinate doorItemViewPosition = new TileCoordinate(15, 14);
-        doorItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(15, 14));
+        doorItemView.registerWithGameItemView(layout.getGameItemView(), TileCoordinate.convertToRealCoordinate(doorItemViewPosition));
         Door doorItem = new Door(doorItemView, takeableItemTwo);
         this.getItemMap().addItem(doorItem, doorItemViewPosition);
 
         ItemView obstacleItemView = new BasicItemView(Color.GRAY, Color.BLACK);
         TileCoordinate obstacleItemPosition = new TileCoordinate(9, 7);
-        obstacleItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(9, 7));
+        obstacleItemView.registerWithGameItemView(layout.getGameItemView(),TileCoordinate.convertToRealCoordinate(obstacleItemPosition));
         this.getItemMap().addItem(new ObstacleItem(obstacleItemView), obstacleItemPosition);
 
         ItemView oneshotItemView = new BasicItemView(Color.WHITE, Color.GREEN);
         TileCoordinate oneshotItemPosition = new TileCoordinate(13, 9);
-        oneshotItemView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(13, 9));
+        oneshotItemView.registerWithGameItemView(layout.getGameItemView(), TileCoordinate.convertToRealCoordinate(oneshotItemPosition));
         this.getItemMap().addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), oneshotItemPosition);
         
         ItemView riverMarker = new BasicItemView(Color.GRAY, Color.BLACK);
         TileCoordinate riverMarkerSpot = new TileCoordinate(13, 0);
-        riverMarker.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(13, 0));
+        riverMarker.registerWithGameItemView(layout.getGameItemView(), TileCoordinate.convertToRealCoordinate(riverMarkerSpot));
         this.getItemMap().addItem(new ObstacleItem(riverMarker), riverMarkerSpot);
         
         ItemView trapView = new BasicItemView(Color.RED, Color.BLACK);

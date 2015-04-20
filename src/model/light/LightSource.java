@@ -2,11 +2,11 @@ package model.light;
 
 import java.util.List;
 
-import factories.AreaFactory;
 import model.area.Area;
 import model.area.TileCoordinate;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import factories.AreaFactory;
 
 public class LightSource implements Saveable {
 	

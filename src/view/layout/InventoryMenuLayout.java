@@ -6,11 +6,11 @@ import java.awt.Graphics;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
-import controller.InventoryMenuController;
 import utilities.ImageProcessing;
 import view.EquipmentView;
 import view.InventoryView;
 import view.components.MenuButton;
+import controller.InventoryMenuController;
 
 @SuppressWarnings("serial")
 public class InventoryMenuLayout extends Layout {

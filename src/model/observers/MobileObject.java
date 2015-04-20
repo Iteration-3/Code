@@ -2,8 +2,8 @@ package model.observers;
 
 import java.util.ArrayList;
 
-import utilities.Angle;
 import model.area.TileCoordinate;
+import utilities.Angle;
 
 public abstract class MobileObject {
 	

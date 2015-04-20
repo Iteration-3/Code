@@ -1,9 +1,7 @@
 package model.area;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import factories.AreaFactory;
 import utilities.Angle;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;

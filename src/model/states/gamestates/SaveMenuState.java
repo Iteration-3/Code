@@ -1,7 +1,7 @@
 package model.states.gamestates;
 
-import controller.SaveMenuController;
 import view.layout.SaveMenuLayout;
+import controller.SaveMenuController;
 
 public class SaveMenuState extends GameState {
 	private SaveMenuLayout layout;

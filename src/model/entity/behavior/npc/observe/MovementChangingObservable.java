@@ -1,10 +1,10 @@
 package model.entity.behavior.npc.observe;
 
-import utilities.Angle;
 import model.area.Area;
 import model.area.TileCoordinate;
 import model.entity.Entity;
 import model.entity.EntityManager;
+import utilities.Angle;
 
 public abstract class MovementChangingObservable implements ObservableBehaviorState {
 	private Entity target;

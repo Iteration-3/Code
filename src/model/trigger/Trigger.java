@@ -1,7 +1,5 @@
 package model.trigger;
 
-import factories.AreaFactory;
-import factories.EventFactory;
 import model.area.Area;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
@@ -10,6 +8,8 @@ import model.event.Event;
 import model.event.EventManager;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import factories.AreaFactory;
+import factories.EventFactory;
 
 public abstract class Trigger implements Cloneable, Saveable {
     private Area area;

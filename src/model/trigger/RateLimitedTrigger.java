@@ -1,9 +1,9 @@
 package model.trigger;
 
-import utilities.structuredmap.StructuredMap;
 import model.area.Area;
 import model.entity.Entity;
 import model.event.Event;
+import utilities.structuredmap.StructuredMap;
 
 public class RateLimitedTrigger extends PermanentTrigger{
 	private int time;

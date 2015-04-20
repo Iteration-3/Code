@@ -3,10 +3,8 @@ package view.projectiles;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import view.tiles.components.Hexagon;
 import model.area.Area;
-import model.area.RealCoordinate;
-import model.area.TileCoordinate;
+import view.tiles.components.Hexagon;
 
 public class BasicProjectileView extends ProjectileView {
 
@@ -18,8 +16,8 @@ public class BasicProjectileView extends ProjectileView {
 	}
 
 	@Override
-	public void render(Graphics graphics, RealCoordinate location, float diam) {
-		hex.render(graphics, location, diam);
+	public void render(Graphics graphics, float x, float y, float diam) {
+		hex.render(graphics, x, y, diam);
 	}
 
 }

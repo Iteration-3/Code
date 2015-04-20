@@ -1,9 +1,9 @@
 package controller;
 
-import controller.listener.ToggleAction;
 import model.Model;
 import model.states.gamestates.CharacterSelectionState;
 import model.states.gamestates.LoadMenuState;
+import controller.listener.ToggleAction;
 
 public class MainMenuController extends Controller{
 	private Model model;

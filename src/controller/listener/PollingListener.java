@@ -8,8 +8,8 @@ import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
-import controller.KeyState;
 import view.layout.Layout;
+import controller.KeyState;
 
 public class PollingListener extends Listener {
 

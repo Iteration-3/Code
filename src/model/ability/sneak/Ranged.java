@@ -1,9 +1,7 @@
 package model.ability.sneak;
 
-import utilities.Angle;
 import model.ability.ProjectileAbility;
 import model.area.RadialArea;
-import model.area.TileCoordinate;
 import model.entity.Entity;
 import model.event.Event;
 import model.event.HealthModifierEvent;
@@ -11,7 +9,6 @@ import model.projectile.Projectile;
 import model.projectile.linear.ThrowingKnife;
 import model.skillmanager.SneakSkillManager;
 import model.trigger.SingleUseTrigger;
-import model.trigger.Trigger;
 
 public class Ranged extends ProjectileAbility {
 	

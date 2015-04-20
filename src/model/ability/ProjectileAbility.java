@@ -1,10 +1,8 @@
 package model.ability;
 
-import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.entity.Entity;
 import model.projectile.Projectile;
-import utilities.Angle;
 
 public abstract class ProjectileAbility extends Ability {
 	

@@ -1,8 +1,8 @@
 package model.trigger;
 
-import utilities.structuredmap.StructuredMap;
 import model.area.Area;
 import model.event.Event;
+import utilities.structuredmap.StructuredMap;
 
 public class TimedTrigger extends Trigger {
     private long duration = 0;

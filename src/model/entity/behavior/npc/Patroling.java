@@ -4,8 +4,6 @@ import model.entity.Entity;
 import model.entity.behavior.npc.defaultb.DefaultableBehaviorState;
 import model.entity.behavior.npc.defaultb.Patrol;
 import model.entity.behavior.npc.defaultb.circuit.UpDown;
-import model.entity.behavior.npc.observe.ObservableBehaviorState;
-import model.entity.behavior.npc.observe.TargetEntity;
 
 public class Patroling implements Behaviorable {
 	private DefaultableBehaviorState regular;

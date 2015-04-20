@@ -2,10 +2,10 @@ package controller.barter;
 
 import java.awt.event.MouseListener;
 
-import controller.SlotViewMouseListenerFactory;
-import controller.mouseliseners.BuyingMouseListener;
 import model.entity.Avatar;
 import model.entity.Entity;
+import controller.SlotViewMouseListenerFactory;
+import controller.mouseliseners.BuyingMouseListener;
 
 public class BarterBuyingController implements SlotViewMouseListenerFactory {
 	private Entity seller;

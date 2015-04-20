@@ -3,20 +3,17 @@ package view;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import model.Camera;
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import utilities.Angle;
+import utilities.ScreenCoordinate;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 import view.map.GameEntityView;
 
+
 public class EntityView implements Saveable {
-	//COPY AND PASTED SHIT FROM HEXAGON PLACE HOLDER
-	AbstractEntitySpriteHolder sprites;
-	private RealCoordinate location;
-	private boolean hidden = false;
-	private static final float BORDER_PERCENTAGE = 0.15f; // 15% border edge
-	private static final float OVERDRAW = 1.05f; // To eliminate little blank spaces between tiles
 	private StatBar healthBar = new StatBar(Color.red,Color.white);
 	private boolean drawHealthBar = false;
 	private float lastKnownHealth = 1f;
@@ -24,9 +21,14 @@ public class EntityView implements Saveable {
 	private StatBar manaBar = new StatBar(Color.blue,Color.white);
 	private boolean drawManaBar = false;
 	private float lastKnownMana = 1f;
+
+	AbstractEntitySpriteHolder sprites;
+	private RealCoordinate location;
+	private boolean hidden = false;
+	private Angle angle;
 	
 	public EntityView(AbstractEntitySpriteHolder sprites) {
-		this.sprites=sprites;
+		this.sprites = sprites;
 	}
 	
 	public EntityView(StructuredMap map) {
@@ -41,28 +43,20 @@ public class EntityView implements Saveable {
 	}
 	
 	
-	float tileWidth;
-	float tileHeight;
-	private Angle angle;
-	
-	public void render(Graphics graphics, int screenHeight) {	
-		tileHeight = screenHeight / 18.0f;
-		tileWidth = tileHeight / (float) (Math.sqrt(3) / 2);
-		RealCoordinate updatedCoordinate = new RealCoordinate
-				((location.getX() * tileWidth * 0.75),
-						(location.getY() * tileHeight + (location.getX() % 2) * tileHeight / 2));
-		//foregroundHexagon.render(graphics, updatedCoordinate, tileWidth * (1 - BORDER_PERCENTAGE) * OVERDRAW);
-		//backgroundHexagon.render(graphics, updatedCoordinate, tileWidth * BORDER_PERCENTAGE * OVERDRAW);
-		sprites.render(graphics, updatedCoordinate, 1,this.getDirection());
-		if(drawHealthBar){
-			healthBar.render(graphics,updatedCoordinate.getX(),updatedCoordinate.getY()-25,lastKnownHealth);
-			//Height offset hardcoded atm.
+	public void render(Graphics graphics, Camera camera) {		
+		if (!hidden) {
+			ScreenCoordinate renderPosition = camera.getTranslatedPosition(location, camera.getPosition()); // may be buggy?
+			sprites.render(graphics, renderPosition.getX(), renderPosition.getY(), camera.getTileHeight(), this.getDirection());
+			
+			if(drawHealthBar){
+				healthBar.render(graphics, renderPosition.getX(), renderPosition.getY()-25, lastKnownHealth);
+				//Height offset hardcoded atm.
+			}
+			if(drawManaBar){
+				manaBar.render(graphics, renderPosition.getX(), renderPosition.getY()-40, lastKnownMana);
+				//Height offset hardcoded atm.
+			}
 		}
-		if(drawManaBar){
-			manaBar.render(graphics,updatedCoordinate.getX(),updatedCoordinate.getY()-40,lastKnownMana);
-			//Height offset hardcoded atm.
-		}
-		
 	}
 	
 	public void turnOnHealthBar(){
@@ -90,9 +84,6 @@ public class EntityView implements Saveable {
 	
 	public void toggle() {
 		hidden = !hidden;
-		if (hidden) {
-			this.setLocation(new RealCoordinate(-5, -5));
-		}
 	}
 	
 	public boolean getHidden(){
@@ -109,7 +100,7 @@ public class EntityView implements Saveable {
 
 	public void setLocation(TileCoordinate location) {
 		if (hidden == false) {
-			this.setLocation(new RealCoordinate(location.getX(), location.getY()));
+			this.setLocation(TileCoordinate.convertToRealCoordinate(location));//new RealCoordinate(location.getX(), location.getY()));
 		}
 	}
 

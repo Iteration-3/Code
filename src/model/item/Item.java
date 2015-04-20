@@ -1,11 +1,11 @@
 package model.item;
 
-import factories.ItemViewFactory;
 import model.entity.Entity;
 import model.map.tile.ItemTile;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
+import factories.ItemViewFactory;
 
 public abstract class Item implements Saveable{
 	protected ItemView itemView;

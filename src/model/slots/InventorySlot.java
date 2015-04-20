@@ -1,10 +1,10 @@
 package model.slots;
 
-import factories.TakeableItemFactory;
+import model.item.TakeableItem;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 import view.SlotView;
-import model.item.TakeableItem;
+import factories.TakeableItemFactory;
 
 public class InventorySlot implements Slot, Saveable{
 	private TakeableItem item = null;

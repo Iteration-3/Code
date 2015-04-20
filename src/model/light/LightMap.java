@@ -1,8 +1,8 @@
 package model.light;
 
+import model.area.TileCoordinate;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
-import model.area.TileCoordinate;
 
 public class LightMap implements Saveable {
 	

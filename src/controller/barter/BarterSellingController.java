@@ -3,7 +3,7 @@ package controller.barter;
 import java.awt.event.MouseListener;
 
 import model.entity.Avatar;
-import model.entity.Entity ;
+import model.entity.Entity;
 import controller.SlotViewMouseListenerFactory;
 import controller.mouseliseners.SellingMouseListener;
 

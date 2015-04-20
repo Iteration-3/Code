@@ -4,16 +4,15 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
+import model.Camera;
 import view.EntityView;
 
-public class GameEntityView implements GameView {
+public class GameEntityView {
 	private Collection<EntityView> entityViews = new ArrayList<EntityView>();
 
-	public void render(Graphics graphics, int width, int height) {
+	public void render(Graphics graphics, Camera camera) {
 		for(EntityView entityView : entityViews) {
-			//TODO(mbregg) Make this not hardcoded, EntityView really needs to be redone
-			entityView.render(graphics, height);
+			entityView.render(graphics, camera);
 			
 		}
 	}

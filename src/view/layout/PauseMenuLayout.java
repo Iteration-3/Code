@@ -5,8 +5,8 @@ import java.awt.GridLayout;
 
 import javax.swing.border.EmptyBorder;
 
-import controller.PauseMenuController;
 import view.components.MenuButton;
+import controller.PauseMenuController;
 
 @SuppressWarnings("serial")
 public class PauseMenuLayout extends Layout {

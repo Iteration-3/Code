@@ -1,7 +1,7 @@
 package model.event;
 
-import utilities.structuredmap.StructuredMap;
 import model.entity.Entity;
+import utilities.structuredmap.StructuredMap;
 
 public class MovementModifierEvent extends Event {
 	private int movement;

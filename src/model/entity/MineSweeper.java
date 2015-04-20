@@ -1,7 +1,6 @@
 package model.entity;
 
 import model.area.TileCoordinate;
-import model.entity.dialog.DialogManager;
 import model.item.TakeableItem;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;

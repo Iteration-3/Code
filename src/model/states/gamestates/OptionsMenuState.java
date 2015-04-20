@@ -1,7 +1,7 @@
 package model.states.gamestates;
 
-import controller.OptionsMenuController;
 import view.layout.OptionsMenuLayout;
+import controller.OptionsMenuController;
 
 public class OptionsMenuState extends GameState {
 	private OptionsMenuLayout layout;
