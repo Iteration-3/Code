@@ -45,6 +45,7 @@ public class SlotView extends JButton implements Saveable {
 
 	public void register(ItemView itemView) {
 		this.itemView = itemView;
+		this.repaint();
 	}
 
 	public boolean hasItem() {

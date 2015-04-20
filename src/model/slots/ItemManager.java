@@ -13,6 +13,7 @@ import model.item.Leggings;
 import model.item.Projectile;
 import model.item.Shield;
 import model.item.TakeableItem;
+import model.item.TwoHandedWeapon;
 import model.item.Weapon;
 import model.statistics.Statistics;
 import utilities.structuredmap.Saveable;
@@ -87,6 +88,7 @@ public class ItemManager implements Saveable {
     }
 
     public boolean equip(EquipableItem item) {
+    	System.out.println(item);
         // the item must unequip all the slots that it needs to equip itself
         return item.equip(this);
     }
@@ -123,6 +125,10 @@ public class ItemManager implements Saveable {
     	this.unequipShield();
     	return this.equipment.equip(item);
     }
+    public boolean equipToSlot(TwoHandedWeapon item){
+    	this.unequipTHW();
+    	return this.equipment.equip(item);
+    }
 
     public void unequipProjectile() {
         if (this.inventory.hasEmptySlot()) {
@@ -150,7 +156,14 @@ public class ItemManager implements Saveable {
 
     public void unequipWeapon() {
         if (this.inventory.hasEmptySlot()) {
-            this.inventory.addItem(this.equipment.unequipWeapon());
+        	if (this.equipment.hasTHW()){
+        		if (this.equipment.THWSlotHasItem()){
+        			this.inventory.addItem(this.equipment.unequipTHW());
+        		}
+        	}
+        	else{
+        		this.inventory.addItem(this.equipment.unequipWeapon());
+        	}
         }
     }
 
