@@ -1426,14 +1426,9 @@
 				"type":	"trap",
 				"event":	{
 					"duration":	20.0,
-<<<<<<< HEAD
 					"type":	"tempMovementEvent",
 					"movement":  -1000,
-					"oldMovementSpeed":  1
-=======
-					"oldMovementSpeed":	1,
-					"type":	"tempMovementEvent"
->>>>>>> branch 'master' of https://github.com/Iteration-3/Code.git
+					"oldMovementSpeed":	1
 					}
 				}]
 			}
