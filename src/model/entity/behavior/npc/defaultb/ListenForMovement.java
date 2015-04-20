@@ -2,7 +2,7 @@ package model.entity.behavior.npc.defaultb;
 
 import model.entity.Entity;
 import model.entity.behavior.npc.defaultb.circuit.PushableCurcuit;
-import utilities.Angle;
+import utilities.Direction;
 
 public class ListenForMovement implements DefaultableBehaviorState {
 	private Entity chosenOne;
@@ -21,7 +21,7 @@ public class ListenForMovement implements DefaultableBehaviorState {
 		}
 	}
 	
-	public void push(Angle move){
+	public void push(Direction move){
 		if (move == null){
 			return;
 		}

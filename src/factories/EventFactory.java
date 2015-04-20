@@ -5,6 +5,7 @@ import model.event.ExperienceModifierEvent;
 import model.event.FlightEvent;
 import model.event.HealthModifierEvent;
 import model.event.InstantDeathEvent;
+import model.event.InvisiblityEvent;
 import model.event.LivesModifierEvent;
 import model.event.ManaModifierEvent;
 import model.event.MovementModifierEvent;
@@ -35,7 +36,7 @@ public class EventFactory {
 		case "manaModifier":
 			return new ManaModifierEvent(structuredMap);
 		case "movementModifier":
-			createMovementModifierEvent(structuredMap);
+			return createMovementModifierEvent(structuredMap);
 		case "pickPocket":
 			return new PickPocketEvent(structuredMap);
 		case "riverPush":
@@ -46,6 +47,8 @@ public class EventFactory {
 			return new TeleportEvent(structuredMap);
 		case "tempMovementEvent":
 			return new TemporaryMovementModifierEvent(structuredMap);
+		case "InvisibleEvent" :
+			return new InvisiblityEvent(structuredMap);
 		default:
 			throw new IllegalArgumentException("Fuck you");
 		}

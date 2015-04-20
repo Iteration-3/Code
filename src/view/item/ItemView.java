@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import model.area.RealCoordinate;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
-import view.map.GameItemView;
 
 public abstract class ItemView implements Saveable{
 	private GameItemView container;

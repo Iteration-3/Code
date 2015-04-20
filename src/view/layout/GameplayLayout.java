@@ -9,25 +9,25 @@ import javax.swing.Timer;
 
 import view.Camera;
 import view.ViewTransform;
-import view.map.GameEntityView;
-import view.map.GameItemView;
-import view.map.GameLightView;
-import view.map.GameProjectileView;
-import view.map.GameTerrainView;
+import view.entity.GameEntityView;
+import view.item.GameItemView;
+import view.light.GameLightView;
+import view.map.GameTileView;
+import view.projectiles.GameProjectileView;
 
 @SuppressWarnings("serial")
 public class GameplayLayout extends Layout implements ActionListener {
-    GameTerrainView gameTerrainView;
+    GameTileView gameTerrainView;
     GameEntityView gameEntityView;
     GameItemView gameItemView;
     GameLightView gameLightView;
 	GameProjectileView gameProjectileView;
 	private Camera camera;
-	private static final int FPS = 30;
+	private static final int FPS = 60;
 	private static final int REDRAW_INTERVAL = 1000 / FPS;
 	
     public GameplayLayout() {
-        gameTerrainView = new GameTerrainView();
+        gameTerrainView = new GameTileView();
         gameEntityView = new GameEntityView();
         gameItemView = new GameItemView();
         gameLightView = new GameLightView();
@@ -41,7 +41,7 @@ public class GameplayLayout extends Layout implements ActionListener {
     	return camera;
     }
 
-    public GameTerrainView getGameTerrainView() {
+    public GameTileView getGameTerrainView() {
         return gameTerrainView;
     }
 
@@ -87,10 +87,12 @@ public class GameplayLayout extends Layout implements ActionListener {
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         ViewTransform transform = camera.getTransform();
+        gameEntityView.lock();
         gameTerrainView.render(graphics, transform);
         gameEntityView.render(graphics, transform);
         gameItemView.render(graphics, transform);
 		//gameProjectileView.render(graphics, getWidth(), getHeight());
         gameLightView.render(graphics, transform);
+        gameEntityView.release();
     }
 }

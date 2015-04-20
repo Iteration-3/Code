@@ -1,15 +1,16 @@
-package view;
+package view.entity;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import utilities.Angle;
+import utilities.Direction;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import view.Sprite;
 
 public abstract class AbstractEntitySpriteHolder implements Saveable {
 	
-	public void render(Graphics graphics, float x, float y, float diameter, Angle angle) {
+	public void render(Graphics graphics, float x, float y, float diameter, Direction angle) {
 		switch(angle){
 		case UP:
 			this.getUp().render(graphics, x, y, diameter);

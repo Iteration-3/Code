@@ -3,13 +3,13 @@ package model.observers;
 import java.util.ArrayList;
 
 import model.area.TileCoordinate;
-import utilities.Angle;
+import utilities.Direction;
 
 public abstract class MobileObject {
 	
 	private ArrayList<MobileListener> listeners = new ArrayList<MobileListener>();
 	private TileCoordinate location;
-	private Angle direction;
+	private Direction direction;
 	
 	public MobileObject(TileCoordinate loc) {
 		setLocation(loc);
@@ -17,6 +17,7 @@ public abstract class MobileObject {
 	
 	public void subscribe(MobileListener list) {
 		listeners.add(list);
+		list.notify(this);
 	}
 
 	public void unsubscribe(MobileListener list) {
@@ -28,7 +29,7 @@ public abstract class MobileObject {
 		notifySubscribers();
 	}
 	
-	public void setDirection(Angle direction) {
+	public void setDirection(Direction direction) {
 		this.direction = direction;
 		notifySubscribers();
 	}
@@ -37,7 +38,7 @@ public abstract class MobileObject {
 		this.location = location;
 	}
 	
-	protected void setDirectionNoNotify(Angle direction) {
+	protected void setDirectionNoNotify(Direction direction) {
 		this.direction = direction;
 	}
 	
@@ -45,7 +46,7 @@ public abstract class MobileObject {
 		return location;
 	}
 	
-	public Angle getDirection() {
+	public Direction getDirection() {
 		return direction;
 	}
 	

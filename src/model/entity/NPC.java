@@ -5,7 +5,7 @@ import model.area.TileCoordinate;
 import model.entity.behavior.npc.Behaviorable;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
-import view.EntityView;
+import view.entity.EntityView;
 
 public class NPC extends Entity {
 	private Behaviorable behavior;
@@ -16,15 +16,19 @@ public class NPC extends Entity {
 	}
 	
 	public NPC(String name, String type, EntityView view, TileCoordinate location, Behaviorable behavior) {
-		super(name, view, location);
+		super(name, view, location,behavior);
 		this.behavior = behavior;
 		this.type = type;
 	}
 	
 	public NPC(StructuredMap map) {
 		super(map);
-		//DEPRECATED TO THE BEHAVIOR
-//		this.dialogTree = new DialogTree(map.getStructuredMap("dialogueTree"));
+	}
+	
+	public NPC(StructuredMap map, Behaviorable behavior) {
+		super(map);
+		this.behavior = behavior;
+		this.type = map.getString("type");
 	}
 	
 	
@@ -52,9 +56,18 @@ public class NPC extends Entity {
 	}
 
 	@Override
-	public void update() {
+	public void updateExtras(double deltaTime) {
 		observeHelper();
-		
+		if(this.outOfLives()){
+			this.removeFromTheWorld();
+		}
+	}
+	
+
+	
+	private void removeFromTheWorld(){
+		EntityManager.getSingleton().removeEntity(this);
+		this.getEntityView().removeFromTheWorld();
 	}
 	
 	private void observeHelper(){
@@ -62,7 +75,6 @@ public class NPC extends Entity {
 		if (this.getLocation().getDistance(avatar.getLocation()) < avatar.getObserveSkill()*4
 				&& this.isInCombat()){
 			//The distance between the two objects vs the observe skill times 4 is the range.
-			//TODO ADD check if in combat state.
 			this.getEntityView().updateHP(getHpPercentage());
 			this.getEntityView().updateMana(getManaPercentage());
 			this.getEntityView().turnOnHealthBar();
@@ -77,9 +89,7 @@ public class NPC extends Entity {
 
 	@Override
 	public String getType() {
-		//Kyle you might want 
 		return this.type;
-//		return "npc";
 	}
 
 	@Override
@@ -89,6 +99,7 @@ public class NPC extends Entity {
 
 	@Override
 	protected Behaviorable getBehavior() {
+		this.behavior.setEntity(this);
 		return this.behavior;
 	}
 

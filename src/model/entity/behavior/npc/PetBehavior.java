@@ -14,12 +14,12 @@ public class PetBehavior implements Behaviorable {
 	public PetBehavior(){}
 
 	@Override
-	public void perform() {
+	public void perform(double deltaTime) {
 		this.performer.perform();
 	}
 
 	@Override
-	public void observe() {
+	public void observe(double deltaTime) {
 //		this.observer.observe();
 	}
 

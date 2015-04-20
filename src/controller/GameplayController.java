@@ -40,6 +40,7 @@ public class GameplayController extends Controller {
     					previousTime = System.nanoTime();
     					avatarController.update();
     					
+    					
     					try {
     						Thread.sleep(1);
     					} catch (InterruptedException e) {

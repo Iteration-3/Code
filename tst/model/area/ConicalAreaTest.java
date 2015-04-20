@@ -8,11 +8,11 @@ import java.util.List;
 
 import org.junit.Test;
 
-import utilities.Angle;
+import utilities.Direction;
 
 public class ConicalAreaTest {
 
-    private ConicalArea area = new ConicalArea(2, new TileCoordinate(10, 10), Angle.UP);
+    private ConicalArea area = new ConicalArea(2, new TileCoordinate(10, 10), Direction.UP);
 
     @Test
     public void testInsideAreaUpTrue() {
@@ -28,35 +28,35 @@ public class ConicalAreaTest {
 
     @Test
     public void testInsideAreaDownTrue() {
-        area.setDirection(Angle.DOWN);
+        area.setDirection(Direction.DOWN);
         TileCoordinate loc = new TileCoordinate(10, 11);
         assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaUpRightTrue() {
-        area.setDirection(Angle.UP_RIGHT);
+        area.setDirection(Direction.UP_RIGHT);
         TileCoordinate loc = new TileCoordinate(11, 9);
         assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaUpLeftTrue() {
-        area.setDirection(Angle.UP_LEFT);
+        area.setDirection(Direction.UP_LEFT);
         TileCoordinate loc = new TileCoordinate(9, 9);
         assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaDownLeftTrue() {
-        area.setDirection(Angle.DOWN_LEFT);
+        area.setDirection(Direction.DOWN_LEFT);
         TileCoordinate loc = new TileCoordinate(9, 10);
         assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaUpLongRange() {
-        area.setDirection(Angle.UP);
+        area.setDirection(Direction.UP);
         area.setRange(3);
         TileCoordinate loc = new TileCoordinate(10, 8);
         assertTrue(area.isInRange(loc));
@@ -64,14 +64,14 @@ public class ConicalAreaTest {
 
     @Test
     public void testInsideAreaDownRightTrue() {
-        area.setDirection(Angle.DOWN_RIGHT);
+        area.setDirection(Direction.DOWN_RIGHT);
         TileCoordinate loc = new TileCoordinate(11, 10);
         assertTrue(area.isInRange(loc));
     }
 
     @Test
     public void testInsideAreaDown() {
-        area.setDirection(Angle.DOWN);
+        area.setDirection(Direction.DOWN);
         area.setRange(5);
         TileCoordinate loc = new TileCoordinate(10, 11);
         assertTrue(area.isInRange(loc));
@@ -79,7 +79,7 @@ public class ConicalAreaTest {
 
     @Test
     public void testGetLocationsRadius2() {
-        area.setDirection(Angle.UP);
+        area.setDirection(Direction.UP);
         area.setRange(2);
         List<TileCoordinate> locations = area.getCoveredLocations();
         assertEquals(2, locations.size());
@@ -87,7 +87,7 @@ public class ConicalAreaTest {
 
     @Test
     public void testGetLocationsRadius3() {
-        area.setDirection(Angle.UP);
+        area.setDirection(Direction.UP);
         area.setRange(3);
         List<TileCoordinate> locations = area.getCoveredLocations();
         assertEquals(5, locations.size());
@@ -95,7 +95,7 @@ public class ConicalAreaTest {
 
     @Test
     public void testGetLocationsRadius4() {
-        area.setDirection(Angle.UP);
+        area.setDirection(Direction.UP);
         area.setRange(4);
         List<TileCoordinate> locations = area.getCoveredLocations();
         assertEquals(8, locations.size());
@@ -103,7 +103,7 @@ public class ConicalAreaTest {
 
     @Test
     public void testGetLocationsRadius5() {
-        area.setDirection(Angle.DOWN);
+        area.setDirection(Direction.DOWN);
         area.setRange(5);
         List<TileCoordinate> locations = area.getCoveredLocations();
         assertEquals(13, locations.size());

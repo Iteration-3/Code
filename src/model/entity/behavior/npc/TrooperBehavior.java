@@ -10,13 +10,11 @@ public class TrooperBehavior implements Behaviorable {
 	private AttackInteract interact;
 	private LinkAndInteract perform;
 
-	@Override
-	public void perform() {
+	public void perform(double deltaTime) {
 		this.perform.perform();
 	}
 
-	@Override
-	public void observe() {
+	public void observe(double deltaTime) {
 	}
 
 	@Override

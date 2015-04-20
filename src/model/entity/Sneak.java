@@ -9,8 +9,8 @@ import model.area.TileCoordinate;
 import model.skillmanager.SneakSkillManager;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
-import view.EntitySpriteFactory;
-import view.EntityView;
+import view.entity.EntitySpriteFactory;
+import view.entity.EntityView;
 
 public class Sneak extends Avatar {
 	private SneakSkillManager skillManager;
@@ -57,12 +57,6 @@ public class Sneak extends Avatar {
 		
 	}
 
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		super.update();
-		
-	}
 	//Wasn't sneak going to have creap, and pickpocket? Not in uml anymore, we should discuss
 
 	@Override

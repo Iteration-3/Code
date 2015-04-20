@@ -21,15 +21,14 @@ public class Patroling implements Behaviorable {
 	}
 
 	@Override
-	public void perform(){
+	public void perform(double deltaTime){
 		if (count++ == ticker){
 			regular.perform();
 			count = 0;
 		}
 	}
-	
 	@Override
-	public void observe(){
+	public void observe(double deltaTime){
 	}
 	
 	@Override

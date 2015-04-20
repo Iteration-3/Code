@@ -15,15 +15,16 @@ import model.observers.MobileObject;
 import model.slots.ItemManager;
 import model.statistics.BoundedEntityStatistics;
 import model.statistics.Statistics;
-import utilities.Angle;
+import utilities.Direction;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
-import view.EntityView;
 import view.EquipmentView;
 import view.InventoryView;
+import view.entity.EntityView;
 import controller.listener.Listener;
 
 public abstract class Entity extends MobileObject implements Saveable {
+	private static final double maxHasBeenAttacked = 5;
     private ItemManager itemManager;
     private String name = null;
     private BoundedEntityStatistics stats = new BoundedEntityStatistics();
@@ -32,20 +33,11 @@ public abstract class Entity extends MobileObject implements Saveable {
 	private StateMachine state;
 	private boolean hasBeenAttacked;
 	private boolean attacking;
+	private double timerHasBeenAttacked = 0;
 
     protected Entity() {
     	super(new TileCoordinate(0, 0));
     	this.setBehavior();
-    }
-
-    public Entity(String name, EntityView view, TileCoordinate location) {
-    	super(location);
-        this.name = name;
-        this.view = view;
-        setLocation(location);
-        this.setNecessities();
-        setDirection(Angle.UP);
-        this.setBehavior();
     }
 
     public Entity(String name, EntityView view, TileCoordinate location, Behaviorable behavior) {
@@ -54,8 +46,8 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.view = view;
         setLocation(location);
         this.setNecessities();
-        setDirection(Angle.UP);
-        this.setBehavior();
+        setDirection(Direction.UP);
+        this.setBehavior(behavior);
     }
     
     public Entity(StructuredMap map) {
@@ -64,7 +56,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         int[] locationArray = map.getIntArray("location");
         setLocation(new TileCoordinate(locationArray[0], locationArray[1]));
         this.stats = new BoundedEntityStatistics(map.getStructuredMap("stats"));
-        setDirection(Angle.values()[map.getInteger("direction")]);
+        setDirection(Direction.values()[map.getInteger("direction")]);
         this.itemManager = new ItemManager(map.getStructuredMap("itemManager"));
         this.isFlying = map.getBoolean("flying");
         this.view = map.getStructuredMap("entityView") == null ? null : new EntityView(map.getStructuredMap("entityView"));
@@ -90,6 +82,11 @@ public abstract class Entity extends MobileObject implements Saveable {
         return map;
     }
     
+    private void setBehavior(Behaviorable behavior){
+        this.state = new StateMachine(this);
+        this.state.push(behavior);
+    }
+
     private void setBehavior(){
         this.state = new StateMachine(this);
         this.state.push(this.getBehavior());
@@ -102,12 +99,14 @@ public abstract class Entity extends MobileObject implements Saveable {
         // other things go here
     }
     
-    /***********STATES***************/
-    public void perform(){
-    	this.state.perform();
+    /***********STATES
+     * @param deltaTime ***************/
+    public void perform(double deltaTime){
+    	this.state.perform(deltaTime);
     }
     
     public void interact(Entity entity){
+    	System.out.println("interacting " + this+"   " + entity);
     	this.state.interact(entity);
     }
     
@@ -118,6 +117,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     
     public void setHasBeenAttacked(){
     	this.hasBeenAttacked = true;
+    	this.timerHasBeenAttacked = 0;
     }
     
     public void clearAttacking(){
@@ -134,14 +134,15 @@ public abstract class Entity extends MobileObject implements Saveable {
     
     public void setAttacking(){
     	this.attacking = true;
+    	this.timerHasBeenAttacked = 0;
     }
    
     public boolean getAttacking(){
     	return this.attacking;
     }
     
-    public void observe(){
-    	this.state.observe();
+    public void observe(double deltaTime){
+    	this.state.observe(deltaTime);
     }
     
     public float getHpPercentage(){
@@ -196,7 +197,23 @@ public abstract class Entity extends MobileObject implements Saveable {
 
     public abstract void load(StructuredMap map);
 
-    public abstract void update();
+	public final void update(double deltaTime){
+    	caculateCombatTimer(deltaTime);
+    	this.updateExtras(deltaTime);
+    }
+    
+	private void caculateCombatTimer(double deltaTime) {
+		if (getHasBeenAttacked() || this.getAttacking()){
+			timerHasBeenAttacked += deltaTime;
+			if (timerHasBeenAttacked >= maxHasBeenAttacked){
+				clearHasBeenAttacked();
+				clearAttacking();
+				timerHasBeenAttacked = 0;
+			}
+		}
+	}
+
+	public abstract void updateExtras(double deltaTime);
 
     // All entities have an ItemManager, but subclasses need specific ones, so
     // it can't be
@@ -213,7 +230,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         return derivedStats;
     }
 
-    public void move(Angle angle) {
+    public void move(Direction angle) {
     	if (angle != null){
     		TileCoordinate nextLocation = nextLocation(angle);
     		this.setLocationNoNotify(nextLocation);
@@ -226,7 +243,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     	return nextLocation(this.getDirection());
     }
     
-    public TileCoordinate nextLocation(Angle angle) {
+    public TileCoordinate nextLocation(Direction angle) {
         return this.getLocation().nextLocation(angle);
     }
 
@@ -337,7 +354,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     }
     
     @Override
-	public void setDirection(Angle angle){
+    public void setDirection(Direction angle){
     	super.setDirection(angle);
     	if(this.getEntityView() != null){
     		this.getEntityView().setDirection(angle);
@@ -352,7 +369,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     }
     
     @Override
-	protected void setDirectionNoNotify(Angle angle){
+    protected void setDirectionNoNotify(Direction angle) {
     	super.setDirectionNoNotify(angle);
     	if(this.getEntityView() != null){
     		this.getEntityView().setDirection(angle);
@@ -412,6 +429,10 @@ public abstract class Entity extends MobileObject implements Saveable {
 	
 	protected boolean isInCombat() {
 		return (this.getHasBeenAttacked() || this.getAttacking());
+	}
+	
+	public boolean outOfLives(){
+		return this.getDerivedStats().outOfLives();
 	}
 
 }

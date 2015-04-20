@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 import model.area.Area;
-import view.map.GameProjectileView;
 
 public abstract class ProjectileView {
 	

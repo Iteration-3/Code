@@ -24,10 +24,32 @@ import utilities.structuredmap.StructuredMap;
 public class ItemMap implements Saveable {
     private Map<TileCoordinate, ItemTile> items = new HashMap<TileCoordinate, ItemTile>();
 
-    @Override
+    
+    public ItemMap(StructuredMap map) {
+    	items = new HashMap<TileCoordinate, ItemTile>();
+    	StructuredMap[] itemMap = map.getStructuredMapArray("itemMap");
+    	for(StructuredMap item : itemMap) {
+    		items.put(new TileCoordinate(item.getStructuredMap("coordinate")), new ItemTile(item.getStructuredMap("itemTile")));
+    	}
+    }
+    
+    public ItemMap() {
+
+	}
+
+	@Override
     public StructuredMap getStructuredMap() {
-        // TODO Auto-generated method stub
-        return null;
+       StructuredMap map = new StructuredMap();
+       StructuredMap[] itemMap = new StructuredMap[items.size()];
+       int i = 0;
+       for(Map.Entry<TileCoordinate, ItemTile> set : items.entrySet()) {
+    	   StructuredMap tempMap = new StructuredMap();
+    	   tempMap.put("coordinate", set.getKey().getStructuredMap());
+    	   tempMap.put("itemTile", set.getValue().getStructuredMap());
+    	   itemMap[i++] = tempMap;
+       }
+       map.put("itemMap", itemMap);
+       return map;
     }
 
     private ItemTile getItemTileAtLocation(TileCoordinate loc) {

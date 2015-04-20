@@ -23,6 +23,7 @@ public class KeyPreferences implements Saveable {
 	private static final int NUM_ABILITIES = 11;
     private List<KeyStroke> abilities;
 	private KeyStroke attackKey;
+	private KeyStroke suicideKey;
 
     public KeyPreferences() {
         this.upKey = KeyStroke.getKeyStroke("W");
@@ -37,10 +38,12 @@ public class KeyPreferences implements Saveable {
         this.dismountKey = KeyStroke.getKeyStroke("H");
         this.abilities = new ArrayList<KeyStroke>();
         this.attackKey = KeyStroke.getKeyStroke("F");
+        this.suicideKey = KeyStroke.getKeyStroke("K");
         for (int i = 0; i != 10; ++i) {//This should never go above 10, don't have that many keys!
-            abilities.add(KeyStroke.getKeyStroke((char) ('0' + i)));
+            abilities.add(KeyStroke.getKeyStroke(Integer.toString(i)));
         }
-        abilities.add(KeyStroke.getKeyStroke('`'));
+        abilities.add(KeyStroke.getKeyStroke("EQUALS"));
+        abilities.add(KeyStroke.getKeyStroke("MINUS"));
     }
 
     public KeyPreferences(StructuredMap structuredMap) {
@@ -55,13 +58,18 @@ public class KeyPreferences implements Saveable {
         setPauseKey(KeyStroke.getKeyStroke(structuredMap.getString("pause")));
         setDismountKey(KeyStroke.getKeyStroke(structuredMap.getString("dismount")));
         setAttackKey(KeyStroke.getKeyStroke(structuredMap.getString("attack")));
+        setSuicideKey(KeyStroke.getKeyStroke(structuredMap.getString("suicide")));
         abilities = new ArrayList<KeyStroke>();
         for (int i = 1; i <= NUM_ABILITIES; i++) {
             abilities.add(KeyStroke.getKeyStroke(structuredMap.getString("ability" + i)));
         }
     }
 
-    private void setAttackKey(KeyStroke keyStroke) {
+    private void setSuicideKey(KeyStroke keyStroke) {
+		this.suicideKey = keyStroke;
+	}
+
+	private void setAttackKey(KeyStroke keyStroke) {
 		this.attackKey = keyStroke;
 		
 	}
@@ -211,6 +219,10 @@ public class KeyPreferences implements Saveable {
 
 	public KeyStroke getAttackKey() {
 		return this.attackKey;
+	}
+
+	public KeyStroke getSuicideKey() {
+		return this.suicideKey;
 	}
 
 }

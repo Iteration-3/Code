@@ -10,11 +10,11 @@ public class BarterBehavior implements Behaviorable{
 	public BarterBehavior(){}
 
 	@Override
-	public void perform() {
+	public void perform(double deltaTime) {
 	}
 
 	@Override
-	public void observe() {
+	public void observe(double deltaTime) {
 	}
 
 	@Override

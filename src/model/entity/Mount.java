@@ -3,9 +3,9 @@ package model.entity;
 import model.area.TileCoordinate;
 import model.entity.behavior.npc.Behaviorable;
 import model.entity.behavior.npc.MountBehavior;
-import utilities.Angle;
+import utilities.Direction;
 import utilities.structuredmap.StructuredMap;
-import view.EntityView;
+import view.entity.EntityView;
 
 public class Mount extends NPC {
 	private Avatar rider;
@@ -19,7 +19,7 @@ public class Mount extends NPC {
 	}
 	
 	@Override
-	public void move(Angle angle) {
+	public void move(Direction angle) {
 		super.move(angle);
 		if (this.rider != null) {
 			// Rider will move with the avatar

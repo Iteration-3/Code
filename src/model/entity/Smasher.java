@@ -5,8 +5,8 @@ import model.area.TileCoordinate;
 import model.skillmanager.SmasherSkillManager;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
-import view.EntitySpriteFactory;
-import view.EntityView;
+import view.entity.EntitySpriteFactory;
+import view.entity.EntityView;
 
 public class Smasher extends Avatar {
 	private SmasherSkillManager skillManager;
@@ -41,13 +41,6 @@ public class Smasher extends Avatar {
 	@Override
 	public StructuredMap getStructuredMap() {
 		return super.getStructuredMap();
-	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		super.update();
-		
 	}
 
 	@Override

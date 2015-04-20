@@ -10,12 +10,12 @@ import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 import factories.TileFactory;
 
-public class GameTerrain implements Saveable {
+public class GameMap implements Saveable {
 
 	private Map<TileCoordinate, Tile> tiles = new HashMap<TileCoordinate, Tile>();
 
 	
-	public GameTerrain() {}
+	public GameMap() {}
 	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap[] array = new StructuredMap[tiles.size()];
@@ -31,7 +31,7 @@ public class GameTerrain implements Saveable {
 		return map;
 	}
 
-	public GameTerrain(StructuredMap map) {
+	public GameMap(StructuredMap map) {
 		tiles = new HashMap<TileCoordinate, Tile>();
 		StructuredMap[] array = map.getStructuredMapArray("tiles");
 		for (StructuredMap tempMap : array) {

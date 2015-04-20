@@ -33,11 +33,11 @@ public class StateMachine implements StateMachineable {
 	}
 	
 	@Override
-	public void perform(){
+	public void perform(double deltaTime){
 		if (this.states.isEmpty()){
 			return;
 		}
-		this.states.peek().perform();
+		this.states.peek().perform(deltaTime);
 	}
 	
 	@Override
@@ -56,10 +56,10 @@ public class StateMachine implements StateMachineable {
 	}
 	
 	@Override
-	public void observe(){
+	public void observe(double deltaTime){
 		if (this.states.isEmpty()){
 			return;
 		}
-		this.states.peek().observe();
+		this.states.peek().observe(deltaTime);
 	}
 }

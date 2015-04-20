@@ -12,11 +12,11 @@ public class MountBehavior implements Behaviorable {
 	}
 
 	@Override
-	public void perform() {
+	public void perform(double deltaTime) {
 	}
 
 	@Override
-	public void observe() {
+	public void observe(double deltaTime) {
 	}
 
 	@Override

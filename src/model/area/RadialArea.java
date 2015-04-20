@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import utilities.Angle;
+import utilities.Direction;
 import utilities.structuredmap.StructuredMap;
 
 public class RadialArea extends Area {
@@ -44,7 +44,7 @@ public class RadialArea extends Area {
 	    		Pair poll = bfsQ.poll();
 	    		int nextDist = poll.dist + 1;
 	    		if (nextDist > getRadius()) continue;
-	    		for (Angle ang : Angle.values()) {
+	    		for (Direction ang : Direction.values()) {
 	    			TileCoordinate next = poll.coord.nextLocation(ang);
 	    			if (!res.contains(next)) {
 	    				res.add(next);

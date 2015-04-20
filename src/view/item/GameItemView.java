@@ -1,4 +1,4 @@
-package view.map;
+package view.item;
 
 import java.awt.Graphics;
 import java.util.HashMap;
@@ -8,7 +8,6 @@ import model.area.RealCoordinate;
 import utilities.ScreenCoordinate;
 import view.Renderable;
 import view.ViewTransform;
-import view.item.ItemView;
 
 public class GameItemView implements Renderable {
 	private Map<RealCoordinate, ItemView> itemViews = new HashMap<RealCoordinate, ItemView>();

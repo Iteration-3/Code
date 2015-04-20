@@ -16,13 +16,11 @@ public class Pursue implements Behaviorable {
 		this.reset = continuousAreaReset;
 	}
 
-	@Override
-	public void perform() {
+	public void perform(double deltaTime) {
 		this.pursue.perform();
 	}
 
-	@Override
-	public void observe() {
+	public void observe(double deltaTime) {
 		this.targetEntity.observe();
 		if (this.targetEntity.found()) {
 			this.pursue.push(this.targetEntity.getMove());

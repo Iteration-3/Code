@@ -2,22 +2,36 @@ package gameactions;
 
 import model.area.TileCoordinate;
 import model.entity.Entity;
-import model.map.GameTerrain;
+import model.map.GameMap;
 import model.map.ItemMap;
-import utilities.Angle;
+import utilities.Direction;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 
-public class GameActionMovement extends GameAction {
+public class GameActionMovement extends GameAction implements Saveable {
 	private Entity entity;
-	private Angle direction;
+	private Direction direction;
 	
-	private GameTerrain terrain;
+	private GameMap terrain;
 	private ItemMap itemMap;
 
-	public GameActionMovement(Entity entity, GameTerrain terrain, ItemMap itemMap, Angle angle){
+	public GameActionMovement(Entity entity, GameMap terrain, ItemMap itemMap, Direction angle){
+
 		this.entity = entity;
 		this.terrain = terrain;
 		this.direction = angle;
 		this.itemMap = itemMap;
+	}
+	
+	public GameActionMovement(StructuredMap map) {
+		this.direction = Direction.values()[map.getInteger("direction")];
+	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		map.put("direction", direction.ordinal());
+		return map;
 	}
 	
 	public void setTarget(Entity entity){
@@ -25,11 +39,11 @@ public class GameActionMovement extends GameAction {
 	}
 	
 
-	protected GameTerrain getTerrain(){
+	protected GameMap getTerrain(){
 		return terrain;
 	}
 	
-	protected void setAngle(Angle a){
+	protected void setAngle(Direction a){
 		this.direction = a;
 	}
 	
@@ -45,16 +59,21 @@ public class GameActionMovement extends GameAction {
 		return (getTerrain().isPassable(getEntity(), potentialSpot) && !getItemMap().isBlocking(potentialSpot));
 	}
 	
-	protected Angle getDirection(){
+	protected Direction getDirection(){
 		return direction;
 	}
 	
 	@Override
 	public void perform() {
 		TileCoordinate potentialSpot = getEntity().nextLocation(direction);
+		getEntity().setDirection(this.getDirection());
 		this.getItemMap().touch(entity, potentialSpot);
 		if(this.canMoveTo(potentialSpot)){
 			getEntity().move(direction);
 		}
 	}
+
+
+
+	
 }
