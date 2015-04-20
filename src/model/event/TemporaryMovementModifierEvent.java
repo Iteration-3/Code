@@ -9,24 +9,25 @@ public class TemporaryMovementModifierEvent extends Event {
 
 	public TemporaryMovementModifierEvent(double duration, int movement) {
 		super(duration);
-		System.out.println("1: " + movement);
 		this.movement = movement;
+		System.out.println("MOVEMENT: " + movement);
 	}
 
 	public TemporaryMovementModifierEvent(int movement, Entity target, double duration) {
 		super(target, duration);
 		this.movement = movement;
-		System.out.println("2: " + movement);
 	}
 	
 	public TemporaryMovementModifierEvent(StructuredMap map) {
 		super(map);
+		this.movement = map.getInteger("movement");
 		this.oldMovementSpeed = map.getInteger("oldMovementSpeed");
 	}
 	
 	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = super.getStructuredMap();
+		map.put("movement", movement);
 		map.put("oldMovementSpeed", oldMovementSpeed);
 		return map;
 	}

@@ -1396,6 +1396,7 @@
 				"event":	{
 					"duration":	20.0,
                     "type": "tempMovementEvent",
+					"movement":  -1000,
 					"oldMovementSpeed":  1
 					}
 				}]
