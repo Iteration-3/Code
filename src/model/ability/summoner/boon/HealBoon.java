@@ -7,7 +7,7 @@ import model.skillmanager.SummonerSkillManager;
 
 public final class HealBoon extends SelfAbility {
 	
-	private HealthModifierEvent event= new HealthModifierEvent(defaultDuration, defaultHealth);
+	private HealthModifierEvent event= new HealthModifierEvent(null, null, defaultDuration, defaultHealth);
 	private SummonerSkillManager manager;
 	final static private int defaultDuration = 5;
 	final static private int defaultHealth = 5;
