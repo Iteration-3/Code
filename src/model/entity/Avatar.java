@@ -37,7 +37,7 @@ public abstract class Avatar extends Entity {
 		setLocation(loc);
 		this.addItem(new HPPotion(
 				new BasicItemView(TileCoordinate.convertToRealCoordinate(this.getLocation()),
-						new Decal("/images/items/healthpack.png"))
+						new Decal("/images/items/healthpack.png", TileCoordinate.convertToRealCoordinate(this.getLocation())))
 				, new Price(10), 1000));
 		//LightManager.getLightManager().getLightMap().trackMovement(this);
 		//setLocation(loc);//So lightMap registers current position
@@ -50,7 +50,7 @@ public abstract class Avatar extends Entity {
 		LightManager.getSingleton().addLightSource(avatarLight);
 		this.addItem(new HPPotion(
 				new BasicItemView(TileCoordinate.convertToRealCoordinate(this.getLocation()),
-						new Decal("/images/items/healthpack.png"))
+						new Decal("/images/items/healthpack.png", TileCoordinate.convertToRealCoordinate(this.getLocation())))
 				, new Price(10), 1000));
 	}
 	

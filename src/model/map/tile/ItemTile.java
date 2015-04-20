@@ -51,7 +51,7 @@ public class ItemTile implements Saveable {
         // Takes an entity, makes it touch all the items on the square, and then
         // removes those items that get picked up from the map.
         for (Item i : items) {
-          i.touch(e);
+        	i.touch(e);
             i.attemptRemoveFrom(this);
         }
     }

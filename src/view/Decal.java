@@ -14,10 +14,10 @@ public class Decal implements Saveable, Renderable {
 	private String imageResourcePath;
 	private RealCoordinate position;
 
-	public Decal(String imageResourcePath) {
+	public Decal(String imageResourcePath, RealCoordinate position) {
 		this.imageResourcePath = imageResourcePath;
 		this.image = ImageProcessing.getImage(imageResourcePath);
-		position = new RealCoordinate();
+		this.position = position;
 	}
 	
 	public Decal(StructuredMap structuredMap) {

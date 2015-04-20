@@ -26,7 +26,7 @@ public class BasicItemView extends ItemView implements Renderable {
 	
 	public BasicItemView() {
 		super(new RealCoordinate(0.0, 0.0));
-		this.decal = new Decal("/images/item.jpg");
+		this.decal = new Decal("/images/item.jpg", new RealCoordinate(0.0, 0.0));
 	}
 	
 	public BasicItemView(StructuredMap map) {
@@ -38,6 +38,7 @@ public class BasicItemView extends ItemView implements Renderable {
 	public void render(Graphics graphics, ViewTransform transform) {
 		decal.setPosition(getPosition());
 		decal.render(graphics, transform);
+		//System.out.println("RENDER");
 	}
 	
 	public BufferedImage getImage(int width, int height) {
