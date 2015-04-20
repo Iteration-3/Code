@@ -10,6 +10,7 @@ import view.Renderable;
 public abstract class ItemView implements Saveable, Renderable {
 	private GameItemView container;
 	private boolean onMap = false;
+	private boolean visible = true;
 	private RealCoordinate position;
 
 	public ItemView(RealCoordinate position) {
@@ -33,9 +34,11 @@ public abstract class ItemView implements Saveable, Renderable {
 
 	public void removeFromMap() {
 		container.removeItemView(this);
-		container = null;
 	}
 	
+	public void showOnMap() {
+	}
+
 	public abstract BufferedImage getImage(int x, int y);
 	
 	@Override
@@ -51,6 +54,14 @@ public abstract class ItemView implements Saveable, Renderable {
 	
 	public void toggle() {
 		this.removeFromMap();
+	}
+	
+	public boolean isVisible() {
+		return this.visible;
+	}
+	
+	public void setVisibility(boolean visiblity) {
+		this.visible = visiblity;
 	}
 	
 	public RealCoordinate getPosition() {

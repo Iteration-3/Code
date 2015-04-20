@@ -273,10 +273,6 @@ public class GameplayState extends GameState {
 				}
 			}
 		}
-		
-	
-        
-        
 
     }
 

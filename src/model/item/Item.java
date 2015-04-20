@@ -38,6 +38,10 @@ public abstract class Item implements Saveable{
 		return this.itemView;
 	}
 	
+	public void setVisibility(boolean visibility) {
+		getView().setVisibility(visibility);
+	}
+	
 	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = new StructuredMap();

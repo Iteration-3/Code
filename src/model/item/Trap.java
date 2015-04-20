@@ -3,7 +3,9 @@ package model.item;
 import model.entity.Entity;
 import model.event.Event;
 import model.event.TemporaryMovementModifierEvent;
+import model.map.ItemMap;
 import model.map.tile.ItemTile;
+import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 import factories.EventFactory;
@@ -15,10 +17,11 @@ public class Trap extends Item {
 		super(itemView);
 		Event event = new TemporaryMovementModifierEvent(20, -1000);
 		setEvent(event);
+		this.itemView.setVisibility(false);
 	}
 	
 	public Trap(ItemView itemView, Event event) {
-		super(itemView);
+		this(itemView);
 		setEvent(event);
 	}
 
@@ -39,7 +42,9 @@ public class Trap extends Item {
 		System.out.println("TRAPP");
 		event.setTarget(entity);
 		event.placeOnEventManager();
-		getView().toggle();
+		getView().setVisibility(false);
+		this.itemView = null;
+		attemptRemoveFrom(ItemMap.getInstance().getItemTileAtLocation(entity.getLocation()));
 	}
 
 	@Override
@@ -59,6 +64,10 @@ public class Trap extends Item {
 	@Override
 	protected String getType() {
 		return "trap";
+	}
+	
+	public void setVisiblity(boolean visiblity) {
+		this.itemView.setVisibility(visiblity);
 	}
 	
 	private void setEvent(Event event) {
