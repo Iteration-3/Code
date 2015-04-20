@@ -26,8 +26,7 @@ public class Cripple extends ProjectileAbility {
 	@Override
 	public CripplingProjectile getProjectile(Entity ent) {
 		Event damageEvent = new MovementModifierEvent(5*manager.getEnchantSkill(), -20*manager.getEnchantSkill());
-		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
-		return new CripplingProjectile(ent.getLocation(), ent.getDirection(), damageTrigger, 2.2);
+		return new CripplingProjectile(ent.getLocation(), ent.getDirection(), new RadialArea(1, null), damageEvent, 2.2);
 	}
 	
 	@Override

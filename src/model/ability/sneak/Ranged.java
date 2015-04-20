@@ -22,10 +22,7 @@ public class Ranged extends ProjectileAbility {
 	
 	public Projectile getProjectile(Entity ent) {
 		//TODO: Currently no level for this?
-		Event damageEvent = new HealthModifierEvent(ent, null ,0, -10);
-		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, ent.getLocation()), damageEvent);
-		ThrowingKnife knife =  new ThrowingKnife(ent.getLocation(), ent.getDirection(), damageTrigger
-				, 1.0);
-		return knife;
+		Event damageEvent = new HealthModifierEvent(ent, null, 0, -10);
+		return new ThrowingKnife(ent.getLocation(), ent.getDirection(), new RadialArea(1, null), damageEvent, 1.0);
 	}
 }

@@ -4,10 +4,13 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import factories.TriggerFactory;
 import model.entity.Entity;
 import model.entity.EntityManager;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 
-public final class TriggerManager {
+public final class TriggerManager implements Saveable {
 	
 	private static TriggerManager _triggerManager = new TriggerManager();
 	private CopyOnWriteArrayList<Trigger> partyTriggers = new CopyOnWriteArrayList<Trigger>();
@@ -19,6 +22,58 @@ public final class TriggerManager {
 	public static TriggerManager getSingleton() {
 		return _triggerManager;
 	}
+	
+	public void loadTriggers(StructuredMap map) {
+		partyTriggers = new CopyOnWriteArrayList<Trigger>();
+		nonPartyTriggers = new CopyOnWriteArrayList<Trigger>();
+		neutralTriggers = new CopyOnWriteArrayList<Trigger>();
+		
+		StructuredMap[] partyTriggerMap = map.getStructuredMapArray("partyTrigger");
+		StructuredMap[] nonPartyTriggerMap = map.getStructuredMapArray("nonPartyTrigger");
+		StructuredMap[] neutralTriggerMap = map.getStructuredMapArray("neutralTrigger");
+		
+		for(StructuredMap tempMap : partyTriggerMap) {
+			partyTriggers.add(TriggerFactory.createTrigger(tempMap));
+		}
+		
+		for(StructuredMap tempMap : nonPartyTriggerMap) {
+			nonPartyTriggers.add(TriggerFactory.createTrigger(tempMap));
+		}
+		
+		for(StructuredMap tempMap : neutralTriggerMap) {
+			neutralTriggers.add(TriggerFactory.createTrigger(tempMap));
+		}
+		
+	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		StructuredMap[] partyTriggerMap = new StructuredMap[partyTriggers.size()];
+		StructuredMap[] nonPartyTriggerMap = new StructuredMap[nonPartyTriggers.size()];
+		StructuredMap[] neutralTriggerMap = new StructuredMap[neutralTriggers.size()];
+		
+		
+		for(int i = 0; i < partyTriggerMap.length; i++) {
+			partyTriggerMap[i] = partyTriggers.get(i).getStructuredMap();
+		}
+		
+		for(int i = 0 ; i < nonPartyTriggerMap.length; i++) {
+			nonPartyTriggerMap[i] = nonPartyTriggers.get(i).getStructuredMap();
+		}
+		
+		for(int i = 0; i < neutralTriggerMap.length; i++) {
+			neutralTriggerMap[i] = neutralTriggers.get(i).getStructuredMap();
+		}
+		
+		map.put("partyTrigger", partyTriggerMap);
+		map.put("nonPartyTrigger", nonPartyTriggerMap);
+		map.put("neutralTrigger", neutralTriggerMap);
+		
+		return map;
+	}
+	
+	
 	
 	public void update(double deltaTime) {
 		for (Trigger t : partyTriggers) {
@@ -98,4 +153,6 @@ public final class TriggerManager {
 		nonPartyTriggers = new CopyOnWriteArrayList<Trigger>();
 		neutralTriggers = new CopyOnWriteArrayList<Trigger>();
 	}
+
+	
 }
