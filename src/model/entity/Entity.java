@@ -51,9 +51,8 @@ public abstract class Entity extends MobileObject implements Saveable {
         setLocation(location);
         this.setNecessities();
         setDirection(Angle.UP);
+        this.setBehavior();
     }
-    
-    
     
     public Entity(StructuredMap map) {
     	super(new TileCoordinate(map.getIntArray("location")[0], map.getIntArray("location")[1]));
@@ -65,6 +64,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.itemManager = new ItemManager(map.getStructuredMap("itemManager"));
         this.isFlying = map.getBoolean("flying");
         this.view = map.getStructuredMap("entityView") == null ? null : new EntityView(map.getStructuredMap("entityView"));
+        this.setBehavior();
     }
     
     public StructuredMap getStructuredMap() {
@@ -112,6 +112,16 @@ public abstract class Entity extends MobileObject implements Saveable {
     
     public void observe(){
     	this.state.observe();
+    }
+    
+    public float getHpPercentage(){
+    	return this.getDerivedStats().getCurrentHealth()/
+    			(float)this.getDerivedStats().getMaximumHealth();
+    }
+    
+    public float getManaPercentage(){
+    	return this.getDerivedStats().getCurrentMana()/
+    			(float)this.getDerivedStats().getMaximumMana();
     }
     
     public void push(Behaviorable state){
@@ -192,10 +202,13 @@ public abstract class Entity extends MobileObject implements Saveable {
     
     public void setFlight(Boolean flight){
     	isFlying = flight;
-    	System.out.println("Flight status " + isFlying);
+    }
+    
+    public void setEntityView(EntityView entityView) {
+    	this.view = entityView;
     }
 
-    protected EntityView getEntityView() {
+    public EntityView getEntityView() {
         return view;
     }
     
@@ -213,7 +226,6 @@ public abstract class Entity extends MobileObject implements Saveable {
     }
 
     public boolean addItem(TakeableItem item) {
-        System.out.println("Added Item!");
         return this.itemManager.addItem(item);
     }
 

@@ -25,7 +25,6 @@ public class Door extends Item {
 	@Override
 	public void touch(Entity entity) {
 		use(entity);
-		System.out.println(getInfo());
 	}
 
 	@Override

@@ -5,6 +5,9 @@ import gameactions.GameActionStatePush;
 import gameactions.GameActionTeleport;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.Collection;
 
 import model.KeyPreferences;
@@ -31,6 +34,7 @@ import model.item.Helmet;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
 import model.item.TakeableItem;
+import model.item.Trap;
 import model.light.LightManager;
 import model.map.GameTerrain;
 import model.map.ItemMap;
@@ -47,6 +51,8 @@ import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
+import utilities.structuredmap.JsonReader;
+import utilities.structuredmap.StructuredMap;
 import view.EntitySpriteFactory;
 import view.EntityView;
 import view.item.BasicItemView;
@@ -64,24 +70,29 @@ public class GameplayState extends GameState {
     private GameTerrain gameMap;
     private ItemMap itemMap;
     private Avatar avatar;
+	private boolean hasBeenDumped = false;
 
-    public GameplayState() {
+    public GameplayState(Avatar avatar) {
         layout = new GameplayLayout();
         gameMap = new GameTerrain();
         itemMap = new ItemMap();
+        this.avatar = avatar;
     }
 
     public void update(double deltaTime) {
 		TriggerManager.getSingleton().update(deltaTime);
 		EventManager.getSingleton().update(deltaTime);
-		EntityManager.getSingleton().update(deltaTime);
+		// Alternative to passing an itemMap is to use traps as triggers
+		EntityManager.getSingleton().update(itemMap, deltaTime);
 		ProjectileManager.getSingleton().update(deltaTime);
 		/* Run through projectile queue */
 		while (!ProjectileManager.getSingleton().isQueueEmpty()) {
-			Projectile poll = ProjectileManager.getSingleton().dequeueProjectile();
-			poll.projView.registerWithGameProjectileView(layout.getGameProjectileView());
+			Projectile poll = ProjectileManager.getSingleton()
+					.dequeueProjectile();
+			poll.projView.registerWithGameProjectileView(layout
+					.getGameProjectileView());
 		}
-    }
+	}
     
     @Override
     public void onEnter() {
@@ -91,7 +102,6 @@ public class GameplayState extends GameState {
         // make the itemEntityAssocation,
         // Which is needed for other stuff.
         super.onEnter();
-        System.out.println(getContext());
         controller = new GameplayController(this);
         addTilesTest();
         addEntityTest();
@@ -124,12 +134,14 @@ public class GameplayState extends GameState {
 
     public void addEntityTest() {
         TileCoordinate loc = new TileCoordinate(3, 3);
-        EntityView eView = new EntityView(EntitySpriteFactory.getSummonerSpriteHolder());
-        avatar = new Summoner("Summoner", eView, loc);
+        EntityView eView = avatar.getEntityView();
+        avatar.setLocation(loc);
+        
         //testing this for equipped Items
         avatar.equip(new Helmet(new BasicItemView(),new Statistics()));
 
         EntityManager.getSingleton().setAvatar(avatar);
+        getController().registerAvatar(avatar);
         eView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(3, 3),Angle.UP);
         
         TileCoordinate npcLocation = new TileCoordinate(7, 7);
@@ -211,6 +223,12 @@ public class GameplayState extends GameState {
         TileCoordinate riverMarkerSpot = new TileCoordinate(13, 0);
         riverMarker.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(13, 0));
         this.getItemMap().addItem(new ObstacleItem(riverMarker), riverMarkerSpot);
+        
+        ItemView trapView = new BasicItemView(Color.RED, Color.BLACK);
+        TileCoordinate trapSpot = new TileCoordinate(15, 12);
+        trapView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(15, 12));
+        this.getItemMap().addItem(new Trap(trapView), trapSpot);
+        
 
     }
 
@@ -219,9 +237,9 @@ public class GameplayState extends GameState {
 
         // This may need a ViewableTriggerDecorator to display the Decal for the
         // AreaEffect
-        TileCoordinate locOne = new TileCoordinate(2, 6);
+        /* TileCoordinate locOne = new TileCoordinate(2, 6);
         Area areaOne = new RadialArea(20, locOne);
-        Trigger triggerOne = new SingleUseTrigger(areaOne, new HealthModifierEvent(2, -1));
+        Trigger triggerOne = new SingleUseTrigger(areaOne, new HealthModifierEvent(2, -1));*/
 
         TileCoordinate locTwo = new TileCoordinate(2, 7);
         Area areaTwo = new RadialArea(1, locTwo);
@@ -237,13 +255,12 @@ public class GameplayState extends GameState {
         Trigger triggerFour = new RateLimitedTrigger(areaFour, new RiverPushEvent(
                 new GameActionRiverPush(avatar, gameMap, this.getItemMap(), Angle.DOWN)),1000);
 
-        triggerManager.addNonPartyTrigger(triggerOne);
+        // triggerManager.addNonPartyTrigger(triggerOne);
         triggerManager.addNonPartyTrigger(triggerTwo);
         triggerManager.addNonPartyTrigger(triggerThree);
         triggerManager.addNonPartyTrigger(triggerFour);
 
     }
-
     public void addTilesTest() {
         for (int x = 0; x < 100; ++x) {
             for (int y = 0; y < 100; ++y) {// Hardcoded for as long as the area

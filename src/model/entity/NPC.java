@@ -4,15 +4,16 @@ package model.entity;
 import model.area.TileCoordinate;
 import model.entity.behavior.npc.BarterBehavior;
 import model.entity.behavior.npc.Behaviorable;
-import model.entity.behavior.npc.PetBehavior;
-import model.entity.behavior.npc.Pursue;
-import model.entity.dialog.DialogTree;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 
 public class NPC extends Entity {
 	
+	
+	public NPC() {
+		super();
+	}
 	
 	public NPC(String name, EntityView view, TileCoordinate location) {
 		super(name, view, location);
@@ -53,7 +54,27 @@ public class NPC extends Entity {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		observeHelper();
+		
+	}
+	
+	private void observeHelper(){
+		Avatar avatar = EntityManager.getSingleton().getAvatar();
+		if(this.getLocation().getDistance(avatar.getLocation()) < avatar.getObserveSkill()*4 ){
+			//The distance between the two objects vs the observe skill times 4 is the range.
+			//TODO ADD check if in combat state.
+			this.getEntityView().updateHP(getHpPercentage());
+			this.getEntityView().updateMana(getManaPercentage());
+			this.getEntityView().turnOnHealthBar();
+			this.getEntityView().turnOnManaBar();
+
+			
+			
+		}else{
+			this.getEntityView().turnOffHealthBar();
+			this.getEntityView().turnOffManaBar();
+		}
+		
 	}
 	@Override
 	public String getType() {

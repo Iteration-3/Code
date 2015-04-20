@@ -27,12 +27,10 @@ public abstract class Event implements Cloneable, Saveable{
 	
 	// Called by the event manager
 	public void onBegin() {
-		// System.out.println("onBegin() called, NOT IMPLEMENTED");
 	}
 
 	// Called by the event manager
 	public void onExpired() {
-		// System.out.println("onExpired() called, NOT IMPLEMENTED");
 	}
 
 	public final boolean hasExpired() {

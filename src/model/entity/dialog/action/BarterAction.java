@@ -12,4 +12,9 @@ public class BarterAction extends DialogAction {
 		model.pushState(new BarterState(npc, avatar));
 	}
 
+	@Override
+	public String getType() {
+		return "barter";
+	}
+
 }

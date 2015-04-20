@@ -17,7 +17,7 @@ public abstract class Listener {
 
     public abstract void addAsBinding(Layout panel);
 
-    public abstract void activate();
+    public abstract boolean activate();
 
     public KeyStroke getKey() {
         return this.key;

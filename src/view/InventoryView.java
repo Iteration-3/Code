@@ -13,7 +13,6 @@ import utilities.structuredmap.StructuredMap;
 import controller.SlotViewMouseListenerFactory;
 
 @SuppressWarnings("serial")
-
 public class InventoryView extends JComponent implements Saveable {
 	private static String backgroundPath = "/images/slotImage.png";
 

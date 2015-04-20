@@ -52,7 +52,6 @@ public class GameLightView implements GameView{
 						if (timeDelta != time) // seen
 							strength = 80;
 					}
-					//System.out.println("STRENGTH: " + strength);
 					Color col = new Color(84,84,84, 255-strength);
 					Hexagon hex = new Hexagon(col);
 					
@@ -62,7 +61,6 @@ public class GameLightView implements GameView{
 					
 					if (strength > 255) strength = 255;
 					if (strength < 0) strength = 0;
-					//System.out.println("STRENGTH: " + strength);
 					Color col = new Color(84,84,84, 255-strength);
 					Hexagon hex = new Hexagon(col);
 					

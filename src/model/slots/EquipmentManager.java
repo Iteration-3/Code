@@ -90,7 +90,7 @@ public class EquipmentManager implements Saveable {
 						.getStructuredMap("thwSlot")));
 			}
 		}
-		this.equipmentView = new EquipmentView(map.getStructuredMap("equipmentView"));
+		this.equipmentView = map.getStructuredMap("equpimentView") == null ? null : new EquipmentView(map.getStructuredMap("equipmentView"));
 
 	}
 
@@ -130,7 +130,7 @@ public class EquipmentManager implements Saveable {
 					.getStructuredMap());
 		}
 		
-		map.put("equipmentView", equipmentView.getStructuredMap());
+		map.put("equipmentView", equipmentView == null ? null : equipmentView.getStructuredMap());
 
 		// TODO Weapon and TWO handed weapon
 		return map;

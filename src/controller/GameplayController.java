@@ -1,13 +1,11 @@
 package controller;
 
-import model.entity.EntityManager;
-import model.event.EventManager;
+import model.entity.Avatar;
 import model.states.gamestates.GameplayState;
-import model.trigger.TriggerManager;
 import controller.listener.Listener;
 
 public class GameplayController extends Controller {
-    private EntityController entityController;
+    private AvatarController avatarController;
     private Thread updateThread;
     private GameplayState state;
     private boolean threadIsRunning;
@@ -15,12 +13,15 @@ public class GameplayController extends Controller {
 
     public GameplayController(GameplayState state) {
     	threadIsRunning = false;
-        this.entityController = new EntityController();
         this.state = state;
+    }
+    
+    public void registerAvatar(Avatar avatar) {
+    	this.avatarController = new AvatarController(avatar);
     }
 
     public void addEntityListener(Listener listener) {
-        entityController.addListener(listener);
+        avatarController.addListener(listener);
     }
   
     public void spawnUpdateThread() {
@@ -36,8 +37,8 @@ public class GameplayController extends Controller {
     					}
     					double deltaTime = (System.nanoTime()  - previousTime) / 1000000000.0d;
     					state.update(deltaTime);
-//    					System.out.println(deltaTime);
     					previousTime = System.nanoTime();
+    					avatarController.update();
     					
     					try {
     						Thread.sleep(1);
@@ -66,6 +67,6 @@ public class GameplayController extends Controller {
     }
 
     public void removeListeners() {
-        entityController.removeListeners();
+        avatarController.removeListeners();
     }
 }

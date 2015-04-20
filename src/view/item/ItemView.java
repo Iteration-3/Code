@@ -9,6 +9,7 @@ import utilities.structuredmap.StructuredMap;
 import view.map.GameItemView;
 
 public abstract class ItemView implements Saveable{
+	private GameItemView container;
 	private boolean onMap = false;
 
 	public ItemView() {
@@ -22,16 +23,14 @@ public abstract class ItemView implements Saveable{
 	public abstract void render(Graphics graphics, RealCoordinate location, float diameter);
 
 	public void registerWithGameItemView(GameItemView gv, RealCoordinate p) {
-		onMap = true;
+		this.onMap = true;
 		gv.addItemView(this, p);
+		this.container = gv;
 	}
 
-	public boolean onMap() {
-		return onMap;
-	}
-	
 	public void removeFromMap() {
-		onMap = false;
+		container.removeItemView(this);
+		container = null;
 	}
 	
 	public abstract BufferedImage getImage(int x, int y);
@@ -44,5 +43,9 @@ public abstract class ItemView implements Saveable{
 	}
 	
 	public abstract String getType();
+	
+	public void toggle() {
+		this.removeFromMap();
+	}
 	
 }

@@ -9,10 +9,8 @@ public class AirPassableTile extends Tile {
         super(view);
     }
 
-    @Override
-    public StructuredMap getStructuredMap() {
-        // TODO Auto-generated method stub
-        return null;
+    public AirPassableTile(StructuredMap map) {
+    	super(map);
     }
 
     @Override
@@ -28,4 +26,11 @@ public class AirPassableTile extends Tile {
     public void touch(Entity e) {
         return;
     }
+
+	@Override
+	protected String getType() {
+		return "airPassable";
+	}
+    
+    
 }

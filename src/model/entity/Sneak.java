@@ -6,20 +6,23 @@ import model.ability.sneak.PickPocket;
 import model.ability.sneak.Ranged;
 import model.ability.sneak.RemoveTrap;
 import model.area.TileCoordinate;
-import model.skillmanager.SkillManager;
 import model.skillmanager.SneakSkillManager;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
+import view.EntitySpriteFactory;
 import view.EntityView;
 
 public class Sneak extends Avatar {
-	
 	private SneakSkillManager skillManager;
 
+	public Sneak() {
+		this("Sneak", new EntityView(EntitySpriteFactory.getSneakerSpriteHolder()), new TileCoordinate(1, 1));
+	}
 
 	public Sneak(String name, EntityView view, TileCoordinate loc) {
 		super(name, view,loc);
 		this.skillManager = (new SneakSkillManager());
+		generateSkills();
 	}
 	
 	public Sneak(StructuredMap map) {
@@ -28,12 +31,12 @@ public class Sneak extends Avatar {
 	
 	@Override
 	protected void generateSkills(){
-		
 		this.getAbilities().add(new Creep(this.getSkillManager()));
 		this.getAbilities().add(new DetectTrap(this.getSkillManager()));
 		this.getAbilities().add(new PickPocket(this.getSkillManager()));
 		this.getAbilities().add(new Ranged(this.getSkillManager()));
 		this.getAbilities().add(new RemoveTrap(this.getSkillManager()));
+
 		super.generateSkills();
 	}
 
@@ -61,6 +64,7 @@ public class Sneak extends Avatar {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		super.update();
 		
 	}
 	//Wasn't sneak going to have creap, and pickpocket? Not in uml anymore, we should discuss
