@@ -14,7 +14,7 @@ public class EntityStatistics extends Statistics {
         super();
         setLivesLeft(3);
         setExperience(0);
-        setMovement(5);
+        setMovement(2000);
         setCurrentHealth(getMaximumHealth());
         setCurrentMana(getMaximumMana());
         setMoney(30);

@@ -39,6 +39,7 @@ public class GameplayController extends Controller {
     					state.update(deltaTime);
 //    					System.out.println(deltaTime);
     					previousTime = System.nanoTime();
+    					avatarController.update();
     					
     					try {
     						Thread.sleep(1);

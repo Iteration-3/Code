@@ -127,12 +127,12 @@ public class GameplayState extends GameState {
         EntityView eView = new EntityView(EntitySpriteFactory.getSummonerSpriteHolder());
         avatar = new Summoner("Summoner", eView, loc);
 
-        getController().registerAvatar(avatar);
         
         //testing this for equipped Items
         avatar.equip(new Helmet(new BasicItemView(),new Statistics()));
 
         EntityManager.getSingleton().setAvatar(avatar);
+        getController().registerAvatar(avatar);
         eView.registerWithGameMapView(layout.getGameEntityView(), new RealCoordinate(3, 3),Angle.UP);
         
         TileCoordinate npcLocation = new TileCoordinate(7, 7);
@@ -222,9 +222,9 @@ public class GameplayState extends GameState {
 
         // This may need a ViewableTriggerDecorator to display the Decal for the
         // AreaEffect
-        TileCoordinate locOne = new TileCoordinate(2, 6);
+        /* TileCoordinate locOne = new TileCoordinate(2, 6);
         Area areaOne = new RadialArea(20, locOne);
-        Trigger triggerOne = new SingleUseTrigger(areaOne, new HealthModifierEvent(2, -1));
+        Trigger triggerOne = new SingleUseTrigger(areaOne, new HealthModifierEvent(2, -1));*/
 
         TileCoordinate locTwo = new TileCoordinate(2, 7);
         Area areaTwo = new RadialArea(1, locTwo);
@@ -240,13 +240,12 @@ public class GameplayState extends GameState {
         Trigger triggerFour = new RateLimitedTrigger(areaFour, new RiverPushEvent(
                 new GameActionRiverPush(avatar, gameMap, this.getItemMap(), Angle.DOWN)),1000);
 
-        triggerManager.addNonPartyTrigger(triggerOne);
+        // triggerManager.addNonPartyTrigger(triggerOne);
         triggerManager.addNonPartyTrigger(triggerTwo);
         triggerManager.addNonPartyTrigger(triggerThree);
         triggerManager.addNonPartyTrigger(triggerFour);
 
     }
-
     public void addTilesTest() {
         for (int x = 0; x < 100; ++x) {
             for (int y = 0; y < 100; ++y) {// Hardcoded for as long as the area
