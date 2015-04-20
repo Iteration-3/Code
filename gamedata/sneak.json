@@ -1,4 +1,30 @@
 {
+"keyPreferences":	{
+	"ability1":	"0",
+	"downLeft":	"A",
+	"suicide":	"K",
+	"ability6":	"5",
+	"ability7":	"6",
+	"ability8":	"7",
+	"ability9":	"8",
+	"inventory":	"I",
+	"ability2":	"1",
+	"upRight":	"E",
+	"down":	"S",
+	"ability3":	"2",
+	"pause":	"ESCAPE",
+	"ability4":	"3",
+	"ability5":	"4",
+	"skills":	"ENTER",
+	"ability10":	"9",
+	"ability12":	"MINUS",
+	"ability11":	"EQUALS",
+	"attack":	"F",
+	"upLeft":	"Q",
+	"downRight":	"D",
+	"up":	"W",
+	"dismount":	"H"
+	},
 "entites":	{
 	"partyNPC":	[{
 		"entityView":	{

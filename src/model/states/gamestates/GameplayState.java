@@ -97,17 +97,19 @@ public class GameplayState extends GameState {
        StructuredMap map = JsonReader.readJson(filePath);
         
         this.gameMap = MapLoader.loadMap("maps/main_map.json", layout); //CALL THIS FIRST
-        addEntityTest(map.getStructuredMap("entites"));
+        addEntityTest(map.getStructuredMap("entites"), map.getStructuredMap("keyPreferences"));
         addItemsTest(map.getStructuredMap("items"));
         addTriggersTest(map.getStructuredMap("triggers"));
         
        //StructuredMap map = new StructuredMap();
        //map.put("entites", EntityManager.getSingleton().getStructuredMap());
        //map.put("items", itemMap.getStructuredMap());
+      // KeyPreferences pref = new KeyPreferences();
+       //map.put("keyPreferences",  pref.getStructuredMap());
         
 
-        //JsonWriter writer = new JsonWriter();
-        //writer.writeStructuredMap(map, "sneak.json");
+       // JsonWriter writer = new JsonWriter();
+        //writer.writeStructuredMap(map, "filePath");
         
 
         controller.spawnUpdateThread();
@@ -137,9 +139,9 @@ public class GameplayState extends GameState {
         super.onExit();
     }
 
-    public void addEntityTest(StructuredMap map) {
-    	
+    public void addEntityTest(StructuredMap entityMap, StructuredMap preferencesMap) {
     	/*
+    	
         TileCoordinate loc = new TileCoordinate(3, 3);
         EntityView eView = avatar.getEntityView();
         avatar.setLocation(loc);
@@ -162,7 +164,7 @@ public class GameplayState extends GameState {
         EntityManager.getSingleton().addNonPartyNpc(mount);
         */
     	
-    	EntityManager.getSingleton().loadEntities(map);
+    	EntityManager.getSingleton().loadEntities(entityMap);
     	Iterator<Entity> iterator = EntityManager.getSingleton().iterator();
     	while(iterator.hasNext()) {
     		Entity entity = iterator.next();
@@ -173,9 +175,10 @@ public class GameplayState extends GameState {
     	avatar = EntityManager.getSingleton().getAvatar();
     	getController().registerAvatar(avatar);
     	
-    	KeyPreferences preferences = new KeyPreferences();
+    	KeyPreferences preferences = new KeyPreferences(preferencesMap);
         getContext().setPreferences(preferences);
         setListeners(preferences);
+        getContext().setPreferences(preferences);
         
 
     }
