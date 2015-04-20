@@ -34,6 +34,9 @@ public abstract class Avatar extends Entity {
 	
 	public Avatar(StructuredMap map) {
 		super(map);
+		//hack?
+		MovingLightSource avatarLight = new MovingLightSource(new RadialArea(3, getLocation()), 255, this);
+		LightManager.getSingleton().addLightSource(avatarLight);
 	}
 	
 	protected void generateSkills(){
