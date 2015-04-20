@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 class JsonScanner {
 	private static final String INTEGER_REGEX = "[-]?(0|[1-9]\\d*)";
-	private static final String DOUBLE_REGEX = "[-]?(0|[1-9]\\d*)\\.?[0-9]+([eE][-+]?\\d+)?";
+	private static final String DOUBLE_REGEX = "[-]?(0|[1-9]\\d*)\\.?([0-9]+([eE][-+]?\\d+)?)?";
 	private static final String STRING_REGEX = "\\\"[^\"]*\\\"";
 	private static final String[] SIMPLE_TOKEN_REGEXES = { "\\{", "\\}", "\\[", "\\]",":", ",", "true", "false", "null"};
 	

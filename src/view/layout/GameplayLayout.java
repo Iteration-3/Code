@@ -17,6 +17,7 @@ import view.projectiles.GameProjectileView;
 
 @SuppressWarnings("serial")
 public class GameplayLayout extends Layout implements ActionListener {
+	
     GameTileView gameTerrainView;
     GameEntityView gameEntityView;
     GameItemView gameItemView;
@@ -87,12 +88,20 @@ public class GameplayLayout extends Layout implements ActionListener {
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         ViewTransform transform = camera.getTransform();
+        
+        /* Do locks */
         gameEntityView.lock();
+        gameLightView.lock();
+        
+        /* Render */
         gameTerrainView.render(graphics, transform);
         gameEntityView.render(graphics, transform);
         gameItemView.render(graphics, transform);
-		//gameProjectileView.render(graphics, getWidth(), getHeight());
+		gameProjectileView.render(graphics, transform);
         gameLightView.render(graphics, transform);
+        
+        /* Do releases */
         gameEntityView.release();
+        gameLightView.release();
     }
 }

@@ -21,6 +21,7 @@ public class PickPocket extends TriggerAbility {
 		trigger.setEvent(new PickPocketEvent());
 		trigger.setDuration(0);
 		trigger.setArea(new RadialArea(1, null));
+		this.setTrigger(trigger);
 		this.setManaCost(10);
 		this.manager = sneakSkillManager;
 	}

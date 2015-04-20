@@ -1,43 +1,31 @@
 package view.item;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import model.area.RealCoordinate;
 import utilities.ImageProcessing;
 import utilities.structuredmap.StructuredMap;
 import view.Decal;
-import view.map.components.Hexagon;
+import view.Renderable;
+import view.ViewTransform;
 
-public class BasicItemView extends ItemView {
+public class BasicItemView extends ItemView implements Renderable {
 	
 	private Decal decal;
 	
-	private Hexagon backgroundHexagon;
-	private Hexagon foregroundHexagon;
-	private static final float BORDER_PERCENTAGE = 0.15f; // 15% border edge
-	private static final float OVERDRAW = 1.05f; // To eliminate little blank spaces between tiles
-	
-	public BasicItemView(Color fillColor, Color outlineColor, Decal decal) {
-		// To get rid of
-		backgroundHexagon = new Hexagon(outlineColor);
-		foregroundHexagon = new Hexagon(fillColor);
-		// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-	
+	public BasicItemView(RealCoordinate position, Decal decal) {
+		super(position);
 		this.decal = decal;
 	}
 	
 	public BasicItemView(Decal decal) {
-
-		// To Get Rid Of!! Bad Bad Bad
-		backgroundHexagon = new Hexagon(Color.BLUE);
-		foregroundHexagon = new Hexagon(Color.ORANGE);
-		// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+		super(new RealCoordinate(0.0, 0.0));
 		this.decal = decal;
 	}
 	
 	public BasicItemView() {
+		super(new RealCoordinate(0.0, 0.0));
 		this.decal = new Decal("/images/item.jpg");
 	}
 	
@@ -47,9 +35,9 @@ public class BasicItemView extends ItemView {
 	}
 
 	@Override
-	public void render(Graphics graphics, float x, float y, float diameter) {
-		/*backgroundHexagon.render(graphics, x, y, diameter * OVERDRAW);
-		foregroundHexagon.render(graphics, x, y, diameter * (1 - BORDER_PERCENTAGE) * OVERDRAW);*/
+	public void render(Graphics graphics, ViewTransform transform) {
+		decal.setPosition(getPosition());
+		decal.render(graphics, transform);
 	}
 	
 	public BufferedImage getImage(int width, int height) {

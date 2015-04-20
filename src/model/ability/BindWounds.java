@@ -31,7 +31,7 @@ public class BindWounds extends SelfAbility {
 			removeMana(avatar);
 			HealthModifierEvent event =  this.event.clone();
 			event.setTarget(avatar);
-			event.scaleHealh(this.getManager().getBindWoundsSkill());
+			event.scaleHealth(this.getManager().getBindWoundsSkill());
 			event.placeOnEventManager();
 		}
 	}

@@ -170,7 +170,7 @@ public abstract class Entity extends MobileObject implements Saveable {
      * If no entity to attack, does nada.
      * @param damage
      */
-    protected void attackInFront(int damage){
+    public void attackInFront(int damage){
     	TileCoordinate targetSpot = this.nextLocation(this.getDirection());
     	Entity target = EntityManager.getSingleton().getEntityAtLocation(targetSpot);
     	System.out.println(target);
@@ -434,5 +434,19 @@ public abstract class Entity extends MobileObject implements Saveable {
 	public boolean outOfLives(){
 		return this.getDerivedStats().outOfLives();
 	}
+	
+	public String[] getItemToolTips(Avatar buyer) {
+		TakeableItem[] items = getItems();
+		String[] toolTips = new String[items.length];
+		for (int i = 0; i < items.length; ++i) {
+			if (items[i] != null) {
+				toolTips[i] = items[i].getInfo() + ": $" + Integer.toString(items[i].getBarteredCost(buyer));
+			} else {
+				toolTips[i] = "";
+			}
+		}
+		return toolTips;
+	}
+
 
 }

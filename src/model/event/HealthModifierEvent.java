@@ -50,7 +50,7 @@ public class HealthModifierEvent extends SourcedEvent {
 		return this.health < 0;
 	}
 
-	public void scaleHealh(double scaler) {
+	public void scaleHealth(double scaler) {
 		this.health = (int) Math.round(health * scaler);
 	}
 
