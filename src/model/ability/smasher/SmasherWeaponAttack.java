@@ -28,6 +28,7 @@ public class SmasherWeaponAttack extends TriggerAbility {
 
 	@Override
 	public void perform(Avatar avatar) {
+		System.out.println("Was run");
 		if (hasMana(avatar) && !isTimedOut()) {
 			removeMana(avatar);
 			double damageModifier = 1;
@@ -43,7 +44,7 @@ public class SmasherWeaponAttack extends TriggerAbility {
 			Trigger trigger = this.constructTrigger(avatar).clone();
 			trigger.moveLocation(avatar.nextLocation());
 			((HealthModifierEvent) trigger.getEvent())
-					.scaleHealh(damageModifier);
+					.scaleHealth(damageModifier);
 			TriggerManager.getSingleton().addNonPartyTrigger(trigger);
 			this.timeOut(timeOutDur);
 		}
