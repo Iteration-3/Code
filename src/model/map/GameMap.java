@@ -39,6 +39,10 @@ public class GameMap implements Saveable {
 					TileFactory.createTile(tempMap.getStructuredMap("tile")));
 		}
 	}
+	
+	public boolean contains(TileCoordinate tile) {
+		return tiles.containsKey(tile);
+	}
 
 	/**
 	 * Overwrites if tile already there.

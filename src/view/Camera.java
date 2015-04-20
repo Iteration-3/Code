@@ -4,6 +4,7 @@ import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import model.observers.MobileListener;
 import model.observers.MobileObject;
+import utilities.Direction;
 import utilities.ScreenCoordinate;
 
 public class Camera implements MobileListener {
@@ -29,6 +30,15 @@ public class Camera implements MobileListener {
 	public void setViewportBounds(int viewportWidth, int viewportHeight) {
 		this.viewportWidth = viewportWidth;
 		this.viewportHeight = viewportHeight;
+	}
+	
+	public void move(Direction dir) {
+		cameraPosition = TileCoordinate.convertToRealCoordinate(getMove(dir));
+	}
+	
+	public TileCoordinate getMove(Direction dir) {
+		TileCoordinate tileCoord = RealCoordinate.convertToTileCoordinate(cameraPosition);
+		return tileCoord.nextLocation(dir);
 	}
 
 	public void notify(MobileObject sourceObject) {

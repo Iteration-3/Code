@@ -118,6 +118,10 @@ public class KeyPreferences implements Saveable {
     public KeyStroke getUpKey() {
         return upKey;
     }
+    
+    public KeyStroke getModUpKey() {
+        return KeyStroke.getKeyStroke(upKey.getKeyCode(), java.awt.event.InputEvent.CTRL_DOWN_MASK);
+    }
 
     public void setUpKey(KeyStroke upKey) {
         this.upKey = upKey;
@@ -126,6 +130,10 @@ public class KeyPreferences implements Saveable {
 
     public KeyStroke getUpRightKey() {
         return upRightKey;
+    }
+    
+    public KeyStroke getModUpRightKey() {
+        return KeyStroke.getKeyStroke(upRightKey.getKeyCode(), java.awt.event.InputEvent.CTRL_DOWN_MASK);
     }
 
     public void setUpRightKey(KeyStroke upRightKey) {
@@ -136,6 +144,10 @@ public class KeyPreferences implements Saveable {
     public KeyStroke getDownRightKey() {
         return downRightKey;
     }
+    
+    public KeyStroke getModDownRightKey() {
+        return KeyStroke.getKeyStroke(downRightKey.getKeyCode(), java.awt.event.InputEvent.CTRL_DOWN_MASK);
+    }
 
     public void setDownRightKey(KeyStroke downRightKey) {
         this.downRightKey = downRightKey;
@@ -144,6 +156,10 @@ public class KeyPreferences implements Saveable {
 
     public KeyStroke getDownKey() {
         return downKey;
+    }
+    
+    public KeyStroke getModDownKey() {
+        return KeyStroke.getKeyStroke(downKey.getKeyCode(), java.awt.event.InputEvent.CTRL_DOWN_MASK);
     }
 
     public void setDownKey(KeyStroke downKey) {
@@ -154,6 +170,10 @@ public class KeyPreferences implements Saveable {
     public KeyStroke getDownLeftKey() {
         return downLeftKey;
     }
+    
+    public KeyStroke getModDownLeftKey() {
+        return KeyStroke.getKeyStroke(downLeftKey.getKeyCode(), java.awt.event.InputEvent.CTRL_DOWN_MASK);
+    }
 
     public void setDownLeftKey(KeyStroke downLeftKey) {
         this.downLeftKey = downLeftKey;
@@ -162,6 +182,10 @@ public class KeyPreferences implements Saveable {
 
     public KeyStroke getUpLeftKey() {
         return upLeftKey;
+    }
+    
+    public KeyStroke getModUpLeftKey() {
+        return KeyStroke.getKeyStroke(upLeftKey.getKeyCode(), java.awt.event.InputEvent.CTRL_DOWN_MASK);
     }
 
     public void setUpLeftKey(KeyStroke upLeftKey) {
