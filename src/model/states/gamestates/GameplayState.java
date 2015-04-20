@@ -1,9 +1,17 @@
 package model.states.gamestates;
 
+import factories.EntityFactory;
+import gameactions.GameActionGhostMovement;
+import gameactions.GameActionRiverPush;
+import gameactions.GameActionStatePush;
+import gameactions.GameActionTeleport;
+
+
 import java.util.Collection;
 
 import model.KeyPreferences;
 import model.area.Area;
+import model.area.ConicalArea;
 import model.area.LinearArea;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
@@ -14,7 +22,8 @@ import model.entity.Mount;
 import model.entity.NPC;
 import model.event.EventManager;
 import model.event.ExperienceModifierEvent;
-import model.event.ManaModifierEvent;
+import model.event.HealthModifierEvent;
+import model.event.InstantDeathEvent;
 import model.event.RiverPushEvent;
 import model.event.TeleportEvent;
 import model.item.Door;
@@ -192,6 +201,8 @@ public class GameplayState extends GameState {
         KeyPreferences preferences = new KeyPreferences();
         getContext().setPreferences(preferences);
         setListeners(preferences);
+    	EntityFactory.createHeavyTrooper("MAX", new TileCoordinate(25,25), layout);
+    	EntityFactory.createCowardTrooper("TIMMY", new TileCoordinate(45,45), layout);
         getContext().setPreferences(preferences);
         
 
@@ -299,9 +310,8 @@ public class GameplayState extends GameState {
 
         TileCoordinate locOne = new TileCoordinate(5, 5);
         Area areaOne = new RadialArea(1, locOne);
-        ViewableTrigger triggerOne = new ViewableTrigger(new PermanentTrigger(areaOne, new ManaModifierEvent(2, -1)), 
-        		new Decal("/images/items/skull_and_crossbones.png", TileCoordinate.convertToRealCoordinate(locOne)));
-        triggerManager.registerViewableTrigger(triggerOne);
+        ViewableTrigger triggerOne = new ViewableTrigger(new PermanentTrigger(areaOne, new ExperienceModifierEvent(2, 1)), 
+        		new Decal("/images/items/star.png", TileCoordinate.convertToRealCoordinate(locOne)));
 
         TileCoordinate locTwo = new TileCoordinate(2, 7);
         Area areaTwo = new RadialArea(1, locTwo);
@@ -316,11 +326,23 @@ public class GameplayState extends GameState {
         Area areaFour = new LinearArea(20, locFour, Direction.DOWN);
         Trigger triggerFour = new RateLimitedTrigger(areaFour, new RiverPushEvent(
                 new GameActionRiverPush(avatar, gameMap, this.getItemMap(), Direction.DOWN)),1000);
+        
+        TileCoordinate locFive = new TileCoordinate(11, 11);
+        Area areaFive = new ConicalArea(3, locFive, Direction.UP);
+        ViewableTrigger triggerFive = new ViewableTrigger(new PermanentTrigger(areaFive, new HealthModifierEvent(null, null, 0, 1)), 
+        		new Decal("/images/items/healthpack.png", TileCoordinate.convertToRealCoordinate(locFive)));
+
+        TileCoordinate locSix = new TileCoordinate(34, 10);
+        Area areaSix = new RadialArea(1, locSix);
+        ViewableTrigger triggerSix = new ViewableTrigger(new SingleUseTrigger(areaSix, new InstantDeathEvent(0)), 
+        		new Decal("/images/items/skull_and_crossbones.png", TileCoordinate.convertToRealCoordinate(locSix)));
 
         triggerManager.addNonPartyTrigger(triggerOne);
         triggerManager.addNonPartyTrigger(triggerTwo);
         triggerManager.addNonPartyTrigger(triggerThree);
         triggerManager.addNonPartyTrigger(triggerFour);
+        triggerManager.addNonPartyTrigger(triggerFive);
+        triggerManager.addNonPartyTrigger(triggerSix);
         
     	//TriggerManager.getSingleton().loadTriggers(map);
 

@@ -51,7 +51,7 @@ public class PickPocket extends Ability {
 			} else {
 				Entity entity = EntityManager.getSingleton().getEntityAtLocation(avatar.nextLocation());
 				if (entity != null) {
-					entity.push(new TrooperBehavior());
+					entity.push(new TrooperBehavior(7));
 				}
 			}
 		}
