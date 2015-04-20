@@ -1,5 +1,8 @@
 package model.states.gamestates;
 
+
+
+import factories.EntityFactory;
 import gameactions.GameActionGhostMovement;
 import gameactions.GameActionRiverPush;
 import gameactions.GameActionStatePush;
@@ -180,6 +183,8 @@ public class GameplayState extends GameState {
     	KeyPreferences preferences = new KeyPreferences(preferencesMap);
         getContext().setPreferences(preferences);
         setListeners(preferences);
+    	EntityFactory.createHeavyTrooper("MAX", new TileCoordinate(25,25), layout);
+    	EntityFactory.createCowardTrooper("TIMMY", new TileCoordinate(45,45), layout);
         getContext().setPreferences(preferences);
         
 
