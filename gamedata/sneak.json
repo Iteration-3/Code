@@ -46354,7 +46354,7 @@
 			},
 		"type":	"mount",
 		"direction":	1
-		}, null, null],
+		}],
 	"avatar":	{
 		"entityView":	{
 			"locationY":	3.031088913245535,

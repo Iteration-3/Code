@@ -1,13 +1,8 @@
 package model.states.gamestates;
 
-import factories.EntityFactory;
-import gameactions.GameActionGhostMovement;
-import gameactions.GameActionRiverPush;
-import gameactions.GameActionStatePush;
-import gameactions.GameActionTeleport;
-
-
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 import model.KeyPreferences;
 import model.area.Area;
@@ -16,9 +11,9 @@ import model.area.LinearArea;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.entity.Avatar;
+import model.entity.Entity;
 import model.entity.EntityManager;
 import model.entity.EntityMovementAssocation;
-import model.entity.Mount;
 import model.entity.NPC;
 import model.event.EventManager;
 import model.event.ExperienceModifierEvent;
@@ -26,34 +21,23 @@ import model.event.HealthModifierEvent;
 import model.event.InstantDeathEvent;
 import model.event.RiverPushEvent;
 import model.event.TeleportEvent;
-import model.item.Door;
-import model.item.HPPotion;
-import model.item.ObstacleItem;
-import model.item.OneShotItem;
-import model.item.Price;
-import model.item.TakeableItem;
-import model.item.Trap;
-import model.item.TwoHandedWeapon;
+import model.item.Item;
 import model.light.LightManager;
 import model.map.GameMap;
 import model.map.ItemMap;
 import model.map.MapLoader;
 import model.projectile.Projectile;
 import model.projectile.ProjectileManager;
-import model.statistics.EntityStatistics;
 import model.trigger.PermanentTrigger;
 import model.trigger.RateLimitedTrigger;
 import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Direction;
-import utilities.structuredmap.JsonWriter;
+import utilities.structuredmap.JsonReader;
 import utilities.structuredmap.StructuredMap;
 import view.Decal;
-import view.entity.EntitySpriteFactory;
 import view.entity.EntityView;
-import view.item.BasicItemView;
-import view.item.ItemView;
 import view.layout.GameplayLayout;
 import view.trigger.ViewableTrigger;
 import controller.GameplayController;
@@ -113,30 +97,32 @@ public class GameplayState extends GameState {
         // Which is needed for other stuff.
         super.onEnter();
         controller = new GameplayController(this);
-       //StructuredMap map = JsonReader.readJson(filePath);
+       StructuredMap map = JsonReader.readJson(filePath);
         
         this.gameMap = MapLoader.loadMap("maps/main_map.json", layout); //CALL THIS FIRST
-        addEntityTest(null,null);//map.getStructuredMap("entites"), map.getStructuredMap("keyPreferences"));
-        addItemsTest(null);//map.getStructuredMap("items"));
-        addTriggersTest(null);//map.getStructuredMap("triggers"));
+        addEntityTest(map.getStructuredMap("entites"), map.getStructuredMap("keyPreferences"));
+        addItemsTest(map.getStructuredMap("items"));
+        addTriggersTest(map.getStructuredMap("triggers"));
+        LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
+       
         
-       StructuredMap map = new StructuredMap();
-       map.put("entites", EntityManager.getSingleton().getStructuredMap());
-       map.put("items", itemMap.getStructuredMap());
-       KeyPreferences pref = new KeyPreferences();
-       map.put("keyPreferences",  pref.getStructuredMap());
+      //StructuredMap map = new StructuredMap();
+      // map.put("entites", EntityManager.getSingleton().getStructuredMap());
+      // map.put("items", itemMap.getStructuredMap());
+      //KeyPreferences pref = new KeyPreferences();
+     //map.put("keyPreferences",  pref.getStructuredMap());
         
-       LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
-       map.put("lightStuff", LightManager.getSingleton().getStructuredMap());
-       	JsonWriter writer = new JsonWriter();
-        writer.writeStructuredMap(map, filePath);
+      //LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
+       //map.put("lightStuff", LightManager.getSingleton().getStructuredMap());
+       	//JsonWriter writer = new JsonWriter();
+        //writer.writeStructuredMap(map, filePath);
         
        
         
 
         controller.spawnUpdateThread();
         avatar.subscribe(layout.getCamera());
-        //LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
+        LightManager.getSingleton().load(map.getStructuredMap("lightStuff"), layout.getGameLightView());
     }
 
     @Override
@@ -163,7 +149,7 @@ public class GameplayState extends GameState {
 
     public void addEntityTest(StructuredMap entityMap, StructuredMap preferencesMap) {
     	
-    	
+    	/*
         TileCoordinate loc = new TileCoordinate(3, 3);
         EntityView eView = avatar.getEntityView();
         avatar.setLocation(loc);
@@ -185,7 +171,9 @@ public class GameplayState extends GameState {
         mountView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(mountLocation), Direction.UP);
         EntityManager.getSingleton().addNonPartyNpc(mount);
         
-    	/*
+        
+    	*/
+    	
     	EntityManager.getSingleton().loadEntities(entityMap);
     	Iterator<Entity> iterator = EntityManager.getSingleton().iterator();
     	while(iterator.hasNext()) {
@@ -196,13 +184,14 @@ public class GameplayState extends GameState {
     	
     	avatar = EntityManager.getSingleton().getAvatar();
     	getController().registerAvatar(avatar);
-    	*/
-    	//KeyPreferences preferences = new KeyPreferences(preferencesMap);
-        KeyPreferences preferences = new KeyPreferences();
+    	NPC npc2 = EntityFactory.createHeavyTrooper("MAX", new TileCoordinate(25,25), layout);
+    	NPC npc3 = EntityFactory.createCowardTrooper("TIMMY", new TileCoordinate(45,45), layout);
+    	
+    	KeyPreferences preferences = new KeyPreferences(preferencesMap);
+      // KeyPreferences preferences = new KeyPreferences();
         getContext().setPreferences(preferences);
         setListeners(preferences);
-    	EntityFactory.createHeavyTrooper("MAX", new TileCoordinate(25,25), layout);
-    	EntityFactory.createCowardTrooper("TIMMY", new TileCoordinate(45,45), layout);
+    	
         getContext().setPreferences(preferences);
         
 
@@ -245,6 +234,7 @@ public class GameplayState extends GameState {
 	}
 
 	private void addItemsTest(StructuredMap map) {
+		/*
 		
         TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
         ItemView takeableItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(takeableItemViewPosition), new Decal("/images/items/two_handed_chainsaw.png", TileCoordinate.convertToRealCoordinate(takeableItemViewPosition)));
@@ -289,8 +279,9 @@ public class GameplayState extends GameState {
 				new Decal("/images/items/healthpack.png", TileCoordinate.convertToRealCoordinate(healthpackspot)));
         hView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new HPPotion(hView, new Price(10), 1000),healthpackspot);
+        */
         
-      /*
+      
 		itemMap.loadItems(map);
 		
 		List<Item> items = itemMap.getItems();
@@ -301,7 +292,7 @@ public class GameplayState extends GameState {
 				}
 			}
 		}
-*/
+
     }
 
     private void addTriggersTest(StructuredMap map) {
