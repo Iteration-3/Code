@@ -25,7 +25,7 @@ public class Decal implements Saveable, Renderable {
 	}
 	
 	public Decal() {
-		this.imageResourcePath = "/image/item.jpg";
+		this.imageResourcePath = "/image/item/crossbow.png";
 		this.image = ImageProcessing.getImage(imageResourcePath);
 	}
 	

@@ -2,13 +2,15 @@ package model.trigger;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import factories.TriggerFactory;
 import model.entity.Entity;
 import model.entity.EntityManager;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import view.trigger.ViewableTrigger;
+import factories.TriggerFactory;
 
 public final class TriggerManager implements Saveable {
 	
@@ -16,7 +18,8 @@ public final class TriggerManager implements Saveable {
 	private CopyOnWriteArrayList<Trigger> partyTriggers = new CopyOnWriteArrayList<Trigger>();
 	private CopyOnWriteArrayList<Trigger> nonPartyTriggers = new CopyOnWriteArrayList<Trigger>();
 	private CopyOnWriteArrayList<Trigger> neutralTriggers = new CopyOnWriteArrayList<Trigger>();
-	
+	private CopyOnWriteArrayList<ViewableTrigger> viewableTriggers = new CopyOnWriteArrayList<ViewableTrigger>(); 
+
 	private TriggerManager() { }
 	
 	public static TriggerManager getSingleton() {
@@ -109,16 +112,19 @@ public final class TriggerManager implements Saveable {
 	private void removeExpiredTriggers() {
 		for (Trigger t : partyTriggers) {
 			if (t.hasExpired()) {
+				viewableTriggers.remove(t);
 				partyTriggers.remove(t);
 			}
 		}
 		for (Trigger t : nonPartyTriggers) {
 			if (t.hasExpired()) {
+				viewableTriggers.remove(t);
 				nonPartyTriggers.remove(t);
 			}
 		}
 		for (Trigger t : neutralTriggers) {
 			if (t.hasExpired()) {
+				viewableTriggers.remove(t);
 				neutralTriggers.remove(t);
 			}
 		}
@@ -148,11 +154,18 @@ public final class TriggerManager implements Saveable {
 		return Collections.unmodifiableCollection(neutralTriggers);
 	}
 	
+	public void registerViewableTrigger(ViewableTrigger trigger) {
+		viewableTriggers.add(trigger);
+	}
+	
+	public List<ViewableTrigger> getViewableTriggers() {
+		return viewableTriggers;
+	}
+
 	public void clear() {
 		partyTriggers = new CopyOnWriteArrayList<Trigger>();
 		nonPartyTriggers = new CopyOnWriteArrayList<Trigger>();
 		neutralTriggers = new CopyOnWriteArrayList<Trigger>();
 	}
 
-	
 }
