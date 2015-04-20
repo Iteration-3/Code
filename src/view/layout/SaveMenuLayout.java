@@ -2,6 +2,9 @@ package view.layout;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
 
 import view.components.MenuButton;
 import controller.SaveMenuController;
@@ -54,5 +57,35 @@ public class SaveMenuLayout extends Layout {
 
     public void attachController(SaveMenuController controller) {
         backButton.addActionListener(controller.getBackAction());
+        save1.addActionListener(new AbstractAction() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		controller.saveGame(1);
+        	}
+        });
+        save2.addActionListener(new AbstractAction() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		controller.saveGame(2);
+        	}
+        });
+        save3.addActionListener(new AbstractAction() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		controller.saveGame(3);
+        	}
+        });
+        save4.addActionListener(new AbstractAction() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		controller.saveGame(4);
+        	}
+        });
+        save5.addActionListener(new AbstractAction() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		controller.saveGame(5);
+        	}
+        });
     }
 }

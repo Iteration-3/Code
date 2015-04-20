@@ -32,7 +32,7 @@ public abstract class Avatar extends Entity {
 	public Avatar(String name, EntityView view, TileCoordinate loc) {
 		super(name, view, loc, new AvatarBehavior());
 		//Make light manager track all avatars movement
-		MovingStaticLightSource avatarLight = new MovingStaticLightSource(new RadialArea(5, loc), 255, this);
+		MovingStaticLightSource avatarLight = new MovingStaticLightSource(new RadialArea(7, loc), 255, this);
 		LightManager.getSingleton().addLightSource(avatarLight);
 		setLocation(loc);
 		this.addItem(new HPPotion(
