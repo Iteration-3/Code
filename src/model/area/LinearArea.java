@@ -3,14 +3,14 @@ package model.area;
 import java.util.ArrayList;
 import java.util.List;
 
-import utilities.Angle;
+import utilities.Direction;
 import utilities.structuredmap.StructuredMap;
 
 public class LinearArea extends DirectionalArea {
 
     private static final int ANGLE_OFFSET = 30;
 
-    public LinearArea(int radius, TileCoordinate location, Angle angle) {
+    public LinearArea(int radius, TileCoordinate location, Direction angle) {
         super(radius, location, angle);
     }
 

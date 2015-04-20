@@ -5,7 +5,7 @@ import java.awt.event.MouseListener;
 import model.entity.Avatar;
 import model.entity.Entity;
 import controller.SlotViewMouseListenerFactory;
-import controller.mouseliseners.BuyingMouseListener;
+import controller.mouselisteners.BuyingMouseListener;
 
 public class BarterBuyingController implements SlotViewMouseListenerFactory {
 	private Entity seller;

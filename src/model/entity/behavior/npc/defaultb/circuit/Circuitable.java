@@ -1,10 +1,10 @@
 package model.entity.behavior.npc.defaultb.circuit;
 
-import utilities.Angle;
+import utilities.Direction;
 
 public interface Circuitable {
 	
-	public Angle nextMove();
+	public Direction nextMove();
 	
 	public boolean hasMove();
 

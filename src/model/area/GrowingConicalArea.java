@@ -6,17 +6,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import utilities.Angle;
+import utilities.Direction;
 
 public class GrowingConicalArea extends GrowingArea {
     
     private TileCoordinate lastStart;
     private List<TileCoordinate> coverCache;
     private HashSet<TileCoordinate> resCache;
-    private Angle lastDir;
+    private Direction lastDir;
     private int lastRadius = -1;
 	
-	public GrowingConicalArea(TileCoordinate location, Angle dir, int maxRadius) {
+	public GrowingConicalArea(TileCoordinate location, Direction dir, int maxRadius) {
 		super(maxRadius);
 		setStartLocation(location);
 		setDirection(dir);
@@ -51,7 +51,7 @@ public class GrowingConicalArea extends GrowingArea {
 		    			Pair poll = bfsQ.poll();
 		    			int nextDist = poll.dist+1;
 		    			if (nextDist > distFromCenter) continue;
-		    			for (Angle ang : Angle.values()) {
+		    			for (Direction ang : Direction.values()) {
 		    				TileCoordinate next = poll.coord.nextLocation(ang);
 		    				if (atRad.contains(next)) {
 		    					if (!res.contains(next)) {
@@ -87,7 +87,7 @@ public class GrowingConicalArea extends GrowingArea {
     		Pair poll = bfsQ.poll();
     		int nextDist = poll.dist + 1;
     		if (nextDist > radius) continue;
-    		for (Angle ang : Angle.values()) {
+    		for (Direction ang : Direction.values()) {
     			TileCoordinate next = poll.coord.nextLocation(ang);
     			if (!res.contains(next)) {
     				res.add(next);

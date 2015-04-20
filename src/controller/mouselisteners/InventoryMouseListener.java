@@ -1,4 +1,4 @@
-package controller.mouseliseners;
+package controller.mouselisteners;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;

@@ -27,11 +27,10 @@ public class GameProjectileView {
 			toRemove.clear();
 		}
 
-		RealCoordinate cameraPosition = transform.getPosition();
 		for (ProjectileView projView : projectileViews) {		
 			for (TileCoordinate loc : projView.getArea().getCoveredLocations()) {
 				RealCoordinate coordinate = TileCoordinate.convertToRealCoordinate(loc);
-				ScreenCoordinate renderPosition = transform.getTranslatedPosition(coordinate, cameraPosition);
+				ScreenCoordinate renderPosition = transform.getTranslatedPosition(coordinate);
 				projView.render(graphics, renderPosition.getX(), renderPosition.getY(), transform.getTileHeight());
 			}
 		}
