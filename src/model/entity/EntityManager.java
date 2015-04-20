@@ -23,6 +23,15 @@ public class EntityManager implements Iterable<Entity>, Saveable {
 	private ArrayList<NPC> nonPartyNpcs = new ArrayList<NPC>();
 	private Avatar avatar;
 	private Queue<Entity> removeList = new LinkedList<Entity>();
+	private boolean hideAvatar = false;
+	
+	public void setAvatarHiding(boolean hiding){
+		hideAvatar = hiding;
+	}
+	
+	public boolean getAvatarHiding(){
+		return hideAvatar;
+	}
 	
 	private EntityManager() {
 	}
@@ -133,6 +142,10 @@ public class EntityManager implements Iterable<Entity>, Saveable {
 	public Entity getEntityAtLocation(TileCoordinate location) {
 		for(Entity entity : this) {
 			if(location.equals(entity.getLocation())) {
+				if(this.getAvatarHiding() && entity == this.getAvatar()){
+					//Intentional == comparison here.
+					continue;
+				}
 				return entity;
 			}
 		}
@@ -144,6 +157,10 @@ public class EntityManager implements Iterable<Entity>, Saveable {
 		HashMap<TileCoordinate,Entity> mapOfEntities = new HashMap<TileCoordinate,Entity>();
 		Collection<Entity> entitiesFound = new ArrayList<Entity>();
 		for (Entity entity: this) {
+			if(this.getAvatarHiding() && entity == this.getAvatar()){
+				//Intentional == comparison here.
+				continue;
+			}
 			mapOfEntities.put(entity.getLocation(), entity);
 		}
 		for (TileCoordinate location : locations){
@@ -157,12 +174,16 @@ public class EntityManager implements Iterable<Entity>, Saveable {
 	public boolean findEntityFromLocations(Collection<TileCoordinate> locations, Entity target){
 		for (Entity entity: this.getEntityFromLocaitons(locations)){
 			if (entity == target){
+				if(this.getAvatarHiding() && entity == this.getAvatar()){
+					//Intentional == comparison here.
+					continue;
+				}
 				return true;
 			}
 		}
 		return false;
 	}
-	
+	//Avatar shouldn't be able to be in this list, no need to check it.
 	public NPC getNPCAtLocation(TileCoordinate location) {
 		for (NPC npc : this.getPartyNpcs()) {
 			if (npc.getLocation().equals(location)) {
