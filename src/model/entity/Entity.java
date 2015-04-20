@@ -164,12 +164,25 @@ public abstract class Entity extends MobileObject implements Saveable {
     public abstract void accept(EntiyVisitorable visitor);
 
     protected abstract ItemManager createItemManager();
-
-    public void attack(){
+    /**
+     * If no entity to attack, does nada.
+     * @param damage
+     */
+    protected void attackInFront(int damage){
     	TileCoordinate targetSpot = this.nextLocation(this.getDirection());
-    	EntityManager.getSingleton().getEntityAtLocation(targetSpot);
+    	Entity target = EntityManager.getSingleton().getEntityAtLocation(targetSpot);
+    	System.out.println(target);
+    	if(target!=null){
+    		System.out.println(target.getDerivedStats().getCurrentHealth()+ " "+ damage);
+    		this.attackEntity(target, damage);
+    	}
     }
-    
+    /**
+     * Entity shouldn't be null!
+     * DAMAGE SHOULD BE NEGATIVE, OR IT WILL HEAL.
+     * @param target
+     * @param damage
+     */
     public void attackEntity(Entity target,int damage){
 		EventManager.getSingleton().addEvent(new HealthModifierEvent(this,target,0,damage));
 		this.setAttacking();

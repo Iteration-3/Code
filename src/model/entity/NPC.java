@@ -42,10 +42,6 @@ public class NPC extends Entity {
 		return new ItemManager(this);
 	}
 
-	@Override
-	public void attack() {
-		// TODO Auto-generated method stub
-	}
 	
 	@Override
 	public void load(StructuredMap map) {

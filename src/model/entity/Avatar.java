@@ -77,6 +77,17 @@ public abstract class Avatar extends Entity {
 			}));
 			++i;
 		}
+		listeners.add(new PollingListener(preferences.getAttackKey(), new GameAction() {
+			
+			@Override
+			public void perform() {
+				//TODO Ensure this isaffected by equipement and so forth.
+				//Same for defending.
+				System.out.println("attack");
+				Avatar.this.attackInFront(-Avatar.this.getDerivedStats().getOffensiveRating());
+				
+			}
+		}));
 		return listeners;
 		
 	}
