@@ -1,15 +1,20 @@
 package view.item;
 
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import model.area.RealCoordinate;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import view.Renderable;
 
-public abstract class ItemView implements Saveable{
+public abstract class ItemView implements Saveable, Renderable {
 	private GameItemView container;
 	private boolean onMap = false;
+	private RealCoordinate position;
+
+	public ItemView(RealCoordinate position) {
+		this.position = position;
+	}
 
 	public ItemView() {
 		
@@ -19,11 +24,9 @@ public abstract class ItemView implements Saveable{
 		this.onMap = map.getBoolean("onMap");
 	}
 
-	public abstract void render(Graphics graphics, float x, float y, float diameter);
-
-	public void registerWithGameItemView(GameItemView gv, RealCoordinate p) {
+	public void registerWithGameItemView(GameItemView gv) {
 		this.onMap = true;
-		gv.addItemView(this, p);
+		gv.addItemView(this);
 		this.container = gv;
 	}
 
@@ -48,4 +51,7 @@ public abstract class ItemView implements Saveable{
 		this.removeFromMap();
 	}
 	
+	public RealCoordinate getPosition() {
+		return position;
+	}
 }
