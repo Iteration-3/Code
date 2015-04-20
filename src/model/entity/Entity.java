@@ -24,7 +24,7 @@ import view.InventoryView;
 import controller.listener.Listener;
 
 public abstract class Entity extends MobileObject implements Saveable {
-	private static final double maxHasBeenAttacked = 5000;
+	private static final double maxHasBeenAttacked = 5;
     private ItemManager itemManager;
     private String name = null;
     private BoundedEntityStatistics stats = new BoundedEntityStatistics();
@@ -121,6 +121,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     
     public void setHasBeenAttacked(){
     	this.hasBeenAttacked = true;
+    	this.timerHasBeenAttacked = 0;
     }
     
     public void clearAttacking(){
@@ -137,6 +138,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     
     public void setAttacking(){
     	this.attacking = true;
+    	this.timerHasBeenAttacked = 0;
     }
    
     public boolean getAttacking(){
@@ -200,15 +202,17 @@ public abstract class Entity extends MobileObject implements Saveable {
     public abstract void load(StructuredMap map);
 
 	public final void update(double deltaTime){
-    	caculateHasBeenAttacked(deltaTime);
+    	caculateCombatTimer(deltaTime);
     	this.updateExtras(deltaTime);
     }
     
-    private void caculateHasBeenAttacked(double deltaTime) {
-    	if (getHasBeenAttacked()){
+    private void caculateCombatTimer(double deltaTime) {
+    	if (getHasBeenAttacked() || this.getAttacking()){
     		timerHasBeenAttacked += deltaTime;
-    		if (timerHasBeenAttacked == maxHasBeenAttacked){
-    			clearHasBeenAttacked();
+                if (timerHasBeenAttacked >= maxHasBeenAttacked){
+                        clearHasBeenAttacked();
+                        clearAttacking();
+                        timerHasBeenAttacked = 0;
     		}
     	}
 	}
