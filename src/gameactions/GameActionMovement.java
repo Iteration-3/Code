@@ -9,14 +9,13 @@ import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 
 public class GameActionMovement extends GameAction implements Saveable {
+	
 	private Entity entity;
 	private Direction direction;
-	
 	private GameMap terrain;
 	private ItemMap itemMap;
 
 	public GameActionMovement(Entity entity, GameMap terrain, ItemMap itemMap, Direction angle){
-
 		this.entity = entity;
 		this.terrain = terrain;
 		this.direction = angle;
@@ -37,7 +36,6 @@ public class GameActionMovement extends GameAction implements Saveable {
 	public void setTarget(Entity entity){
 		this.entity = entity;
 	}
-	
 
 	protected GameMap getTerrain(){
 		return terrain;
@@ -72,8 +70,4 @@ public class GameActionMovement extends GameAction implements Saveable {
 			getEntity().move(direction);
 		}
 	}
-
-
-
-	
 }

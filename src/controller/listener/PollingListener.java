@@ -48,10 +48,10 @@ public class PollingListener extends Listener {
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
                 getKey(), keyDownState);
         panel.getActionMap().put(keyDownState, keyDownState.getAction());
-
+        
         // Register KeyReleased Event
         panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
-                KeyStroke.getKeyStroke("released " + getKey().toString().replaceAll("(pressed|typed) ", "")),
+                KeyStroke.getKeyStroke(getKey().toString().replaceAll("(pressed|typed) ", "released ")),
                 keyUpState);
         panel.getActionMap().put(keyUpState, keyUpState.getAction());
 

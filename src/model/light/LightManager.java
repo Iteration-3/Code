@@ -25,7 +25,6 @@ public class LightManager implements Saveable {
 	}
 	
 	public void removeLightSource(LightSource lightSource) {
-		System.out.println("DISPOSE");
 		lightSource.removePrevLighting(lightSource.getArea());
 		lightSource.removeLighting(lightSource.getArea());
 		lightSources.remove(lightSource);
