@@ -1,5 +1,6 @@
 package model.event;
 
+import utilities.structuredmap.StructuredMap;
 import model.entity.Entity;
 
 public class TemporaryMovementModifierEvent extends Event {
@@ -14,12 +15,17 @@ public class TemporaryMovementModifierEvent extends Event {
 		super(target, duration);
 		this.movement = movement;
 	}
-
+	
+	public TemporaryMovementModifierEvent(StructuredMap map) {
+		super(map);
+		this.movement = map.getInteger("movement");
+	}
 
 	@Override
 	public void perform() {
 		//Do nothing.
 	}
+
 	private int oldMovementSpeed = 1;
 
 	@Override
