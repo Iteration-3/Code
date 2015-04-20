@@ -42,8 +42,10 @@ public class ProjectileManager {
 				toRemove.add(projectile);
 			}
 		}
-		for (Projectile rem : toRemove) 
+		for (Projectile rem : toRemove)  {
 			removeProjectile(rem);
+			rem.dispose();
+		}
 	}
 	
 	public void clear() {

@@ -15,7 +15,6 @@ public class AvatarController {
 
     public AvatarController(Avatar avatar) {
     	this.avatar = avatar;
-    	System.out.println("In Controller: " + avatar);
     }
 
     public void addListener(Listener listener) {
