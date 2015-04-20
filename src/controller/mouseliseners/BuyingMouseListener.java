@@ -4,15 +4,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import model.entity.Avatar;
-import model.entity.NPC;
+import model.entity.Entity ;
 import model.item.TakeableItem;
 
 public final class BuyingMouseListener implements MouseListener {
-	private NPC seller;
+	private Entity seller;
 	private Avatar buyer;
 	int slotNumber;
 	
-	public BuyingMouseListener(NPC seller, Avatar buyer, int slotNumber) {
+	public BuyingMouseListener(Entity seller, Avatar buyer, int slotNumber) {
 		setSeller(seller);
 		setBuyer(buyer);
 		setSlotNumber(slotNumber);
@@ -46,11 +46,11 @@ public final class BuyingMouseListener implements MouseListener {
 	public void mouseExited(MouseEvent e) {
 	}
 
-	private NPC getSeller() {
+	private Entity getSeller() {
 		return seller;
 	}
 
-	private void setSeller(NPC seller) {
+	private void setSeller(Entity seller) {
 		this.seller = seller;
 	}
 

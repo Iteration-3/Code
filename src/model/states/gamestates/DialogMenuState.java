@@ -3,24 +3,27 @@ package model.states.gamestates;
 import controller.DialogMenuController;
 import view.layout.DialogMenuLayout;
 import model.entity.Avatar;
-import model.entity.NPC;
+import model.entity.Entity;
+import model.entity.dialog.DialogTree;
 
 public class DialogMenuState extends GameState {
 	private DialogMenuLayout layout;
 	private DialogMenuController controller;
-	private NPC npc;
+	private Entity npc;
 	private Avatar avatar;
+	private DialogTree dialogTree;
 	
-	public DialogMenuState(NPC npc, Avatar avatar) {
-		setLayout(new DialogMenuLayout(npc.getDialogTree()));
-		setNPC(npc);
+	public DialogMenuState(Entity npc, Avatar avatar, DialogTree dialogTree) {
+		setLayout(new DialogMenuLayout(dialogTree));
+		setEntity(npc);
 		setAvatar(avatar);
+		setDialogTree(dialogTree);
 	}
 	
 	@Override
 	public void onEnter() {
 		super.onEnter();
-		setController(new DialogMenuController(getContext(), getNPC(), getAvatar()));
+		setController(new DialogMenuController(getContext(), getNPC(), getAvatar(), this.dialogTree));
 		getLayout().attachController(getController());
 	}
 	
@@ -42,11 +45,11 @@ public class DialogMenuState extends GameState {
 		this.controller = controller;
 	}
 	
-	private void setNPC(NPC npc) {
+	private void setEntity(Entity npc) {
 		this.npc = npc;
 	}
 	
-	private NPC getNPC() {
+	private Entity getNPC() {
 		return this.npc;
 	}
 	
@@ -56,5 +59,9 @@ public class DialogMenuState extends GameState {
 	
 	private Avatar getAvatar() {
 		return this.avatar;
+	}
+	
+	private void setDialogTree(DialogTree dialogTree){
+		this.dialogTree = dialogTree;
 	}
 }

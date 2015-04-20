@@ -4,39 +4,45 @@ import model.ability.SelfAbility;
 import model.entity.Avatar;
 import model.event.Event;
 import model.event.EventManager;
-import model.event.MovementModifierEvent;
-import model.event.StatisticModifierEvent;
+import model.event.InvisiblityEvent;
+import model.event.TemporaryMovementModifierEvent;
 import model.skillmanager.SneakSkillManager;
-import model.statistics.Statistics;
 
 public class Creep extends SelfAbility {
 	
-	private MovementModifierEvent movementModifier = new MovementModifierEvent(25, -20);
+	private TemporaryMovementModifierEvent movementModifier = new TemporaryMovementModifierEvent(25, -20);
 	private SneakSkillManager manager;
 	
 	public Creep(SneakSkillManager sneakSkillManager) {
-		super(new StatisticModifierEvent(new Statistics(0, 75, 0, 0), 25), 75);
+		super();
+		this.setEvent(new InvisiblityEvent(2));
 		this.manager = sneakSkillManager;
 	}
 	
-	public Creep(int manaCost) {
-		super();
-		this.setManaCost(manaCost);
-	}
 	
 	@Override
 	public void perform(Avatar avatar) {
 		this.setManaCost(this.manager.getCreepskill());
-		this.getEvent().setDuration(this.manager.getCreepskill()*10);
-		if (hasMana(avatar)) {
-			removeMana(avatar);
-			MovementModifierEvent movementModifier = this.movementModifier.clone();
-			movementModifier.setTarget(avatar);
-			Event statsModifier = this.getEvent().clone();
-			statsModifier.setTarget(avatar);
+		
+		//Set Duration for BOTH events.
+		int duration = this.manager.getCreepskill()*2; //Stupid way to get mana cost, but whatever.
+		this.movementModifier.setDuration(duration);
+		this.getEvent().setDuration(duration);
+		if (hasMana(avatar) && !avatar.getEntityView().getHidden()) {
 
+			//If we are visible, then go invisible and slow movement, else don't do anything
+			removeMana(avatar);
+			
+			//Clone & add event stuff
+			TemporaryMovementModifierEvent movementModifier = this.movementModifier.clone();
+			Event event = this.getEvent().clone();
+			event.setTarget(avatar);
+			movementModifier.setTarget(avatar);
+			
+			
+			movementModifier.setTarget(avatar);
 			EventManager.getSingleton().addEvent(movementModifier);
-			EventManager.getSingleton().addEvent(statsModifier);
+			EventManager.getSingleton().addEvent(event);
 		}
 	}
 

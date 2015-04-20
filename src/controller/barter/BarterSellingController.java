@@ -3,16 +3,16 @@ package controller.barter;
 import java.awt.event.MouseListener;
 
 import model.entity.Avatar;
-import model.entity.NPC;
+import model.entity.Entity ;
 import controller.SlotViewMouseListenerFactory;
 import controller.mouseliseners.SellingMouseListener;
 
 public class BarterSellingController implements SlotViewMouseListenerFactory {
-	private NPC seller;
+	private Entity seller;
 	private Avatar buyer;
 	boolean toggledOn = true;
 	
-	public BarterSellingController(NPC seller, Avatar buyer) {
+	public BarterSellingController(Entity seller, Avatar buyer) {
 		setSeller(seller);
 		setBuyer(buyer);
 	}
@@ -26,11 +26,11 @@ public class BarterSellingController implements SlotViewMouseListenerFactory {
 		return new SellingMouseListener(getSeller(), getBuyer(), slotNumber);
 	}
 
-	private NPC getSeller() {
+	private Entity getSeller() {
 		return seller;
 	}
 
-	private void setSeller(NPC seller) {
+	private void setSeller(Entity seller) {
 		this.seller = seller;
 	}
 

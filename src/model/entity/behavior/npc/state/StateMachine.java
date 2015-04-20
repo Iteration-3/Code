@@ -14,8 +14,10 @@ public class StateMachine implements StateMachineable {
 	}
 	
 	public void push(Behaviorable state){
-		state.setEntity(entity);
-		this.states.push(state);
+		if (state != null){
+			state.setEntity(entity);
+			this.states.push(state);
+		}
 	}
 		
 	public Behaviorable pop() {

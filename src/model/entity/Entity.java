@@ -22,7 +22,6 @@ import view.InventoryView;
 import controller.listener.Listener;
 
 public abstract class Entity extends MobileObject implements Saveable {
-	
     private ItemManager itemManager;
     private String name = null;
     private BoundedEntityStatistics stats = new BoundedEntityStatistics();
@@ -32,6 +31,7 @@ public abstract class Entity extends MobileObject implements Saveable {
 
     protected Entity() {
     	super(new TileCoordinate(0, 0));
+    	this.setBehavior();
     }
 
     public Entity(String name, EntityView view, TileCoordinate location) {
@@ -41,7 +41,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         setLocation(location);
         this.setNecessities();
         setDirection(Angle.UP);
-        this.state = new StateMachine(this);
+        this.setBehavior();
     }
 
     public Entity(String name, EntityView view, TileCoordinate location,Behaviorable behavior) {
@@ -51,8 +51,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         setLocation(location);
         this.setNecessities();
         setDirection(Angle.UP);
-        this.state = new StateMachine(this);
-        this.state.push(behavior);
+        this.setBehavior();
     }
     
     public Entity(StructuredMap map) {
@@ -65,6 +64,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.itemManager = new ItemManager(map.getStructuredMap("itemManager"));
         this.isFlying = map.getBoolean("flying");
         this.view = map.getStructuredMap("entityView") == null ? null : new EntityView(map.getStructuredMap("entityView"));
+        this.setBehavior();
     }
     
     public StructuredMap getStructuredMap() {
@@ -84,6 +84,13 @@ public abstract class Entity extends MobileObject implements Saveable {
 
         return map;
     }
+    
+    private void setBehavior(){
+        this.state = new StateMachine(this);
+        this.state.push(this.getBehavior());
+    }
+    
+    protected abstract Behaviorable getBehavior();
 
     private void setNecessities() {
         this.itemManager = this.createItemManager();
@@ -99,7 +106,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     	this.state.interact(entity);
     }
     
-    public void onDamage(){
+    public void onDamage(Entity entity){
     	this.state.onDamage();
     }
     
@@ -124,6 +131,8 @@ public abstract class Entity extends MobileObject implements Saveable {
     public Behaviorable pop(){
     	return this.state.pop();
     }
+    
+    public abstract void accept(EntiyVisitorable visitor);
 
     protected abstract ItemManager createItemManager();
 
@@ -308,6 +317,10 @@ public abstract class Entity extends MobileObject implements Saveable {
 
     public void addMovement(int movement) {
         stats.addMovement(movement);
+    }
+    
+    public void setMovement(int movement){
+    	stats.setMovement(movement);
     }
 
     public void addLives(int lives) {

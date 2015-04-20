@@ -1,8 +1,10 @@
 package model.light;
 
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 import model.area.TileCoordinate;
 
-public class LightMap {
+public class LightMap implements Saveable {
 	
 	private int[][] strengths;
 	private int[][] lightsOn;
@@ -14,6 +16,38 @@ public class LightMap {
 		lastStrength = new int[x][y];
 		lightsOn = new int[x][y];
 		timeDimmed = new long[x][y];
+	}
+	
+	public LightMap(StructuredMap map) {
+		StructuredMap[] xValues = map.getStructuredMapArray("dimmedValues");
+		int x = xValues.length;
+		int y = xValues[0].getStructuredMapArray("array").length;
+		strengths = new int[x][y];
+		lightsOn = new int[x][y];
+		timeDimmed = new long[x][y];
+		lastStrength = new int[x][y];
+		
+		for(int i = 0; i < x; i++) {
+			StructuredMap[] yValues = map.getStructuredMapArray("array");
+			for(int j = 0; j < y; j++) {
+				timeDimmed[i][j] = yValues[j].getDouble("dimmed").longValue();
+			}
+		}
+	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		StructuredMap[] array1 = new StructuredMap[timeDimmed.length];
+		for(int i = 0; i < timeDimmed.length; i++) {
+			StructuredMap tempMap[] = new StructuredMap[timeDimmed[i].length];
+			for(int j = 0; j < timeDimmed[i].length; j++) {
+				tempMap[j].put("dimmed", (double) timeDimmed[i][j]);
+			}
+			array1[i].put("array", tempMap);
+		}
+		map.put("dimmedValues", array1);
+		return map;
 	}
 	
 	public int getStrength(TileCoordinate loc) {
@@ -62,4 +96,6 @@ public class LightMap {
 		lastStrength[loc.getX()][loc.getY()] = strengths[loc.getX()][loc.getY()];
 		strengths[loc.getX()][loc.getY()] = val;
 	}
+
+	
 }
