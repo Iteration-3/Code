@@ -2,6 +2,7 @@ package model.ability.sneak;
 
 import model.ability.SelfAbility;
 import model.entity.Avatar;
+import model.entity.Sneak;
 import model.event.Event;
 import model.event.EventManager;
 import model.event.InvisiblityEvent;
@@ -12,11 +13,13 @@ public class Creep extends SelfAbility {
 	
 	private TemporaryMovementModifierEvent movementModifier = new TemporaryMovementModifierEvent(25, -20);
 	private SneakSkillManager manager;
+	private Sneak sneak;
 	
-	public Creep(SneakSkillManager sneakSkillManager) {
+	public Creep(SneakSkillManager sneakSkillManager,Sneak sneak) {
 		super();
-		this.setEvent(new InvisiblityEvent(2));
+		this.setEvent(new InvisiblityEvent(2,sneak));
 		this.manager = sneakSkillManager;
+		this.sneak = sneak;
 	}
 	
 	

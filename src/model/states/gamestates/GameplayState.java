@@ -1,6 +1,5 @@
 package model.states.gamestates;
 
-
 import gameactions.GameActionGhostMovement;
 import gameactions.GameActionRiverPush;
 import gameactions.GameActionStatePush;
@@ -8,6 +7,7 @@ import gameactions.GameActionTeleport;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import model.KeyPreferences;
 import model.area.Area;
@@ -18,6 +18,8 @@ import model.entity.Avatar;
 import model.entity.Entity;
 import model.entity.EntityManager;
 import model.entity.EntityMovementAssocation;
+import model.entity.Mount;
+import model.entity.NPC;
 import model.event.EventManager;
 import model.event.ExperienceModifierEvent;
 import model.event.ManaModifierEvent;
@@ -25,6 +27,7 @@ import model.event.RiverPushEvent;
 import model.event.TeleportEvent;
 import model.item.Door;
 import model.item.HPPotion;
+import model.item.Item;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
 import model.item.Price;
@@ -45,8 +48,10 @@ import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Direction;
 import utilities.structuredmap.JsonReader;
+import utilities.structuredmap.JsonWriter;
 import utilities.structuredmap.StructuredMap;
 import view.Decal;
+import view.entity.EntitySpriteFactory;
 import view.entity.EntityView;
 import view.item.BasicItemView;
 import view.item.ItemView;
@@ -63,10 +68,13 @@ public class GameplayState extends GameState {
     private GameMap gameMap;
     private ItemMap itemMap;
     private Avatar avatar;
+    private String filePath;
 
-    public GameplayState(Avatar avatar) {
+    public GameplayState(String filePath, Avatar avatar) {
         layout = new GameplayLayout();
-        itemMap = new ItemMap();
+        gameMap = new GameMap();
+        itemMap = ItemMap.getInstance();
+        this.filePath = filePath;
         this.avatar = avatar;
     }
 
@@ -101,11 +109,22 @@ public class GameplayState extends GameState {
         // Which is needed for other stuff.
         super.onEnter();
         controller = new GameplayController(this);
-        addTilesTest();
-        addEntityTest();
-        addItemsTest();
-        addTriggersTest();
+        StructuredMap map = JsonReader.readJson(filePath);
         
+        this.gameMap = MapLoader.loadMap("maps/main_map.json", layout); //CALL THIS FIRST
+        addEntityTest(map.getStructuredMap("entites"));
+        addItemsTest(map.getStructuredMap("items"));
+        addTriggersTest(map.getStructuredMap("triggers"));
+        
+       //StructuredMap map = new StructuredMap();
+       //map.put("entites", EntityManager.getSingleton().getStructuredMap());
+       //map.put("items", itemMap.getStructuredMap());
+        
+
+        //JsonWriter writer = new JsonWriter();
+        //writer.writeStructuredMap(map, "sneak.json");
+        
+
         controller.spawnUpdateThread();
         avatar.subscribe(layout.getCamera());
         LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
@@ -133,7 +152,7 @@ public class GameplayState extends GameState {
         super.onExit();
     }
 
-    public void addEntityTest() {
+    public void addEntityTest(StructuredMap map) {
     	
     	/*
         TileCoordinate loc = new TileCoordinate(3, 3);
@@ -158,7 +177,6 @@ public class GameplayState extends GameState {
         EntityManager.getSingleton().addNonPartyNpc(mount);
         */
     	
-    	StructuredMap map = JsonReader.readJson("filename.txt");
     	EntityManager.getSingleton().loadEntities(map);
     	Iterator<Entity> iterator = EntityManager.getSingleton().iterator();
     	while(iterator.hasNext()) {
@@ -166,8 +184,6 @@ public class GameplayState extends GameState {
     		EntityView view = entity.getEntityView();
     		view.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(entity.getLocation()), entity.getDirection());
     	}
-    	
-    	
     	
     	avatar = EntityManager.getSingleton().getAvatar();
     	getController().registerAvatar(avatar);
@@ -214,60 +230,77 @@ public class GameplayState extends GameState {
 		return itemMap;
 	}
 
-	private void addItemsTest() {
+	private void addItemsTest(StructuredMap map) {
+		/*
         TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
-        ItemView takeableItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(takeableItemViewPosition), new Decal("/images/items/two_handed_chainsaw.png"));
+        ItemView takeableItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(takeableItemViewPosition), new Decal("/images/items/two_handed_chainsaw.png", TileCoordinate.convertToRealCoordinate(takeableItemViewPosition)));
         takeableItemView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new TwoHandedWeapon(takeableItemView),
                 takeableItemViewPosition);
 
         TileCoordinate takeableItemViewPositionTwo = new TileCoordinate(5, 6);
-        ItemView takeableItemViewTwo = new BasicItemView(TileCoordinate.convertToRealCoordinate(takeableItemViewPositionTwo), new Decal("/images/items/key.png"));
+        ItemView takeableItemViewTwo = new BasicItemView(TileCoordinate.convertToRealCoordinate(takeableItemViewPositionTwo), new Decal("/images/items/key.png", TileCoordinate.convertToRealCoordinate(takeableItemViewPositionTwo)));
         takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView());
         TakeableItem takeableItemTwo = new TakeableItem(takeableItemViewTwo);
         this.getItemMap().addItem(takeableItemTwo, takeableItemViewPositionTwo);
 
         TileCoordinate doorItemViewPosition = new TileCoordinate(15, 14);
-        ItemView doorItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(doorItemViewPosition), new Decal("/images/slotImage.png"));
+        ItemView doorItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(doorItemViewPosition), new Decal("/images/slotImage.png", TileCoordinate.convertToRealCoordinate(doorItemViewPosition)));
         doorItemView.registerWithGameItemView(layout.getGameItemView());
         Door doorItem = new Door(doorItemView, takeableItemTwo);
         this.getItemMap().addItem(doorItem, doorItemViewPosition);
 
         TileCoordinate obstacleItemPosition = new TileCoordinate(9, 7);
-        ItemView obstacleItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(obstacleItemPosition), new Decal("/images/slotImage.png"));
+        ItemView obstacleItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(obstacleItemPosition), new Decal("/images/slotImage.png", TileCoordinate.convertToRealCoordinate(obstacleItemPosition)));
         obstacleItemView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new ObstacleItem(obstacleItemView), obstacleItemPosition);
 
         TileCoordinate oneshotItemPosition = new TileCoordinate(13, 9);
-        ItemView oneshotItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(oneshotItemPosition), new Decal("/images/items/book.png"));
+        ItemView oneshotItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(oneshotItemPosition), new Decal("/images/items/book.png", TileCoordinate.convertToRealCoordinate(oneshotItemPosition)));
         oneshotItemView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), oneshotItemPosition);
         
         TileCoordinate riverMarkerSpot = new TileCoordinate(13, 0);
-        ItemView riverMarker = new BasicItemView(TileCoordinate.convertToRealCoordinate(riverMarkerSpot), new Decal("/images/slotImage.png"));
+        ItemView riverMarker = new BasicItemView(TileCoordinate.convertToRealCoordinate(riverMarkerSpot), new Decal("/images/slotImage.png", TileCoordinate.convertToRealCoordinate(riverMarkerSpot)));
         riverMarker.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new ObstacleItem(riverMarker), riverMarkerSpot);
         
         TileCoordinate trapSpot = new TileCoordinate(15, 12);
-        ItemView trapView = new BasicItemView(TileCoordinate.convertToRealCoordinate(trapSpot), new Decal("/images/items/trap.png"));
+        ItemView trapView = new BasicItemView(TileCoordinate.convertToRealCoordinate(trapSpot), new Decal("/images/items/trap.png", TileCoordinate.convertToRealCoordinate(trapSpot)));
         trapView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new Trap(trapView), trapSpot);
+*/
         
+      
+		itemMap.loadItems(map);
+		
+		List<Item> items = itemMap.getItems();
+		for(Item item : items) {
+			if(item != null) {
+				if(item.getView() != null ) {
+					item.getView().registerWithGameItemView(layout.getGameItemView());
+				}
+			}
+		}
+		
+	/*
         TileCoordinate healthpackspot = new TileCoordinate(16,16);
         ItemView hView = new BasicItemView(TileCoordinate.convertToRealCoordinate(healthpackspot),
-				new Decal("/images/items/healthpack.png"));
+				new Decal("/images/items/healthpack.png", TileCoordinate.convertToRealCoordinate(healthpackspot)));
         hView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new HPPotion(hView, new Price(10), 1000),healthpackspot);
+        */
 
     }
 
-    private void addTriggersTest() {
+    private void addTriggersTest(StructuredMap map) {
+    	
         TriggerManager triggerManager = TriggerManager.getSingleton();
 
         TileCoordinate locOne = new TileCoordinate(5, 5);
         Area areaOne = new RadialArea(1, locOne);
         ViewableTrigger triggerOne = new ViewableTrigger(new PermanentTrigger(areaOne, new ManaModifierEvent(2, -1)), 
-        		new Decal("/images/items/skull_and_crossbones.png"));
+        		new Decal("/images/items/skull_and_crossbones.png", TileCoordinate.convertToRealCoordinate(locOne)));
         triggerManager.registerViewableTrigger(triggerOne);
 
         TileCoordinate locTwo = new TileCoordinate(2, 7);
@@ -288,10 +321,9 @@ public class GameplayState extends GameState {
         triggerManager.addNonPartyTrigger(triggerTwo);
         triggerManager.addNonPartyTrigger(triggerThree);
         triggerManager.addNonPartyTrigger(triggerFour);
+        
+    	//TriggerManager.getSingleton().loadTriggers(map);
 
-    }
-    public void addTilesTest() {
-       gameMap = MapLoader.loadMap("maps/main_map.json", layout); 
     }
 
     @Override

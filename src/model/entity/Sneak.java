@@ -14,6 +14,23 @@ import view.entity.EntityView;
 
 public class Sneak extends Avatar {
 	private SneakSkillManager skillManager;
+	private boolean isSurpriseAttack = false;
+	
+	public void setSurpriseAttackOn() {
+		isSurpriseAttack = true;
+	}
+	public void setSurpriseAttackOff() {
+		isSurpriseAttack = false;
+	}
+	
+	@Override
+	public void attackInFront(int damage){
+		if(isSurpriseAttack){
+			damage*=10;
+			isSurpriseAttack = false;
+		}
+		super.attackInFront(damage);
+	}
 
 	public Sneak() {
 		this("Sneak", new EntityView(EntitySpriteFactory.getSneakerSpriteHolder()), new TileCoordinate(1, 1));
@@ -33,7 +50,7 @@ public class Sneak extends Avatar {
 	
 	@Override
 	protected void generateSkills(){
-		this.getAbilities().add(new Creep(this.getSkillManager()));
+		this.getAbilities().add(new Creep(this.getSkillManager(),this));
 		this.getAbilities().add(new DetectTrap(this.getSkillManager()));
 		this.getAbilities().add(new PickPocket(this.getSkillManager()));
 		this.getAbilities().add(new Ranged(this.getSkillManager()));

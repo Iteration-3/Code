@@ -125,7 +125,7 @@ public class EventSavingTest {
 	
 	@Test
 	public void testRiverPushEvent() {
-		Event event = new RiverPushEvent(new GameActionRiverPush(new Summoner(), new GameMap(), new ItemMap(), Direction.UP));
+		Event event = new RiverPushEvent(new GameActionRiverPush(new Summoner(), new GameMap(), ItemMap.getInstance(), Direction.UP));
 		StructuredMap map = event.getStructuredMap();
 		
 		System.out.println(map.getJson());

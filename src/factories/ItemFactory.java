@@ -10,6 +10,10 @@ import utilities.structuredmap.StructuredMap;
 public class ItemFactory {
 
 	public static Item createItem(StructuredMap structuredMap) {
+		if(structuredMap == null || structuredMap.getString("type") == null) {
+			return null;
+		}
+		
 		switch (structuredMap.getString("type")) {
 		case "trap":
 			return new Trap(structuredMap);

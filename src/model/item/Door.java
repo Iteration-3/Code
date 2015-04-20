@@ -57,8 +57,9 @@ public class Door extends Item {
 
     @Override
     public StructuredMap getStructuredMap() {
-        StructuredMap map = new StructuredMap();
+        StructuredMap map = super.getStructuredMap();
         map.put("requirement", requirement.getStructuredMap());
+        System.out.println(map.getJson());
         return map;
     }
 

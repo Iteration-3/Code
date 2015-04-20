@@ -22,6 +22,7 @@ public abstract class ItemView implements Saveable, Renderable {
 	
 	public ItemView(StructuredMap map) {
 		this.onMap = map.getBoolean("onMap");
+		this.position = new RealCoordinate(map.getStructuredMap("position"));
 	}
 
 	public void registerWithGameItemView(GameItemView gv) {
@@ -42,6 +43,7 @@ public abstract class ItemView implements Saveable, Renderable {
 		StructuredMap map = new StructuredMap();
 		map.put("onMap", onMap);
 		map.put("type", getType());
+		map.put("position", position.getStructuredMap());
 		return map;
 	}
 	

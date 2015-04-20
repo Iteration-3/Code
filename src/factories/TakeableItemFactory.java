@@ -10,7 +10,6 @@ public class TakeableItemFactory {
 		if (map == null) {
 			return null;
 		}
-
 		switch (map.getString("type")) {
 		case "consumeable":
 			return createConsumeable(map);
@@ -18,6 +17,8 @@ public class TakeableItemFactory {
 			return new HPPotion(map);
 		case "noItem":
 			return null;
+		case "takeable" :
+			return new TakeableItem(map);
 		default:
 			return EquipableItemFactory.createItem(map);
 		}

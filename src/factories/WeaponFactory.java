@@ -20,8 +20,9 @@ public class WeaponFactory {
 			return new SummonerWeapon(structuredMap);
 		case "npc" :
 			return new NPCWeapon(structuredMap);
+
 		default:
-			throw new IllegalArgumentException("Fuck you");
+			return null;
 		}
 	}
 	
