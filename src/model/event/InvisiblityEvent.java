@@ -1,11 +1,13 @@
 package model.event;
 
+import model.entity.Sneak;
 import utilities.structuredmap.StructuredMap;
 
 public class InvisiblityEvent extends Event{
-	
-	public InvisiblityEvent(double duration) {
+	private Sneak sneak;
+	public InvisiblityEvent(double duration, Sneak sneak) {
 		super(duration);
+		this.sneak = sneak;
 	}
 
 	public InvisiblityEvent(StructuredMap structuredMap) {
@@ -22,6 +24,7 @@ public class InvisiblityEvent extends Event{
 			//When clear to refactor eView, change to like, ...visibility(false);
 			if(!this.getTarget().getEntityView().getHidden()){
 				this.getTarget().getEntityView().toggle();
+				sneak.setSurpriseAttackOn();
 			}
 		}
 	}
@@ -32,13 +35,14 @@ public class InvisiblityEvent extends Event{
 			//When clear to refactor eView, change to like, ...visibility(true);
 			if(this.getTarget().getEntityView().getHidden()){
 				this.getTarget().getEntityView().toggle();
+				sneak.setSurpriseAttackOff();
 			}
 		}		
 	}
 
 	@Override
 	public InvisiblityEvent clone() {
-		InvisiblityEvent clone =  new InvisiblityEvent(this.getDuration());
+		InvisiblityEvent clone =  new InvisiblityEvent(this.getDuration(),sneak);
 		clone.setTarget(this.getTarget());
 		return clone;
 	}
