@@ -3,15 +3,15 @@ package model.states.gamestates;
 import controller.barter.BarterMenuController;
 import view.layout.BarterMenuLayout;
 import model.entity.Avatar;
-import model.entity.NPC;
+import model.entity.Entity;
 
 public class BarterState extends GameState {
 	private BarterMenuLayout layout;
 	private BarterMenuController controller;
-	private NPC npc;
+	private Entity npc;
 	private Avatar avatar;
 	
-	public BarterState(NPC npc, Avatar avatar) {
+	public BarterState(Entity npc, Avatar avatar) {
 		setLayout(new BarterMenuLayout(npc.getInventoryView(), avatar.getInventoryView()));
 		setNPC(npc);
 		setAvatar(avatar);
@@ -34,11 +34,11 @@ public class BarterState extends GameState {
 		return controller;
 	}
 
-	private NPC getNPC() {
+	private Entity getNPC() {
 		return npc;
 	}
 
-	private void setNPC(NPC npc) {
+	private void setNPC(Entity npc) {
 		this.npc = npc;
 	}
 

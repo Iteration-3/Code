@@ -10,6 +10,7 @@ import model.ability.Ability;
 import model.ability.BindWounds;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
+import model.entity.behavior.npc.Behaviorable;
 import model.light.LightManager;
 import model.light.MovingLightSource;
 import model.skillmanager.SkillManager;
@@ -117,6 +118,15 @@ public abstract class Avatar extends Entity {
 	
 	protected Collection<Ability> getAbilities(){
 		return abilities;
+	}
+	
+	public void accept(EntiyVisitorable visitor){
+		visitor.accept(this);
+	}
+	
+	protected Behaviorable getBehavior(){
+		//there is none now
+		return null;
 	}
 	
 }

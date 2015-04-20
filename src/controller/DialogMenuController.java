@@ -6,25 +6,32 @@ import java.util.Iterator;
 
 import model.Model;
 import model.entity.Avatar;
-import model.entity.NPC;
+import model.entity.Entity;
 import model.entity.dialog.DialogEntry;
+import model.entity.dialog.DialogTree;
 import controller.listener.ToggleAction;
 
 public class DialogMenuController extends Controller {
 	private ArrayList<ToggleAction> toggleActions;
 	private Model model;
-	private NPC npc;
+	private Entity npc;
 	private Avatar avatar;
+	private DialogTree dialogTree;
 
-	public DialogMenuController(Model model, NPC npc, Avatar avatar) {
+	public DialogMenuController(Model model, Entity npc, Avatar avatar,DialogTree dialogTree) {
 		setModel(model);
 		setNPC(npc);
 		setAvatar(avatar);
+		setDialogTree(dialogTree);
 		initActions();
 	}
 	
+	private void setDialogTree(DialogTree dialogTree) {
+		this.dialogTree = dialogTree;
+	}
+
 	public ToggleAction getActionListener(DialogEntry dialogEntry) {
-		Collection<DialogEntry> dialogEntries = getNPC().getDialogTree().getDialogEntries();
+		Collection<DialogEntry> dialogEntries = this.dialogTree.getDialogEntries();
 		int i = 0;
 		for (DialogEntry d : dialogEntries) {
 			if (d.equals(dialogEntry)) {
@@ -45,7 +52,7 @@ public class DialogMenuController extends Controller {
 	@SuppressWarnings("serial")
 	private void initActions() {
 		Collection<DialogEntry> dialogEntries =
-				this.getNPC().getDialogTree().getDialogEntries();
+				this.dialogTree.getDialogEntries();
 		this.toggleActions = new ArrayList<ToggleAction>(dialogEntries.size());
 		Iterator<DialogEntry> entryIterator = dialogEntries.iterator();
 		while (entryIterator.hasNext()) {
@@ -67,11 +74,11 @@ public class DialogMenuController extends Controller {
 		return this.model;
 	}
 	
-	private void setNPC(NPC npc) {
+	private void setNPC(Entity npc) {
 		this.npc = npc;
 	}
 	
-	private NPC getNPC() {
+	private Entity getNPC() {
 		return this.npc;
 	}
 	

@@ -6,7 +6,7 @@ import controller.Controller;
 import controller.listener.ToggleAction;
 import model.Model;
 import model.entity.Avatar;
-import model.entity.NPC;
+import model.entity.Entity;
 
 public final class BarterMenuController extends Controller {
 	private Model model;
@@ -14,7 +14,7 @@ public final class BarterMenuController extends Controller {
 	private BarterBuyingController barterBuyingController;
 	private ToggleAction exitGameAction;
 	
-	public BarterMenuController(Model model, NPC npc, Avatar avatar) {
+	public BarterMenuController(Model model, Entity npc, Avatar avatar) {
 		setModel(model);
 		setBarterSellingController(new BarterSellingController(npc, avatar));
 		setBarterBuyingController(new BarterBuyingController(npc, avatar));
