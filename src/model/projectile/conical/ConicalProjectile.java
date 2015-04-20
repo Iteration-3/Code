@@ -4,11 +4,12 @@ import model.area.GrowingArea;
 import model.area.TileCoordinate;
 import model.event.Event;
 import model.projectile.Projectile;
-import model.trigger.Trigger;
 import utilities.Direction;
 
 public class ConicalProjectile extends Projectile {
 
+	private boolean isSafe;
+	
 	public ConicalProjectile(TileCoordinate location, Direction direction, GrowingArea garea, Event event, double speed) {
 		super(location, direction, garea, event, speed);
 	}
@@ -19,12 +20,17 @@ public class ConicalProjectile extends Projectile {
 		if (!isTimedOut() && garea.canGrow()) {
 			garea.grow();
 			timeOutProjectile();
-			//notifySubscribers();
+			notifySubscribers();
+		}
+		if (isTimedOut() && !garea.canGrow()) {
+			garea.grow();
+			//notifySubscribers(); // dispose handles this
+			isSafe = true;
 		}
 	}
 
 	@Override
 	public boolean hasExpired() {
-		return getTrigger().hasExpired() || (!((GrowingArea) getTrigger().getArea()).canGrow() && isTimedOut());
+		return getTrigger().hasExpired() || (!((GrowingArea) getTrigger().getArea()).canGrow() && isSafe && isTimedOut());
 	}
 }

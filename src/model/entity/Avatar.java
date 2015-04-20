@@ -14,7 +14,7 @@ import model.entity.behavior.npc.AvatarBehavior;
 import model.entity.behavior.npc.Behaviorable;
 import model.item.TakeableItem;
 import model.light.LightManager;
-import model.light.MovingLightSource;
+import model.light.MovingStaticLightSource;
 import model.skillmanager.SkillManager;
 import utilities.Direction;
 import utilities.structuredmap.StructuredMap;
@@ -28,7 +28,7 @@ public abstract class Avatar extends Entity {
 	public Avatar(String name, EntityView view, TileCoordinate loc) {
 		super(name, view, loc, new AvatarBehavior());
 		//Make light manager track all avatars movement
-		MovingLightSource avatarLight = new MovingLightSource(new RadialArea(5, loc), 255, this);
+		MovingStaticLightSource avatarLight = new MovingStaticLightSource(new RadialArea(5, loc), 255, this);
 		LightManager.getSingleton().addLightSource(avatarLight);
 		setLocation(loc);
 		//LightManager.getLightManager().getLightMap().trackMovement(this);
@@ -38,7 +38,7 @@ public abstract class Avatar extends Entity {
 	public Avatar(StructuredMap map) {
 		super(map);
 		//hack?
-		MovingLightSource avatarLight = new MovingLightSource(new RadialArea(5, getLocation()), 255, this);
+		MovingStaticLightSource avatarLight = new MovingStaticLightSource(new RadialArea(5, getLocation()), 255, this);
 		LightManager.getSingleton().addLightSource(avatarLight);
 	}
 	
