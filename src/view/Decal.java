@@ -51,7 +51,10 @@ public class Decal implements Saveable, Renderable {
 	@Override
 	public void render(Graphics graphics, ViewTransform transform) {
 		ScreenCoordinate coordinate = transform.getTranslatedPosition(position);
-		graphics.drawImage(image, (int)coordinate.getX() - (int) transform.getTileWidth() / 2, (int)coordinate.getY() - (int)transform.getTileHeight() / 2, (int)transform.getTileWidth(), (int)transform.getTileWidth(), null);
+		int itemSize = (int) (transform.getTileHeight() * .8);
+		graphics.drawImage(image, (int)coordinate.getX() - itemSize / 2, 
+				(int)coordinate.getY() - itemSize / 2, 
+				itemSize, itemSize, null);
 
 	}
 }
