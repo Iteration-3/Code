@@ -2,10 +2,14 @@ package model.projectile;
 
 import java.awt.Color;
 
+import model.area.Area;
+import model.area.RadialArea;
 import model.area.TileCoordinate;
+import model.event.Event;
 import model.light.LightManager;
 import model.light.MovingLightSource;
 import model.observers.MobileObject;
+import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
@@ -20,15 +24,15 @@ public class Projectile extends MobileObject implements Cloneable {
 	public ProjectileView projView;
 	private MovingLightSource mlb;
 	
-	public Projectile(TileCoordinate location, Angle direction, Trigger trigger, double speed) {
+	public Projectile(TileCoordinate location, Angle direction, Area area, Event event, double speed) {
 		super(location);
 		setDirectionNoNotify(direction);
 		this.speed = speed;
-		this.trigger = trigger;
-		this.trigger.getArea().setStartLocation(location);
-		this.trigger.getArea().setDirection(direction);
-		this.projView = new BasicProjectileView(trigger.getArea(), new Color(255, 0, 0, 140));
-		this.mlb = new MovingLightSource(trigger.getArea(), 255, this);
+		this.trigger = new SingleUseTrigger(area, event);
+		area.setStartLocation(location);
+		area.setDirection(direction);
+		this.projView = new BasicProjectileView(area, new Color(255, 0, 0, 140));
+		this.mlb = new MovingLightSource(area, 255, this);
 	}
 	
 	public void move(TileCoordinate location) {
@@ -43,13 +47,13 @@ public class Projectile extends MobileObject implements Cloneable {
 	}
 	
 	public void placeOnMap() {
-		LightManager.getSingleton().addLightSource(mlb);
+		//LightManager.getSingleton().addLightSource(mlb);
 		TriggerManager.getSingleton().addPartyTrigger(trigger);
 		ProjectileManager.getSingleton().enqueueProjectile(this);
 	}
 	
 	public void dispose() {
-		LightManager.getSingleton().removeLightSource(mlb);
+		//LightManager.getSingleton().removeLightSource(mlb);
 		TriggerManager.getSingleton().removeTrigger(trigger);
 		projView.dispose();
 	}
@@ -58,11 +62,11 @@ public class Projectile extends MobileObject implements Cloneable {
 		return trigger.hasExpired();
 	}
 
-	private void timeOutProjectile() {
+	protected void timeOutProjectile() {
 		this.timeout = (long) (System.currentTimeMillis());
 	}
 
-	private boolean isTimedOut() {
+	protected boolean isTimedOut() {
 		return (System.currentTimeMillis()-timeout) < 1000.0/speed;
 	}
 
