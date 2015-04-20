@@ -62,7 +62,9 @@ public abstract class Area implements Saveable {
     }
     
     public List<TileCoordinate> getPrevCoveredLocations() {
-    	return prevCovered;
+    	List<TileCoordinate> prev = prevCovered;
+    	prevCovered = null;
+    	return prev;
     }
 
     public int getRadius() {
