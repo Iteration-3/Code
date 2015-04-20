@@ -51,6 +51,7 @@ public class Mount extends NPC {
 		if (this.rider != null) {
 			this.rider.toggleView();
 			this.rider = null;
+			this.push(new MountBehavior());
 		}
 	}
 

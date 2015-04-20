@@ -71,9 +71,7 @@ public class NPC extends Entity {
 			this.getEntityView().turnOffHealthBar();
 			this.getEntityView().turnOffManaBar();
 		}
-		
 	}
-	
 	
 	@Override
 	public String getType() {
