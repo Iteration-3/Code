@@ -166,6 +166,7 @@ public class GameplayState extends GameState {
     		EntityView view = entity.getEntityView();
     		view.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(entity.getLocation()), entity.getDirection());
     	}
+    	
     	avatar = EntityManager.getSingleton().getAvatar();
     	getController().registerAvatar(avatar);
     	

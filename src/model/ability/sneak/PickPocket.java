@@ -39,7 +39,7 @@ public class PickPocket extends Ability {
 					TakeableItem randomItem = null;
 					for (int i = 0; i < items.length; ++i) {
 						if (items[i] != null) {
-							if (--randomCount == 0) {
+							if (randomCount-- == 0) {
 								randomItem = items[i];
 								break;
 							}
@@ -50,7 +50,9 @@ public class PickPocket extends Ability {
 				}
 			} else {
 				Entity entity = EntityManager.getSingleton().getEntityAtLocation(avatar.nextLocation());
-				entity.push(new TrooperBehavior());
+				if (entity != null) {
+					entity.push(new TrooperBehavior());
+				}
 			}
 		}
 	}
