@@ -24,21 +24,21 @@ public class CharacterSelectionController extends Controller {
         chooseSmasherAction = new ToggleAction() {
             @Override
             public void action() {
-                model.switchState(new GameplayState(new Smasher()));
+                model.switchState(new GameplayState("smasher.json", new Smasher()));
             }
         };
 
         chooseSummonerAction = new ToggleAction() {
             @Override
             public void action() {
-                model.switchState(new GameplayState(new Summoner()));
+                model.switchState(new GameplayState("summoner.json", new Summoner()));
             }
         };
 
         chooseSneakAction = new ToggleAction() {
             @Override
             public void action() {
-                model.switchState(new GameplayState(new Sneak()));
+                model.switchState(new GameplayState("sneak.json", new Sneak()));
             }
         };
 

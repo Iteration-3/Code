@@ -2,6 +2,7 @@ package model.states.gamestates;
 
 
 
+import factories.EntityFactory;
 import gameactions.GameActionGhostMovement;
 import gameactions.GameActionRiverPush;
 import gameactions.GameActionStatePush;
@@ -22,12 +23,22 @@ import model.entity.Avatar;
 import model.entity.Entity;
 import model.entity.EntityManager;
 import model.entity.EntityMovementAssocation;
+import model.entity.Mount;
+import model.entity.NPC;
 import model.event.EventManager;
 import model.event.ExperienceModifierEvent;
 import model.event.ManaModifierEvent;
 import model.event.RiverPushEvent;
 import model.event.TeleportEvent;
+import model.item.Door;
+import model.item.HPPotion;
 import model.item.Item;
+import model.item.ObstacleItem;
+import model.item.OneShotItem;
+import model.item.Price;
+import model.item.TakeableItem;
+import model.item.Trap;
+import model.item.TwoHandedWeapon;
 import model.light.LightManager;
 import model.map.GameMap;
 import model.map.ItemMap;
@@ -36,6 +47,7 @@ import model.map.tile.ImpassableTile;
 import model.map.tile.PassableTile;
 import model.projectile.Projectile;
 import model.projectile.ProjectileManager;
+import model.statistics.EntityStatistics;
 import model.trigger.PermanentTrigger;
 import model.trigger.RateLimitedTrigger;
 import model.trigger.SingleUseTrigger;
@@ -43,9 +55,13 @@ import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Direction;
 import utilities.structuredmap.JsonReader;
+import utilities.structuredmap.JsonWriter;
 import utilities.structuredmap.StructuredMap;
 import view.Decal;
+import view.entity.EntitySpriteFactory;
 import view.entity.EntityView;
+import view.item.BasicItemView;
+import view.item.ItemView;
 import view.layout.GameplayLayout;
 import view.map.BasicTileView;
 import view.map.TileView;
@@ -61,11 +77,13 @@ public class GameplayState extends GameState {
     private GameMap gameMap;
     private ItemMap itemMap;
     private Avatar avatar;
+    private String filePath;
 
-    public GameplayState(Avatar avatar) {
+    public GameplayState(String filePath, Avatar avatar) {
         layout = new GameplayLayout();
         gameMap = new GameMap();
         itemMap = ItemMap.getInstance();
+        this.filePath = filePath;
         this.avatar = avatar;
     }
 
@@ -100,20 +118,20 @@ public class GameplayState extends GameState {
         // Which is needed for other stuff.
         super.onEnter();
         controller = new GameplayController(this);
-        StructuredMap map = JsonReader.readJson("test.txt");
+        StructuredMap map = JsonReader.readJson(filePath);
         
         addTilesTest();
         addEntityTest(map.getStructuredMap("entites"));
         addItemsTest(map.getStructuredMap("items"));
         addTriggersTest(map.getStructuredMap("triggers"));
         
-       // StructuredMap map = new StructuredMap();
-       // map.put("entites", EntityManager.getSingleton().getStructuredMap());
+       //StructuredMap map = new StructuredMap();
+       //map.put("entites", EntityManager.getSingleton().getStructuredMap());
        //map.put("items", itemMap.getStructuredMap());
         
 
         //JsonWriter writer = new JsonWriter();
-        //writer.writeStructuredMap(map, "test.txt");
+        //writer.writeStructuredMap(map, "sneak.json");
         
 
         controller.spawnUpdateThread();
@@ -168,7 +186,6 @@ public class GameplayState extends GameState {
         EntityManager.getSingleton().addNonPartyNpc(mount);
         */
     	
-    	//StructuredMap map = JsonReader.readJson("filename.txt");
     	EntityManager.getSingleton().loadEntities(map);
     	Iterator<Entity> iterator = EntityManager.getSingleton().iterator();
     	while(iterator.hasNext()) {
@@ -281,7 +298,8 @@ public class GameplayState extends GameState {
 				new Decal("/images/items/healthpack.png", TileCoordinate.convertToRealCoordinate(healthpackspot)));
         hView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new HPPotion(hView, new Price(10), 1000),healthpackspot);
-*/
+        */
+
     }
 
     private void addTriggersTest(StructuredMap map) {
