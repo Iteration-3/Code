@@ -18,9 +18,9 @@ import model.statistics.Statistics;
 import utilities.Direction;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
-import view.EntityView;
 import view.EquipmentView;
 import view.InventoryView;
+import view.entity.EntityView;
 import controller.listener.Listener;
 
 public abstract class Entity extends MobileObject implements Saveable {
@@ -40,16 +40,6 @@ public abstract class Entity extends MobileObject implements Saveable {
     	this.setBehavior();
     }
 
-    public Entity(String name, EntityView view, TileCoordinate location) {
-    	super(location);
-        this.name = name;
-        this.view = view;
-        setLocation(location);
-        this.setNecessities();
-        setDirection(Direction.UP);
-        this.setBehavior();
-    }
-
     public Entity(String name, EntityView view, TileCoordinate location, Behaviorable behavior) {
     	super(location);
         this.name = name;
@@ -57,7 +47,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         setLocation(location);
         this.setNecessities();
         setDirection(Direction.UP);
-        this.setBehavior();
+        this.setBehavior(behavior);
     }
     
     public Entity(StructuredMap map) {
@@ -92,6 +82,11 @@ public abstract class Entity extends MobileObject implements Saveable {
         return map;
     }
     
+    private void setBehavior(Behaviorable behavior){
+        this.state = new StateMachine(this);
+        this.state.push(behavior);
+    }
+
     private void setBehavior(){
         this.state = new StateMachine(this);
         this.state.push(this.getBehavior());
@@ -111,6 +106,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     }
     
     public void interact(Entity entity){
+    	System.out.println("interacting " + this+"   " + entity);
     	this.state.interact(entity);
     }
     
@@ -174,7 +170,7 @@ public abstract class Entity extends MobileObject implements Saveable {
      * If no entity to attack, does nada.
      * @param damage
      */
-    protected void attackInFront(int damage){
+    public void attackInFront(int damage){
     	TileCoordinate targetSpot = this.nextLocation(this.getDirection());
     	Entity target = EntityManager.getSingleton().getEntityAtLocation(targetSpot);
     	System.out.println(target);
@@ -433,6 +429,10 @@ public abstract class Entity extends MobileObject implements Saveable {
 	
 	protected boolean isInCombat() {
 		return (this.getHasBeenAttacked() || this.getAttacking());
+	}
+	
+	public boolean outOfLives(){
+		return this.getDerivedStats().outOfLives();
 	}
 
 }

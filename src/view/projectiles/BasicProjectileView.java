@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import model.area.Area;
-import view.tiles.components.Hexagon;
+import view.map.components.Hexagon;
 
 public class BasicProjectileView extends ProjectileView {
 

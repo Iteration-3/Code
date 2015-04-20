@@ -6,7 +6,6 @@ import model.area.RealCoordinate;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 import view.Renderable;
-import view.map.GameItemView;
 
 public abstract class ItemView implements Saveable, Renderable {
 	private GameItemView container;

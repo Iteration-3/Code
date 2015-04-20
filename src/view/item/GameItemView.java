@@ -1,15 +1,11 @@
-package view.map;
+package view.item;
 
 import java.awt.Graphics;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import model.area.RealCoordinate;
-import utilities.ScreenCoordinate;
 import view.Renderable;
 import view.ViewTransform;
-import view.item.ItemView;
 
 public class GameItemView implements Renderable {
 	private List<ItemView> itemViews = new CopyOnWriteArrayList<ItemView>();

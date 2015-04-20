@@ -61,7 +61,6 @@ class JsonScanner {
 	private static String getTokenizationString() {
 		StringJoiner joiner = new StringJoiner(")|(");
 		
-		joiner.add(INTEGER_REGEX);
 		joiner.add(DOUBLE_REGEX);
 		joiner.add(STRING_REGEX);
 		

@@ -46,6 +46,7 @@ public class Barter implements InteractableBehaviorState {
 
 	@Override
 	public void accept(Avatar avatar) {
+		System.out.println("enteracting with the avatar");
 		DialogManager.getSingleton().initDialog(this.barter, avatar, this.dialogTree);
 	}
 	

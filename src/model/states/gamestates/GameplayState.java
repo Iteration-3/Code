@@ -1,5 +1,10 @@
 package model.states.gamestates;
 
+import factories.EntityFactory;
+import gameactions.GameActionRiverPush;
+import gameactions.GameActionStatePush;
+import gameactions.GameActionTeleport;
+
 import java.awt.Color;
 import java.util.Collection;
 
@@ -42,8 +47,8 @@ import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Direction;
 import view.Decal;
-import view.EntitySpriteFactory;
-import view.EntityView;
+import view.entity.EntitySpriteFactory;
+import view.entity.EntityView;
 import view.item.BasicItemView;
 import view.item.ItemView;
 import view.layout.GameplayLayout;
@@ -84,6 +89,13 @@ public class GameplayState extends GameState {
 			poll.projView.registerWithGameProjectileView(layout
 					.getGameProjectileView());
 		}
+		//Check if the avatar is dead, if so, push mainmenu state.
+		if(EntityManager.getSingleton().getAvatar().outOfLives()){
+			//Maybe wrap this in an object, and hand it to the avatar to call when it dies?
+			//Upon it being made?
+			this.getContext().popState();
+
+		}
 	}
     
     @Override
@@ -101,6 +113,7 @@ public class GameplayState extends GameState {
         addTriggersTest();
         controller.spawnUpdateThread();
         avatar.subscribe(layout.getCamera());
+        LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
     }
 
     @Override

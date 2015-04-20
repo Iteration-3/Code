@@ -5,7 +5,7 @@ import model.entity.behavior.npc.Behaviorable;
 import model.entity.behavior.npc.MountBehavior;
 import utilities.Direction;
 import utilities.structuredmap.StructuredMap;
-import view.EntityView;
+import view.entity.EntityView;
 
 public class Mount extends NPC {
 	private Avatar rider;

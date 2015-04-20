@@ -1,4 +1,4 @@
-package view;
+package view.entity;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import utilities.Direction;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import view.Sprite;
 
 public abstract class AbstractEntitySpriteHolder implements Saveable {
 	

@@ -9,8 +9,8 @@ import model.area.TileCoordinate;
 import model.skillmanager.SneakSkillManager;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
-import view.EntitySpriteFactory;
-import view.EntityView;
+import view.entity.EntitySpriteFactory;
+import view.entity.EntityView;
 
 public class Sneak extends Avatar {
 	private SneakSkillManager skillManager;

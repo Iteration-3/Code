@@ -5,8 +5,8 @@ import model.area.TileCoordinate;
 import model.skillmanager.SmasherSkillManager;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
-import view.EntitySpriteFactory;
-import view.EntityView;
+import view.entity.EntitySpriteFactory;
+import view.entity.EntityView;
 
 public class Smasher extends Avatar {
 	private SmasherSkillManager skillManager;

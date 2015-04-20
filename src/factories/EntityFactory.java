@@ -12,7 +12,7 @@ import model.entity.behavior.npc.Behaviorable;
 import model.entity.behavior.npc.PetBehavior;
 import model.entity.behavior.npc.TrooperBehavior;
 import utilities.structuredmap.StructuredMap;
-import view.EntityView;
+import view.entity.EntityView;
 
 public class EntityFactory {
 
@@ -53,6 +53,7 @@ public class EntityFactory {
 
 	public static NPC createBarter(String name, EntityView view, TileCoordinate location){
 		NPC entity = new NPC(name, "barter", view , location ,new BarterBehavior());
+		System.out.println(entity + " this is the barter ");
 		return entity;
 	}
 	public static NPC createLightTrooper(String name, EntityView view, TileCoordinate location){

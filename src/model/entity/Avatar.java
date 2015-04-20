@@ -5,18 +5,21 @@ import gameactions.GameAction;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.swing.KeyStroke;
+
 import model.KeyPreferences;
 import model.ability.Ability;
 import model.ability.BindWounds;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
+import model.entity.behavior.npc.AvatarBehavior;
 import model.entity.behavior.npc.Behaviorable;
 import model.light.LightManager;
 import model.light.MovingLightSource;
 import model.skillmanager.SkillManager;
 import utilities.Direction;
 import utilities.structuredmap.StructuredMap;
-import view.EntityView;
+import view.entity.EntityView;
 import controller.listener.Listener;
 import controller.listener.PollingListener;
 
@@ -24,7 +27,7 @@ public abstract class Avatar extends Entity {
 	private Collection<Ability> abilities = new ArrayList<Ability>();
 	
 	public Avatar(String name, EntityView view, TileCoordinate loc) {
-		super(name, view, loc);
+		super(name, view, loc, new AvatarBehavior());
 		//Make light manager track all avatars movement
 		MovingLightSource avatarLight = new MovingLightSource(new RadialArea(5, loc), 255, this);
 		LightManager.getSingleton().addLightSource(avatarLight);
@@ -85,6 +88,14 @@ public abstract class Avatar extends Entity {
 				//Same for defending.
 				System.out.println("attack");
 				Avatar.this.attackInFront(-Avatar.this.getDerivedStats().getOffensiveRating()*10);
+				
+			}
+		}));
+		listeners.add(new PollingListener(preferences.getSuicideKey(), new GameAction() {
+			
+			@Override
+			public void perform() {
+				Avatar.this.attackEntity(Avatar.this, -500);
 				
 			}
 		}));
@@ -156,8 +167,7 @@ public abstract class Avatar extends Entity {
 	
 	@Override
 	protected Behaviorable getBehavior(){
-		//there is none now
-		return null;
+		return new AvatarBehavior();
 	}
 	
 }
