@@ -3,6 +3,7 @@ package model.states.gamestates;
 import java.awt.Color;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import model.KeyPreferences;
 import model.area.Area;
@@ -22,6 +23,7 @@ import model.event.RiverPushEvent;
 import model.event.TeleportEvent;
 import model.item.Door;
 import model.item.Helmet;
+import model.item.Item;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
 import model.item.TakeableItem;
@@ -43,11 +45,9 @@ import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Direction;
-
 import utilities.structuredmap.JsonReader;
 import utilities.structuredmap.JsonWriter;
 import utilities.structuredmap.StructuredMap;
-
 import view.Decal;
 import view.entity.EntitySpriteFactory;
 import view.entity.EntityView;
@@ -74,7 +74,7 @@ public class GameplayState extends GameState {
     public GameplayState(Avatar avatar) {
         layout = new GameplayLayout();
         gameMap = new GameMap();
-        itemMap = new ItemMap();
+        itemMap = ItemMap.getInstance();
         this.avatar = avatar;
     }
 
@@ -109,13 +109,19 @@ public class GameplayState extends GameState {
         // Which is needed for other stuff.
         super.onEnter();
         controller = new GameplayController(this);
+        StructuredMap map = JsonReader.readJson("test.txt");
+        
         addTilesTest();
-        addEntityTest();
-        addItemsTest();
-        addTriggersTest();
+        addEntityTest(map.getStructuredMap("entites"));
+        addItemsTest(map.getStructuredMap("items"));
+        addTriggersTest(map.getStructuredMap("triggers"));
+        
+        //StructuredMap map = new StructuredMap();
+        //map.put("entites", EntityManager.getSingleton().getStructuredMap());
+       //map.put("items", itemMap.getStructuredMap());
         
         //JsonWriter writer = new JsonWriter();
-       //writer.writeStructuredMap(EntityManager.getSingleton().getStructuredMap(), "filename.txt");
+        //writer.writeStructuredMap(map, "test.txt");
         
         controller.spawnUpdateThread();
         avatar.subscribe(layout.getCamera());
@@ -144,7 +150,7 @@ public class GameplayState extends GameState {
         super.onExit();
     }
 
-    public void addEntityTest() {
+    public void addEntityTest(StructuredMap map) {
     	
     	/*
         TileCoordinate loc = new TileCoordinate(3, 3);
@@ -169,7 +175,7 @@ public class GameplayState extends GameState {
         EntityManager.getSingleton().addNonPartyNpc(mount);
         */
     	
-    	StructuredMap map = JsonReader.readJson("filename.txt");
+    	//StructuredMap map = JsonReader.readJson("filename.txt");
     	EntityManager.getSingleton().loadEntities(map);
     	Iterator<Entity> iterator = EntityManager.getSingleton().iterator();
     	while(iterator.hasNext()) {
@@ -214,7 +220,8 @@ public class GameplayState extends GameState {
 		return itemMap;
 	}
 
-	private void addItemsTest() {
+	private void addItemsTest(StructuredMap map) {
+		/*
         TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
         ItemView takeableItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(takeableItemViewPosition), new Decal("/images/items/two_handed_chainsaw.png"));
         takeableItemView.registerWithGameItemView(layout.getGameItemView());
@@ -252,10 +259,25 @@ public class GameplayState extends GameState {
         ItemView trapView = new BasicItemView(TileCoordinate.convertToRealCoordinate(trapSpot), new Decal("/images/items/trap.png"));
         trapView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new Trap(trapView), trapSpot);
-
+        */
+        
+		itemMap.loadItems(map);
+		
+		List<Item> items = itemMap.getItems();
+		for(Item item : items) {
+			if(item != null) {
+				if(item.getView() != null ) {
+					item.getView().registerWithGameItemView(layout.getGameItemView());
+				}
+			}
+		}
+		
+		
+	
     }
 
-    private void addTriggersTest() {
+    private void addTriggersTest(StructuredMap map) {
+    	
         TriggerManager triggerManager = TriggerManager.getSingleton();
 
         // This may need a ViewableTriggerDecorator to display the Decal for the
@@ -282,6 +304,8 @@ public class GameplayState extends GameState {
         triggerManager.addNonPartyTrigger(triggerTwo);
         triggerManager.addNonPartyTrigger(triggerThree);
         triggerManager.addNonPartyTrigger(triggerFour);
+        
+    	//TriggerManager.getSingleton().loadTriggers(map);
 
     }
     public void addTilesTest() {

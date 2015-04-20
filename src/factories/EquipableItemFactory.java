@@ -27,8 +27,10 @@ public class EquipableItemFactory {
 			return new Boots(map);
 		case "shield":
 			return new Shield( map);
+		case "THW" :
+			return WeaponFactory.createTwoHandedWeapon(map);
 		default:
-			return null;
+			return WeaponFactory.createWeapon(map);
 		}
 	}
 }

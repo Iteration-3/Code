@@ -106,7 +106,7 @@ public class KeyPreferences implements Saveable {
         map.put("attack", formatKey(getAttackKey()));
         map.put("suicide", formatKey(getSuicideKey()));
         for (int i = 1; i <= abilities.size(); i++) {
-            map.put("ability" + i, formatKey(abilities.get(i)));
+            map.put("ability" + i, formatKey(abilities.get(i - 1)));
         }
         return map;
     }

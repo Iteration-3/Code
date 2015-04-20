@@ -9,7 +9,6 @@ public class TakeableItemFactory {
 		if (map == null) {
 			return null;
 		}
-
 		switch (map.getString("type")) {
 		case "consumeable":
 			return createConsumeable(map);
