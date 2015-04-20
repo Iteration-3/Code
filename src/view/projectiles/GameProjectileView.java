@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import view.Camera;
 import view.ViewTransform;
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
@@ -34,6 +33,24 @@ public class GameProjectileView {
 			}
 		}
 	}
+	
+	/*public void lock() {
+		for (ProjectileView pv : projectileViews) {
+			pv.lock();
+		}
+		for (ProjectileView pv : toAdd) {
+			pv.lock();
+		}
+	}
+	
+	public void release() {
+		for (ProjectileView pv : projectileViews) {
+			pv.release();
+		}
+		for (ProjectileView pv : toAdd) {
+			pv.release();
+		}
+	}*/
 	
 	public void addProjectileView(ProjectileView entityView) {
 		toAdd.add(entityView);

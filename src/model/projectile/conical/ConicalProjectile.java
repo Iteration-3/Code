@@ -25,6 +25,6 @@ public class ConicalProjectile extends Projectile {
 
 	@Override
 	public boolean hasExpired() {
-		return getTrigger().hasExpired() || !((GrowingArea) getTrigger().getArea()).canGrow();
+		return getTrigger().hasExpired() || (!((GrowingArea) getTrigger().getArea()).canGrow() && isTimedOut());
 	}
 }
