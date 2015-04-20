@@ -49,7 +49,7 @@ public class KeyPreferences implements Saveable {
     public KeyPreferences(StructuredMap structuredMap) {
         setUpKey(KeyStroke.getKeyStroke(structuredMap.getString("up")));
         setUpLeftKey(KeyStroke.getKeyStroke(structuredMap.getString("upLeft")));
-        setUpRightKey(KeyStroke.getKeyStroke(structuredMap.getString("upLeft")));
+        setUpRightKey(KeyStroke.getKeyStroke(structuredMap.getString("upRight")));
         setDownLeftKey(KeyStroke.getKeyStroke(structuredMap.getString("downLeft")));
         setDownRightKey(KeyStroke.getKeyStroke(structuredMap.getString("downRight")));
         setDownKey(KeyStroke.getKeyStroke(structuredMap.getString("down")));

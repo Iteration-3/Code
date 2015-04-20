@@ -8,7 +8,6 @@ import gameactions.GameActionRiverPush;
 import gameactions.GameActionStatePush;
 import gameactions.GameActionTeleport;
 
-import java.awt.Color;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -17,7 +16,6 @@ import model.KeyPreferences;
 import model.area.Area;
 import model.area.LinearArea;
 import model.area.RadialArea;
-import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.entity.Entity;
@@ -32,9 +30,7 @@ import model.item.Item;
 import model.light.LightManager;
 import model.map.GameMap;
 import model.map.ItemMap;
-import model.map.tile.AirPassableTile;
-import model.map.tile.ImpassableTile;
-import model.map.tile.PassableTile;
+import model.map.MapLoader;
 import model.projectile.Projectile;
 import model.projectile.ProjectileManager;
 import model.trigger.PermanentTrigger;
@@ -48,8 +44,6 @@ import utilities.structuredmap.StructuredMap;
 import view.Decal;
 import view.entity.EntityView;
 import view.layout.GameplayLayout;
-import view.map.BasicTileView;
-import view.map.TileView;
 import view.trigger.ViewableTrigger;
 import controller.GameplayController;
 import controller.listener.Listener;
@@ -62,11 +56,13 @@ public class GameplayState extends GameState {
     private GameMap gameMap;
     private ItemMap itemMap;
     private Avatar avatar;
+    private String filePath;
 
-    public GameplayState(Avatar avatar) {
+    public GameplayState(String filePath, Avatar avatar) {
         layout = new GameplayLayout();
         gameMap = new GameMap();
         itemMap = ItemMap.getInstance();
+        this.filePath = filePath;
         this.avatar = avatar;
     }
 
@@ -101,20 +97,22 @@ public class GameplayState extends GameState {
         // Which is needed for other stuff.
         super.onEnter();
         controller = new GameplayController(this);
-        StructuredMap map = JsonReader.readJson("test.txt");
+       StructuredMap map = JsonReader.readJson(filePath);
         
-        addTilesTest();
-        addEntityTest(map.getStructuredMap("entites"));
+        this.gameMap = MapLoader.loadMap("maps/main_map.json", layout); //CALL THIS FIRST
+        addEntityTest(map.getStructuredMap("entites"), map.getStructuredMap("keyPreferences"));
         addItemsTest(map.getStructuredMap("items"));
         addTriggersTest(map.getStructuredMap("triggers"));
         
-       // StructuredMap map = new StructuredMap();
-       // map.put("entites", EntityManager.getSingleton().getStructuredMap());
+       //StructuredMap map = new StructuredMap();
+       //map.put("entites", EntityManager.getSingleton().getStructuredMap());
        //map.put("items", itemMap.getStructuredMap());
+      // KeyPreferences pref = new KeyPreferences();
+       //map.put("keyPreferences",  pref.getStructuredMap());
         
 
-        //JsonWriter writer = new JsonWriter();
-        //writer.writeStructuredMap(map, "test.txt");
+       // JsonWriter writer = new JsonWriter();
+        //writer.writeStructuredMap(map, "filePath");
         
 
         controller.spawnUpdateThread();
@@ -144,9 +142,9 @@ public class GameplayState extends GameState {
         super.onExit();
     }
 
-    public void addEntityTest(StructuredMap map) {
-    	
+    public void addEntityTest(StructuredMap entityMap, StructuredMap preferencesMap) {
     	/*
+    	
         TileCoordinate loc = new TileCoordinate(3, 3);
         EntityView eView = avatar.getEntityView();
         avatar.setLocation(loc);
@@ -169,8 +167,7 @@ public class GameplayState extends GameState {
         EntityManager.getSingleton().addNonPartyNpc(mount);
         */
     	
-    	//StructuredMap map = JsonReader.readJson("filename.txt");
-    	EntityManager.getSingleton().loadEntities(map);
+    	EntityManager.getSingleton().loadEntities(entityMap);
     	Iterator<Entity> iterator = EntityManager.getSingleton().iterator();
     	while(iterator.hasNext()) {
     		Entity entity = iterator.next();
@@ -181,12 +178,13 @@ public class GameplayState extends GameState {
     	avatar = EntityManager.getSingleton().getAvatar();
     	getController().registerAvatar(avatar);
     	
-    	KeyPreferences preferences = new KeyPreferences();
+    	KeyPreferences preferences = new KeyPreferences(preferencesMap);
         getContext().setPreferences(preferences);
         setListeners(preferences);
-        //ADD ENTITIES HERE
     	EntityFactory.createHeavyTrooper("MAX", new TileCoordinate(25,25), layout);
     	EntityFactory.createCowardTrooper("TIMMY", new TileCoordinate(45,45), layout);
+        getContext().setPreferences(preferences);
+        
 
     }
 
@@ -265,8 +263,13 @@ public class GameplayState extends GameState {
         ItemView trapView = new BasicItemView(TileCoordinate.convertToRealCoordinate(trapSpot), new Decal("/images/items/trap.png", TileCoordinate.convertToRealCoordinate(trapSpot)));
         trapView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new Trap(trapView), trapSpot);
-*/
         
+        TileCoordinate healthpackspot = new TileCoordinate(16,16);
+        ItemView hView = new BasicItemView(TileCoordinate.convertToRealCoordinate(healthpackspot),
+				new Decal("/images/items/healthpack.png", TileCoordinate.convertToRealCoordinate(healthpackspot)));
+        hView.registerWithGameItemView(layout.getGameItemView());
+        this.getItemMap().addItem(new HPPotion(hView, new Price(10), 1000),healthpackspot);
+        */
       
 		itemMap.loadItems(map);
 		
@@ -278,14 +281,7 @@ public class GameplayState extends GameState {
 				}
 			}
 		}
-		
-	/*
-        TileCoordinate healthpackspot = new TileCoordinate(16,16);
-        ItemView hView = new BasicItemView(TileCoordinate.convertToRealCoordinate(healthpackspot),
-				new Decal("/images/items/healthpack.png", TileCoordinate.convertToRealCoordinate(healthpackspot)));
-        hView.registerWithGameItemView(layout.getGameItemView());
-        this.getItemMap().addItem(new HPPotion(hView, new Price(10), 1000),healthpackspot);
-*/
+
     }
 
     private void addTriggersTest(StructuredMap map) {
@@ -319,29 +315,6 @@ public class GameplayState extends GameState {
         
     	//TriggerManager.getSingleton().loadTriggers(map);
 
-    }
-    public void addTilesTest() {
-        for (int x = 0; x < 100; ++x) {
-            for (int y = 0; y < 100; ++y) {// Hardcoded for as long as the area
-                // is
-                TileCoordinate p = new TileCoordinate(x, y);
-                if ((x != 10 || y != 10) && (x!=13 || y!=13)) {
-                    TileView view = new BasicTileView(new Color(0, 200, 200), Color.WHITE);
-                    view.registerWithGameMapView(layout.getGameTerrainView(), new RealCoordinate(x, y));
-                    gameMap.add(new PassableTile(view), p);
-                } else if(x!=13 || y!=13){
-                    TileView view = new BasicTileView(new Color(200, 0, 200), Color.WHITE);
-                    view.registerWithGameMapView(layout.getGameTerrainView(), new RealCoordinate(x, y));
-                    gameMap.add(new ImpassableTile(view), p);
-                }
-                else{
-                	TileView view = new BasicTileView(new Color(100, 0, 200), Color.BLACK);
-                    view.registerWithGameMapView(layout.getGameTerrainView(), new RealCoordinate(x, y));
-                    gameMap.add(new AirPassableTile(view), p);
-                }
-
-            }
-        }
     }
 
     @Override

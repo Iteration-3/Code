@@ -1,15 +1,23 @@
 package model.event;
 
+import utilities.structuredmap.StructuredMap;
 import model.entity.Entity;
 import model.entity.behavior.npc.Coward;
 
 public class IntimidateEvent extends SourcedEvent{
 
-
-
 	public IntimidateEvent(Entity source, Entity target, double duration) {
 		super(source, target, duration);
 		// TODO Auto-generated constructor stub
+	}
+
+	public IntimidateEvent(StructuredMap structuredMap) {
+		super(structuredMap);
+	}
+	
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		return map;
 	}
 
 	@Override
@@ -38,7 +46,7 @@ public class IntimidateEvent extends SourcedEvent{
 
 	@Override
 	protected String getType() {
-		return "intimidateevent";
+		return "intimidateEvent";
 	}
 
 }
