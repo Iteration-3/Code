@@ -5,6 +5,9 @@ import gameactions.GameActionStatePush;
 import gameactions.GameActionTeleport;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.Collection;
 
 import model.KeyPreferences;
@@ -31,6 +34,7 @@ import model.item.Helmet;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
 import model.item.TakeableItem;
+import model.item.Trap;
 import model.light.LightManager;
 import model.map.GameTerrain;
 import model.map.ItemMap;
@@ -47,6 +51,8 @@ import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
+import utilities.structuredmap.JsonReader;
+import utilities.structuredmap.StructuredMap;
 import view.EntitySpriteFactory;
 import view.EntityView;
 import view.item.BasicItemView;
@@ -64,24 +70,29 @@ public class GameplayState extends GameState {
     private GameTerrain gameMap;
     private ItemMap itemMap;
     private Avatar avatar;
+	private boolean hasBeenDumped = false;
 
-    public GameplayState() {
+    public GameplayState(Avatar avatar) {
         layout = new GameplayLayout();
         gameMap = new GameTerrain();
         itemMap = new ItemMap();
+        this.avatar = avatar;
     }
 
     public void update(double deltaTime) {
 		TriggerManager.getSingleton().update(deltaTime);
 		EventManager.getSingleton().update(deltaTime);
-		EntityManager.getSingleton().update(deltaTime);
+		// Alternative to passing an itemMap is to use traps as triggers
+		EntityManager.getSingleton().update(itemMap, deltaTime);
 		ProjectileManager.getSingleton().update(deltaTime);
 		/* Run through projectile queue */
 		while (!ProjectileManager.getSingleton().isQueueEmpty()) {
-			Projectile poll = ProjectileManager.getSingleton().dequeueProjectile();
-			poll.projView.registerWithGameProjectileView(layout.getGameProjectileView());
+			Projectile poll = ProjectileManager.getSingleton()
+					.dequeueProjectile();
+			poll.projView.registerWithGameProjectileView(layout
+					.getGameProjectileView());
 		}
-    }
+	}
     
     @Override
     public void onEnter() {
@@ -91,7 +102,6 @@ public class GameplayState extends GameState {
         // make the itemEntityAssocation,
         // Which is needed for other stuff.
         super.onEnter();
-        System.out.println(getContext());
         controller = new GameplayController(this);
         addTilesTest();
         addEntityTest();
@@ -124,9 +134,8 @@ public class GameplayState extends GameState {
 
     public void addEntityTest() {
         TileCoordinate loc = new TileCoordinate(3, 3);
-        EntityView eView = new EntityView(EntitySpriteFactory.getSummonerSpriteHolder());
-        avatar = new Summoner("Summoner", eView, loc);
-
+        EntityView eView = avatar.getEntityView();
+        avatar.setLocation(loc);
         
         //testing this for equipped Items
         avatar.equip(new Helmet(new BasicItemView(),new Statistics()));
@@ -214,6 +223,12 @@ public class GameplayState extends GameState {
         TileCoordinate riverMarkerSpot = new TileCoordinate(13, 0);
         riverMarker.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(13, 0));
         this.getItemMap().addItem(new ObstacleItem(riverMarker), riverMarkerSpot);
+        
+        ItemView trapView = new BasicItemView(Color.RED, Color.BLACK);
+        TileCoordinate trapSpot = new TileCoordinate(15, 12);
+        trapView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(15, 12));
+        this.getItemMap().addItem(new Trap(trapView), trapSpot);
+        
 
     }
 

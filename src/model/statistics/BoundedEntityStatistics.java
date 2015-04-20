@@ -10,12 +10,6 @@ import utilities.structuredmap.StructuredMap;
 public class BoundedEntityStatistics extends EntityStatistics{
 	public BoundedEntityStatistics() {
 		super();
-		setLivesLeft(3);
-		setExperience(0);
-		setMovement(0);
-		setCurrentHealth(getMaximumHealth());
-		setCurrentMana(getMaximumMana());
-		setMoney(30);
 	}
 
 	public BoundedEntityStatistics(StructuredMap map) {
@@ -63,7 +57,6 @@ public class BoundedEntityStatistics extends EntityStatistics{
 
 	private void livesCheck(){
 		if(this.getLivesLeft() <= 0){
-			System.out.println("OUT OF LIVES, PERMA DEAD, PROB SHOULD DO SOMETHING");
 		}
 	}
 
@@ -97,7 +90,6 @@ public class BoundedEntityStatistics extends EntityStatistics{
 			if(this.getMaximumHealth() < 0){System.err.println("NEGATIVE HP ERROR"); return;}
 			this.setCurrentHealth(getMaximumHealth());
 			this.decrementLives();
-			System.out.println("You haved Died!");
 
 		}
 		if(this.getCurrentHealth() > this.getMaximumHealth()){

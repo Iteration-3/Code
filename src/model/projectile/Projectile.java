@@ -57,8 +57,6 @@ public class Projectile extends MobileObject implements Cloneable {
 
 	public void advance() {
 		if (!isTimedOut()) {
-			System.out.println("DIRECTION: " + direction);
-			System.out.println("AREA: " + trigger.getArea().getStartLocation());
 			move(getLocation().nextLocation(direction));
 			timeOutProjectile();
 		}

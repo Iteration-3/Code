@@ -17,6 +17,7 @@ import model.skillmanager.SummonerSkillManager;
 import model.slots.ItemManager;
 import model.statistics.Statistics;
 import utilities.structuredmap.StructuredMap;
+import view.EntitySpriteFactory;
 import view.EntityView;
 import view.item.BasicItemView;
 
@@ -24,9 +25,9 @@ public class Summoner extends Avatar {
 	protected ItemManager itemManger = new ItemManager(this);
 	private SummonerSkillManager skillManager;
 
-
-
-
+	public Summoner() {
+		this("Summoner", new EntityView(EntitySpriteFactory.getSummonerSpriteHolder()), new TileCoordinate(1, 1));
+	}
 
 	public Summoner(String name, EntityView view, TileCoordinate loc) {
 		super(name, view, loc);
@@ -74,7 +75,6 @@ public class Summoner extends Avatar {
 
 		//Print out the abilities we have. 
 		for(Ability a : this.getAbilities()){
-			System.out.println(a.toString());
 		}
 		
 		//To avoid breaking shit
@@ -95,8 +95,7 @@ public class Summoner extends Avatar {
 
 	@Override
 	public StructuredMap getStructuredMap() {
-		// TODO Auto-generated method stub
-		return null;
+		return super.getStructuredMap();
 	}
 
 	@Override

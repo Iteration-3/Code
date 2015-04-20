@@ -22,8 +22,7 @@ import controller.listener.PollingListener;
 public abstract class Avatar extends Entity {
 	private Collection<Ability> abilities = new ArrayList<Ability>();
 	
-
-	public Avatar(String name, EntityView view, TileCoordinate loc){
+	public Avatar(String name, EntityView view, TileCoordinate loc) {
 		super(name, view, loc);
 		//Make light manager track all avatars movement
 		MovingLightSource avatarLight = new MovingLightSource(new RadialArea(3, loc), 255, this);
@@ -32,7 +31,6 @@ public abstract class Avatar extends Entity {
 		//LightManager.getLightManager().getLightMap().trackMovement(this);
 		//setLocation(loc);//So lightMap registers current position
 	}
-	
 	
 	public Avatar(StructuredMap map) {
 		super(map);
@@ -116,6 +114,11 @@ public abstract class Avatar extends Entity {
 	
 	@Override
 	public void update(){
+		this.updateStatBars();
+	}
+	
+	private void updateStatBars(){
+		//Only appear during combat state.
 		this.getEntityView().updateHP(this.getHpPercentage());
 		this.getEntityView().turnOnHealthBar();
 		this.getEntityView().updateMana(this.getManaPercentage());

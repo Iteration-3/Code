@@ -40,7 +40,6 @@ public class ObstacleItem extends Item {
 	public void attemptRemoveFrom(ItemTile itemTile) {
 		// TODO This is bad...
 		// You don't want to have a method that does nothing...
-		System.out.println("Can't remove an Obstacle Item!");
 	}
 
     @Override
