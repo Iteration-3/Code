@@ -19,7 +19,7 @@ public class BarterBehavior implements Behaviorable{
 		this.interact.interact(entity);
 	}
 
-	public void onDamage() {
+	public void onDamage(Entity entity) {
 	}
 
 	public boolean isExpired() {
