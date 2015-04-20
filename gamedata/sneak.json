@@ -1,0 +1,1414 @@
+{
+"entites":	{
+	"partyNPC":	[{
+		"entityView":	{
+			"locationY":	6.49519052838329,
+			"locationX":	5.25,
+			"sprites":	{
+				"spriteType":	"lady",
+				"type":	"concrete"
+				}
+			},
+		"stats":	{
+			"hardiness":	10,
+			"currentHealth":	1000,
+			"currentMana":	1000,
+			"intellect":	10,
+			"strength":	10,
+			"money":	30,
+			"livesLeft":	3,
+			"agility":	10,
+			"experience":	0,
+			"movement":	10
+			},
+		"flying":	false,
+		"name":	"DaveTheBarbarian",
+		"location":	[7, 7],
+		"itemManager":	{
+			"equipment":	{
+				"leggingsSlot":	null,
+				"helmetSlot":	null,
+				"projectileSlot":	null,
+				"weaponSlot":	null,
+				"equipmentView":	null,
+				"hasThwSlot":	false,
+				"chestPieceSlot":	null,
+				"shieldSlot":	null,
+				"bootsSlot":	null,
+				"glovesSlot":	null,
+				"weaponSlotType":	{
+					"type":	"npc"
+					}
+				},
+			"inventory":	{
+				"inventoryView":	{
+					"path":	"/images/slotImage.png",
+					"col":	5,
+					"slotWidth":	100,
+					"viewMap":	[{
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	0
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	1
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	2
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	3
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	4
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	5
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	6
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	7
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	8
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	9
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	10
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	11
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	12
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	13
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	14
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	15
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	16
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	17
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	18
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	19
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	20
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	21
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	22
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	23
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	24
+						}],
+					"slotHeight":	100,
+					"row":	5,
+					"itemDiameter":	50.0
+					},
+				"slotsLength":	25,
+				"items":	[{
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}]
+				}
+			},
+		"type":	"barter",
+		"direction":	1
+		}],
+	"nonPartyNPC":	[{
+		"entityView":	{
+			"locationY":	2.1650635094610964,
+			"locationX":	5.25,
+			"sprites":	{
+				"spriteType":	"underling",
+				"type":	"concrete"
+				}
+			},
+		"stats":	{
+			"hardiness":	10,
+			"currentHealth":	1000,
+			"currentMana":	1000,
+			"intellect":	10,
+			"strength":	10,
+			"money":	30,
+			"livesLeft":	3,
+			"agility":	10,
+			"experience":	0,
+			"movement":	10
+			},
+		"flying":	false,
+		"name":	"My first mount",
+		"location":	[7, 2],
+		"itemManager":	{
+			"equipment":	{
+				"leggingsSlot":	null,
+				"helmetSlot":	null,
+				"projectileSlot":	null,
+				"weaponSlot":	null,
+				"equipmentView":	null,
+				"hasThwSlot":	false,
+				"chestPieceSlot":	null,
+				"shieldSlot":	null,
+				"bootsSlot":	null,
+				"glovesSlot":	null,
+				"weaponSlotType":	{
+					"type":	"npc"
+					}
+				},
+			"inventory":	{
+				"inventoryView":	{
+					"path":	"/images/slotImage.png",
+					"col":	5,
+					"slotWidth":	100,
+					"viewMap":	[{
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	0
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	1
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	2
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	3
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	4
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	5
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	6
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	7
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	8
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	9
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	10
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	11
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	12
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	13
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	14
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	15
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	16
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	17
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	18
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	19
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	20
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	21
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	22
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	23
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	24
+						}],
+					"slotHeight":	100,
+					"row":	5,
+					"itemDiameter":	50.0
+					},
+				"slotsLength":	25,
+				"items":	[{
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}]
+				}
+			},
+		"type":	"mount",
+		"direction":	1
+		}],
+	"avatar":	{
+		"entityView":	{
+			"locationY":	3.031088913245535,
+			"locationX":	2.25,
+			"sprites":	{
+				"spriteType":	"sneakSprite",
+				"type":	"concrete"
+				}
+			},
+		"stats":	{
+			"hardiness":	10,
+			"currentHealth":	1000,
+			"currentMana":	1000,
+			"intellect":	10,
+			"strength":	10,
+			"money":	30,
+			"livesLeft":	3,
+			"agility":	10,
+			"experience":	0,
+			"movement":	10
+			},
+		"flying":	false,
+		"name":	"Sneak",
+		"location":	[3, 3],
+		"itemManager":	{
+			"equipment":	{
+				"leggingsSlot":	null,
+				"helmetSlot":	null,
+				"projectileSlot":	null,
+				"weaponSlot":	null,
+				"equipmentView":	{
+					"shield":	"/images/shield_slot.jpg",
+					"helmetY":	0,
+					"shieldY":	100,
+					"projectileX":	200,
+					"helmetX":	100,
+					"weapon":	"/images/weapon_slot.jpg",
+					"gloves":	"/images/gloves_slot.jpg",
+					"shieldX":	200,
+					"projectileY":	0,
+					"slotWidth":	100,
+					"weaponX":	0,
+					"helmet":	"/images/helmet_slot.jpg",
+					"weaponY":	100,
+					"boots":	"/images/boots_slot.jpg",
+					"leggings":	"/images/leggings_slot.jpg",
+					"glovesX":	0,
+					"bootsView":	{
+						"background":	"/images/boots_slot.jpg",
+						"itemView":	null
+						},
+					"shieldView":	{
+						"background":	"/images/shield_slot.jpg",
+						"itemView":	null
+						},
+					"glovesY":	200,
+					"leggingsView":	{
+						"background":	"/images/leggings_slot.jpg",
+						"itemView":	null
+						},
+					"chestPieceView":	{
+						"background":	"/images/chest_piece_slot.jpg",
+						"itemView":	null
+						},
+					"slotHeight":	100,
+					"projectileView":	{
+						"background":	"/images/shield_slot.jpg",
+						"itemView":	null
+						},
+					"chestPiece":	"/images/chest_piece_slot.jpg",
+					"chestPieceX":	100,
+					"weaponView":	{
+						"background":	"/images/weapon_slot.jpg",
+						"itemView":	null
+						},
+					"helmetView":	{
+						"background":	"/images/helmet_slot.jpg",
+						"itemView":	null
+						},
+					"bootsY":	300,
+					"chestPieceY":	100,
+					"leggingsY":	200,
+					"leggingsX":	100,
+					"bootsX":	100,
+					"glovesView":	{
+						"background":	"/images/shield_slot.jpg",
+						"itemView":	null
+						},
+					"projectile":	"/images/projectile_slot.jpg"
+					},
+				"hasThwSlot":	false,
+				"chestPieceSlot":	null,
+				"shieldSlot":	null,
+				"bootsSlot":	null,
+				"glovesSlot":	null,
+				"weaponSlotType":	{
+					"type":	"sneak"
+					}
+				},
+			"inventory":	{
+				"inventoryView":	{
+					"path":	"/images/slotImage.png",
+					"col":	5,
+					"slotWidth":	100,
+					"viewMap":	[{
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	{
+								"onMap":	false,
+								"position":	{
+									"x":	0.75,
+									"y":	1.299038105676658
+									},
+								"type":	"basicItem",
+								"decal":	{
+									"imageResourcePath":	"/images/items/healthpack.png",
+									"position":	{
+										"x":	0.75,
+										"y":	1.299038105676658
+										}
+									}
+								}
+							},
+						"key":	0
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	1
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	2
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	3
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	4
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	5
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	6
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	7
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	8
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	9
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	10
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	11
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	12
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	13
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	14
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	15
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	16
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	17
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	18
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	19
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	20
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	21
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	22
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	23
+						}, {
+						"value":	{
+							"background":	"/images/slotImage.png",
+							"itemView":	null
+							},
+						"key":	24
+						}],
+					"slotHeight":	100,
+					"row":	5,
+					"itemDiameter":	50.0
+					},
+				"slotsLength":	25,
+				"items":	[{
+					"item":	{
+						"price":	{
+							"cost":	10
+							},
+						"taken":	false,
+						"healAmount":	1000,
+						"itemView":	{
+							"onMap":	false,
+							"position":	{
+								"x":	0.75,
+								"y":	1.299038105676658
+								},
+							"type":	"basicItem",
+							"decal":	{
+								"imageResourcePath":	"/images/items/healthpack.png",
+								"position":	{
+									"x":	0.75,
+									"y":	1.299038105676658
+									}
+								}
+							},
+						"name":	"null",
+						"type":	"healItem"
+						},
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	{
+							"onMap":	false,
+							"position":	{
+								"x":	0.75,
+								"y":	1.299038105676658
+								},
+							"type":	"basicItem",
+							"decal":	{
+								"imageResourcePath":	"/images/items/healthpack.png",
+								"position":	{
+									"x":	0.75,
+									"y":	1.299038105676658
+									}
+								}
+							}
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}, {
+					"item":	null,
+					"slotView":	{
+						"background":	"/images/slotImage.png",
+						"itemView":	null
+						}
+					}]
+				}
+			},
+		"type":	"sneak",
+		"skillManager":	{
+			"barterSkill":	1,
+			"rangedSkill":	1,
+			"observeSkill":	1,
+			"trapRemoveSkill":	1,
+			"bindWoundSkill":	1,
+			"pickPocketSkill":	1,
+			"type":	"sneak",
+			"creepSkill":	1,
+			"attackSkill":	1
+			},
+		"direction":	1
+		}
+	},
+"items":	{
+	"itemMap":	[{
+		"coordinate":	{
+			"x":	15,
+			"y":	14
+			},
+		"itemTile":	{
+			"items":	[{
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	11.25,
+						"y":	12.55736835487436
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/slotImage.png",
+						"position":	{
+							"x":	11.25,
+							"y":	12.55736835487436
+							}
+						}
+					},
+				"requirement":	{
+					"price":	{
+						"cost":	10
+						},
+					"taken":	false,
+					"itemView":	{
+						"onMap":	true,
+						"position":	{
+							"x":	3.75,
+							"y":	5.629165124598852
+							},
+						"type":	"basicItem",
+						"decal":	{
+							"imageResourcePath":	"/images/items/key.png",
+							"position":	{
+								"x":	3.75,
+								"y":	5.629165124598852
+								}
+							}
+						},
+					"name":	"null",
+					"type":	"takeable"
+					},
+				"type":	"door"
+				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	5,
+			"y":	5
+			},
+		"itemTile":	{
+			"items":	[{
+				"stats":	{
+					"hardiness":	10,
+					"intellect":	10,
+					"strength":	10,
+					"agility":	10
+					},
+				"price":	{
+					"cost":	10
+					},
+				"taken":	false,
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	3.75,
+						"y":	4.763139720814412
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/two_handed_chainsaw.png",
+						"position":	{
+							"x":	3.75,
+							"y":	4.763139720814412
+							}
+						}
+					},
+				"name":	"null",
+				"type":	"THW"
+				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	16,
+			"y":	16
+			},
+		"itemTile":	{
+			"items":	[{
+				"price":	{
+					"cost":	10
+					},
+				"taken":	false,
+				"healAmount":	1000,
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	12.0,
+						"y":	13.856406460551018
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/healthpack.png",
+						"position":	{
+							"x":	12.0,
+							"y":	13.856406460551018
+							}
+						}
+					},
+				"name":	"null",
+				"type":	"healItem"
+				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	5,
+			"y":	6
+			},
+		"itemTile":	{
+			"items":	[{
+				"price":	{
+					"cost":	10
+					},
+				"taken":	false,
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	3.75,
+						"y":	5.629165124598852
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/key.png",
+						"position":	{
+							"x":	3.75,
+							"y":	5.629165124598852
+							}
+						}
+					},
+				"name":	"null",
+				"type":	"takeable"
+				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	13,
+			"y":	0
+			},
+		"itemTile":	{
+			"items":	[{
+				
+				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	13,
+			"y":	9
+			},
+		"itemTile":	{
+			"items":	[{
+				"modifiers":	{
+					"hardiness":	10,
+					"currentHealth":	1000,
+					"currentMana":	1000,
+					"intellect":	10,
+					"strength":	10,
+					"money":	30,
+					"livesLeft":	3,
+					"agility":	10,
+					"experience":	0,
+					"movement":	10
+					}
+				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	15,
+			"y":	12
+			},
+		"itemTile":	{
+			"items":	[{
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	11.25,
+						"y":	10.825317547305483
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/trap.png",
+						"position":	{
+							"x":	11.25,
+							"y":	10.825317547305483
+							}
+						}
+					},
+				"type":	"trap",
+				"event":	{
+					"duration":	20.0,
+					"type":	"tempMovementEvent"
+					}
+				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	9,
+			"y":	7
+			},
+		"itemTile":	{
+			"items":	[{
+				
+				}]
+			}
+		}]
+	}
+}
