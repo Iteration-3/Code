@@ -5,10 +5,9 @@ import java.awt.Color;
 import model.area.Area;
 import model.area.TileCoordinate;
 import model.event.Event;
-import model.light.ChangingAreaLightSource;
 import model.light.LightManager;
-import model.light.MovingLightSource;
-import model.observers.MobileAreaObject;
+import model.light.MovingDynamicLightSource;
+import model.light.MovingStaticLightSource;
 import model.observers.MobileObject;
 import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
@@ -17,49 +16,49 @@ import utilities.Direction;
 import view.projectiles.BasicProjectileView;
 import view.projectiles.ProjectileView;
 
-public class Projectile extends MobileAreaObject implements Cloneable {
+public class Projectile extends MobileObject implements Cloneable {
 	
 	private double speed;
 	private long timeout;
 	private Trigger trigger;
 	public ProjectileView projView;
-	private ChangingAreaLightSource mlb;
-	protected Direction direction;
-	protected TileCoordinate location;
+	private MovingDynamicLightSource mlb;
+	protected Area area;
 	
 	public Projectile(TileCoordinate location, Direction direction, Area area, Event event, double speed) {
-		super(area);
-		this.location = location;
-		this.direction = direction;
+		super(location);
+		setLocationNoNotify(location);
+		setDirectionNoNotify(direction);
 		this.speed = speed;
 		this.trigger = new SingleUseTrigger(area, event);
+		this.area = area;
 		area.setStartLocation(location);
 		area.setDirection(direction);
 		this.projView = new BasicProjectileView(area, new Color(255, 0, 0, 140));
-		this.mlb = new ChangingAreaLightSource(area, 255, this);
+		this.mlb = new MovingDynamicLightSource(area, 255, this);
 	}
 	
 	public void move(TileCoordinate location) {
-		this.location = location;
-		this.getArea().setStartLocation(location);
-		//notifySubscribers();
+		setLocationNoNotify(location);
+		getArea().setStartLocation(location);
+		notifySubscribers();
 	}
 
 	public void advance() {
 		if (!isTimedOut()) {
-			move(location.nextLocation(direction));
+			move(getLocation().nextLocation(getDirection()));
 			timeOutProjectile();
 		}
 	}
 	
 	public void placeOnMap() {
-		//LightManager.getSingleton().addLightSource(mlb);
+		LightManager.getSingleton().addLightSource(mlb);
 		TriggerManager.getSingleton().addPartyTrigger(trigger);
 		ProjectileManager.getSingleton().enqueueProjectile(this);
 	}
 	
 	public void dispose() {
-		//LightManager.getSingleton().removeLightSource(mlb);
+		LightManager.getSingleton().removeLightSource(mlb);
 		TriggerManager.getSingleton().removeTrigger(trigger);
 		projView.dispose();
 	}
@@ -86,5 +85,9 @@ public class Projectile extends MobileAreaObject implements Cloneable {
 	
 	protected Trigger getTrigger() {
 		return trigger;
+	}
+	
+	public Area getArea() {
+		return area;
 	}
 }

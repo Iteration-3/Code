@@ -27,6 +27,7 @@ public abstract class GrowingArea extends Area {
 	}
 
 	public void grow() {
+    	prevCovered = getCoveredLocations();
 		incrementCurRadius();
 	}
 }

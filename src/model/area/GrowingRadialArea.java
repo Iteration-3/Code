@@ -35,6 +35,9 @@ public class GrowingRadialArea extends GrowingArea {
 
     @Override
     public List<TileCoordinate> getCoveredLocations() {
+    	if (getCurRadius() > getMaxRadius()) {
+    		return new ArrayList<TileCoordinate>();
+    	}
     	if (lastStart == null || coverCache == null || lastStart != getStartLocation() || lastDir != getDirection() || lastRadius != getCurRadius()) {
 	    	HashSet<TileCoordinate> res = getAtRadius(getCurRadius());
 	    	coverCache = new ArrayList<TileCoordinate>(res);
