@@ -44,11 +44,11 @@ public class StateMachine implements StateMachineable {
 		this.states.peek().interact(entity);
 	}
 	
-	public void onDamage(){
+	public void onDamage(Entity entity){
 		if (this.states.isEmpty()){
 			return;
 		}
-		this.states.peek().onDamage();
+		this.states.peek().onDamage(entity);
 	}
 	
 	public void observe(){

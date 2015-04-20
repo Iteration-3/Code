@@ -4,6 +4,7 @@ package model.entity;
 import model.area.TileCoordinate;
 import model.entity.behavior.npc.BarterBehavior;
 import model.entity.behavior.npc.Behaviorable;
+import model.entity.behavior.npc.TrooperBehavior;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
@@ -76,6 +77,8 @@ public class NPC extends Entity {
 		}
 		
 	}
+	
+	
 	@Override
 	public String getType() {
 		return "npc";
@@ -88,7 +91,7 @@ public class NPC extends Entity {
 
 	@Override
 	protected Behaviorable getBehavior() {
-		return new BarterBehavior();
+		return new TrooperBehavior();
 	}
 
 }

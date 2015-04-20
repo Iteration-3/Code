@@ -10,7 +10,7 @@ public interface Behaviorable {
 	
 	public void interact(Entity entity);
 	
-	public void onDamage();
+	public void onDamage(Entity entity);
 	
 	public boolean isExpired();
 	
