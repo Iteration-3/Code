@@ -7,6 +7,8 @@ import model.KeyPreferences;
 import model.area.TileCoordinate;
 import model.entity.behavior.npc.Behaviorable;
 import model.entity.behavior.npc.state.StateMachine;
+import model.event.EventManager;
+import model.event.HealthModifierEvent;
 import model.item.EquipableItem;
 import model.item.TakeableItem;
 import model.observers.MobileObject;
@@ -163,7 +165,16 @@ public abstract class Entity extends MobileObject implements Saveable {
 
     protected abstract ItemManager createItemManager();
 
-    public abstract void attack();
+    public void attack(){
+    	TileCoordinate targetSpot = this.nextLocation(this.getDirection());
+    	EntityManager.getSingleton().getEntityAtLocation(targetSpot);
+    }
+    
+    public void attackEntity(Entity target,int damage){
+		EventManager.getSingleton().addEvent(new HealthModifierEvent(this,target,0,damage));
+		this.setAttacking();
+		target.setHasBeenAttacked();
+    }
 
     
     
