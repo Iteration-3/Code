@@ -1,18 +1,19 @@
 package model.map;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import model.area.Area;
 import model.area.TileCoordinate;
 import model.entity.Entity;
 import model.item.Item;
 import model.map.tile.ItemTile;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
-import view.item.ItemView;
 
 /**
  * This one will generate a tile for an item if it doesn't exist. The reason for
@@ -73,8 +74,20 @@ public class ItemMap implements Saveable {
        map.put("itemMap", itemMap);
        return map;
     }
+	
+	public ArrayList<Item> getItems(Area area) {
+		ArrayList<Item> items = new ArrayList<Item>();
+		List<TileCoordinate> coveredLocations = area.getCoveredLocations();
+		for (TileCoordinate location : coveredLocations) {
+			Iterator<Item> itemIterator = getItemTileAtLocation(location).getIterator();
+			while (itemIterator.hasNext()) {
+				items.add(itemIterator.next());
+			}
+		}
+		return items;
+	}
 
-    private ItemTile getItemTileAtLocation(TileCoordinate loc) {
+    public ItemTile getItemTileAtLocation(TileCoordinate loc) {
         ItemTile t = items.get(loc);
         if (t == null) {
             t = new ItemTile();

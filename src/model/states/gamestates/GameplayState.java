@@ -166,7 +166,6 @@ public class GameplayState extends GameState {
 
     public void addEntityTest(StructuredMap map) {
     	
-    	/*
         TileCoordinate loc = new TileCoordinate(3, 3);
         EntityView eView = avatar.getEntityView();
         avatar.setLocation(loc);
@@ -187,9 +186,9 @@ public class GameplayState extends GameState {
         Mount mount = new Mount("My first mount", mountView, mountLocation);
         mountView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(mountLocation), Direction.UP);
         EntityManager.getSingleton().addNonPartyNpc(mount);
-        */
     	
     	//StructuredMap map = JsonReader.readJson("filename.txt");
+    	/*
     	EntityManager.getSingleton().loadEntities(map);
     	Iterator<Entity> iterator = EntityManager.getSingleton().iterator();
     	while(iterator.hasNext()) {
@@ -197,6 +196,7 @@ public class GameplayState extends GameState {
     		EntityView view = entity.getEntityView();
     		view.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(entity.getLocation()), entity.getDirection());
     	}
+        */
     	
     	avatar = EntityManager.getSingleton().getAvatar();
     	getController().registerAvatar(avatar);
@@ -244,7 +244,6 @@ public class GameplayState extends GameState {
 	}
 
 	private void addItemsTest(StructuredMap map) {
-		/*
         TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
         ItemView takeableItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(takeableItemViewPosition), new Decal("/images/items/two_handed_chainsaw.png", TileCoordinate.convertToRealCoordinate(takeableItemViewPosition)));
         takeableItemView.registerWithGameItemView(layout.getGameItemView());
@@ -282,10 +281,10 @@ public class GameplayState extends GameState {
         ItemView trapView = new BasicItemView(TileCoordinate.convertToRealCoordinate(trapSpot), new Decal("/images/items/trap.png", TileCoordinate.convertToRealCoordinate(trapSpot)));
         trapView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new Trap(trapView), trapSpot);
-*/
         
-      
+        /*
 		itemMap.loadItems(map);
+		*/
 		
 		List<Item> items = itemMap.getItems();
 		for(Item item : items) {

@@ -13,7 +13,9 @@ public class GameItemView implements Renderable {
 	@Override
 	public void render(Graphics graphics, ViewTransform transform) {
 		for(ItemView itemView: itemViews) {
-			itemView.render(graphics, transform);
+			if (itemView.isVisible()) {
+				itemView.render(graphics, transform);
+			}
 		}
 	}
 
