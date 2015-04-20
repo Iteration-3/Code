@@ -5,12 +5,14 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 public class JsonWriter {
+	private static final String directory = "gamedata/";
+	
 	public void writeStructuredMap(StructuredMap data, String filename) {
 		writeString(data.getJson(), filename);
 	}
 	
 	private void writeString(String data, String filename) {
-		File file = new File(filename);
+		File file = new File(directory + filename);
 		file.getParentFile().mkdirs();
 		
 		PrintWriter out = null;

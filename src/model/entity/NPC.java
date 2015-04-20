@@ -20,13 +20,13 @@ public class NPC extends Entity {
 		this.behavior = behavior;
 		this.type = type;
 	}
-	
+	/*
 	public NPC(StructuredMap map) {
 		super(map);
 	}
-	
+	*/
 	public NPC(StructuredMap map, Behaviorable behavior) {
-		super(map);
+		super(map, behavior);
 		this.behavior = behavior;
 		this.type = map.getString("type");
 	}
