@@ -24,6 +24,7 @@ import view.InventoryView;
 import controller.listener.Listener;
 
 public abstract class Entity extends MobileObject implements Saveable {
+	private static final double maxHasBeenAttacked = 5000;
     private ItemManager itemManager;
     private String name = null;
     private BoundedEntityStatistics stats = new BoundedEntityStatistics();
@@ -32,6 +33,7 @@ public abstract class Entity extends MobileObject implements Saveable {
 	private StateMachine state;
 	private boolean hasBeenAttacked;
 	private boolean attacking;
+	private double timerHasBeenAttacked = 0;
 
     protected Entity() {
     	super(new TileCoordinate(0, 0));
@@ -102,9 +104,10 @@ public abstract class Entity extends MobileObject implements Saveable {
         // other things go here
     }
     
-    /***********STATES***************/
-    public void perform(){
-    	this.state.perform();
+    /***********STATES
+     * @param deltaTime ***************/
+    public void perform(double deltaTime){
+    	this.state.perform(deltaTime);
     }
     
     public void interact(Entity entity){
@@ -140,8 +143,8 @@ public abstract class Entity extends MobileObject implements Saveable {
     	return this.attacking;
     }
     
-    public void observe(){
-    	this.state.observe();
+    public void observe(double deltaTime){
+    	this.state.observe(deltaTime);
     }
     
     public float getHpPercentage(){
@@ -196,7 +199,21 @@ public abstract class Entity extends MobileObject implements Saveable {
 
     public abstract void load(StructuredMap map);
 
-    public abstract void update();
+	public final void update(double deltaTime){
+    	caculateHasBeenAttacked(deltaTime);
+    	this.updateExtras(deltaTime);
+    }
+    
+    private void caculateHasBeenAttacked(double deltaTime) {
+    	if (getHasBeenAttacked()){
+    		timerHasBeenAttacked += deltaTime;
+    		if (timerHasBeenAttacked == maxHasBeenAttacked){
+    			clearHasBeenAttacked();
+    		}
+    	}
+	}
+
+	public abstract void updateExtras(double deltaTime);
 
     // All entities have an ItemManager, but subclasses need specific ones, so
     // it can't be

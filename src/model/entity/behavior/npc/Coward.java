@@ -18,12 +18,12 @@ public class Coward implements Behaviorable {
 	}
 
 	@Override
-	public void perform() {
+	public void perform(double deltaTime) {
 		this.listen.perform();
 	}
 
 	@Override
-	public void observe() {
+	public void observe(double deltaTime) {
 		this.cowardFromEntity.observe();
 		if (this.cowardFromEntity.found()) {
 			this.listen.push(this.cowardFromEntity.getMove());

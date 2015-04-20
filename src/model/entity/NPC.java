@@ -52,9 +52,8 @@ public class NPC extends Entity {
 	}
 
 	@Override
-	public void update() {
+	public void updateExtras(double deltaTime) {
 		observeHelper();
-		
 	}
 	
 	private void observeHelper(){

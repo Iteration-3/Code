@@ -128,7 +128,7 @@ public abstract class Avatar extends Entity {
 
 	
 	@Override
-	public void update(){
+	public void updateExtras(double deltaTime){
 		this.updateStatBars();
 	}
 	

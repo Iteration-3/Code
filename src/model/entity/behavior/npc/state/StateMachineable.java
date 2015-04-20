@@ -9,11 +9,11 @@ public interface StateMachineable {
 	
 	public void push(Behaviorable behavior);
 	
-	public void perform();
+	public void perform(double deltaTime);
 	
 	public void interact(Entity entity);
 	
-	public void observe();
+	public void observe(double deltatTime);
 
 
 }
