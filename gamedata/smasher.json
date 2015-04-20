@@ -45660,7 +45660,7 @@
 			"livesLeft":	3,
 			"agility":	10,
 			"experience":	0,
-			"movement":	7
+			"movement":	10
 			},
 		"flying":	false,
 		"name":	"DaveTheBarbarian",
@@ -46017,7 +46017,7 @@
 			"livesLeft":	3,
 			"agility":	10,
 			"experience":	0,
-			"movement":	7
+			"movement":	10
 			},
 		"flying":	false,
 		"name":	"My first mount",
@@ -46374,7 +46374,7 @@
 			"livesLeft":	3,
 			"agility":	10,
 			"experience":	0,
-			"movement":	7
+			"movement":	10
 			},
 		"flying":	false,
 		"name":	"Smasher",
@@ -46652,7 +46652,7 @@
 									}
 								}
 							},
-						"name":	"HPPotion",
+						"name":	"null",
 						"type":	"healItem"
 						},
 					"slotView":	{
@@ -46877,7 +46877,7 @@
 								}
 							}
 						},
-					"name":	"key",
+					"name":	"null",
 					"type":	"takeable"
 					},
 				"type":	"door"
@@ -46915,7 +46915,7 @@
 							}
 						}
 					},
-				"name":	"chainsaw",
+				"name":	"null",
 				"type":	"THW"
 				}]
 			}
@@ -46946,7 +46946,7 @@
 							}
 						}
 					},
-				"name":	"HPPotion",
+				"name":	"null",
 				"type":	"healItem"
 				}]
 			}
@@ -46976,7 +46976,7 @@
 							}
 						}
 					},
-				"name":	"key",
+				"name":	"null",
 				"type":	"takeable"
 				}]
 			}
@@ -47038,7 +47038,7 @@
 					"livesLeft":	3,
 					"agility":	10,
 					"experience":	0,
-					"movement":	7
+					"movement":	10
 					}
 				}]
 			}
