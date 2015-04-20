@@ -1395,7 +1395,8 @@
 				"type":	"trap",
 				"event":	{
 					"duration":	20.0,
-					"type":	"tempMovementEvent"
+					"type":	"tempMovementEvent",
+					"oldMovementSpeed":  1
 					}
 				}]
 			}
