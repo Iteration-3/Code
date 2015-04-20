@@ -33,6 +33,7 @@ public class Creep extends SelfAbility {
 		this.getEvent().setDuration(duration);
 		if (hasMana(avatar) && !avatar.getEntityView().getHidden()) {
 
+			System.out.println("I am creepin");
 			//If we are visible, then go invisible and slow movement, else don't do anything
 			removeMana(avatar);
 			

@@ -78,8 +78,10 @@ public class NPC extends Entity {
 			this.getEntityView().turnOnHealthBar();
 			this.getEntityView().turnOnManaBar();
 		} else {
-			this.getEntityView().turnOffHealthBar();
-			this.getEntityView().turnOffManaBar();
+			if (this.getEntityView() != null) {
+				this.getEntityView().turnOffHealthBar();
+				this.getEntityView().turnOffManaBar();
+			}
 		}
 	}
 	

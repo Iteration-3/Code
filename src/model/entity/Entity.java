@@ -231,7 +231,9 @@ public abstract class Entity extends MobileObject implements Saveable {
 
     public BoundedEntityStatistics getDerivedStats() {
         BoundedEntityStatistics derivedStats = this.stats.clone();
-        itemManager.merge(derivedStats);
+        if (itemManager != null) {
+        	itemManager.merge(derivedStats);
+        }
         return derivedStats;
     }
 
