@@ -73,7 +73,7 @@ public abstract class Trigger implements Cloneable, Saveable {
     public StructuredMap getStructuredMap() {
     	StructuredMap map = new StructuredMap();
     	map.put("area", area.getStructuredMap());
-    	map.put("event", event.getStructuredMap());
+    	map.put("event", event == null ? null : event.getStructuredMap());
     	map.put("type", getType());
     	return map;
     }

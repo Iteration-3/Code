@@ -18,6 +18,9 @@ import utilities.structuredmap.StructuredMap;
 public class EventFactory {
 
 	public static Event createEvent(StructuredMap structuredMap) {
+		if(structuredMap == null ) {
+			return null;
+		}
 		switch (structuredMap.getString("type")) {
 		case "experienceModifier":
 			return new ExperienceModifierEvent(structuredMap);
