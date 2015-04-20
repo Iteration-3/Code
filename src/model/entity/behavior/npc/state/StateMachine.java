@@ -20,6 +20,10 @@ public class StateMachine implements StateMachineable {
 			this.states.push(state);
 		}
 	}
+	
+	public void revert(){
+		this.states.peek().onExit();
+	}
 		
 	@Override
 	public Behaviorable pop() {

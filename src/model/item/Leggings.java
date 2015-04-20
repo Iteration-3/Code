@@ -25,12 +25,6 @@ public class Leggings extends EquipableItem{
 	}
 	
 	@Override
-	public String getInfo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = super.getStructuredMap();
 		return map;

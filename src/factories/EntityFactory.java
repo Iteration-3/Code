@@ -1,5 +1,6 @@
 package factories;
 
+import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.entity.EntityManager;
@@ -13,6 +14,8 @@ import model.entity.behavior.npc.Behaviorable;
 import model.entity.behavior.npc.Coward;
 import model.entity.behavior.npc.PetBehavior;
 import model.entity.behavior.npc.TrooperBehavior;
+import model.light.LightManager;
+import model.light.MovingStaticLightSource;
 import utilities.Direction;
 import utilities.structuredmap.StructuredMap;
 import view.entity.EntitySpriteFactory;

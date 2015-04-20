@@ -9,6 +9,15 @@
 			},
 		"strength":	255,
 		"type":	"movingLight"
+		}, {
+		"area":	{
+			"coordinate":	[10, 10],
+			"range":	1,
+			"type":	"radial",
+			"direction":	1
+			},
+		"strength":	255,
+		"type":	"movingLight"
 		}],
 	"lightMap":	{
 		"dimmedValues":	[{
@@ -46354,7 +46363,7 @@
 			},
 		"type":	"mount",
 		"direction":	1
-		}, null, null],
+		}, null, null, null],
 	"avatar":	{
 		"entityView":	{
 			"locationY":	3.031088913245535,
@@ -46652,7 +46661,7 @@
 									}
 								}
 							},
-						"name":	"null",
+						"name":	"HPPotion",
 						"type":	"healItem"
 						},
 					"slotView":	{
@@ -46877,7 +46886,7 @@
 								}
 							}
 						},
-					"name":	"null",
+					"name":	"key",
 					"type":	"takeable"
 					},
 				"type":	"door"
@@ -46915,7 +46924,7 @@
 							}
 						}
 					},
-				"name":	"null",
+				"name":	"chainsaw",
 				"type":	"THW"
 				}]
 			}
@@ -46946,7 +46955,7 @@
 							}
 						}
 					},
-				"name":	"null",
+				"name":	"HPPotion",
 				"type":	"healItem"
 				}]
 			}
@@ -46976,7 +46985,7 @@
 							}
 						}
 					},
-				"name":	"null",
+				"name":	"key",
 				"type":	"takeable"
 				}]
 			}

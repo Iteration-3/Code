@@ -42,12 +42,6 @@ public class OneShotItem extends Item {
 	}
 
 	@Override
-	public String getInfo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void attemptRemoveFrom(ItemTile itemTile) {
 		itemTile.remove(this);
 	}
@@ -62,6 +56,11 @@ public class OneShotItem extends Item {
 	@Override
 	protected String getType() {
 		return "oneShot";
+	}
+
+	@Override
+	public String getInfo() {
+		return "One Shot Item WoopWoop";
 	}
 
 }

@@ -191,6 +191,10 @@ public abstract class Entity extends MobileObject implements Saveable {
 		this.setAttacking();
 		target.setHasBeenAttacked();
     }
+    
+    public void revert(){
+    	this.state.revert();
+    }
 
     
     
