@@ -31,6 +31,7 @@ public abstract class EquipableItem extends TakeableItem {
 	
 	public abstract boolean equip(ItemManager itemManager);
 	
+	@Override
 	public void use(Entity entity) {
 		entity.equip(this);
 	}

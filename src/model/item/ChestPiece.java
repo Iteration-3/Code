@@ -19,6 +19,7 @@ public class ChestPiece extends EquipableItem {
         super(map);
     }
 
+	@Override
 	public boolean equip(ItemManager itemManager) {
 		return itemManager.equipToSlot(this);
 	}

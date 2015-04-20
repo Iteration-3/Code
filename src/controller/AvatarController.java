@@ -1,13 +1,13 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import model.entity.Avatar;
 import controller.listener.Listener;
 
 public class AvatarController {
-    private Collection<Listener> listeners = new ArrayList<Listener>();
+    private Collection<Listener> listeners = new CopyOnWriteArrayList<Listener>();
     private Avatar avatar;
     private double tilesPerSecond = 0.0;
     private double previousTime = System.currentTimeMillis() / 1000.0;
@@ -33,7 +33,7 @@ public class AvatarController {
     }
 
     public void removeListeners() {
-        listeners = new ArrayList<Listener>();
+        listeners.clear();
     }
     
     private boolean movementOk() {

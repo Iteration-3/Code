@@ -26,7 +26,7 @@ public abstract class Avatar extends Entity {
 	public Avatar(String name, EntityView view, TileCoordinate loc) {
 		super(name, view, loc);
 		//Make light manager track all avatars movement
-		MovingLightSource avatarLight = new MovingLightSource(new RadialArea(3, loc), 255, this);
+		MovingLightSource avatarLight = new MovingLightSource(new RadialArea(5, loc), 255, this);
 		LightManager.getSingleton().addLightSource(avatarLight);
 		setLocation(loc);
 		//LightManager.getLightManager().getLightMap().trackMovement(this);
@@ -36,7 +36,7 @@ public abstract class Avatar extends Entity {
 	public Avatar(StructuredMap map) {
 		super(map);
 		//hack?
-		MovingLightSource avatarLight = new MovingLightSource(new RadialArea(3, getLocation()), 255, this);
+		MovingLightSource avatarLight = new MovingLightSource(new RadialArea(5, getLocation()), 255, this);
 		LightManager.getSingleton().addLightSource(avatarLight);
 	}
 	
@@ -77,6 +77,17 @@ public abstract class Avatar extends Entity {
 			}));
 			++i;
 		}
+		listeners.add(new PollingListener(preferences.getAttackKey(), new GameAction() {
+			
+			@Override
+			public void perform() {
+				//TODO Ensure this isaffected by equipement and so forth.
+				//Same for defending.
+				System.out.println("attack");
+				Avatar.this.attackInFront(-Avatar.this.getDerivedStats().getOffensiveRating());
+				
+			}
+		}));
 		return listeners;
 		
 	}
@@ -123,20 +134,24 @@ public abstract class Avatar extends Entity {
 	
 	private void updateStatBars(){
 		//Only appear during combat state.
-		this.getEntityView().updateHP(this.getHpPercentage());
-		this.getEntityView().turnOnHealthBar();
-		this.getEntityView().updateMana(this.getManaPercentage());
-		this.getEntityView().turnOnManaBar();
+		if(this.isInCombat()){
+			this.getEntityView().updateHP(this.getHpPercentage());
+			this.getEntityView().turnOnHealthBar();
+			this.getEntityView().updateMana(this.getManaPercentage());
+			this.getEntityView().turnOnManaBar();
+		}
 	}
 	
 	protected Collection<Ability> getAbilities(){
 		return abilities;
 	}
 	
+	@Override
 	public void accept(EntiyVisitorable visitor){
 		visitor.accept(this);
 	}
 	
+	@Override
 	protected Behaviorable getBehavior(){
 		//there is none now
 		return null;

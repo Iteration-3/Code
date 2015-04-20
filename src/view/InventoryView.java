@@ -95,6 +95,7 @@ public class InventoryView extends JComponent implements Saveable {
 		}
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(slotWidth * COL, slotHeight * ROW);
 	}
@@ -103,10 +104,12 @@ public class InventoryView extends JComponent implements Saveable {
 		this.setBounds(x, y, this.width, this.height);
 	}
 
+	@Override
 	public int getWidth() {
 		return (this.slots.values().size() / COL) * (slotWidth);
 	}
 
+	@Override
 	public int getHeight() {
 		return (this.slots.values().size() / ROW) * (slotHeight);
 	}

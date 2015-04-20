@@ -23,6 +23,7 @@ public class PermanentTrigger extends Trigger {
 		return false;
 	}
 
+	@Override
 	public PermanentTrigger clone() {
 		PermanentTrigger permanentTrigger = new PermanentTrigger();
 		permanentTrigger.setArea(this.getArea());

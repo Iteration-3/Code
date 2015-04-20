@@ -1,6 +1,5 @@
 package model.entity;
 
-import model.ability.Ability;
 import model.ability.summoner.bane.Firebolt;
 import model.ability.summoner.bane.LightBeam;
 import model.ability.summoner.bane.ShadowBlast;
@@ -12,14 +11,11 @@ import model.ability.summoner.enchantment.Cripple;
 import model.ability.summoner.enchantment.Intimidate;
 import model.ability.summoner.enchantment.Silence;
 import model.area.TileCoordinate;
-import model.item.Helmet;
 import model.skillmanager.SummonerSkillManager;
 import model.slots.ItemManager;
-import model.statistics.Statistics;
 import utilities.structuredmap.StructuredMap;
 import view.EntitySpriteFactory;
 import view.EntityView;
-import view.item.BasicItemView;
 
 public class Summoner extends Avatar {
 	protected ItemManager itemManger = new ItemManager(this);
@@ -40,15 +36,6 @@ public class Summoner extends Avatar {
 		super(map);
 	}
 	
-	protected void addRandomItems(){
-		//TODO why are items here???
-		this.addItem(new Helmet(new BasicItemView(),new Statistics()));
-		this.addItem(new Helmet(new BasicItemView(),new Statistics()));
-		this.addItem(new Helmet(new BasicItemView(),new Statistics()));
-		this.equip(new Helmet(new BasicItemView(),new Statistics()));
-
-	}
-
 	@Override
 	protected void generateSkills(){
 		//TODO(mbregg) abilities should level up in strength with you
@@ -73,25 +60,15 @@ public class Summoner extends Avatar {
 		//Get the base skills.
 		super.generateSkills();
 
-		//Print out the abilities we have. 
-		for(Ability a : this.getAbilities()){
-		}
-		
-		//To avoid breaking shit
-		this.addRandomItems();
 	}
 
 
 
+	@Override
 	protected ItemManager createItemManager() {
 		return new ItemManager(this);
 	}
 
-	@Override
-	public void attack() {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public StructuredMap getStructuredMap() {

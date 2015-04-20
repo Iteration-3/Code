@@ -43,56 +43,67 @@ public class KeyBindingsController extends Controller {
         this.keyPreferences = model.getPreferences();
 
         backAction = new ToggleAction() {
-            public void action() {
+            @Override
+			public void action() {
                 model.popState();
             }
         };
         rebindUpAction = new ToggleAction() {
-            public void action() {
+            @Override
+			public void action() {
                 attachNewUpMapping();
             }
         };
         rebindDownAction = new ToggleAction() {
-            public void action() {
+            @Override
+			public void action() {
                 attachNewDownMapping();
             }
         };
         rebindUpLeftAction = new ToggleAction() {
-            public void action() {
+            @Override
+			public void action() {
                 attachNewUpLeftMapping();
             }
         };
         rebindUpRightAction = new ToggleAction() {
-            public void action() {
+            @Override
+			public void action() {
                 attachNewUpRightMapping();
             }
         };
         rebindDownLeftAction = new ToggleAction() {
-            public void action() {
+            @Override
+			public void action() {
                 attachNewDownLeftMapping();
             }
         };
         rebindDownRightAction = new ToggleAction() {
-            public void action() {
+            @Override
+			public void action() {
                 attachNewDownRightMapping();
             }
         };
         rebindInventory = new ToggleAction() {
-            public void action() {
+            @Override
+			public void action() {
                 attachNewInventoryMapping();
             }
         };
         rebindSkills = new ToggleAction() {
-            public void action() {
+            @Override
+			public void action() {
                 attachNewSkillsMapping();
             }
         };
         rebindPause = new ToggleAction() {
-            public void action() {
+            @Override
+			public void action() {
                 attachNewPauseMapping();
             }
         };
         rebindDismount = new ToggleAction() {
+			@Override
 			public void action() {
 				attachNewDismountMapping();
 			}

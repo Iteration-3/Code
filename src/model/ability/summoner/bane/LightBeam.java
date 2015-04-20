@@ -1,14 +1,13 @@
 package model.ability.summoner.bane;
 
 import model.ability.ProjectileAbility;
-import model.area.RadialArea;
+import model.area.GrowingRadialArea;
 import model.entity.Avatar;
 import model.entity.Entity;
 import model.event.Event;
 import model.event.HealthModifierEvent;
 import model.projectile.conical.LightConeProjectile;
 import model.skillmanager.SummonerSkillManager;
-import model.trigger.SingleUseTrigger;
 
 public final class LightBeam extends ProjectileAbility {
 	
@@ -25,11 +24,9 @@ public final class LightBeam extends ProjectileAbility {
 	
 	@Override
 	public LightConeProjectile getProjectile(Entity ent){
+		Event damageEvent = new HealthModifierEvent(ent, null, 0, -15*manager.getBaneSkill());
 
-		Event damageEvent = new HealthModifierEvent(ent , null, 0, -15*manager.getBaneSkill());
-		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, ent.getLocation()), damageEvent);
-
-		return new LightConeProjectile(ent.getLocation(), ent.getDirection(), damageTrigger, 2.2);
+		return new LightConeProjectile(ent.getLocation(), ent.getDirection(), new GrowingRadialArea(ent.getLocation(), ent.getDirection(), 10), damageEvent, 2.2);
 	}
 
 	@Override

@@ -1,14 +1,13 @@
 package model.ability.summoner.bane;
 
 import model.ability.ProjectileAbility;
-import model.area.RadialArea;
+import model.area.GrowingConicalArea;
 import model.entity.Avatar;
 import model.entity.Entity;
 import model.event.Event;
 import model.event.HealthModifierEvent;
 import model.projectile.linear.ShadowBlastProjectile;
 import model.skillmanager.SummonerSkillManager;
-import model.trigger.SingleUseTrigger;
 
 public final class ShadowBlast extends ProjectileAbility {
 	
@@ -27,9 +26,7 @@ public final class ShadowBlast extends ProjectileAbility {
 	@Override
 	public ShadowBlastProjectile getProjectile(Entity ent) {
 		Event damageEvent = new HealthModifierEvent(ent, null, 0, -40*manager.getBaneSkill());
-		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
-		
-		return new ShadowBlastProjectile(ent.getLocation(), ent.getDirection(), damageTrigger, 2.2);
+		return new ShadowBlastProjectile(ent.getLocation(), ent.getDirection(), new GrowingConicalArea(ent.getLocation(), ent.getDirection(), 6), damageEvent, 2.2);
 	}
 
 	@Override

@@ -13,35 +13,44 @@ public class PetBehavior implements Behaviorable {
 	
 	public PetBehavior(){}
 
+	@Override
 	public void perform() {
 		this.performer.perform();
 	}
 
+	@Override
 	public void observe() {
 //		this.observer.observe();
 	}
 
+	@Override
 	public void interact(Entity entity) {
 	}
 
-	public void onDamage() {
+	@Override
+	public void onDamage(Entity entity) {
 	}
 
+	@Override
 	public boolean isExpired() {
 		return false;
 	}
 
+	@Override
 	public void onExit() {
 	}
 
+	@Override
 	public void onEnter() {
 	}
 
+	@Override
 	public void setEntity(Entity entity) {
 		this.entity = entity;
 		this.setStates();
 	}
 
+	@Override
 	public void setStates() {
 		performer = new LinkWithTarget(this.entity , 
 				EntityManager.getSingleton().getAvatar());

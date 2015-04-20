@@ -10,6 +10,11 @@ import utilities.Angle;
 import utilities.structuredmap.StructuredMap;
 
 public class ConicalArea extends DirectionalArea {
+    
+    private TileCoordinate lastStart;
+    private List<TileCoordinate> coverCache;
+    private HashSet<TileCoordinate> resCache;
+    private Angle lastDir;
 
     public ConicalArea() {
         super();
@@ -22,11 +27,6 @@ public class ConicalArea extends DirectionalArea {
     public ConicalArea(StructuredMap map) {
     	super(map);
     }
-    
-    private TileCoordinate lastStart;
-    private List<TileCoordinate> coverCache;
-    private HashSet<TileCoordinate> resCache;
-    private Angle lastDir;
 
     @Override
     public boolean isInRange(TileCoordinate location) {

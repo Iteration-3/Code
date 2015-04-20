@@ -1,9 +1,11 @@
 package model.event;
 
+import utilities.structuredmap.StructuredMap;
 import model.entity.Entity;
 
 public class TemporaryMovementModifierEvent extends Event {
 	private int movement;
+	private int oldMovementSpeed = 1;
 
 	public TemporaryMovementModifierEvent(double duration, int movement) {
 		super(duration);
@@ -14,13 +16,15 @@ public class TemporaryMovementModifierEvent extends Event {
 		super(target, duration);
 		this.movement = movement;
 	}
-
+	
+	public TemporaryMovementModifierEvent(StructuredMap map) {
+		super(map);
+	}
 
 	@Override
 	public void perform() {
 		//Do nothing.
 	}
-	private int oldMovementSpeed = 1;
 
 	@Override
 	public void onBegin() {
@@ -48,7 +52,7 @@ public class TemporaryMovementModifierEvent extends Event {
 
 	@Override
 	protected String getType() {
-		return "Tempmovementevent";
+		return "tempMovementEvent";
 	}
 
 

@@ -8,7 +8,6 @@ import model.event.Event;
 import model.event.ManaModifierEvent;
 import model.projectile.linear.SilenceProjectile;
 import model.skillmanager.SummonerSkillManager;
-import model.trigger.SingleUseTrigger;
 
 
 public class Silence extends ProjectileAbility {
@@ -27,8 +26,7 @@ public class Silence extends ProjectileAbility {
 	@Override
 	public SilenceProjectile getProjectile(Entity ent) {
 		Event damageEvent = new ManaModifierEvent(10*manager.getEnchantSkill(), -100*manager.getEnchantSkill());
-		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
-		return new SilenceProjectile(ent.getLocation(), ent.getDirection(), damageTrigger, 2.2);
+		return new SilenceProjectile(ent.getLocation(), ent.getDirection(), new RadialArea(1, null), damageEvent, 2.2);
 	}
 
 	@Override

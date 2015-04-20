@@ -11,34 +11,43 @@ public class MountBehavior implements Behaviorable {
 		
 	}
 
+	@Override
 	public void perform() {
 	}
 
+	@Override
 	public void observe() {
 	}
 
+	@Override
 	public void interact(Entity entity) {
 		this.interact.interact(entity);
 	}
 
-	public void onDamage() {
+	@Override
+	public void onDamage(Entity entity) {
 	}
 
+	@Override
 	public boolean isExpired() {
 		return false;
 	}
 
+	@Override
 	public void onExit() {
 	}
 
+	@Override
 	public void onEnter() {
 	}
 
+	@Override
 	public void setEntity(Entity entity) {
 		this.chosen = entity;
 		this.setStates();
 	}
 
+	@Override
 	public void setStates() {
 		interact = new MountInteract(this.chosen);
 	}

@@ -19,6 +19,7 @@ public class Leggings extends EquipableItem{
 		super(map);
 	}
 
+	@Override
 	public boolean equip(ItemManager itemManager) {
 		return itemManager.equipToSlot(this);
 	}

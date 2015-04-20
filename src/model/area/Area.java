@@ -18,11 +18,13 @@ public abstract class Area implements Saveable {
     public Area(int radius, TileCoordinate startLocation) {
         this.range = radius;
         this.startLocation = startLocation;
+        this.direction = Angle.UP;
     }
 
     public Area() {
         this.range = 1;
         this.startLocation = new TileCoordinate();
+        this.direction = Angle.UP;
     }
     
     public Area(StructuredMap map) {
@@ -32,7 +34,8 @@ public abstract class Area implements Saveable {
     	this.direction = Angle.values()[map.getInteger("direction")];
     }
 
-    public StructuredMap getStructuredMap() {
+    @Override
+	public StructuredMap getStructuredMap() {
     	StructuredMap map = new StructuredMap();
     	int[] location = new int[2];
     	location[0] = startLocation.getX();

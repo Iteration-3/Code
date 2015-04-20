@@ -23,7 +23,7 @@ public class GameplayLayout extends Layout implements ActionListener {
     GameLightView gameLightView;
 	GameProjectileView gameProjectileView;
 	private Camera camera;
-	private static final int FPS = 60;
+	private static final int FPS = 30;
 	private static final int REDRAW_INTERVAL = 1000 / FPS;
 	
     public GameplayLayout() {
@@ -78,6 +78,7 @@ public class GameplayLayout extends Layout implements ActionListener {
 		t.start();
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		repaint();
 	}

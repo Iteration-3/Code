@@ -64,6 +64,7 @@ public abstract class TakeableItem extends Item {
 		return map;
 	}
 	
+	@Override
 	protected String getType() {
 		return "takeable";
 	}

@@ -11,7 +11,7 @@ public class Trap extends Item {
 	
 	public Trap(ItemView itemView) {
 		super(itemView);
-		Event event = new TemporaryMovementModifierEvent(10, -10000000);
+		Event event = new TemporaryMovementModifierEvent(20, -100000);
 		setEvent(event);
 	}
 	
@@ -22,6 +22,7 @@ public class Trap extends Item {
 
 	@Override
 	public void touch(Entity entity) {
+		System.out.println("TRAPP");
 		event.setTarget(entity);
 		event.placeOnEventManager();
 		getView().toggle();

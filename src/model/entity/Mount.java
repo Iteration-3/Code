@@ -11,7 +11,7 @@ public class Mount extends NPC {
 	private Avatar rider;
 	
 	public Mount(String name, EntityView view, TileCoordinate location) {
-		super(name, view, location);
+		super(name, "mount",  view, location, new MountBehavior());
 	}
 
 	public Mount(StructuredMap map) {
@@ -51,6 +51,7 @@ public class Mount extends NPC {
 		if (this.rider != null) {
 			this.rider.toggleView();
 			this.rider = null;
+			this.push(new MountBehavior());
 		}
 	}
 
@@ -59,6 +60,7 @@ public class Mount extends NPC {
 		return "mount";
 	}
 	
+	@Override
 	protected Behaviorable getBehavior(){
 		return new MountBehavior();
 	}

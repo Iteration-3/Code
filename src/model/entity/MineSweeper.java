@@ -17,9 +17,6 @@ public class MineSweeper extends NPC {
 		return null;
 	}
 
-	@Override
-	public void attack() {
-	}
 
 	@Override
 	public String getType() {

@@ -2,15 +2,15 @@ package model.ability.summoner.boon;
 
 import model.ability.SelfAbility;
 import model.entity.Avatar;
-import model.event.MovementModifierEvent;
+import model.event.TemporaryMovementModifierEvent;
 import model.skillmanager.SummonerSkillManager;
 
 public class MovementBoon extends SelfAbility {
 	
-	private MovementModifierEvent event= new MovementModifierEvent(defaultDuration, defaultHealth);
+	private TemporaryMovementModifierEvent event= new TemporaryMovementModifierEvent(defaultDuration, defaultMovement);
 	private SummonerSkillManager manager;
-	final static private int defaultDuration = 7;
-	final static private int defaultHealth = 50;
+	final static private int defaultDuration = 3;
+	final static private int defaultMovement = 5;
 	
 	public MovementBoon(SummonerSkillManager manager) {
 		super(null, 15);

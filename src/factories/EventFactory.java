@@ -12,11 +12,15 @@ import model.event.PickPocketEvent;
 import model.event.RiverPushEvent;
 import model.event.StatisticModifierEvent;
 import model.event.TeleportEvent;
+import model.event.TemporaryMovementModifierEvent;
 import utilities.structuredmap.StructuredMap;
 
 public class EventFactory {
 
 	public static Event createEvent(StructuredMap structuredMap) {
+		if(structuredMap == null ) {
+			return null;
+		}
 		switch (structuredMap.getString("type")) {
 		case "experienceModifier":
 			return new ExperienceModifierEvent(structuredMap);
@@ -40,6 +44,8 @@ public class EventFactory {
 			return new StatisticModifierEvent(structuredMap);
 		case "teleportEvent":
 			return new TeleportEvent(structuredMap);
+		case "tempMovementEvent":
+			return new TemporaryMovementModifierEvent(structuredMap);
 		default:
 			throw new IllegalArgumentException("Fuck you");
 		}

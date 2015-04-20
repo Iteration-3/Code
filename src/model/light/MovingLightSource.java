@@ -23,6 +23,7 @@ public class MovingLightSource extends LightSource implements MobileListener {
 		followee = mo;
 	}
 	
+	@Override
 	public void remove() {
 		if (followee != null) 
 			followee.unsubscribe(this);

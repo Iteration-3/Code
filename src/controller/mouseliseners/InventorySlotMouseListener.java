@@ -15,6 +15,7 @@ public class InventorySlotMouseListener implements MouseListener {
 		this.entity = entity;
 	}
 
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (MouseEvent.BUTTON1 == e.getButton()){
 			TakeableItem item = this.entity.removeItem(location);
@@ -27,15 +28,19 @@ public class InventorySlotMouseListener implements MouseListener {
 		}
 	}
 
+	@Override
 	public void mouseEntered(MouseEvent e) {
 	}
 
+	@Override
 	public void mouseExited(MouseEvent e) {
 	}
 
+	@Override
 	public void mousePressed(MouseEvent e) {
 	}
 
+	@Override
 	public void mouseReleased(MouseEvent e) {
 	}
 

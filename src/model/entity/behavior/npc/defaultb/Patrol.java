@@ -12,6 +12,7 @@ public class Patrol implements DefaultableBehaviorState {
 		this.curcit = curcuit;
 	}
 	
+	@Override
 	public void perform(){
 		this.chosenOne.move(this.curcit.nextMove());
 	}

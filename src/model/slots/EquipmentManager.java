@@ -90,7 +90,7 @@ public class EquipmentManager implements Saveable {
 						.getStructuredMap("thwSlot")));
 			}
 		}
-		this.equipmentView = map.getStructuredMap("equpimentView") == null ? null : new EquipmentView(map.getStructuredMap("equipmentView"));
+		this.equipmentView = map.getStructuredMap("equipmentView") == null ? null : new EquipmentView(map.getStructuredMap("equipmentView"));
 
 	}
 

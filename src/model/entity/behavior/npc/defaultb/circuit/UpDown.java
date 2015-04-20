@@ -20,12 +20,14 @@ public class UpDown implements Circuitable{
 		moves.push(Angle.DOWN);
 	}
 	
+	@Override
 	public Angle nextMove(){
 		Angle move = moves.removeFirst();
 		moves.addFirst(move);
 		return move;
 	}
 
+	@Override
 	public boolean hasMove() {
 		return true;
 	}

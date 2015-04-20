@@ -7,6 +7,8 @@ import model.KeyPreferences;
 import model.area.TileCoordinate;
 import model.entity.behavior.npc.Behaviorable;
 import model.entity.behavior.npc.state.StateMachine;
+import model.event.EventManager;
+import model.event.HealthModifierEvent;
 import model.item.EquipableItem;
 import model.item.TakeableItem;
 import model.observers.MobileObject;
@@ -69,7 +71,8 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.setBehavior();
     }
     
-    public StructuredMap getStructuredMap() {
+    @Override
+	public StructuredMap getStructuredMap() {
         int[] locationArray = new int[2];
         locationArray[0] = getLocation().getX();
         locationArray[1] = getLocation().getY();
@@ -110,10 +113,10 @@ public abstract class Entity extends MobileObject implements Saveable {
     
     public void onDamage(Entity entity){
     	setHasBeenAttacked();
-    	this.state.onDamage();
+    	this.state.onDamage(entity);
     }
     
-    private void setHasBeenAttacked(){
+    public void setHasBeenAttacked(){
     	this.hasBeenAttacked = true;
     }
     
@@ -132,7 +135,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     public void setAttacking(){
     	this.attacking = true;
     }
-    
+   
     public boolean getAttacking(){
     	return this.attacking;
     }
@@ -162,8 +165,30 @@ public abstract class Entity extends MobileObject implements Saveable {
     public abstract void accept(EntiyVisitorable visitor);
 
     protected abstract ItemManager createItemManager();
-
-    public abstract void attack();
+    /**
+     * If no entity to attack, does nada.
+     * @param damage
+     */
+    protected void attackInFront(int damage){
+    	TileCoordinate targetSpot = this.nextLocation(this.getDirection());
+    	Entity target = EntityManager.getSingleton().getEntityAtLocation(targetSpot);
+    	System.out.println(target);
+    	if(target!=null){
+    		System.out.println(target.getDerivedStats().getCurrentHealth()+ " "+ damage);
+    		this.attackEntity(target, damage);
+    	}
+    }
+    /**
+     * Entity shouldn't be null!
+     * DAMAGE SHOULD BE NEGATIVE, OR IT WILL HEAL.
+     * @param target
+     * @param damage
+     */
+    public void attackEntity(Entity target,int damage){
+		EventManager.getSingleton().addEvent(new HealthModifierEvent(this,target,0,damage));
+		this.setAttacking();
+		target.setHasBeenAttacked();
+    }
 
     
     
@@ -304,26 +329,30 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.itemManager.unequipGloves();
     }
 
-    public void setLocation(TileCoordinate location) {
+    @Override
+	public void setLocation(TileCoordinate location) {
     	super.setLocation(location);
     	if (this.getEntityView() != null)
     		this.getEntityView().setLocation(location);//TODO: FIX
     }
     
-    public void setDirection(Angle angle){
+    @Override
+	public void setDirection(Angle angle){
     	super.setDirection(angle);
     	if(this.getEntityView() != null){
     		this.getEntityView().setDirection(angle);
     	}
     }
     
-    protected void setLocationNoNotify(TileCoordinate location) {
+    @Override
+	protected void setLocationNoNotify(TileCoordinate location) {
     	super.setLocationNoNotify(location);
     	if (this.getEntityView() != null)
     		this.getEntityView().setLocation(location);//TODO: FIX
     }
     
-    protected void setDirectionNoNotify(Angle angle){
+    @Override
+	protected void setDirectionNoNotify(Angle angle){
     	super.setDirectionNoNotify(angle);
     	if(this.getEntityView() != null){
     		this.getEntityView().setDirection(angle);
@@ -375,5 +404,14 @@ public abstract class Entity extends MobileObject implements Saveable {
     public ItemManager getItemManager(){
     	return this.itemManager;
     }
+
+	public int getDamage() {
+		int  offRating = this.getDerivedStats().getOffensiveRating();
+		return offRating;
+	}
+	
+	protected boolean isInCombat() {
+		return (this.getHasBeenAttacked() || this.getAttacking());
+	}
 
 }
