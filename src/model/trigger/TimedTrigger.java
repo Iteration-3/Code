@@ -48,8 +48,8 @@ public class TimedTrigger extends Trigger {
     
     @Override
     public StructuredMap getStructuredMap() {
-    	StructuredMap map = new StructuredMap();
-    	map.put("duration", (double)(this.duration - (System.currentTimeMillis() - creationTime)));
+    	StructuredMap map = super.getStructuredMap();
+    	map.put("duration", (double)((creationTime + this.duration) - System.currentTimeMillis()));
     	return map;
     }
 

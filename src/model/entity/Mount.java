@@ -11,7 +11,7 @@ public class Mount extends NPC {
 	private Avatar rider;
 	
 	public Mount(String name, EntityView view, TileCoordinate location) {
-		super(name, view, location);
+		super(name, "mount",  view, location, new MountBehavior());
 	}
 
 	public Mount(StructuredMap map) {

@@ -3,20 +3,22 @@ package model.entity;
 
 import model.area.TileCoordinate;
 import model.entity.behavior.npc.Behaviorable;
-import model.entity.behavior.npc.TrooperBehavior;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 
 public class NPC extends Entity {
-	
+	private Behaviorable behavior;
+	private String type;
 	
 	public NPC() {
 		super();
 	}
 	
-	public NPC(String name, EntityView view, TileCoordinate location) {
+	public NPC(String name, String type, EntityView view, TileCoordinate location, Behaviorable behavior) {
 		super(name, view, location);
+		this.behavior = behavior;
+		this.type = type;
 	}
 	
 	public NPC(StructuredMap map) {
@@ -41,10 +43,6 @@ public class NPC extends Entity {
 		return new ItemManager(this);
 	}
 
-	@Override
-	public void attack() {
-		// TODO Auto-generated method stub
-	}
 	
 	@Override
 	public void load(StructuredMap map) {
@@ -75,7 +73,9 @@ public class NPC extends Entity {
 	
 	@Override
 	public String getType() {
-		return "npc";
+		//Kyle you might want 
+		return this.type;
+//		return "npc";
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class NPC extends Entity {
 
 	@Override
 	protected Behaviorable getBehavior() {
-		return new TrooperBehavior();
+		return this.behavior;
 	}
 
 }
