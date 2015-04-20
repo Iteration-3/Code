@@ -1,7 +1,9 @@
-package view;
+package view.entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
@@ -9,8 +11,9 @@ import utilities.Direction;
 import utilities.ScreenCoordinate;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
-import view.map.GameEntityView;
-
+import view.Renderable;
+import view.StatBar;
+import view.ViewTransform;
 
 public class EntityView implements Renderable, Saveable {
 	private StatBar healthBar = new StatBar(Color.red,Color.white);
@@ -26,6 +29,9 @@ public class EntityView implements Renderable, Saveable {
 	private boolean hidden = false;
 	private Direction angle;
 	private GameEntityView gameEntityView = null;
+	private boolean locked = false;
+	private RealCoordinate copyLocation;
+	private Direction copyAngle;
 	
 	public EntityView(AbstractEntitySpriteHolder sprites) {
 		this.sprites = sprites;
@@ -34,6 +40,22 @@ public class EntityView implements Renderable, Saveable {
 	public EntityView(StructuredMap map) {
 		this.sprites = EntitySpriteFactory.getSpritesFromType(map.getStructuredMap("sprites").getString("spriteType"));
 		this.location = new RealCoordinate(map.getDouble("locationX"), map.getDouble("locationY"));
+	}
+	
+	public void lock() {
+		locked = true;
+	}
+	
+	public void release() {
+		locked = false;
+		if (copyAngle != null) {
+			angle = copyAngle;
+			copyAngle = null;
+		}
+		if (copyLocation != null) {
+			location = copyLocation;
+			copyLocation = null;
+		}
 	}
 
 	public void registerWithGameMapView(GameEntityView gv, RealCoordinate location, Direction angle) {
@@ -60,7 +82,7 @@ public class EntityView implements Renderable, Saveable {
 		}
 	}
 	
-	public void turnOnHealthBar(){
+	public void turnOnHealthBar() {
 		drawHealthBar = true;
 
 	}
@@ -75,6 +97,7 @@ public class EntityView implements Renderable, Saveable {
 	public void turnOnManaBar(){
 		drawManaBar = true;
 	}
+	
 	public void updateMana(float mana){
 		lastKnownMana = mana;
 	}
@@ -96,7 +119,11 @@ public class EntityView implements Renderable, Saveable {
 	}
 
 	public void setLocation(RealCoordinate location) {
-		this.location = location;
+		if (locked) {
+			this.copyLocation = location;
+		} else {
+			this.location = location;
+		}
 	}
 
 	public void setLocation(TileCoordinate location) {
@@ -106,7 +133,11 @@ public class EntityView implements Renderable, Saveable {
 	}
 
 	public void setDirection(Direction angle) {
-		this.angle = angle;
+		if (locked) {
+			this.copyAngle = angle;
+		} else {
+			this.angle = angle;
+		}
 	}
 
 	@Override

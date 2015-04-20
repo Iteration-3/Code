@@ -1,4 +1,4 @@
-package view.map;
+package view;
 
 import java.awt.Graphics;
 

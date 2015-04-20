@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import utilities.ImageProcessing;
 import utilities.structuredmap.StructuredMap;
 import view.Decal;
-import view.tiles.components.Hexagon;
+import view.map.components.Hexagon;
 
 public class BasicItemView extends ItemView {
 	

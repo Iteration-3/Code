@@ -1,4 +1,4 @@
-package view.map;
+package view.light;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,7 +8,7 @@ import model.light.LightManager;
 import utilities.ScreenCoordinate;
 import view.Renderable;
 import view.ViewTransform;
-import view.tiles.components.Hexagon;
+import view.map.components.Hexagon;
 
 public class GameLightView implements Renderable {
 	public static long TIME_TO_DIM = 800;

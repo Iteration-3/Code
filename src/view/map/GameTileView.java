@@ -10,9 +10,9 @@ import utilities.ScreenCoordinate;
 import view.Renderable;
 import view.ViewTransform;
 
-public class GameTerrainView implements Renderable {
+public class GameTileView implements Renderable {
 	private TileView[][] tileViews;
-	public GameTerrainView() {
+	public GameTileView() {
 		tileViews = new TileView[100][100]; //exact sizing just for testing purposes
 	}
 	

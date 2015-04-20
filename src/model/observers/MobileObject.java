@@ -17,6 +17,7 @@ public abstract class MobileObject {
 	
 	public void subscribe(MobileListener list) {
 		listeners.add(list);
+		list.notify(this);
 	}
 
 	public void unsubscribe(MobileListener list) {

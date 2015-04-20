@@ -1,8 +1,9 @@
-package view;
+package view.entity;
 
 import java.awt.image.BufferedImage;
 
 import utilities.structuredmap.StructuredMap;
+import view.Sprite;
 
 class ConcreteEntitySpriteHolder extends AbstractEntitySpriteHolder {
 	

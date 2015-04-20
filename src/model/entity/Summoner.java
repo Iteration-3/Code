@@ -14,8 +14,8 @@ import model.area.TileCoordinate;
 import model.skillmanager.SummonerSkillManager;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
-import view.EntitySpriteFactory;
-import view.EntityView;
+import view.entity.EntitySpriteFactory;
+import view.entity.EntityView;
 
 public class Summoner extends Avatar {
 	protected ItemManager itemManger = new ItemManager(this);

@@ -5,7 +5,7 @@ import model.area.TileCoordinate;
 import model.entity.behavior.npc.Behaviorable;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
-import view.EntityView;
+import view.entity.EntityView;
 
 public class NPC extends Entity {
 	private Behaviorable behavior;
