@@ -3,7 +3,16 @@
 	"sources":	[{
 		"area":	{
 			"coordinate":	[3, 3],
-			"range":	5,
+			"range":	7,
+			"type":	"radial",
+			"direction":	1
+			},
+		"strength":	255,
+		"type":	"movingLight"
+		}, {
+		"area":	{
+			"coordinate":	[10, 10],
+			"range":	1,
 			"type":	"radial",
 			"direction":	1
 			},

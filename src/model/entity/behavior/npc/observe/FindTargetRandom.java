@@ -9,7 +9,7 @@ public class FindTargetRandom implements ObservableBehaviorState {
 	private Entity chosenOne;
 	private Entity attackThisPerson;
 	private Area area;
-	private int ticker = 10000;
+	private int ticker = 700;
 	private int count;
 	private boolean found = false;
 
@@ -26,7 +26,7 @@ public class FindTargetRandom implements ObservableBehaviorState {
 			for (Entity e : EntityManager.getSingleton()
 					.getEntityFromLocaitons(this.area.getCoveredLocations())) {
 			
-				if (Math.random() > 0.8 || foundTarget){
+				if (Math.random() > 0.87 || foundTarget){
 					if (e == EntityManager.getSingleton().getAvatar()){
 						foundTarget = true;
 					}

@@ -28,7 +28,6 @@ public class MapLoader {
 		GameTileView gameMapView = new GameTileView(width * 2, height / 2);
 		StructuredMap[] layers = mapData.getStructuredMapArray("layers");
 		int[] tileIds = layers[0].getIntArray("data");
-		System.out.println(Arrays.toString(tileIds));
 		for(int i = 0; i < width * height; ++i) {
 			 TileView view = null;
 			 Tile tile = null;
@@ -42,8 +41,6 @@ public class MapLoader {
 				 x = 2*x + 1;
 			 
 			 y = y / 2;
-			 
-			 //System.out.println(x + ":" + y);
 			 
 			 switch(tileIds[i]) {
 				case 1: // grass

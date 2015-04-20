@@ -244,9 +244,15 @@ public abstract class Entity extends MobileObject implements Saveable {
     public void move(Direction angle) {
     	if (angle != null){
     		TileCoordinate nextLocation = nextLocation(angle);
-    		this.setLocationNoNotify(nextLocation);
-    		this.setDirectionNoNotify(angle);
-    		this.notifySubscribers();
+    		Entity entity = EntityManager.getSingleton().getEntityAtLocation(nextLocation);
+    		if (entity != null){
+    			this.interact(entity);
+    		}
+    		else{
+    			this.setLocationNoNotify(nextLocation);
+    			this.setDirectionNoNotify(angle);
+    			this.notifySubscribers();
+    		}
     	}
     }
     

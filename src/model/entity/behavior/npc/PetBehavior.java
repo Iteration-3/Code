@@ -22,7 +22,7 @@ public class PetBehavior implements Behaviorable {
 	private AttackInteract interact;
 	private LinkAndInteract performInteract;
 	private boolean foundATarget;
-	private int counter,trigger = 10000;
+	private int counter,trigger = 5000;
 	
 	public PetBehavior(){
 		
@@ -32,7 +32,6 @@ public class PetBehavior implements Behaviorable {
 	public void perform(double deltaTime) {
 		if (this.observer.found()){
 			this.foundATarget = true;
-			System.out.println("TIMMY");
 			this.performInteract = new LinkAndInteract(this.entity,this.observer.getFoundPerson());
 		}
 		if(this.foundATarget){

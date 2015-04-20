@@ -20,8 +20,7 @@ public class AttackInteract implements InteractableBehaviorState {
 	public void accept(NPC entity) {
 		if (attackEntity){
 			//TODO  damage needs to be modified with skill points
-			int damage = this.chosen.getDamage() * -1;
-			this.chosen.attackEntity(entity,damage);
+			this.chosen.attackEntity(entity,30);
 		}
 
 	}
@@ -30,7 +29,6 @@ public class AttackInteract implements InteractableBehaviorState {
 	public void accept(Avatar avatar) {
 		//TODO  damage needs to be modified with skill points
 		int damage = this.chosen.getDamage() * -1;
-		System.out.println(damage);
 		this.chosen.attackEntity(avatar,damage);
 	}
 

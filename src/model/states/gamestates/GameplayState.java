@@ -108,8 +108,8 @@ public class GameplayState extends GameState {
         addTriggersTest(map.getStructuredMap("triggers"));
        LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
        
-        
-      /*StructuredMap map = new StructuredMap();
+        /*
+      StructuredMap map = new StructuredMap();
       map.put("entites", EntityManager.getSingleton().getStructuredMap());
       map.put("items", itemMap.getStructuredMap());
       KeyPreferences pref = new KeyPreferences();
@@ -122,10 +122,10 @@ public class GameplayState extends GameState {
         */
        
         
-
+       //LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
         controller.spawnUpdateThread();
         avatar.subscribe(layout.getCamera());
-        LightManager.getSingleton().load(map.getStructuredMap("lightStuff"), layout.getGameLightView());
+       LightManager.getSingleton().load(map.getStructuredMap("lightStuff"), layout.getGameLightView());
     }
 
     @Override
@@ -196,10 +196,13 @@ public class GameplayState extends GameState {
         EntityManager.getSingleton().addNonPartyNpc(mount);
 
     	
-    	KeyPreferences preferences = new KeyPreferences(preferencesMap);
-        //KeyPreferences preferences = new KeyPreferences();
+    	//KeyPreferences preferences = new KeyPreferences(preferencesMap);
+        KeyPreferences preferences = new KeyPreferences();
         getContext().setPreferences(preferences);
         setListeners(preferences);
+    	EntityFactory.createHeavyTrooper("DAVE SMA11", new TileCoordinate(25,25), layout);
+    	EntityFactory.createCowardTrooper("CAP POOP PANTS", new TileCoordinate(40,25), layout);
+    	EntityFactory.createPet("Timmmy", new TileCoordinate(10,10), layout);
 
     	
         getContext().setPreferences(preferences);
@@ -244,8 +247,8 @@ public class GameplayState extends GameState {
 	}
 
 	private void addItemsTest(StructuredMap map) {
-		
 		/*
+		
         TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
         ItemView takeableItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(takeableItemViewPosition), new Decal("/images/items/two_handed_chainsaw.png", TileCoordinate.convertToRealCoordinate(takeableItemViewPosition)));
         takeableItemView.registerWithGameItemView(layout.getGameItemView());
@@ -308,7 +311,7 @@ public class GameplayState extends GameState {
     }
 
     private void addTriggersTest(StructuredMap map) {
-    	
+    	//Original Triggers
         TriggerManager triggerManager = TriggerManager.getSingleton();
 
         TileCoordinate locOne = new TileCoordinate(5, 5);
@@ -346,6 +349,24 @@ public class GameplayState extends GameState {
         triggerManager.addNonPartyTrigger(triggerFour);
         triggerManager.addNonPartyTrigger(triggerFive);
         triggerManager.addNonPartyTrigger(triggerSix);
+        
+        TileCoordinate locTele = new TileCoordinate(76, 45);
+        Area areaTele = new RadialArea(0, locTele);
+        Trigger triggerTele = new ViewableTrigger(new PermanentTrigger(areaTele, new TeleportEvent(new TileCoordinate(84, 55),
+                new GameActionTeleport(avatar, gameMap, this.getItemMap(), Direction.DOWN))), new Decal("/images/items/skull_and_crossbones.png",
+                		TileCoordinate.convertToRealCoordinate(new TileCoordinate(84,55))));
+        
+        TileCoordinate locRiver = new TileCoordinate(14, 43);
+        Area areaRiver = new LinearArea(20, locRiver, Direction.DOWN);
+        Trigger triggerRiver = new ViewableTrigger(new RateLimitedTrigger(areaFour, new RiverPushEvent(
+                new GameActionRiverPush(avatar, gameMap, this.getItemMap(), Direction.DOWN)),1000),
+                new Decal("/images/items/skull_and_crossbones.png",
+                		TileCoordinate.convertToRealCoordinate(new TileCoordinate(14,43))));
+        
+        triggerManager.addNonPartyTrigger(triggerRiver);
+        triggerManager.addNonPartyTrigger(triggerTele);
+        
+        
         
     	//TriggerManager.getSingleton().loadTriggers(map);
 
