@@ -116,7 +116,10 @@ public abstract class Avatar extends Entity {
 	
 	@Override
 	public void update(){
-		this.getEntityView().turnOnStatBar(this.getHpPercentage());
+		this.getEntityView().updateHP(this.getHpPercentage());
+		this.getEntityView().turnOnHealthBar();
+		this.getEntityView().updateMana(this.getManaPercentage());
+		this.getEntityView().turnOnManaBar();
 	}
 	
 	protected Collection<Ability> getAbilities(){

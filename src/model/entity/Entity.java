@@ -114,6 +114,11 @@ public abstract class Entity extends MobileObject implements Saveable {
     			(float)this.getDerivedStats().getMaximumHealth();
     }
     
+    public float getManaPercentage(){
+    	return this.getDerivedStats().getCurrentMana()/
+    			(float)this.getDerivedStats().getMaximumMana();
+    }
+    
     public void push(Behaviorable state){
     	this.state.push(state);
     }

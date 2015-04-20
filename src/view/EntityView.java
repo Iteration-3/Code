@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import model.area.RealCoordinate;
@@ -16,9 +17,13 @@ public class EntityView implements Saveable {
 	private boolean hidden = false;
 	private static final float BORDER_PERCENTAGE = 0.15f; // 15% border edge
 	private static final float OVERDRAW = 1.05f; // To eliminate little blank spaces between tiles
-	private StatBar healthBar = new StatBar();
+	private StatBar healthBar = new StatBar(Color.red,Color.white);
 	private boolean drawHealthBar = false;
 	private float lastKnownHealth = 1f;
+	
+	private StatBar manaBar = new StatBar(Color.blue,Color.white);
+	private boolean drawManaBar = false;
+	private float lastKnownMana = 1f;
 	
 	public EntityView(AbstractEntitySpriteHolder sprites) {
 		this.sprites=sprites;
@@ -50,19 +55,37 @@ public class EntityView implements Saveable {
 		//backgroundHexagon.render(graphics, updatedCoordinate, tileWidth * BORDER_PERCENTAGE * OVERDRAW);
 		sprites.render(graphics, updatedCoordinate, 1,this.getDirection());
 		if(drawHealthBar){
-			healthBar.render(graphics,updatedCoordinate.getX(),updatedCoordinate.getY()-20,lastKnownHealth);
+			healthBar.render(graphics,updatedCoordinate.getX(),updatedCoordinate.getY()-25,lastKnownHealth);
+			//Height offset hardcoded atm.
+		}
+		if(drawManaBar){
+			manaBar.render(graphics,updatedCoordinate.getX(),updatedCoordinate.getY()-40,lastKnownMana);
 			//Height offset hardcoded atm.
 		}
 		
 	}
 	
-	public void turnOnStatBar(float HP){
+	public void turnOnHealthBar(){
 		drawHealthBar = true;
+
+	}
+	public void updateHP(float HP){
 		lastKnownHealth = HP;
 	}
 	
-	public void turnOffStatBar(){
+	public void turnOffHealthBar(){
 		drawHealthBar = false;
+	}
+	
+	public void turnOnManaBar(){
+		drawManaBar = true;
+	}
+	public void updateMana(float mana){
+		lastKnownMana = mana;
+	}
+	
+	public void turnOffManaBar(){
+		drawManaBar = false;
 	}
 	
 	public void toggle() {

@@ -4,32 +4,46 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class StatBar {
-	int STAT_HEIGHT = 10;
-	int STAT_WIDTH = 50;
-	int ROUNDING = 10;
+	private int STAT_HEIGHT = 10;
+	private int STAT_WIDTH = 50;
+	private int ROUNDING = 10;
+	private Color foreGround = Color.black;
+	private Color backGround= Color.white;
+	
 
-	public StatBar(int height, int width) {
+	public StatBar(int height, int width, Color foreGround, Color backGround) {
 		this.STAT_HEIGHT = height;
 		this.STAT_WIDTH = width;
+		this.foreGround = foreGround;
+		this.backGround = backGround;
 	}
 
 	public StatBar() {
 
+	}
+	public StatBar(Color foreGround, Color backGround){
+		this.foreGround = foreGround;
+		this.backGround = backGround;
+	}
+	
+	public void setColors(Color foreGround, Color backGround){
+		this.foreGround = foreGround;
+		this.backGround = backGround;
 	}
 	
 	public void setSize(int height, int width){
 		this.STAT_HEIGHT = height;
 		this.STAT_WIDTH = width;
 	}
-
+	
 	
 	public void render(Graphics gr, double x, double y, Float percentage) {
 		this.drawStatBar(gr, x, y, percentage);
 	}
 
 	private void drawStatBar(Graphics gr, double x, double y, Float percentage) {
-		drawStatBarBackGround(gr, x, y, Color.white);
-		drawStatBarTop(gr, x, y, percentage, Color.black);
+		drawStatBarBackGround(gr, x, y, backGround);
+		drawStatBarTop(gr, x, y, percentage, foreGround);
 	}
 
 	private void drawStatBarTop(Graphics graphics, double x, double y,
