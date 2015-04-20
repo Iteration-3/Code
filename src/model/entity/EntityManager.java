@@ -116,6 +116,9 @@ public class EntityManager implements Iterable<Entity>, Saveable {
 	}
 	
 	public void update(ItemMap itemMap, double deltaTime) {
+		if (itemMap == null) {
+			return;
+		}
 		for(Entity e : this){
 			itemMap.touch(e, e.getLocation());
 			e.update(deltaTime);

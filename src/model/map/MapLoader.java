@@ -43,7 +43,7 @@ public class MapLoader {
 			 
 			 y = y / 2;
 			 
-			 System.out.println(x + ":" + y);
+			 //System.out.println(x + ":" + y);
 			 
 			 switch(tileIds[i]) {
 				case 1: // grass

@@ -36,6 +36,15 @@
 			},
 		"strength":	255,
 		"type":	"movingLight"
+		}, {
+		"area":	{
+			"coordinate":	[3, 3],
+			"range":	5,
+			"type":	"radial",
+			"direction":	1
+			},
+		"strength":	255,
+		"type":	"movingLight"
 		}],
 	"lightMap":	{
 		"dimmedValues":	[{
@@ -46381,7 +46390,7 @@
 			},
 		"type":	"mount",
 		"direction":	1
-		}, null, null, null],
+		}],
 	"avatar":	{
 		"entityView":	{
 			"locationY":	3.031088913245535,
@@ -47186,87 +47195,63 @@
 			"y":	7
 			},
 		"itemTile":	{
-			"items":	[]
-			}
-		}, {
-		"coordinate":	{
-			"x":	3,
-			"y":	3
-			},
-		"itemTile":	{
-			"items":	[]
-			}
-		}, {
-		"coordinate":	{
-			"x":	32,
-			"y":	10
-			},
-		"itemTile":	{
-			"items":	[]
-			}
-		}, {
-		"coordinate":	{
-			"x":	40,
-			"y":	25
-			},
-		"itemTile":	{
-			"items":	[]
-			}
-		}, {
-		"coordinate":	{
-			"x":	28,
-			"y":	17
-			},
-		"itemTile":	{
-			"items":	[]
-			}
-		}, {
-		"coordinate":	{
-			"x":	24,
-			"y":	15
-			},
-		"itemTile":	{
-			"items":	[]
-			}
-		}, {
-		"coordinate":	{
-			"x":	20,
-			"y":	13
-			},
-		"itemTile":	{
-			"items":	[]
-			}
-		}, {
-		"coordinate":	{
-			"x":	16,
-			"y":	11
-			},
-		"itemTile":	{
-			"items":	[]
-			}
-		}, {
-		"coordinate":	{
-			"x":	12,
-			"y":	8
-			},
-		"itemTile":	{
-			"items":	[]
-			}
-		}, {
-		"coordinate":	{
-			"x":	8,
-			"y":	6
-			},
-		"itemTile":	{
-			"items":	[]
-			}
-		}, {
-		"coordinate":	{
-			"x":	12,
-			"y":	10
-			},
-		"itemTile":	{
-			"items":	[]
+			"items":	[{
+				"stats":	{
+					"hardiness":	10,
+					"intellect":	10,
+					"strength":	10,
+					"agility":	10
+					},
+				"price":	{
+					"cost":	10
+					},
+				"taken":	false,
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	3.75,
+						"y":	4.763139720814412
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/two_handed_chainsaw.png",
+						"position":	{
+							"x":	3.75,
+							"y":	4.763139720814412
+							}
+						}
+					},
+				"name":	"chainsaw",
+				"type":	"THW"
+				}, {
+				"stats":	{
+					"hardiness":	10,
+					"intellect":	10,
+					"strength":	10,
+					"agility":	10
+					},
+				"price":	{
+					"cost":	10
+					},
+				"taken":	false,
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	3.75,
+						"y":	4.763139720814412
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/two_handed_chainsaw.png",
+						"position":	{
+							"x":	3.75,
+							"y":	4.763139720814412
+							}
+						}
+					},
+				"name":	"chainsaw",
+				"type":	"THW"
+				}]
 			}
 		}, {
 		"coordinate":	{
@@ -47298,6 +47283,78 @@
 				"name":	"HPPotion",
 				"type":	"healItem"
 				}, {
+<<<<<<< HEAD
+=======
+				"price":	{
+					"cost":	10
+					},
+				"taken":	false,
+				"healAmount":	1000,
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	12.0,
+						"y":	13.856406460551018
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/healthpack.png",
+						"position":	{
+							"x":	12.0,
+							"y":	13.856406460551018
+							}
+						}
+					},
+				"name":	"HPPotion",
+				"type":	"healItem"
+				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	7,
+			"y":	7
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	3,
+			"y":	3
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	5,
+			"y":	6
+			},
+		"itemTile":	{
+			"items":	[{
+				"price":	{
+					"cost":	10
+					},
+				"taken":	false,
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	3.75,
+						"y":	5.629165124598852
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/key.png",
+						"position":	{
+							"x":	3.75,
+							"y":	5.629165124598852
+							}
+						}
+					},
+				"name":	"key",
+				"type":	"takeable"
+				}, {
+>>>>>>> branch 'master' of https://github.com/Iteration-3/Code.git
 				"price":	{
 					"cost":	10
 					},
@@ -47390,6 +47447,7 @@
 			}
 		}, {
 		"coordinate":	{
+<<<<<<< HEAD
 			"x":	29,
 			"y":	17
 			},
@@ -47424,6 +47482,10 @@
 		"coordinate":	{
 			"x":	13,
 			"y":	8
+=======
+			"x":	7,
+			"y":	2
+>>>>>>> branch 'master' of https://github.com/Iteration-3/Code.git
 			},
 		"itemTile":	{
 			"items":	[]
@@ -47463,6 +47525,35 @@
 					"experience":	0,
 					"movement":	10
 					}
+				}, {
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	9.75,
+						"y":	8.227241335952167
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/book.png",
+						"position":	{
+							"x":	9.75,
+							"y":	8.227241335952167
+							}
+						}
+					},
+				"type":	"oneShot",
+				"modifiers":	{
+					"hardiness":	10,
+					"currentHealth":	1000,
+					"currentMana":	1000,
+					"intellect":	10,
+					"strength":	10,
+					"money":	30,
+					"livesLeft":	3,
+					"agility":	10,
+					"experience":	0,
+					"movement":	10
+					}
 				}]
 			}
 		}, {
@@ -47471,6 +47562,7 @@
 			"y":	6
 			},
 		"itemTile":	{
+<<<<<<< HEAD
 			"items":	[]
 			}
 		}, {
@@ -47480,6 +47572,55 @@
 			},
 		"itemTile":	{
 			"items":	[]
+=======
+			"items":	[{
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	11.25,
+						"y":	10.825317547305483
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/trap.png",
+						"position":	{
+							"x":	11.25,
+							"y":	10.825317547305483
+							}
+						}
+					},
+				"type":	"trap",
+				"event":	{
+					"duration":	20.0,
+					"oldMovementSpeed":	1,
+					"type":	"tempMovementEvent",
+					"movement":	-1000
+					}
+				}, {
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	11.25,
+						"y":	10.825317547305483
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/trap.png",
+						"position":	{
+							"x":	11.25,
+							"y":	10.825317547305483
+							}
+						}
+					},
+				"type":	"trap",
+				"event":	{
+					"duration":	20.0,
+					"oldMovementSpeed":	1,
+					"type":	"tempMovementEvent",
+					"movement":	-1000
+					}
+				}]
+>>>>>>> branch 'master' of https://github.com/Iteration-3/Code.git
 			}
 		}, {
 		"coordinate":	{
