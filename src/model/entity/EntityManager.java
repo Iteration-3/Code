@@ -31,32 +31,32 @@ public class EntityManager implements Iterable<Entity>, Saveable {
 		this.avatar = EntityFactory.createAvatar(map.getStructuredMap("avatar"));
 		this.partyNpcs = new ArrayList<NPC>();
 		this.nonPartyNpcs = new ArrayList<NPC>();
-		StructuredMap[] array1 = map.getStructuredMapArray("partyNPC");
-		StructuredMap[] array2 = map.getStructuredMapArray("nonPartyNPC");
-		for(StructuredMap tempMap : array1) {
-			this.partyNpcs.add(EntityFactory.createNPC(tempMap));
-		}
-		for(StructuredMap tempMap : array2) {
-			this.nonPartyNpcs.add(EntityFactory.createNPC(tempMap));
-		}
+		//StructuredMap[] array1 = map.getStructuredMapArray("partyNPC");
+		//StructuredMap[] array2 = map.getStructuredMapArray("nonPartyNPC");
+		///for(StructuredMap tempMap : array1) {
+		//	this.partyNpcs.add(EntityFactory.createNPC(tempMap));
+		//}
+		//for(StructuredMap tempMap : array2) {
+		//	this.nonPartyNpcs.add(EntityFactory.createNPC(tempMap));
+		//}
 	}
 	
 	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = new StructuredMap();
 		map.put("avatar", avatar.getStructuredMap());
-		StructuredMap[] partyNPCArray = new StructuredMap[partyNpcs.size()];
-		for(int i = 0; i < partyNpcs.size(); i++) {
-			partyNPCArray[i] = partyNpcs.get(i).getStructuredMap();
-		}
+		//StructuredMap[] partyNPCArray = new StructuredMap[partyNpcs.size()];
+		//for(int i = 0; i < partyNpcs.size(); i++) {
+		//	partyNPCArray[i] = partyNpcs.get(i).getStructuredMap();
+		//}
 		
-		StructuredMap[] nonPartyNPCArray = new StructuredMap[nonPartyNpcs.size()];
-		for(int i = 0; i < partyNpcs.size(); i++) {
-			nonPartyNPCArray[i] = nonPartyNpcs.get(i).getStructuredMap();
-		}
+		//StructuredMap[] nonPartyNPCArray = new StructuredMap[nonPartyNpcs.size()];
+		//for(int i = 0; i < partyNpcs.size(); i++) {
+		//	nonPartyNPCArray[i] = nonPartyNpcs.get(i).getStructuredMap();
+		//}
 		
-		map.put("partyNPC", partyNPCArray);
-		map.put("nonPartyNPC", nonPartyNPCArray);
+		//map.put("partyNPC", partyNPCArray);
+		//map.put("nonPartyNPC", nonPartyNPCArray);
 		
 		return map;
 		
