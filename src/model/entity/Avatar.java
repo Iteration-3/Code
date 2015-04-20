@@ -12,13 +12,17 @@ import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.entity.behavior.npc.AvatarBehavior;
 import model.entity.behavior.npc.Behaviorable;
+import model.item.HPPotion;
+import model.item.Price;
 import model.item.TakeableItem;
 import model.light.LightManager;
 import model.light.MovingStaticLightSource;
 import model.skillmanager.SkillManager;
 import utilities.Direction;
 import utilities.structuredmap.StructuredMap;
+import view.Decal;
 import view.entity.EntityView;
+import view.item.BasicItemView;
 import controller.listener.Listener;
 import controller.listener.PollingListener;
 
@@ -31,6 +35,10 @@ public abstract class Avatar extends Entity {
 		MovingStaticLightSource avatarLight = new MovingStaticLightSource(new RadialArea(5, loc), 255, this);
 		LightManager.getSingleton().addLightSource(avatarLight);
 		setLocation(loc);
+		this.addItem(new HPPotion(
+				new BasicItemView(TileCoordinate.convertToRealCoordinate(this.getLocation()),
+						new Decal("/images/items/healthpack.png"))
+				, new Price(10), 1000));
 		//LightManager.getLightManager().getLightMap().trackMovement(this);
 		//setLocation(loc);//So lightMap registers current position
 	}
@@ -40,6 +48,10 @@ public abstract class Avatar extends Entity {
 		//hack?
 		MovingStaticLightSource avatarLight = new MovingStaticLightSource(new RadialArea(5, getLocation()), 255, this);
 		LightManager.getSingleton().addLightSource(avatarLight);
+		this.addItem(new HPPotion(
+				new BasicItemView(TileCoordinate.convertToRealCoordinate(this.getLocation()),
+						new Decal("/images/items/healthpack.png"))
+				, new Price(10), 1000));
 	}
 	
 	protected void generateSkills(){

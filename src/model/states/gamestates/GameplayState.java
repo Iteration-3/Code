@@ -25,8 +25,10 @@ import model.event.ManaModifierEvent;
 import model.event.RiverPushEvent;
 import model.event.TeleportEvent;
 import model.item.Door;
+import model.item.HPPotion;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
+import model.item.Price;
 import model.item.TakeableItem;
 import model.item.Trap;
 import model.item.TwoHandedWeapon;
@@ -170,6 +172,8 @@ public class GameplayState extends GameState {
     		view.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(entity.getLocation()), entity.getDirection());
     	}
     	
+    	
+    	
     	avatar = EntityManager.getSingleton().getAvatar();
     	getController().registerAvatar(avatar);
     	
@@ -245,6 +249,12 @@ public class GameplayState extends GameState {
         ItemView trapView = new BasicItemView(TileCoordinate.convertToRealCoordinate(trapSpot), new Decal("/images/items/trap.png"));
         trapView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new Trap(trapView), trapSpot);
+        
+        TileCoordinate healthpackspot = new TileCoordinate(16,16);
+        ItemView hView = new BasicItemView(TileCoordinate.convertToRealCoordinate(healthpackspot),
+				new Decal("/images/items/healthpack.png"));
+        hView.registerWithGameItemView(layout.getGameItemView());
+        this.getItemMap().addItem(new HPPotion(hView, new Price(10), 1000),healthpackspot);
 
     }
 
