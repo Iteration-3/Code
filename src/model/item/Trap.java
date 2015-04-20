@@ -2,6 +2,7 @@ package model.item;
 
 import model.entity.Entity;
 import model.event.Event;
+import model.event.TemporaryMovementModifierEvent;
 import model.map.tile.ItemTile;
 import view.item.ItemView;
 
@@ -10,6 +11,7 @@ public class Trap extends Item {
 	
 	public Trap(ItemView itemView) {
 		super(itemView);
+		Event event = new TemporaryMovementModifierEvent(10, -10000000);
 		setEvent(event);
 	}
 	
