@@ -21,8 +21,8 @@ import model.statistics.Statistics;
 import org.junit.Test;
 
 import utilities.structuredmap.StructuredMap;
-import view.EntitySpriteFactory;
-import view.EntityView;
+import view.entity.EntitySpriteFactory;
+import view.entity.EntityView;
 import view.item.BasicItemView;
 import factories.EntityFactory;
 

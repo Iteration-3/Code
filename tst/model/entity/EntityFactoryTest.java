@@ -7,8 +7,8 @@ import model.entity.behavior.npc.PetBehavior;
 
 import org.junit.Test;
 
-import view.EntitySpriteFactory;
-import view.EntityView;
+import view.entity.EntitySpriteFactory;
+import view.entity.EntityView;
 import factories.EntityFactory;
 
 public class EntityFactoryTest {
