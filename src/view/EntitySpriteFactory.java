@@ -1,37 +1,40 @@
 package view;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
 
-import javax.imageio.ImageIO;
+import utilities.ImageProcessing;
 
 public class EntitySpriteFactory {
 	// Avatar Sprites
 	private static ConcreteEntitySpriteHolder summoner = null;
-	private static File summonerFile = new File(
-			"src/resources/sprites/summoner.png");
+
+	private static String summonerFilePath = "/sprites/summoner.png";
+
 	private static int summonerCols = 18;
 
 	private static ConcreteEntitySpriteHolder sneaker = null;
-	private static File sneakerFile = new File(
-			"src/resources/sprites/sneak.png");
+
+	private static String sneakerFilePath = "/sprites/sneak.png";
+
 	private static int sneakerCols = 18;
 
 	private static ConcreteEntitySpriteHolder smasher = null;
-	private static File smasherFile = new File(
-			"src/resources/sprites/smasher.png");
+
+	private static String smasherFilePath= "/sprites/smasher.png";
+
 	private static int smasherCols = 18;
 
 	// Trooper Sprites
 	private static ConcreteEntitySpriteHolder darkTrooper = null;
-	private static File darkTrooperFile = new File(
-			"src/resources/sprites/dark_trooper.png");
+
+	private static String darkTrooperFilePath = "/sprites/dark_trooper.png";
+
 	private static int darkTrooperCols = 18;
 
 	private static ConcreteEntitySpriteHolder trooper = null;
-	private static File trooperFile = new File(
-			"src/resources/sprites/trooper.png");
+
+	private static String trooperFilePath = "/sprites/trooper.png";
+
 	private static int trooperCols = 18;
 
 	// Boy
@@ -46,14 +49,16 @@ public class EntitySpriteFactory {
 
 	// Stache
 	private static ConcreteEntitySpriteHolder stache = null;
-	private static File stacheFile = new File(
-			"src/resources/sprites/stache.png");
+
+	private static String stacheFilePath = "/sprites/stache.png";
+
 	private static int stacheCols = 18;
 
 	// Underling
 	private static ConcreteEntitySpriteHolder underling = null;
-	private static File underlingFile = new File(
-			"src/resources/sprites/underling.png");
+
+	private static String underlingFilePath = "/sprites/underling.png";
+
 	private static int underlingCols = 18;
 
 	// Lady
@@ -63,106 +68,87 @@ public class EntitySpriteFactory {
 
 	// Mad Scientist
 	private static ConcreteEntitySpriteHolder madScientist = null;
-	private static File madScientistFile = new File(
-			"src/resources/sprites/mad_scientist.png");
+	private static String madScientistFilePath = "/sprites/mad_scientist.png";
 	private static int madScientistCols = 18;
 
-	public static ConcreteEntitySpriteHolder getHolderFromFileIfNull(
-			ConcreteEntitySpriteHolder holder, File file, int cols, String type) {
-		if (holder == null) {
-			return new ConcreteEntitySpriteHolder(
-					EntitySpriteFactory.splitImage(
-							EntitySpriteFactory.getImage(file), cols), type);
+	
+	public static ConcreteEntitySpriteHolder getHolderFromFileIfNull(ConcreteEntitySpriteHolder holder, String filePath, int cols, String type){
+		if(holder==null){
+		return new ConcreteEntitySpriteHolder(
+				EntitySpriteFactory.splitImage(EntitySpriteFactory.getImage(filePath),
+						cols), type);
 		}
 		return holder;
 
 	}
 
+
 	public static ConcreteEntitySpriteHolder getSummonerSpriteHolder() {
 
-		summoner = getHolderFromFileIfNull(summoner, summonerFile,
+		summoner = getHolderFromFileIfNull(summoner, summonerFilePath,
 				summonerCols, "summonerSprite");
 		return summoner;
 	}
 
 	public static ConcreteEntitySpriteHolder getSmasherSpriteHolder() {
-		smasher = getHolderFromFileIfNull(smasher, smasherFile, smasherCols,
+		smasher = getHolderFromFileIfNull(smasher, smasherFilePath, smasherCols,
 				"smasherSprite");
 		return smasher;
 	}
 
 	public static ConcreteEntitySpriteHolder getSneakerSpriteHolder() {
-		sneaker = getHolderFromFileIfNull(sneaker, sneakerFile, sneakerCols,
+		sneaker = getHolderFromFileIfNull(sneaker, sneakerFilePath, sneakerCols,
 				"sneakSprite");
 		return sneaker;
 	}
 
 	public static ConcreteEntitySpriteHolder getDarkTrooperSpriteHolder() {
-		darkTrooper = getHolderFromFileIfNull(darkTrooper, darkTrooperFile,
+		darkTrooper = getHolderFromFileIfNull(darkTrooper, darkTrooperFilePath,
 				darkTrooperCols, "darkTrooper");
 		return darkTrooper;
 	}
 
 	public static ConcreteEntitySpriteHolder getBoySpriteHolder() {
-		boy = getHolderFromFileIfNull(boy, boyFile, boyCols, "boy");
+		boy = getHolderFromFileIfNull(boy, boyFilePath, boyCols, "boy");
 		return boy;
 	}
 
 	public static ConcreteEntitySpriteHolder getBaldySpriteHolder() {
-		baldy = getHolderFromFileIfNull(baldy, baldyFile, baldyCols, "baldy");
+		baldy = getHolderFromFileIfNull(baldy, baldyFilePath, baldyCols, "baldy");
 		return baldy;
 	}
 
 	public static ConcreteEntitySpriteHolder getTrooperSpriteHolder() {
-		trooper = getHolderFromFileIfNull(trooper, trooperFile, trooperCols,
+		trooper = getHolderFromFileIfNull(trooper, trooperFilePath, trooperCols,
 				"trooper");
 		return trooper;
 	}
 
 	public static ConcreteEntitySpriteHolder getUnderlingSpriteHolder() {
-		underling = getHolderFromFileIfNull(underling, underlingFile,
+		underling = getHolderFromFileIfNull(underling, underlingFilePath,
 				underlingCols, "underling");
 		return underling;
 	}
 
 	public static ConcreteEntitySpriteHolder getLadySpriteHolder() {
-		lady = getHolderFromFileIfNull(lady, ladyFile, ladyCols, "lady");
+		lady = getHolderFromFileIfNull(lady, ladyFilePath, ladyCols, "lady");
 		return lady;
 	}
 
 	public static ConcreteEntitySpriteHolder getStacheSpriteHolder() {
-		stache = getHolderFromFileIfNull(stache, stacheFile, stacheCols,
+		stache = getHolderFromFileIfNull(stache, stacheFilePath, stacheCols,
 				"stache");
 		return stache;
 	}
 
 	public static ConcreteEntitySpriteHolder getMadScientistSpriteHolder() {
-		madScientist = getHolderFromFileIfNull(madScientist, madScientistFile,
+		madScientist = getHolderFromFileIfNull(madScientist, madScientistFilePath,
 				madScientistCols, "madScientist");
 		return madScientist;
 	}
 
-	public static void printTestImages(BufferedImage[] imgs) {
-		// TODO delete this method.
-		try {
-			for (int i = 0; i < imgs.length; i++) {
-				ImageIO.write(imgs[i], "png", new File("img" + i + ".png"));
-			}
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-	}
-
-	public static BufferedImage getImage(File file) {
-		FileInputStream fis = null;
-		BufferedImage image = null;
-
-		try {
-			fis = new FileInputStream(file);
-			image = ImageIO.read(fis);
-		} catch (Exception e) {
-			System.err.println("File not found! Summoner.png" + e.toString());
-		}
+	public static BufferedImage getImage(String filePath){
+		BufferedImage image = ImageProcessing.getImage(filePath);
 		return image;
 	}
 
