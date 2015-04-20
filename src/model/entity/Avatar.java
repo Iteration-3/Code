@@ -36,7 +36,7 @@ public abstract class Avatar extends Entity {
 	}
 	
 	public Avatar(StructuredMap map) {
-		super(map);
+		super(map, new AvatarBehavior());
 		//hack?
 		MovingStaticLightSource avatarLight = new MovingStaticLightSource(new RadialArea(5, getLocation()), 255, this);
 		LightManager.getSingleton().addLightSource(avatarLight);
@@ -74,6 +74,7 @@ public abstract class Avatar extends Entity {
 			listeners.add(new PollingListener(preferences.getAbility(i),new GameAction() {
 				@Override
 				public void perform() {
+					System.out.println("Used Ability: " + a.toString());
 					a.perform(Avatar.this);
 				}
 			}));

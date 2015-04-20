@@ -1,5 +1,6 @@
 package model.ability.smasher;
 
+import model.ability.Ability;
 import model.ability.TriggerAbility;
 import model.area.RadialArea;
 import model.entity.Avatar;
@@ -10,7 +11,7 @@ import model.trigger.TimedTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 
-public class SmasherWeaponAttack extends TriggerAbility {
+public class SmasherWeaponAttack extends Ability {
 
 	private long timeout = 0;
 	private SmasherSkillManager manager;

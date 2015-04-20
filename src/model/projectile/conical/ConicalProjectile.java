@@ -17,14 +17,14 @@ public class ConicalProjectile extends Projectile {
 	@Override
 	public void advance() {
 		GrowingArea garea = ((GrowingArea) getTrigger().getArea());
-		if (!isTimedOut() && garea.canGrow()) {
+		if (!isTimedOut() && garea.canGrow() && !hasExpired()) {
 			garea.grow();
 			timeOutProjectile();
 			notifySubscribers();
 		}
-		if (isTimedOut() && !garea.canGrow()) {
+		if (isTimedOut() && !garea.canGrow() && !hasExpired()) {
 			garea.grow();
-			//notifySubscribers(); // dispose handles this
+			notifySubscribers();
 			isSafe = true;
 		}
 	}

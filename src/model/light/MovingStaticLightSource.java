@@ -36,7 +36,7 @@ public class MovingStaticLightSource extends LightSource implements MobileListen
 		getArea().setStartLocation(mo.getLocation());
 		getArea().setDirection(mo.getDirection());
 		
-		removeLighting(getArea());
+		removePrevLighting(getArea());
 		
 		addLighting(getArea());
 	}

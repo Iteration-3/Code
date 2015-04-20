@@ -31,7 +31,7 @@ public class BasicItemView extends ItemView implements Renderable {
 	
 	public BasicItemView(StructuredMap map) {
 		super(map);
-		map.put("decal", decal.getStructuredMap());
+		this.decal = new Decal(map.getStructuredMap("decal"));
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class BasicItemView extends ItemView implements Renderable {
 	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = super.getStructuredMap();
-		map.put("decal", decal.getStructuredMap());
+		map.put("decal", decal == null ? null : decal.getStructuredMap());
 		return map;
 	}
 

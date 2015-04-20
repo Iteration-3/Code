@@ -17,7 +17,7 @@ public class SlotView extends JButton implements Saveable {
 	private ItemView itemView;
 	
 	public SlotView(StructuredMap map) {
-		this.itemView = map.getStructuredMap("itemView") == null ? null :ItemViewFactory.createItemView(map.getStructuredMap("itemView"));
+		this.itemView = map.getStructuredMap("itemView") == null ? null : ItemViewFactory.createItemView(map.getStructuredMap("itemView"));
 		this.backgroundPath = map.getString("background");
 	
 		this.background = ImageProcessing.getImage(backgroundPath);
@@ -41,6 +41,7 @@ public class SlotView extends JButton implements Saveable {
 
 	public SlotView(BufferedImage background, String backgroundPath) {
 		this.background = background;
+		this.backgroundPath = backgroundPath;
 	}
 
 	public void register(ItemView itemView) {

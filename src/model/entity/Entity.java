@@ -5,12 +5,14 @@ import java.util.Collection;
 
 import model.KeyPreferences;
 import model.area.TileCoordinate;
+import model.entity.behavior.npc.BarterBehavior;
 import model.entity.behavior.npc.Behaviorable;
 import model.entity.behavior.npc.state.StateMachine;
 import model.event.EventManager;
 import model.event.HealthModifierEvent;
 import model.item.EquipableItem;
 import model.item.TakeableItem;
+import model.light.LightManager;
 import model.observers.MobileObject;
 import model.slots.ItemManager;
 import model.statistics.BoundedEntityStatistics;
@@ -50,7 +52,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.setBehavior(behavior);
     }
     
-    public Entity(StructuredMap map) {
+    public Entity(StructuredMap map, Behaviorable behavior) {
     	super(new TileCoordinate(map.getIntArray("location")[0], map.getIntArray("location")[1]));
         this.name = map.getString("name");
         int[] locationArray = map.getIntArray("location");
@@ -60,7 +62,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.itemManager = new ItemManager(map.getStructuredMap("itemManager"));
         this.isFlying = map.getBoolean("flying");
         this.view = map.getStructuredMap("entityView") == null ? null : new EntityView(map.getStructuredMap("entityView"));
-        this.setBehavior();
+        this.setBehavior(behavior);
     }
     
     @Override
@@ -88,8 +90,9 @@ public abstract class Entity extends MobileObject implements Saveable {
     }
 
     private void setBehavior(){
+    	Behaviorable be = new BarterBehavior();
         this.state = new StateMachine(this);
-        this.state.push(this.getBehavior());
+        this.state.push(be);
     }
     
     protected abstract Behaviorable getBehavior();
@@ -301,6 +304,14 @@ public abstract class Entity extends MobileObject implements Saveable {
     public TakeableItem removeItem(int index) {
         return this.itemManager.removeItem(index);
     }
+    
+    public TakeableItem removeItem(TakeableItem takeableItem) {
+    	try {
+			return this.itemManager.removeItem(takeableItem);
+		} catch (Exception e) {
+			return null;
+		}
+    }
 
     public TakeableItem[] getItems() {
         return this.itemManager.getInventoryItems();
@@ -363,9 +374,15 @@ public abstract class Entity extends MobileObject implements Saveable {
     
     @Override
 	protected void setLocationNoNotify(TileCoordinate location) {
+    	TileCoordinate prevLoc = getLocation();
     	super.setLocationNoNotify(location);
+    	if (this.getEntityView() != null && !LightManager.getSingleton().getLightMap().isEmpty(prevLoc))
+    		this.getEntityView().setLocation(location);
+    }
+    
+    public void onSee() {
     	if (this.getEntityView() != null)
-    		this.getEntityView().setLocation(location);//TODO: FIX
+    		this.getEntityView().setLocation(getLocation());
     }
     
     @Override

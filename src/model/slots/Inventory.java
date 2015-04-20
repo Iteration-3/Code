@@ -21,12 +21,13 @@ public class Inventory implements Saveable {
 		
 		slots = new InventorySlot[map.getInteger("slotsLength")];
 		StructuredMap[] array = map.getStructuredMapArray("items");
-		
+		this.inventoryView = new InventoryView(map.getStructuredMap("inventoryView"));
 		for (int i = 0; i < array.length; i++) {
 			slots[i] = new InventorySlot(array[i]);
+			this.inventoryView.register(slots[i].getSlotView(), i);
 		}
 		
-		this.inventoryView = new InventoryView(map.getStructuredMap("inventoryView"));
+		
 	}
 
 	private void setInventory() {
