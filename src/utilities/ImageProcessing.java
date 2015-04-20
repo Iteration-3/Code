@@ -15,8 +15,6 @@ public class ImageProcessing {
 			Image image = new ImageIcon(ImageProcessing.class.getResource(filename)).getImage();
 			return toBufferedImage(image);
 		/*} catch (IOException e) {
-			System.out.println(filename);
-			System.out.println("The image does not exist");
 			e.printStackTrace();
 			return null;
 		}*/

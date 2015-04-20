@@ -11,7 +11,6 @@ public class InventoryActionListener implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("I am slot " + slotLocation);
 	}
 
 }

@@ -9,7 +9,6 @@ public class InventoryMouseListener implements MouseMotionListener{
 	}
 
 	public void mouseDragged(MouseEvent arg0) {
-		System.out.println("SDHFKSJDFHKJDSF");
 	}
 
 	public void mouseMoved(MouseEvent arg0) {

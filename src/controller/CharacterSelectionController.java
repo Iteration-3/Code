@@ -1,6 +1,9 @@
 package controller;
 
 import model.Model;
+import model.entity.Smasher;
+import model.entity.Sneak;
+import model.entity.Summoner;
 import model.states.gamestates.GameplayState;
 import controller.listener.ToggleAction;
 
@@ -21,21 +24,21 @@ public class CharacterSelectionController extends Controller {
         chooseSmasherAction = new ToggleAction() {
             @Override
             public void action() {
-                model.switchState(new GameplayState());
+                model.switchState(new GameplayState(new Smasher()));
             }
         };
 
         chooseSummonerAction = new ToggleAction() {
             @Override
             public void action() {
-                model.switchState(new GameplayState());
+                model.switchState(new GameplayState(new Summoner()));
             }
         };
 
         chooseSneakAction = new ToggleAction() {
             @Override
             public void action() {
-                model.switchState(new GameplayState());
+                model.switchState(new GameplayState(new Sneak()));
             }
         };
 

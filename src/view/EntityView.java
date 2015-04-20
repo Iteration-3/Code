@@ -111,7 +111,6 @@ public class EntityView implements Saveable {
 
 	public void setDirection(Angle angle) {
 		this.angle = angle;
-		
 	}
 
 	@Override

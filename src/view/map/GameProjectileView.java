@@ -21,6 +21,7 @@ public class GameProjectileView implements GameView {
 	private int screenHeight;
 	private Collection<ProjectileView> projectileViews = new ArrayList<ProjectileView>();
 	private ArrayList<ProjectileView> toAdd = new ArrayList<ProjectileView>();
+	private ArrayList<ProjectileView> toRemove = new ArrayList<ProjectileView>();
 
 	public void render(Graphics graphics, int width, int height) {
 		this.screenHeight = height;
@@ -28,11 +29,13 @@ public class GameProjectileView implements GameView {
 			projectileViews.addAll(toAdd);
 			toAdd.clear();
 		}
+		if (!toRemove.isEmpty()) {
+			projectileViews.removeAll(toRemove);
+			toRemove.clear();
+		}
 		for (ProjectileView projView : projectileViews) {		
 			//Sysem.out.println("RENDERING@: " + projView.getLocation());
-			System.out.println("SUP");
 			for (TileCoordinate loc : projView.getArea().getCoveredLocations()) {
-				System.out.println("LOC: " + loc);
 				float renderX = (float) (loc.getX() * tileWidth() * 0.75);
 				float renderY = (float) (loc.getY() * tileHeight() + (loc.getX() % 2) * tileHeight() / 2);
 				projView.render(graphics, new RealCoordinate(renderX, renderY), tileWidth());
@@ -50,5 +53,9 @@ public class GameProjectileView implements GameView {
 	
 	public void addProjectileView(ProjectileView entityView) {
 		toAdd.add(entityView);
+	}
+	
+	public void removeProjectileView(ProjectileView entityView) {
+		toRemove.add(entityView);
 	}
 }

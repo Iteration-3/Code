@@ -6,10 +6,13 @@ import java.util.Collections;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
+import java.util.Queue;
 
 import factories.EntityFactory;
 import model.area.TileCoordinate;
+import model.map.ItemMap;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 
@@ -19,6 +22,7 @@ public class EntityManager implements Iterable<Entity>, Saveable {
 	private ArrayList<NPC> partyNpcs = new ArrayList<NPC>();
 	private ArrayList<NPC> nonPartyNpcs = new ArrayList<NPC>();
 	private Avatar avatar;
+	private Queue<Entity> removeList = new LinkedList<Entity>();
 	
 	private EntityManager() {
 	}
@@ -108,12 +112,14 @@ public class EntityManager implements Iterable<Entity>, Saveable {
 		return _entityManager;
 	}
 	
-	public void update(double deltaTime) {
+	public void update(ItemMap itemMap, double deltaTime) {
 		for(Entity e : this){
+			itemMap.touch(e, e.getLocation());
 			e.update();
 			e.perform();
 			e.observe();
 		}
+		cleanRemovedEntities();
 	}
 	
 	/**
@@ -197,11 +203,37 @@ public class EntityManager implements Iterable<Entity>, Saveable {
 		return new EntityIterator();
 	}
 	
+	public void removeEntity(Entity entity) {
+		removeList.add(entity);
+	}
+	
 	public void clear() {
 		partyNpcs = new ArrayList<NPC>();
 		nonPartyNpcs = new ArrayList<NPC>();
 		avatar = null;
 	}
-
 	
+	private void cleanRemovedEntities() {
+		Entity entity;
+		while (removeList.isEmpty() == false) {
+			entity = removeList.poll();
+			for (Entity e : partyNpcs) {
+				if (e.equals(entity)) {
+					partyNpcs.remove(e);
+					break;
+				}
+			}
+			for (Entity e : nonPartyNpcs) {
+				if (e.equals(entity)) {
+					nonPartyNpcs.remove(e);
+					break;
+				}
+			}
+			if (getAvatar().equals(entity))  {
+				entity.getEntityView().toggle();
+				setAvatar(null);
+			}	
+		}
+	}
+
 }

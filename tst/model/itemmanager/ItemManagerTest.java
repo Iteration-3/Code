@@ -31,7 +31,6 @@ public class ItemManagerTest {
 	 * EntityStatistics(), 4.6)); manager.addItem(new Gloves(new
 	 * BasicItemView(), new Statistics()));
 	 * 
-	 * System.out.println(manager.getStructuredMap().getJson());
 	 * 
 	 * ItemManager managerTest = new ItemManager(manager.getStructuredMap());
 	 * assertEquals(manager.getStructuredMap().getJson(),
@@ -46,7 +45,6 @@ public class ItemManagerTest {
 	 * 
 	 * StructuredMap map = inventory.getStructuredMap();
 	 * 
-	 * //System.out.println(map.getJson());
 	 * 
 	 * Inventory newInventory = new Inventory(map); assertEquals(map.getJson(),
 	 * newInventory.getStructuredMap().getJson());

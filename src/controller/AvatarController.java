@@ -1,16 +1,12 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
-
-import javax.swing.Timer;
 
 import model.entity.Avatar;
 import controller.listener.Listener;
 
-public class AvatarController implements ActionListener {
+public class AvatarController {
     private Collection<Listener> listeners = new ArrayList<Listener>();
     private Avatar avatar;
     private double tilesPerSecond = 0.0;
@@ -19,20 +15,13 @@ public class AvatarController implements ActionListener {
 
     public AvatarController(Avatar avatar) {
     	this.avatar = avatar;
-        startTimer();
     }
 
     public void addListener(Listener listener) {
         listeners.add(listener);
     }
 
-    private void startTimer() {
-        Timer t = new Timer(65, this);
-        t.start();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent arg0) {
+    public void update() {
         for (Listener listener : listeners) {
         	if (movementOk()) {
         		boolean movementSuccess = listener.activate();

@@ -104,7 +104,6 @@ public class KeyBindingsController extends Controller {
         		@Override
         		public void action() {
         			attachNewAbilityMapping(index);
-        			System.out.println(index);
         		}
         	};
         }

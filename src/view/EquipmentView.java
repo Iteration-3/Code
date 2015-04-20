@@ -87,9 +87,6 @@ public class EquipmentView extends JComponent implements Saveable {
 		return map;
 	}
 
-	
-
-	
 	private int helmetX;
 	private int helmetY;
 	private int chestPieceX;

@@ -28,7 +28,6 @@ public class ProjectileManager {
 	
 	public void enqueueProjectile(Projectile projectile) {
 		projectileQueue.add(projectile);
-		System.out.println(projectile instanceof FireProjectile);
 	}
 	
 	private void removeProjectile(Projectile projectile) {
@@ -43,8 +42,10 @@ public class ProjectileManager {
 				toRemove.add(projectile);
 			}
 		}
-		for (Projectile rem : toRemove) 
+		for (Projectile rem : toRemove)  {
 			removeProjectile(rem);
+			rem.dispose();
+		}
 	}
 	
 	public void clear() {

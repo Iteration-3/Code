@@ -56,4 +56,5 @@ public class BasicItemView extends ItemView {
 	public String getType() {
 		return "basicItem";
 	}
+
 }
