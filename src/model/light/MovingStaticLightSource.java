@@ -5,16 +5,17 @@ import model.observers.MobileListener;
 import model.observers.MobileObject;
 import utilities.structuredmap.StructuredMap;
 
-public class MovingLightSource extends LightSource implements MobileListener {	
+//area does NOT change shape. only direction and location. (things that are settable basically)
+public class MovingStaticLightSource extends LightSource implements MobileListener {	
 	
 	private MobileObject followee;
 
-	public MovingLightSource(Area area, int strength, MobileObject mo) {
+	public MovingStaticLightSource(Area area, int strength, MobileObject mo) {
 		super(area, strength);
 		follow(mo);
 	}
 	
-	public MovingLightSource(StructuredMap map) {
+	public MovingStaticLightSource(StructuredMap map) {
 		super(map);
 	}
 	
@@ -31,12 +32,12 @@ public class MovingLightSource extends LightSource implements MobileListener {
 	
 	@Override
 	public void notify(MobileObject mo) {
-		removeLighting(getArea());
 		
 		getArea().setStartLocation(mo.getLocation());
 		getArea().setDirection(mo.getDirection());
 		
-
+		removeLighting(getArea());
+		
 		addLighting(getArea());
 	}
 	

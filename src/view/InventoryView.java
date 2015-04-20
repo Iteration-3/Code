@@ -84,6 +84,12 @@ public class InventoryView extends JComponent implements Saveable {
 		slotView.setBounds(width, height, slotWidth, slotHeight);
 		add(slotView);
 	}
+	
+	public void setToolTips(String[] toolTips) {
+		for (int i = 0; i < toolTips.length; ++i) {
+			slots.get(i).setToolTipText(toolTips[i]);
+		}
+	}
 
 	private BufferedImage getBackgroundImage() {
 		if (slotBackground != null) {

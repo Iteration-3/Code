@@ -751,27 +751,7 @@
 	"itemManager":	{
 		"equipment":	{
 			"leggingsSlot":	null,
-			"helmetSlot":	{
-				"stats":	{
-					"hardiness":	10,
-					"intellect":	10,
-					"strength":	10,
-					"agility":	10
-					},
-				"price":	{
-					"cost":	10
-					},
-				"taken":	false,
-				"itemView":	{
-					"onMap":	false,
-					"type":	"basicItem",
-					"decal":	{
-						"imageResourcePath":	"/images/helmet_image.png"
-						}
-					},
-				"name":	"null",
-				"type":	"helmet"
-				},
+			"helmetSlot":	null,
 			"projectileSlot":	null,
 			"weaponSlot":	null,
 			"equipmentView":	{
@@ -821,13 +801,7 @@
 					},
 				"helmetView":	{
 					"background":	"/images/helmet_slot.jpg",
-					"itemView":	{
-						"onMap":	false,
-						"type":	"basicItem",
-						"decal":	{
-							"imageResourcePath":	"/images/helmet_image.png"
-							}
-						}
+					"itemView":	null
 					},
 				"bootsY":	300,
 				"chestPieceY":	100,

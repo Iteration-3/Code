@@ -3,6 +3,7 @@ package model.entity;
 
 import model.area.TileCoordinate;
 import model.entity.behavior.npc.Behaviorable;
+import model.item.TakeableItem;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
 import view.entity.EntityView;
@@ -62,8 +63,6 @@ public class NPC extends Entity {
 			this.removeFromTheWorld();
 		}
 	}
-	
-
 	
 	private void removeFromTheWorld(){
 		EntityManager.getSingleton().removeEntity(this);

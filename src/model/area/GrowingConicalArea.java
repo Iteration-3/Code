@@ -35,6 +35,9 @@ public class GrowingConicalArea extends GrowingArea {
 
     @Override
     public List<TileCoordinate> getCoveredLocations() {
+    	if (getCurRadius() > getMaxRadius()) {
+    		return new ArrayList<TileCoordinate>();
+    	}
     	if (lastStart == null || coverCache == null || lastStart != getStartLocation() || lastDir != getDirection() || lastRadius != getCurRadius()) {
 	    	HashSet<TileCoordinate> res = new HashSet<TileCoordinate>();
 	    	TileCoordinate curCenter = getStartLocation();

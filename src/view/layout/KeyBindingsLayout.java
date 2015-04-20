@@ -67,7 +67,7 @@ public class KeyBindingsLayout extends Layout {
     public KeyBindingsLayout() {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
     	setBorder(new EmptyBorder(50, 50, 50, 50));
-    	bgImage = new ImageIcon("src/resources/images/hex_bg.jpg").getImage();
+    	bgImage = null;//new ImageIcon("src/resources/images/hex_bg.jpg").getImage();
         initLabels();
         initButtons();
         addComponents();
@@ -254,7 +254,7 @@ public class KeyBindingsLayout extends Layout {
     @Override
     public void paintComponent(Graphics graphics) {
     	super.paintComponent(graphics);
-    	int width = (int) (bgImage.getWidth(null) * ((float)getHeight() / bgImage.getHeight(null)));
-    	graphics.drawImage(bgImage, (getWidth() - width) / 2, 0, width, getHeight(), null);
+    	//int width = (int) (bgImage.getWidth(null) * ((float)getHeight() / bgImage.getHeight(null)));
+    	//graphics.drawImage(bgImage, (getWidth() - width) / 2, 0, width, getHeight(), null);
     }
 }
