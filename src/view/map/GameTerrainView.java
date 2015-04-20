@@ -2,29 +2,26 @@ package view.map;
 
 import java.awt.Graphics;
 
-import model.Camera;
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import utilities.ScreenCoordinate;
+import view.Renderable;
+import view.ViewTransform;
 
-public class GameTerrainView {
+public class GameTerrainView implements Renderable {
 	private TileView[][] tileViews;
 	
 	public GameTerrainView() {
 		tileViews = new TileView[100][100]; //exact sizing just for testing purposes
 	}
 	
-	public void render(Graphics graphics, Camera camera) {
-		RealCoordinate realCoord = camera.getPosition();
-		TileCoordinate tileCoord = RealCoordinate.convertToTileCoordinate(camera.getPosition());
-		int thingsToTheSide = (int) (camera.getViewWidth()) / 2 + 2;
-		int thingsToTheUpDown = (int) (camera.getViewHeight()) / 2 + 2;
-		float tileWidth = camera.getTileWidth();
-		for(int x = tileCoord.getX() - thingsToTheSide; x < tileCoord.getX() + thingsToTheSide; ++x) {
-			for(int y = tileCoord.getY() - thingsToTheUpDown; y < tileCoord.getY() + thingsToTheUpDown; ++y) {	
-				ScreenCoordinate renderPosition = camera.getTranslatedPosition(TileCoordinate.convertToRealCoordinate(new TileCoordinate(x, y)), realCoord);
+	@Override
+	public void render(Graphics graphics, ViewTransform transform) {
+		for(int x = transform.getLeftTileCoordinate(); x < transform.getRightTileCoordinate(); ++x) {
+			for(int y = transform.getUpperTileCoordinate(); y < transform.getLowerTileCoordinate(); ++y) {
+				ScreenCoordinate renderPosition = transform.getTranslatedPosition(TileCoordinate.convertToRealCoordinate(new TileCoordinate(x, y)));
 				if(x >= 0 && x < tileViews.length && y >= 0 && y < tileViews[0].length && tileViews[x][y]!=null){
-					tileViews[x][y].render(graphics, renderPosition.getX(), renderPosition.getY(), tileWidth);
+					tileViews[x][y].render(graphics, renderPosition.getX(), renderPosition.getY(), transform.getTileHeight());
 				}
 			}
 		}

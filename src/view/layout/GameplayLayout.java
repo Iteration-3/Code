@@ -7,7 +7,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-import model.Camera;
+import view.Camera;
+import view.ViewTransform;
 import view.map.GameEntityView;
 import view.map.GameItemView;
 import view.map.GameLightView;
@@ -22,7 +23,7 @@ public class GameplayLayout extends Layout implements ActionListener {
     GameLightView gameLightView;
 	GameProjectileView gameProjectileView;
 	private Camera camera;
-	private static final int FPS = 30;
+	private static final int FPS = 60;
 	private static final int REDRAW_INTERVAL = 1000 / FPS;
 	
     public GameplayLayout() {
@@ -84,10 +85,11 @@ public class GameplayLayout extends Layout implements ActionListener {
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        gameTerrainView.render(graphics, camera);
-        gameEntityView.render(graphics, camera);
-        gameItemView.render(graphics, camera);
+        ViewTransform transform = camera.getTransform();
+        gameTerrainView.render(graphics, transform);
+        gameEntityView.render(graphics, transform);
+        gameItemView.render(graphics, transform);
 		//gameProjectileView.render(graphics, getWidth(), getHeight());
-        gameLightView.render(graphics, camera);
+        gameLightView.render(graphics, transform);
     }
 }
