@@ -19,8 +19,7 @@ public class SmasherWeaponAttack extends TriggerAbility {
 	public SmasherWeaponAttack(SmasherSkillManager smasherSkillManager) {
 		//DEPRECATED    dont call on getTrigger
 		//  use Black Box Inheritance
-		super(new TimedTrigger(new RadialArea(1, null),
-				new HealthModifierEvent(null, null, 0, -15), 0), 10);
+		super();
 		this.manager = smasherSkillManager;
 	}
 
@@ -29,24 +28,26 @@ public class SmasherWeaponAttack extends TriggerAbility {
 	@Override
 	public void perform(Avatar avatar) {
 		System.out.println("Was run");
+		
 		if (hasMana(avatar) && !isTimedOut()) {
 			removeMana(avatar);
 			double damageModifier = 1;
-			int timeOutDur = 1;
 			if (avatar.hasTHW()) {
-				timeOutDur = 4;
-				damageModifier = 4;
+				int THWS = this.manager.getTwoHandedSkill()*100;
+				this.setManaCost(THWS);
+				damageModifier = THWS;
 			} else if (avatar.hasOHW()) {
-				timeOutDur = 2;
-				damageModifier = 2;
+				int OHWS = this.manager.getOneHandedSkill()*50;
+				this.setManaCost(OHWS);
+				damageModifier = OHWS;
 			}
-			// Dont get rid of constructTrigger
-			Trigger trigger = this.constructTrigger(avatar).clone();
-			trigger.moveLocation(avatar.nextLocation());
-			((HealthModifierEvent) trigger.getEvent())
-					.scaleHealth(damageModifier);
-			TriggerManager.getSingleton().addNonPartyTrigger(trigger);
-			this.timeOut(timeOutDur);
+			else{
+				int BHWS = this.manager.getBrawlSkill()*30;
+				this.setManaCost(BHWS);
+				damageModifier = BHWS;
+			}
+			//removeMana(avatar);
+			avatar.attackInFront(-(int)damageModifier);
 		}
 	}
 
