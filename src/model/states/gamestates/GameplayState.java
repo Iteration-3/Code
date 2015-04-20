@@ -304,7 +304,7 @@ public class GameplayState extends GameState {
     }
 
     private void addTriggersTest(StructuredMap map) {
-    	
+    	//Original Triggers
         TriggerManager triggerManager = TriggerManager.getSingleton();
 
         TileCoordinate locOne = new TileCoordinate(5, 5);
@@ -342,6 +342,12 @@ public class GameplayState extends GameState {
         triggerManager.addNonPartyTrigger(triggerFour);
         triggerManager.addNonPartyTrigger(triggerFive);
         triggerManager.addNonPartyTrigger(triggerSix);
+        
+        TileCoordinate locTele = new TileCoordinate(76, 45);
+        Area areaTele = new RadialArea(0, locTele);
+        Trigger triggerTele = new ViewableTrigger(new PermanentTrigger(areaTele, new TeleportEvent(new TileCoordinate(84, 55),
+                new GameActionTeleport(avatar, gameMap, this.getItemMap(), Direction.DOWN))), new Decal("/images/items/skull_and_crossbones.png",
+                		TileCoordinate.convertToRealCoordinate(new TileCoordinate(84,55)));
         
     	//TriggerManager.getSingleton().loadTriggers(map);
 
