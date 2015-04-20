@@ -6,9 +6,12 @@ import java.util.Collections;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
+import java.util.Queue;
 
 import model.area.TileCoordinate;
+import model.map.ItemMap;
 
 public class EntityManager implements Iterable<Entity> {
 	
@@ -16,6 +19,7 @@ public class EntityManager implements Iterable<Entity> {
 	private ArrayList<NPC> partyNpcs = new ArrayList<NPC>();
 	private ArrayList<NPC> nonPartyNpcs = new ArrayList<NPC>();
 	private Avatar avatar;
+	private Queue<Entity> removeList = new LinkedList<Entity>();
 	
 	private EntityManager() {
 	}
@@ -70,12 +74,14 @@ public class EntityManager implements Iterable<Entity> {
 		return _entityManager;
 	}
 	
-	public void update(double deltaTime) {
+	public void update(ItemMap itemMap, double deltaTime) {
 		for(Entity e : this){
+			itemMap.touch(e, e.getLocation());
 			e.update();
 			e.perform();
 			e.observe();
 		}
+		cleanRemovedEntities();
 	}
 	
 	/**
@@ -160,29 +166,35 @@ public class EntityManager implements Iterable<Entity> {
 	}
 	
 	public void removeEntity(Entity entity) {
-		for (Entity e : getPartyNpcs()) {
-			if (e.equals(entity)) {
-				getPartyNpcs().remove(e);
-				e.getEntityView().toggle();
-				return;
-			}
-		}
-		for (Entity e : getNonPartyNpcs()) {
-			if (e.equals(entity)) {
-				getNonPartyNpcs().remove(e);
-				e.getEntityView().toggle();
-				return;
-			}
-		}
-		if (getAvatar().equals(entity))  {
-			setAvatar(null);
-			entity.getEntityView().toggle();
-		}
+		removeList.add(entity);
 	}
 	
 	public void clear() {
 		partyNpcs = new ArrayList<NPC>();
 		nonPartyNpcs = new ArrayList<NPC>();
 		avatar = null;
+	}
+	
+	private void cleanRemovedEntities() {
+		Entity entity;
+		while (removeList.isEmpty() == false) {
+			entity = removeList.poll();
+			for (Entity e : partyNpcs) {
+				if (e.equals(entity)) {
+					partyNpcs.remove(e);
+					break;
+				}
+			}
+			for (Entity e : nonPartyNpcs) {
+				if (e.equals(entity)) {
+					nonPartyNpcs.remove(e);
+					break;
+				}
+			}
+			if (getAvatar().equals(entity))  {
+				entity.getEntityView().toggle();
+				setAvatar(null);
+			}	
+		}
 	}
 }

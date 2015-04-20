@@ -76,7 +76,8 @@ public class GameplayState extends GameState {
     public void update(double deltaTime) {
 		TriggerManager.getSingleton().update(deltaTime);
 		EventManager.getSingleton().update(deltaTime);
-		EntityManager.getSingleton().update(deltaTime);
+		// Alternative to passing an itemMap is to use traps as triggers
+		EntityManager.getSingleton().update(itemMap, deltaTime);
 		ProjectileManager.getSingleton().update(deltaTime);
 		/* Run through projectile queue */
 		while (!ProjectileManager.getSingleton().isQueueEmpty()) {

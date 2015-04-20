@@ -1,5 +1,6 @@
 package model.entity;
 
+import model.ability.Ability;
 import model.ability.sneak.Creep;
 import model.ability.sneak.DetectTrap;
 import model.ability.sneak.PickPocket;
@@ -23,16 +24,17 @@ public class Sneak extends Avatar {
 	public Sneak(String name, EntityView view, TileCoordinate loc) {
 		super(name, view,loc);
 		this.skillManager = (new SneakSkillManager());
+		generateSkills();
 	}
 	
 	@Override
 	protected void generateSkills(){
-		
 		this.getAbilities().add(new Creep(this.getSkillManager()));
 		this.getAbilities().add(new DetectTrap(this.getSkillManager()));
 		this.getAbilities().add(new PickPocket(this.getSkillManager()));
 		this.getAbilities().add(new Ranged(this.getSkillManager()));
 		this.getAbilities().add(new RemoveTrap(this.getSkillManager()));
+
 		super.generateSkills();
 	}
 

@@ -25,9 +25,10 @@ public class RemoveTrap extends Ability {
 			System.out.println("Removing Trap!!");
 			boolean success = Math.random() > 0.5;
 			if (success) {
-				TileCoordinate mineSweeperLocation = avatar.nextLocation();
+				TileCoordinate mineSweeperLocation = avatar.getLocation();
 				MineSweeper mineSweeper = new MineSweeper(mineSweeperLocation);
 				EntityManager.getSingleton().addPartyNpc(mineSweeper);
+				mineSweeper.move(avatar.getDirection());
 			} else {
 				// You get pushed into the trap when you fail to remove it ;)
 				avatar.move(avatar.getDirection());
