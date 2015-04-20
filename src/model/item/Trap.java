@@ -2,7 +2,6 @@ package model.item;
 
 import model.entity.Entity;
 import model.event.Event;
-import model.event.MovementModifierEvent;
 import model.map.tile.ItemTile;
 import view.item.ItemView;
 
@@ -11,7 +10,6 @@ public class Trap extends Item {
 	
 	public Trap(ItemView itemView) {
 		super(itemView);
-		Event event = new MovementModifierEvent(4, -10);
 		setEvent(event);
 	}
 	

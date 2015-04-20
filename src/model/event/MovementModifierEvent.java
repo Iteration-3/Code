@@ -45,5 +45,5 @@ public class MovementModifierEvent extends Event {
 	protected String getType() {
 		return "movementModifier";
 	}
-
+	
 }
