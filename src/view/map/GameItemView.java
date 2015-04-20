@@ -1,8 +1,9 @@
 package view.map;
 
 import java.awt.Graphics;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import model.area.RealCoordinate;
 import utilities.ScreenCoordinate;
@@ -11,23 +12,20 @@ import view.ViewTransform;
 import view.item.ItemView;
 
 public class GameItemView implements Renderable {
-	private Map<RealCoordinate, ItemView> itemViews = new HashMap<RealCoordinate, ItemView>();
+	private List<ItemView> itemViews = new CopyOnWriteArrayList<ItemView>();
 
 	@Override
 	public void render(Graphics graphics, ViewTransform transform) {
-		for(Map.Entry<RealCoordinate, ItemView> entry: itemViews.entrySet()) {
-			ItemView itemView = entry.getValue();
-			RealCoordinate coordinate = entry.getKey();
-			ScreenCoordinate renderPosition = transform.getTranslatedPosition(coordinate);
-			itemView.render(graphics, renderPosition.getX(), renderPosition.getY(), transform.getTileHeight());
+		for(ItemView itemView: itemViews) {
+			itemView.render(graphics, transform);
 		}
 	}
 
-	public void addItemView(ItemView itemView, RealCoordinate position) {
-		itemViews.put(position, itemView);
+	public void addItemView(ItemView itemView) {
+		itemViews.add(itemView);
 	}
 	
-	public void removeItemView(ItemView value) {
-		while (itemViews.values().remove(value));
+	public void removeItemView(ItemView view) {
+		itemViews.remove(view);
 	}
 }
