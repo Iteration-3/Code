@@ -4,12 +4,9 @@ import model.ability.ProjectileAbility;
 import model.area.GrowingConicalArea;
 import model.entity.Avatar;
 import model.entity.Entity;
-import model.event.Event;
 import model.event.IntimidateEvent;
-import model.event.StatisticModifierEvent;
 import model.projectile.conical.IntimidateConeProjectile;
 import model.skillmanager.SummonerSkillManager;
-import model.statistics.Statistics;
 
 public class Intimidate extends ProjectileAbility {
 	

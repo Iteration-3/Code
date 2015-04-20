@@ -10,9 +10,10 @@ public class LightManager implements Saveable {
 	
 	private static LightManager _lightManager = new LightManager();
 	private ArrayList<LightSource> lightSources = new ArrayList<LightSource>();
-	private LightMap lightMap = new LightMap(100, 100); //TODO temp
-	
-	private LightManager() { 
+	private LightMap lightMap = new LightMap(0, 0);
+
+	public void setLightMap(LightMap lm) {
+		lightMap = lm;
 	}
 	
 	public static LightManager getSingleton() {

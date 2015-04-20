@@ -7,9 +7,6 @@ public class JsonParser {
 	private static final String INVALID_JSON = "The JSON provided is invalid.";
 	
 	public static StructuredMap parse(String json) {
-		Queue<JsonToken> tokens = JsonScanner.tokenize(json);
-		for(JsonToken token : tokens);
-			//System.out.println(token + "::" + token.getTokenType());
 		return parse(JsonScanner.tokenize(json));
 	}
 	
@@ -41,8 +38,12 @@ public class JsonParser {
 	private static void insertKeyValuePairs(StructuredMap sm, Queue<JsonToken> tokens) {
 		while (!tokens.isEmpty()) {
 	
+			JsonToken curToken = tokens.element();
+			if(curToken.getTokenType() == JsonTokenType.RBRACE)
+				return;
+			
 			// All key / value pairs start with a String key
-			JsonToken curToken = tokens.poll();
+			curToken = tokens.poll();
 			if(curToken.getTokenType() != JsonTokenType.STRING)
 				throw new IllegalArgumentException(INVALID_JSON + " Contents of an object must begin with a \"Key\". @" + curToken);
 			
