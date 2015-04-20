@@ -2,8 +2,35 @@
 "lightStuff":	{
 	"sources":	[{
 		"area":	{
+			"coordinate":	[33, 10],
+			"range":	5,
+			"type":	"radial",
+			"direction":	5
+			},
+		"strength":	255,
+		"type":	"movingLight"
+		}, {
+		"area":	{
+			"coordinate":	[31, 14],
+			"range":	1,
+			"type":	"radial",
+			"direction":	4
+			},
+		"strength":	255,
+		"type":	"movingLight"
+		}, {
+		"area":	{
 			"coordinate":	[3, 3],
 			"range":	5,
+			"type":	"radial",
+			"direction":	1
+			},
+		"strength":	255,
+		"type":	"movingLight"
+		}, {
+		"area":	{
+			"coordinate":	[10, 10],
+			"range":	1,
 			"type":	"radial",
 			"direction":	1
 			},
@@ -46837,6 +46864,236 @@
 "items":	{
 	"itemMap":	[{
 		"coordinate":	{
+			"x":	6,
+			"y":	5
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	10,
+			"y":	9
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	26,
+			"y":	25
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	10,
+			"y":	10
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	31,
+			"y":	9
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	31,
+			"y":	10
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	31,
+			"y":	11
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	31,
+			"y":	12
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	31,
+			"y":	13
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	31,
+			"y":	14
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	31,
+			"y":	15
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	31,
+			"y":	16
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	31,
+			"y":	17
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	31,
+			"y":	18
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	27,
+			"y":	16
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	23,
+			"y":	14
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	19,
+			"y":	12
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	7,
+			"y":	2
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	15,
+			"y":	10
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	11,
+			"y":	7
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	15,
+			"y":	12
+			},
+		"itemTile":	{
+			"items":	[{
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	11.25,
+						"y":	10.825317547305483
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/trap.png",
+						"position":	{
+							"x":	11.25,
+							"y":	10.825317547305483
+							}
+						}
+					},
+				"type":	"trap",
+				"event":	{
+					"duration":	20.0,
+					"oldMovementSpeed":	1,
+					"type":	"tempMovementEvent",
+					"movement":	-1000
+					}
+				}, {
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	11.25,
+						"y":	10.825317547305483
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/trap.png",
+						"position":	{
+							"x":	11.25,
+							"y":	10.825317547305483
+							}
+						}
+					},
+				"type":	"trap",
+				"event":	{
+					"duration":	20.0,
+					"oldMovementSpeed":	1,
+					"type":	"tempMovementEvent",
+					"movement":	-1000
+					}
+				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	7,
+			"y":	5
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	11,
+			"y":	9
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
 			"x":	15,
 			"y":	14
 			},
@@ -46881,43 +47138,135 @@
 					"type":	"takeable"
 					},
 				"type":	"door"
+				}, {
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	11.25,
+						"y":	12.55736835487436
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/slotImage.png",
+						"position":	{
+							"x":	11.25,
+							"y":	12.55736835487436
+							}
+						}
+					},
+				"requirement":	{
+					"price":	{
+						"cost":	10
+						},
+					"taken":	false,
+					"itemView":	{
+						"onMap":	true,
+						"position":	{
+							"x":	3.75,
+							"y":	5.629165124598852
+							},
+						"type":	"basicItem",
+						"decal":	{
+							"imageResourcePath":	"/images/items/key.png",
+							"position":	{
+								"x":	3.75,
+								"y":	5.629165124598852
+								}
+							}
+						},
+					"name":	"key",
+					"type":	"takeable"
+					},
+				"type":	"door"
 				}]
 			}
 		}, {
 		"coordinate":	{
-			"x":	5,
-			"y":	5
+			"x":	7,
+			"y":	7
 			},
 		"itemTile":	{
-			"items":	[{
-				"stats":	{
-					"hardiness":	10,
-					"intellect":	10,
-					"strength":	10,
-					"agility":	10
-					},
-				"price":	{
-					"cost":	10
-					},
-				"taken":	false,
-				"itemView":	{
-					"onMap":	true,
-					"position":	{
-						"x":	3.75,
-						"y":	4.763139720814412
-						},
-					"type":	"basicItem",
-					"decal":	{
-						"imageResourcePath":	"/images/items/two_handed_chainsaw.png",
-						"position":	{
-							"x":	3.75,
-							"y":	4.763139720814412
-							}
-						}
-					},
-				"name":	"chainsaw",
-				"type":	"THW"
-				}]
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	3,
+			"y":	3
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	32,
+			"y":	10
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	40,
+			"y":	25
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	28,
+			"y":	17
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	24,
+			"y":	15
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	20,
+			"y":	13
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	16,
+			"y":	11
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	12,
+			"y":	8
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	8,
+			"y":	6
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	12,
+			"y":	10
+			},
+		"itemTile":	{
+			"items":	[]
 			}
 		}, {
 		"coordinate":	{
@@ -46948,37 +47297,54 @@
 					},
 				"name":	"HPPotion",
 				"type":	"healItem"
-				}]
-			}
-		}, {
-		"coordinate":	{
-			"x":	5,
-			"y":	6
-			},
-		"itemTile":	{
-			"items":	[{
+				}, {
 				"price":	{
 					"cost":	10
 					},
 				"taken":	false,
+				"healAmount":	1000,
 				"itemView":	{
 					"onMap":	true,
 					"position":	{
-						"x":	3.75,
-						"y":	5.629165124598852
+						"x":	12.0,
+						"y":	13.856406460551018
 						},
 					"type":	"basicItem",
 					"decal":	{
-						"imageResourcePath":	"/images/items/key.png",
+						"imageResourcePath":	"/images/items/healthpack.png",
 						"position":	{
-							"x":	3.75,
-							"y":	5.629165124598852
+							"x":	12.0,
+							"y":	13.856406460551018
 							}
 						}
 					},
-				"name":	"key",
-				"type":	"takeable"
+				"name":	"HPPotion",
+				"type":	"healItem"
 				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	4,
+			"y":	4
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	8,
+			"y":	9
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	33,
+			"y":	10
+			},
+		"itemTile":	{
+			"items":	[]
 			}
 		}, {
 		"coordinate":	{
@@ -47003,7 +47369,64 @@
 						}
 					},
 				"type":	"obstacleItem"
+				}, {
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	9.75,
+						"y":	0.4330127018922193
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/slotImage.png",
+						"position":	{
+							"x":	9.75,
+							"y":	0.4330127018922193
+							}
+						}
+					},
+				"type":	"obstacleItem"
 				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	29,
+			"y":	17
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	25,
+			"y":	15
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	21,
+			"y":	13
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	17,
+			"y":	11
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	13,
+			"y":	8
+			},
+		"itemTile":	{
+			"items":	[]
 			}
 		}, {
 		"coordinate":	{
@@ -47044,34 +47467,19 @@
 			}
 		}, {
 		"coordinate":	{
-			"x":	15,
-			"y":	12
+			"x":	9,
+			"y":	6
 			},
 		"itemTile":	{
-			"items":	[{
-				"itemView":	{
-					"onMap":	true,
-					"position":	{
-						"x":	11.25,
-						"y":	10.825317547305483
-						},
-					"type":	"basicItem",
-					"decal":	{
-						"imageResourcePath":	"/images/items/trap.png",
-						"position":	{
-							"x":	11.25,
-							"y":	10.825317547305483
-							}
-						}
-					},
-				"type":	"trap",
-				"event":	{
-					"duration":	20.0,
-					"oldMovementSpeed":	1,
-					"type":	"tempMovementEvent",
-					"movement":	-1000
-					}
-				}]
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	13,
+			"y":	10
+			},
+		"itemTile":	{
+			"items":	[]
 			}
 		}, {
 		"coordinate":	{
@@ -47096,7 +47504,220 @@
 						}
 					},
 				"type":	"obstacleItem"
+				}, {
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	6.75,
+						"y":	6.49519052838329
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/slotImage.png",
+						"position":	{
+							"x":	6.75,
+							"y":	6.49519052838329
+							}
+						}
+					},
+				"type":	"obstacleItem"
 				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	5,
+			"y":	4
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	9,
+			"y":	8
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	5,
+			"y":	5
+			},
+		"itemTile":	{
+			"items":	[{
+				"stats":	{
+					"hardiness":	10,
+					"intellect":	10,
+					"strength":	10,
+					"agility":	10
+					},
+				"price":	{
+					"cost":	10
+					},
+				"taken":	false,
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	3.75,
+						"y":	4.763139720814412
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/two_handed_chainsaw.png",
+						"position":	{
+							"x":	3.75,
+							"y":	4.763139720814412
+							}
+						}
+					},
+				"name":	"chainsaw",
+				"type":	"THW"
+				}, {
+				"stats":	{
+					"hardiness":	10,
+					"intellect":	10,
+					"strength":	10,
+					"agility":	10
+					},
+				"price":	{
+					"cost":	10
+					},
+				"taken":	false,
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	3.75,
+						"y":	4.763139720814412
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/two_handed_chainsaw.png",
+						"position":	{
+							"x":	3.75,
+							"y":	4.763139720814412
+							}
+						}
+					},
+				"name":	"chainsaw",
+				"type":	"THW"
+				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	25,
+			"y":	25
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	9,
+			"y":	9
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	5,
+			"y":	6
+			},
+		"itemTile":	{
+			"items":	[{
+				"price":	{
+					"cost":	10
+					},
+				"taken":	false,
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	3.75,
+						"y":	5.629165124598852
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/key.png",
+						"position":	{
+							"x":	3.75,
+							"y":	5.629165124598852
+							}
+						}
+					},
+				"name":	"key",
+				"type":	"takeable"
+				}, {
+				"price":	{
+					"cost":	10
+					},
+				"taken":	false,
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	3.75,
+						"y":	5.629165124598852
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/key.png",
+						"position":	{
+							"x":	3.75,
+							"y":	5.629165124598852
+							}
+						}
+					},
+				"name":	"key",
+				"type":	"takeable"
+				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	30,
+			"y":	18
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	26,
+			"y":	16
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	22,
+			"y":	14
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	18,
+			"y":	12
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	14,
+			"y":	10
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	10,
+			"y":	7
+			},
+		"itemTile":	{
+			"items":	[]
 			}
 		}]
 	}
