@@ -77,6 +77,7 @@ public class GameplayLayout extends Layout implements ActionListener {
 		t.start();
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		repaint();
 	}

@@ -8,7 +8,6 @@ import model.entity.Smasher;
 import model.entity.Sneak;
 import model.entity.Summoner;
 import model.entity.behavior.npc.BarterBehavior;
-import model.entity.behavior.npc.MountBehavior;
 import model.entity.behavior.npc.PetBehavior;
 import model.entity.behavior.npc.TrooperBehavior;
 import utilities.structuredmap.StructuredMap;

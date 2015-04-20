@@ -35,7 +35,8 @@ public class OptionsMenuController extends Controller {
         return backAction;
     }
 
-    public void toggle() {
+    @Override
+	public void toggle() {
         backAction.toggle();
     }
 

@@ -8,7 +8,6 @@ import model.event.Event;
 import model.event.HealthModifierEvent;
 import model.projectile.linear.FireProjectile;
 import model.skillmanager.SummonerSkillManager;
-import model.trigger.SingleUseTrigger;
 
 public final class Firebolt extends ProjectileAbility {
 	

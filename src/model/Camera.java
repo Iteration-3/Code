@@ -54,6 +54,7 @@ public class Camera implements MobileListener {
 		this.viewportHeight = viewportHeight;
 	}
 
+	@Override
 	public void notify(MobileObject sourceObject) {
 		cameraPosition = TileCoordinate.convertToRealCoordinate(sourceObject.getLocation());
 	}

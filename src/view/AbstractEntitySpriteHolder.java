@@ -34,6 +34,7 @@ public abstract class AbstractEntitySpriteHolder implements Saveable {
 		}
 	}
 	
+	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = new StructuredMap();
 		map.put("type", getType());

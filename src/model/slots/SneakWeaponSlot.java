@@ -7,10 +7,12 @@ public class SneakWeaponSlot extends WeaponSlot<SneakWeapon> {
 	
 	public SneakWeaponSlot(){}
 
+	@Override
 	public boolean equip(Weapon weapon) {
 		return weapon.equip(this);
 	}
 
+	@Override
 	public boolean canEquip(Weapon weapon) {
 		return weapon.canEquip(this);
 	}

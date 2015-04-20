@@ -144,10 +144,12 @@ public abstract class Avatar extends Entity {
 		return abilities;
 	}
 	
+	@Override
 	public void accept(EntiyVisitorable visitor){
 		visitor.accept(this);
 	}
 	
+	@Override
 	protected Behaviorable getBehavior(){
 		//there is none now
 		return null;

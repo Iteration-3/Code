@@ -60,6 +60,7 @@ public class Mount extends NPC {
 		return "mount";
 	}
 	
+	@Override
 	protected Behaviorable getBehavior(){
 		return new MountBehavior();
 	}

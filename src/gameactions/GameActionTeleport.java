@@ -18,6 +18,7 @@ public class GameActionTeleport extends GameActionMovement {
 		this.potentialSpot = potentialSpot;
 	}
 	
+	@Override
 	public void setAngle(Angle angle){
 		super.setAngle(angle);
 	}

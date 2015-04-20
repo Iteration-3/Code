@@ -16,6 +16,7 @@ public class PushableCurcuit implements Circuitable{
 		this.moves.add(move);
 	}
 
+	@Override
 	public Angle nextMove() {
 		if(moves.isEmpty()){
 			return null;
@@ -25,6 +26,7 @@ public class PushableCurcuit implements Circuitable{
 		}
 	}
 
+	@Override
 	public boolean hasMove() {
 		return !this.moves.isEmpty();
 	}

@@ -83,6 +83,7 @@ public class Summoner extends Avatar {
 
 
 
+	@Override
 	protected ItemManager createItemManager() {
 		return new ItemManager(this);
 	}

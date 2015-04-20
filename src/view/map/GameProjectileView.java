@@ -3,13 +3,10 @@ package view.map;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
-
 import model.Camera;
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import utilities.ScreenCoordinate;
-import view.item.ItemView;
 import view.projectiles.ProjectileView;
 
 public class GameProjectileView {

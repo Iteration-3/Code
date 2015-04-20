@@ -59,7 +59,8 @@ public class GameplayController extends Controller {
     	updateThread = null;
      }
 
-    public void toggle() {
+    @Override
+	public void toggle() {
     	if(threadIsRunning) {
     		terminateUpdateThread();
     	} else {

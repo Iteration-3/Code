@@ -40,6 +40,7 @@ public class Sneak extends Avatar {
 		super.generateSkills();
 	}
 
+	@Override
 	protected ItemManager createItemManager() {
 		return new ItemManager(this);
 	}

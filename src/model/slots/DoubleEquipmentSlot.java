@@ -21,6 +21,7 @@ public class DoubleEquipmentSlot  <K extends EquipableItem, F extends EquipableI
 		this.shieldSlot.setParentSlot(this);
 	}
 
+	@Override
 	public boolean equip(K weapon) {
 		if (this.childrenHaveItem()) {
 			return false;

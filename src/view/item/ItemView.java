@@ -35,6 +35,7 @@ public abstract class ItemView implements Saveable{
 	
 	public abstract BufferedImage getImage(int x, int y);
 	
+	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = new StructuredMap();
 		map.put("onMap", onMap);

@@ -39,6 +39,7 @@ public class NPC extends Entity {
 		//DEPRECATED TO THE BEHAVIOR
 //		setDialogTree(dialogTree);
 	
+	@Override
 	protected ItemManager createItemManager() {
 		return new ItemManager(this);
 	}

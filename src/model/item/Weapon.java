@@ -22,6 +22,7 @@ public abstract class Weapon extends EquipableItem{
 		super(map);
 	}
 
+	@Override
 	public boolean equip(ItemManager itemManager){
 		return itemManager.equipToSlot(this);
 	}
@@ -45,11 +46,13 @@ public abstract class Weapon extends EquipableItem{
 		return false;
 	}
 	
+	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = super.getStructuredMap();
 		map.put("type", getType());
 		return map;
 	}
 	
+	@Override
 	public abstract String getType();
 }
