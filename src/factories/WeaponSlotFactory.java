@@ -1,5 +1,6 @@
 package factories;
 
+import model.slots.NPCWeaponSlot;
 import model.slots.SmasherWeaponSlot;
 import model.slots.SneakWeaponSlot;
 import model.slots.SummonerWeaponSlot;
@@ -17,6 +18,8 @@ public class WeaponSlotFactory {
 			return new SmasherWeaponSlot();
 		case "sneak" : 
 			return new SneakWeaponSlot();
+		case "npc" :
+			return new NPCWeaponSlot();
 		default :
 			throw new IllegalArgumentException("Fuck you");
 		}

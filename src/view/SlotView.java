@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
+import utilities.ImageProcessing;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
@@ -22,11 +23,9 @@ public class SlotView extends JButton implements Saveable {
 	public SlotView(StructuredMap map) {
 		this.itemView = map.getStructuredMap("itemView") == null ? null :ItemViewFactory.createItemView(map.getStructuredMap("itemView"));
 		this.backgroundPath = map.getString("background");
-		try {
-			this.background = ImageIO.read(new File(backgroundPath));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	
+		this.background = ImageProcessing.getImage(backgroundPath);
+		
 	}
 	
 	@Override
