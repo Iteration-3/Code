@@ -4,8 +4,10 @@ import model.entity.Entity;
 import model.map.GameMap;
 import model.map.ItemMap;
 import utilities.Direction;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 
-public class GameActionRiverPush extends GameAction {
+public class GameActionRiverPush extends GameAction implements Saveable {
 	GameActionTeleport teleport;
 	Entity entity;
 
@@ -15,6 +17,18 @@ public class GameActionRiverPush extends GameAction {
 		this.entity = entity;
 		// TODO Auto-generated constructor stub
 	}
+	
+	public GameActionRiverPush(StructuredMap map) {
+		teleport = new GameActionTeleport(map.getStructuredMap("teleport"));
+	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		map.put("teleport", teleport.getStructuredMap());
+		return map;
+	}
+	
 	
 	public void setAngle(Direction a){
 		teleport.setAngle(a);
@@ -30,6 +44,7 @@ public class GameActionRiverPush extends GameAction {
 	public void setTarget(Entity entity) {
 		teleport.setTarget(entity);
 	}
+
 	
 	
 

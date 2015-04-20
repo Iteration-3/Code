@@ -5,8 +5,10 @@ import model.entity.Entity;
 import model.map.GameMap;
 import model.map.ItemMap;
 import utilities.Direction;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 
-public class GameActionMovement extends GameAction {
+public class GameActionMovement extends GameAction implements Saveable {
 	private Entity entity;
 	private Direction direction;
 	
@@ -19,6 +21,17 @@ public class GameActionMovement extends GameAction {
 		this.terrain = terrain;
 		this.direction = angle;
 		this.itemMap = itemMap;
+	}
+	
+	public GameActionMovement(StructuredMap map) {
+		this.direction = Direction.values()[map.getInteger("direction")];
+	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		map.put("direction", direction.ordinal());
+		return map;
 	}
 	
 	public void setTarget(Entity entity){
@@ -59,4 +72,8 @@ public class GameActionMovement extends GameAction {
 			getEntity().move(direction);
 		}
 	}
+
+
+
+	
 }
