@@ -84,7 +84,7 @@ public abstract class Avatar extends Entity {
 				//TODO Ensure this isaffected by equipement and so forth.
 				//Same for defending.
 				System.out.println("attack");
-				Avatar.this.attackInFront(-Avatar.this.getDerivedStats().getOffensiveRating());
+				Avatar.this.attackInFront(-Avatar.this.getDerivedStats().getOffensiveRating()*100);
 				
 			}
 		}));
