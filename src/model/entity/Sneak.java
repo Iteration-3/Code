@@ -28,6 +28,7 @@ public class Sneak extends Avatar {
 	public Sneak(StructuredMap map) {
 		super(map);
 		skillManager = new SneakSkillManager(map.getStructuredMap("skillManager"));
+		this.generateSkills();
 	}
 	
 	@Override
