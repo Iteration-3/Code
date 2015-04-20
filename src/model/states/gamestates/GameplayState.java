@@ -1,6 +1,7 @@
 package model.states.gamestates;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import model.KeyPreferences;
 import model.area.Area;
@@ -9,6 +10,7 @@ import model.area.LinearArea;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.entity.Avatar;
+import model.entity.Entity;
 import model.entity.EntityManager;
 import model.entity.EntityMovementAssocation;
 import model.entity.Mount;
@@ -24,6 +26,8 @@ import model.item.HPPotion;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
 import model.item.Price;
+import model.item.SneakWeapon;
+import model.item.SummonerWeapon;
 import model.item.TakeableItem;
 import model.item.Trap;
 import model.item.TwoHandedWeapon;
@@ -181,8 +185,6 @@ public class GameplayState extends GameState {
         EntityManager.getSingleton().addNonPartyNpc(mount);
         
         
-    	
-    	/*
     	EntityManager.getSingleton().loadEntities(entityMap);
     	Iterator<Entity> iterator = EntityManager.getSingleton().iterator();
     	while(iterator.hasNext()) {
@@ -199,7 +201,6 @@ public class GameplayState extends GameState {
     	EntityFactory.createCowardTrooper("CAP POOP PANTS", new TileCoordinate(40,25), layout);
     	EntityFactory.createPet("Timmmy", new TileCoordinate(10,10), layout);
 
-    	*/
     	//KeyPreferences preferences = new KeyPreferences(preferencesMap);
       KeyPreferences preferences = new KeyPreferences();
         getContext().setPreferences(preferences);
@@ -250,19 +251,37 @@ public class GameplayState extends GameState {
 	private void addItemsTest(StructuredMap map) {
 		
 		
-        TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
+        TileCoordinate takeableItemViewPosition = new TileCoordinate(35, 25);
         ItemView takeableItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(takeableItemViewPosition), new Decal("/images/items/two_handed_chainsaw.png", TileCoordinate.convertToRealCoordinate(takeableItemViewPosition)));
         takeableItemView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new TwoHandedWeapon(takeableItemView, "chainsaw"), 
                 takeableItemViewPosition); 
 
-        TileCoordinate takeableItemViewPositionTwo = new TileCoordinate(5, 6);
+        TileCoordinate weaponTwoViewPosition = new TileCoordinate(35, 40);
+        ItemView weaponTwoView = new BasicItemView(TileCoordinate.convertToRealCoordinate(weaponTwoViewPosition), new Decal("/images/items/two_handed_chainsaw.png", TileCoordinate.convertToRealCoordinate(weaponTwoViewPosition)));
+        weaponTwoView.registerWithGameItemView(layout.getGameItemView());
+        this.getItemMap().addItem(new TwoHandedWeapon(weaponTwoView, "chainsaw"), 
+                weaponTwoViewPosition);  
+        
+        TileCoordinate weaponOneViewPosition = new TileCoordinate(35, 25);
+        ItemView weaponOneView = new BasicItemView(TileCoordinate.convertToRealCoordinate(weaponOneViewPosition), new Decal("/images/items/staff.png", TileCoordinate.convertToRealCoordinate(weaponOneViewPosition)));
+        weaponOneView.registerWithGameItemView(layout.getGameItemView());
+        this.getItemMap().addItem(new SummonerWeapon(weaponOneView, "staff"), 
+                weaponOneViewPosition); 
+
+        TileCoordinate weaponThressViewPosition = new TileCoordinate(33, 13);
+        ItemView weaponThressView = new BasicItemView(TileCoordinate.convertToRealCoordinate(weaponThressViewPosition), new Decal("/images/items/crossbow.png", TileCoordinate.convertToRealCoordinate(weaponThressViewPosition)));
+        weaponThressView.registerWithGameItemView(layout.getGameItemView());
+        this.getItemMap().addItem(new SneakWeapon(weaponThressView, "staff"), 
+                weaponThressViewPosition); 
+        
+        TileCoordinate takeableItemViewPositionTwo = new TileCoordinate(20, 45);
         ItemView takeableItemViewTwo = new BasicItemView(TileCoordinate.convertToRealCoordinate(takeableItemViewPositionTwo), new Decal("/images/items/key.png", TileCoordinate.convertToRealCoordinate(takeableItemViewPositionTwo)));
         takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView());
         TakeableItem takeableItemTwo = new TakeableItem(takeableItemViewTwo, "key");
         this.getItemMap().addItem(takeableItemTwo, takeableItemViewPositionTwo);
 
-        TileCoordinate doorItemViewPosition = new TileCoordinate(15, 14);
+        TileCoordinate doorItemViewPosition = new TileCoordinate(186, 50);
         ItemView doorItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(doorItemViewPosition), new Decal("/images/slotImage.png", TileCoordinate.convertToRealCoordinate(doorItemViewPosition)));
         doorItemView.registerWithGameItemView(layout.getGameItemView());
         Door doorItem = new Door(doorItemView, takeableItemTwo);
@@ -278,17 +297,17 @@ public class GameplayState extends GameState {
         oneshotItemView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), oneshotItemPosition);
         
-        TileCoordinate riverMarkerSpot = new TileCoordinate(13, 0);
+        TileCoordinate riverMarkerSpot = new TileCoordinate(14, 43);
         ItemView riverMarker = new BasicItemView(TileCoordinate.convertToRealCoordinate(riverMarkerSpot), new Decal("/images/slotImage.png", TileCoordinate.convertToRealCoordinate(riverMarkerSpot)));
         riverMarker.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new ObstacleItem(riverMarker), riverMarkerSpot);
         
-        TileCoordinate trapSpot = new TileCoordinate(15, 12);
+        TileCoordinate trapSpot = new TileCoordinate(25, 25);
         ItemView trapView = new BasicItemView(TileCoordinate.convertToRealCoordinate(trapSpot), new Decal("/images/items/trap.png", TileCoordinate.convertToRealCoordinate(trapSpot)));
         trapView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new Trap(trapView), trapSpot);
         
-        TileCoordinate healthpackspot = new TileCoordinate(16,16);
+        TileCoordinate healthpackspot = new TileCoordinate(50,50);
         ItemView hView = new BasicItemView(TileCoordinate.convertToRealCoordinate(healthpackspot),
 				new Decal("/images/items/healthpack.png", TileCoordinate.convertToRealCoordinate(healthpackspot)));
         hView.registerWithGameItemView(layout.getGameItemView());
