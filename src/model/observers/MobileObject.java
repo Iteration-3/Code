@@ -9,7 +9,9 @@ public abstract class MobileObject {
 	
 	private ArrayList<MobileListener> listeners = new ArrayList<MobileListener>();
 	private TileCoordinate location;
+	private TileCoordinate prevLocation;
 	private Direction direction;
+	private Direction prevDirection;
 	
 	public MobileObject(TileCoordinate loc) {
 		setLocation(loc);
@@ -25,20 +27,22 @@ public abstract class MobileObject {
 	}
 	
 	public void setLocation(TileCoordinate location) {
-		this.location = location;
+		setLocationNoNotify(location);
 		notifySubscribers();
 	}
 	
 	public void setDirection(Direction direction) {
-		this.direction = direction;
+		setDirectionNoNotify(direction);
 		notifySubscribers();
 	}
 	
 	protected void setLocationNoNotify(TileCoordinate location) {
+		this.prevLocation = this.location;
 		this.location = location;
 	}
 	
 	protected void setDirectionNoNotify(Direction direction) {
+		this.prevDirection = this.direction;
 		this.direction = direction;
 	}
 	
@@ -48,6 +52,14 @@ public abstract class MobileObject {
 	
 	public Direction getDirection() {
 		return direction;
+	}
+	
+	public TileCoordinate getPrevLocation() {
+		return prevLocation;
+	}
+	
+	public Direction getPrevDirection() {
+		return prevDirection;
 	}
 	
 	protected void notifySubscribers() {

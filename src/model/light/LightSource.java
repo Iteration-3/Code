@@ -34,7 +34,8 @@ public class LightSource implements Saveable {
 	}	
 	
 	public void removeLighting(Area area) {
-		List<TileCoordinate> locs = area.getCoveredLocations();
+		List<TileCoordinate> locs = area.getPrevCoveredLocations();
+		if (locs == null) return;
 		for (TileCoordinate t : locs) {
 			int strengthAt = LightManager.getSingleton().getLightMap().getStrength(t);
 			LightManager.getSingleton().getLightMap().setStrength(t, strengthAt-strength);
