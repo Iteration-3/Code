@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import view.light.GameLightView;
 import factories.LightSourceFactory;
 
 public class LightManager implements Saveable {
@@ -21,6 +22,7 @@ public class LightManager implements Saveable {
 	}
 	
 	public void addLightSource(LightSource lightSource) {
+		System.out.println("ADD LIGHT SOURCE");
 		lightSource.addLighting(lightSource.getArea());
 		lightSources.add(lightSource);
 	}
@@ -42,13 +44,15 @@ public class LightManager implements Saveable {
 		lightMap = new LightMap(100, 100); //TODO temp
 	}
 
-	public void load(StructuredMap map) {
+	public void load(StructuredMap map, GameLightView glv) {
 		this.lightSources = new ArrayList<LightSource>();
+		this.lightMap = new LightMap(map.getStructuredMap("lightMap"));
+        lightMap.registerAll(glv);
+        
 		StructuredMap[] array = map.getStructuredMapArray("sources");
 		for(StructuredMap temp : array) {
-			lightSources.add(LightSourceFactory.createLightSource(temp));
+			//lightSources.add(LightSourceFactory.createLightSource(temp));
 		}
-		this.lightMap = new LightMap(map.getStructuredMap("lightMap"));
 	}
 	
 	@Override

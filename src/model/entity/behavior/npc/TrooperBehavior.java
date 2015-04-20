@@ -45,7 +45,7 @@ public class TrooperBehavior implements Behaviorable {
 	@Override
 	public void onDamage(Entity entity) {
 		if (this.onAttack != null){
-			System.out.println(this.chosen.getHpPercentage());
+			//System.out.println(this.chosen.getHpPercentage());
 			if (this.chosen.getHpPercentage() < 0.5){
 				this.chosen.push(this.onAttack);
 			}

@@ -1,12 +1,5 @@
 package model.states.gamestates;
 
-import factories.EntityFactory;
-import gameactions.GameActionGhostMovement;
-import gameactions.GameActionRiverPush;
-import gameactions.GameActionStatePush;
-import gameactions.GameActionTeleport;
-
-
 import java.util.Collection;
 
 import model.KeyPreferences;
@@ -116,17 +109,19 @@ public class GameplayState extends GameState {
        //StructuredMap map = JsonReader.readJson(filePath);
         
         this.gameMap = MapLoader.loadMap("maps/main_map.json", layout); //CALL THIS FIRST
-        addEntityTest(null,null);//map.getStructuredMap("entites"), map.getStructuredMap("keyPreferences"));
+        addEntityTest(null, null);//map.getStructuredMap("entites"), map.getStructuredMap("keyPreferences"));
         addItemsTest(null);//map.getStructuredMap("items"));
         addTriggersTest(null);//map.getStructuredMap("triggers"));
+        LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
+       
         
-       StructuredMap map = new StructuredMap();
-       map.put("entites", EntityManager.getSingleton().getStructuredMap());
-       map.put("items", itemMap.getStructuredMap());
-       KeyPreferences pref = new KeyPreferences();
-       map.put("keyPreferences",  pref.getStructuredMap());
+      StructuredMap map = new StructuredMap();
+      map.put("entites", EntityManager.getSingleton().getStructuredMap());
+      map.put("items", itemMap.getStructuredMap());
+      KeyPreferences pref = new KeyPreferences();
+     map.put("keyPreferences",  pref.getStructuredMap());
         
-       LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
+      LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
        map.put("lightStuff", LightManager.getSingleton().getStructuredMap());
        	JsonWriter writer = new JsonWriter();
         writer.writeStructuredMap(map, filePath);
@@ -136,7 +131,7 @@ public class GameplayState extends GameState {
 
         controller.spawnUpdateThread();
         avatar.subscribe(layout.getCamera());
-        //LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
+        //LightManager.getSingleton().load(map.getStructuredMap("lightStuff"), layout.getGameLightView());
     }
 
     @Override
@@ -185,6 +180,8 @@ public class GameplayState extends GameState {
         mountView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(mountLocation), Direction.UP);
         EntityManager.getSingleton().addNonPartyNpc(mount);
         
+        
+    	
     	/*
     	EntityManager.getSingleton().loadEntities(entityMap);
     	Iterator<Entity> iterator = EntityManager.getSingleton().iterator();
@@ -196,14 +193,19 @@ public class GameplayState extends GameState {
     	
     	avatar = EntityManager.getSingleton().getAvatar();
     	getController().registerAvatar(avatar);
-    	*/
-    	//KeyPreferences preferences = new KeyPreferences(preferencesMap);
-        KeyPreferences preferences = new KeyPreferences();
-        getContext().setPreferences(preferences);
-        setListeners(preferences);
+    	NPC npc2 = EntityFactory.createHeavyTrooper("MAX", new TileCoordinate(25,25), layout);
+    	NPC npc3 = EntityFactory.createCowardTrooper("TIMMY", new TileCoordinate(45,45), layout);
     	EntityFactory.createHeavyTrooper("DAVE SMA11", new TileCoordinate(25,25), layout);
     	EntityFactory.createCowardTrooper("CAP POOP PANTS", new TileCoordinate(40,25), layout);
     	EntityFactory.createPet("Timmmy", new TileCoordinate(10,10), layout);
+
+    	*/
+    	//KeyPreferences preferences = new KeyPreferences(preferencesMap);
+      KeyPreferences preferences = new KeyPreferences();
+        getContext().setPreferences(preferences);
+        setListeners(preferences);
+
+    	
         getContext().setPreferences(preferences);
         
 
@@ -246,6 +248,7 @@ public class GameplayState extends GameState {
 	}
 
 	private void addItemsTest(StructuredMap map) {
+		
 		
         TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
         ItemView takeableItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(takeableItemViewPosition), new Decal("/images/items/two_handed_chainsaw.png", TileCoordinate.convertToRealCoordinate(takeableItemViewPosition)));
@@ -291,6 +294,7 @@ public class GameplayState extends GameState {
         hView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new HPPotion(hView, new Price(10), 1000, "HPPotion"),healthpackspot);
         
+        
       /*
 		itemMap.loadItems(map);
 		
@@ -302,7 +306,9 @@ public class GameplayState extends GameState {
 				}
 			}
 		}
-*/
+		
+		*/
+
     }
 
     private void addTriggersTest(StructuredMap map) {

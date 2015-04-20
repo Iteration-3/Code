@@ -38,6 +38,7 @@ public class LightSource implements Saveable {
 		if (locs == null) return;
 		for (TileCoordinate t : locs) {
 			int strengthAt = LightManager.getSingleton().getLightMap().getStrength(t);
+			if (strengthAt == 0) continue;
 			LightManager.getSingleton().getLightMap().setStrength(t, strengthAt-strength);
 			LightManager.getSingleton().getLightMap().decrement(t);
 		}

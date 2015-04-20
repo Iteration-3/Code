@@ -35,6 +35,7 @@ public class LightMap implements Saveable {
 		lightsOn = new int[x][y];
 		timeDimmed = new long[x][y];
 		lastStrength = new int[x][y];
+		lightViews = new LightView[x][y];
 		for (int i = 0; i < x; i++) {
 			for (int j = 0; j < y; j++) {
 				lightViews[i][j] = new LightView(new TileCoordinate(i, j));
