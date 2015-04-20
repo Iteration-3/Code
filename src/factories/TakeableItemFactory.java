@@ -1,6 +1,7 @@
 package factories;
 
 import model.item.ConsumableItem;
+import model.item.HPPotion;
 import model.item.TakeableItem;
 import utilities.structuredmap.StructuredMap;
 
@@ -13,6 +14,8 @@ public class TakeableItemFactory {
 		switch (map.getString("type")) {
 		case "consumeable":
 			return createConsumeable(map);
+		case "healItem":
+			return new HPPotion(map);
 		case "noItem":
 			return null;
 		default:
