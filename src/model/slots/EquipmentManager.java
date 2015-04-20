@@ -43,6 +43,7 @@ public class EquipmentManager implements Saveable {
 		this.THWSlot = new DoubleEquipmentSlot<TwoHandedWeapon, SmasherWeapon, Shield>(
 				weaponSlot, this.shieldSlot);
 		this.registerSlots();
+		this.equipmentView.registerWeapon(this.setSlotView(this.THWSlot));
 	}
 
 	public EquipmentManager(StructuredMap map) {
@@ -254,6 +255,7 @@ public class EquipmentManager implements Saveable {
 	}
 
 	public boolean equip(TwoHandedWeapon item) {
+		System.out.println(item);
 		if (this.hasTHW()) {
 			return this.THWSlot.equip(item);
 		} else {
