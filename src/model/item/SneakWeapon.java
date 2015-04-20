@@ -30,12 +30,6 @@ public class SneakWeapon extends Weapon {
 	}
 
 	@Override
-	public String getInfo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public String getType() {
 		return "sneak";
 	}

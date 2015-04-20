@@ -23,12 +23,6 @@ public class Shield extends EquipableItem{
 	public boolean equip(ItemManager itemManager) {
 		return itemManager.equipToSlot(this);
 	}
-
-    @Override
-    public String getInfo() {
-        // TODO Auto-generated method stub
-        return null;
-    }
     
     @Override
 	public StructuredMap getStructuredMap() {

@@ -22,11 +22,6 @@ public class NPCWeapon extends Weapon {
 	}
 
 	@Override
-	public String getInfo() {
-		return "This is the NPC Weapon";
-	}
-
-	@Override
 	public String getType() {
 		return "npc";
 	}

@@ -55,11 +55,5 @@ public class ConsumableItem extends TakeableItem {
     protected String getType() {
 		return "consumeable";
 	}
-    
-	@Override
-	public String getInfo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

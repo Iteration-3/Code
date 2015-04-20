@@ -30,12 +30,6 @@ public class SmasherWeapon extends Weapon {
 	}
 
 	@Override
-	public String getInfo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public String getType() {
 		return "smasher";
 	}

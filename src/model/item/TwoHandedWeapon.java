@@ -19,11 +19,6 @@ public class TwoHandedWeapon extends EquipableItem {
 		super(structuredMap);
 	}
 
-	@Override
-	public String getInfo() {
-		return null;
-	}
-
 	public void unequip(ItemManager itemManager) {
 		itemManager.unequipTHW();
 	}
