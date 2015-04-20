@@ -1,7 +1,6 @@
 package model.ability.summoner.bane;
 
 import model.ability.ProjectileAbility;
-import model.area.GrowingConicalArea;
 import model.area.RadialArea;
 import model.entity.Avatar;
 import model.entity.Entity;

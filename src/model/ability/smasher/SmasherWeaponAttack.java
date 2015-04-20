@@ -1,15 +1,12 @@
 package model.ability.smasher;
 
 import model.ability.Ability;
-import model.ability.TriggerAbility;
 import model.area.RadialArea;
 import model.entity.Avatar;
 import model.entity.Entity;
 import model.event.HealthModifierEvent;
 import model.skillmanager.SmasherSkillManager;
 import model.trigger.TimedTrigger;
-import model.trigger.Trigger;
-import model.trigger.TriggerManager;
 
 public class SmasherWeaponAttack extends Ability {
 

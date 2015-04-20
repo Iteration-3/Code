@@ -4,10 +4,10 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import view.ViewTransform;
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import utilities.ScreenCoordinate;
+import view.ViewTransform;
 
 public class GameProjectileView {
 	

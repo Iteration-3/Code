@@ -2,8 +2,6 @@ package view.map;
 
 import java.awt.Graphics;
 
-import javax.crypto.spec.IvParameterSpec;
-
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import utilities.ScreenCoordinate;

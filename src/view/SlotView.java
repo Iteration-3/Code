@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+
 import javax.swing.JButton;
 
 import utilities.ImageProcessing;
