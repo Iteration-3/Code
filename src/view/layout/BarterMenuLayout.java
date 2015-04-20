@@ -12,12 +12,16 @@ import controller.barter.BarterMenuController;
 public final class BarterMenuLayout extends Layout {
 	private InventoryView seller, buyer;
 	private MenuButton exitButton;
+	private String[] buyerToolTips;
+	private String[] sellerToolTips;
 	private final int OFFSET = 25;
 	private final int SLOT_WIDTH = 75, SLOT_HEIGHT = 75;
 	
-	public BarterMenuLayout(InventoryView seller, InventoryView buyer) {
+	public BarterMenuLayout(InventoryView seller, InventoryView buyer, String[] sellerToolTips, String[] buyerToolTips) {
 		setSeller(seller);
 		setBuyer(buyer);
+		setBuyerToolTips(buyerToolTips);
+		setSellerToolTips(sellerToolTips);
 		
 		setLayout(null);
 		setBorder(new EmptyBorder(100, 300, 100, 300));
@@ -25,6 +29,7 @@ public final class BarterMenuLayout extends Layout {
 		
 		addViews();
 		addExitButton();
+		addToolTips();
 	}
 
 	public void attachController(BarterMenuController controller) {
@@ -49,6 +54,11 @@ public final class BarterMenuLayout extends Layout {
 		getExitButton().setBounds(500, 500, 100, 100);
 		add(getExitButton());
 	}
+	
+	private void addToolTips() {
+		getSeller().setToolTips(getSellerToolTips());
+		getBuyer().setToolTips(getBuyerToolTips());
+	}
 
 	private InventoryView getSeller() {
 		return seller;
@@ -72,6 +82,22 @@ public final class BarterMenuLayout extends Layout {
 	
 	private MenuButton getExitButton() {
 		return this.exitButton;
+	}
+
+	private String[] getBuyerToolTips() {
+		return buyerToolTips;
+	}
+
+	private void setBuyerToolTips(String[] buyerToolTips) {
+		this.buyerToolTips = buyerToolTips;
+	}
+
+	private String[] getSellerToolTips() {
+		return sellerToolTips;
+	}
+
+	private void setSellerToolTips(String[] sellerToolTips) {
+		this.sellerToolTips = sellerToolTips;
 	}
 
 }

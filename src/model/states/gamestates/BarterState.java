@@ -12,7 +12,7 @@ public class BarterState extends GameState {
 	private Avatar avatar;
 	
 	public BarterState(Entity npc, Avatar avatar) {
-		setLayout(new BarterMenuLayout(npc.getInventoryView(), avatar.getInventoryView()));
+		setLayout(new BarterMenuLayout(npc.getInventoryView(), avatar.getInventoryView(), npc.getItemToolTips(avatar), avatar.getItemToolTips()));
 		setNPC(npc);
 		setAvatar(avatar);
 	}

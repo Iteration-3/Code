@@ -5,8 +5,6 @@ import gameactions.GameAction;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.swing.KeyStroke;
-
 import model.KeyPreferences;
 import model.ability.Ability;
 import model.ability.BindWounds;
@@ -14,6 +12,7 @@ import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.entity.behavior.npc.AvatarBehavior;
 import model.entity.behavior.npc.Behaviorable;
+import model.item.TakeableItem;
 import model.light.LightManager;
 import model.light.MovingLightSource;
 import model.skillmanager.SkillManager;
@@ -100,7 +99,19 @@ public abstract class Avatar extends Entity {
 			}
 		}));
 		return listeners;
-		
+	}
+	
+	public String[] getItemToolTips() {
+		TakeableItem[] items = this.getItems();
+		String[] toolTips = new String[items.length];
+		for (int i = 0; i < items.length; ++i) {
+			if (items[i] != null) {
+				toolTips[i] = items[i].getInfo() + ": $" + Integer.toString(items[i].getBarteredCost(this));
+			} else {
+				toolTips[i] = "";
+			}
+		}
+		return toolTips;
 	}
 	
 	public boolean hasMoney(int money) {

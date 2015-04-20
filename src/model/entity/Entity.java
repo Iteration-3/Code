@@ -434,5 +434,19 @@ public abstract class Entity extends MobileObject implements Saveable {
 	public boolean outOfLives(){
 		return this.getDerivedStats().outOfLives();
 	}
+	
+	public String[] getItemToolTips(Avatar buyer) {
+		TakeableItem[] items = getItems();
+		String[] toolTips = new String[items.length];
+		for (int i = 0; i < items.length; ++i) {
+			if (items[i] != null) {
+				toolTips[i] = items[i].getInfo() + ": $" + Integer.toString(items[i].getBarteredCost(buyer));
+			} else {
+				toolTips[i] = "";
+			}
+		}
+		return toolTips;
+	}
+
 
 }
