@@ -14,7 +14,7 @@ public class EntityStatistics extends Statistics {
         super();
         setLivesLeft(3);
         setExperience(0);
-        setMovement(0);
+        setMovement(5);
         setCurrentHealth(getMaximumHealth());
         setCurrentMana(getMaximumMana());
         setMoney(30);
@@ -108,7 +108,6 @@ public class EntityStatistics extends Statistics {
     public void setCurrentHealth(int currentHealth) {
         this.currentHealth = currentHealth;
     }
-    
 
     public int getMaximumHealth() {
         return getStrength() * 100;

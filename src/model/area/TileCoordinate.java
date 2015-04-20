@@ -1,5 +1,7 @@
 package model.area;
 
+import java.awt.geom.Point2D;
+
 import utilities.Angle;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
@@ -38,6 +40,11 @@ public class TileCoordinate implements Saveable {
 	public void setY(int y) {
 		this.y = y;
 	}
+	
+	public double getDistance(TileCoordinate dest){
+    	return Point2D.distance(this.getX(), this.getY(), dest.getX(), dest.getY());
+    	
+    }
 
 	public static RealCoordinate convertToRealCoordinate(TileCoordinate coord) {
 		double x = (0.75 * coord.getX());

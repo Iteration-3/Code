@@ -11,6 +11,8 @@ import utilities.structuredmap.StructuredMap;
 public abstract class AbstractEntitySpriteHolder implements Saveable {
 	
 	public void render(Graphics graphics, RealCoordinate location, float diameter, Angle angle) {
+		System.out.println(location);
+		System.out.println(angle);
 		switch(angle){
 		case UP:
 			this.getUp().render(graphics,location,diameter);
