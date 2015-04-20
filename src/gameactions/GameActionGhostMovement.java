@@ -1,9 +1,7 @@
 package gameactions;
 
 import model.area.TileCoordinate;
-import model.entity.Entity;
 import model.map.GameMap;
-import model.map.ItemMap;
 import utilities.Direction;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;

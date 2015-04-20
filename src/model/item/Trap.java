@@ -1,12 +1,12 @@
 package model.item;
 
-import factories.EventFactory;
 import model.entity.Entity;
 import model.event.Event;
 import model.event.TemporaryMovementModifierEvent;
 import model.map.tile.ItemTile;
 import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
+import factories.EventFactory;
 
 public class Trap extends Item {
 	private Event event;

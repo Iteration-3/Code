@@ -4,7 +4,6 @@ import model.area.Area;
 import model.area.TileCoordinate;
 import model.event.Event;
 import model.projectile.Projectile;
-import model.trigger.Trigger;
 import utilities.Direction;
 
 public class ShadowBlastProjectile extends Projectile {

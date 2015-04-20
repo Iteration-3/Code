@@ -6,6 +6,7 @@ import model.trigger.SingleUseTrigger;
 import model.trigger.TimedTrigger;
 import model.trigger.Trigger;
 import utilities.structuredmap.StructuredMap;
+import view.trigger.ViewableTrigger;
 
 public class TriggerFactory {
 
@@ -19,6 +20,8 @@ public class TriggerFactory {
 			return new SingleUseTrigger(map);
 		case "timedTrigger":
 			return new TimedTrigger(map);
+		case "viewableTrigger":
+			return new ViewableTrigger(map);
 		default:
 			throw new IllegalArgumentException("Fuck you");
 		}

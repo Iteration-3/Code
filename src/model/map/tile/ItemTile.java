@@ -4,11 +4,11 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import factories.ItemFactory;
 import model.entity.Entity;
 import model.item.Item;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import factories.ItemFactory;
 
 public class ItemTile implements Saveable {
     private Collection<Item> items = new CopyOnWriteArrayList<Item>();
@@ -59,11 +59,6 @@ public class ItemTile implements Saveable {
     public boolean remove(Item i) {
         return items.remove(i);
     }
-
-    /**
-     * UNIMPLEMENTED
-     */
-    
 
     public boolean isBlocking() {
         for (Item i : items) {

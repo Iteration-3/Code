@@ -12,7 +12,6 @@ import model.item.Item;
 import model.map.tile.ItemTile;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
-import view.item.ItemView;
 
 /**
  * This one will generate a tile for an item if it doesn't exist. The reason for
