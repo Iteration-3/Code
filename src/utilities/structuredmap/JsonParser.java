@@ -7,6 +7,9 @@ public class JsonParser {
 	private static final String INVALID_JSON = "The JSON provided is invalid.";
 	
 	public static StructuredMap parse(String json) {
+		Queue<JsonToken> tokens = JsonScanner.tokenize(json);
+		for(JsonToken token : tokens);
+			//System.out.println(token + "::" + token.getTokenType());
 		return parse(JsonScanner.tokenize(json));
 	}
 	
@@ -67,7 +70,7 @@ public class JsonParser {
 					break;
 					
 				case DOUBLE:
-					sm.put(key, Integer.valueOf(curToken.toString()));
+					sm.put(key, Double.valueOf(curToken.toString()));
 					tokens.poll(); // pop the consumed token
 					break;
 					
@@ -93,10 +96,11 @@ public class JsonParser {
 												 	// be important when the value is read back out.
 							
 				default:
-					throw new IllegalArgumentException(INVALID_JSON + " Keys must be followed by ':'. @" + curToken);
+					throw new IllegalArgumentException(INVALID_JSON + " Invalid Value type for key value pair. @" + curToken);
 			}
-			
+			//System.out.println(curToken);
 			curToken = tokens.element();
+			//System.out.println(curToken);
 			if(curToken.getTokenType() == JsonTokenType.COMMA) { // we have another key / value pair, keep going
 				tokens.poll(); // munch the ','
 				continue;
@@ -178,12 +182,13 @@ public class JsonParser {
 			
 			// which may be followed by
 			curToken = tokens.element();
-			if(curToken.getTokenType() == JsonTokenType.RBRACE) { // the end of the array
+			if(curToken.getTokenType() == JsonTokenType.RBRACKET) { // the end of the array
 				break; // don't munch the '}', it gets pulled off from the general array processing function
 			} else if(curToken.getTokenType() == JsonTokenType.COMMA) { // or a ',', signifying another StructuredMap
 				tokens.poll(); // munch the ','
 				continue;
 			} else { // otherwise this is not an StructuredMap aray
+				tokens.forEach(System.out::println);
 				throw new IllegalArgumentException(INVALID_JSON + " StructuredMap array entries ',' or a closing ']'. @" + curToken);
 			}
 		}
