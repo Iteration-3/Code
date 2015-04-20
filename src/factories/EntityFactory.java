@@ -72,9 +72,13 @@ public class EntityFactory {
 		return entity;
 	}
 
-	public static NPC createPet(String name, EntityView view,
-			TileCoordinate location) {
-		NPC entity = new NPC(name, "pet", view, location, new PetBehavior());
+	public static NPC createPet(String name, TileCoordinate location,
+			GameplayLayout layout) {
+		EntityView view = new EntityView(
+				EntitySpriteFactory.getBoySpriteHolder());
+		NPC entity = new NPC(name, "pet", view, location,
+				new PetBehavior());
+		setEntity(entity,location,view,layout);
 		return entity;
 	}
 
@@ -107,7 +111,7 @@ public class EntityFactory {
 		EntityView view = new EntityView(
 				EntitySpriteFactory.getTrooperSpriteHolder());
 		NPC entity = new NPC(name, "heavyTrooper", view, location,
-				new TrooperBehavior(new Coward(false, EntityManager
+				new TrooperBehavior(new Coward(true, EntityManager
 						.getSingleton().getAvatar()), 7));
 		entity.setStats(StatsFactory.getTrooperStats());
 		setEntity(entity,location,view,layout);
