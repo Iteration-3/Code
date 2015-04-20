@@ -1,9 +1,11 @@
 package model.item;
 
+import factories.EventFactory;
 import model.entity.Entity;
 import model.event.Event;
 import model.event.TemporaryMovementModifierEvent;
 import model.map.tile.ItemTile;
+import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 
 public class Trap extends Item {
@@ -18,6 +20,18 @@ public class Trap extends Item {
 	public Trap(ItemView itemView, Event event) {
 		super(itemView);
 		setEvent(event);
+	}
+
+	public Trap(StructuredMap structuredMap) {
+		super(structuredMap);
+		this.event = EventFactory.createEvent(structuredMap.getStructuredMap("event"));
+	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		map.put("event", event.getStructuredMap());
+		return map;
 	}
 
 	@Override
@@ -44,8 +58,7 @@ public class Trap extends Item {
 
 	@Override
 	protected String getType() {
-		// TODO Auto-generated method stub
-		return null;
+		return "trap";
 	}
 	
 	private void setEvent(Event event) {

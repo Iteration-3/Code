@@ -2,7 +2,7 @@ package gameactions;
 
 import model.area.TileCoordinate;
 import model.entity.Entity;
-import model.map.GameTerrain;
+import model.map.GameMap;
 import model.map.ItemMap;
 import utilities.Direction;
 
@@ -10,10 +10,11 @@ public class GameActionMovement extends GameAction {
 	private Entity entity;
 	private Direction direction;
 	
-	private GameTerrain terrain;
+	private GameMap terrain;
 	private ItemMap itemMap;
 
-	public GameActionMovement(Entity entity, GameTerrain terrain, ItemMap itemMap, Direction angle){
+	public GameActionMovement(Entity entity, GameMap terrain, ItemMap itemMap, Direction angle){
+
 		this.entity = entity;
 		this.terrain = terrain;
 		this.direction = angle;
@@ -25,7 +26,7 @@ public class GameActionMovement extends GameAction {
 	}
 	
 
-	protected GameTerrain getTerrain(){
+	protected GameMap getTerrain(){
 		return terrain;
 	}
 	

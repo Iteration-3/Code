@@ -206,15 +206,15 @@ public abstract class Entity extends MobileObject implements Saveable {
     	this.updateExtras(deltaTime);
     }
     
-    private void caculateCombatTimer(double deltaTime) {
-    	if (getHasBeenAttacked() || this.getAttacking()){
-    		timerHasBeenAttacked += deltaTime;
-                if (timerHasBeenAttacked >= maxHasBeenAttacked){
-                        clearHasBeenAttacked();
-                        clearAttacking();
-                        timerHasBeenAttacked = 0;
-    		}
-    	}
+	private void caculateCombatTimer(double deltaTime) {
+		if (getHasBeenAttacked() || this.getAttacking()){
+			timerHasBeenAttacked += deltaTime;
+			if (timerHasBeenAttacked >= maxHasBeenAttacked){
+				clearHasBeenAttacked();
+				clearAttacking();
+				timerHasBeenAttacked = 0;
+			}
+		}
 	}
 
 	public abstract void updateExtras(double deltaTime);

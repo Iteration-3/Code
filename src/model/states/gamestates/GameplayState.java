@@ -32,7 +32,7 @@ import model.item.OneShotItem;
 import model.item.TakeableItem;
 import model.item.Trap;
 import model.light.LightManager;
-import model.map.GameTerrain;
+import model.map.GameMap;
 import model.map.ItemMap;
 import model.map.tile.AirPassableTile;
 import model.map.tile.ImpassableTile;
@@ -62,13 +62,13 @@ import controller.listener.SingleUseListener;
 public class GameplayState extends GameState {
     private GameplayController controller;
     private GameplayLayout layout;
-    private GameTerrain gameMap;
+    private GameMap gameMap;
     private ItemMap itemMap;
     private Avatar avatar;
 
     public GameplayState(Avatar avatar) {
         layout = new GameplayLayout();
-        gameMap = new GameTerrain();
+        gameMap = new GameMap();
         itemMap = new ItemMap();
         this.avatar = avatar;
     }
@@ -133,7 +133,7 @@ public class GameplayState extends GameState {
         avatar.setLocation(loc);
         
         //testing this for equipped Items
-        avatar.equip(new Helmet(new BasicItemView(new Decal("/images/helmet_slot.jpg")),new Statistics()));
+        avatar.equip(new Helmet(new BasicItemView(new Decal("/images/helmet_image.png")),new Statistics()));
 
         EntityManager.getSingleton().setAvatar(avatar);
         getController().registerAvatar(avatar);
@@ -193,7 +193,7 @@ public class GameplayState extends GameState {
         this.getItemMap().addItem(new Boots(takeableItemView),
                 takeableItemViewPosition);
 
-        ItemView takeableItemViewTwo = new BasicItemView(new Color(100, 60, 100), Color.DARK_GRAY, new Decal("/images/item.jpg"));
+        ItemView takeableItemViewTwo = new BasicItemView(new Color(100, 60, 100), Color.DARK_GRAY, new Decal("/images/key_image.png"));
         TileCoordinate takeableItemViewPositionTwo = new TileCoordinate(5, 6);
         takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView(),  TileCoordinate.convertToRealCoordinate(takeableItemViewPositionTwo));
         TakeableItem takeableItemTwo = new Gloves(takeableItemViewTwo);
@@ -205,7 +205,7 @@ public class GameplayState extends GameState {
         Door doorItem = new Door(doorItemView, takeableItemTwo);
         this.getItemMap().addItem(doorItem, doorItemViewPosition);
 
-        ItemView obstacleItemView = new BasicItemView(Color.GRAY, Color.BLACK, new Decal("/images/item.jpg"));
+        ItemView obstacleItemView = new BasicItemView(Color.GRAY, Color.BLACK, new Decal("/images/rock_image.png"));
         TileCoordinate obstacleItemPosition = new TileCoordinate(9, 7);
         obstacleItemView.registerWithGameItemView(layout.getGameItemView(),TileCoordinate.convertToRealCoordinate(obstacleItemPosition));
         this.getItemMap().addItem(new ObstacleItem(obstacleItemView), obstacleItemPosition);
@@ -215,12 +215,12 @@ public class GameplayState extends GameState {
         oneshotItemView.registerWithGameItemView(layout.getGameItemView(), TileCoordinate.convertToRealCoordinate(oneshotItemPosition));
         this.getItemMap().addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), oneshotItemPosition);
         
-        ItemView riverMarker = new BasicItemView(Color.GRAY, Color.BLACK, new Decal("/images/item.jpg"));
+        ItemView riverMarker = new BasicItemView(Color.GRAY, Color.BLACK, new Decal("/images/rock_image.png"));
         TileCoordinate riverMarkerSpot = new TileCoordinate(13, 0);
         riverMarker.registerWithGameItemView(layout.getGameItemView(), TileCoordinate.convertToRealCoordinate(riverMarkerSpot));
         this.getItemMap().addItem(new ObstacleItem(riverMarker), riverMarkerSpot);
         
-        ItemView trapView = new BasicItemView(Color.RED, Color.BLACK, new Decal("/images/item.jpg"));
+        ItemView trapView = new BasicItemView(Color.RED, Color.BLACK, new Decal("/images/trap_image.png"));
         TileCoordinate trapSpot = new TileCoordinate(15, 12);
         trapView.registerWithGameItemView(layout.getGameItemView(), TileCoordinate.convertToRealCoordinate(trapSpot));
         this.getItemMap().addItem(new Trap(trapView), trapSpot);
