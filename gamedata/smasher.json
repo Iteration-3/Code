@@ -1262,7 +1262,7 @@
 								}
 							}
 						},
-					"name":	"null",
+					"name":	"key",
 					"type":	"takeable"
 					},
 				"type":	"door"

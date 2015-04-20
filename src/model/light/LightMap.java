@@ -73,9 +73,13 @@ public class LightMap implements Saveable {
 		for(int i = 0; i < timeDimmed.length; i++) {
 			StructuredMap tempMap[] = new StructuredMap[timeDimmed[i].length];
 			for(int j = 0; j < timeDimmed[i].length; j++) {
-				tempMap[j].put("dimmed", (double) timeDimmed[i][j]);
+				StructuredMap notNullMap = new StructuredMap();
+				notNullMap.put("dimmed",(double) timeDimmed[i][j]);
+				tempMap[j] = notNullMap;
 			}
-			array1[i].put("array", tempMap);
+			StructuredMap notNullMap2 = new StructuredMap();
+			notNullMap2.put("array", tempMap);
+			array1[i] = notNullMap2;
 		}
 		map.put("dimmedValues", array1);
 		return map;
