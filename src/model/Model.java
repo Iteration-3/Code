@@ -64,10 +64,13 @@ public class Model extends StateMachine<GameState> {
     }
     
     private void refreshListeners() {
-    	// This hack is needed because of the gameplay state machine, this should
-    	// be taken out at a later time.
-    	pushState(new PauseMenuState());
-    	popState();
+    	currentState().onPause();
+    	try {
+    		Thread.sleep(1);
+    	} catch (InterruptedException e) {
+    		
+    	}
+    	currentState().onResume();
     }
     
     public void clearMount() {

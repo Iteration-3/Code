@@ -1,6 +1,10 @@
 package controller;
 
+import java.io.File;
+
 import model.Model;
+import model.entity.Summoner;
+import model.states.gamestates.GameplayState;
 import controller.listener.ToggleAction;
 
 public class LoadMenuController extends Controller {
@@ -21,6 +25,13 @@ public class LoadMenuController extends Controller {
 					model.popState();
 				}
 			};
+	}
+	
+	public void loadGame(int i) {
+		String filename = "save" + i + ".json";
+		File f = new File("gamedata/" + filename);
+		if(f.exists())
+			model.pushState(new GameplayState(filename, new Summoner()));
 	}
 	
 	public ToggleAction getBackAction() {

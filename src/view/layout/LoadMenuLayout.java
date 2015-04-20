@@ -2,6 +2,9 @@ package view.layout;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
 
 import view.components.MenuButton;
 import controller.LoadMenuController;
@@ -53,5 +56,35 @@ public class LoadMenuLayout extends Layout {
 
     public void attachController(LoadMenuController controller) {
         backButton.addActionListener(controller.getBackAction());
+        load1.addActionListener(new AbstractAction() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		controller.loadGame(1);
+        	}
+        });
+        load2.addActionListener(new AbstractAction() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		controller.loadGame(2);
+        	}
+        });
+        load3.addActionListener(new AbstractAction() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		controller.loadGame(3);
+        	}
+        });
+        load4.addActionListener(new AbstractAction() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		controller.loadGame(4);
+        	}
+        });
+        load5.addActionListener(new AbstractAction() {
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		controller.loadGame(5);
+        	}
+        });
     }
 }
