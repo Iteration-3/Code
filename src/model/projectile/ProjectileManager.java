@@ -20,7 +20,8 @@ public class ProjectileManager {
 	
 	public Projectile dequeueProjectile() {
 		Projectile ret = projectileQueue.poll();
-		projectiles.add(ret);
+		if (!projectiles.contains(ret))
+			projectiles.add(ret);
 		return ret;
 	}
 	
@@ -36,7 +37,7 @@ public class ProjectileManager {
 		ArrayList<Projectile> toRemove = new ArrayList<Projectile>();
 		for (Projectile projectile : projectiles) {
 			projectile.advance();
-			if (projectile.hasExpired()) {
+			if (projectile.hasExpired() && !toRemove.contains(projectile)) {
 				toRemove.add(projectile);
 			}
 		}

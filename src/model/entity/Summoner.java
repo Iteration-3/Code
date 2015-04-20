@@ -35,6 +35,7 @@ public class Summoner extends Avatar {
 	public Summoner(StructuredMap map) {
 		super(map);
 		skillManager = new SummonerSkillManager(map.getStructuredMap("library"));
+		this.generateSkills();
 	}
 	
 	@Override

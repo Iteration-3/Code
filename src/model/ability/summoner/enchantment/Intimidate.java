@@ -5,6 +5,7 @@ import model.area.GrowingConicalArea;
 import model.entity.Avatar;
 import model.entity.Entity;
 import model.event.Event;
+import model.event.IntimidateEvent;
 import model.event.StatisticModifierEvent;
 import model.projectile.conical.IntimidateConeProjectile;
 import model.skillmanager.SummonerSkillManager;
@@ -27,9 +28,10 @@ public class Intimidate extends ProjectileAbility {
 	@Override
 	public IntimidateConeProjectile getProjectile(Entity ent) {
 
-		Event damageEvent = new StatisticModifierEvent(new Statistics(-20*manager.getEnchantSkill(), 0, 0, 0), 5*manager.getEnchantSkill());
-
-		return new IntimidateConeProjectile(ent.getLocation(), ent.getDirection(), new GrowingConicalArea(ent.getLocation(), ent.getDirection(), 6), damageEvent, 2.2);
+		IntimidateEvent intimidateEvent = new IntimidateEvent(null, null, manager.getEnchantSkill()*2);
+		
+		intimidateEvent.setSource(ent);
+		return new IntimidateConeProjectile(ent.getLocation(), ent.getDirection(), new GrowingConicalArea(ent.getLocation(), ent.getDirection(), 6), intimidateEvent, 2.2);
 	}
 
 	@Override

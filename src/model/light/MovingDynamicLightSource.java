@@ -32,7 +32,7 @@ public class MovingDynamicLightSource extends LightSource implements MobileListe
 	
 	@Override
 	public void notify(MobileObject mo) {
-		removeLighting(getArea());
+		removePrevLighting(getArea());
 		
 		addLighting(getArea());
 	}
