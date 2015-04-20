@@ -250,6 +250,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     		}
     		else{
     			this.setLocationNoNotify(nextLocation);
+    			System.out.println(nextLocation);
     			this.setDirectionNoNotify(angle);
     			this.notifySubscribers();
     		}

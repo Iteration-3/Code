@@ -353,11 +353,9 @@ public class GameplayState extends GameState {
                 		TileCoordinate.convertToRealCoordinate(new TileCoordinate(84,55))));
         
         TileCoordinate locRiver = new TileCoordinate(14, 43);
-        Area areaRiver = new LinearArea(20, locRiver, Direction.DOWN);
-        Trigger triggerRiver = new ViewableTrigger(new RateLimitedTrigger(areaFour, new RiverPushEvent(
-                new GameActionRiverPush(avatar, gameMap, this.getItemMap(), Direction.DOWN)),1000),
-                new Decal("/images/items/skull_and_crossbones.png",
-                		TileCoordinate.convertToRealCoordinate(new TileCoordinate(14,43))));
+        Area areaRiver = new LinearArea(7, locRiver, Direction.DOWN_RIGHT);
+        Trigger triggerRiver = new RateLimitedTrigger(areaRiver, new RiverPushEvent(
+                new GameActionRiverPush(avatar, gameMap, this.getItemMap(), Direction.DOWN_RIGHT)),1000);
         
         triggerManager.addNonPartyTrigger(triggerRiver);
         triggerManager.addNonPartyTrigger(triggerTele);
