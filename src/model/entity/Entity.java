@@ -322,7 +322,11 @@ public abstract class Entity extends MobileObject implements Saveable {
     }
 
     public TakeableItem[] getItems() {
-        return this.itemManager.getInventoryItems();
+    	if (itemManager != null) {
+    		return this.itemManager.getInventoryItems();
+    	} else {
+    		return null;
+    	}
     }
     
     public TakeableItem getItem(int slotNumber) {
