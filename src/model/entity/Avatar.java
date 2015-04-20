@@ -74,6 +74,7 @@ public abstract class Avatar extends Entity {
 			listeners.add(new PollingListener(preferences.getAbility(i),new GameAction() {
 				@Override
 				public void perform() {
+					System.out.println("Used Ability: " + a.toString());
 					a.perform(Avatar.this);
 				}
 			}));
