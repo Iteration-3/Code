@@ -1,4 +1,4 @@
-package view.tiles.components;
+package view.map.components;
 
 import java.awt.Color;
 import java.awt.Graphics;

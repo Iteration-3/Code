@@ -15,6 +15,14 @@ public class RiverPushEvent extends Event {
 	
 	public RiverPushEvent(StructuredMap map) {
 		super(map);
+		this.gameActionRiverPush = new GameActionRiverPush(map.getStructuredMap("riverPush"));
+	}
+	
+	@Override 
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		map.put("riverPush", gameActionRiverPush.getStructuredMap());
+		return map;
 	}
 	
 	@Override

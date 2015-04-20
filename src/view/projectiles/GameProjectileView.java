@@ -1,4 +1,4 @@
-package view.map;
+package view.projectiles;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -9,7 +9,6 @@ import view.ViewTransform;
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import utilities.ScreenCoordinate;
-import view.projectiles.ProjectileView;
 
 public class GameProjectileView {
 	

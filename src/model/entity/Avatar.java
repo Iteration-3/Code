@@ -18,7 +18,7 @@ import model.light.MovingLightSource;
 import model.skillmanager.SkillManager;
 import utilities.Direction;
 import utilities.structuredmap.StructuredMap;
-import view.EntityView;
+import view.entity.EntityView;
 import controller.listener.Listener;
 import controller.listener.PollingListener;
 

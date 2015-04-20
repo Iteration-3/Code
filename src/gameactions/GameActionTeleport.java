@@ -5,8 +5,10 @@ import model.entity.Entity;
 import model.map.GameMap;
 import model.map.ItemMap;
 import utilities.Direction;
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
 
-public class GameActionTeleport extends GameActionMovement {
+public class GameActionTeleport extends GameActionMovement implements Saveable {
 	
 	TileCoordinate potentialSpot = null;
 
@@ -15,6 +17,18 @@ public class GameActionTeleport extends GameActionMovement {
 
 		super(entity, terrain, itemMap, angle);
 		// TODO Auto-generated constructor stub
+	}
+	
+	public GameActionTeleport(StructuredMap map) {
+		super(map);
+		this.potentialSpot = map.getStructuredMap("coordinate") == null ? null : new TileCoordinate(map.getStructuredMap("coordinate"));
+	}
+	
+	@Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		map.put("coordinate", potentialSpot == null ? null : potentialSpot.getStructuredMap());
+		return map;
 	}
 	
 	public void setTeleportToLocation(TileCoordinate potentialSpot) {
@@ -43,5 +57,7 @@ public class GameActionTeleport extends GameActionMovement {
 			this.getEntity().setDirection(this.getDirection());
 		}
 	}
+
+	
 
 }

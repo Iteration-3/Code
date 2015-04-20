@@ -18,9 +18,9 @@ import model.statistics.Statistics;
 import utilities.Direction;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
-import view.EntityView;
 import view.EquipmentView;
 import view.InventoryView;
+import view.entity.EntityView;
 import controller.listener.Listener;
 
 public abstract class Entity extends MobileObject implements Saveable {

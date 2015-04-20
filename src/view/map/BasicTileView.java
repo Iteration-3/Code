@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import utilities.structuredmap.StructuredMap;
-import view.tiles.components.Hexagon;
+import view.map.components.Hexagon;
 
 public class BasicTileView extends TileView {
 	private Hexagon backgroundHexagon;

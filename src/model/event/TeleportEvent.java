@@ -22,6 +22,12 @@ public class TeleportEvent extends Event {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = super.getStructuredMap();
+		map.put("teleportAction", teleportAction.getStructuredMap());
+		return map;
+	}
+	
 	public TeleportEvent(StructuredMap map) {
 		super(map);
 	}
