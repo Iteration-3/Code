@@ -32,7 +32,7 @@ import model.item.OneShotItem;
 import model.item.TakeableItem;
 import model.item.Trap;
 import model.light.LightManager;
-import model.map.GameTerrain;
+import model.map.GameMap;
 import model.map.ItemMap;
 import model.map.tile.AirPassableTile;
 import model.map.tile.ImpassableTile;
@@ -62,13 +62,13 @@ import controller.listener.SingleUseListener;
 public class GameplayState extends GameState {
     private GameplayController controller;
     private GameplayLayout layout;
-    private GameTerrain gameMap;
+    private GameMap gameMap;
     private ItemMap itemMap;
     private Avatar avatar;
 
     public GameplayState(Avatar avatar) {
         layout = new GameplayLayout();
-        gameMap = new GameTerrain();
+        gameMap = new GameMap();
         itemMap = new ItemMap();
         this.avatar = avatar;
     }

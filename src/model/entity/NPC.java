@@ -23,8 +23,12 @@ public class NPC extends Entity {
 	
 	public NPC(StructuredMap map) {
 		super(map);
-		//DEPRECATED TO THE BEHAVIOR
-//		this.dialogTree = new DialogTree(map.getStructuredMap("dialogueTree"));
+	}
+	
+	public NPC(StructuredMap map, Behaviorable behavior) {
+		super(map);
+		this.behavior = behavior;
+		this.type = map.getString("type");
 	}
 	
 	
@@ -76,9 +80,7 @@ public class NPC extends Entity {
 
 	@Override
 	public String getType() {
-		//Kyle you might want 
 		return this.type;
-//		return "npc";
 	}
 
 	@Override

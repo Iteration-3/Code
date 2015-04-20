@@ -2,16 +2,17 @@ package gameactions;
 
 import model.area.TileCoordinate;
 import model.entity.Entity;
-import model.map.GameTerrain;
+import model.map.GameMap;
 import model.map.ItemMap;
 import utilities.Direction;
 
 public class GameActionTeleport extends GameActionMovement {
 	
 	TileCoordinate potentialSpot = null;
-	
-	public GameActionTeleport(Entity entity, GameTerrain terrain,
+
+	public GameActionTeleport(Entity entity, GameMap terrain,
 			ItemMap itemMap, Direction angle) {
+
 		super(entity, terrain, itemMap, angle);
 		// TODO Auto-generated constructor stub
 	}

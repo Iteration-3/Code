@@ -1,7 +1,9 @@
 package model.entity;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import model.area.TileCoordinate;
+import model.entity.behavior.npc.BarterBehavior;
+import model.entity.behavior.npc.PetBehavior;
 
 import org.junit.Test;
 
@@ -49,9 +51,9 @@ public class EntityFactoryTest {
 	
 	@Test
 	public void testNPCSave() {
-		NPC avatar = new NPC("kyle", new EntityView(
+		NPC avatar = new NPC("kyle", "barter", new EntityView(
 				EntitySpriteFactory.getBaldySpriteHolder()),
-				new TileCoordinate(5, 5));
+				new TileCoordinate(5, 5), new BarterBehavior());
 		System.out.println(avatar.getStructuredMap());
 		NPC avatar2 = EntityFactory.createNPC(avatar.getStructuredMap());
 		assertEquals(avatar.getStructuredMap().getJson(), avatar2
@@ -61,9 +63,9 @@ public class EntityFactoryTest {
 	
 	@Test
 	public void testPetSave() {
-		NPC avatar = new Pet("kyle", new EntityView(
+		NPC avatar = new NPC("kyle", "pet", new EntityView(
 				EntitySpriteFactory.getBaldySpriteHolder()),
-				new TileCoordinate(5, 5));
+				new TileCoordinate(5, 5), new PetBehavior());
 		System.out.println(avatar.getStructuredMap());
 		NPC avatar2 = EntityFactory.createNPC(avatar.getStructuredMap());
 		assertEquals(avatar.getStructuredMap().getJson(), avatar2

@@ -1,9 +1,15 @@
 package model.event;
 
+import utilities.structuredmap.StructuredMap;
+
 public class InvisiblityEvent extends Event{
 	
 	public InvisiblityEvent(double duration) {
 		super(duration);
+	}
+
+	public InvisiblityEvent(StructuredMap structuredMap) {
+		super(structuredMap);
 	}
 
 	@Override
