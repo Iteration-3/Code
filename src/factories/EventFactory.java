@@ -9,7 +9,6 @@ import model.event.InvisiblityEvent;
 import model.event.LivesModifierEvent;
 import model.event.ManaModifierEvent;
 import model.event.MovementModifierEvent;
-import model.event.PickPocketEvent;
 import model.event.RiverPushEvent;
 import model.event.StatisticModifierEvent;
 import model.event.TeleportEvent;
@@ -37,8 +36,6 @@ public class EventFactory {
 			return new ManaModifierEvent(structuredMap);
 		case "movementModifier":
 			return createMovementModifierEvent(structuredMap);
-		case "pickPocket":
-			return new PickPocketEvent(structuredMap);
 		case "riverPush":
 			return new RiverPushEvent(structuredMap);
 		case "statisticsModifier":
