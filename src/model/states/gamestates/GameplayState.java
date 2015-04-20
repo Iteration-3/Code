@@ -37,7 +37,6 @@ import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Direction;
 import utilities.structuredmap.JsonReader;
-import utilities.structuredmap.JsonWriter;
 import utilities.structuredmap.StructuredMap;
 import view.Decal;
 import view.entity.EntityView;
@@ -95,7 +94,7 @@ public class GameplayState extends GameState {
         // Which is needed for other stuff.
         super.onEnter();
         controller = new GameplayController(this);
-        StructuredMap map = JsonReader.readJson(filePath);
+       StructuredMap map = JsonReader.readJson(filePath);
         
         this.gameMap = MapLoader.loadMap("maps/main_map.json", layout); //CALL THIS FIRST
         addEntityTest(map.getStructuredMap("entites"));
@@ -177,6 +176,7 @@ public class GameplayState extends GameState {
     	KeyPreferences preferences = new KeyPreferences();
         getContext().setPreferences(preferences);
         setListeners(preferences);
+        
 
     }
 
@@ -255,8 +255,13 @@ public class GameplayState extends GameState {
         ItemView trapView = new BasicItemView(TileCoordinate.convertToRealCoordinate(trapSpot), new Decal("/images/items/trap.png", TileCoordinate.convertToRealCoordinate(trapSpot)));
         trapView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new Trap(trapView), trapSpot);
-*/
         
+        TileCoordinate healthpackspot = new TileCoordinate(16,16);
+        ItemView hView = new BasicItemView(TileCoordinate.convertToRealCoordinate(healthpackspot),
+				new Decal("/images/items/healthpack.png", TileCoordinate.convertToRealCoordinate(healthpackspot)));
+        hView.registerWithGameItemView(layout.getGameItemView());
+        this.getItemMap().addItem(new HPPotion(hView, new Price(10), 1000),healthpackspot);
+        */
       
 		itemMap.loadItems(map);
 		
@@ -269,13 +274,9 @@ public class GameplayState extends GameState {
 			}
 		}
 		
-	/*
-        TileCoordinate healthpackspot = new TileCoordinate(16,16);
-        ItemView hView = new BasicItemView(TileCoordinate.convertToRealCoordinate(healthpackspot),
-				new Decal("/images/items/healthpack.png", TileCoordinate.convertToRealCoordinate(healthpackspot)));
-        hView.registerWithGameItemView(layout.getGameItemView());
-        this.getItemMap().addItem(new HPPotion(hView, new Price(10), 1000),healthpackspot);
-        */
+	
+        
+        
 
     }
 

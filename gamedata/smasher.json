@@ -1371,6 +1371,22 @@
 			},
 		"itemTile":	{
 			"items":	[{
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	9.75,
+						"y":	8.227241335952167
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/book.png",
+						"position":	{
+							"x":	9.75,
+							"y":	8.227241335952167
+							}
+						}
+					},
+				"type":	"oneShot",
 				"modifiers":	{
 					"hardiness":	10,
 					"currentHealth":	1000,
@@ -1410,8 +1426,8 @@
 				"type":	"trap",
 				"event":	{
 					"duration":	20.0,
-					"type":	"tempMovementEvent",
-					"oldMovementSpeed":  1
+					"oldMovementSpeed":	1,
+					"type":	"tempMovementEvent"
 					}
 				}]
 			}

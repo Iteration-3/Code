@@ -719,20 +719,9 @@
 			"locationY":	3.031088913245535,
 			"locationX":	2.25,
 			"sprites":	{
-				"spriteType":	"summonerSprite",
+				"spriteType":	"sneakSprite",
 				"type":	"concrete"
 				}
-			},
-		"library":	{
-			"barterSkill":	1,
-			"boonSkill":	1,
-			"baneSkill":	1,
-			"observeSkill":	1,
-			"bindWoundSkill":	1,
-			"type":	"summoner",
-			"enchantSkill":	1,
-			"staffSkill":	1,
-			"attackSkill":	1
 			},
 		"stats":	{
 			"hardiness":	10,
@@ -747,7 +736,7 @@
 			"movement":	10
 			},
 		"flying":	false,
-		"name":	"Summoner",
+		"name":	"Sneak",
 		"location":	[3, 3],
 		"itemManager":	{
 			"equipment":	{
@@ -821,7 +810,7 @@
 				"bootsSlot":	null,
 				"glovesSlot":	null,
 				"weaponSlotType":	{
-					"type":	"summoner"
+					"type":	"sneak"
 					}
 				},
 			"inventory":	{
@@ -1189,7 +1178,18 @@
 					}]
 				}
 			},
-		"type":	"summoner",
+		"type":	"sneak",
+		"skillManager":	{
+			"barterSkill":	1,
+			"rangedSkill":	1,
+			"observeSkill":	1,
+			"trapRemoveSkill":	1,
+			"bindWoundSkill":	1,
+			"pickPocketSkill":	1,
+			"type":	"sneak",
+			"creepSkill":	1,
+			"attackSkill":	1
+			},
 		"direction":	1
 		}
 	},
@@ -1371,6 +1371,22 @@
 			},
 		"itemTile":	{
 			"items":	[{
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	9.75,
+						"y":	8.227241335952167
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/book.png",
+						"position":	{
+							"x":	9.75,
+							"y":	8.227241335952167
+							}
+						}
+					},
+				"type":	"oneShot",
 				"modifiers":	{
 					"hardiness":	10,
 					"currentHealth":	1000,

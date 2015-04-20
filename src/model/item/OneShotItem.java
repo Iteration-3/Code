@@ -54,7 +54,7 @@ public class OneShotItem extends Item {
 
     @Override
     public StructuredMap getStructuredMap() {
-       StructuredMap map = new StructuredMap();
+       StructuredMap map = super.getStructuredMap();
        map.put("modifiers", modifiers.getStructuredMap());
        return map;
     }
