@@ -228,6 +228,7 @@ public class EntityManager implements Iterable<Entity>, Saveable {
 			}
 			for (Entity e : nonPartyNpcs) {
 				if (e.equals(entity)) {
+					e.revert();
 					nonPartyNpcs.remove(e);
 					break;
 				}
