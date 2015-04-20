@@ -17,7 +17,7 @@ public class Creep extends SelfAbility {
 	
 	public Creep(SneakSkillManager sneakSkillManager,Sneak sneak) {
 		super();
-		this.setEvent(new InvisiblityEvent(2,sneak));
+		this.setEvent(new InvisiblityEvent(7, sneak));
 		this.manager = sneakSkillManager;
 		this.sneak = sneak;
 	}
@@ -32,9 +32,6 @@ public class Creep extends SelfAbility {
 		this.movementModifier.setDuration(duration);
 		this.getEvent().setDuration(duration);
 		if (hasMana(avatar) && !avatar.getEntityView().getHidden()) {
-
-			System.out.println("I am creepin");
-			//If we are visible, then go invisible and slow movement, else don't do anything
 			removeMana(avatar);
 			
 			//Clone & add event stuff
