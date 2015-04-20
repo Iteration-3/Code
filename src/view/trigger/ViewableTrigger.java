@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
+import factories.TriggerFactory;
 import model.area.Area;
 import model.area.RadialArea;
 import model.area.RealCoordinate;
@@ -49,10 +50,14 @@ public class ViewableTrigger extends Trigger implements Saveable, Renderable {
 	}
 	
 	public ViewableTrigger(StructuredMap map) {
+		this.decal = new Decal(map.getStructuredMap("decal"));
 		map.put("decal", decal.getStructuredMap());
-		// TODO Fix the Save and Load
+		this.trigger = TriggerFactory.createTrigger(map.getStructuredMap("trigger"));
+		for (TileCoordinate tileCoordinate: trigger.getArea().getCoveredLocations()) {
+			realCoordinates.add(TileCoordinate.convertToRealCoordinate(tileCoordinate));
+		}
 	}
-
+	
 	@Override
 	public void render(Graphics graphics, ViewTransform transform) {
 		for (RealCoordinate position: realCoordinates) {
@@ -65,7 +70,7 @@ public class ViewableTrigger extends Trigger implements Saveable, Renderable {
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = new StructuredMap();
 		map.put("decal", decal.getStructuredMap());
-		// TODO: RealCoordinate
+		map.put("trigger", trigger.getStructuredMap());
 		return map;
 	}
 

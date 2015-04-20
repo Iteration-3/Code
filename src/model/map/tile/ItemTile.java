@@ -60,11 +60,6 @@ public class ItemTile implements Saveable {
         return items.remove(i);
     }
 
-    /**
-     * UNIMPLEMENTED
-     */
-    
-
     public boolean isBlocking() {
         for (Item i : items) {
             if (i.isBlocking()) {
