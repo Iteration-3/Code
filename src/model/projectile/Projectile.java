@@ -27,14 +27,12 @@ public class Projectile extends MobileObject implements Cloneable {
 		this.trigger = trigger;
 		this.trigger.getArea().setStartLocation(location);
 		this.trigger.getArea().setDirection(direction);
-		this.projView = new BasicProjectileView(trigger.getArea(), new Color(255, 0, 0, 200));
+		this.projView = new BasicProjectileView(trigger.getArea(), new Color(255, 0, 0, 140));
 		this.mlb = new MovingLightSource(trigger.getArea(), 255, this);
 	}
 	
 	public void move(TileCoordinate location) {
-		setLocationNoNotify(location);
-		projView.setArea(trigger.getArea());
-		notifySubscribers();
+		setLocation(location);
 	}
 
 	public void advance() {
@@ -48,6 +46,12 @@ public class Projectile extends MobileObject implements Cloneable {
 		LightManager.getSingleton().addLightSource(mlb);
 		TriggerManager.getSingleton().addPartyTrigger(trigger);
 		ProjectileManager.getSingleton().enqueueProjectile(this);
+	}
+	
+	public void dispose() {
+		LightManager.getSingleton().removeLightSource(mlb);
+		TriggerManager.getSingleton().removeTrigger(trigger);
+		projView.dispose();
 	}
 	
 	public boolean hasExpired() {

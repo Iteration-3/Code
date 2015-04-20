@@ -31,7 +31,7 @@ public class Intimidate extends ProjectileAbility {
 		Event damageEvent = new StatisticModifierEvent(new Statistics(-20*manager.getEnchantSkill(), 0, 0, 0), 5*manager.getEnchantSkill());
 		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
 
-		return new IntimidateConeProjectile(ent.getLocation(), ent.getDirection(), damageTrigger, 1.0);
+		return new IntimidateConeProjectile(ent.getLocation(), ent.getDirection(), damageTrigger, 2.2);
 	}
 
 	@Override

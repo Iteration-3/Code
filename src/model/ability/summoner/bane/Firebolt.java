@@ -27,7 +27,7 @@ public final class Firebolt extends ProjectileAbility {
 	public FireProjectile getProjectile(Entity ent) {
 		Event damageEvent = new HealthModifierEvent(0, -10*manager.getBaneSkill());
 		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, ent.getLocation()), damageEvent);
-		return new FireProjectile(ent.getLocation(), ent.getDirection(), damageTrigger, 1.0);
+		return new FireProjectile(ent.getLocation(), ent.getDirection(), damageTrigger, 2.2);
 	}
 
 	@Override
