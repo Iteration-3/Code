@@ -1,7 +1,7 @@
 package controller;
 
-import controller.listener.ToggleAction;
 import model.Model;
+import controller.listener.ToggleAction;
 
 public class LoadMenuController extends Controller {
 	private Model model;

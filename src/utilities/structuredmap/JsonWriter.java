@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 public class JsonWriter {
-	
 	public void writeStructuredMap(StructuredMap data, String filename) {
 		writeString(data.getJson(), filename);
 	}

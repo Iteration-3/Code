@@ -2,11 +2,11 @@ package controller.barter;
 
 import java.awt.event.ActionListener;
 
-import controller.Controller;
-import controller.listener.ToggleAction;
 import model.Model;
 import model.entity.Avatar;
 import model.entity.Entity;
+import controller.Controller;
+import controller.listener.ToggleAction;
 
 public final class BarterMenuController extends Controller {
 	private Model model;

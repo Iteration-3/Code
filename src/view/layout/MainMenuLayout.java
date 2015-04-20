@@ -1,11 +1,10 @@
 package view.layout;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 
-import controller.MainMenuController;
 import view.components.MenuButton;
+import controller.MainMenuController;
 
 @SuppressWarnings("serial")
 public class MainMenuLayout extends Layout {	

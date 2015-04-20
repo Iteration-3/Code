@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage;
 import utilities.ImageProcessing;
 import utilities.structuredmap.StructuredMap;
 import view.tiles.components.Hexagon;
-import model.area.RealCoordinate;
 
 public class BasicItemView extends ItemView {
 	
@@ -35,10 +34,9 @@ public class BasicItemView extends ItemView {
 	}
 
 	@Override
-	public void render(Graphics graphics, RealCoordinate location, float diameter) {
-		RealCoordinate updatedCoordinate = new RealCoordinate(location.getX(), location.getY());
-		backgroundHexagon.render(graphics, updatedCoordinate, diameter * OVERDRAW);
-		foregroundHexagon.render(graphics, updatedCoordinate, diameter * (1 - BORDER_PERCENTAGE) * OVERDRAW);
+	public void render(Graphics graphics, float x, float y, float diameter) {
+		backgroundHexagon.render(graphics, x, y, diameter * OVERDRAW);
+		foregroundHexagon.render(graphics, x, y, diameter * (1 - BORDER_PERCENTAGE) * OVERDRAW);
 	}
 	
 	public BufferedImage getImage(int x, int y){

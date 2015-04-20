@@ -3,8 +3,8 @@ package view.layout;
 import java.awt.Color;
 import java.awt.GridLayout;
 
-import controller.OptionsMenuController;
 import view.components.MenuButton;
+import controller.OptionsMenuController;
 
 @SuppressWarnings("serial")
 public class OptionsMenuLayout extends Layout {

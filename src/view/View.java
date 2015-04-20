@@ -16,7 +16,6 @@ import view.layout.Layout;
 public class View extends JFrame {
 	private int currentLayer;
 	private List<Layout> activeLayouts;
-	
 	private JLayeredPane layeredPane;
 	
 	public View() {
@@ -56,12 +55,15 @@ public class View extends JFrame {
 	
 	@Override
 	public void revalidate() {
+		Dimension paneSize = getContentPane().getSize();
+
+		
 		for(Layout activeLayout : activeLayouts) {
-			Dimension paneSize = getContentPane().getSize();
 			activeLayout.setBounds(0, 0, paneSize.width, paneSize.height);
 			activeLayout.revalidate();
 			activeLayout.repaint();
 		}
+		
 		super.revalidate();
 	}
 	

@@ -1,9 +1,9 @@
 package model.entity.behavior.npc.observe;
 
-import utilities.Angle;
 import model.area.Area;
 import model.area.TileCoordinate;
 import model.entity.Entity;
+import utilities.Angle;
 
 public class TargetEntity extends MovementChangingObservable {
 	private boolean reset;

@@ -1,6 +1,5 @@
 package model.statistics;
 
-import model.event.ExperienceModifierEvent;
 import utilities.structuredmap.StructuredMap;
 /**
  * 

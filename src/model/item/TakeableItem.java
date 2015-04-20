@@ -2,11 +2,11 @@ package model.item;
 
 import javax.swing.JOptionPane;
 
-import utilities.structuredmap.StructuredMap;
-import view.item.ItemView;
 import model.entity.Avatar;
 import model.entity.Entity;
 import model.map.tile.ItemTile;
+import utilities.structuredmap.StructuredMap;
+import view.item.ItemView;
 
 public abstract class TakeableItem extends Item {
 	private boolean taken = false;

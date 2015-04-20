@@ -1,8 +1,8 @@
 package model.item;
 
+import model.entity.Avatar;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
-import model.entity.Avatar;
 
 public class Price implements Saveable {
 	private int cost;

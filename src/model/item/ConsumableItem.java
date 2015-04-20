@@ -38,7 +38,7 @@ public class ConsumableItem extends TakeableItem {
     public void use(Entity entity) {
         EventManager.getSingleton().addEvent(new StatisticModifierEvent(stats, entity, duration));
         EventManager.getSingleton().addEvent(new LivesModifierEvent(stats.getLivesLeft(), entity, duration));
-        EventManager.getSingleton().addEvent(new HealthModifierEvent(stats.getCurrentHealth(), entity, duration));
+        EventManager.getSingleton().addEvent(new HealthModifierEvent(null, entity,duration, stats.getCurrentHealth()));
         EventManager.getSingleton().addEvent(new MovementModifierEvent(stats.getMovement(), entity, duration));
         EventManager.getSingleton().addEvent(new ManaModifierEvent(stats.getCurrentMana(), entity, duration));
     }

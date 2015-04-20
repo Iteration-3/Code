@@ -8,10 +8,10 @@ import java.util.Iterator;
 
 import javax.swing.border.EmptyBorder;
 
-import controller.DialogMenuController;
-import view.components.MenuButton;
 import model.entity.dialog.DialogEntry;
 import model.entity.dialog.DialogTree;
+import view.components.MenuButton;
+import controller.DialogMenuController;
 
 @SuppressWarnings("serial")
 public class DialogMenuLayout extends Layout {

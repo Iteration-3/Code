@@ -4,12 +4,10 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import model.area.RealCoordinate;
 import model.area.TileCoordinate;
-import view.EntityView;
 import view.projectiles.ProjectileView;
 
-public class GameProjectileView implements GameView {
+public class GameProjectileView {
 
 	private static final int NUM_TILES_Y = 18;  // Defines how many tiles we display in the vertical dimension
 												// Also implicitly defines how many we can see horizontally
@@ -34,11 +32,10 @@ public class GameProjectileView implements GameView {
 			toRemove.clear();
 		}
 		for (ProjectileView projView : projectileViews) {		
-			//Sysem.out.println("RENDERING@: " + projView.getLocation());
 			for (TileCoordinate loc : projView.getArea().getCoveredLocations()) {
 				float renderX = (float) (loc.getX() * tileWidth() * 0.75);
 				float renderY = (float) (loc.getY() * tileHeight() + (loc.getX() % 2) * tileHeight() / 2);
-				projView.render(graphics, new RealCoordinate(renderX, renderY), tileWidth());
+				projView.render(graphics, renderX, renderY, tileWidth());
 			}
 		}
 	}

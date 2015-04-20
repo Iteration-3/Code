@@ -2,9 +2,9 @@ package model.light;
 
 import java.util.ArrayList;
 
-import factories.LightSourceFactory;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import factories.LightSourceFactory;
 
 public class LightManager implements Saveable {
 	

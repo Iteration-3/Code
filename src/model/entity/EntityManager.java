@@ -10,11 +10,11 @@ import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Queue;
 
-import factories.EntityFactory;
 import model.area.TileCoordinate;
 import model.map.ItemMap;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import factories.EntityFactory;
 
 public class EntityManager implements Iterable<Entity>, Saveable {
 	

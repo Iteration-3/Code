@@ -36,7 +36,7 @@ public class OneShotItem extends Item {
 	public void use(Entity entity) {
 		EventManager.getSingleton().addEvent(new StatisticModifierEvent(modifiers, entity, 0));
 		EventManager.getSingleton().addEvent(new LivesModifierEvent(modifiers.getLivesLeft(), entity, 0));
-		EventManager.getSingleton().addEvent(new HealthModifierEvent(modifiers.getCurrentHealth(), entity, 0));
+		EventManager.getSingleton().addEvent(new HealthModifierEvent(null, entity,0, modifiers.getCurrentHealth()));
 		EventManager.getSingleton().addEvent(new MovementModifierEvent(modifiers.getMovement(), entity, 0));
 		EventManager.getSingleton().addEvent(new ManaModifierEvent(modifiers.getCurrentMana(), entity, 0));
 	}

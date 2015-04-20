@@ -26,7 +26,7 @@ public final class LightBeam extends ProjectileAbility {
 	@Override
 	public LightConeProjectile getProjectile(Entity ent){
 
-		Event damageEvent = new HealthModifierEvent(0, -15*manager.getBaneSkill());
+		Event damageEvent = new HealthModifierEvent(ent , null, 0, -15*manager.getBaneSkill());
 		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, ent.getLocation()), damageEvent);
 
 		return new LightConeProjectile(ent.getLocation(), ent.getDirection(), damageTrigger, 2.2);

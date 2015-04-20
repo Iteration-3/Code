@@ -1,7 +1,7 @@
 package model.entity.behavior.npc.defaultb;
 
-import utilities.Angle;
 import model.entity.Entity;
+import utilities.Angle;
 
 public class LinkWithTarget implements DefaultableBehaviorState {
 	private Entity chosen;

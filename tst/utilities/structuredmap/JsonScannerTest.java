@@ -6,8 +6,6 @@ import java.util.Queue;
 
 import org.junit.Test;
 
-import utilities.structuredmap.JsonScanner;
-
 public class JsonScannerTest {
 
 	@Test
