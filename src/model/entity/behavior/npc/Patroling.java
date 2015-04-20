@@ -33,7 +33,7 @@ public class Patroling implements Behaviorable {
 		
 	}
 	
-	public void onDamage(){
+	public void onDamage(Entity entity){
 		
 	}
 	
