@@ -64,15 +64,11 @@ public class Summoner extends Avatar {
 
 
 
+	@Override
 	protected ItemManager createItemManager() {
 		return new ItemManager(this);
 	}
 
-	@Override
-	public void attack() {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public StructuredMap getStructuredMap() {

@@ -48,7 +48,7 @@ public class BasicItemView extends ItemView {
 		foregroundHexagon.render(graphics, x, y, diameter * (1 - BORDER_PERCENTAGE) * OVERDRAW);*/
 	}
 	
-	public BufferedImage getImage(int width, int height){
+	public BufferedImage getImage(int width, int height) {
 		BufferedImage image = ImageProcessing.scaleImage(width, height, decal.getImageResourcePath());
 		return image;
 	}

@@ -24,6 +24,7 @@ public abstract class Tile implements Saveable {
 	public abstract boolean isPassable(Entity e);
 	public abstract void touch(Entity e);
 	
+	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = new StructuredMap();
 		map.put("view", view.getStructuredMap());

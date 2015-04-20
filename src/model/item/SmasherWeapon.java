@@ -19,10 +19,12 @@ public class SmasherWeapon extends Weapon {
 		super(structuredMap);
 	}
 
+	@Override
 	public boolean equip(SmasherWeaponSlot slot){
 		return slot.equipWeapon(this);
 	}
 	
+	@Override
 	public boolean canEquip(SmasherWeaponSlot slot){
 		return true;
 	}

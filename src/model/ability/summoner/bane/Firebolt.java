@@ -8,7 +8,6 @@ import model.event.Event;
 import model.event.HealthModifierEvent;
 import model.projectile.linear.FireProjectile;
 import model.skillmanager.SummonerSkillManager;
-import model.trigger.SingleUseTrigger;
 
 public final class Firebolt extends ProjectileAbility {
 	
@@ -26,8 +25,7 @@ public final class Firebolt extends ProjectileAbility {
 	@Override
 	public FireProjectile getProjectile(Entity ent) {
 		Event damageEvent = new HealthModifierEvent(ent, null, 0, -10*manager.getBaneSkill());
-		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, ent.getLocation()), damageEvent);
-		return new FireProjectile(ent.getLocation(), ent.getDirection(), damageTrigger, 2.2);
+		return new FireProjectile(ent.getLocation(), ent.getDirection(), new RadialArea(1, null), damageEvent, 2.2);
 	}
 
 	@Override

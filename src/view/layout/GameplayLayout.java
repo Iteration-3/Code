@@ -77,6 +77,7 @@ public class GameplayLayout extends Layout implements ActionListener {
 		t.start();
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		repaint();
 	}
@@ -87,7 +88,7 @@ public class GameplayLayout extends Layout implements ActionListener {
         gameTerrainView.render(graphics, camera);
         gameEntityView.render(graphics, camera);
         gameItemView.render(graphics, camera);
-		//gameProjectileView.render(graphics, getWidth(), getHeight());
+		gameProjectileView.render(graphics, camera);
         gameLightView.render(graphics, camera);
     }
 }

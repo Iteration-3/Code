@@ -22,6 +22,7 @@ public class KeyPreferences implements Saveable {
     private KeyStroke dismountKey;
 	private static final int NUM_ABILITIES = 11;
     private List<KeyStroke> abilities;
+	private KeyStroke attackKey;
 
     public KeyPreferences() {
         this.upKey = KeyStroke.getKeyStroke("W");
@@ -35,6 +36,7 @@ public class KeyPreferences implements Saveable {
         this.skillsKey = KeyStroke.getKeyStroke("ENTER");
         this.dismountKey = KeyStroke.getKeyStroke("H");
         this.abilities = new ArrayList<KeyStroke>();
+        this.attackKey = KeyStroke.getKeyStroke("F");
         for (int i = 0; i != 10; ++i) {//This should never go above 10, don't have that many keys!
             abilities.add(KeyStroke.getKeyStroke((char) ('0' + i)));
         }
@@ -52,13 +54,19 @@ public class KeyPreferences implements Saveable {
         setSkillsKey(KeyStroke.getKeyStroke(structuredMap.getString("skills")));
         setPauseKey(KeyStroke.getKeyStroke(structuredMap.getString("pause")));
         setDismountKey(KeyStroke.getKeyStroke(structuredMap.getString("dismount")));
+        setAttackKey(KeyStroke.getKeyStroke(structuredMap.getString("attack")));
         abilities = new ArrayList<KeyStroke>();
         for (int i = 1; i <= NUM_ABILITIES; i++) {
             abilities.add(KeyStroke.getKeyStroke(structuredMap.getString("ability" + i)));
         }
     }
 
-    public KeyPreferences(KeyStroke upKey, KeyStroke upRightKey, KeyStroke downRightKey, KeyStroke downKey,
+    private void setAttackKey(KeyStroke keyStroke) {
+		this.attackKey = keyStroke;
+		
+	}
+
+	public KeyPreferences(KeyStroke upKey, KeyStroke upRightKey, KeyStroke downRightKey, KeyStroke downKey,
             KeyStroke downLeftKey, KeyStroke upLeftKey, KeyStroke pauseKey, KeyStroke inventoryKey,
             KeyStroke dismountKey, KeyStroke skillsKey, List<KeyStroke> abilities) {
         setUpKey(upKey);
@@ -74,7 +82,8 @@ public class KeyPreferences implements Saveable {
         setDismountKey(dismountKey);
     }
 
-    public StructuredMap getStructuredMap() {
+    @Override
+	public StructuredMap getStructuredMap() {
         StructuredMap map = new StructuredMap();
         map.put("up", formatKey(getUpKey()));
         map.put("upLeft", formatKey(getUpLeftKey()));
@@ -199,5 +208,9 @@ public class KeyPreferences implements Saveable {
     public void setAbilities(List<KeyStroke> abilities) {
         this.abilities = abilities;
     }
+
+	public KeyStroke getAttackKey() {
+		return this.attackKey;
+	}
 
 }

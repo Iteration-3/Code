@@ -9,6 +9,7 @@ public abstract class WeaponSlot <K extends Weapon> extends EquipmentSlot<K> {
 		return super.equip(item);
 	}
 	
+	@Override
 	public abstract boolean equip(Weapon weapon);
 	
 	public abstract boolean canEquip(Weapon weapon);

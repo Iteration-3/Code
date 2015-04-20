@@ -1,5 +1,6 @@
 package model.states.gamestates;
 
+import factories.EntityFactory;
 import gameactions.GameActionRiverPush;
 import gameactions.GameActionStatePush;
 import gameactions.GameActionTeleport;
@@ -140,7 +141,7 @@ public class GameplayState extends GameState {
         
         TileCoordinate npcLocation = new TileCoordinate(7, 7);
         EntityView npcView = new EntityView(EntitySpriteFactory.getLadySpriteHolder());
-        NPC npc = new NPC("DaveTheBargainer", npcView, npcLocation);
+        NPC npc = EntityFactory.createBarter("DaveTheBarbarian", npcView, npcLocation);
         npcView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(npcLocation),Angle.UP);
         EntityManager.getSingleton().addPartyNpc(npc);
         
