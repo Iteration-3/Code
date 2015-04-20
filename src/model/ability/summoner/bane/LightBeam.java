@@ -1,14 +1,18 @@
 package model.ability.summoner.bane;
 
 import model.ability.ProjectileAbility;
+import model.area.RadialArea;
 import model.entity.Avatar;
+import model.entity.Entity;
+import model.event.Event;
+import model.event.HealthModifierEvent;
 import model.projectile.conical.LightConeProjectile;
 import model.skillmanager.SummonerSkillManager;
+import model.trigger.SingleUseTrigger;
 
 public final class LightBeam extends ProjectileAbility {
 	
 	private SummonerSkillManager manager;
-	private LightConeProjectile projectile = new LightConeProjectile();
 	
 	public LightBeam(SummonerSkillManager manager) {
 		super(20);
@@ -20,14 +24,17 @@ public final class LightBeam extends ProjectileAbility {
 	}
 	
 	@Override
-	public LightConeProjectile getProjectile(){
-		return projectile;
+	public LightConeProjectile getProjectile(Entity ent){
+
+		Event damageEvent = new HealthModifierEvent(0, -15*manager.getBaneSkill());
+		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, ent.getLocation()), damageEvent);
+
+		return new LightConeProjectile(ent.getLocation(), ent.getDirection(), damageTrigger, 1.0);
 	}
 
 	@Override
 	public void perform(Avatar avatar){
 		this.setManaCost(this.getSkillManager().getBaneSkill());
-		this.getProjectile().setLevel(this.getSkillManager().getBaneSkill());
 		super.perform(avatar);
 	}
 }

@@ -9,35 +9,13 @@ import utilities.Angle;
 
 public class ConicalProjectile extends Projectile {
 
-	public ConicalProjectile() {
-		super();
-		this.setTrigger(new TimedTrigger(this.getTrigger().getArea(), this.getTrigger().getEvent(), 5));
+	public ConicalProjectile(TileCoordinate location, Angle direction, Trigger trigger, double speed) {
+		super(location, direction, trigger, speed);
 	}
 
-	public ConicalProjectile(Angle direction, TileCoordinate location, double speed,
-			Trigger trigger) {
-		super(direction, location, speed, trigger);
-	}
-
-	/* (non-Javadoc)
-	 * @see projectile.Projectile#advance()
-	 * This will create two linear triggers on the edges of the cone and move up by one
-	 */
 	@Override
 	public void advance() {
-		Angle leftAngle = this.getDirection().getLeft();
-		Angle rightAngle = this.getDirection().getRight();
-		Projectile leftProjectile = new Projectile(leftAngle, this
-				.getLocation().nextLocation(leftAngle), this.getSpeed(),
-				this.getTrigger());
-		Projectile rightProjectile = new Projectile(rightAngle, this
-				.getLocation().nextLocation(rightAngle), this.getSpeed(),
-				this.getTrigger());
-		ProjectileManager.getSingleton().enqueueProjectile(leftProjectile);
-		ProjectileManager.getSingleton().enqueueProjectile(rightProjectile);
-
-		this.setLocation(this.getLocation().nextLocation(this.getDirection()));
-		this.getTrigger().moveLocation(this.getLocation());
+		//TODO
 	}
 
 	@Override

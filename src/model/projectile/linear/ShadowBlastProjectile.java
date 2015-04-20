@@ -1,6 +1,7 @@
 package model.projectile.linear;
 
 import model.area.RadialArea;
+import model.area.TileCoordinate;
 import model.event.Event;
 import model.event.HealthModifierEvent;
 import model.projectile.Projectile;
@@ -9,21 +10,16 @@ import model.trigger.Trigger;
 import utilities.Angle;
 
 public class ShadowBlastProjectile extends Projectile {
-
-	public ShadowBlastProjectile() {
-		super();
-		this.setLevel(1);
-	}
 	
-	public ShadowBlastProjectile(Angle direction, double speed, Trigger trigger) {
-		super(direction, null, speed, trigger);
+	public ShadowBlastProjectile(TileCoordinate location, Angle direction, Trigger trigger, double speed) {
+		super(location, direction, trigger, speed);
 	}
 
-	public void setLevel(int x) {
+	/*public void setLevel(int x) {
 		this.setSpeed(3);
 		Event damageEvent = new HealthModifierEvent(0, -40*x);
 		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
 		this.setTrigger(damageTrigger);
-	}
+	}*/
 
 }

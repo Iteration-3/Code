@@ -10,22 +10,16 @@ import model.trigger.Trigger;
 import utilities.Angle;
 
 public class FireProjectile extends Projectile {
-	
-	public FireProjectile() {
-		super();
-		this.setLevel(1);
-	}
-	
-	public FireProjectile(TileCoordinate tile, Angle direction, double speed, Trigger trigger) {
-		super(direction, tile, speed, trigger);
+	public FireProjectile(TileCoordinate location, Angle direction, Trigger trigger, double speed) {
+		super(location, direction, trigger, speed);
 	}
 
 
-	public void setLevel(int x) {
+	/*public void setLevel(int x) {
 		this.setSpeed(3);
 		Event damageEvent = new HealthModifierEvent(0, -10*x);
 		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
 		this.setTrigger(damageTrigger);
 		
-	}
+	}*/
 }
