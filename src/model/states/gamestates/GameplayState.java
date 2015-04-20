@@ -1,5 +1,10 @@
 package model.states.gamestates;
 
+
+import gameactions.GameActionRiverPush;
+import gameactions.GameActionStatePush;
+import gameactions.GameActionTeleport;
+
 import java.awt.Color;
 import java.util.Collection;
 import java.util.Iterator;
@@ -14,14 +19,12 @@ import model.entity.Avatar;
 import model.entity.Entity;
 import model.entity.EntityManager;
 import model.entity.EntityMovementAssocation;
-import model.entity.Mount;
-import model.entity.NPC;
 import model.event.EventManager;
 import model.event.ExperienceModifierEvent;
+import model.event.ManaModifierEvent;
 import model.event.RiverPushEvent;
 import model.event.TeleportEvent;
 import model.item.Door;
-import model.item.Helmet;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
 import model.item.TakeableItem;
@@ -36,33 +39,25 @@ import model.map.tile.PassableTile;
 import model.projectile.Projectile;
 import model.projectile.ProjectileManager;
 import model.statistics.EntityStatistics;
-import model.statistics.Statistics;
 import model.trigger.PermanentTrigger;
 import model.trigger.RateLimitedTrigger;
 import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Direction;
-
 import utilities.structuredmap.JsonReader;
-import utilities.structuredmap.JsonWriter;
 import utilities.structuredmap.StructuredMap;
-
 import view.Decal;
-import view.entity.EntitySpriteFactory;
 import view.entity.EntityView;
 import view.item.BasicItemView;
 import view.item.ItemView;
 import view.layout.GameplayLayout;
 import view.map.BasicTileView;
 import view.map.TileView;
+import view.trigger.ViewableTrigger;
 import controller.GameplayController;
 import controller.listener.Listener;
 import controller.listener.SingleUseListener;
-import factories.EntityFactory;
-import gameactions.GameActionRiverPush;
-import gameactions.GameActionStatePush;
-import gameactions.GameActionTeleport;
 
 public class GameplayState extends GameState {
     private GameplayController controller;
@@ -113,9 +108,6 @@ public class GameplayState extends GameState {
         addEntityTest();
         addItemsTest();
         addTriggersTest();
-        
-        //JsonWriter writer = new JsonWriter();
-       //writer.writeStructuredMap(EntityManager.getSingleton().getStructuredMap(), "filename.txt");
         
         controller.spawnUpdateThread();
         avatar.subscribe(layout.getCamera());
@@ -177,6 +169,7 @@ public class GameplayState extends GameState {
     		EntityView view = entity.getEntityView();
     		view.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(entity.getLocation()), entity.getDirection());
     	}
+    	
     	avatar = EntityManager.getSingleton().getAvatar();
     	getController().registerAvatar(avatar);
     	
@@ -258,11 +251,11 @@ public class GameplayState extends GameState {
     private void addTriggersTest() {
         TriggerManager triggerManager = TriggerManager.getSingleton();
 
-        // This may need a ViewableTriggerDecorator to display the Decal for the
-        // AreaEffect
-        /* TileCoordinate locOne = new TileCoordinate(2, 6);
-        Area areaOne = new RadialArea(20, locOne);
-        Trigger triggerOne = new SingleUseTrigger(areaOne, new HealthModifierEvent(2, -1));*/
+        TileCoordinate locOne = new TileCoordinate(5, 5);
+        Area areaOne = new RadialArea(1, locOne);
+        ViewableTrigger triggerOne = new ViewableTrigger(new PermanentTrigger(areaOne, new ManaModifierEvent(2, -1)), 
+        		new Decal("/images/items/skull_and_crossbones.png"));
+        triggerManager.registerViewableTrigger(triggerOne);
 
         TileCoordinate locTwo = new TileCoordinate(2, 7);
         Area areaTwo = new RadialArea(1, locTwo);
@@ -278,7 +271,7 @@ public class GameplayState extends GameState {
         Trigger triggerFour = new RateLimitedTrigger(areaFour, new RiverPushEvent(
                 new GameActionRiverPush(avatar, gameMap, this.getItemMap(), Direction.DOWN)),1000);
 
-        // triggerManager.addNonPartyTrigger(triggerOne);
+        triggerManager.addNonPartyTrigger(triggerOne);
         triggerManager.addNonPartyTrigger(triggerTwo);
         triggerManager.addNonPartyTrigger(triggerThree);
         triggerManager.addNonPartyTrigger(triggerFour);

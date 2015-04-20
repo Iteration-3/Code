@@ -141,8 +141,15 @@ public class BoundedEntityStatistics extends EntityStatistics{
 		if(this.getMovement() < 1){
 			this.setMovement(1);
 		}
+		if(this.getMovement() > this.getMaxMovement()){
+			this.setMovement(this.getMaxMovement());
+		}
 	}
 	
+	private int getMaxMovement() {
+		return 100;
+	}
+
 	@Override
 	public void addLives(int lives) {
 		super.addLives(lives);
