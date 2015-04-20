@@ -12,6 +12,7 @@ import model.ability.Ability;
 import model.ability.BindWounds;
 import model.area.RadialArea;
 import model.area.TileCoordinate;
+import model.entity.behavior.npc.AvatarBehavior;
 import model.entity.behavior.npc.Behaviorable;
 import model.light.LightManager;
 import model.light.MovingLightSource;
@@ -26,7 +27,7 @@ public abstract class Avatar extends Entity {
 	private Collection<Ability> abilities = new ArrayList<Ability>();
 	
 	public Avatar(String name, EntityView view, TileCoordinate loc) {
-		super(name, view, loc);
+		super(name, view, loc, new AvatarBehavior());
 		//Make light manager track all avatars movement
 		MovingLightSource avatarLight = new MovingLightSource(new RadialArea(5, loc), 255, this);
 		LightManager.getSingleton().addLightSource(avatarLight);
@@ -166,8 +167,7 @@ public abstract class Avatar extends Entity {
 	
 	@Override
 	protected Behaviorable getBehavior(){
-		//there is none now
-		return null;
+		return new AvatarBehavior();
 	}
 	
 }

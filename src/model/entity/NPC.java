@@ -16,7 +16,7 @@ public class NPC extends Entity {
 	}
 	
 	public NPC(String name, String type, EntityView view, TileCoordinate location, Behaviorable behavior) {
-		super(name, view, location);
+		super(name, view, location,behavior);
 		this.behavior = behavior;
 		this.type = type;
 	}
@@ -99,6 +99,7 @@ public class NPC extends Entity {
 
 	@Override
 	protected Behaviorable getBehavior() {
+		this.behavior.setEntity(this);
 		return this.behavior;
 	}
 
