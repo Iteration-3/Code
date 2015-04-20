@@ -86,6 +86,13 @@ public class GameplayState extends GameState {
 			poll.projView.registerWithGameProjectileView(layout
 					.getGameProjectileView());
 		}
+		//Check if the avatar is dead, if so, push mainmenu state.
+		if(EntityManager.getSingleton().getAvatar().outOfLives()){
+			//Maybe wrap this in an object, and hand it to the avatar to call when it dies?
+			//Upon it being made?
+			this.getContext().popState();
+
+		}
 	}
     
     @Override

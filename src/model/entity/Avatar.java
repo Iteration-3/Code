@@ -5,6 +5,8 @@ import gameactions.GameAction;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.swing.KeyStroke;
+
 import model.KeyPreferences;
 import model.ability.Ability;
 import model.ability.BindWounds;
@@ -85,6 +87,14 @@ public abstract class Avatar extends Entity {
 				//Same for defending.
 				System.out.println("attack");
 				Avatar.this.attackInFront(-Avatar.this.getDerivedStats().getOffensiveRating()*10);
+				
+			}
+		}));
+		listeners.add(new PollingListener(preferences.getSuicideKey(), new GameAction() {
+			
+			@Override
+			public void perform() {
+				Avatar.this.attackEntity(Avatar.this, -500);
 				
 			}
 		}));
