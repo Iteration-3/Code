@@ -196,13 +196,13 @@ public class GameplayState extends GameState {
 
 	private void addItemsTest() {
         TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
-        ItemView takeableItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(takeableItemViewPosition), new Decal("/images/boots_image.png"));
+        ItemView takeableItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(takeableItemViewPosition), new Decal("/images/items/two_handed_chainsaw.png"));
         takeableItemView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new TwoHandedWeapon(takeableItemView),
                 takeableItemViewPosition);
 
         TileCoordinate takeableItemViewPositionTwo = new TileCoordinate(5, 6);
-        ItemView takeableItemViewTwo = new BasicItemView(TileCoordinate.convertToRealCoordinate(takeableItemViewPositionTwo), new Decal("/images/key_image.png"));
+        ItemView takeableItemViewTwo = new BasicItemView(TileCoordinate.convertToRealCoordinate(takeableItemViewPositionTwo), new Decal("/images/items/key.png"));
         takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView());
         TakeableItem takeableItemTwo = new TakeableItem(takeableItemViewTwo);
         this.getItemMap().addItem(takeableItemTwo, takeableItemViewPositionTwo);
@@ -214,22 +214,22 @@ public class GameplayState extends GameState {
         this.getItemMap().addItem(doorItem, doorItemViewPosition);
 
         TileCoordinate obstacleItemPosition = new TileCoordinate(9, 7);
-        ItemView obstacleItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(obstacleItemPosition), new Decal("/images/rock_image.png"));
+        ItemView obstacleItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(obstacleItemPosition), new Decal("/images/slotImage.png"));
         obstacleItemView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new ObstacleItem(obstacleItemView), obstacleItemPosition);
 
         TileCoordinate oneshotItemPosition = new TileCoordinate(13, 9);
-        ItemView oneshotItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(oneshotItemPosition), new Decal("/images/item.jpg"));
+        ItemView oneshotItemView = new BasicItemView(TileCoordinate.convertToRealCoordinate(oneshotItemPosition), new Decal("/images/items/book.png"));
         oneshotItemView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), oneshotItemPosition);
         
         TileCoordinate riverMarkerSpot = new TileCoordinate(13, 0);
-        ItemView riverMarker = new BasicItemView(TileCoordinate.convertToRealCoordinate(riverMarkerSpot), new Decal("/images/rock_image.png"));
+        ItemView riverMarker = new BasicItemView(TileCoordinate.convertToRealCoordinate(riverMarkerSpot), new Decal("/images/slotImage.png"));
         riverMarker.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new ObstacleItem(riverMarker), riverMarkerSpot);
         
         TileCoordinate trapSpot = new TileCoordinate(15, 12);
-        ItemView trapView = new BasicItemView(TileCoordinate.convertToRealCoordinate(trapSpot), new Decal("/images/trap_image.png"));
+        ItemView trapView = new BasicItemView(TileCoordinate.convertToRealCoordinate(trapSpot), new Decal("/images/items/trap.png"));
         trapView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new Trap(trapView), trapSpot);
 
