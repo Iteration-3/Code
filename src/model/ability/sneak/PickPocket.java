@@ -5,6 +5,7 @@ import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.entity.Entity;
 import model.entity.EntityManager;
+import model.entity.behavior.npc.TrooperBehavior;
 import model.item.TakeableItem;
 import model.skillmanager.SneakSkillManager;
 
@@ -22,31 +23,35 @@ public class PickPocket extends Ability {
 	public void perform(Avatar avatar) {
 		if (hasMana(avatar)) {
 			removeMana(avatar);
-			TileCoordinate nextLocation = avatar.nextLocation();
-			Entity entity = EntityManager.getSingleton().getEntityAtLocation(nextLocation);
-			if (entity != null) {
-				TakeableItem[] items = entity.getItems();
-				int countItems = 0;
-				for (int i = 0; i < items.length; ++i) {
-					if (items[i] != null) {
-						++countItems;
-					}
-				}
-				int randomCount = (int) (Math.random() * countItems);
-				TakeableItem randomItem = null;
-				for (int i = 0; i < items.length; ++i) {
-					if (items[i] != null) {
-						if (--countItems == 0) {
-							randomItem = items[i];
-							break;
+			int pickpocketSkill = manager.getPickPocketSkill();
+			if (Math.random() + pickpocketSkill / 100 < 0.75) {
+				TileCoordinate nextLocation = avatar.nextLocation();
+				Entity entity = EntityManager.getSingleton().getEntityAtLocation(nextLocation);
+				if (entity != null) {
+					TakeableItem[] items = entity.getItems();
+					int countItems = 0;
+					for (int i = 0; i < items.length; ++i) {
+						if (items[i] != null) {
+							++countItems;
 						}
 					}
+					int randomCount = (int) (Math.random() * countItems);
+					TakeableItem randomItem = null;
+					for (int i = 0; i < items.length; ++i) {
+						if (items[i] != null) {
+							if (--randomCount == 0) {
+								randomItem = items[i];
+								break;
+							}
+						}
+					}
+					entity.removeItem(randomItem);
+					avatar.addItem(randomItem);
 				}
-				entity.removeItem(randomItem);
-				avatar.addItem(randomItem);
+			} else {
+				Entity entity = EntityManager.getSingleton().getEntityAtLocation(avatar.nextLocation());
+				entity.push(new TrooperBehavior());
 			}
 		}
 	}
-
-
 }
