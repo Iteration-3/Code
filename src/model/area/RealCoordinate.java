@@ -1,6 +1,9 @@
 package model.area;
 
-public class RealCoordinate {
+import utilities.structuredmap.Saveable;
+import utilities.structuredmap.StructuredMap;
+
+public class RealCoordinate implements Saveable {
     private double x;
     private double y;
 
@@ -14,6 +17,19 @@ public class RealCoordinate {
         this.x = x;
         this.y = y;
     }
+    
+    public RealCoordinate(StructuredMap map) {
+    	this.x = map.getDouble("x");
+    	this.y = map.getDouble("y");
+    }
+    
+    @Override
+	public StructuredMap getStructuredMap() {
+		StructuredMap map = new StructuredMap();
+		map.put("x", (double)x);
+		map.put("y", (double)y);
+		return map;
+	}
 
     public static TileCoordinate convertToTileCoordinate(RealCoordinate coord) {
         double q = coord.getX() * (2.0 / 3.0) / (1.0 / 2.0);
@@ -145,5 +161,7 @@ public class RealCoordinate {
     public String toString() {
     	return "(" + x + ", " + y + ")";
     }
+
+	
 
 }

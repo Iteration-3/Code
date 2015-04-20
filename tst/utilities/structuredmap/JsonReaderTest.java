@@ -9,9 +9,15 @@ public class JsonReaderTest {
 		StructuredMap map = JsonReader.readJson("filename.txt");
 	}
 	*/
+	/*
 	@Test
 	public void test2() {
 		StructuredMap map = JsonReader.readJson("filetest.txt");
+	}
+	*/
+	@Test
+	public void test3() {
+		StructuredMap map = JsonReader.readJson("test.txt");
 	}
 
 }

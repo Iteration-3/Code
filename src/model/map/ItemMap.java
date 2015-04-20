@@ -1,6 +1,9 @@
 package model.map;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import model.area.TileCoordinate;
@@ -9,6 +12,7 @@ import model.item.Item;
 import model.map.tile.ItemTile;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import view.item.ItemView;
 
 /**
  * This one will generate a tile for an item if it doesn't exist. The reason for
@@ -22,10 +26,26 @@ import utilities.structuredmap.StructuredMap;
  *
  */
 public class ItemMap implements Saveable {
+	
+	private static ItemMap _itemMap = null;
     private Map<TileCoordinate, ItemTile> items = new HashMap<TileCoordinate, ItemTile>();
 
+    public List<Item> getItems() {
+    	List<Item> returnList = new ArrayList<Item>();
+    	for(Map.Entry<TileCoordinate, ItemTile> set : items.entrySet()) {
+    		Iterator<Item> iterator = set.getValue().getIterator();
+    		while(iterator.hasNext()) { 
+    			returnList.add(iterator.next());
+    		}
+    	}
+    	return returnList;
+    }
     
-    public ItemMap(StructuredMap map) {
+    private ItemMap() {
+    	
+    }
+    
+    public void loadItems(StructuredMap map) {
     	items = new HashMap<TileCoordinate, ItemTile>();
     	StructuredMap[] itemMap = map.getStructuredMapArray("itemMap");
     	for(StructuredMap item : itemMap) {
@@ -33,10 +53,12 @@ public class ItemMap implements Saveable {
     	}
     }
     
-    public ItemMap() {
-
-	}
-
+    public static ItemMap getInstance() {
+    	if(_itemMap == null) {
+    		_itemMap = new ItemMap();
+    	}
+    	return _itemMap;
+    }
 	@Override
     public StructuredMap getStructuredMap() {
        StructuredMap map = new StructuredMap();
