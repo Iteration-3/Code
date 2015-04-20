@@ -1,6 +1,5 @@
 package model.event;
 
-import model.entity.EntityManager;
 import utilities.structuredmap.StructuredMap;
 
 public class InvisiblityEvent extends Event{
@@ -21,9 +20,7 @@ public class InvisiblityEvent extends Event{
 	public void onBegin() {
 		if(this.getTarget()!=null){
 			//When clear to refactor eView, change to like, ...visibility(false);
-
 			if(!this.getTarget().getEntityView().getHidden()){
-				EntityManager.getSingleton().setAvatarHiding(true);
 				this.getTarget().getEntityView().toggle();
 			}
 		}
@@ -34,7 +31,6 @@ public class InvisiblityEvent extends Event{
 		if(this.getTarget()!=null){
 			//When clear to refactor eView, change to like, ...visibility(true);
 			if(this.getTarget().getEntityView().getHidden()){
-				EntityManager.getSingleton().setAvatarHiding(false);
 				this.getTarget().getEntityView().toggle();
 			}
 		}		
