@@ -1,13 +1,11 @@
 package view.tiles.components;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
-import java.awt.Polygon;
-import java.awt.Color;
-
-import model.area.RealCoordinate;
 
 public class Hexagon {
 	private Polygon hexagon;
@@ -21,14 +19,14 @@ public class Hexagon {
 		computePath();
 	}
 	
-	public void render(Graphics graphics, RealCoordinate location, float diameter) {
+	public void render(Graphics graphics, float x, float y, float diameter) {
 		Graphics2D graphics2D = (Graphics2D) graphics;
 		// save the old transform
 		AffineTransform savedTransform = graphics2D.getTransform();
 	
 		// create a new transform to position & scale the hexagon
 		AffineTransform positionAndScale = new AffineTransform();
-		positionAndScale.translate(location.getX(), location.getY());
+		positionAndScale.translate(x, y);
 		positionAndScale.scale(diameter / PRECISION_MULTIPLIER, diameter / PRECISION_MULTIPLIER);
 		
 		// apply the transform

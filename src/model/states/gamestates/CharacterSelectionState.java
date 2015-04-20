@@ -1,8 +1,8 @@
 package model.states.gamestates;
 
-import controller.CharacterSelectionController;
 import view.layout.CharacterSelectionLayout;
 import view.layout.Layout;
+import controller.CharacterSelectionController;
 
 public class CharacterSelectionState extends GameState {
 

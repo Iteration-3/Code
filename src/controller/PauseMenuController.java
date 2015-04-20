@@ -1,10 +1,10 @@
 package controller;
 
-import controller.listener.ToggleAction;
 import model.Model;
 import model.states.gamestates.LoadMenuState;
 import model.states.gamestates.OptionsMenuState;
 import model.states.gamestates.SaveMenuState;
+import controller.listener.ToggleAction;
 
 public class PauseMenuController extends Controller {
 	private Model model;

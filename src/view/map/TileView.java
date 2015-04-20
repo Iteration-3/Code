@@ -7,10 +7,10 @@ import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 
 public abstract class TileView implements Saveable {
-	public abstract void render(Graphics graphics, RealCoordinate location, float diameter);
+	public abstract void render(Graphics graphics, float x, float y, float diameter);
 
 	public void registerWithGameMapView(GameTerrainView gv, RealCoordinate p) {
-		gv.addTileView(this,p);
+		gv.addTileView(this, p);
 	}
 	
 	public StructuredMap getStructuredMap() {

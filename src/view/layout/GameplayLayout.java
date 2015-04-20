@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import model.Camera;
 import view.map.GameEntityView;
 import view.map.GameItemView;
 import view.map.GameLightView;
@@ -20,9 +21,10 @@ public class GameplayLayout extends Layout implements ActionListener {
     GameItemView gameItemView;
     GameLightView gameLightView;
 	GameProjectileView gameProjectileView;
+	private Camera camera;
 	private static final int FPS = 30;
 	private static final int REDRAW_INTERVAL = 1000 / FPS;
-
+	
     public GameplayLayout() {
         gameTerrainView = new GameTerrainView();
         gameEntityView = new GameEntityView();
@@ -31,6 +33,11 @@ public class GameplayLayout extends Layout implements ActionListener {
 		gameProjectileView = new GameProjectileView();
         setBackground(Color.BLACK);
         initRedrawTimer();
+        camera = new Camera();
+    }
+    
+    public Camera getCamera() {
+    	return camera;
     }
 
     public GameTerrainView getGameTerrainView() {
@@ -52,6 +59,13 @@ public class GameplayLayout extends Layout implements ActionListener {
     public GameProjectileView getGameProjectileView() {
     	return gameProjectileView;
     }
+    
+    @Override
+    public void revalidate() {
+    	super.revalidate();
+    	if(camera != null) // b / c super
+    		camera.setViewportBounds(getWidth(), getHeight());
+    }
 
     public void clearBindings() {
         getInputMap().clear();
@@ -70,10 +84,10 @@ public class GameplayLayout extends Layout implements ActionListener {
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        gameTerrainView.render(graphics, getWidth(), getHeight());
-        gameEntityView.render(graphics, getWidth(), getHeight());
-        gameItemView.render(graphics, getWidth(), getHeight());
-		gameProjectileView.render(graphics, getWidth(), getHeight());
-        gameLightView.render(graphics, getWidth(), getHeight());
+        gameTerrainView.render(graphics, camera);
+        gameEntityView.render(graphics, camera);
+        gameItemView.render(graphics, camera);
+		//gameProjectileView.render(graphics, getWidth(), getHeight());
+        gameLightView.render(graphics, camera);
     }
 }

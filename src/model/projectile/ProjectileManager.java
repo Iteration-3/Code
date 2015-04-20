@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import model.projectile.linear.FireProjectile;
-
 public class ProjectileManager {
 	
 	private static ProjectileManager _projectileManager = new ProjectileManager();

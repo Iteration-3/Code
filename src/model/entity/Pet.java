@@ -3,7 +3,6 @@ package model.entity;
 import model.area.TileCoordinate;
 import model.entity.behavior.npc.Behaviorable;
 import model.entity.behavior.npc.PetBehavior;
-import model.entity.dialog.DialogTree;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 

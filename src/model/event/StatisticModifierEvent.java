@@ -1,8 +1,8 @@
 package model.event;
 
-import utilities.structuredmap.StructuredMap;
 import model.entity.Entity;
 import model.statistics.Statistics;
+import utilities.structuredmap.StructuredMap;
 
 public class StatisticModifierEvent extends Event {
 	private Statistics modifier;

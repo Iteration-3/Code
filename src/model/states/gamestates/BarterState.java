@@ -1,9 +1,9 @@
 package model.states.gamestates;
 
-import controller.barter.BarterMenuController;
-import view.layout.BarterMenuLayout;
 import model.entity.Avatar;
 import model.entity.Entity;
+import view.layout.BarterMenuLayout;
+import controller.barter.BarterMenuController;
 
 public class BarterState extends GameState {
 	private BarterMenuLayout layout;

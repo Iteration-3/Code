@@ -3,32 +3,31 @@ package view;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import model.area.RealCoordinate;
 import utilities.Angle;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 
 public abstract class AbstractEntitySpriteHolder implements Saveable {
 	
-	public void render(Graphics graphics, RealCoordinate location, float diameter, Angle angle) {
+	public void render(Graphics graphics, float x, float y, float diameter, Angle angle) {
 		switch(angle){
 		case UP:
-			this.getUp().render(graphics,location,diameter);
+			this.getUp().render(graphics, x, y, diameter);
 			break;
 		case DOWN:
-			this.getDown().render(graphics,location,diameter);
+			this.getDown().render(graphics, x, y, diameter);
 			break;
 		case UP_LEFT:
-			this.getUpLeft().render(graphics,location,diameter);
+			this.getUpLeft().render(graphics, x, y, diameter);
 			break;
 		case DOWN_LEFT:
-			this.getDownLeft().render(graphics,location,diameter);
+			this.getDownLeft().render(graphics, x, y, diameter);
 			break;
 		case UP_RIGHT:
-			this.getUpRight().render(graphics,location,diameter);
+			this.getUpRight().render(graphics, x, y, diameter);
 			break;
 		case DOWN_RIGHT:
-			this.getDownRight().render(graphics,location,diameter);
+			this.getDownRight().render(graphics, x, y, diameter);
 			break;
 		default:
 			throw new IllegalArgumentException("IMPOSSIBLE");

@@ -3,8 +3,6 @@ package view;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import model.area.RealCoordinate;
-
 public class Sprite {
 	private BufferedImage[] images;
 	private int counter = 0;
@@ -38,15 +36,14 @@ public class Sprite {
 		return this.animated;
 	}
 
-	public void render(Graphics graphics, RealCoordinate location,
-			float diameter) {
+	public void render(Graphics graphics, float x, float y, float diameter) {
 		BufferedImage image = getCurrentFrame();
+		
 		if (isAnimatedATM()) {
 			advanceCounter();
 		}
-		graphics.drawImage(image, (int) location.getX() - image.getWidth() / 2,
-				(int) location.getY() - image.getHeight() / 2, null);
-
+		
+		graphics.drawImage(image, (int)(x - diameter / 2), (int)(y - diameter / 2), (int)diameter, (int)diameter, null);
 	}
 
 }

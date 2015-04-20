@@ -46,7 +46,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.setBehavior();
     }
 
-    public Entity(String name, EntityView view, TileCoordinate location,Behaviorable behavior) {
+    public Entity(String name, EntityView view, TileCoordinate location, Behaviorable behavior) {
     	super(location);
         this.name = name;
         this.view = view;
@@ -312,7 +312,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     
     public void setDirection(Angle angle){
     	super.setDirection(angle);
-    	if(this.getEntityView()!=null){
+    	if(this.getEntityView() != null){
     		this.getEntityView().setDirection(angle);
     	}
     }
@@ -325,7 +325,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     
     protected void setDirectionNoNotify(Angle angle){
     	super.setDirectionNoNotify(angle);
-    	if(this.getEntityView()!=null){
+    	if(this.getEntityView() != null){
     		this.getEntityView().setDirection(angle);
     	}
     }

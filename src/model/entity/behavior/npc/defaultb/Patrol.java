@@ -2,7 +2,6 @@ package model.entity.behavior.npc.defaultb;
 
 import model.entity.Entity;
 import model.entity.behavior.npc.defaultb.circuit.Circuitable;
-import model.entity.behavior.npc.defaultb.circuit.UpDown;
 
 public class Patrol implements DefaultableBehaviorState {
 	private Entity chosenOne;

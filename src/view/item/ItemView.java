@@ -20,7 +20,7 @@ public abstract class ItemView implements Saveable{
 		this.onMap = map.getBoolean("onMap");
 	}
 
-	public abstract void render(Graphics graphics, RealCoordinate location, float diameter);
+	public abstract void render(Graphics graphics, float x, float y, float diameter);
 
 	public void registerWithGameItemView(GameItemView gv, RealCoordinate p) {
 		this.onMap = true;

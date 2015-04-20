@@ -1,9 +1,9 @@
 package model.slots;
 
-import view.SlotView;
-import view.item.ItemView;
 import model.item.EquipableItem;
 import model.statistics.Statistics;
+import view.SlotView;
+import view.item.ItemView;
 
 public class EquipmentSlot<K extends EquipableItem> {
 	private K item;

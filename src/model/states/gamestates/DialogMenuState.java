@@ -1,10 +1,10 @@
 package model.states.gamestates;
 
-import controller.DialogMenuController;
-import view.layout.DialogMenuLayout;
 import model.entity.Avatar;
 import model.entity.Entity;
 import model.entity.dialog.DialogTree;
+import view.layout.DialogMenuLayout;
+import controller.DialogMenuController;
 
 public class DialogMenuState extends GameState {
 	private DialogMenuLayout layout;

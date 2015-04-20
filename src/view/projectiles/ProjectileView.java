@@ -3,10 +3,8 @@ package view.projectiles;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import view.map.GameProjectileView;
 import model.area.Area;
-import model.area.RealCoordinate;
-import model.area.TileCoordinate;
+import view.map.GameProjectileView;
 
 public abstract class ProjectileView {
 	
@@ -18,7 +16,7 @@ public abstract class ProjectileView {
 		registered = new ArrayList<GameProjectileView>();
 	}
 
-	public abstract void render(Graphics graphics, RealCoordinate location, float diam);
+	public abstract void render(Graphics graphics, float x, float y, float diam);
 	
 	public void registerWithGameProjectileView(GameProjectileView gv) {
 		gv.addProjectileView(this);

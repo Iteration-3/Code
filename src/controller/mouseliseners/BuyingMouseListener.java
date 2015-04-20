@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import model.entity.Avatar;
-import model.entity.Entity ;
+import model.entity.Entity;
 import model.item.TakeableItem;
 
 public final class BuyingMouseListener implements MouseListener {
