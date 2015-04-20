@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 class JsonScanner {
 	private static final String INTEGER_REGEX = "[-]?(0|[1-9]\\d*)";
-	private static final String DOUBLE_REGEX = "[-]?(0|[1-9]\\d*)\\.?[0-9]+([eE][-+]?\\d+)?";
+	private static final String DOUBLE_REGEX = "[-]?(0|[1-9]\\d*)\\.[0-9]+([eE][-+]?\\d+)?";
 	private static final String STRING_REGEX = "\\\"[^\"]*\\\"";
 	private static final String[] SIMPLE_TOKEN_REGEXES = { "\\{", "\\}", "\\[", "\\]",":", ",", "true", "false", "null"};
 	
@@ -37,13 +37,13 @@ class JsonScanner {
 		
 		while (matcher.find()) {
 			String token = matcher.group();
-			
+			System.out.println("___ : " + token);
 			if(tokenLookup.containsKey(token)) {
 				tokens.offer(tokenLookup.get(token));
-			} else if (INTEGER_PATTERN.matcher(token).matches()) {
-				tokens.offer(new JsonToken(JsonTokenType.INTEGER, token));
 			} else if (DOUBLE_PATTERN.matcher(token).matches()) {
 				tokens.offer(new JsonToken(JsonTokenType.DOUBLE, token));
+			} else if (INTEGER_PATTERN.matcher(token).matches()) {
+				tokens.offer(new JsonToken(JsonTokenType.INTEGER, token));
 			} else if (STRING_PATTERN.matcher(token).matches()) {
 				tokens.offer(new JsonToken(JsonTokenType.STRING, stripQuotes(token)));
 			} else {
@@ -61,7 +61,6 @@ class JsonScanner {
 	private static String getTokenizationString() {
 		StringJoiner joiner = new StringJoiner(")|(");
 		
-		joiner.add(INTEGER_REGEX);
 		joiner.add(DOUBLE_REGEX);
 		joiner.add(STRING_REGEX);
 		
