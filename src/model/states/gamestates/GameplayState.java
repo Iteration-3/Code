@@ -110,6 +110,7 @@ public class GameplayState extends GameState {
         addTriggersTest();
         controller.spawnUpdateThread();
         avatar.subscribe(layout.getCamera());
+        LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
     }
 
     @Override

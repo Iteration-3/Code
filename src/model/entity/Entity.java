@@ -170,7 +170,7 @@ public abstract class Entity extends MobileObject implements Saveable {
      * If no entity to attack, does nada.
      * @param damage
      */
-    protected void attackInFront(int damage){
+    public void attackInFront(int damage){
     	TileCoordinate targetSpot = this.nextLocation(this.getDirection());
     	Entity target = EntityManager.getSingleton().getEntityAtLocation(targetSpot);
     	System.out.println(target);
