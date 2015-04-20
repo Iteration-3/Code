@@ -62,10 +62,12 @@ public class PollingListener extends Listener {
     }
 
     @Override
-    public void activate() {
+    public boolean activate() {
         if (isPressed()) {
             getGameAction().perform();
+            return true;
         }
+        return false;
     }
 
 }

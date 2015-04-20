@@ -36,8 +36,9 @@ public class SingleUseListener extends Listener {
     }
 
     @Override
-    public void activate() {
+    public boolean activate() {
         getGameAction().perform();
+        return true;
     }
 
 }
