@@ -434,5 +434,9 @@ public abstract class Entity extends MobileObject implements Saveable {
 	protected boolean isInCombat() {
 		return (this.getHasBeenAttacked() || this.getAttacking());
 	}
+	
+	public boolean outOfLives(){
+		return this.getDerivedStats().outOfLives();
+	}
 
 }
