@@ -20,15 +20,9 @@ public class GameItemView implements GameView {
 	public void render(Graphics graphics, int width, int height) {
 		this.screenHeight = height;
 		
-		List<RealCoordinate> toRemove = new ArrayList<RealCoordinate>();
 		for(Map.Entry<RealCoordinate, ItemView> entry: itemViews.entrySet()) {
 			ItemView itemView = entry.getValue();
 			RealCoordinate coordinate = entry.getKey();
-			if (!itemView.onMap()) {
-				toRemove.add(entry.getKey());
-				continue;
-			}
-			
 
 			double tileHeight = screenHeight / 18.0f;
 			double tileWidth = tileHeight / (float) (Math.sqrt(3) / 2);
@@ -37,13 +31,15 @@ public class GameItemView implements GameView {
 			float renderY = (float) (coordinate.getY() * itemHeight() + (coordinate.getX() % 2) * itemHeight() / 2);
 			itemView.render(graphics, new RealCoordinate(renderX, renderY), itemWidth());
 		}
-		for (RealCoordinate coordinate: toRemove)
-			itemViews.remove(coordinate);
 		
 	}
 
 	public void addItemView(ItemView itemView, RealCoordinate position) {
 		itemViews.put(position, itemView);
+	}
+	
+	public void removeItemView(ItemView value) {
+		while (itemViews.values().remove(value));
 	}
 
 	private float itemHeight() {
