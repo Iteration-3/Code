@@ -10,7 +10,7 @@ public class BindWounds extends SelfAbility {
 	
 	public BindWounds(SkillManager manager) {
 		super();
-		event = new HealthModifierEvent(5, 1);
+		event = new HealthModifierEvent(null,null,5, 1);
 		this.setManaCost(5);
 		this.setEvent(event);
 		this.manager = manager;

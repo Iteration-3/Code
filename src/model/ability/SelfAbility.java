@@ -9,7 +9,7 @@ public abstract class SelfAbility extends Ability {
 	
 	public SelfAbility() {
 		super();
-		this.event = new HealthModifierEvent(5, 5);
+		this.event = new HealthModifierEvent(null,null,5, 5);
 	}
 	
 	public SelfAbility(Event event, int manaCost) {

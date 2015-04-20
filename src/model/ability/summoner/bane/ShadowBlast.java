@@ -26,7 +26,7 @@ public final class ShadowBlast extends ProjectileAbility {
 	
 	@Override
 	public ShadowBlastProjectile getProjectile(Entity ent) {
-		Event damageEvent = new HealthModifierEvent(0, -40*manager.getBaneSkill());
+		Event damageEvent = new HealthModifierEvent(ent, null, 0, -40*manager.getBaneSkill());
 		SingleUseTrigger damageTrigger = new SingleUseTrigger(new RadialArea(1, null), damageEvent);
 		
 		return new ShadowBlastProjectile(ent.getLocation(), ent.getDirection(), damageTrigger, 2.2);
