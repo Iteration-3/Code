@@ -28,6 +28,8 @@ public abstract class Entity extends MobileObject implements Saveable {
     private EntityView view = null;
 	private boolean isFlying = false;
 	private StateMachine state;
+	private boolean hasBeenAttacked;
+	private boolean attacking;
 
     protected Entity() {
     	super(new TileCoordinate(0, 0));
@@ -107,7 +109,32 @@ public abstract class Entity extends MobileObject implements Saveable {
     }
     
     public void onDamage(Entity entity){
+    	setHasBeenAttacked();
     	this.state.onDamage();
+    }
+    
+    private void setHasBeenAttacked(){
+    	this.hasBeenAttacked = true;
+    }
+    
+    public void clearAttacking(){
+    	this.attacking = false;
+    }
+    
+    public void clearHasBeenAttacked(){
+    	this.hasBeenAttacked = false;
+    }
+    
+    public boolean getHasBeenAttacked(){
+    	return this.hasBeenAttacked;
+    }
+    
+    public void setAttacking(){
+    	this.attacking = true;
+    }
+    
+    public boolean getAttacking(){
+    	return this.attacking;
     }
     
     public void observe(){

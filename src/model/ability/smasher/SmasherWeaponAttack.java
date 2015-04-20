@@ -3,6 +3,7 @@ package model.ability.smasher;
 import model.ability.TriggerAbility;
 import model.area.RadialArea;
 import model.entity.Avatar;
+import model.entity.Entity;
 import model.event.HealthModifierEvent;
 import model.skillmanager.SmasherSkillManager;
 import model.trigger.TimedTrigger;
@@ -16,8 +17,10 @@ public class SmasherWeaponAttack extends TriggerAbility {
 
 	
 	public SmasherWeaponAttack(SmasherSkillManager smasherSkillManager) {
+		//DEPRECATED    dont call on getTrigger
+		//  use Black Box Inheritance
 		super(new TimedTrigger(new RadialArea(1, null),
-				new HealthModifierEvent(0, -15), 0), 10);
+				new HealthModifierEvent(null, null, 0, -15), 0), 10);
 		this.manager = smasherSkillManager;
 	}
 
@@ -36,7 +39,8 @@ public class SmasherWeaponAttack extends TriggerAbility {
 				timeOutDur = 2;
 				damageModifier = 2;
 			}
-			Trigger trigger = this.getTrigger().clone();
+			// Dont get rid of constructTrigger
+			Trigger trigger = this.constructTrigger(avatar).clone();
 			trigger.moveLocation(avatar.nextLocation());
 			((HealthModifierEvent) trigger.getEvent())
 					.scaleHealh(damageModifier);
@@ -55,6 +59,11 @@ public class SmasherWeaponAttack extends TriggerAbility {
 
 	private long getTimeout() {
 		return timeout;
+	}
+	
+	private TimedTrigger constructTrigger(Entity ent){
+		return new TimedTrigger(new RadialArea(1, null),
+				new HealthModifierEvent( ent , null, 0, -15), 0);
 	}
 
 }
