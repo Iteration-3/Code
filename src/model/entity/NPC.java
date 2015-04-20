@@ -70,7 +70,22 @@ public class NPC extends Entity {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		observeHelper();
+		
+	}
+	
+	private void observeHelper(){
+		Avatar avatar = EntityManager.getSingleton().getAvatar();
+		if(this.getLocation().getDistance(avatar.getLocation()) < avatar.getObserveSkill()*4 ){
+			//The distance between the two objects vs the observe skill times 4 is the range.
+			//TODO ADD check if in combat state.
+			this.getEntityView().turnOnStatBar(this.getHpPercentage());
+			
+			
+		}else{
+			this.getEntityView().turnOffStatBar();
+		}
+		
 	}
 	
 	public DialogTree getDialogTree() {

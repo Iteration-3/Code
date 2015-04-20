@@ -33,6 +33,7 @@ public abstract class Avatar extends Entity {
 		//setLocation(loc);//So lightMap registers current position
 	}
 	
+	
 	public Avatar(StructuredMap map) {
 		super(map);
 	}
@@ -113,7 +114,10 @@ public abstract class Avatar extends Entity {
 	public abstract SkillManager getSkillManager();
 
 	
-
+	@Override
+	public void update(){
+		this.getEntityView().turnOnStatBar(this.getHpPercentage());
+	}
 	
 	protected Collection<Ability> getAbilities(){
 		return abilities;

@@ -16,6 +16,9 @@ public class EntityView implements Saveable {
 	private boolean hidden = false;
 	private static final float BORDER_PERCENTAGE = 0.15f; // 15% border edge
 	private static final float OVERDRAW = 1.05f; // To eliminate little blank spaces between tiles
+	private StatBar healthBar = new StatBar();
+	private boolean drawHealthBar = false;
+	private float lastKnownHealth = 1f;
 	
 	public EntityView(AbstractEntitySpriteHolder sprites) {
 		this.sprites=sprites;
@@ -46,7 +49,20 @@ public class EntityView implements Saveable {
 		//foregroundHexagon.render(graphics, updatedCoordinate, tileWidth * (1 - BORDER_PERCENTAGE) * OVERDRAW);
 		//backgroundHexagon.render(graphics, updatedCoordinate, tileWidth * BORDER_PERCENTAGE * OVERDRAW);
 		sprites.render(graphics, updatedCoordinate, 1,this.getDirection());
+		if(drawHealthBar){
+			healthBar.render(graphics,updatedCoordinate.getX(),updatedCoordinate.getY()-20,lastKnownHealth);
+			//Height offset hardcoded atm.
+		}
 		
+	}
+	
+	public void turnOnStatBar(float HP){
+		drawHealthBar = true;
+		lastKnownHealth = HP;
+	}
+	
+	public void turnOffStatBar(){
+		drawHealthBar = false;
 	}
 	
 	public void toggle() {
