@@ -109,15 +109,6 @@ public class EntityStatistics extends Statistics {
         this.currentHealth = currentHealth;
     }
     
-    private void healthCheck(){
-    	 if(this.currentHealth < 0){
-         	this.currentHealth = getMaximumHealth();
-         	this.decrementLives();
-         }
-         if(this.currentHealth > this.getMaximumHealth()){
-         	this.currentHealth = this.getMaximumHealth();
-         }
-    }
 
     public int getMaximumHealth() {
         return getStrength() * 100;
@@ -167,6 +158,13 @@ public class EntityStatistics extends Statistics {
     
     public void addMoney(int money) {
     	this.money += money;
+    }
+    
+    public boolean outOfLives() {
+    	if(this.livesLeft <= 0){
+    		return true;
+    	}
+    	return false;
     }
 
     @Override

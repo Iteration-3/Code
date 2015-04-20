@@ -38,9 +38,10 @@ public class KeyPreferences implements Saveable {
         this.abilities = new ArrayList<KeyStroke>();
         this.attackKey = KeyStroke.getKeyStroke("F");
         for (int i = 0; i != 10; ++i) {//This should never go above 10, don't have that many keys!
-            abilities.add(KeyStroke.getKeyStroke((char) ('0' + i)));
+            abilities.add(KeyStroke.getKeyStroke(Integer.toString(i)));
         }
-        abilities.add(KeyStroke.getKeyStroke('`'));
+        abilities.add(KeyStroke.getKeyStroke("EQUALS"));
+        abilities.add(KeyStroke.getKeyStroke("MINUS"));
     }
 
     public KeyPreferences(StructuredMap structuredMap) {

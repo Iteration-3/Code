@@ -58,6 +58,14 @@ public class NPC extends Entity {
 	@Override
 	public void updateExtras(double deltaTime) {
 		observeHelper();
+		if(this.getDerivedStats().outOfLives()){
+			this.removeFromTheWorld();
+		}
+	}
+	
+	private void removeFromTheWorld(){
+		EntityManager.getSingleton().removeEntity(this);
+		this.getEntityView().removeFromTheWorld();
 	}
 	
 	private void observeHelper(){

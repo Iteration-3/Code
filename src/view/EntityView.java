@@ -25,6 +25,7 @@ public class EntityView implements Renderable, Saveable {
 	private RealCoordinate location;
 	private boolean hidden = false;
 	private Direction angle;
+	private GameEntityView gameEntityView = null;
 	
 	public EntityView(AbstractEntitySpriteHolder sprites) {
 		this.sprites = sprites;
@@ -39,6 +40,7 @@ public class EntityView implements Renderable, Saveable {
 		gv.addEntityView(this);
 		this.location = location;
 		this.setDirection(angle);
+		this.gameEntityView = gv;
 	}
 	
 	@Override
@@ -115,5 +117,14 @@ public class EntityView implements Renderable, Saveable {
 		map.put("locationY", location.getY());
 		map.put("sprites", sprites.getStructuredMap());
 		return map;
+	}
+
+	public void removeFromTheWorld() {
+		if(gameEntityView==null){
+			System.err.println("THIS VIEW ISNT ON ANY WORLD TO REMOVE!!!!");
+		}else{
+			gameEntityView.remove(this);
+		}
+		
 	}
 }

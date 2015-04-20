@@ -8,7 +8,7 @@ import model.map.tile.ItemTile;
 import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 
-public abstract class TakeableItem extends Item {
+public class TakeableItem extends Item {
 	private boolean taken = false;
 	private Price price;
 	private String name;
@@ -43,6 +43,7 @@ public abstract class TakeableItem extends Item {
 	@Override
 	public void use(Entity entity) {
 		JOptionPane.showMessageDialog(null, "Can't use that here...");
+		entity.addItem(this);
 	}
 
 	@Override

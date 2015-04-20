@@ -55,7 +55,8 @@ public class BoundedEntityStatistics extends EntityStatistics{
 	}
 
 	private void livesCheck(){
-		if(this.getLivesLeft() <= 0){
+		if(this.getLivesLeft() < 0){
+			this.setLivesLeft(0);
 		}
 	}
 
