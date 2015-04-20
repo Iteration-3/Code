@@ -33,6 +33,7 @@ public abstract class EquipableItem extends TakeableItem {
 	
 	@Override
 	public void use(Entity entity) {
+		System.out.println(entity);
 		entity.equip(this);
 	}
 	
