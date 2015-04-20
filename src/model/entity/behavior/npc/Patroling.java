@@ -19,14 +19,14 @@ public class Patroling implements Behaviorable {
 		regular = new Patrol(this.entity,new UpDown());
 	}
 
-	public void perform(){
+	public void perform(double deltaTime){
 		if (count++ == ticker){
 			regular.perform();
 			count = 0;
 		}
 	}
 	
-	public void observe(){
+	public void observe(double deltaTime){
 	}
 	
 	public void interact(Entity entity){

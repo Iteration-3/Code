@@ -17,11 +17,11 @@ public class Coward implements Behaviorable {
 		this.entityToCowardFrom = entityToCowardFrom;
 	}
 
-	public void perform() {
+	public void perform(double deltaTime) {
 		this.listen.perform();
 	}
 
-	public void observe() {
+	public void observe(double deltaTime) {
 		this.cowardFromEntity.observe();
 		if (this.cowardFromEntity.found()) {
 			this.listen.push(this.cowardFromEntity.getMove());

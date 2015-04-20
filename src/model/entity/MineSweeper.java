@@ -26,11 +26,6 @@ public class MineSweeper extends NPC {
 	@Override
 	public void load(StructuredMap map) {
 	}
-
-	@Override
-	public void update() {
-		EntityManager.getSingleton().removeEntity(this);
-	}
 	
 	@Override
     public boolean addItem(TakeableItem item) {
@@ -39,15 +34,7 @@ public class MineSweeper extends NPC {
 	
 	@Override
 	public void interact(Entity entity) {
-		update();
+		update(0);
 	}
-	
-	@Override
-    public void perform() {
-    }
-	
-	@Override
-    public void observe() {
-    }
 
 }

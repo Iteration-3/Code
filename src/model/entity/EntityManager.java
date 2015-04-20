@@ -115,9 +115,9 @@ public class EntityManager implements Iterable<Entity>, Saveable {
 	public void update(ItemMap itemMap, double deltaTime) {
 		for(Entity e : this){
 			itemMap.touch(e, e.getLocation());
-			e.update();
-			e.perform();
-			e.observe();
+			e.update(deltaTime);
+			e.perform(deltaTime);
+			e.observe(deltaTime);
 		}
 		cleanRemovedEntities();
 	}

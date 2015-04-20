@@ -30,11 +30,11 @@ public class StateMachine implements StateMachineable {
 		}
 	}
 	
-	public void perform(){
+	public void perform(double deltaTime){
 		if (this.states.isEmpty()){
 			return;
 		}
-		this.states.peek().perform();
+		this.states.peek().perform(deltaTime);
 	}
 	
 	public void interact(Entity entity){
@@ -51,10 +51,10 @@ public class StateMachine implements StateMachineable {
 		this.states.peek().onDamage(entity);
 	}
 	
-	public void observe(){
+	public void observe(double deltaTime){
 		if (this.states.isEmpty()){
 			return;
 		}
-		this.states.peek().observe();
+		this.states.peek().observe(deltaTime);
 	}
 }

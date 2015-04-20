@@ -9,10 +9,10 @@ public class BarterBehavior implements Behaviorable{
 	
 	public BarterBehavior(){}
 
-	public void perform() {
+	public void perform(double deltaTime) {
 	}
 
-	public void observe() {
+	public void observe(double deltaTime) {
 	}
 
 	public void interact(Entity entity) {

@@ -4,9 +4,9 @@ import model.entity.Entity;
 
 public interface Behaviorable {
 	
-	public void perform();
+	public void perform(double deltaTime);
 	
-	public void observe();
+	public void observe(double deltaTime);
 	
 	public void interact(Entity entity);
 	
