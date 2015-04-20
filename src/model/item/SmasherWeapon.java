@@ -7,12 +7,12 @@ import view.item.ItemView;
 
 public class SmasherWeapon extends Weapon {
 	
-	public SmasherWeapon(ItemView itemView) {
-		super(itemView);
+	public SmasherWeapon(ItemView itemView, String name) {
+		super(itemView, name);
 	}
 
-	public SmasherWeapon(ItemView itemView, Statistics statistics) {
-		super(itemView, statistics);
+	public SmasherWeapon(ItemView itemView, Statistics statistics, String name) {
+		super(itemView, statistics, name);
 	}
 
 	public SmasherWeapon(StructuredMap structuredMap) {

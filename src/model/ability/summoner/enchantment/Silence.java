@@ -26,7 +26,7 @@ public class Silence extends ProjectileAbility {
 	@Override
 	public SilenceProjectile getProjectile(Entity ent) {
 		Event damageEvent = new ManaModifierEvent(10*manager.getEnchantSkill(), -100*manager.getEnchantSkill());
-		return new SilenceProjectile(ent.getLocation(), ent.getDirection(), new RadialArea(1, null), damageEvent, 2.2);
+		return new SilenceProjectile(ent.getLocation(), ent.getDirection(), new RadialArea(1, ent.getLocation()), damageEvent, 2.2);
 	}
 
 	@Override

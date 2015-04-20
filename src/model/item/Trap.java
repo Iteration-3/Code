@@ -14,7 +14,7 @@ public class Trap extends Item {
 	
 	public Trap(ItemView itemView) {
 		super(itemView);
-		Event event = new TemporaryMovementModifierEvent(20, -100000);
+		Event event = new TemporaryMovementModifierEvent(20, -1000);
 		setEvent(event);
 		this.itemView.setVisibility(false);
 	}

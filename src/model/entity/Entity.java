@@ -176,9 +176,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     public void attackInFront(int damage){
     	TileCoordinate targetSpot = this.nextLocation(this.getDirection());
     	Entity target = EntityManager.getSingleton().getEntityAtLocation(targetSpot);
-    	System.out.println(target);
     	if(target!=null){
-    		System.out.println(target.getDerivedStats().getCurrentHealth()+ " "+ damage);
     		this.attackEntity(target, damage);
     	}
     }
@@ -225,6 +223,10 @@ public abstract class Entity extends MobileObject implements Saveable {
 
     public BoundedEntityStatistics getBaseStats() {
         return this.stats;
+    }
+    
+    public void setStats(BoundedEntityStatistics stats){
+    	this.stats = stats;
     }
 
     public BoundedEntityStatistics getDerivedStats() {

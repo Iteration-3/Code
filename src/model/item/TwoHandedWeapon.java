@@ -7,12 +7,12 @@ import view.item.ItemView;
 
 public class TwoHandedWeapon extends EquipableItem {
 	
-	public TwoHandedWeapon(ItemView itemView) {
-		super(itemView);
+	public TwoHandedWeapon(ItemView itemView, String name) {
+		super(itemView, name);
 	}
 
-	public TwoHandedWeapon(ItemView itemView, Statistics statistics) {
-		super(itemView, statistics);
+	public TwoHandedWeapon(ItemView itemView, Statistics statistics, String name) {
+		super(itemView, statistics, name);
 	}
 
 	public TwoHandedWeapon(StructuredMap structuredMap) {

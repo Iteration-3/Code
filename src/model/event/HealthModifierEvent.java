@@ -11,6 +11,7 @@ public class HealthModifierEvent extends SourcedEvent {
 			int health) {
 		super(source, target, duration);
 		this.health = health;
+		this.source = source;
 	}
 
 	// public HealthModifierEvent(int health, Entity target,Entity source,
@@ -35,6 +36,7 @@ public class HealthModifierEvent extends SourcedEvent {
 		if (hasTarget()) {
 			if (this.healthIsDamage()) {
 				if (hasSource()){
+					System.out.println("ON DAMAGE IS CALLED");
 					getTarget().onDamage(source);
 				}
 			}

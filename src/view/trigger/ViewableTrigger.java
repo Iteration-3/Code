@@ -11,6 +11,7 @@ import model.area.TileCoordinate;
 import model.entity.Entity;
 import model.event.Event;
 import model.trigger.Trigger;
+import model.trigger.TriggerManager;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 import view.Decal;
@@ -31,11 +32,13 @@ public class ViewableTrigger extends Trigger implements Saveable, Renderable {
 		for (TileCoordinate tileCoordinate: trigger.getArea().getCoveredLocations()) {
 			realCoordinates.add(TileCoordinate.convertToRealCoordinate(tileCoordinate));
 		}
+		TriggerManager.getSingleton().registerViewableTrigger(this);
 	}
 	
 	public ViewableTrigger(Decal decal, List<RealCoordinate> realCoordinates) {
 		this.realCoordinates.addAll(realCoordinates);
 		this.decal = decal;
+		TriggerManager.getSingleton().registerViewableTrigger(this);
 	}
 	
 	public ViewableTrigger(Decal decal) {
@@ -43,10 +46,12 @@ public class ViewableTrigger extends Trigger implements Saveable, Renderable {
 			realCoordinates.add(TileCoordinate.convertToRealCoordinate(tileCoordinate));
 		}
 		this.decal = decal;
+		TriggerManager.getSingleton().registerViewableTrigger(this);
 	}
 	
 	public ViewableTrigger() {
 		this.decal = new Decal();
+		TriggerManager.getSingleton().registerViewableTrigger(this);
 	}
 	
 	public ViewableTrigger(StructuredMap map) {
