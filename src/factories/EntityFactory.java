@@ -107,7 +107,7 @@ public class EntityFactory {
 		EntityView view = new EntityView(
 				EntitySpriteFactory.getTrooperSpriteHolder());
 		NPC entity = new NPC(name, "heavyTrooper", view, location,
-				new TrooperBehavior(new Coward(true, EntityManager
+				new TrooperBehavior(new Coward(false, EntityManager
 						.getSingleton().getAvatar()), 7));
 		entity.setStats(StatsFactory.getTrooperStats());
 		setEntity(entity,location,view,layout);

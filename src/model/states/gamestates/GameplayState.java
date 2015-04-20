@@ -202,7 +202,7 @@ public class GameplayState extends GameState {
         getContext().setPreferences(preferences);
         setListeners(preferences);
     	EntityFactory.createHeavyTrooper("MAX", new TileCoordinate(25,25), layout);
-    	EntityFactory.createCowardTrooper("TIMMY", new TileCoordinate(45,45), layout);
+    	EntityFactory.createCowardTrooper("TIMMY", new TileCoordinate(40,25), layout);
         getContext().setPreferences(preferences);
         
 
