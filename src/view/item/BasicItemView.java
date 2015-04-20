@@ -37,9 +37,13 @@ public class BasicItemView extends ItemView {
 		this.decal = decal;
 	}
 	
+	public BasicItemView() {
+		this.decal = new Decal("/images/item.jpg");
+	}
+	
 	public BasicItemView(StructuredMap map) {
 		super(map);
-		// imagePath = map.getString("path");
+		map.put("decal", decal.getStructuredMap());
 	}
 
 	@Override
@@ -55,9 +59,8 @@ public class BasicItemView extends ItemView {
 
 	@Override
 	public StructuredMap getStructuredMap() {
-		// TODO: Update for Decal
 		StructuredMap map = super.getStructuredMap();
-		// map.put("path", imagePath);
+		map.put("decal", decal.getStructuredMap());
 		return map;
 	}
 
