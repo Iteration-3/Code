@@ -1,5 +1,7 @@
 package model.area;
 
+import java.awt.geom.Point2D;
+
 import utilities.Angle;
 
 public class TileCoordinate {
@@ -9,6 +11,11 @@ public class TileCoordinate {
     public TileCoordinate() {
     	x = 1;
     	y = 1;
+    }
+    
+    public double getDistance(TileCoordinate dest){
+    	return Point2D.distance(this.getX(), this.getY(), dest.getX(), dest.getY());
+    	
     }
 
     public TileCoordinate(int x, int y) {

@@ -50,6 +50,7 @@ public class Smasher extends Avatar {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		super.update();
 		
 	}
 

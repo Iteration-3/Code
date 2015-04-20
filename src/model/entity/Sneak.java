@@ -1,13 +1,11 @@
 package model.entity;
 
-import model.ability.Ability;
 import model.ability.sneak.Creep;
 import model.ability.sneak.DetectTrap;
 import model.ability.sneak.PickPocket;
 import model.ability.sneak.Ranged;
 import model.ability.sneak.RemoveTrap;
 import model.area.TileCoordinate;
-import model.skillmanager.SkillManager;
 import model.skillmanager.SneakSkillManager;
 import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
@@ -66,6 +64,7 @@ public class Sneak extends Avatar {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+		super.update();
 		
 	}
 	//Wasn't sneak going to have creap, and pickpocket? Not in uml anymore, we should discuss

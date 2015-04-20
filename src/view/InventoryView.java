@@ -14,7 +14,8 @@ import controller.SlotViewMouseListenerFactory;
 
 @SuppressWarnings("serial")
 public class InventoryView extends JComponent implements Saveable {
-	private static String backgroundPath = "src/resources/images/slotImage.png";
+	private static String backgroundPath = "/images/slotImage.png";
+
 	private static BufferedImage slotBackground;
 	private static int COL = 5;
 	private static int ROW = 5;
