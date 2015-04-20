@@ -318,6 +318,10 @@ public abstract class Entity extends MobileObject implements Saveable {
     public void addMovement(int movement) {
         stats.addMovement(movement);
     }
+    
+    public void setMovement(int movement){
+    	stats.setMovement(movement);
+    }
 
     public void addLives(int lives) {
         stats.addLives(lives);
