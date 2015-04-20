@@ -106,7 +106,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     	this.state.interact(entity);
     }
     
-    public void onDamage(){
+    public void onDamage(Entity entity){
     	this.state.onDamage();
     }
     

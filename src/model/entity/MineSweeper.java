@@ -42,7 +42,7 @@ public class MineSweeper extends NPC {
     }
 	
 	@Override
-	public void interact(Avatar avatar) {
+	public void interact(Entity entity) {
 		update();
 	}
 	
