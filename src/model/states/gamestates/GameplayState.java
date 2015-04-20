@@ -204,6 +204,9 @@ public class GameplayState extends GameState {
       KeyPreferences preferences = new KeyPreferences();
         getContext().setPreferences(preferences);
         setListeners(preferences);
+    	EntityFactory.createHeavyTrooper("DAVE SMA11", new TileCoordinate(25,25), layout);
+    	EntityFactory.createCowardTrooper("CAP POOP PANTS", new TileCoordinate(40,25), layout);
+    	EntityFactory.createPet("Timmmy", new TileCoordinate(10,10), layout);
 
     	
         getContext().setPreferences(preferences);

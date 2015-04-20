@@ -9,6 +9,15 @@
 			},
 		"strength":	255,
 		"type":	"movingLight"
+		}, {
+		"area":	{
+			"coordinate":	[10, 10],
+			"range":	1,
+			"type":	"radial",
+			"direction":	1
+			},
+		"strength":	255,
+		"type":	"movingLight"
 		}],
 	"lightMap":	{
 		"dimmedValues":	[{
@@ -45660,7 +45669,7 @@
 			"livesLeft":	3,
 			"agility":	10,
 			"experience":	0,
-			"movement":	10
+			"movement":	7
 			},
 		"flying":	false,
 		"name":	"DaveTheBarbarian",
@@ -46017,7 +46026,7 @@
 			"livesLeft":	3,
 			"agility":	10,
 			"experience":	0,
-			"movement":	10
+			"movement":	7
 			},
 		"flying":	false,
 		"name":	"My first mount",
@@ -46354,7 +46363,7 @@
 			},
 		"type":	"mount",
 		"direction":	1
-		}],
+		}, null, null, null],
 	"avatar":	{
 		"entityView":	{
 			"locationY":	3.031088913245535,
@@ -46374,7 +46383,7 @@
 			"livesLeft":	3,
 			"agility":	10,
 			"experience":	0,
-			"movement":	10
+			"movement":	7
 			},
 		"flying":	false,
 		"name":	"Smasher",
@@ -47038,7 +47047,7 @@
 					"livesLeft":	3,
 					"agility":	10,
 					"experience":	0,
-					"movement":	10
+					"movement":	7
 					}
 				}]
 			}
