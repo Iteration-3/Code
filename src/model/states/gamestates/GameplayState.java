@@ -219,7 +219,7 @@ public class GameplayState extends GameState {
         
         ItemView trapView = new BasicItemView(Color.RED, Color.BLACK);
         TileCoordinate trapSpot = new TileCoordinate(15, 12);
-        trapView.registerWithGameItemView(layout.getGameItemView(), new RealCoordinate(15, 12));
+        trapView.registerWithGameItemView(layout.getGameItemView(), TileCoordinate.convertToRealCoordinate(trapSpot));
         this.getItemMap().addItem(new Trap(trapView), trapSpot);
         
 
