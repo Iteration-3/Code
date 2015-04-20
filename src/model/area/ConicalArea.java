@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import utilities.Angle;
+import utilities.Direction;
 import utilities.structuredmap.StructuredMap;
 
 public class ConicalArea extends DirectionalArea {
@@ -14,13 +14,13 @@ public class ConicalArea extends DirectionalArea {
     private TileCoordinate lastStart;
     private List<TileCoordinate> coverCache;
     private HashSet<TileCoordinate> resCache;
-    private Angle lastDir;
+    private Direction lastDir;
 
     public ConicalArea() {
         super();
     }
 
-    public ConicalArea(int radius, TileCoordinate startLocation, Angle angle) {
+    public ConicalArea(int radius, TileCoordinate startLocation, Direction angle) {
         super(radius, startLocation, angle);
     }  
     
@@ -52,7 +52,7 @@ public class ConicalArea extends DirectionalArea {
 	    			Pair poll = bfsQ.poll();
 	    			int nextDist = poll.dist+1;
 	    			if (nextDist > distFromCenter) continue;
-	    			for (Angle ang : Angle.values()) {
+	    			for (Direction ang : Direction.values()) {
 	    				TileCoordinate next = poll.coord.nextLocation(ang);
 	    				if (atRad.contains(next)) {
 	    					if (!res.contains(next)) {
@@ -87,7 +87,7 @@ public class ConicalArea extends DirectionalArea {
     		Pair poll = bfsQ.poll();
     		int nextDist = poll.dist + 1;
     		if (nextDist > radius) continue;
-    		for (Angle ang : Angle.values()) {
+    		for (Direction ang : Direction.values()) {
     			TileCoordinate next = poll.coord.nextLocation(ang);
     			if (!res.contains(next)) {
     				res.add(next);

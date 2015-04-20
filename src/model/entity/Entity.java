@@ -15,7 +15,7 @@ import model.observers.MobileObject;
 import model.slots.ItemManager;
 import model.statistics.BoundedEntityStatistics;
 import model.statistics.Statistics;
-import utilities.Angle;
+import utilities.Direction;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
@@ -44,7 +44,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.view = view;
         setLocation(location);
         this.setNecessities();
-        setDirection(Angle.UP);
+        setDirection(Direction.UP);
         this.setBehavior();
     }
 
@@ -54,7 +54,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.view = view;
         setLocation(location);
         this.setNecessities();
-        setDirection(Angle.UP);
+        setDirection(Direction.UP);
         this.setBehavior();
     }
     
@@ -64,7 +64,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         int[] locationArray = map.getIntArray("location");
         setLocation(new TileCoordinate(locationArray[0], locationArray[1]));
         this.stats = new BoundedEntityStatistics(map.getStructuredMap("stats"));
-        setDirection(Angle.values()[map.getInteger("direction")]);
+        setDirection(Direction.values()[map.getInteger("direction")]);
         this.itemManager = new ItemManager(map.getStructuredMap("itemManager"));
         this.isFlying = map.getBoolean("flying");
         this.view = map.getStructuredMap("entityView") == null ? null : new EntityView(map.getStructuredMap("entityView"));
@@ -213,7 +213,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         return derivedStats;
     }
 
-    public void move(Angle angle) {
+    public void move(Direction angle) {
     	if (angle != null){
     		TileCoordinate nextLocation = nextLocation(angle);
     		this.setLocationNoNotify(nextLocation);
@@ -226,7 +226,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     	return nextLocation(this.getDirection());
     }
     
-    public TileCoordinate nextLocation(Angle angle) {
+    public TileCoordinate nextLocation(Direction angle) {
         return this.getLocation().nextLocation(angle);
     }
 
@@ -337,7 +337,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     }
     
     @Override
-	public void setDirection(Angle angle){
+    public void setDirection(Direction angle){
     	super.setDirection(angle);
     	if(this.getEntityView() != null){
     		this.getEntityView().setDirection(angle);
@@ -352,7 +352,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     }
     
     @Override
-	protected void setDirectionNoNotify(Angle angle){
+    protected void setDirectionNoNotify(Direction angle) {
     	super.setDirectionNoNotify(angle);
     	if(this.getEntityView() != null){
     		this.getEntityView().setDirection(angle);

@@ -1,7 +1,7 @@
 package model.entity.behavior.npc.defaultb;
 
 import model.entity.Entity;
-import utilities.Angle;
+import utilities.Direction;
 
 public class LinkWithTarget implements DefaultableBehaviorState {
 	private Entity chosen;
@@ -18,7 +18,7 @@ public class LinkWithTarget implements DefaultableBehaviorState {
 	public void perform() {
 		if (count++ == ticker){
 			if (! this.chosen.getLocation().nextTo(target.getLocation())){
-				this.chosen.move(Angle.PRODUCE_A_ANGLE.getNearestAngleTowardTarget(
+				this.chosen.move(Direction.PRODUCE_A_ANGLE.getNearestAngleTowardTarget(
 						this.chosen.getLocation(), this.target.getLocation()));
 			}
 			count = 0;

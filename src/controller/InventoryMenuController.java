@@ -7,9 +7,9 @@ import model.Model;
 import model.entity.Entity;
 import controller.commands.Unequip;
 import controller.listener.ToggleAction;
-import controller.mouseliseners.EquipmentMouseListener;
-import controller.mouseliseners.InventoryMouseListener;
-import controller.mouseliseners.InventorySlotMouseListener;
+import controller.mouselisteners.EquipmentMouseListener;
+import controller.mouselisteners.InventoryMouseListener;
+import controller.mouselisteners.InventorySlotMouseListener;
 
 public class InventoryMenuController extends Controller implements SlotViewMouseListenerFactory {
 	private Model model;

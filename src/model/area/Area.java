@@ -2,7 +2,7 @@ package model.area;
 
 import java.util.List;
 
-import utilities.Angle;
+import utilities.Direction;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 
@@ -10,7 +10,7 @@ public abstract class Area implements Saveable {
 	
     private int range;
     private TileCoordinate startLocation;
-    private Angle direction;
+    private Direction direction;
 
     public static final double WIDTH = 1.0;
     public static final double HEIGHT = Math.sqrt(3) / 2.0;
@@ -18,20 +18,20 @@ public abstract class Area implements Saveable {
     public Area(int radius, TileCoordinate startLocation) {
         this.range = radius;
         this.startLocation = startLocation;
-        this.direction = Angle.UP;
+        this.direction = Direction.UP;
     }
 
     public Area() {
         this.range = 1;
         this.startLocation = new TileCoordinate();
-        this.direction = Angle.UP;
+        this.direction = Direction.UP;
     }
     
     public Area(StructuredMap map) {
     	this.range = map.getInteger("range");
     	int[] location = map.getIntArray("coordinate");
     	this.startLocation = new TileCoordinate(location[0], location[1]);
-    	this.direction = Angle.values()[map.getInteger("direction")];
+    	this.direction = Direction.values()[map.getInteger("direction")];
     }
 
     @Override
@@ -71,11 +71,11 @@ public abstract class Area implements Saveable {
         return getCoveredLocations().contains(loc);
     }
 
-    public Angle getDirection() {
+    public Direction getDirection() {
         return direction;
     }
 
-    public void setDirection(Angle direction) {
+    public void setDirection(Direction direction) {
         this.direction = direction;
     }
 

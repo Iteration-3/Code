@@ -4,7 +4,7 @@ import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
-import utilities.Angle;
+import utilities.Direction;
 
 public abstract class TriggerAbility extends Ability {
 	private Trigger trigger;
@@ -27,7 +27,7 @@ public abstract class TriggerAbility extends Ability {
 				Trigger trigger = this.trigger.clone();
 
 				TileCoordinate avatarLocation = avatar.getLocation();
-				Angle avatarDirection = avatar.getDirection();
+				Direction avatarDirection = avatar.getDirection();
 				TileCoordinate triggerLocation = avatarLocation.nextLocation(avatarDirection);
 				trigger.moveLocation(triggerLocation);
 				

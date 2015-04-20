@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
-import utilities.Angle;
+import utilities.Direction;
 import utilities.ScreenCoordinate;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
@@ -24,7 +24,7 @@ public class EntityView implements Renderable, Saveable {
 	AbstractEntitySpriteHolder sprites;
 	private RealCoordinate location;
 	private boolean hidden = false;
-	private Angle angle;
+	private Direction angle;
 	
 	public EntityView(AbstractEntitySpriteHolder sprites) {
 		this.sprites = sprites;
@@ -35,7 +35,7 @@ public class EntityView implements Renderable, Saveable {
 		this.location = new RealCoordinate(map.getDouble("locationX"), map.getDouble("locationY"));
 	}
 
-	public void registerWithGameMapView(GameEntityView gv, RealCoordinate location, Angle angle) {
+	public void registerWithGameMapView(GameEntityView gv, RealCoordinate location, Direction angle) {
 		gv.addEntityView(this);
 		this.location = location;
 		this.setDirection(angle);
@@ -89,7 +89,7 @@ public class EntityView implements Renderable, Saveable {
 		return hidden;
 	}
 
-	private Angle getDirection() {
+	private Direction getDirection() {
 		return angle;
 	}
 
@@ -103,7 +103,7 @@ public class EntityView implements Renderable, Saveable {
 		}
 	}
 
-	public void setDirection(Angle angle) {
+	public void setDirection(Direction angle) {
 		this.angle = angle;
 	}
 

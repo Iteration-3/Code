@@ -2,7 +2,7 @@ package model.area;
 
 import java.awt.geom.Point2D;
 
-import utilities.Angle;
+import utilities.Direction;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
 
@@ -53,11 +53,11 @@ public class TileCoordinate implements Saveable {
 		return new RealCoordinate(x, y);
 	}
 
-	public TileCoordinate nextLocation(Angle angle) {
+	public TileCoordinate nextLocation(Direction angle) {
 		return angle.nextLocation(this);
 	}
 
-	public TileCoordinate previousLocation(Angle angle) {
+	public TileCoordinate previousLocation(Direction angle) {
 		return angle.previousLocation(this);
 	}
 

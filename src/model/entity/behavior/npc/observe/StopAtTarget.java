@@ -3,7 +3,7 @@ package model.entity.behavior.npc.observe;
 import model.area.Area;
 import model.area.TileCoordinate;
 import model.entity.Entity;
-import utilities.Angle;
+import utilities.Direction;
 
 public class StopAtTarget extends MovementChangingObservable {
 
@@ -13,12 +13,12 @@ public class StopAtTarget extends MovementChangingObservable {
 	}
 
 	@Override
-	protected Angle setMove(TileCoordinate chosen, TileCoordinate target) {
+	protected Direction setMove(TileCoordinate chosen, TileCoordinate target) {
 		if (chosen.nextTo(target)){
 			return null;
 		}
 		else{
-			return Angle.PRODUCE_A_ANGLE.getNearestAngleTowardTarget(chosen, target);
+			return Direction.PRODUCE_A_ANGLE.getNearestAngleTowardTarget(chosen, target);
 		}
 	}
 
