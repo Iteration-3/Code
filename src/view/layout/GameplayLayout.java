@@ -19,7 +19,7 @@ import view.trigger.GameTriggerView;
 @SuppressWarnings("serial")
 public class GameplayLayout extends Layout implements ActionListener {
 	
-    private GameTileView gameTerrainView;
+    private GameTileView gameMap;
     private GameEntityView gameEntityView;
     private GameItemView gameItemView;
     private GameLightView gameLightView;
@@ -30,7 +30,7 @@ public class GameplayLayout extends Layout implements ActionListener {
 	private static final int REDRAW_INTERVAL = 1000 / FPS;
 	
     public GameplayLayout() {
-        gameTerrainView = new GameTileView();
+        gameMap = new GameTileView(300,75);
         gameEntityView = new GameEntityView();
         gameItemView = new GameItemView();
         gameLightView = new GameLightView();
@@ -49,8 +49,8 @@ public class GameplayLayout extends Layout implements ActionListener {
     	return gameTriggerView;
     }
 
-    public GameTileView getGameTerrainView() {
-        return gameTerrainView;
+    public void setGameTileView(GameTileView gtv) {
+    	gameMap = gtv;
     }
 
     public GameEntityView getGameEntityView() {
@@ -101,7 +101,7 @@ public class GameplayLayout extends Layout implements ActionListener {
         gameLightView.lock();
         
         /* Render */
-        gameTerrainView.render(graphics, transform);
+        gameMap.render(graphics, transform);
         gameEntityView.render(graphics, transform);
         gameItemView.render(graphics, transform);
         gameTriggerView.render(graphics, transform);

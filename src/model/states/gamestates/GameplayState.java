@@ -1,14 +1,10 @@
 package model.states.gamestates;
 
-
-
-import factories.EntityFactory;
 import gameactions.GameActionGhostMovement;
 import gameactions.GameActionRiverPush;
 import gameactions.GameActionStatePush;
 import gameactions.GameActionTeleport;
 
-import java.awt.Color;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -17,37 +13,23 @@ import model.KeyPreferences;
 import model.area.Area;
 import model.area.LinearArea;
 import model.area.RadialArea;
-import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.entity.Entity;
 import model.entity.EntityManager;
 import model.entity.EntityMovementAssocation;
-import model.entity.Mount;
-import model.entity.NPC;
 import model.event.EventManager;
 import model.event.ExperienceModifierEvent;
 import model.event.ManaModifierEvent;
 import model.event.RiverPushEvent;
 import model.event.TeleportEvent;
-import model.item.Door;
-import model.item.HPPotion;
 import model.item.Item;
-import model.item.ObstacleItem;
-import model.item.OneShotItem;
-import model.item.Price;
-import model.item.TakeableItem;
-import model.item.Trap;
-import model.item.TwoHandedWeapon;
 import model.light.LightManager;
 import model.map.GameMap;
 import model.map.ItemMap;
-import model.map.tile.AirPassableTile;
-import model.map.tile.ImpassableTile;
-import model.map.tile.PassableTile;
+import model.map.MapLoader;
 import model.projectile.Projectile;
 import model.projectile.ProjectileManager;
-import model.statistics.EntityStatistics;
 import model.trigger.PermanentTrigger;
 import model.trigger.RateLimitedTrigger;
 import model.trigger.SingleUseTrigger;
@@ -55,16 +37,10 @@ import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Direction;
 import utilities.structuredmap.JsonReader;
-import utilities.structuredmap.JsonWriter;
 import utilities.structuredmap.StructuredMap;
 import view.Decal;
-import view.entity.EntitySpriteFactory;
 import view.entity.EntityView;
-import view.item.BasicItemView;
-import view.item.ItemView;
 import view.layout.GameplayLayout;
-import view.map.BasicTileView;
-import view.map.TileView;
 import view.trigger.ViewableTrigger;
 import controller.GameplayController;
 import controller.listener.Listener;
@@ -118,9 +94,9 @@ public class GameplayState extends GameState {
         // Which is needed for other stuff.
         super.onEnter();
         controller = new GameplayController(this);
-        StructuredMap map = JsonReader.readJson(filePath);
+       StructuredMap map = JsonReader.readJson(filePath);
         
-        addTilesTest();
+        this.gameMap = MapLoader.loadMap("maps/main_map.json", layout); //CALL THIS FIRST
         addEntityTest(map.getStructuredMap("entites"));
         addItemsTest(map.getStructuredMap("items"));
         addTriggersTest(map.getStructuredMap("triggers"));
@@ -200,6 +176,7 @@ public class GameplayState extends GameState {
     	KeyPreferences preferences = new KeyPreferences();
         getContext().setPreferences(preferences);
         setListeners(preferences);
+        
 
     }
 
@@ -278,8 +255,13 @@ public class GameplayState extends GameState {
         ItemView trapView = new BasicItemView(TileCoordinate.convertToRealCoordinate(trapSpot), new Decal("/images/items/trap.png", TileCoordinate.convertToRealCoordinate(trapSpot)));
         trapView.registerWithGameItemView(layout.getGameItemView());
         this.getItemMap().addItem(new Trap(trapView), trapSpot);
-*/
         
+        TileCoordinate healthpackspot = new TileCoordinate(16,16);
+        ItemView hView = new BasicItemView(TileCoordinate.convertToRealCoordinate(healthpackspot),
+				new Decal("/images/items/healthpack.png", TileCoordinate.convertToRealCoordinate(healthpackspot)));
+        hView.registerWithGameItemView(layout.getGameItemView());
+        this.getItemMap().addItem(new HPPotion(hView, new Price(10), 1000),healthpackspot);
+        */
       
 		itemMap.loadItems(map);
 		
@@ -292,13 +274,9 @@ public class GameplayState extends GameState {
 			}
 		}
 		
-	/*
-        TileCoordinate healthpackspot = new TileCoordinate(16,16);
-        ItemView hView = new BasicItemView(TileCoordinate.convertToRealCoordinate(healthpackspot),
-				new Decal("/images/items/healthpack.png", TileCoordinate.convertToRealCoordinate(healthpackspot)));
-        hView.registerWithGameItemView(layout.getGameItemView());
-        this.getItemMap().addItem(new HPPotion(hView, new Price(10), 1000),healthpackspot);
-        */
+	
+        
+        
 
     }
 
@@ -333,29 +311,6 @@ public class GameplayState extends GameState {
         
     	//TriggerManager.getSingleton().loadTriggers(map);
 
-    }
-    public void addTilesTest() {
-        for (int x = 0; x < 100; ++x) {
-            for (int y = 0; y < 100; ++y) {// Hardcoded for as long as the area
-                // is
-                TileCoordinate p = new TileCoordinate(x, y);
-                if ((x != 10 || y != 10) && (x!=13 || y!=13)) {
-                    TileView view = new BasicTileView(new Color(0, 200, 200), Color.WHITE);
-                    view.registerWithGameMapView(layout.getGameTerrainView(), new RealCoordinate(x, y));
-                    gameMap.add(new PassableTile(view), p);
-                } else if(x!=13 || y!=13){
-                    TileView view = new BasicTileView(new Color(200, 0, 200), Color.WHITE);
-                    view.registerWithGameMapView(layout.getGameTerrainView(), new RealCoordinate(x, y));
-                    gameMap.add(new ImpassableTile(view), p);
-                }
-                else{
-                	TileView view = new BasicTileView(new Color(100, 0, 200), Color.BLACK);
-                    view.registerWithGameMapView(layout.getGameTerrainView(), new RealCoordinate(x, y));
-                    gameMap.add(new AirPassableTile(view), p);
-                }
-
-            }
-        }
     }
 
     @Override

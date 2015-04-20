@@ -1346,7 +1346,22 @@
 			},
 		"itemTile":	{
 			"items":	[{
-				
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	9.75,
+						"y":	0.4330127018922193
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/slotImage.png",
+						"position":	{
+							"x":	9.75,
+							"y":	0.4330127018922193
+							}
+						}
+					},
+				"type":	"obstacleItem"
 				}]
 			}
 		}, {
@@ -1356,6 +1371,22 @@
 			},
 		"itemTile":	{
 			"items":	[{
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	9.75,
+						"y":	8.227241335952167
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/book.png",
+						"position":	{
+							"x":	9.75,
+							"y":	8.227241335952167
+							}
+						}
+					},
+				"type":	"oneShot",
 				"modifiers":	{
 					"hardiness":	10,
 					"currentHealth":	1000,
@@ -1395,9 +1426,14 @@
 				"type":	"trap",
 				"event":	{
 					"duration":	20.0,
+<<<<<<< HEAD
                     "type": "tempMovementEvent",
 					"movement":  -1000,
 					"oldMovementSpeed":  1
+=======
+					"oldMovementSpeed":	1,
+					"type":	"tempMovementEvent"
+>>>>>>> branch 'master' of https://github.com/Iteration-3/Code.git
 					}
 				}]
 			}
@@ -1408,7 +1444,22 @@
 			},
 		"itemTile":	{
 			"items":	[{
-				
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	6.75,
+						"y":	6.49519052838329
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/slotImage.png",
+						"position":	{
+							"x":	6.75,
+							"y":	6.49519052838329
+							}
+						}
+					},
+				"type":	"obstacleItem"
 				}]
 			}
 		}]
