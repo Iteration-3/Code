@@ -110,10 +110,10 @@ public abstract class Entity extends MobileObject implements Saveable {
     
     public void onDamage(Entity entity){
     	setHasBeenAttacked();
-    	this.state.onDamage();
+    	this.state.onDamage(entity);
     }
     
-    private void setHasBeenAttacked(){
+    public void setHasBeenAttacked(){
     	this.hasBeenAttacked = true;
     }
     
@@ -132,7 +132,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     public void setAttacking(){
     	this.attacking = true;
     }
-    
+   
     public boolean getAttacking(){
     	return this.attacking;
     }
@@ -375,5 +375,10 @@ public abstract class Entity extends MobileObject implements Saveable {
     public ItemManager getItemManager(){
     	return this.itemManager;
     }
+
+	public int getDamage() {
+		int  offRating = this.getDerivedStats().getOffensiveRating();
+		return offRating;
+	}
 
 }
