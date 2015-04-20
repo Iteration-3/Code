@@ -46,6 +46,7 @@ import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Angle;
+import view.Decal;
 import view.EntitySpriteFactory;
 import view.EntityView;
 import view.item.BasicItemView;
@@ -131,7 +132,7 @@ public class GameplayState extends GameState {
         avatar.setLocation(loc);
         
         //testing this for equipped Items
-        avatar.equip(new Helmet(new BasicItemView(),new Statistics()));
+        avatar.equip(new Helmet(new BasicItemView(new Decal("/images/helmet_slot.jpg")),new Statistics()));
 
         EntityManager.getSingleton().setAvatar(avatar);
         getController().registerAvatar(avatar);
@@ -184,40 +185,40 @@ public class GameplayState extends GameState {
 	}
 
 	private void addItemsTest() {
-        ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN);
+        ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN, new Decal("/images/item.jpg"));
         TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
         takeableItemView.registerWithGameItemView(layout.getGameItemView(), TileCoordinate.convertToRealCoordinate(takeableItemViewPosition));
         this.getItemMap().addItem(new Boots(takeableItemView),
                 takeableItemViewPosition);
 
-        ItemView takeableItemViewTwo = new BasicItemView(new Color(100, 60, 100), Color.DARK_GRAY);
+        ItemView takeableItemViewTwo = new BasicItemView(new Color(100, 60, 100), Color.DARK_GRAY, new Decal("/images/item.jpg"));
         TileCoordinate takeableItemViewPositionTwo = new TileCoordinate(5, 6);
         takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView(),  TileCoordinate.convertToRealCoordinate(takeableItemViewPositionTwo));
         TakeableItem takeableItemTwo = new Gloves(takeableItemViewTwo);
         this.getItemMap().addItem(takeableItemTwo, takeableItemViewPositionTwo);
 
-        ItemView doorItemView = new BasicItemView(Color.RED, Color.MAGENTA);
+        ItemView doorItemView = new BasicItemView(Color.RED, Color.MAGENTA, new Decal("/images/slotImage.png"));
         TileCoordinate doorItemViewPosition = new TileCoordinate(15, 14);
         doorItemView.registerWithGameItemView(layout.getGameItemView(), TileCoordinate.convertToRealCoordinate(doorItemViewPosition));
         Door doorItem = new Door(doorItemView, takeableItemTwo);
         this.getItemMap().addItem(doorItem, doorItemViewPosition);
 
-        ItemView obstacleItemView = new BasicItemView(Color.GRAY, Color.BLACK);
+        ItemView obstacleItemView = new BasicItemView(Color.GRAY, Color.BLACK, new Decal("/images/item.jpg"));
         TileCoordinate obstacleItemPosition = new TileCoordinate(9, 7);
         obstacleItemView.registerWithGameItemView(layout.getGameItemView(),TileCoordinate.convertToRealCoordinate(obstacleItemPosition));
         this.getItemMap().addItem(new ObstacleItem(obstacleItemView), obstacleItemPosition);
 
-        ItemView oneshotItemView = new BasicItemView(Color.WHITE, Color.GREEN);
+        ItemView oneshotItemView = new BasicItemView(Color.WHITE, Color.GREEN, new Decal("/images/item.jpg"));
         TileCoordinate oneshotItemPosition = new TileCoordinate(13, 9);
         oneshotItemView.registerWithGameItemView(layout.getGameItemView(), TileCoordinate.convertToRealCoordinate(oneshotItemPosition));
         this.getItemMap().addItem(new OneShotItem(oneshotItemView, new EntityStatistics()), oneshotItemPosition);
         
-        ItemView riverMarker = new BasicItemView(Color.GRAY, Color.BLACK);
+        ItemView riverMarker = new BasicItemView(Color.GRAY, Color.BLACK, new Decal("/images/item.jpg"));
         TileCoordinate riverMarkerSpot = new TileCoordinate(13, 0);
         riverMarker.registerWithGameItemView(layout.getGameItemView(), TileCoordinate.convertToRealCoordinate(riverMarkerSpot));
         this.getItemMap().addItem(new ObstacleItem(riverMarker), riverMarkerSpot);
         
-        ItemView trapView = new BasicItemView(Color.RED, Color.BLACK);
+        ItemView trapView = new BasicItemView(Color.RED, Color.BLACK, new Decal("/images/item.jpg"));
         TileCoordinate trapSpot = new TileCoordinate(15, 12);
         trapView.registerWithGameItemView(layout.getGameItemView(), TileCoordinate.convertToRealCoordinate(trapSpot));
         this.getItemMap().addItem(new Trap(trapView), trapSpot);
