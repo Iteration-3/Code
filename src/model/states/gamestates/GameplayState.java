@@ -106,9 +106,6 @@ public class GameplayState extends GameState {
         addItemsTest();
         addTriggersTest();
         
-        //JsonWriter writer = new JsonWriter();
-       // writer.writeStructuredMap(EntityManager.getSingleton().getStructuredMap(), "filename.txt");
-        
         controller.spawnUpdateThread();
         avatar.subscribe(layout.getCamera());
         LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
