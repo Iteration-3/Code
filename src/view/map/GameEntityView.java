@@ -21,4 +21,7 @@ public class GameEntityView implements Renderable {
 	public void addEntityView(EntityView entityView) {
 		entityViews.add(entityView);
 	}
+	public void remove(EntityView entityView) {
+		entityViews.remove(entityView);
+	}
 }
