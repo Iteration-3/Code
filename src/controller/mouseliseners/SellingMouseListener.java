@@ -4,15 +4,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import model.entity.Avatar;
-import model.entity.NPC;
+import model.entity.Entity ;
 import model.item.TakeableItem;
 
 public final class SellingMouseListener implements MouseListener {
-	private NPC seller;
+	private Entity seller;
 	private Avatar buyer;
 	int slotNumber;
 	
-	public SellingMouseListener(NPC seller, Avatar buyer, int slotNumber) {
+	public SellingMouseListener(Entity seller, Avatar buyer, int slotNumber) {
 		this.seller = seller;
 		this.buyer = buyer;
 		this.slotNumber = slotNumber;

@@ -1,13 +1,8 @@
 package model.entity;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import model.area.TileCoordinate;
-import model.entity.dialog.DialogEntry;
-import model.entity.dialog.DialogTree;
-import model.entity.dialog.action.ExitAction;
-import model.entity.dialog.action.MountAction;
+import model.entity.behavior.npc.Behaviorable;
+import model.entity.behavior.npc.MountBehavior;
 import utilities.Angle;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
@@ -17,25 +12,10 @@ public class Mount extends NPC {
 	
 	public Mount(String name, EntityView view, TileCoordinate location) {
 		super(name, view, location);
-		Collection<DialogEntry> dialogEntries = new ArrayList<DialogEntry>();
-		dialogEntries.add(new DialogEntry("Mount", new MountAction()));
-		dialogEntries.add(new DialogEntry("Exit", new ExitAction()));
-		setDialogTree(new DialogTree(dialogEntries));
-	}
-	
-	public Mount(String name, EntityView view, TileCoordinate location, DialogTree dialogTree) {
-		super(name, view, location, dialogTree);
 	}
 
 	public Mount(StructuredMap map) {
 		super(map);
-	}
-	
-	@Override
-	public void interact(Avatar avatar) {
-		 if (this.rider == null) {
-			 super.interact(avatar);
-		 }
 	}
 	
 	@Override
@@ -77,5 +57,9 @@ public class Mount extends NPC {
 	@Override
 	public String getType() {
 		return "mount";
+	}
+	
+	protected Behaviorable getBehavior(){
+		return new MountBehavior();
 	}
 }

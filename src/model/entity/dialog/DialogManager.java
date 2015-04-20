@@ -2,7 +2,7 @@ package model.entity.dialog;
 
 import model.Model;
 import model.entity.Avatar;
-import model.entity.NPC;
+import model.entity.Entity;
 import model.states.gamestates.DialogMenuState;
 
 public final class DialogManager {
@@ -13,8 +13,8 @@ public final class DialogManager {
 		
 	}
 	
-	public void initDialog(NPC npc, Avatar avatar) {
-		model.pushState(new DialogMenuState(npc, avatar));
+	public void initDialog(Entity npc, Avatar avatar, DialogTree dialogTree) {
+		model.pushState(new DialogMenuState(npc, avatar, dialogTree));
 	}
 	
 	public void exit() {

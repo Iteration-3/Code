@@ -94,6 +94,10 @@ public class EntityView implements Saveable {
 			this.setLocation(new RealCoordinate(-5, -5));
 		}
 	}
+	
+	public boolean getHidden(){
+		return hidden;
+	}
 
 	private Angle getDirection() {
 		return angle;
