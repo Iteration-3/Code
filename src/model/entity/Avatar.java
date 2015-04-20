@@ -139,6 +139,9 @@ public abstract class Avatar extends Entity {
 			this.getEntityView().turnOnHealthBar();
 			this.getEntityView().updateMana(this.getManaPercentage());
 			this.getEntityView().turnOnManaBar();
+		}else{
+			this.getEntityView().turnOffHealthBar();
+			this.getEntityView().turnOffManaBar();
 		}
 	}
 	
