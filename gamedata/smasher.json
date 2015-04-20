@@ -45660,7 +45660,7 @@
 			"livesLeft":	3,
 			"agility":	10,
 			"experience":	0,
-			"movement":	10
+			"movement":	7
 			},
 		"flying":	false,
 		"name":	"DaveTheBarbarian",
@@ -46017,7 +46017,7 @@
 			"livesLeft":	3,
 			"agility":	10,
 			"experience":	0,
-			"movement":	10
+			"movement":	7
 			},
 		"flying":	false,
 		"name":	"My first mount",
@@ -46374,7 +46374,7 @@
 			"livesLeft":	3,
 			"agility":	10,
 			"experience":	0,
-			"movement":	10
+			"movement":	7
 			},
 		"flying":	false,
 		"name":	"Smasher",
@@ -47038,7 +47038,7 @@
 					"livesLeft":	3,
 					"agility":	10,
 					"experience":	0,
-					"movement":	10
+					"movement":	7
 					}
 				}]
 			}

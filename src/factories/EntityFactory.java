@@ -48,9 +48,12 @@ public class EntityFactory {
 		case "pet":
 			return createNPC(map, new PetBehavior());
 		case "heavyTrooper":
-			return createNPC(map, new TrooperBehavior(7));
+			return createNPC(map, new TrooperBehavior(12));
 		case "mount":
 			return new Mount(map);
+		case "cowardTrooper":
+			return createNPC(map, new TrooperBehavior(new Coward(true, EntityManager
+						.getSingleton().getAvatar()), 7));
 		default:
 			return null;
 		}
@@ -113,7 +116,7 @@ public class EntityFactory {
 			GameplayLayout layout) {
 		EntityView view = new EntityView(
 				EntitySpriteFactory.getTrooperSpriteHolder());
-		NPC entity = new NPC(name, "heavyTrooper", view, location,
+		NPC entity = new NPC(name, "cowardTrooper", view, location,
 				new TrooperBehavior(new Coward(true, EntityManager
 						.getSingleton().getAvatar()), 7));
 		entity.setStats(StatsFactory.getTrooperStats());
