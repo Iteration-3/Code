@@ -98,7 +98,6 @@ public abstract class Avatar extends Entity {
 			public void perform() {
 				//TODO Ensure this isaffected by equipement and so forth.
 				//Same for defending.
-				System.out.println("attack");
 				Avatar.this.attackInFront(-Avatar.this.getDerivedStats().getOffensiveRating()*10);
 				
 			}
