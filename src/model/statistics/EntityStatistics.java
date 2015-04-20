@@ -13,7 +13,7 @@ public class EntityStatistics extends Statistics {
     public EntityStatistics() {
         setLivesLeft(3);
         setExperience(0);
-        setMovement(10);
+        setMovement(7);
         setCurrentHealth(getMaximumHealth());
         setCurrentMana(getMaximumMana());
         setMoney(30);
