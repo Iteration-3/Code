@@ -11,12 +11,15 @@ public class PreferToBeInteracted implements InteractableBehaviorState {
 		this.chosen = entity;
 	}
 
+	@Override
 	public void accept(NPC entity) {
 	}
 
+	@Override
 	public void accept(Avatar avatar) {
 	}
 
+	@Override
 	public void interact(Entity entity) {
 		entity.interact(this.chosen);
 	}

@@ -5,7 +5,6 @@ import model.event.Event;
 import model.event.TemporaryMovementModifierEvent;
 import model.map.ItemMap;
 import model.map.tile.ItemTile;
-import model.slots.ItemManager;
 import utilities.structuredmap.StructuredMap;
 import view.item.ItemView;
 import factories.EventFactory;

@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
-import factories.TriggerFactory;
 import model.area.Area;
 import model.area.RadialArea;
 import model.area.RealCoordinate;
@@ -17,6 +16,7 @@ import utilities.structuredmap.StructuredMap;
 import view.Decal;
 import view.Renderable;
 import view.ViewTransform;
+import factories.TriggerFactory;
 
 public class ViewableTrigger extends Trigger implements Saveable, Renderable {
 
@@ -74,6 +74,7 @@ public class ViewableTrigger extends Trigger implements Saveable, Renderable {
 		return map;
 	}
 
+	@Override
 	public String getType() {
 		return "viewableTrigger";
 	}
@@ -93,29 +94,35 @@ public class ViewableTrigger extends Trigger implements Saveable, Renderable {
         return trigger.getArea();
     }
 
-    public void setArea(Area area) {
+    @Override
+	public void setArea(Area area) {
         trigger.setArea(area);
     }
 
-    public Event getEvent() {
+    @Override
+	public Event getEvent() {
         return trigger.getEvent();
     }
 
-    public void setEvent(Event event) {
+    @Override
+	public void setEvent(Event event) {
     	trigger.setEvent(event);
     }
     
-    public void handle(Entity entity){
+    @Override
+	public void handle(Entity entity){
     	if(this.isInRange(entity)){
     		this.perform(entity);
     	}
     }
     
-    protected boolean isInRange(Entity entity){
+    @Override
+	protected boolean isInRange(Entity entity){
     	return getArea().isInRange(entity.getLocation());
     }
 
-    public void moveLocation(TileCoordinate location) {
+    @Override
+	public void moveLocation(TileCoordinate location) {
         getArea().setStartLocation(location);
     }
 
