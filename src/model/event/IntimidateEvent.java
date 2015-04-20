@@ -1,8 +1,8 @@
 package model.event;
 
-import utilities.structuredmap.StructuredMap;
 import model.entity.Entity;
 import model.entity.behavior.npc.Coward;
+import utilities.structuredmap.StructuredMap;
 
 public class IntimidateEvent extends SourcedEvent{
 
@@ -15,6 +15,7 @@ public class IntimidateEvent extends SourcedEvent{
 		super(structuredMap);
 	}
 	
+	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = super.getStructuredMap();
 		return map;

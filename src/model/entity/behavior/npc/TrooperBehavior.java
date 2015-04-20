@@ -24,10 +24,12 @@ public class TrooperBehavior implements Behaviorable {
 		this.radius = radius;
 	}
 
+	@Override
 	public void perform(double deltaTime) {
 		this.perform.perform();
 	}
 
+	@Override
 	public void observe(double deltaTime) {
 		this.observer.observe();
 		if (this.observer.found()) {
