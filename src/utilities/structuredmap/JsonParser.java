@@ -188,7 +188,6 @@ public class JsonParser {
 				tokens.poll(); // munch the ','
 				continue;
 			} else { // otherwise this is not an StructuredMap aray
-				tokens.forEach(System.out::println);
 				throw new IllegalArgumentException(INVALID_JSON + " StructuredMap array entries ',' or a closing ']'. @" + curToken);
 			}
 		}

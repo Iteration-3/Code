@@ -36,7 +36,7 @@ public abstract class Avatar extends Entity {
 	}
 	
 	public Avatar(StructuredMap map) {
-		super(map);
+		super(map, new AvatarBehavior());
 		//hack?
 		MovingStaticLightSource avatarLight = new MovingStaticLightSource(new RadialArea(5, getLocation()), 255, this);
 		LightManager.getSingleton().addLightSource(avatarLight);

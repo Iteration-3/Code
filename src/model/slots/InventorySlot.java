@@ -72,6 +72,10 @@ public class InventorySlot implements Slot, Saveable{
 			this.slotview.register(null);
 		}
 	}
+	
+	public SlotView getSlotView() {
+		return this.slotview;
+	}
 
 	
 }

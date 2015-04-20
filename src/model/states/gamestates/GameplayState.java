@@ -1,12 +1,12 @@
 package model.states.gamestates;
 
-import factories.EntityFactory;
 import gameactions.GameActionRiverPush;
 import gameactions.GameActionStatePush;
 import gameactions.GameActionTeleport;
 
 import java.awt.Color;
 import java.util.Collection;
+import java.util.Iterator;
 
 import model.KeyPreferences;
 import model.area.Area;
@@ -15,16 +15,14 @@ import model.area.RadialArea;
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import model.entity.Avatar;
+import model.entity.Entity;
 import model.entity.EntityManager;
 import model.entity.EntityMovementAssocation;
-import model.entity.Mount;
-import model.entity.NPC;
 import model.event.EventManager;
 import model.event.ExperienceModifierEvent;
 import model.event.RiverPushEvent;
 import model.event.TeleportEvent;
 import model.item.Door;
-import model.item.Helmet;
 import model.item.ObstacleItem;
 import model.item.OneShotItem;
 import model.item.TakeableItem;
@@ -39,15 +37,15 @@ import model.map.tile.PassableTile;
 import model.projectile.Projectile;
 import model.projectile.ProjectileManager;
 import model.statistics.EntityStatistics;
-import model.statistics.Statistics;
 import model.trigger.PermanentTrigger;
 import model.trigger.RateLimitedTrigger;
 import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
 import utilities.Direction;
+import utilities.structuredmap.JsonReader;
+import utilities.structuredmap.StructuredMap;
 import view.Decal;
-import view.entity.EntitySpriteFactory;
 import view.entity.EntityView;
 import view.item.BasicItemView;
 import view.item.ItemView;
@@ -57,10 +55,6 @@ import view.map.TileView;
 import controller.GameplayController;
 import controller.listener.Listener;
 import controller.listener.SingleUseListener;
-import factories.EntityFactory;
-import gameactions.GameActionRiverPush;
-import gameactions.GameActionStatePush;
-import gameactions.GameActionTeleport;
 
 public class GameplayState extends GameState {
     private GameplayController controller;
@@ -111,6 +105,10 @@ public class GameplayState extends GameState {
         addEntityTest();
         addItemsTest();
         addTriggersTest();
+        
+        //JsonWriter writer = new JsonWriter();
+       // writer.writeStructuredMap(EntityManager.getSingleton().getStructuredMap(), "filename.txt");
+        
         controller.spawnUpdateThread();
         avatar.subscribe(layout.getCamera());
         LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
@@ -139,6 +137,8 @@ public class GameplayState extends GameState {
     }
 
     public void addEntityTest() {
+    	
+    	/*
         TileCoordinate loc = new TileCoordinate(3, 3);
         EntityView eView = avatar.getEntityView();
         avatar.setLocation(loc);
@@ -159,8 +159,20 @@ public class GameplayState extends GameState {
         Mount mount = new Mount("My first mount", mountView, mountLocation);
         mountView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(mountLocation), Direction.UP);
         EntityManager.getSingleton().addNonPartyNpc(mount);
-
-        KeyPreferences preferences = new KeyPreferences();
+        */
+    	
+    	StructuredMap map = JsonReader.readJson("filename.txt");
+    	EntityManager.getSingleton().loadEntities(map);
+    	Iterator<Entity> iterator = EntityManager.getSingleton().iterator();
+    	while(iterator.hasNext()) {
+    		Entity entity = iterator.next();
+    		EntityView view = entity.getEntityView();
+    		view.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(entity.getLocation()), entity.getDirection());
+    	}
+    	avatar = EntityManager.getSingleton().getAvatar();
+    	getController().registerAvatar(avatar);
+    	
+    	KeyPreferences preferences = new KeyPreferences();
         getContext().setPreferences(preferences);
         setListeners(preferences);
 

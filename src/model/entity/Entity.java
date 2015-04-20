@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import model.KeyPreferences;
 import model.area.TileCoordinate;
+import model.entity.behavior.npc.BarterBehavior;
 import model.entity.behavior.npc.Behaviorable;
 import model.entity.behavior.npc.state.StateMachine;
 import model.event.EventManager;
@@ -50,7 +51,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.setBehavior(behavior);
     }
     
-    public Entity(StructuredMap map) {
+    public Entity(StructuredMap map, Behaviorable behavior) {
     	super(new TileCoordinate(map.getIntArray("location")[0], map.getIntArray("location")[1]));
         this.name = map.getString("name");
         int[] locationArray = map.getIntArray("location");
@@ -60,7 +61,7 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.itemManager = new ItemManager(map.getStructuredMap("itemManager"));
         this.isFlying = map.getBoolean("flying");
         this.view = map.getStructuredMap("entityView") == null ? null : new EntityView(map.getStructuredMap("entityView"));
-        this.setBehavior();
+        this.setBehavior(behavior);
     }
     
     @Override
@@ -88,8 +89,9 @@ public abstract class Entity extends MobileObject implements Saveable {
     }
 
     private void setBehavior(){
+    	Behaviorable be = new BarterBehavior();
         this.state = new StateMachine(this);
-        this.state.push(this.getBehavior());
+        this.state.push(be);
     }
     
     protected abstract Behaviorable getBehavior();

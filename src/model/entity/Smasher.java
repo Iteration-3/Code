@@ -24,6 +24,7 @@ public class Smasher extends Avatar {
 	
 	public Smasher(StructuredMap map) {
 		super(map);
+		skillManager = new SmasherSkillManager(map.getStructuredMap("skillManager"));
 	}
 	
 	@Override
@@ -40,7 +41,9 @@ public class Smasher extends Avatar {
 
 	@Override
 	public StructuredMap getStructuredMap() {
-		return super.getStructuredMap();
+		StructuredMap map = super.getStructuredMap();
+		map.put("skillManager", skillManager.getStructuredMap());
+		return map;
 	}
 
 	@Override

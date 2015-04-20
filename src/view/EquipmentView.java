@@ -50,9 +50,26 @@ public class EquipmentView extends JComponent implements Saveable {
 		shieldY = map.getInteger("shieldY");
 		projectileX = map.getInteger("projectileX");
 		projectileY = map.getInteger("projectileY");
+		helmetView = new SlotView(map.getStructuredMap("helmetView"));
+		chestPieceView = new SlotView(map.getStructuredMap("chestPieceView"));
+		leggingsView = new SlotView(map.getStructuredMap("leggingsView"));
+		bootsView = new SlotView(map.getStructuredMap("bootsView"));
+		weaponView = new SlotView(map.getStructuredMap("weaponView"));
+		shieldView = new SlotView(map.getStructuredMap("shieldView"));
+		projectileView = new SlotView(map.getStructuredMap("projectileView"));
+		glovesView = new SlotView(map.getStructuredMap("glovesView"));
 		
 		setImages();
 	}
+	
+	private SlotView helmetView;
+	private SlotView chestPieceView;
+	private SlotView leggingsView;
+	private SlotView bootsView;
+	private SlotView weaponView;
+	private SlotView shieldView;
+	private SlotView projectileView;
+	private SlotView glovesView;
 	
 	@Override
 	public StructuredMap getStructuredMap() {
@@ -83,6 +100,14 @@ public class EquipmentView extends JComponent implements Saveable {
 		map.put("shieldY", shieldY);
 		map.put("projectileX", projectileX);
 		map.put("projectileY", projectileY);
+		map.put("helmetView", helmetView.getStructuredMap() );
+		map.put("chestPieceView", chestPieceView.getStructuredMap() );
+		map.put("leggingsView", leggingsView.getStructuredMap() );
+		map.put("bootsView", bootsView.getStructuredMap() );
+		map.put("weaponView", weaponView.getStructuredMap() );
+		map.put("shieldView", shieldView.getStructuredMap() );
+		map.put("projectileView", shieldView.getStructuredMap() );
+		map.put("glovesView", shieldView.getStructuredMap() );
 	
 		return map;
 	}
@@ -115,14 +140,7 @@ public class EquipmentView extends JComponent implements Saveable {
 	private static BufferedImage projectileImage;
 	private static BufferedImage glovesImage;
 	
-	private SlotView helmetView;
-	private SlotView chestPieceView;
-	private SlotView leggingsView;
-	private SlotView bootsView;
-	private SlotView weaponView;
-	private SlotView shieldView;
-	private SlotView projectileView;
-	private SlotView glovesView;
+	
 	
 	public EquipmentView(){
 		setLayout(null);

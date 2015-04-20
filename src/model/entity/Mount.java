@@ -15,7 +15,7 @@ public class Mount extends NPC {
 	}
 
 	public Mount(StructuredMap map) {
-		super(map);
+		super(map, new MountBehavior());
 	}
 	
 	@Override
