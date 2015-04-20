@@ -37,7 +37,7 @@ class JsonScanner {
 		
 		while (matcher.find()) {
 			String token = matcher.group();
-			System.out.println("___ : " + token);
+			
 			if(tokenLookup.containsKey(token)) {
 				tokens.offer(tokenLookup.get(token));
 			} else if (DOUBLE_PATTERN.matcher(token).matches()) {
