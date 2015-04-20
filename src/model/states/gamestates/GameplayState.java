@@ -14,6 +14,7 @@ import model.entity.Avatar;
 import model.entity.Entity;
 import model.entity.EntityManager;
 import model.entity.EntityMovementAssocation;
+import model.entity.Mount;
 import model.entity.NPC;
 import model.event.EventManager;
 import model.event.ExperienceModifierEvent;
@@ -37,6 +38,7 @@ import utilities.Direction;
 import utilities.structuredmap.JsonReader;
 import utilities.structuredmap.StructuredMap;
 import view.Decal;
+import view.entity.EntitySpriteFactory;
 import view.entity.EntityView;
 import view.layout.GameplayLayout;
 import view.trigger.ViewableTrigger;
@@ -64,6 +66,7 @@ public class GameplayState extends GameState {
         itemMap = ItemMap.getInstance();
         this.filePath = filePath;
         this.avatar = avatar;
+        EntityManager.getSingleton().setAvatar(avatar);
     }
 
     public void update(double deltaTime) {
@@ -103,20 +106,20 @@ public class GameplayState extends GameState {
         addEntityTest(map.getStructuredMap("entites"), map.getStructuredMap("keyPreferences"));
         addItemsTest(map.getStructuredMap("items"));
         addTriggersTest(map.getStructuredMap("triggers"));
-       //LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
+       LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
        
         
-      //StructuredMap map = new StructuredMap();
-      //map.put("entites", EntityManager.getSingleton().getStructuredMap());
-      //map.put("items", itemMap.getStructuredMap());
-      //KeyPreferences pref = new KeyPreferences();
-    // map.put("keyPreferences",  pref.getStructuredMap());
+      /*StructuredMap map = new StructuredMap();
+      map.put("entites", EntityManager.getSingleton().getStructuredMap());
+      map.put("items", itemMap.getStructuredMap());
+      KeyPreferences pref = new KeyPreferences();
+     map.put("keyPreferences",  pref.getStructuredMap());
         
-      //LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
-       //map.put("lightStuff", LightManager.getSingleton().getStructuredMap());
-       	//JsonWriter writer = new JsonWriter();
-       // writer.writeStructuredMap(map, filePath);
-        
+      LightManager.getSingleton().getLightMap().registerAll(layout.getGameLightView());
+       map.put("lightStuff", LightManager.getSingleton().getStructuredMap());
+       	JsonWriter writer = new JsonWriter();
+       writer.writeStructuredMap(map, filePath);
+        */
        
         
 
@@ -148,9 +151,30 @@ public class GameplayState extends GameState {
     }
 
     public void addEntityTest(StructuredMap entityMap, StructuredMap preferencesMap) {
-    	/*
     	
-        TileCoordinate loc = new TileCoordinate(3, 3);
+    	EntityManager.getSingleton().loadEntities(entityMap);
+    	Iterator<Entity> iterator = EntityManager.getSingleton().iterator();
+    	while(iterator.hasNext()) {
+    		Entity entity = iterator.next();
+    		EntityView view = entity.getEntityView();
+    		view.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(entity.getLocation()), entity.getDirection());
+    	}
+    	
+    	
+    	avatar = EntityManager.getSingleton().getAvatar();
+    	getController().registerAvatar(avatar);
+    	NPC npc2 = EntityFactory.createHeavyTrooper("MAX", new TileCoordinate(25,25), layout);
+    	NPC npc3 = EntityFactory.createCowardTrooper("TIMMY", new TileCoordinate(45,45), layout);
+    	
+    	StructuredMap map = npc3.getStructuredMap();
+    	NPC npc4 = EntityFactory.createNPC(map);
+    	System.out.println(npc4.getStructuredMap().getJson());
+    	EntityFactory.createHeavyTrooper("DAVE SMA11", new TileCoordinate(25,25), layout);
+    	EntityFactory.createCowardTrooper("CAP POOP PANTS", new TileCoordinate(40,25), layout);
+    	EntityFactory.createPet("Timmmy", new TileCoordinate(10,10), layout);
+    	EntityFactory.createHeavyTrooper("DAVE SMA11", new TileCoordinate(25,25), layout);
+    	
+    	TileCoordinate loc = new TileCoordinate(3, 3);
         EntityView eView = avatar.getEntityView();
         avatar.setLocation(loc);
         
@@ -170,30 +194,10 @@ public class GameplayState extends GameState {
         Mount mount = new Mount("My first mount", mountView, mountLocation);
         mountView.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(mountLocation), Direction.UP);
         EntityManager.getSingleton().addNonPartyNpc(mount);
-        
-        */
-    	
-    	
-    	EntityManager.getSingleton().loadEntities(entityMap);
-    	Iterator<Entity> iterator = EntityManager.getSingleton().iterator();
-    	while(iterator.hasNext()) {
-    		Entity entity = iterator.next();
-    		EntityView view = entity.getEntityView();
-    		view.registerWithGameMapView(layout.getGameEntityView(), TileCoordinate.convertToRealCoordinate(entity.getLocation()), entity.getDirection());
-    	}
-    	
-    	avatar = EntityManager.getSingleton().getAvatar();
-    	getController().registerAvatar(avatar);
-    	NPC npc2 = EntityFactory.createHeavyTrooper("MAX", new TileCoordinate(25,25), layout);
-    	NPC npc3 = EntityFactory.createCowardTrooper("TIMMY", new TileCoordinate(45,45), layout);
-    	EntityFactory.createHeavyTrooper("DAVE SMA11", new TileCoordinate(25,25), layout);
-    	EntityFactory.createCowardTrooper("CAP POOP PANTS", new TileCoordinate(40,25), layout);
-    	EntityFactory.createPet("Timmmy", new TileCoordinate(10,10), layout);
-    	EntityFactory.createHeavyTrooper("DAVE SMA11", new TileCoordinate(25,25), layout);
 
     	
     	KeyPreferences preferences = new KeyPreferences(preferencesMap);
-      //KeyPreferences preferences = new KeyPreferences();
+        //KeyPreferences preferences = new KeyPreferences();
         getContext().setPreferences(preferences);
         setListeners(preferences);
 
