@@ -116,6 +116,11 @@ public abstract class Avatar extends Entity {
 	
 	@Override
 	public void update(){
+		this.updateStatBars();
+	}
+	
+	private void updateStatBars(){
+		//Only appear during combat state.
 		this.getEntityView().updateHP(this.getHpPercentage());
 		this.getEntityView().turnOnHealthBar();
 		this.getEntityView().updateMana(this.getManaPercentage());
