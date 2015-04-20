@@ -2,7 +2,7 @@ package utilities;
 
 import model.area.TileCoordinate;
 
-public enum Angle {
+public enum Direction {
     UP_RIGHT(1, -1, 0, 0),
     UP(0, -1, -1, 60),
     UP_LEFT(-1, -1, 0, 120),
@@ -17,93 +17,93 @@ public enum Angle {
     private int theta;
     
 
-    private Angle(int deltaX, int evenDeltaY, int oddDeltaY, int theta) {
+    private Direction(int deltaX, int evenDeltaY, int oddDeltaY, int theta) {
     	this.deltaX = deltaX;
     	this.evenDeltaY = evenDeltaY;
     	this.oddDeltaY = oddDeltaY;
     	this.theta = theta;
     }
     
-    private Angle(){}
+    private Direction(){}
 
-    public Angle getLeft() {
-        Angle[] values = Angle.values();
+    public Direction getLeft() {
+        Direction[] values = Direction.values();
         return values[(ordinal() - 1 + values.length) % values.length];
     }
 
-    public Angle getRight() {
-        Angle[] values = Angle.values();
-        return Angle.values()[(ordinal() + 1) % values.length];
+    public Direction getRight() {
+        Direction[] values = Direction.values();
+        return Direction.values()[(ordinal() + 1) % values.length];
     }
     
     public int getAngle() {
     	return theta;
     }
 
-    public Angle getNearestAngleTowardTarget(TileCoordinate startingLocation, TileCoordinate targetLocation){
+    public Direction getNearestAngleTowardTarget(TileCoordinate startingLocation, TileCoordinate targetLocation){
 		int chosenX = startingLocation.getX();
 		int chosenY = startingLocation.getY();
 		int targetX = targetLocation.getX();
 		int targetY = targetLocation.getY();
 		
 		if (targetX < chosenX && targetY > chosenY ){
-			return Angle.DOWN_LEFT;
+			return Direction.DOWN_LEFT;
 		}
 		else if (targetX > chosenX && targetY < chosenY){
-			return Angle.UP_RIGHT;
+			return Direction.UP_RIGHT;
 		}
 		else if (targetX < chosenX && targetY < chosenY){
-			return Angle.UP_LEFT;
+			return Direction.UP_LEFT;
 		}
 		else if (targetX > chosenX && targetY > chosenY){
-			return Angle.DOWN_RIGHT;
+			return Direction.DOWN_RIGHT;
 		}
 		else if (targetY < chosenY){
-			return Angle.UP;
+			return Direction.UP;
 		}
 		else if (targetY > chosenY){
-			return Angle.DOWN;
+			return Direction.DOWN;
 		}
 		else if (targetX > chosenX){
-			return Angle.UP_RIGHT;
+			return Direction.UP_RIGHT;
 		}
 		else if (targetX < chosenX){
-			return Angle.UP_LEFT;
+			return Direction.UP_LEFT;
 		}
 		else{
 			return null;    // dont move
 		}
     }
     
-    public Angle getFarthestAngleFromTarget(TileCoordinate startingLocation, TileCoordinate targetLocation){
+    public Direction getFarthestAngleFromTarget(TileCoordinate startingLocation, TileCoordinate targetLocation){
 		int chosenX = startingLocation.getX();
 		int chosenY = startingLocation.getY();
 		int targetX = targetLocation.getX();
 		int targetY = targetLocation.getY();
 
 		if (targetX < chosenX && targetY > chosenY ){
-			return Angle.UP_RIGHT;
+			return Direction.UP_RIGHT;
 		}
 		else if (targetX > chosenX && targetY < chosenY){
-			return Angle.DOWN_LEFT;
+			return Direction.DOWN_LEFT;
 		}
 		else if (targetX < chosenX && targetY < chosenY){
-			return Angle.DOWN_RIGHT;
+			return Direction.DOWN_RIGHT;
 		}
 		else if (targetX > chosenX && targetY > chosenY){
-			return Angle.UP_LEFT;
+			return Direction.UP_LEFT;
 		}
 		else if (targetY < chosenY){
-			return Angle.DOWN;
+			return Direction.DOWN;
 		}
 		else if (targetY > chosenY){
-			return Angle.UP;
+			return Direction.UP;
 		}
 		else if (targetX > chosenX){
-			return Angle.DOWN_LEFT;
+			return Direction.DOWN_LEFT;
 		}
 		else if (targetX < chosenX){
-			return Angle.DOWN_RIGHT;
+			return Direction.DOWN_RIGHT;
 		}
 		else{
 			return null;    // dont move

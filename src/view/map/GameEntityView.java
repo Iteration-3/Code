@@ -4,15 +4,17 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import model.Camera;
 import view.EntityView;
+import view.Renderable;
+import view.ViewTransform;
 
-public class GameEntityView {
+public class GameEntityView implements Renderable {
 	private Collection<EntityView> entityViews = new ArrayList<EntityView>();
 
-	public void render(Graphics graphics, Camera camera) {
+	@Override
+	public void render(Graphics graphics, ViewTransform transform) {
 		for(EntityView entityView : entityViews) {
-			entityView.render(graphics, camera);
+			entityView.render(graphics, transform);
 			
 		}
 	}

@@ -9,7 +9,7 @@ import model.skillmanager.SneakSkillManager;
 import model.trigger.TimedTrigger;
 import model.trigger.Trigger;
 import model.trigger.TriggerManager;
-import utilities.Angle;
+import utilities.Direction;
 
 public class PickPocket extends TriggerAbility {
 	
@@ -35,7 +35,7 @@ public class PickPocket extends TriggerAbility {
 				Trigger trigger = this.getTrigger().clone();
 
 				TileCoordinate avatarLocation = avatar.getLocation();
-				Angle avatarDirection = avatar.getDirection();
+				Direction avatarDirection = avatar.getDirection();
 				TileCoordinate triggerLocation = avatarLocation.nextLocation(avatarDirection);
 				trigger.moveLocation(triggerLocation);
 				((PickPocketEvent)trigger.getEvent()).setSource(avatar);

@@ -3,7 +3,7 @@ package model.entity.behavior.npc.observe;
 import model.area.Area;
 import model.area.TileCoordinate;
 import model.entity.Entity;
-import utilities.Angle;
+import utilities.Direction;
 
 public class TargetEntity extends MovementChangingObservable {
 	private boolean reset;
@@ -14,8 +14,8 @@ public class TargetEntity extends MovementChangingObservable {
 	}
 	
 	@Override
-	protected Angle setMove(TileCoordinate chosenLocation, TileCoordinate targetLocation){
-		return Angle.PRODUCE_A_ANGLE.getNearestAngleTowardTarget(chosenLocation, targetLocation);
+	protected Direction setMove(TileCoordinate chosenLocation, TileCoordinate targetLocation){
+		return Direction.PRODUCE_A_ANGLE.getNearestAngleTowardTarget(chosenLocation, targetLocation);
 	}
 
 	@Override

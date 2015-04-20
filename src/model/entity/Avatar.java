@@ -14,7 +14,7 @@ import model.entity.behavior.npc.Behaviorable;
 import model.light.LightManager;
 import model.light.MovingLightSource;
 import model.skillmanager.SkillManager;
-import utilities.Angle;
+import utilities.Direction;
 import utilities.structuredmap.StructuredMap;
 import view.EntityView;
 import controller.listener.Listener;
@@ -45,7 +45,7 @@ public abstract class Avatar extends Entity {
 	}
 	
 	@Override
-	public void move(Angle angle) {
+	public void move(Direction angle) {
 		TileCoordinate nextLocation = this.nextLocation(angle);
 		NPC npc = EntityManager.getSingleton().getNPCAtLocation(nextLocation);
 		if (npc != null) {
