@@ -1,6 +1,9 @@
 package model.states.gamestates;
 
 
+import gameactions.GameActionDismount;
+import gameactions.GameActionGhostMovement;
+import gameactions.GameActionMovement;
 import gameactions.GameActionRiverPush;
 import gameactions.GameActionStatePush;
 import gameactions.GameActionTeleport;
@@ -59,6 +62,7 @@ import view.map.TileView;
 import view.trigger.ViewableTrigger;
 import controller.GameplayController;
 import controller.listener.Listener;
+import controller.listener.PollingListener;
 import controller.listener.SingleUseListener;
 
 public class GameplayState extends GameState {
@@ -200,8 +204,16 @@ public class GameplayState extends GameState {
 
         Collection<Listener> listeners = new EntityMovementAssocation(getContext().getCurrentUnit(), gameMap,
                 this.getItemMap()).getListeners(getContext());
+        
 
-        for (Listener listener : listeners) {
+		listeners.add(new PollingListener(preferences.getModUpLeftKey(), new GameActionGhostMovement(layout.getCamera(),gameMap, Direction.UP_LEFT)));
+		listeners.add(new PollingListener(preferences.getModDownKey(), new GameActionGhostMovement(layout.getCamera(),gameMap, Direction.DOWN)));
+		listeners.add(new PollingListener(preferences.getModDownRightKey(), new GameActionGhostMovement(layout.getCamera(),gameMap,Direction.DOWN_RIGHT)));
+		listeners.add(new PollingListener(preferences.getModDownLeftKey(), new GameActionGhostMovement(layout.getCamera(),gameMap,  Direction.DOWN_LEFT)));
+		listeners.add(new PollingListener(preferences.getModUpRightKey(), new GameActionGhostMovement(layout.getCamera(),gameMap,  Direction.UP_RIGHT)));
+		listeners.add(new PollingListener(preferences.getModUpKey(), new GameActionGhostMovement(layout.getCamera(),gameMap,  Direction.UP)));
+        
+		for (Listener listener : listeners) {
             listener.addAsBinding(getLayout());
             controller.addEntityListener(listener);
         }
