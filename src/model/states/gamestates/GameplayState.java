@@ -133,7 +133,7 @@ public class GameplayState extends GameState {
         avatar.setLocation(loc);
         
         //testing this for equipped Items
-        avatar.equip(new Helmet(new BasicItemView(new Decal("/images/helmet_image.jpg")),new Statistics()));
+        avatar.equip(new Helmet(new BasicItemView(new Decal("/images/helmet_image.png")),new Statistics()));
 
         EntityManager.getSingleton().setAvatar(avatar);
         getController().registerAvatar(avatar);
@@ -220,7 +220,7 @@ public class GameplayState extends GameState {
         riverMarker.registerWithGameItemView(layout.getGameItemView(), TileCoordinate.convertToRealCoordinate(riverMarkerSpot));
         this.getItemMap().addItem(new ObstacleItem(riverMarker), riverMarkerSpot);
         
-        ItemView trapView = new BasicItemView(Color.RED, Color.BLACK, new Decal("/images/trap_image.jpg"));
+        ItemView trapView = new BasicItemView(Color.RED, Color.BLACK, new Decal("/images/trap_image.png"));
         TileCoordinate trapSpot = new TileCoordinate(15, 12);
         trapView.registerWithGameItemView(layout.getGameItemView(), TileCoordinate.convertToRealCoordinate(trapSpot));
         this.getItemMap().addItem(new Trap(trapView), trapSpot);
