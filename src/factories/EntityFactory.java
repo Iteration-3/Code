@@ -8,6 +8,7 @@ import model.entity.Smasher;
 import model.entity.Sneak;
 import model.entity.Summoner;
 import model.entity.behavior.npc.BarterBehavior;
+import model.entity.behavior.npc.Behaviorable;
 import model.entity.behavior.npc.PetBehavior;
 import model.entity.behavior.npc.TrooperBehavior;
 import utilities.structuredmap.StructuredMap;
@@ -30,8 +31,14 @@ public class EntityFactory {
 	
 	public static NPC createNPC(StructuredMap map) {
 		switch(map.getString("type")) {
-		case "npc" :
-			return new NPC(map);
+		case "barter" :
+			return createNPC(map, new BarterBehavior());
+		case "trooper" :
+			return createNPC(map, new TrooperBehavior());
+		case "pet" : 
+			return createNPC(map, new PetBehavior());
+		case "heavyTrooper" :
+			return createNPC(map, new TrooperBehavior());
 		case "mount" :
 			return new Mount(map);
 		default :
@@ -39,6 +46,11 @@ public class EntityFactory {
 		}
 	}
 	
+	private static NPC createNPC(StructuredMap map,
+			Behaviorable behavior) {
+		return new NPC(map, behavior);
+	}
+
 	public static NPC createBarter(String name, EntityView view, TileCoordinate location){
 		NPC entity = new NPC(name, "barter", view , location ,new BarterBehavior());
 		return entity;
@@ -52,7 +64,7 @@ public class EntityFactory {
 		return entity;
 	}
 	public static NPC createHeavyTrooper(String name,EntityView view, TileCoordinate location){
-		NPC entity = new NPC(name, "barter", view , location ,new TrooperBehavior());
+		NPC entity = new NPC(name, "heavyTrooper", view , location ,new TrooperBehavior());
 		return entity;
 	}
 	public static Mount createMount(String name,EntityView view, TileCoordinate location){

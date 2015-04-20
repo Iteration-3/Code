@@ -187,7 +187,7 @@ public class GameplayState extends GameState {
 	}
 
 	private void addItemsTest() {
-        ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN, new Decal("/images/item.jpg"));
+        ItemView takeableItemView = new BasicItemView(new Color(100, 60, 100), Color.GREEN, new Decal("/images/boots_image.png"));
         TileCoordinate takeableItemViewPosition = new TileCoordinate(5, 5);
         takeableItemView.registerWithGameItemView(layout.getGameItemView(), TileCoordinate.convertToRealCoordinate(takeableItemViewPosition));
         this.getItemMap().addItem(new Boots(takeableItemView),
@@ -196,7 +196,7 @@ public class GameplayState extends GameState {
         ItemView takeableItemViewTwo = new BasicItemView(new Color(100, 60, 100), Color.DARK_GRAY, new Decal("/images/key_image.png"));
         TileCoordinate takeableItemViewPositionTwo = new TileCoordinate(5, 6);
         takeableItemViewTwo.registerWithGameItemView(layout.getGameItemView(),  TileCoordinate.convertToRealCoordinate(takeableItemViewPositionTwo));
-        TakeableItem takeableItemTwo = new Gloves(takeableItemViewTwo);
+        TakeableItem takeableItemTwo = new TakeableItem(takeableItemViewTwo);
         this.getItemMap().addItem(takeableItemTwo, takeableItemViewPositionTwo);
 
         ItemView doorItemView = new BasicItemView(Color.RED, Color.MAGENTA, new Decal("/images/slotImage.png"));
