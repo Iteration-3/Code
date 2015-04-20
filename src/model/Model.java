@@ -4,9 +4,13 @@ import model.entity.Entity;
 import model.entity.EntityManager;
 import model.entity.Mount;
 import model.entity.dialog.DialogManager;
+import model.light.LightManager;
+import model.map.ItemMap;
 import model.states.StateMachine;
 import model.states.gamestates.GameState;
 import model.states.gamestates.PauseMenuState;
+import utilities.structuredmap.JsonWriter;
+import utilities.structuredmap.StructuredMap;
 import view.View;
 import view.layout.Layout;
 
@@ -18,6 +22,16 @@ public class Model extends StateMachine<GameState> {
     public Model() {
         view = new View();
         DialogManager.getSingleton().setModel(this);
+    }
+    
+    public void Save(String fileName) {
+    	StructuredMap map = new StructuredMap();
+        map.put("entites", EntityManager.getSingleton().getStructuredMap());
+        map.put("items", ItemMap.getInstance().getStructuredMap());
+        map.put("keyPreferences",  preferences.getStructuredMap());
+        map.put("lightMap", LightManager.getSingleton().getStructuredMap());
+        JsonWriter write = new JsonWriter();
+        write.writeStructuredMap(map, fileName);
     }
 
     @Override
