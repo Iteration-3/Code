@@ -87,12 +87,20 @@ public class GameplayLayout extends Layout implements ActionListener {
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         ViewTransform transform = camera.getTransform();
+        
+        /* Do locks */
         gameEntityView.lock();
+        gameLightView.lock();
+        
+        /* Render */
         gameTerrainView.render(graphics, transform);
         gameEntityView.render(graphics, transform);
         gameItemView.render(graphics, transform);
 		//gameProjectileView.render(graphics, getWidth(), getHeight());
         gameLightView.render(graphics, transform);
+        
+        /* Do releases */
         gameEntityView.release();
+        gameLightView.release();
     }
 }
