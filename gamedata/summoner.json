@@ -2,10 +2,10 @@
 "lightStuff":	{
 	"sources":	[{
 		"area":	{
-			"coordinate":	[3, 3],
+			"coordinate":	[11, 7],
 			"range":	5,
 			"type":	"radial",
-			"direction":	1
+			"direction":	5
 			},
 		"strength":	255,
 		"type":	"movingLight"
@@ -46671,7 +46671,7 @@
 									}
 								}
 							},
-						"name":	"HPPotion",
+						"name":	"null",
 						"type":	"healItem"
 						},
 					"slotView":	{
@@ -46886,7 +46886,7 @@
 								}
 							}
 						},
-					"name":	"key",
+					"name":	"null",
 					"type":	"takeable"
 					},
 				"type":	"door"
@@ -46926,11 +46926,27 @@
 								}
 							}
 						},
-					"name":	"key",
+					"name":	"null",
 					"type":	"takeable"
 					},
 				"type":	"door"
 				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	5,
+			"y":	4
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	6,
+			"y":	5
+			},
+		"itemTile":	{
+			"items":	[]
 			}
 		}, {
 		"coordinate":	{
@@ -46964,7 +46980,7 @@
 							}
 						}
 					},
-				"name":	"chainsaw",
+				"name":	"null",
 				"type":	"THW"
 				}, {
 				"stats":	{
@@ -46992,7 +47008,7 @@
 							}
 						}
 					},
-				"name":	"chainsaw",
+				"name":	"null",
 				"type":	"THW"
 				}]
 			}
@@ -47023,7 +47039,7 @@
 							}
 						}
 					},
-				"name":	"HPPotion",
+				"name":	"null",
 				"type":	"healItem"
 				}, {
 				"price":	{
@@ -47046,7 +47062,7 @@
 							}
 						}
 					},
-				"name":	"HPPotion",
+				"name":	"null",
 				"type":	"healItem"
 				}]
 			}
@@ -47062,6 +47078,14 @@
 		"coordinate":	{
 			"x":	3,
 			"y":	3
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	4,
+			"y":	4
 			},
 		"itemTile":	{
 			"items":	[]
@@ -47092,7 +47116,7 @@
 							}
 						}
 					},
-				"name":	"key",
+				"name":	"null",
 				"type":	"takeable"
 				}, {
 				"price":	{
@@ -47114,7 +47138,7 @@
 							}
 						}
 					},
-				"name":	"key",
+				"name":	"null",
 				"type":	"takeable"
 				}]
 			}
@@ -47236,6 +47260,14 @@
 			}
 		}, {
 		"coordinate":	{
+			"x":	11,
+			"y":	7
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
 			"x":	15,
 			"y":	12
 			},
@@ -47291,6 +47323,22 @@
 		}, {
 		"coordinate":	{
 			"x":	9,
+			"y":	6
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	10,
+			"y":	7
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	9,
 			"y":	7
 			},
 		"itemTile":	{
@@ -47329,6 +47377,22 @@
 					},
 				"type":	"obstacleItem"
 				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	7,
+			"y":	5
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	8,
+			"y":	6
+			},
+		"itemTile":	{
+			"items":	[]
 			}
 		}]
 	}
