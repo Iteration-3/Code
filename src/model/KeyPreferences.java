@@ -40,6 +40,7 @@ public class KeyPreferences implements Saveable {
         for (int i = 0; i != 10; ++i) {//This should never go above 10, don't have that many keys!
             abilities.add(KeyStroke.getKeyStroke(Integer.toString(i)));
         }
+        abilities.add(KeyStroke.getKeyStroke("EQUALS"));
         abilities.add(KeyStroke.getKeyStroke("MINUS"));
     }
 
