@@ -8,7 +8,7 @@ import model.statistics.Statistics;
 
 import org.junit.Test;
 
-import utilities.Angle;
+import utilities.Direction;
 import utilities.structuredmap.StructuredMap;
 import factories.EventFactory;
 import gameactions.GameActionRiverPush;
@@ -125,7 +125,7 @@ public class EventSavingTest {
 	
 	@Test
 	public void testRiverPushEvent() {
-		Event event = new RiverPushEvent(new GameActionRiverPush(new Summoner(), new GameMap(), new ItemMap(), Angle.UP));
+		Event event = new RiverPushEvent(new GameActionRiverPush(new Summoner(), new GameMap(), new ItemMap(), Direction.UP));
 		StructuredMap map = event.getStructuredMap();
 		
 		System.out.println(map.getJson());
