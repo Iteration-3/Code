@@ -25,6 +25,7 @@ public abstract class MovementChangingObservable implements ObservableBehaviorSt
 	protected abstract Angle setMove(TileCoordinate chosen,TileCoordinate target);
 	protected abstract boolean setResetAreaValue();
 
+	@Override
 	public final void observe() {
 		if (count++ == ticker){
 			if (EntityManager.getSingleton().findEntityFromLocations(this.area.getCoveredLocations(), 

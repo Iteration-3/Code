@@ -73,7 +73,8 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.setBehavior();
     }
     
-    public StructuredMap getStructuredMap() {
+    @Override
+	public StructuredMap getStructuredMap() {
         int[] locationArray = new int[2];
         locationArray[0] = getLocation().getX();
         locationArray[1] = getLocation().getY();
@@ -345,26 +346,30 @@ public abstract class Entity extends MobileObject implements Saveable {
         this.itemManager.unequipGloves();
     }
 
-    public void setLocation(TileCoordinate location) {
+    @Override
+	public void setLocation(TileCoordinate location) {
     	super.setLocation(location);
     	if (this.getEntityView() != null)
     		this.getEntityView().setLocation(location);//TODO: FIX
     }
     
-    public void setDirection(Angle angle){
+    @Override
+	public void setDirection(Angle angle){
     	super.setDirection(angle);
     	if(this.getEntityView() != null){
     		this.getEntityView().setDirection(angle);
     	}
     }
     
-    protected void setLocationNoNotify(TileCoordinate location) {
+    @Override
+	protected void setLocationNoNotify(TileCoordinate location) {
     	super.setLocationNoNotify(location);
     	if (this.getEntityView() != null)
     		this.getEntityView().setLocation(location);//TODO: FIX
     }
     
-    protected void setDirectionNoNotify(Angle angle){
+    @Override
+	protected void setDirectionNoNotify(Angle angle){
     	super.setDirectionNoNotify(angle);
     	if(this.getEntityView() != null){
     		this.getEntityView().setDirection(angle);
@@ -420,6 +425,10 @@ public abstract class Entity extends MobileObject implements Saveable {
 	public int getDamage() {
 		int  offRating = this.getDerivedStats().getOffensiveRating();
 		return offRating;
+	}
+	
+	protected boolean isInCombat() {
+		return (this.getHasBeenAttacked() || this.getAttacking());
 	}
 
 }

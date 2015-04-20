@@ -14,6 +14,7 @@ public class LinkWithTarget implements DefaultableBehaviorState {
 		this.target = target;
 	}
 
+	@Override
 	public void perform() {
 		if (count++ == ticker){
 			if (! this.chosen.getLocation().nextTo(target.getLocation())){

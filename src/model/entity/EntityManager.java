@@ -71,6 +71,7 @@ public class EntityManager implements Iterable<Entity>, Saveable {
 			size = partyNpcs.size()+nonPartyNpcs.size()+1;
 		}
 		
+		@Override
 		public boolean hasNext() {
 			int curSize = partyNpcs.size()+nonPartyNpcs.size()+1;
 			
@@ -80,6 +81,7 @@ public class EntityManager implements Iterable<Entity>, Saveable {
 			return index < size;
 		}
 		
+		@Override
 		public Entity next() {
 			int curSize = partyNpcs.size()+nonPartyNpcs.size()+1;
 			
@@ -103,6 +105,7 @@ public class EntityManager implements Iterable<Entity>, Saveable {
 			throw new ConcurrentModificationException("EntityManager modified during iterating");
 		}
 	
+		@Override
 		public void remove() {
 			throw new UnsupportedOperationException("remove is not supported in EntityIterator");
 		}

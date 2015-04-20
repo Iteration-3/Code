@@ -13,6 +13,7 @@ public abstract class TileView implements Saveable {
 		gv.addTileView(this, p);
 	}
 	
+	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = new StructuredMap();
 		map.put("type", getType());

@@ -184,13 +184,16 @@ public class EquipmentView extends JComponent implements Saveable {
 		this.setBounds(x,y,this.getWidth(), this.getHeight());
 	}
 	
+	@Override
 	public int getWidth(){
 		return 3 * slotHeight;
 	}
+	@Override
 	public int getHeight(){
 		return 4 * slotHeight;
 	}
 	
+	@Override
 	public Dimension getPreferredSize(){
 		return new Dimension(this.getWidth(),this.getHeight());
 	}

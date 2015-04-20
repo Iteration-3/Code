@@ -28,6 +28,7 @@ public class Barter implements InteractableBehaviorState {
 		this.dialogTree = dialogTree;
 	}
 
+	@Override
 	public void interact(Entity entity) {
 		// can only barter with the avatar
 		entity.accept(this);
@@ -38,10 +39,12 @@ public class Barter implements InteractableBehaviorState {
 		return this.dialogTree;
 	}
 
+	@Override
 	public void accept(NPC entity) {
 		// NPC dont barter
 	}
 
+	@Override
 	public void accept(Avatar avatar) {
 		DialogManager.getSingleton().initDialog(this.barter, avatar, this.dialogTree);
 	}

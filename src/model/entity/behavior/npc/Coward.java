@@ -17,10 +17,12 @@ public class Coward implements Behaviorable {
 		this.entityToCowardFrom = entityToCowardFrom;
 	}
 
+	@Override
 	public void perform(double deltaTime) {
 		this.listen.perform();
 	}
 
+	@Override
 	public void observe(double deltaTime) {
 		this.cowardFromEntity.observe();
 		if (this.cowardFromEntity.found()) {
@@ -28,27 +30,34 @@ public class Coward implements Behaviorable {
 		}
 	}
 
+	@Override
 	public void interact(Entity entity) {
 	}
 
+	@Override
 	public void onDamage(Entity entity) {
 	}
 
+	@Override
 	public boolean isExpired() {
 		return false;
 	}
 
+	@Override
 	public void onExit() {
 	}
 
+	@Override
 	public void onEnter() {
 	}
 
+	@Override
 	public void setEntity(Entity entity) {
 		this.entity = entity;
 		setStates();
 	}
 
+	@Override
 	public void setStates() {
 		this.listen = new ListenForMovement(this.entity);
 		this.cowardFromEntity = new CowardFromEntity(this.entity,

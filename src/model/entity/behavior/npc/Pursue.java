@@ -27,27 +27,34 @@ public class Pursue implements Behaviorable {
 		}
 	}
 
+	@Override
 	public void interact(Entity entity) {
 	}
 
+	@Override
 	public void onDamage(Entity entity) {
 	}
 
+	@Override
 	public boolean isExpired() {
 		return false;
 	}
 
+	@Override
 	public void onExit() {
 	}
 
+	@Override
 	public void onEnter() {
 	}
 
+	@Override
 	public void setEntity(Entity entity) {
 		this.chosenOne = entity;
 		this.setStates();
 	}
 
+	@Override
 	public void setStates() {
 		this.pursue = new ListenForMovement(this.chosenOne);
 		this.targetEntity = new TargetEntity(this.chosenOne, EntityManager

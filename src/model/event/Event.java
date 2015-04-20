@@ -65,8 +65,10 @@ public abstract class Event implements Cloneable, Saveable{
 		return target != null;
 	}
 
+	@Override
 	public abstract Event clone();
 	
+	@Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = new StructuredMap();
 		map.put("duration", duration);

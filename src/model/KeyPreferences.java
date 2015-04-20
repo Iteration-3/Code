@@ -82,7 +82,8 @@ public class KeyPreferences implements Saveable {
         setDismountKey(dismountKey);
     }
 
-    public StructuredMap getStructuredMap() {
+    @Override
+	public StructuredMap getStructuredMap() {
         StructuredMap map = new StructuredMap();
         map.put("up", formatKey(getUpKey()));
         map.put("upLeft", formatKey(getUpLeftKey()));

@@ -14,41 +14,49 @@ public class Patroling implements Behaviorable {
 	public Patroling(){
 	}
 	
+	@Override
 	public void setStates(){
 		//set default Patrolling movemenet
 		regular = new Patrol(this.entity,new UpDown());
 	}
 
+	@Override
 	public void perform(double deltaTime){
 		if (count++ == ticker){
 			regular.perform();
 			count = 0;
 		}
 	}
-	
+	@Override
 	public void observe(double deltaTime){
 	}
 	
+	@Override
 	public void interact(Entity entity){
 		
 	}
 	
+	@Override
 	public void onDamage(Entity entity){
 		
 	}
 	
+	@Override
 	public boolean isExpired(){
 		return false;
 	}
 	
+	@Override
 	public void onExit(){
 		
 	}
 	
+	@Override
 	public void onEnter(){
 		
 	}
 
+	@Override
 	public void setEntity(Entity entity) {
 		this.entity = entity;
 		this.setStates();

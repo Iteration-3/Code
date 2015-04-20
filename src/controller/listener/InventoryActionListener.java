@@ -10,6 +10,7 @@ public class InventoryActionListener implements ActionListener {
 		slotLocation = i;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent arg0) {
 	}
 

@@ -48,7 +48,8 @@ public class Statistics implements Cloneable, Saveable {
         this.hardiness += statistics.hardiness;
     }
 
-    public Statistics clone() {
+    @Override
+	public Statistics clone() {
         Statistics cloned = new Statistics();
         cloned.strength = this.strength;
         cloned.agility = this.agility;

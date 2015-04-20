@@ -51,7 +51,7 @@ public class Mount extends NPC {
 		if (this.rider != null) {
 			this.rider.toggleView();
 			this.rider = null;
-			push(new MountBehavior());
+			this.push(new MountBehavior());
 		}
 	}
 
@@ -60,6 +60,7 @@ public class Mount extends NPC {
 		return "mount";
 	}
 	
+	@Override
 	protected Behaviorable getBehavior(){
 		return new MountBehavior();
 	}

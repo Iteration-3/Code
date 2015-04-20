@@ -35,6 +35,7 @@ public class SingleUseTrigger extends Trigger {
 
 	}
 
+	@Override
 	public SingleUseTrigger clone() {
 		SingleUseTrigger singleUseTrigger = new SingleUseTrigger();
 		singleUseTrigger.setArea(this.getArea());

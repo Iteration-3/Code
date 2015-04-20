@@ -4,7 +4,6 @@ import model.area.GrowingArea;
 import model.area.TileCoordinate;
 import model.event.Event;
 import model.projectile.Projectile;
-import model.trigger.Trigger;
 import utilities.Angle;
 
 public class ConicalProjectile extends Projectile {

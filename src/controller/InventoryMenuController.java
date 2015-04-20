@@ -36,6 +36,7 @@ public class InventoryMenuController extends Controller implements SlotViewMouse
 		return backAction;
 	}
 	
+	@Override
 	public void toggle() {
 		backAction.toggle();
 	}
@@ -44,6 +45,7 @@ public class InventoryMenuController extends Controller implements SlotViewMouse
 		return new InventoryMouseListener();
 	}
 	
+	@Override
 	public MouseListener makeSlotMouseListener(int i){
 		return new InventorySlotMouseListener(this.entity,i);
 	}

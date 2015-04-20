@@ -68,9 +68,11 @@ public abstract class Trigger implements Cloneable, Saveable {
 
     public abstract boolean hasExpired();
     
-    public abstract Trigger clone();
+    @Override
+	public abstract Trigger clone();
     
-    public StructuredMap getStructuredMap() {
+    @Override
+	public StructuredMap getStructuredMap() {
     	StructuredMap map = new StructuredMap();
     	map.put("area", area.getStructuredMap());
     	map.put("event", event == null ? null : event.getStructuredMap());

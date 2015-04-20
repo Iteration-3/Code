@@ -1,10 +1,8 @@
 package model.projectile.conical;
 
 import model.area.GrowingArea;
-import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.event.Event;
-import model.trigger.Trigger;
 import utilities.Angle;
 
 public class LightConeProjectile extends ConicalProjectile {

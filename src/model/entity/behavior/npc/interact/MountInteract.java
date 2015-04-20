@@ -29,9 +29,11 @@ public class MountInteract implements InteractableBehaviorState {
 		this.dialogTree = dialogTree;
 	}
 
+	@Override
 	public void accept(NPC entity) {
 	}
 
+	@Override
 	public void accept(Avatar avatar) {
 		 if (this.rider == null) {
 			 this.rider = avatar;
@@ -39,6 +41,7 @@ public class MountInteract implements InteractableBehaviorState {
 		 }
 	}
 
+	@Override
 	public void interact(Entity entity) {
 		entity.accept(this);
 	}

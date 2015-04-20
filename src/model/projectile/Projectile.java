@@ -3,10 +3,8 @@ package model.projectile;
 import java.awt.Color;
 
 import model.area.Area;
-import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.event.Event;
-import model.light.LightManager;
 import model.light.MovingLightSource;
 import model.observers.MobileObject;
 import model.trigger.SingleUseTrigger;
@@ -63,7 +61,7 @@ public class Projectile extends MobileObject implements Cloneable {
 	}
 
 	protected void timeOutProjectile() {
-		this.timeout = (long) (System.currentTimeMillis());
+		this.timeout = (System.currentTimeMillis());
 	}
 
 	protected boolean isTimedOut() {

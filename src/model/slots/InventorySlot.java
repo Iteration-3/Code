@@ -25,21 +25,25 @@ public class InventorySlot implements Slot, Saveable{
 		return map;
 	}
 	
+	@Override
 	public boolean has(){
 		boolean itemIsNotNull = ! (this.item==null);
 		return itemIsNotNull;
 	}
 	
+	@Override
 	public TakeableItem get(){
 		return this.item;
 	}
 	
+	@Override
 	public void addItem(TakeableItem item){
 		//replaces the item no matter what
 		this.item = item;
 		this.registerWithView();
 	}
 	
+	@Override
 	public TakeableItem removeItem(){
 		TakeableItem temp = this.item;
 		this.item = null;
@@ -47,6 +51,7 @@ public class InventorySlot implements Slot, Saveable{
 		return temp;
 	}
 	
+	@Override
 	public boolean hasItem(TakeableItem item){
 		if (has()) {
 			return this.item == item;

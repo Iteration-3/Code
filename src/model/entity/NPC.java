@@ -39,6 +39,7 @@ public class NPC extends Entity {
 		//DEPRECATED TO THE BEHAVIOR
 //		setDialogTree(dialogTree);
 	
+	@Override
 	protected ItemManager createItemManager() {
 		return new ItemManager(this);
 	}
@@ -57,24 +58,22 @@ public class NPC extends Entity {
 	
 	private void observeHelper(){
 		Avatar avatar = EntityManager.getSingleton().getAvatar();
-		if(this.getLocation().getDistance(avatar.getLocation()) < avatar.getObserveSkill()*4 ){
+		if (this.getLocation().getDistance(avatar.getLocation()) < avatar.getObserveSkill()*4
+				&& this.isInCombat()){
 			//The distance between the two objects vs the observe skill times 4 is the range.
 			//TODO ADD check if in combat state.
 			this.getEntityView().updateHP(getHpPercentage());
 			this.getEntityView().updateMana(getManaPercentage());
 			this.getEntityView().turnOnHealthBar();
 			this.getEntityView().turnOnManaBar();
-
-			
-			
-		}else{
+		} else {
 			this.getEntityView().turnOffHealthBar();
 			this.getEntityView().turnOffManaBar();
 		}
-		
 	}
 	
-	
+
+
 	@Override
 	public String getType() {
 		//Kyle you might want 

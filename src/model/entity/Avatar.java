@@ -134,20 +134,24 @@ public abstract class Avatar extends Entity {
 	
 	private void updateStatBars(){
 		//Only appear during combat state.
-		this.getEntityView().updateHP(this.getHpPercentage());
-		this.getEntityView().turnOnHealthBar();
-		this.getEntityView().updateMana(this.getManaPercentage());
-		this.getEntityView().turnOnManaBar();
+		if(this.isInCombat()){
+			this.getEntityView().updateHP(this.getHpPercentage());
+			this.getEntityView().turnOnHealthBar();
+			this.getEntityView().updateMana(this.getManaPercentage());
+			this.getEntityView().turnOnManaBar();
+		}
 	}
 	
 	protected Collection<Ability> getAbilities(){
 		return abilities;
 	}
 	
+	@Override
 	public void accept(EntiyVisitorable visitor){
 		visitor.accept(this);
 	}
 	
+	@Override
 	protected Behaviorable getBehavior(){
 		//there is none now
 		return null;

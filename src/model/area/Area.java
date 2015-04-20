@@ -34,7 +34,8 @@ public abstract class Area implements Saveable {
     	this.direction = Angle.values()[map.getInteger("direction")];
     }
 
-    public StructuredMap getStructuredMap() {
+    @Override
+	public StructuredMap getStructuredMap() {
     	StructuredMap map = new StructuredMap();
     	int[] location = new int[2];
     	location[0] = startLocation.getX();

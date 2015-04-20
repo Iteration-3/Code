@@ -83,6 +83,7 @@ public class PauseMenuController extends Controller {
     	return mainMenuAction;
     }
     
+	@Override
 	public void toggle() {
 		resumeGameAction.toggle();
 		saveGameAction.toggle();
