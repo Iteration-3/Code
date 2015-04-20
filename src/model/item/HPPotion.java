@@ -7,8 +7,8 @@ import view.item.ItemView;
 public class HPPotion extends TakeableItem {
 	private int healAmount;
 
-	public HPPotion(ItemView itemView, Price price, int healAmount) {
-		super(itemView, price);
+	public HPPotion(ItemView itemView, Price price, int healAmount, String name) {
+		super(itemView, price, name);
 		this.healAmount = healAmount;
 		// TODO Auto-generated constructor stub
 	}

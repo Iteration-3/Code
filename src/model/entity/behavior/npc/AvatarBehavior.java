@@ -10,33 +10,42 @@ public class AvatarBehavior implements Behaviorable {
 	public AvatarBehavior() {
 	}
 
+	@Override
 	public void perform(double deltaTime) {
 	}
 
+	@Override
 	public void observe(double deltaTime) {
 	}
 
+	@Override
 	public void interact(Entity entity) {
 		this.interact.interact(entity);
 	}
 
+	@Override
 	public void onDamage(Entity entity) {
 	}
 
+	@Override
 	public boolean isExpired() {
 		return false;
 	}
 
+	@Override
 	public void onExit() {
 	}
 
+	@Override
 	public void onEnter() {
 	}
 
+	@Override
 	public void setEntity(Entity entity) {
 		this.chosen = entity;
 	}
 
+	@Override
 	public void setStates() {
 		this.interact = new PreferToBeInteracted(this.chosen);
 	}

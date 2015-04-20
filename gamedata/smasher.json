@@ -46652,7 +46652,7 @@
 									}
 								}
 							},
-						"name":	"null",
+						"name":	"HPPotion",
 						"type":	"healItem"
 						},
 					"slotView":	{
@@ -46877,7 +46877,7 @@
 								}
 							}
 						},
-					"name":	"null",
+					"name":	"key",
 					"type":	"takeable"
 					},
 				"type":	"door"
@@ -46915,7 +46915,7 @@
 							}
 						}
 					},
-				"name":	"null",
+				"name":	"chainsaw",
 				"type":	"THW"
 				}]
 			}
@@ -46946,7 +46946,7 @@
 							}
 						}
 					},
-				"name":	"null",
+				"name":	"HPPotion",
 				"type":	"healItem"
 				}]
 			}
@@ -46976,7 +46976,7 @@
 							}
 						}
 					},
-				"name":	"null",
+				"name":	"key",
 				"type":	"takeable"
 				}]
 			}

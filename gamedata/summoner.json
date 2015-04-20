@@ -9,6 +9,15 @@
 			},
 		"strength":	255,
 		"type":	"movingLight"
+		}, {
+		"area":	{
+			"coordinate":	[3, 3],
+			"range":	5,
+			"type":	"radial",
+			"direction":	1
+			},
+		"strength":	255,
+		"type":	"movingLight"
 		}],
 	"lightMap":	{
 		"dimmedValues":	[{
@@ -46662,7 +46671,7 @@
 									}
 								}
 							},
-						"name":	"null",
+						"name":	"HPPotion",
 						"type":	"healItem"
 						},
 					"slotView":	{
@@ -46877,7 +46886,47 @@
 								}
 							}
 						},
-					"name":	"null",
+					"name":	"key",
+					"type":	"takeable"
+					},
+				"type":	"door"
+				}, {
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	11.25,
+						"y":	12.55736835487436
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/slotImage.png",
+						"position":	{
+							"x":	11.25,
+							"y":	12.55736835487436
+							}
+						}
+					},
+				"requirement":	{
+					"price":	{
+						"cost":	10
+						},
+					"taken":	false,
+					"itemView":	{
+						"onMap":	true,
+						"position":	{
+							"x":	3.75,
+							"y":	5.629165124598852
+							},
+						"type":	"basicItem",
+						"decal":	{
+							"imageResourcePath":	"/images/items/key.png",
+							"position":	{
+								"x":	3.75,
+								"y":	5.629165124598852
+								}
+							}
+						},
+					"name":	"key",
 					"type":	"takeable"
 					},
 				"type":	"door"
@@ -46915,7 +46964,35 @@
 							}
 						}
 					},
-				"name":	"null",
+				"name":	"chainsaw",
+				"type":	"THW"
+				}, {
+				"stats":	{
+					"hardiness":	10,
+					"intellect":	10,
+					"strength":	10,
+					"agility":	10
+					},
+				"price":	{
+					"cost":	10
+					},
+				"taken":	false,
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	3.75,
+						"y":	4.763139720814412
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/two_handed_chainsaw.png",
+						"position":	{
+							"x":	3.75,
+							"y":	4.763139720814412
+							}
+						}
+					},
+				"name":	"chainsaw",
 				"type":	"THW"
 				}]
 			}
@@ -46946,9 +47023,48 @@
 							}
 						}
 					},
-				"name":	"null",
+				"name":	"HPPotion",
+				"type":	"healItem"
+				}, {
+				"price":	{
+					"cost":	10
+					},
+				"taken":	false,
+				"healAmount":	1000,
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	12.0,
+						"y":	13.856406460551018
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/healthpack.png",
+						"position":	{
+							"x":	12.0,
+							"y":	13.856406460551018
+							}
+						}
+					},
+				"name":	"HPPotion",
 				"type":	"healItem"
 				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	7,
+			"y":	7
+			},
+		"itemTile":	{
+			"items":	[]
+			}
+		}, {
+		"coordinate":	{
+			"x":	3,
+			"y":	3
+			},
+		"itemTile":	{
+			"items":	[]
 			}
 		}, {
 		"coordinate":	{
@@ -46976,7 +47092,29 @@
 							}
 						}
 					},
-				"name":	"null",
+				"name":	"key",
+				"type":	"takeable"
+				}, {
+				"price":	{
+					"cost":	10
+					},
+				"taken":	false,
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	3.75,
+						"y":	5.629165124598852
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/key.png",
+						"position":	{
+							"x":	3.75,
+							"y":	5.629165124598852
+							}
+						}
+					},
+				"name":	"key",
 				"type":	"takeable"
 				}]
 			}
@@ -47003,7 +47141,32 @@
 						}
 					},
 				"type":	"obstacleItem"
+				}, {
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	9.75,
+						"y":	0.4330127018922193
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/slotImage.png",
+						"position":	{
+							"x":	9.75,
+							"y":	0.4330127018922193
+							}
+						}
+					},
+				"type":	"obstacleItem"
 				}]
+			}
+		}, {
+		"coordinate":	{
+			"x":	7,
+			"y":	2
+			},
+		"itemTile":	{
+			"items":	[]
 			}
 		}, {
 		"coordinate":	{
@@ -47012,6 +47175,35 @@
 			},
 		"itemTile":	{
 			"items":	[{
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	9.75,
+						"y":	8.227241335952167
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/book.png",
+						"position":	{
+							"x":	9.75,
+							"y":	8.227241335952167
+							}
+						}
+					},
+				"type":	"oneShot",
+				"modifiers":	{
+					"hardiness":	10,
+					"currentHealth":	1000,
+					"currentMana":	1000,
+					"intellect":	10,
+					"strength":	10,
+					"money":	30,
+					"livesLeft":	3,
+					"agility":	10,
+					"experience":	0,
+					"movement":	10
+					}
+				}, {
 				"itemView":	{
 					"onMap":	true,
 					"position":	{
@@ -47071,6 +47263,29 @@
 					"type":	"tempMovementEvent",
 					"movement":	-1000
 					}
+				}, {
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	11.25,
+						"y":	10.825317547305483
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/items/trap.png",
+						"position":	{
+							"x":	11.25,
+							"y":	10.825317547305483
+							}
+						}
+					},
+				"type":	"trap",
+				"event":	{
+					"duration":	20.0,
+					"oldMovementSpeed":	1,
+					"type":	"tempMovementEvent",
+					"movement":	-1000
+					}
 				}]
 			}
 		}, {
@@ -47080,6 +47295,23 @@
 			},
 		"itemTile":	{
 			"items":	[{
+				"itemView":	{
+					"onMap":	true,
+					"position":	{
+						"x":	6.75,
+						"y":	6.49519052838329
+						},
+					"type":	"basicItem",
+					"decal":	{
+						"imageResourcePath":	"/images/slotImage.png",
+						"position":	{
+							"x":	6.75,
+							"y":	6.49519052838329
+							}
+						}
+					},
+				"type":	"obstacleItem"
+				}, {
 				"itemView":	{
 					"onMap":	true,
 					"position":	{

@@ -15,14 +15,14 @@ public class ConsumableItem extends TakeableItem {
     private EntityStatistics stats;
     private double duration;
 
-    public ConsumableItem(ItemView itemView, EntityStatistics stats) {
-        super(itemView);
+    public ConsumableItem(ItemView itemView, EntityStatistics stats, String name) {
+        super(itemView, name);
         this.stats = stats;
         this.duration = 0.0;
     }
 
-    public ConsumableItem(ItemView itemView, EntityStatistics stats, double duration) {
-        super(itemView);
+    public ConsumableItem(ItemView itemView, EntityStatistics stats, double duration, String name) {
+        super(itemView, name);
         this.stats = stats;
         this.duration = duration;
     }
@@ -54,12 +54,6 @@ public class ConsumableItem extends TakeableItem {
     @Override
     protected String getType() {
 		return "consumeable";
-	}
-    
-	@Override
-	public String getInfo() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

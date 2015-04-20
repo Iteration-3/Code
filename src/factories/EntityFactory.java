@@ -1,5 +1,6 @@
 package factories;
 
+import model.area.RadialArea;
 import model.area.TileCoordinate;
 import model.entity.Avatar;
 import model.entity.EntityManager;
@@ -13,6 +14,8 @@ import model.entity.behavior.npc.Behaviorable;
 import model.entity.behavior.npc.Coward;
 import model.entity.behavior.npc.PetBehavior;
 import model.entity.behavior.npc.TrooperBehavior;
+import model.light.LightManager;
+import model.light.MovingStaticLightSource;
 import utilities.Direction;
 import utilities.structuredmap.StructuredMap;
 import view.entity.EntitySpriteFactory;
@@ -72,9 +75,13 @@ public class EntityFactory {
 		return entity;
 	}
 
-	public static NPC createPet(String name, EntityView view,
-			TileCoordinate location) {
-		NPC entity = new NPC(name, "pet", view, location, new PetBehavior());
+	public static NPC createPet(String name, TileCoordinate location,
+			GameplayLayout layout) {
+		EntityView view = new EntityView(
+				EntitySpriteFactory.getBoySpriteHolder());
+		NPC entity = new NPC(name, "pet", view, location,
+				new PetBehavior());
+		setEntity(entity,location,view,layout);
 		return entity;
 	}
 

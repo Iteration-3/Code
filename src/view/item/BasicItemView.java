@@ -41,6 +41,7 @@ public class BasicItemView extends ItemView implements Renderable {
 		//System.out.println("RENDER");
 	}
 	
+	@Override
 	public BufferedImage getImage(int width, int height) {
 		BufferedImage image = ImageProcessing.scaleImage(width, height, decal.getImageResourcePath());
 		return image;

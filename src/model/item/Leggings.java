@@ -7,12 +7,12 @@ import view.item.ItemView;
 
 public class Leggings extends EquipableItem{
 	
-	public Leggings(ItemView itemView) {
-		super(itemView);
+	public Leggings(ItemView itemView, String name) {
+		super(itemView, name);
 	}
 
-	public Leggings(ItemView itemView, Statistics statistics) {
-		super(itemView, statistics);
+	public Leggings(ItemView itemView, Statistics statistics, String name) {
+		super(itemView, statistics, name);
 	}
 	
 	public Leggings(StructuredMap map) {
@@ -22,12 +22,6 @@ public class Leggings extends EquipableItem{
 	@Override
 	public boolean equip(ItemManager itemManager) {
 		return itemManager.equipToSlot(this);
-	}
-	
-	@Override
-	public String getInfo() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	@Override

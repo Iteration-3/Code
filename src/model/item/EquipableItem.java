@@ -9,18 +9,18 @@ import view.item.ItemView;
 public abstract class EquipableItem extends TakeableItem {
 	private Statistics statistics;
 	
-	public EquipableItem(ItemView itemView) {
-		super(itemView);
+	public EquipableItem(ItemView itemView, String name) {
+		super(itemView, name);
 		this.statistics = new Statistics();
 	}
 	
-	public EquipableItem(ItemView itemView, Statistics statistics) {
-		this(itemView);
+	public EquipableItem(ItemView itemView, Statistics statistics, String name) {
+		this(itemView, name);
 		this.statistics = statistics;
 	}
 	
-	public EquipableItem(ItemView itemView, Statistics statistics, Price price) {
-		this(itemView, statistics);
+	public EquipableItem(ItemView itemView, Statistics statistics, Price price, String name) {
+		this(itemView, statistics, name);
 		setPrice(price);
 	}
 	

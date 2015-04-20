@@ -13,13 +13,14 @@ public class TakeableItem extends Item {
 	private Price price;
 	private String name;
 
-	public TakeableItem(ItemView itemView) {
+	public TakeableItem(ItemView itemView, String name) {
 		super(itemView);
 		setPrice(new Price());
+		this.name = name;
 	}
 	
-	public TakeableItem(ItemView itemView, Price price) {
-		this(itemView);
+	public TakeableItem(ItemView itemView, Price price, String name) {
+		this(itemView, name);
 		setPrice(price);
 	}
 
@@ -48,8 +49,7 @@ public class TakeableItem extends Item {
 
 	@Override
 	public String getInfo() {
-		// TODO Auto-generated method stub
-		return null;
+		return name + " ==== " + price;
 	}
 
 	@Override
@@ -84,6 +84,31 @@ public class TakeableItem extends Item {
 	
 	protected void setPrice(Price price) {
 		this.price = price;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TakeableItem other = (TakeableItem) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}
 	
 }

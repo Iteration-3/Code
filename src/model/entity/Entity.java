@@ -176,9 +176,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     public void attackInFront(int damage){
     	TileCoordinate targetSpot = this.nextLocation(this.getDirection());
     	Entity target = EntityManager.getSingleton().getEntityAtLocation(targetSpot);
-    	System.out.println(target);
     	if(target!=null){
-    		System.out.println(target.getDerivedStats().getCurrentHealth()+ " "+ damage);
     		this.attackEntity(target, damage);
     	}
     }
@@ -192,6 +190,10 @@ public abstract class Entity extends MobileObject implements Saveable {
 		EventManager.getSingleton().addEvent(new HealthModifierEvent(this,target,0,damage));
 		this.setAttacking();
 		target.setHasBeenAttacked();
+    }
+    
+    public void revert(){
+    	this.state.revert();
     }
 
     
@@ -233,7 +235,9 @@ public abstract class Entity extends MobileObject implements Saveable {
 
     public BoundedEntityStatistics getDerivedStats() {
         BoundedEntityStatistics derivedStats = this.stats.clone();
-        itemManager.merge(derivedStats);
+        if (itemManager != null) {
+        	itemManager.merge(derivedStats);
+        }
         return derivedStats;
     }
 
@@ -318,7 +322,11 @@ public abstract class Entity extends MobileObject implements Saveable {
     }
 
     public TakeableItem[] getItems() {
-        return this.itemManager.getInventoryItems();
+    	if (itemManager != null) {
+    		return this.itemManager.getInventoryItems();
+    	} else {
+    		return null;
+    	}
     }
     
     public TakeableItem getItem(int slotNumber) {

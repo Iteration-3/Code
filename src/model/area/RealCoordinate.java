@@ -26,8 +26,8 @@ public class RealCoordinate implements Saveable {
     @Override
 	public StructuredMap getStructuredMap() {
 		StructuredMap map = new StructuredMap();
-		map.put("x", (double)x);
-		map.put("y", (double)y);
+		map.put("x", x);
+		map.put("y", y);
 		return map;
 	}
 

@@ -41,6 +41,7 @@ public class Camera implements MobileListener {
 		return tileCoord.nextLocation(dir);
 	}
 
+	@Override
 	public void notify(MobileObject sourceObject) {
 		cameraPosition = TileCoordinate.convertToRealCoordinate(sourceObject.getLocation());
 	}
