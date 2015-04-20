@@ -409,5 +409,9 @@ public abstract class Entity extends MobileObject implements Saveable {
 		int  offRating = this.getDerivedStats().getOffensiveRating();
 		return offRating;
 	}
+	
+	protected boolean isInCombat() {
+		return (this.getHasBeenAttacked() || this.getAttacking());
+	}
 
 }

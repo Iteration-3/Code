@@ -59,7 +59,8 @@ public class NPC extends Entity {
 	
 	private void observeHelper(){
 		Avatar avatar = EntityManager.getSingleton().getAvatar();
-		if (this.getLocation().getDistance(avatar.getLocation()) < avatar.getObserveSkill()*4){
+		if (this.getLocation().getDistance(avatar.getLocation()) < avatar.getObserveSkill()*4
+				&& this.isInCombat()){
 			//The distance between the two objects vs the observe skill times 4 is the range.
 			//TODO ADD check if in combat state.
 			this.getEntityView().updateHP(getHpPercentage());
@@ -72,6 +73,8 @@ public class NPC extends Entity {
 		}
 	}
 	
+
+
 	@Override
 	public String getType() {
 		//Kyle you might want 
