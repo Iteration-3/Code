@@ -1,7 +1,7 @@
 package model.entity.behavior.npc.defaultb;
 
-import utilities.Direction;
 import model.entity.Entity;
+import utilities.Direction;
 
 public class LinkAndInteract {
 		private Entity chosen;

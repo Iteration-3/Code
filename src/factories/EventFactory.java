@@ -5,6 +5,7 @@ import model.event.ExperienceModifierEvent;
 import model.event.FlightEvent;
 import model.event.HealthModifierEvent;
 import model.event.InstantDeathEvent;
+import model.event.IntimidateEvent;
 import model.event.InvisiblityEvent;
 import model.event.LivesModifierEvent;
 import model.event.ManaModifierEvent;
@@ -44,6 +45,8 @@ public class EventFactory {
 			return new TeleportEvent(structuredMap);
 		case "tempMovementEvent":
 			return new TemporaryMovementModifierEvent(structuredMap);
+		case "intimidateEvent":
+			return new IntimidateEvent(structuredMap);
 		case "InvisibleEvent" :
 			return new InvisiblityEvent(structuredMap);
 		default:

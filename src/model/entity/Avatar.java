@@ -169,7 +169,7 @@ public abstract class Avatar extends Entity {
 	
 	private void updateStatBars(){
 		//Only appear during combat state.
-		if(this.isInCombat()){
+		if(true){//NVR, this is now replacing stats view.
 			this.getEntityView().updateHP(this.getHpPercentage());
 			this.getEntityView().turnOnHealthBar();
 			this.getEntityView().updateMana(this.getManaPercentage());

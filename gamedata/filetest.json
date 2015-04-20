@@ -1,0 +1,25 @@
+{
+"duration":	4.5,
+"stats":	{
+	"hardiness":	10,
+	"currentHealth":	1000,
+	"currentMana":	1000,
+	"intellect":	10,
+	"strength":	10,
+	"money":	30,
+	"livesLeft":	3,
+	"agility":	10,
+	"experience":	0,
+	"movement":	0
+	},
+"price":	{
+	"cost":	10
+	},
+"taken":	false,
+"itemView":	{
+	"path":	"/images/item.jpg",
+	"onMap":	false,
+	"type":	"basicItem"
+	},
+"type":	"consumeable"
+}

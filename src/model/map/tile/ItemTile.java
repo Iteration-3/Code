@@ -4,11 +4,11 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import factories.ItemFactory;
 import model.entity.Entity;
 import model.item.Item;
 import utilities.structuredmap.Saveable;
 import utilities.structuredmap.StructuredMap;
+import factories.ItemFactory;
 
 public class ItemTile implements Saveable {
     private Collection<Item> items = new CopyOnWriteArrayList<Item>();
@@ -50,20 +50,20 @@ public class ItemTile implements Saveable {
     public void touch(Entity e) {
         // Takes an entity, makes it touch all the items on the square, and then
         // removes those items that get picked up from the map.
-        for (Item i : items) {
-        	i.touch(e);
-            i.attemptRemoveFrom(this);
-        }
+    	try {
+    		for (Item i : items) {
+            	i.touch(e);
+                i.attemptRemoveFrom(this);
+            }
+    	} catch (Exception ex) {
+    		System.out.println(ex.getMessage());
+    	}
+        
     }
 
     public boolean remove(Item i) {
         return items.remove(i);
     }
-
-    /**
-     * UNIMPLEMENTED
-     */
-    
 
     public boolean isBlocking() {
         for (Item i : items) {

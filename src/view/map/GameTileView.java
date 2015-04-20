@@ -2,8 +2,6 @@ package view.map;
 
 import java.awt.Graphics;
 
-import javax.crypto.spec.IvParameterSpec;
-
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;
 import utilities.ScreenCoordinate;
@@ -12,8 +10,8 @@ import view.ViewTransform;
 
 public class GameTileView implements Renderable {
 	private TileView[][] tileViews;
-	public GameTileView() {
-		tileViews = new TileView[100][100]; //exact sizing just for testing purposes
+	public GameTileView(int width, int height) {
+		tileViews = new TileView[width][height]; //exact sizing just for testing purposes
 	}
 	
 	@Override

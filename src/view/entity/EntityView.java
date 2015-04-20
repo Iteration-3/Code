@@ -2,8 +2,6 @@ package view.entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import model.area.RealCoordinate;
 import model.area.TileCoordinate;

@@ -7,7 +7,6 @@ import model.area.TileCoordinate;
 import model.event.Event;
 import model.light.LightManager;
 import model.light.MovingDynamicLightSource;
-import model.light.MovingStaticLightSource;
 import model.observers.MobileObject;
 import model.trigger.SingleUseTrigger;
 import model.trigger.Trigger;

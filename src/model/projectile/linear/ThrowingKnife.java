@@ -1,11 +1,10 @@
 package model.projectile.linear;
 
-import model.area.TileCoordinate;
-import model.projectile.Projectile;
-import model.trigger.Trigger;
-import utilities.Direction;
 import model.area.Area;
+import model.area.TileCoordinate;
 import model.event.Event;
+import model.projectile.Projectile;
+import utilities.Direction;
 
 public class ThrowingKnife extends Projectile {
 	
