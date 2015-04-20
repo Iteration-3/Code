@@ -347,7 +347,7 @@ public class GameplayState extends GameState {
         Area areaTele = new RadialArea(0, locTele);
         Trigger triggerTele = new ViewableTrigger(new PermanentTrigger(areaTele, new TeleportEvent(new TileCoordinate(84, 55),
                 new GameActionTeleport(avatar, gameMap, this.getItemMap(), Direction.DOWN))), new Decal("/images/items/skull_and_crossbones.png",
-                		TileCoordinate.convertToRealCoordinate(new TileCoordinate(84,55)));
+                		TileCoordinate.convertToRealCoordinate(new TileCoordinate(84,55))));
         
     	//TriggerManager.getSingleton().loadTriggers(map);
 
