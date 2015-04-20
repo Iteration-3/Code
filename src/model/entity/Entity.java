@@ -209,6 +209,7 @@ public abstract class Entity extends MobileObject implements Saveable {
     		timerHasBeenAttacked += deltaTime;
     		if (timerHasBeenAttacked == maxHasBeenAttacked){
     			clearHasBeenAttacked();
+    			clearAttacking();
     		}
     	}
 	}
