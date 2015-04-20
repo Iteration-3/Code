@@ -14,15 +14,17 @@ import view.item.GameItemView;
 import view.light.GameLightView;
 import view.map.GameTileView;
 import view.projectiles.GameProjectileView;
+import view.trigger.GameTriggerView;
 
 @SuppressWarnings("serial")
 public class GameplayLayout extends Layout implements ActionListener {
 	
-    GameTileView gameTerrainView;
-    GameEntityView gameEntityView;
-    GameItemView gameItemView;
-    GameLightView gameLightView;
-	GameProjectileView gameProjectileView;
+    private GameTileView gameTerrainView;
+    private GameEntityView gameEntityView;
+    private GameItemView gameItemView;
+    private GameLightView gameLightView;
+	private GameProjectileView gameProjectileView;
+	private GameTriggerView gameTriggerView;
 	private Camera camera;
 	private static final int FPS = 60;
 	private static final int REDRAW_INTERVAL = 1000 / FPS;
@@ -32,6 +34,7 @@ public class GameplayLayout extends Layout implements ActionListener {
         gameEntityView = new GameEntityView();
         gameItemView = new GameItemView();
         gameLightView = new GameLightView();
+        gameTriggerView = new GameTriggerView();
 		gameProjectileView = new GameProjectileView();
         setBackground(Color.BLACK);
         initRedrawTimer();
@@ -40,6 +43,10 @@ public class GameplayLayout extends Layout implements ActionListener {
     
     public Camera getCamera() {
     	return camera;
+    }
+    
+    public GameTriggerView getGameTriggerView() {
+    	return gameTriggerView;
     }
 
     public GameTileView getGameTerrainView() {
@@ -97,6 +104,7 @@ public class GameplayLayout extends Layout implements ActionListener {
         gameTerrainView.render(graphics, transform);
         gameEntityView.render(graphics, transform);
         gameItemView.render(graphics, transform);
+        gameTriggerView.render(graphics, transform);
 		gameProjectileView.render(graphics, transform);
         gameLightView.render(graphics, transform);
         

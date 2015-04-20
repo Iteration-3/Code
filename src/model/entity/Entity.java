@@ -12,6 +12,7 @@ import model.event.EventManager;
 import model.event.HealthModifierEvent;
 import model.item.EquipableItem;
 import model.item.TakeableItem;
+import model.light.LightManager;
 import model.observers.MobileObject;
 import model.slots.ItemManager;
 import model.statistics.BoundedEntityStatistics;
@@ -303,6 +304,14 @@ public abstract class Entity extends MobileObject implements Saveable {
     public TakeableItem removeItem(int index) {
         return this.itemManager.removeItem(index);
     }
+    
+    public TakeableItem removeItem(TakeableItem takeableItem) {
+    	try {
+			return this.itemManager.removeItem(takeableItem);
+		} catch (Exception e) {
+			return null;
+		}
+    }
 
     public TakeableItem[] getItems() {
         return this.itemManager.getInventoryItems();
@@ -365,9 +374,15 @@ public abstract class Entity extends MobileObject implements Saveable {
     
     @Override
 	protected void setLocationNoNotify(TileCoordinate location) {
+    	TileCoordinate prevLoc = getLocation();
     	super.setLocationNoNotify(location);
+    	if (this.getEntityView() != null && !LightManager.getSingleton().getLightMap().isEmpty(prevLoc))
+    		this.getEntityView().setLocation(location);
+    }
+    
+    public void onSee() {
     	if (this.getEntityView() != null)
-    		this.getEntityView().setLocation(location);//TODO: FIX
+    		this.getEntityView().setLocation(getLocation());
     }
     
     @Override
