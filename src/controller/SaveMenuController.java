@@ -12,6 +12,11 @@ public class SaveMenuController extends Controller {
 		initActions();
 	}
 	
+	public void saveGame(int i) {
+		String filename = "save" + i + ".json";
+		model.save(filename);
+	}
+	
 	@SuppressWarnings("serial")
 	private void initActions() {
 		backAction =

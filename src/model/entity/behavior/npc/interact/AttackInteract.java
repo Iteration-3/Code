@@ -6,13 +6,23 @@ import model.entity.NPC;
 
 public class AttackInteract implements InteractableBehaviorState {
 	private Entity chosen;
+	private boolean attackEntity;
 	
 	public AttackInteract(Entity entity){
 		this.chosen = entity;
 	}
+	public AttackInteract(Entity entity,boolean attackEntity ){
+		this.chosen = entity;
+		this.attackEntity = attackEntity;
+	}
 
 	@Override
 	public void accept(NPC entity) {
+		if (attackEntity){
+			//TODO  damage needs to be modified with skill points
+			int damage = this.chosen.getDamage() * -1;
+			this.chosen.attackEntity(entity,damage);
+		}
 
 	}
 

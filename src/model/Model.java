@@ -24,7 +24,7 @@ public class Model extends StateMachine<GameState> {
         DialogManager.getSingleton().setModel(this);
     }
     
-    public void Save(String fileName) {
+    public void save(String fileName) {
     	StructuredMap map = new StructuredMap();
         map.put("entites", EntityManager.getSingleton().getStructuredMap());
         map.put("items", ItemMap.getInstance().getStructuredMap());
