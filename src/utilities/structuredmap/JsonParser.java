@@ -40,12 +40,18 @@ public class JsonParser {
 	
 	private static void insertKeyValuePairs(StructuredMap sm, Queue<JsonToken> tokens) {
 		while (!tokens.isEmpty()) {
-	
-			// All key / value pairs start with a String key
-			JsonToken curToken = tokens.poll();
-			if(curToken.getTokenType() != JsonTokenType.STRING)
-				throw new IllegalArgumentException(INVALID_JSON + " Contents of an object must begin with a \"Key\". @" + curToken);
 			
+			JsonToken curToken = tokens.element();
+			if(curToken.getTokenType() == JsonTokenType.RBRACE) {
+				return;
+			} 
+			
+			// All key / value pairs start with a String key
+			curToken = tokens.poll();
+			if(curToken.getTokenType() != JsonTokenType.STRING) {
+				tokens.forEach(System.out::println);
+				throw new IllegalArgumentException(INVALID_JSON + " Contents of an object must begin with a \"Key\". @" + curToken);
+			}
 			String key = curToken.toString();
 			
 			// and must be followed by a ':'
